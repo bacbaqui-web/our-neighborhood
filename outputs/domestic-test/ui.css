@@ -39,4 +39,4 @@ header{height:124px;}
 @media(max-width:760px){header{height:124px}.layout{height:auto}}
 @media(max-width:430px){header{height:170px}}
 
-.published-location-note{margin:3px 0 0;font-size:11px;color:#63717a;max-width:390px;line-height:1.35}
+.published-location-note{margin:3px 0 0;font-size:11px;color:#c3d2dc;max-width:390px;line-height:1.35}

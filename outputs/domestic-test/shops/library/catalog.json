@@ -1,0 +1,2087 @@
+{
+  "version": 70,
+  "categories": [
+    {
+      "id": "convenience",
+      "name": "편의점"
+    },
+    {
+      "id": "salon",
+      "name": "미용실"
+    },
+    {
+      "id": "laundry",
+      "name": "세탁소"
+    },
+    {
+      "id": "estate",
+      "name": "부동산"
+    },
+    {
+      "id": "food",
+      "name": "동네 음식점"
+    },
+    {
+      "id": "cafe",
+      "name": "카페"
+    }
+  ],
+  "assets": [
+    {
+      "id": "convenience-01",
+      "category": "convenience",
+      "name": "긴 차양 · 전면 냉동고",
+      "width": 12.8,
+      "height": 4.3,
+      "wall": "#865c50",
+      "pattern": "brick",
+      "joint": "#b09384",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.37,
+          "w": 12.1,
+          "h": 0.76,
+          "color": "#515753",
+          "bands": [
+            {
+              "x": -4.6,
+              "y": 0.22,
+              "w": 2.2,
+              "h": 0.08,
+              "color": "#cd8e4f"
+            },
+            {
+              "x": -4.6,
+              "y": 0.09,
+              "w": 2.2,
+              "h": 0.08,
+              "color": "#52866c"
+            },
+            {
+              "x": -4.6,
+              "y": -0.05,
+              "w": 2.2,
+              "h": 0.07,
+              "color": "#b86951"
+            }
+          ]
+        }
+      ],
+      "openings": [
+        {
+          "x": -1.1,
+          "y": 1.35,
+          "w": 9.5,
+          "h": 2.35,
+          "panes": 6,
+          "door": 1,
+          "frame": "#b9c2b7",
+          "glass": "#536c68",
+          "transom": true
+        },
+        {
+          "x": 5,
+          "y": 1.28,
+          "w": 1.25,
+          "h": 2.2,
+          "panes": 1,
+          "door": 0,
+          "frame": "#b8bcae"
+        }
+      ],
+      "awnings": [
+        {
+          "x": -3.2,
+          "y": 2.94,
+          "w": 5.1,
+          "depth": 1.05,
+          "color": "#3f6a60",
+          "drop": 0.35
+        },
+        {
+          "x": 2.05,
+          "y": 2.94,
+          "w": 5.1,
+          "depth": 1.05,
+          "color": "#3f6a60",
+          "drop": 0.35
+        }
+      ],
+      "props": [
+        {
+          "type": "freezer",
+          "x": -1.9,
+          "z": 0.77,
+          "w": 1.7
+        },
+        {
+          "type": "freezer",
+          "x": 0.05,
+          "z": 0.77,
+          "w": 1.7
+        },
+        {
+          "type": "ac",
+          "x": 4.35,
+          "z": 0.49,
+          "stack": 2
+        },
+        {
+          "type": "crates",
+          "x": -5.9,
+          "z": 0.6,
+          "stack": 3,
+          "color": "#787e6d"
+        }
+      ],
+      "steps": [
+        {
+          "x": -1,
+          "w": 10,
+          "h": 0.1,
+          "z": 0.18,
+          "d": 0.32
+        }
+      ],
+      "source": {
+        "name": "세븐일레븐 삼양솔매로점",
+        "placeId": "1393113782",
+        "placeUrl": "https://place.map.kakao.com/1393113782",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%84%B8%EB%B8%90%EC%9D%BC%EB%A0%88%EB%B8%90%20%EC%82%BC%EC%96%91%EC%86%94%EB%A7%A4%EB%A1%9C%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2021",
+        "address": "서울 강북구 솔매로 21",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/01-convenience-roadview.png",
+        "features": [
+          "적벽돌 바탕, 긴 진회색 간판판과 녹색/주황/적색 띠",
+          "서로 분리된 짙은 청록색 경사 차양 2개",
+          "은색 샷시, 왼쪽 치우친 출입구, 오른쪽 넓은 유리창",
+          "전면 낮은 흰색 냉동고 2개, 오른쪽 실외기 2단"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "convenience-02",
+      "category": "convenience",
+      "name": "석재 전면 · 노출 진열대",
+      "width": 7.4,
+      "height": 3.8,
+      "wall": "#535d59",
+      "pattern": "stone",
+      "joint": "#7e8881",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.27,
+          "w": 6.7,
+          "h": 0.48,
+          "color": "#46a2b0",
+          "bands": [
+            {
+              "y": -0.19,
+              "h": 0.06,
+              "color": "#e2e2d8"
+            }
+          ]
+        }
+      ],
+      "openings": [
+        {
+          "x": -1.7,
+          "y": 1.39,
+          "w": 3.2,
+          "h": 2.45,
+          "panes": 3,
+          "frame": "#bdc1b4",
+          "glass": "#4c6560",
+          "frost": 0.25,
+          "transom": true,
+          "stripe": {
+            "color": "#a65046",
+            "y": 0.6,
+            "h": 0.065
+          },
+          "papers": [
+            {
+              "x": -0.5,
+              "y": 1.2,
+              "w": 0.55,
+              "h": 0.72,
+              "color": "#b7d9dc"
+            }
+          ]
+        },
+        {
+          "x": 1.75,
+          "y": 1.39,
+          "w": 2.95,
+          "h": 2.45,
+          "panes": 3,
+          "door": 1,
+          "frame": "#bdc1b4",
+          "glass": "#4c6560",
+          "transom": true,
+          "frost": 0.22
+        }
+      ],
+      "props": [
+        {
+          "type": "rack",
+          "x": -0.75,
+          "z": 0.57,
+          "w": 1.2
+        },
+        {
+          "type": "crates",
+          "x": -2.9,
+          "z": 0.6,
+          "stack": 3
+        },
+        {
+          "type": "ac",
+          "x": 2.9,
+          "z": 0.6,
+          "stack": 2
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 7,
+          "h": 0.11,
+          "z": 0.32,
+          "d": 0.7
+        }
+      ],
+      "source": {
+        "name": "GS25 미아가온점",
+        "placeId": "1880724608",
+        "placeUrl": "https://place.map.kakao.com/1880724608",
+        "roadviewUrl": "https://map.kakao.com/?q=GS25%20%EB%AF%B8%EC%95%84%EA%B0%80%EC%98%A8%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%9D%B8%EC%88%98%EB%B4%89%EB%A1%9C20%EB%82%98%EA%B8%B8%2038",
+        "address": "서울 강북구 인수봉로20나길 38",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/04-gs25-roadview.png",
+        "features": [
+          "짙은 회색 석재 전면, 청록색 가로 간판판과 얇은 흰 띠",
+          "차양 없음, 은색 유리 프레임 좌우 두 베이, 오른쪽 출입문",
+          "전면 금속 진열대, 파란 플라스틱 상자와 종이상자",
+          "오른쪽 실외기 2단"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "convenience-03",
+      "category": "convenience",
+      "name": "곡면 차양 · 보라색 상층",
+      "width": 7.4,
+      "height": 6.05,
+      "wall": "#65666d",
+      "panels": [
+        {
+          "x": 0,
+          "y": 4.32,
+          "w": 7.1,
+          "h": 2.8,
+          "color": "#59488b"
+        }
+      ],
+      "signs": [
+        {
+          "x": 0,
+          "y": 5.65,
+          "w": 7.15,
+          "h": 0.65,
+          "color": "#584582",
+          "bands": [
+            {
+              "x": -0.5,
+              "y": 0.06,
+              "w": 5.8,
+              "h": 0.35,
+              "color": "#9cc943"
+            }
+          ]
+        }
+      ],
+      "openings": [
+        {
+          "x": 1.25,
+          "y": 1.28,
+          "w": 3.9,
+          "h": 2.4,
+          "panes": 4,
+          "door": 0,
+          "frame": "#d9d5ac"
+        },
+        {
+          "x": -2.5,
+          "y": 1.28,
+          "w": 1.6,
+          "h": 2.35,
+          "panes": 2,
+          "door": 1,
+          "frame": "#d9d5ac"
+        },
+        {
+          "x": 1.35,
+          "y": 4.24,
+          "w": 3.3,
+          "h": 1.55,
+          "panes": 1,
+          "frame": "#413e54"
+        }
+      ],
+      "awnings": [
+        {
+          "x": 1.22,
+          "y": 3.13,
+          "w": 4.15,
+          "depth": 1.05,
+          "color": "#d9a839",
+          "kind": "curve",
+          "drop": 0.86,
+          "frame": "#c0ac77"
+        },
+        {
+          "x": -2.5,
+          "y": 2.97,
+          "w": 2.7,
+          "depth": 1.4,
+          "color": "#cfb95e",
+          "stripe": "#e3d49c",
+          "drop": 0.45
+        }
+      ],
+      "props": [
+        {
+          "type": "board",
+          "x": -1.55,
+          "z": 0.53,
+          "color": "#ddd5c2",
+          "face": "#d1bea9"
+        }
+      ],
+      "steps": [
+        {
+          "x": 1.2,
+          "w": 4.2,
+          "h": 0.2,
+          "z": 0.4,
+          "d": 0.8
+        }
+      ],
+      "source": {
+        "name": "CU 연남아지트점",
+        "placeId": "1131532039",
+        "placeUrl": "https://place.map.kakao.com/1131532039",
+        "roadviewUrl": "https://map.kakao.com/?q=CU%20%EC%97%B0%EB%82%A8%EC%95%84%EC%A7%80%ED%8A%B8%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EB%8F%99%EA%B5%90%EB%A1%9C%20243",
+        "address": "서울 마포구 동교로 243",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/05-cu-roadview.png",
+        "features": [
+          "2층 전면에 보라색 판과 연두색 가로 돌출판",
+          "1층 오른쪽 노란 곡면 차양, 왼쪽 황색 줄무늬 경사 차양",
+          "오른쪽 크림색 4분할 유리, 왼쪽 작은 별도 개구부",
+          "가느다란 메뉴판 패널들은 글자 없는 색면으로 처리"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "salon-01",
+      "category": "salon",
+      "name": "흰 간판 · 짙은 유리",
+      "width": 4.3,
+      "height": 3.6,
+      "wall": "#777b74",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.07,
+          "w": 4.1,
+          "h": 0.66,
+          "color": "#e6e4d8",
+          "bands": [
+            {
+              "x": -1.5,
+              "y": 0.04,
+              "w": 0.55,
+              "h": 0.35,
+              "color": "#414444"
+            }
+          ]
+        }
+      ],
+      "panels": [
+        {
+          "x": 0,
+          "y": 2.62,
+          "w": 4.1,
+          "h": 0.2,
+          "color": "#98988d"
+        }
+      ],
+      "openings": [
+        {
+          "x": 0,
+          "y": 1.36,
+          "w": 3.8,
+          "h": 2.3,
+          "panes": 3,
+          "door": 2,
+          "frame": "#3f4642",
+          "glass": "#354c4d",
+          "frost": 0.32
+        }
+      ],
+      "props": [
+        {
+          "type": "ac",
+          "x": 1.62,
+          "z": 0.55
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 4.1,
+          "h": 0.12,
+          "z": 0.25,
+          "d": 0.5
+        }
+      ],
+      "source": {
+        "name": "민지미용실",
+        "placeId": "16063164",
+        "placeUrl": "https://place.map.kakao.com/16063164",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%AF%BC%EC%A7%80%EB%AF%B8%EC%9A%A9%EC%8B%A4%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B8%B8%2016",
+        "address": "서울 강북구 솔매로17길 16",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/02-minji-services-roadview.png",
+        "features": [
+          "흰색 가로 간판과 검정색 작은 표식 판, 회색 세로 줄 패널",
+          "차양 없는 짙은 유리와 아래쪽 불투명 띠",
+          "오른쪽 낮은 크림색 실외기",
+          "같은 건물 왼쪽 설비점의 녹색 곡면 차양은 미용실 구성에 포함하지 않음"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "salon-02",
+      "category": "salon",
+      "name": "셔터 옆 작은 미용실",
+      "width": 7.2,
+      "height": 4.1,
+      "wall": "#8c6057",
+      "pattern": "brick",
+      "joint": "#b09a88",
+      "panels": [
+        {
+          "x": 0,
+          "y": 1.46,
+          "w": 7.2,
+          "h": 2.92,
+          "color": "#acaea6"
+        }
+      ],
+      "shutters": [
+        {
+          "x": -1.55,
+          "y": 1.45,
+          "w": 3.55,
+          "h": 2.52
+        }
+      ],
+      "signs": [
+        {
+          "x": 2.04,
+          "y": 3.1,
+          "w": 2.65,
+          "h": 0.76,
+          "color": "#dfdfd5"
+        }
+      ],
+      "openings": [
+        {
+          "x": 2.06,
+          "y": 1.42,
+          "w": 2.39,
+          "h": 2.35,
+          "panes": 2,
+          "door": 1,
+          "frame": "#404943",
+          "glass": "#354d4d"
+        }
+      ],
+      "awnings": [
+        {
+          "x": 2.05,
+          "y": 2.72,
+          "w": 2.68,
+          "depth": 0.73,
+          "color": "#9f978a",
+          "drop": 0.18
+        }
+      ],
+      "steps": [
+        {
+          "x": 2.05,
+          "w": 2.65,
+          "h": 0.13,
+          "z": 0.25,
+          "d": 0.5
+        }
+      ],
+      "source": {
+        "name": "윤스헤어",
+        "placeId": "1793458469",
+        "placeUrl": "https://place.map.kakao.com/1793458469",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%9C%A4%EC%8A%A4%ED%97%A4%EC%96%B4%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B8%B8%2010",
+        "address": "서울 강북구 솔매로17길 10",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/03-yoon-roadview.png",
+        "features": [
+          "붉은 벽돌 건물, 회색 석재 1층",
+          "넓은 은색 셔터 오른쪽의 좁은 유리 매장",
+          "흰 간판판과 얕은 회갈색 경사 차양",
+          "짙은 프레임 출입문, 흰 세로 측면 판"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "salon-03",
+      "category": "salon",
+      "name": "중앙 계단 · 흰색 큰 개구부",
+      "width": 10.2,
+      "height": 4.45,
+      "wall": "#e3e3d9",
+      "base": "#776459",
+      "panels": [
+        {
+          "x": 0,
+          "y": 0.56,
+          "w": 10.2,
+          "h": 1.12,
+          "color": "#776459"
+        }
+      ],
+      "openings": [
+        {
+          "x": -2.86,
+          "y": 2.45,
+          "w": 3.65,
+          "h": 1.52,
+          "panes": 2,
+          "frame": "#d3d4cb",
+          "glass": "#304445"
+        },
+        {
+          "x": 2.85,
+          "y": 2.45,
+          "w": 3.64,
+          "h": 1.52,
+          "panes": 2,
+          "frame": "#d3d4cb",
+          "glass": "#304445"
+        },
+        {
+          "x": 0,
+          "y": 2.46,
+          "w": 1.5,
+          "h": 2.72,
+          "panes": 1,
+          "door": 0,
+          "frame": "#d4d4cb"
+        }
+      ],
+      "signs": [
+        {
+          "x": 0,
+          "y": 4.02,
+          "w": 5.9,
+          "h": 0.25,
+          "color": "#e2e2da"
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.15,
+          "z": 1.97,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.3,
+          "z": 1.72,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.44999999999999996,
+          "z": 1.47,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.6,
+          "z": 1.22,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.75,
+          "z": 0.97,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 0.8999999999999999,
+          "z": 0.72,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 1.05,
+          "z": 0.47,
+          "d": 0.32
+        },
+        {
+          "x": 0,
+          "w": 1.6,
+          "h": 1.2,
+          "z": 0.22,
+          "d": 0.32
+        }
+      ],
+      "props": [
+        {
+          "type": "board",
+          "x": -4.7,
+          "z": 1.8,
+          "color": "#b27088",
+          "face": "#dfd6c7"
+        }
+      ],
+      "source": {
+        "name": "이철헤어커커 망원점",
+        "placeId": "855095816",
+        "placeUrl": "https://place.map.kakao.com/855095816",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%9D%B4%EC%B2%A0%ED%97%A4%EC%96%B4%EC%BB%A4%EC%BB%A4%20%EB%A7%9D%EC%9B%90%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EB%B0%A9%EC%9A%B8%EB%82%B4%EB%A1%9C%2091",
+        "address": "서울 마포구 방울내로 91",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/06-salon-roadview.png",
+        "features": [
+          "미용실 앞면이 길보다 높고 가운데 계단으로 진입",
+          "흰색 넓은 전면에 좌우 가로로 긴 짙은 창, 중앙 출입구",
+          "하부는 갈색 판 마감, 외부 차양 없는 단정한 전면",
+          "아래층의 별도 네일 매장과 주차 차량은 모델에서 제외"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "laundry-01",
+      "category": "laundry",
+      "name": "회색 석재 · 큰 통유리",
+      "width": 6.2,
+      "height": 4.2,
+      "wall": "#b8bcb6",
+      "pattern": "stone",
+      "joint": "#8f9891",
+      "signs": [
+        {
+          "x": -0.55,
+          "y": 3.43,
+          "w": 4.85,
+          "h": 0.74,
+          "color": "#e5e7df"
+        }
+      ],
+      "openings": [
+        {
+          "x": -2.05,
+          "y": 1.44,
+          "w": 1.03,
+          "h": 2.45,
+          "panes": 1,
+          "door": 0,
+          "frame": "#d1d4c9"
+        },
+        {
+          "x": 0.25,
+          "y": 1.44,
+          "w": 3.2,
+          "h": 2.45,
+          "panes": 1,
+          "frame": "#d1d4c9",
+          "glass": "#475955"
+        }
+      ],
+      "steps": [
+        {
+          "x": -0.55,
+          "w": 4.7,
+          "h": 0.06,
+          "z": 0.22,
+          "d": 0.45
+        }
+      ],
+      "props": [],
+      "source": {
+        "name": "화이트365 연희점",
+        "placeId": "1398937686",
+        "placeUrl": "https://place.map.kakao.com/1398937686",
+        "roadviewUrl": "https://map.kakao.com/?q=%ED%99%94%EC%9D%B4%ED%8A%B8365%20%EC%97%B0%ED%9D%AC%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%ED%9D%AC%EB%A1%9C10%EA%B8%B8%204",
+        "address": "서울 서대문구 연희로10길 4",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/08-white365-roadview.png",
+        "features": [
+          "회색 큰 석재판에 흰색 얇은 간판판",
+          "왼쪽 별도 좁은 유리문, 오른쪽 큰 통유리",
+          "차양 없음, 바닥과 거의 같은 높이의 진입",
+          "오른쪽 아래 사각 설비함, 매장 안쪽 의자 일부 보이나 실내 복원은 제외"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "laundry-02",
+      "category": "laundry",
+      "name": "남색 차양 · 옷걸이대",
+      "width": 5.5,
+      "height": 3.75,
+      "wall": "#66594e",
+      "pattern": "brick",
+      "joint": "#a49582",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.18,
+          "w": 5.25,
+          "h": 0.59,
+          "color": "#3d5255"
+        }
+      ],
+      "openings": [
+        {
+          "x": 0,
+          "y": 1.4,
+          "w": 4.95,
+          "h": 2.4,
+          "panes": 4,
+          "door": 3,
+          "frame": "#64736c",
+          "glass": "#344e4b",
+          "papers": [
+            {
+              "x": -1.15,
+              "y": 0.75,
+              "w": 0.5,
+              "h": 0.65,
+              "color": "#d9ddce"
+            },
+            {
+              "x": 0.6,
+              "y": 0.65,
+              "w": 0.65,
+              "h": 0.75,
+              "color": "#778dac"
+            }
+          ]
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 2.88,
+          "w": 5.3,
+          "depth": 0.8,
+          "color": "#344d66",
+          "drop": 0.25
+        }
+      ],
+      "props": [
+        {
+          "type": "garments",
+          "x": -0.6,
+          "z": 0.64
+        },
+        {
+          "type": "board",
+          "x": -2.55,
+          "z": 0.45,
+          "color": "#c6d0c2",
+          "face": "#91a3b0"
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 5.2,
+          "h": 0.14,
+          "z": 0.31,
+          "d": 0.7
+        }
+      ],
+      "source": {
+        "name": "크린토피아 성북로점",
+        "placeId": "1235723266",
+        "placeUrl": "https://place.map.kakao.com/1235723266",
+        "roadviewUrl": "https://map.kakao.com/?q=%ED%81%AC%EB%A6%B0%ED%86%A0%ED%94%BC%EC%95%84%20%EC%84%B1%EB%B6%81%EB%A1%9C%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EC%84%B1%EB%B6%81%EB%A1%9C13%EA%B8%B8%202",
+        "address": "서울 성북구 성북로13길 2",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/09-cleantopia-roadview.png",
+        "features": [
+          "짙은 벽돌, 어두운 간판판, 긴 남색 경사 차양",
+          "네 분할 전면 유리와 오른쪽 유리 출입문",
+          "출입구 왼편에 흰색 옷을 건 은색 이동 옷걸이대",
+          "낮은 문턱과 전면의 파란 안내 패널은 무문자 색면으로 재구성"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "laundry-03",
+      "category": "laundry",
+      "name": "금속 캐노피 · 색면 안내창",
+      "width": 6.3,
+      "height": 3.65,
+      "wall": "#aaa99b",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.22,
+          "w": 6.1,
+          "h": 0.52,
+          "color": "#4f5c5b"
+        }
+      ],
+      "openings": [
+        {
+          "x": -1.4,
+          "y": 1.37,
+          "w": 2.8,
+          "h": 2.4,
+          "panes": 2,
+          "door": 0,
+          "frame": "#373f3b",
+          "glass": "#4a5953",
+          "stripe": {
+            "color": "#547487",
+            "y": 0.92,
+            "h": 0.18
+          }
+        },
+        {
+          "x": 1.45,
+          "y": 1.37,
+          "w": 2.55,
+          "h": 2.4,
+          "panes": 3,
+          "frame": "#3e4943",
+          "glass": "#414d48"
+        }
+      ],
+      "panels": [
+        {
+          "x": 0.48,
+          "y": 1.37,
+          "w": 0.6,
+          "h": 2.25,
+          "color": "#e3d8be",
+          "z": 0.18
+        },
+        {
+          "x": 1.15,
+          "y": 1.37,
+          "w": 0.65,
+          "h": 2.25,
+          "color": "#4b8bab",
+          "z": 0.18
+        },
+        {
+          "x": 1.85,
+          "y": 1.37,
+          "w": 0.65,
+          "h": 2.25,
+          "color": "#779653",
+          "z": 0.18
+        },
+        {
+          "x": 2.55,
+          "y": 1.37,
+          "w": 0.65,
+          "h": 2.25,
+          "color": "#985a55",
+          "z": 0.18
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 2.97,
+          "w": 6.15,
+          "depth": 0.65,
+          "color": "#d4d0bb",
+          "drop": 0.04
+        }
+      ],
+      "props": [
+        {
+          "type": "heater",
+          "x": 2.1,
+          "z": 0.66
+        },
+        {
+          "type": "board",
+          "x": 1.1,
+          "z": 0.95,
+          "color": "#afb9a9",
+          "face": "#4f7188"
+        }
+      ],
+      "source": {
+        "name": "워시엔조이 마포망원점",
+        "placeId": "26932849",
+        "placeUrl": "https://place.map.kakao.com/26932849",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%9B%8C%EC%8B%9C%EC%97%94%EC%A1%B0%EC%9D%B4%20%EB%A7%88%ED%8F%AC%EB%A7%9D%EC%9B%90%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EB%A7%9D%EC%9B%90%EB%A1%9C7%EA%B8%B8%2019-24",
+        "address": "서울 마포구 망원로7길 19-24",
+        "captureMonth": "2025-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/10-washenjoy-roadview.png",
+        "features": [
+          "거친 회색 외벽과 넓은 짙은 금속 간판 받침",
+          "얕은 흰색 캐노피, 검은 샷시와 왼쪽 좁은 출입문",
+          "오른쪽 창은 흰색·파랑·초록·붉은색 세로 안내판으로 가려져 있음",
+          "오른쪽 아래 금속 난방기와 입간판, 안내 글자와 인물 사진은 생략"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "estate-01",
+      "category": "estate",
+      "name": "작은 남색 간판 · 매물 게시창",
+      "width": 3.9,
+      "height": 3.65,
+      "wall": "#997d69",
+      "pattern": "stone",
+      "joint": "#b29a85",
+      "signs": [
+        {
+          "x": -0.3,
+          "y": 3.08,
+          "w": 2.65,
+          "h": 0.55,
+          "color": "#334550",
+          "bands": [
+            {
+              "y": 0.17,
+              "w": 1.3,
+              "h": 0.014,
+              "color": "#c6b484"
+            }
+          ]
+        }
+      ],
+      "openings": [
+        {
+          "x": -1.13,
+          "y": 1.4,
+          "w": 0.88,
+          "h": 2.37,
+          "panes": 1,
+          "door": 0,
+          "frame": "#9b8d67",
+          "glass": "#43584f"
+        },
+        {
+          "x": 0.67,
+          "y": 1.4,
+          "w": 2.33,
+          "h": 2.37,
+          "panes": 1,
+          "frame": "#9b8d67",
+          "glass": "#43584f",
+          "papers": [
+            {
+              "x": -0.8,
+              "y": 0.4,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.8,
+              "y": 0.7,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.8,
+              "y": 1.0,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.26,
+              "y": 0.4,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.26,
+              "y": 0.7,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.26,
+              "y": 1.0,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.28,
+              "y": 0.4,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.28,
+              "y": 0.7,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.28,
+              "y": 1.0,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.8200000000000001,
+              "y": 0.4,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.8200000000000001,
+              "y": 0.7,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.8200000000000001,
+              "y": 1.0,
+              "w": 0.47,
+              "h": 0.25,
+              "color": "#dddcca"
+            }
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 3.8,
+          "h": 0.14,
+          "z": 0.24,
+          "d": 0.5
+        }
+      ],
+      "source": {
+        "name": "브리치부동산공인중개사사무소",
+        "placeId": "496493472",
+        "placeUrl": "https://place.map.kakao.com/496493472",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%B8%8C%EB%A6%AC%EC%B9%98%EB%B6%80%EB%8F%99%EC%82%B0%EA%B3%B5%EC%9D%B8%EC%A4%91%EA%B0%9C%EC%82%AC%EC%82%AC%EB%AC%B4%EC%86%8C%20%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%A6%9D%EA%B0%80%EB%A1%9C%203",
+        "address": "서울 서대문구 증가로 3",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/11-brich-roadview.png",
+        "features": [
+          "갈색 석재 1층의 작은 남색 가로 간판",
+          "금갈색 프레임, 왼쪽 출입문과 오른쪽 매물 게시 유리",
+          "창 하부에 흰색 안내지 여러 장이 격자로 모여 있음",
+          "차양 없는 전면. 가로수에 가려진 오른쪽 끝 상세는 단순 처리"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "estate-02",
+      "category": "estate",
+      "name": "노란 간판 · 계단형 진입",
+      "width": 5.7,
+      "height": 4.25,
+      "wall": "#8b7665",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.66,
+          "w": 5.48,
+          "h": 0.85,
+          "color": "#ddd14d",
+          "bands": [
+            {
+              "x": 1.25,
+              "y": 0,
+              "w": 1.05,
+              "h": 0.66,
+              "color": "#ae4e48"
+            }
+          ]
+        },
+        {
+          "x": -2.28,
+          "y": 1.76,
+          "w": 0.6,
+          "h": 2.57,
+          "color": "#e0cd52"
+        }
+      ],
+      "openings": [
+        {
+          "x": 0.28,
+          "y": 1.78,
+          "w": 4.35,
+          "h": 2.48,
+          "panes": 3,
+          "door": 0,
+          "frame": "#7c8980",
+          "glass": "#52645c",
+          "frost": 0.45,
+          "frostColor": "#d8be45",
+          "papers": [
+            {
+              "x": -0.3,
+              "y": 1.43,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": -0.3,
+              "y": 1.69,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.16000000000000003,
+              "y": 1.43,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.16000000000000003,
+              "y": 1.69,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.6200000000000001,
+              "y": 1.43,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 0.6200000000000001,
+              "y": 1.69,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 1.08,
+              "y": 1.43,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 1.08,
+              "y": 1.69,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 1.54,
+              "y": 1.43,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            },
+            {
+              "x": 1.54,
+              "y": 1.69,
+              "w": 0.4,
+              "h": 0.21,
+              "color": "#dddcca"
+            }
+          ]
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 3.14,
+          "w": 5.52,
+          "depth": 0.4,
+          "color": "#424d48",
+          "drop": 0.08
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 5.3,
+          "h": 0.15,
+          "z": 0.85,
+          "d": 0.36,
+          "color": "#6a6256"
+        },
+        {
+          "x": 0,
+          "w": 5.3,
+          "h": 0.3,
+          "z": 0.55,
+          "d": 0.36,
+          "color": "#6a6256"
+        },
+        {
+          "x": 0,
+          "w": 5.3,
+          "h": 0.44999999999999996,
+          "z": 0.25,
+          "d": 0.36,
+          "color": "#6a6256"
+        }
+      ],
+      "source": {
+        "name": "마포부동산114공인중개사사무소",
+        "placeId": "1079404060",
+        "placeUrl": "https://place.map.kakao.com/1079404060",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%A7%88%ED%8F%AC%EB%B6%80%EB%8F%99%EC%82%B0114%EA%B3%B5%EC%9D%B8%EC%A4%91%EA%B0%9C%EC%82%AC%EC%82%AC%EB%AC%B4%EC%86%8C%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EB%B0%A9%EC%9A%B8%EB%82%B4%EB%A1%9C%2040",
+        "address": "서울 마포구 방울내로 40",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/12-mapobds-roadview.png",
+        "features": [
+          "큰 노란 가로 간판과 왼쪽 노란 세로판, 가로판 오른쪽의 붉은 사각 영역",
+          "유리 하부에 노란 띠가 반복되고 위에는 흰 매물표 격자",
+          "은색 샷시와 왼쪽 문, 얕고 접힌 검은 차양",
+          "매장으로 올라가는 짙은 갈색 3단 계단"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "estate-03",
+      "category": "estate",
+      "name": "붉은 간판 · 낮은 차양",
+      "width": 3.5,
+      "height": 3.65,
+      "wall": "#64594e",
+      "pattern": "brick",
+      "joint": "#a89782",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.18,
+          "w": 3.3,
+          "h": 0.65,
+          "color": "#ae6259"
+        }
+      ],
+      "openings": [
+        {
+          "x": -0.4,
+          "y": 1.45,
+          "w": 2.0,
+          "h": 2.34,
+          "panes": 2,
+          "frame": "#685b4f",
+          "glass": "#3c534a",
+          "papers": [
+            {
+              "x": -0.45,
+              "y": 0.45,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            },
+            {
+              "x": -0.45,
+              "y": 0.73,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            },
+            {
+              "x": 0.02999999999999997,
+              "y": 0.45,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            },
+            {
+              "x": 0.02999999999999997,
+              "y": 0.73,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            },
+            {
+              "x": 0.51,
+              "y": 0.45,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            },
+            {
+              "x": 0.51,
+              "y": 0.73,
+              "w": 0.41,
+              "h": 0.22,
+              "color": "#d0d6c4"
+            }
+          ]
+        },
+        {
+          "x": 1.1,
+          "y": 1.45,
+          "w": 0.84,
+          "h": 2.34,
+          "panes": 1,
+          "door": 0,
+          "frame": "#825a4f"
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 2.89,
+          "w": 3.4,
+          "depth": 0.72,
+          "color": "#354c66",
+          "drop": 0.24
+        }
+      ],
+      "props": [
+        {
+          "type": "planter",
+          "x": -0.87,
+          "z": 0.62,
+          "color": "#cdd4c8"
+        },
+        {
+          "type": "planter",
+          "x": -1.43,
+          "z": 0.52,
+          "color": "#dce0d5",
+          "scale": 0.75
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 3.4,
+          "h": 0.1,
+          "z": 0.24,
+          "d": 0.48
+        }
+      ],
+      "source": {
+        "name": "부자성북부동산공인중개사사무소",
+        "placeId": "2022787104",
+        "placeUrl": "https://place.map.kakao.com/2022787104",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%B6%80%EC%9E%90%EC%84%B1%EB%B6%81%EB%B6%80%EB%8F%99%EC%82%B0%EA%B3%B5%EC%9D%B8%EC%A4%91%EA%B0%9C%EC%82%AC%EC%82%AC%EB%AC%B4%EC%86%8C%20%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EC%84%B1%EB%B6%81%EB%A1%9C13%EA%B8%B8%202",
+        "address": "서울 성북구 성북로13길 2",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/09-cleantopia-roadview.png",
+        "features": [
+          "크린토피아 왼쪽의 성북부동산 전면. API는 같은 주소에 부자성북부동산으로 등록됨",
+          "붉은 가로 간판과 남색 낮은 경사 차양",
+          "짙은 유리, 흰색 매물 게시지, 오른쪽 좁은 출입문",
+          "낮은 문턱과 유리 앞 흰 화분. 현재 등록명과 촬영 당시 간판명은 구분"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "food-01",
+      "category": "food",
+      "name": "노란 줄무늬 차양 · 작은 분식점",
+      "width": 3.8,
+      "height": 4.3,
+      "wall": "#ae9e83",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.57,
+          "w": 3.65,
+          "h": 0.92,
+          "color": "#e2e2d8"
+        }
+      ],
+      "sideSigns": [
+        {
+          "x": 1.86,
+          "y": 3.9,
+          "h": 1.7,
+          "depth": 0.95,
+          "color": "#e2dfd2"
+        }
+      ],
+      "openings": [
+        {
+          "x": 0,
+          "y": 1.44,
+          "w": 3.2,
+          "h": 2.42,
+          "panes": 3,
+          "door": 1,
+          "frame": "#a58d57",
+          "glass": "#445952",
+          "papers": [
+            {
+              "x": -0.98,
+              "y": 1.3,
+              "w": 0.8,
+              "h": 1.5,
+              "color": "#d9ccbb"
+            },
+            {
+              "x": 0,
+              "y": 1.4,
+              "w": 0.65,
+              "h": 1.5,
+              "color": "#dbd3bf"
+            },
+            {
+              "x": 1.05,
+              "y": 1.4,
+              "w": 0.7,
+              "h": 1.7,
+              "color": "#c8c2ae"
+            }
+          ]
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 3.01,
+          "w": 3.75,
+          "depth": 1.33,
+          "color": "#d9be4d",
+          "stripe": "#d8d8bb",
+          "drop": 0.53
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 3.6,
+          "h": 0.16,
+          "z": 0.28,
+          "d": 0.6
+        }
+      ],
+      "source": {
+        "name": "보물섬김밥",
+        "placeId": "19011725",
+        "placeUrl": "https://place.map.kakao.com/19011725",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%B3%B4%EB%AC%BC%EC%84%AC%EA%B9%80%EB%B0%A5%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%9B%94%EB%93%9C%EC%BB%B5%EB%A1%9C13%EA%B8%B8%2050",
+        "address": "서울 마포구 월드컵로13길 50",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/14-gimbap-roadview.png",
+        "features": [
+          "흰색 가로 간판, 오른쪽 높은 세로 돌출 간판",
+          "노랑·회백색 줄무늬의 경사 차양",
+          "금갈색 프레임과 메뉴판으로 일부 가려진 작은 유리 전면",
+          "낮은 계단. 옆 정육점의 큰 붉은 차양은 제외"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "food-02",
+      "category": "food",
+      "name": "분홍 간판 · 노란 하부 문",
+      "width": 4.6,
+      "height": 3.8,
+      "wall": "#85574d",
+      "pattern": "brick",
+      "joint": "#a88473",
+      "signs": [
+        {
+          "x": 0.25,
+          "y": 3.25,
+          "w": 3.9,
+          "h": 0.7,
+          "color": "#be819b"
+        }
+      ],
+      "openings": [
+        {
+          "x": -0.72,
+          "y": 1.41,
+          "w": 2.62,
+          "h": 2.38,
+          "panes": 2,
+          "frame": "#46584e",
+          "glass": "#344d43",
+          "papers": [
+            {
+              "x": -0.5,
+              "y": 1.7,
+              "w": 0.44,
+              "h": 0.32,
+              "color": "#c2ccbb"
+            },
+            {
+              "x": 0.5,
+              "y": 1.7,
+              "w": 0.44,
+              "h": 0.32,
+              "color": "#c2ccbb"
+            }
+          ]
+        },
+        {
+          "x": 1.3,
+          "y": 1.41,
+          "w": 1.06,
+          "h": 2.38,
+          "panes": 1,
+          "door": 0,
+          "frame": "#8e9787",
+          "glass": "#4c6459",
+          "frost": 0.56,
+          "frostColor": "#d7c34a",
+          "stripe": {
+            "y": 1.35,
+            "h": 0.07,
+            "color": "#b5679a"
+          }
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 2.85,
+          "w": 4.65,
+          "depth": 0.64,
+          "color": "#a29a8d",
+          "drop": 0.17
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 4.4,
+          "h": 0.1,
+          "z": 0.28,
+          "d": 0.55
+        }
+      ],
+      "source": {
+        "name": "별미가정식백반",
+        "placeId": "14633518",
+        "placeUrl": "https://place.map.kakao.com/14633518",
+        "roadviewUrl": "https://map.kakao.com/?q=%EB%B3%84%EB%AF%B8%EA%B0%80%EC%A0%95%EC%8B%9D%EB%B0%B1%EB%B0%98%20%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EC%84%B1%EB%B6%81%EB%A1%9C%2057",
+        "address": "서울 성북구 성북로 57",
+        "captureMonth": "2026-07",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/15-baekban-roadview.png",
+        "features": [
+          "낮은 적벽돌 건물의 분홍색 가로 간판",
+          "길고 얕은 회갈색 금속 처마",
+          "어두운 왼쪽 유리와 오른쪽 문 하부의 선명한 노란 면",
+          "가로수에 가려진 세부와 옆 꽃가게의 물품은 제외"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "cafe-01",
+      "category": "cafe",
+      "name": "벽돌 반지하 · 화분 앞마당",
+      "width": 7.2,
+      "height": 2.85,
+      "wall": "#956c4b",
+      "pattern": "brick",
+      "joint": "#c5ae8d",
+      "signs": [
+        {
+          "x": 0.35,
+          "y": 2.38,
+          "w": 0.6,
+          "h": 0.56,
+          "color": "#b87637"
+        }
+      ],
+      "openings": [
+        {
+          "x": -1.48,
+          "y": 1.11,
+          "w": 1.7,
+          "h": 2.05,
+          "panes": 2,
+          "door": 1,
+          "frame": "#6d6553",
+          "glass": "#304638"
+        },
+        {
+          "x": 2.18,
+          "y": 1.18,
+          "w": 1.65,
+          "h": 1.6,
+          "panes": 4,
+          "frame": "#826744",
+          "glass": "#485948",
+          "transom": true
+        }
+      ],
+      "awnings": [
+        {
+          "x": -1.48,
+          "y": 2.37,
+          "w": 2.0,
+          "depth": 0.87,
+          "color": "#b6b7a3",
+          "drop": 0.24
+        }
+      ],
+      "props": [
+        {
+          "type": "planter",
+          "x": -3,
+          "z": 0.6,
+          "scale": 1.2,
+          "color": "#b19971"
+        },
+        {
+          "type": "planter",
+          "x": -2.6,
+          "z": 1.3,
+          "scale": 1,
+          "color": "#d1d0be"
+        },
+        {
+          "type": "planter",
+          "x": -0.25,
+          "z": 1.2,
+          "scale": 1.25,
+          "color": "#d5d3c2"
+        },
+        {
+          "type": "planter",
+          "x": 0.55,
+          "z": 0.85,
+          "scale": 0.9,
+          "color": "#a59d83"
+        },
+        {
+          "type": "planter",
+          "x": 1.2,
+          "z": 1.1,
+          "scale": 1.15,
+          "color": "#6e8071"
+        },
+        {
+          "type": "planter",
+          "x": 2.4,
+          "z": 0.5,
+          "scale": 1.4,
+          "color": "#98886a"
+        },
+        {
+          "type": "planter",
+          "x": 3.0,
+          "z": 1.1,
+          "scale": 0.85,
+          "color": "#c5c9b8"
+        }
+      ],
+      "steps": [
+        {
+          "x": -1.48,
+          "w": 1.8,
+          "h": 0.08,
+          "z": 0.3,
+          "d": 0.6
+        }
+      ],
+      "source": {
+        "name": "커피상점 이심",
+        "placeId": "27532506",
+        "placeUrl": "https://place.map.kakao.com/27532506",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%BB%A4%ED%94%BC%EC%83%81%EC%A0%90%20%EC%9D%B4%EC%8B%AC%20%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%ED%9D%AC%EB%A1%9C15%EA%B8%B8%2066",
+        "address": "서울 서대문구 연희로15길 66",
+        "captureMonth": "2025-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/17-isim-roadview.png",
+        "features": [
+          "길과 맞닿는 낮은 층의 붉은 벽돌 전면",
+          "왼쪽 어두운 출입구 위 작은 회색 차양, 오른쪽 목재 격자창",
+          "작은 주황색 사각 간판판과 전면의 여러 화분",
+          "상층의 큰 파란 차양과 주거층은 카페 에셋에 포함하지 않음",
+          "식물이 가리는 출입구 세부와 내부는 단순 처리"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "cafe-02",
+      "category": "cafe",
+      "name": "녹색 격자창 · 콘크리트 기둥",
+      "width": 8.0,
+      "height": 3.85,
+      "wall": "#c6c9b5",
+      "panels": [
+        {
+          "x": 0,
+          "y": 3.28,
+          "w": 8,
+          "h": 0.94,
+          "color": "#c6c9b5"
+        },
+        {
+          "x": 0,
+          "y": 1.5,
+          "z": 0.12,
+          "w": 0.52,
+          "h": 3,
+          "d": 0.25,
+          "color": "#c9ccb8"
+        }
+      ],
+      "openings": [
+        {
+          "x": -2.1,
+          "y": 1.43,
+          "w": 3.35,
+          "h": 2.52,
+          "panes": 3,
+          "door": 0,
+          "frame": "#3f6a53",
+          "frameWidth": 0.075,
+          "glass": "#344f45",
+          "rows": 3,
+          "lowerColor": "#4f7b5e"
+        },
+        {
+          "x": 2.1,
+          "y": 1.43,
+          "w": 3.35,
+          "h": 2.52,
+          "panes": 3,
+          "frame": "#3f6a53",
+          "frameWidth": 0.075,
+          "glass": "#344f45",
+          "rows": 3,
+          "lowerColor": "#4f7b5e"
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 3.77,
+          "w": 8.12,
+          "depth": 0.85,
+          "color": "#c5c7b5",
+          "drop": 0.01
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 7.75,
+          "h": 0.13,
+          "z": 0.51,
+          "d": 1.05,
+          "color": "#a68b63"
+        }
+      ],
+      "props": [
+        {
+          "type": "bench",
+          "x": 2.2,
+          "z": 0.7,
+          "w": 2,
+          "color": "#b09a74"
+        },
+        {
+          "type": "board",
+          "x": -3.85,
+          "z": 0.9,
+          "color": "#5a7e66",
+          "face": "#456b55"
+        }
+      ],
+      "source": {
+        "name": "스웨이커피스테이션",
+        "placeId": "1467009878",
+        "placeUrl": "https://place.map.kakao.com/1467009878",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%8A%A4%EC%9B%A8%EC%9D%B4%EC%BB%A4%ED%94%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98%20%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%ED%9D%AC%EB%A1%9C11%EA%B8%B8%2061",
+        "address": "서울 서대문구 연희로11길 61",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/18-sway-roadview.png",
+        "features": [
+          "옆 골목에서 정면 교차로로 이동해 매장 입구를 확인",
+          "밝은 노출 콘크리트 기둥 사이 녹색 목재 문과 여러 칸 격자창",
+          "녹색 불투명 하부 판, 길게 이어지는 목재 데크와 벤치",
+          "별도 패브릭 차양 없이 상부 슬래브가 입구를 덮음",
+          "옆면의 설비·상층 주거 테라스는 전면 에셋에서 제외"
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "cafe-03",
+      "category": "cafe",
+      "name": "경사진 회색 판넬 · 검은 전면창",
+      "width": 7.6,
+      "height": 4.55,
+      "wall": "#aaa99b",
+      "pattern": "stone",
+      "joint": "#92978e",
+      "openings": [
+        {
+          "x": 0,
+          "y": 1.42,
+          "w": 7.1,
+          "h": 2.5,
+          "panes": 6,
+          "door": 1,
+          "frame": "#36423c",
+          "frameWidth": 0.065,
+          "glass": "#384f45"
+        }
+      ],
+      "awnings": [
+        {
+          "x": 0,
+          "y": 4.4,
+          "w": 7.6,
+          "depth": 0.53,
+          "color": "#818e99",
+          "drop": 1.5
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 7.3,
+          "h": 0.13,
+          "z": 0.28,
+          "d": 0.58
+        }
+      ],
+      "props": [
+        {
+          "type": "cafeTable",
+          "x": 0.6,
+          "z": 1.3
+        },
+        {
+          "type": "planter",
+          "x": -3.45,
+          "z": 0.6,
+          "color": "#bec5b3"
+        },
+        {
+          "type": "signLight",
+          "x": -3.2,
+          "y": 4.42,
+          "z": 0.15
+        },
+        {
+          "type": "signLight",
+          "x": -1.15,
+          "y": 4.42,
+          "z": 0.15
+        },
+        {
+          "type": "signLight",
+          "x": 1.05,
+          "y": 4.42,
+          "z": 0.15
+        },
+        {
+          "type": "signLight",
+          "x": 3.2,
+          "y": 4.42,
+          "z": 0.15
+        }
+      ],
+      "source": {
+        "name": "카페엠",
+        "placeId": "1736421664",
+        "placeUrl": "https://place.map.kakao.com/1736421664",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%B9%B4%ED%8E%98%EC%97%A0%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%ED%8F%AC%EC%9D%80%EB%A1%9C6%EA%B8%B8%2027",
+        "address": "서울 마포구 포은로6길 27",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/19-cafem-roadview.png",
+        "features": [
+          "높고 경사진 회색 금속 판넬이 전면창 위를 길게 덮음. 금색 상호 글자는 제외.",
+          "검은 프레임의 긴 통유리 전면과 출입구. 유리창의 글자와 내부 좌석은 재현하지 않음.",
+          "판넬 위쪽에 앞으로 꺾인 작은 조명 여러 개가 달림.",
+          "길가에 작은 원형 테이블과 철제 의자, 입구 옆 화분이 보임. 이웃 가게의 광고물은 제외."
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    },
+    {
+      "id": "food-03",
+      "category": "food",
+      "name": "검은 격자 전면 · 홍등 입구",
+      "width": 3.9,
+      "height": 4.35,
+      "wall": "#5c6259",
+      "signs": [
+        {
+          "x": 0,
+          "y": 3.65,
+          "w": 3.8,
+          "h": 1.0,
+          "color": "#dcded6"
+        }
+      ],
+      "panels": [
+        {
+          "x": -1.25,
+          "y": 1.5,
+          "z": 0.08,
+          "w": 1.1,
+          "h": 2.75,
+          "d": 0.13,
+          "color": "#383d36"
+        },
+        {
+          "x": 0,
+          "y": 3.03,
+          "z": 0.13,
+          "w": 3.9,
+          "h": 0.14,
+          "d": 0.32,
+          "color": "#30372f"
+        }
+      ],
+      "openings": [
+        {
+          "x": -0.2,
+          "y": 1.5,
+          "w": 0.98,
+          "h": 2.73,
+          "panes": 1,
+          "door": 0,
+          "frame": "#2b362f",
+          "glass": "#424e43",
+          "papers": [
+            {
+              "x": 0,
+              "y": 1.68,
+              "w": 0.4,
+              "h": 0.45,
+              "color": "#7f9fba"
+            }
+          ]
+        },
+        {
+          "x": 1.1,
+          "y": 1.5,
+          "w": 1.35,
+          "h": 2.73,
+          "panes": 3,
+          "frame": "#29362e",
+          "glass": "#4e5a4d",
+          "rows": 4
+        }
+      ],
+      "props": [
+        {
+          "type": "lantern",
+          "x": 0.65,
+          "y": 2.35,
+          "z": 0.37
+        },
+        {
+          "type": "lantern",
+          "x": 1.59,
+          "y": 2.35,
+          "z": 0.37
+        }
+      ],
+      "steps": [
+        {
+          "x": 0,
+          "w": 3.65,
+          "h": 0.13,
+          "z": 0.24,
+          "d": 0.48,
+          "color": "#50564b"
+        }
+      ],
+      "source": {
+        "name": "이품",
+        "placeId": "9348308",
+        "placeUrl": "https://place.map.kakao.com/9348308",
+        "roadviewUrl": "https://map.kakao.com/?q=%EC%9D%B4%ED%92%88%20%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%ED%9D%AC%EB%A1%9C11%EA%B8%B8%2020",
+        "address": "서울 서대문구 연희로11길 20",
+        "captureMonth": "2026-06",
+        "checkedOn": "2026-10-15",
+        "image": "../storefront-v70/20-ipum-roadview.png",
+        "features": [
+          "폭이 좁은 검은 전면 위에 흰색 간판 판넬. 상호와 대나무 그림은 생략.",
+          "왼쪽 검은 벽판, 가운데 유리 출입문, 오른쪽 세로 격자창으로 나뉨.",
+          "입구 오른쪽 상부에 두 개의 붉은 등이 달림. 글자는 넣지 않음.",
+          "직물 차양은 없고 낮은 검은 금속 상단과 얕은 문턱만 있음. 왼쪽 빈 흰 간판·셔터와 오른쪽 미용실은 제외."
+        ]
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+    }
+  ],
+  "policy": "Category-first references from multiple districts. No map-center radius filter. Models are reference assets, not a claim of matching unreviewed neighborhood premises."
+}

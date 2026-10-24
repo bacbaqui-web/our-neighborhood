@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>우리 동네 · 웹툰 배경</title>
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+  <link rel="stylesheet" href="./ui.css?v=92">
+</head>
+<body>
+<header>
+  <div class="neighborhood">
+    <h1>우리 동네 · 웹툰 배경</h1>
+    <form id="addressForm" role="search">
+      <input id="address" type="search" aria-label="생성할 동네 주소" placeholder="주소를 입력하면 새 동네 생성" value="솔매로17가길 7" list="addresses" autocomplete="off" disabled>
+      <datalist id="addresses"></datalist>
+      <button id="findAddress" type="submit" class="icon-button" aria-label="이 주소로 동네 생성" title="입력한 주소를 중심으로 새 동네 생성" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+    </form>
+    <select id="locationHistory" aria-label="저장된 동네" title="이전에 생성한 동네 다시 열기"><option value="">저장된 동네</option></select>
+  </div>
+  <div class="header-actions">
+    <button id="export" disabled>GLB 저장</button>
+    <button id="image" title="현재 화면을 2400px PNG로 저장" disabled>PNG 저장</button>
+    <button id="settings" class="icon-button" aria-label="렌더링 최적화 설정" title="렌더링 최적화 설정" aria-haspopup="dialog" aria-controls="optimizationDialog" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 3-.6 2.3-2 .9-2.1-.7-2.4 4.1 1.6 1.7v2.3l-1.6 1.7 2.4 4.1 2.1-.7 2 .9.6 2.4h5l.6-2.4 2-.9 2.1.7 2.4-4.1-1.6-1.7v-2.3l1.6-1.7-2.4-4.1-2.1.7-2-.9-.6-2.3z"/><circle cx="12" cy="12" r="3"/></svg></button>
+  </div>
+</header>
+<div class="layout">
+  <main id="view" aria-label="동네 3D 장면" data-ready="false">
+    <div id="environmentHeading">방향 확인 중</div>
+    <button id="walk" class="icon-button canvas-walk" aria-label="골목 걷기 · 출발 위치 선택" title="골목 걷기 · 위에서 출발 위치 고르기" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="m7 12 3-4 4 1 2 4 4 1M11 9l-1 6-4 6m4-6 5 2 1 5"/></svg></button>
+    <div id="status" role="status">동네를 불러오는 중…</div>
+  </main>
+  <aside aria-label="장면 설정">
+    <fieldset id="sceneControls" disabled>
+      <section>
+        <h2>그림 표현</h2>
+        <div class="style-buttons" role="group" aria-label="그림 표현">
+          <button id="color" class="active" aria-pressed="true">컬러</button>
+          <button id="line" aria-pressed="false">선화</button>
+          <button id="tone" aria-pressed="false">선화＋회색톤</button>
+        </div>
+        <details class="art-panel" id="linePanel" open>
+          <summary>선 <span>외부선 · 내부선</span></summary>
+          <div class="art-toolbar"><label class="check-row"><input id="art-lines" type="checkbox" checked> 선 표시</label><button id="resetLines" class="small-reset" title="선 설정 초기화" aria-label="선 설정 초기화">↺</button></div>
+<div class="line-subsection"><h3>외부선</h3><label class="art-row" for="art-outerWidth"><span>외부선 두께</span><input id="range-outerWidth" type="range" aria-label="외부선 두께 슬라이더" min="0" max="6" value="2" step=".1"><span class="number-field"><input id="art-outerWidth" type="number" aria-label="외부선 두께" min="0" max="6" value="2" step=".1" title="직접 입력 · 휠 또는 드래그로 조절"><span>px</span></span></label>
+<label class="check-row"><input id="art-outerFace" type="checkbox" checked> 외부선에 면색 적용</label><label class="art-row" for="art-outerBrightness"><span>외부선 명도</span><input id="range-outerBrightness" type="range" aria-label="외부선 명도 슬라이더" min="0" max="200" value="51" step="1"><span class="number-field"><input id="art-outerBrightness" type="number" aria-label="외부선 명도" min="0" max="200" value="51" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="art-row" for="art-outerSaturation"><span>외부선 채도</span><input id="range-outerSaturation" type="range" aria-label="외부선 채도 슬라이더" min="0" max="200" value="110" step="1"><span class="number-field"><input id="art-outerSaturation" type="number" aria-label="외부선 채도" min="0" max="200" value="110" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="art-row" for="art-minDistance"><span>최소 거리</span><input id="range-minDistance" type="range" aria-label="최소 거리 슬라이더" min="0" max="200" value="0" step="1"><span class="number-field"><input id="art-minDistance" type="number" aria-label="최소 거리" min="0" max="200" value="0" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>cm</span></span></label>
+<label class="check-row"><input id="art-acrossObjects" type="checkbox" checked> 다른 오브젝트 사이에도 적용</label><p class="micro-hint">앞뒤 면의 간격이 작으면 숨김 · 0cm는 제한 없음</p></div><div class="line-subsection"><h3>내부선</h3><label class="art-row" for="art-innerWidth"><span>내부선 두께</span><input id="range-innerWidth" type="range" aria-label="내부선 두께 슬라이더" min="0" max="6" value="1" step=".1"><span class="number-field"><input id="art-innerWidth" type="number" aria-label="내부선 두께" min="0" max="6" value="1" step=".1" title="직접 입력 · 휠 또는 드래그로 조절"><span>px</span></span></label>
+<label class="check-row"><input id="art-innerFace" type="checkbox" checked> 내부선에 면색 적용</label><label class="art-row" for="art-innerBrightness"><span>내부선 명도</span><input id="range-innerBrightness" type="range" aria-label="내부선 명도 슬라이더" min="0" max="200" value="90" step="1"><span class="number-field"><input id="art-innerBrightness" type="number" aria-label="내부선 명도" min="0" max="200" value="90" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="art-row" for="art-innerSaturation"><span>내부선 채도</span><input id="range-innerSaturation" type="range" aria-label="내부선 채도 슬라이더" min="0" max="200" value="110" step="1"><span class="number-field"><input id="art-innerSaturation" type="number" aria-label="내부선 채도" min="0" max="200" value="110" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+</div><p class="micro-hint">면색 기준 · 명도·채도 100%는 원래 면색</p></details>
+        <details class="art-panel" id="shadingPanel" open><summary>명암 <span>시간에 따른 자연광</span></summary>
+          <div class="art-toolbar"><label class="check-row"><input id="art-shading" type="checkbox" checked> 명암 표시</label><button id="resetShading" class="small-reset" title="명암 설정 초기화" aria-label="명암 설정 초기화">↺</button></div>
+          <select id="art-shadingMode" aria-label="명암 표현"><option value="smooth">그라데이션</option><option value="two">1도 명암</option><option value="three">2도 명암</option></select>
+<label class="art-row" for="art-brightness"><span>빛 밝기</span><input id="range-brightness" type="range" aria-label="빛 밝기 슬라이더" min="0" max="200" value="100" step="1"><span class="number-field"><input id="art-brightness" type="number" aria-label="빛 밝기" min="0" max="200" value="100" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="art-row" for="art-density"><span>명암 농도</span><input id="range-density" type="range" aria-label="명암 농도 슬라이더" min="0" max="100" value="70" step="1"><span class="number-field"><input id="art-density" type="number" aria-label="명암 농도" min="0" max="100" value="70" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="check-row"><input id="art-shadows" type="checkbox" checked> 그림자 표시</label><p class="micro-hint">해의 방향은 선택한 시간과 연동됩니다.</p></details>
+        <label class="setting-row aa-row" for="art-antialias">안티앨리어싱<select id="art-antialias"><option value="off">끔</option><option value="fxaa">표준 · FXAA</option><option value="msaa" selected>고품질 · 4× + FXAA</option></select></label>
+      </section>
+      <section id="environmentControls">
+        <h2>하늘 · 시간 · 골목 조명</h2>
+        <div class="environment-row">
+          <select id="season" aria-label="계절" title="나무의 계절"><option value="spring">봄</option><option value="summer" selected>여름</option><option value="autumn">가을</option><option value="winter">겨울</option></select>
+          <select id="weather" aria-label="날씨"><option value="clear">맑음</option><option value="cloudy">흐림</option><option value="rain">비</option><option value="snow">눈</option></select>
+          <select id="timeOfDay" aria-label="시간" title="한국 표준시 · 한 시간 단위"><option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option><option value="3">03:00</option><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12" selected>12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option></select>
+        </div>
+        <div class="window-row">
+          <div class="window-label"><label for="windowPercent">켜진 창문</label><button id="windowMode" type="button" class="auto-mode" aria-label="창문 자동 조절" aria-pressed="true" title="시간에 맞춰 자동 조절 중 · 비율을 직접 바꾸면 수동으로 전환">자동</button></div>
+          <div class="number-field"><input id="windowPercent" aria-label="켜진 창문 비율" type="number" min="0" max="100" value="0" step="1" title="직접 입력 · 휠 또는 누른 채 좌우/상하 드래그로 조절"><span aria-hidden="true">%</span></div>
+          <button id="newWindowPattern">창문 조합 바꾸기</button>
+        </div>
+        <label class="setting-row" for="shopView">동네 상가<select id="shopView" style="max-width:190px"><option value="">상가 위치 보기</option></select></label>
+        <p id="shopStats" class="micro-hint">상가 연결 중…</p>
+        <label class="check-row"><input id="billboardLighting" type="checkbox" checked> 사람·나무 주변 조명 반영</label>
+        <label class="check-row"><input id="contactShadows" type="checkbox" checked> 발밑·나무 밑동의 부드러운 그림자</label>
+      </section>
+    </fieldset>
+    <details class="data-footer">
+      <summary>데이터 · 생성 정보</summary>
+      <p>행정안전부 주소기반 데이터 · 한국에스리 제공<br>데이터 기준 2026.07 / 서비스 갱신 2026.08</p>
+      <p id="detailStats">디테일 생성 중…</p>
+      <p id="streetStats"></p><p id="yardStats"></p><p id="vegetationStats"></p><p id="peopleStats"></p>
+      <p id="billboardStats">사람·나무는 조명 거리와 건물·담장 가림을 반영합니다. 그림자는 발과 밑동에 고정됩니다.</p>
+      <p>주변 22km의 실제 표고로 산 능선을 만듭니다. 원경 건물과 보안등 위치는 가상 구성입니다. 시간과 날씨는 장면 연출용으로 선택하며 실제 시각·날씨를 자동으로 따라가지 않습니다. 비·눈은 내리는 표현이며 쌓임은 재현하지 않습니다.</p>
+      <p><a href="./tree-library.html" target="_blank">한국 나무 10종 · 에셋 목록</a> · <a href="./tree-growth.html" target="_blank">나무 모양 조정</a></p>
+      <p>상가는 카카오 장소의 주소·좌표를 건물에 대응시킵니다. 직접 확인한 전면 외에는 업종별 참고 디자인입니다. 영업 중 간판·실내등이 켜지고, 업종별 21~22시 무렵 간판부터 꺼집니다. 편의점은 24시간 점등합니다. 영업시간은 실제 조회값이 아닌 연출용 기본값입니다.</p>
+      <p><a href="./storefronts.html" target="_blank">업종별 상가 · 6업종 18종 비교</a></p>
+      <p><a href="./rooftops.html" target="_blank">옥상 출입실 8종 크게 보기</a></p><p id="timeModelNote"></p><p id="appearanceStats">선의 두께는 화면 픽셀 기준입니다. PNG에는 현재 선·명암·안티앨리어싱이 반영됩니다. GLB에는 모델과 표현 설정을 저장하며, 화면 후처리 선은 별도 렌더러가 필요합니다.</p>
+      <p><a href="https://gml.noaa.gov/grad/solcalc/solareqns.PDF" target="_blank" rel="noreferrer">태양 위치 계산: NOAA ↗</a></p>
+      <p>건물 높이는 등록 지상층수 × 3m로 추정합니다. 창문·출입구·옥상·지붕은 가상 외관이며 실제 외관이나 실내를 복원하지 않았습니다.</p>
+      <p>새 지역의 도로는 OpenFreeMap / OpenStreetMap, 지형은 Terrain Tiles에서 조회합니다. 도로 폭·포장·필지·소품은 추정이며 실제 세부 현장을 복원하지 않습니다. 기존 솔매로 동네는 보존됩니다.</p>
+      <p id="locationDataNote">주소를 입력하고 Enter 또는 검색 버튼을 누르면, 그 주소를 중심으로 약 300 × 300m의 새 동네를 생성합니다.</p>
+      <p>원본 서비스는 온라인 시각화·분석용이며 해외 오프라인 사용을 위한 데이터 반출을 제한합니다. 이번 결과는 로컬 검증용입니다.</p>
+      <a href="https://www.arcgis.com/home/item.html?id=b2c7a37bac8d4e40a85435b3f3d96d05" target="_blank" rel="noreferrer">건물 데이터 출처·이용 안내 ↗</a>
+      <p>© OpenStreetMap contributors / © OpenMapTiles<br>표고: Terrain Tiles · 기반 모델: 로케한<br><a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noreferrer">원경: Mapzen Terrain Tiles</a> · <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noreferrer">표고 데이터 출처</a></p>
+    </details>
+  </aside>
+</div>
+<dialog id="optimizationDialog" aria-labelledby="optimizationTitle">
+  <div class="settings-panel">
+    <div class="dialog-heading"><h2 id="optimizationTitle">렌더링 최적화</h2><button id="closeSettings" class="icon-button" aria-label="설정 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+    <section>
+      <h3>보이는 구역</h3>
+      <label class="check-row"><input id="optimize" type="checkbox" checked> 보이는 구역만 그리기</label>
+      <label class="check-row"><input id="occlusion" type="checkbox" checked> 건물에 완전히 가려진 곳 제외</label>
+      <p class="hint">화면 밖과 건물 뒤의 오브젝트를 제외합니다. 그림자·충돌·저장할 모델은 유지됩니다.</p>
+    </section>
+    <section>
+      <h3>거리별 디테일</h3>
+      <label class="check-row"><input id="distanceLOD" type="checkbox" checked> 거리별 3단계 LOD</label>
+      <select id="lodMode" aria-label="LOD 상세도"><option value="auto">자동 · 가까이에서 상세 복원</option><option value="0">상세 고정 · 비교용</option><option value="1">중간 고정 · 비교용</option><option value="2">간략 고정 · 비교용</option></select>
+      <p class="hint">작은 창틀·방범창·설비를 거리별로 줄이고 외곽 형태와 색면을 유지합니다. PNG·GLB는 원래 상세 모델을 저장합니다.</p>
+    </section>
+    <section>
+      <h3>화면 품질</h3>
+      <label class="setting-row" for="pixelQuality">화면 해상도<select id="pixelQuality"><option value="1">가볍게 · 1×</option><option value="1.5">균형 · 최대 1.5×</option><option value="2" selected>선명하게 · 최대 2×</option></select></label>
+      <label class="check-row"><input id="weatherMotion" type="checkbox" checked> 비·눈 움직임</label>
+      <p class="hint">카메라가 멈추면 재그리기를 쉽니다. 비·눈이 움직일 때는 최대 초당 24회 갱신합니다. 움직임을 끄면 정지한 비·눈을 유지합니다.</p>
+    </section>
+    <section class="performance-readout" aria-label="현재 렌더링 상태">
+      <h3>현재 화면</h3>
+      <p id="lodStats" class="hint"></p><p id="perfStats" class="hint"></p><p id="cullStats" class="hint"></p><p id="renderState" class="hint">준비 중…</p>
+      <div class="buttons"><button id="compareLOD">LOD 켜기·끄기 비교</button><button id="comparePerformance">현재 화면 성능 비교</button></div>
+      <p id="benchmarkStats" class="hint" role="status"></p>
+    </section>
+  </div>
+</dialog>
+<script type="module" src="./app.js?v=92"></script>
+</body>
+</html>

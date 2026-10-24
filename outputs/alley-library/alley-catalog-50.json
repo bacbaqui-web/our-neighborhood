@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "name": "낮은 벽돌 담장",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-01.glb",
+    "triangles": 9212,
+    "parts": 49,
+    "finite": true
+  },
+  {
+    "id": 2,
+    "name": "높낮이 벽돌 담장",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-02.glb",
+    "triangles": 7896,
+    "parts": 42,
+    "finite": true
+  },
+  {
+    "id": 3,
+    "name": "돌 마감 대문기둥",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-03.glb",
+    "triangles": 2068,
+    "parts": 11,
+    "finite": true
+  },
+  {
+    "id": 4,
+    "name": "철제 양개 대문",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-04.glb",
+    "triangles": 2536,
+    "parts": 24,
+    "finite": true
+  },
+  {
+    "id": 5,
+    "name": "담장 위 철제 울타리",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-05.glb",
+    "triangles": 708,
+    "parts": 14,
+    "finite": true
+  },
+  {
+    "id": 6,
+    "name": "콘크리트 옹벽",
+    "category": "담장·출입구",
+    "source": "골목 보완 제안",
+    "file": "alley-06.glb",
+    "triangles": 568,
+    "parts": 5,
+    "finite": true
+  },
+  {
+    "id": 7,
+    "name": "출입구 계단",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-07.glb",
+    "triangles": 752,
+    "parts": 4,
+    "finite": true
+  },
+  {
+    "id": 8,
+    "name": "스테인리스 난간",
+    "category": "담장·출입구",
+    "source": "골목 보완 제안",
+    "file": "alley-08.glb",
+    "triangles": 240,
+    "parts": 6,
+    "finite": true
+  },
+  {
+    "id": 9,
+    "name": "주택 캐노피",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-09.glb",
+    "triangles": 348,
+    "parts": 5,
+    "finite": true
+  },
+  {
+    "id": 10,
+    "name": "대문 기둥 조명",
+    "category": "담장·출입구",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-10.glb",
+    "triangles": 484,
+    "parts": 4,
+    "finite": true
+  },
+  {
+    "id": 11,
+    "name": "콘크리트 전신주",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-11.glb",
+    "triangles": 1332,
+    "parts": 15,
+    "finite": true
+  },
+  {
+    "id": 12,
+    "name": "통신함 달린 전신주",
+    "category": "전기·배관",
+    "source": "골목 보완 제안",
+    "file": "alley-12.glb",
+    "triangles": 2032,
+    "parts": 17,
+    "finite": true
+  },
+  {
+    "id": 13,
+    "name": "처진 전선 묶음",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-13.glb",
+    "triangles": 1536,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 14,
+    "name": "벽 부착 배전함",
+    "category": "전기·배관",
+    "source": "골목 보완 제안",
+    "file": "alley-14.glb",
+    "triangles": 1316,
+    "parts": 7,
+    "finite": true
+  },
+  {
+    "id": 15,
+    "name": "가스계량기와 배관",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-15.glb",
+    "triangles": 1784,
+    "parts": 5,
+    "finite": true
+  },
+  {
+    "id": 16,
+    "name": "벽면 가스배관",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-16.glb",
+    "triangles": 1076,
+    "parts": 4,
+    "finite": true
+  },
+  {
+    "id": 17,
+    "name": "빗물 홈통",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-17.glb",
+    "triangles": 640,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 18,
+    "name": "벽부형 실외기",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-18.glb",
+    "triangles": 5168,
+    "parts": 33,
+    "finite": true
+  },
+  {
+    "id": 19,
+    "name": "지상형 실외기",
+    "category": "전기·배관",
+    "source": "골목 보완 제안",
+    "file": "alley-19.glb",
+    "triangles": 5008,
+    "parts": 29,
+    "finite": true
+  },
+  {
+    "id": 20,
+    "name": "환기 덕트",
+    "category": "전기·배관",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-20.glb",
+    "triangles": 576,
+    "parts": 2,
+    "finite": true
+  },
+  {
+    "id": 21,
+    "name": "방범창",
+    "category": "벽면·생활",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-21.glb",
+    "triangles": 1300,
+    "parts": 14,
+    "finite": true
+  },
+  {
+    "id": 22,
+    "name": "미닫이 창틀",
+    "category": "벽면·생활",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-22.glb",
+    "triangles": 940,
+    "parts": 5,
+    "finite": true
+  },
+  {
+    "id": 23,
+    "name": "반지하 창문",
+    "category": "벽면·생활",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-23.glb",
+    "triangles": 1488,
+    "parts": 15,
+    "finite": true
+  },
+  {
+    "id": 24,
+    "name": "우편함",
+    "category": "벽면·생활",
+    "source": "골목 보완 제안",
+    "file": "alley-24.glb",
+    "triangles": 564,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 25,
+    "name": "초인종·인터폰",
+    "category": "벽면·생활",
+    "source": "골목 보완 제안",
+    "file": "alley-25.glb",
+    "triangles": 544,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 26,
+    "name": "도로명 표지판",
+    "category": "벽면·생활",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-26.glb",
+    "triangles": 1316,
+    "parts": 7,
+    "finite": true
+  },
+  {
+    "id": 27,
+    "name": "접이식 빨래건조대",
+    "category": "벽면·생활",
+    "source": "골목 보완 제안",
+    "file": "alley-27.glb",
+    "triangles": 480,
+    "parts": 12,
+    "finite": true
+  },
+  {
+    "id": 28,
+    "name": "수도꼭지와 호스",
+    "category": "벽면·생활",
+    "source": "골목 보완 제안",
+    "file": "alley-28.glb",
+    "triangles": 1704,
+    "parts": 5,
+    "finite": true
+  },
+  {
+    "id": 29,
+    "name": "뚜껑 달린 물통",
+    "category": "벽면·생활",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-29.glb",
+    "triangles": 316,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 30,
+    "name": "플라스틱 의자",
+    "category": "벽면·생활",
+    "source": "골목 보완 제안",
+    "file": "alley-30.glb",
+    "triangles": 536,
+    "parts": 6,
+    "finite": true
+  },
+  {
+    "id": 31,
+    "name": "주차된 생활 자전거",
+    "category": "주차·도로",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-31.glb",
+    "triangles": 4700,
+    "parts": 44,
+    "finite": true
+  },
+  {
+    "id": 32,
+    "name": "바구니 자전거",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-32.glb",
+    "triangles": 5540,
+    "parts": 65,
+    "finite": true
+  },
+  {
+    "id": 33,
+    "name": "자전거 거치대",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-33.glb",
+    "triangles": 1536,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 34,
+    "name": "주차금지 입간판",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-34.glb",
+    "triangles": 772,
+    "parts": 7,
+    "finite": true
+  },
+  {
+    "id": 35,
+    "name": "라바콘",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-35.glb",
+    "triangles": 316,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 36,
+    "name": "주차 방지 볼라드",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-36.glb",
+    "triangles": 296,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 37,
+    "name": "주차 바퀴 멈춤턱",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-37.glb",
+    "triangles": 564,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 38,
+    "name": "골목 반사경",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-38.glb",
+    "triangles": 400,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 39,
+    "name": "빗물 배수구",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-39.glb",
+    "triangles": 2444,
+    "parts": 13,
+    "finite": true
+  },
+  {
+    "id": 40,
+    "name": "원형 맨홀",
+    "category": "주차·도로",
+    "source": "골목 보완 제안",
+    "file": "alley-40.glb",
+    "triangles": 1380,
+    "parts": 8,
+    "finite": true
+  },
+  {
+    "id": 41,
+    "name": "묶인 흰 쓰레기봉투",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-41.glb",
+    "triangles": 320,
+    "parts": 3,
+    "finite": true
+  },
+  {
+    "id": 42,
+    "name": "검은 쓰레기봉투 묶음",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-42.glb",
+    "triangles": 960,
+    "parts": 9,
+    "finite": true
+  },
+  {
+    "id": 43,
+    "name": "접어 쌓은 종이상자",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-43.glb",
+    "triangles": 1880,
+    "parts": 10,
+    "finite": true
+  },
+  {
+    "id": 44,
+    "name": "재활용 분리수거함",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-44.glb",
+    "triangles": 2748,
+    "parts": 18,
+    "finite": true
+  },
+  {
+    "id": 45,
+    "name": "음식물 수거통",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-45.glb",
+    "triangles": 840,
+    "parts": 6,
+    "finite": true
+  },
+  {
+    "id": 46,
+    "name": "테라코타 화분",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-46.glb",
+    "triangles": 1232,
+    "parts": 13,
+    "finite": true
+  },
+  {
+    "id": 47,
+    "name": "사각 텃밭 화분",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-47.glb",
+    "triangles": 1216,
+    "parts": 7,
+    "finite": true
+  },
+  {
+    "id": 48,
+    "name": "담장 덩굴",
+    "category": "수거·조경",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-48.glb",
+    "triangles": 6760,
+    "parts": 30,
+    "finite": true
+  },
+  {
+    "id": 49,
+    "name": "골목 관목",
+    "category": "수거·조경",
+    "source": "로드뷰 형태 참고",
+    "file": "alley-49.glb",
+    "triangles": 1408,
+    "parts": 9,
+    "finite": true
+  },
+  {
+    "id": 50,
+    "name": "목재 평상",
+    "category": "수거·조경",
+    "source": "골목 보완 제안",
+    "file": "alley-50.glb",
+    "triangles": 2068,
+    "parts": 11,
+    "finite": true
+  }
+]

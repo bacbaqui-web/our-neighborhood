@@ -1,0 +1,7 @@
+{
+  "roadAreaM2": 18458.71,
+  "buildingOverlapM2": 0.0,
+  "roadSegments": 97,
+  "terrainDatum": 63.32716769130556,
+  "source": "OpenFreeMap / OpenMapTiles / OpenStreetMap; inferred widths; Mapzen Terrain Tiles"
+}

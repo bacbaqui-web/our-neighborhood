@@ -1,0 +1,1562 @@
+{
+  "version": 31,
+  "rule": "private garden pockets; full crown outside buildings, road and annex roofs; trunk outside entrances, driveways, props and wall footings; sparse owner-based spacing; not surveyed tree positions",
+  "trees": [
+    {
+      "id": "garden-tree-1",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        99.459,
+        -2.69,
+        -108.2501
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 0.23005,
+      "owner": 5961500,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.0438
+    },
+    {
+      "id": "garden-tree-2",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        5.371,
+        2.0768,
+        -21.2674
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 2.09109,
+      "owner": 5960554,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.976
+    },
+    {
+      "id": "garden-tree-3",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -50.7827,
+        5.992,
+        -25.5404
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 4.05276,
+      "owner": 5951673,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.3188
+    },
+    {
+      "id": "garden-tree-4",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        66.3098,
+        0.9722,
+        -94.9176
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 0.41028,
+      "owner": 5947118,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.2321
+    },
+    {
+      "id": "garden-tree-5",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        83.359,
+        -2.2927,
+        -117.4501
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 3.09574,
+      "owner": 5961500,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8218
+    },
+    {
+      "id": "garden-tree-6",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -54.2781,
+        6.7908,
+        20.969
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 4.97714,
+      "owner": 5941922,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.7166
+    },
+    {
+      "id": "garden-tree-7",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -11.7227,
+        -2.8019,
+        105.8479
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 3.31422,
+      "owner": 5963805,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7114
+    },
+    {
+      "id": "garden-tree-8",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        -39.238,
+        -0.3632,
+        115.5638
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 0.93128,
+      "owner": 5963797,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.7462
+    },
+    {
+      "id": "garden-tree-9",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -131.8,
+        12.9655,
+        -58.9843
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 3.46322,
+      "owner": 5950858,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.7827
+    },
+    {
+      "id": "garden-tree-10",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -83.901,
+        8.4429,
+        -31.6317
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 2.9259,
+      "owner": 5951677,
+      "source": "inferred private-yard pocket",
+      "clearance": 7.7723
+    },
+    {
+      "id": "garden-tree-11",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        11.7046,
+        3.1263,
+        -110.238
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 3.86612,
+      "owner": 5953754,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7742
+    },
+    {
+      "id": "garden-tree-12",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        -41.538,
+        -0.2841,
+        110.9638
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 4.10661,
+      "owner": 5963797,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.1174
+    },
+    {
+      "id": "garden-tree-13",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        111.6732,
+        -15.1649,
+        83.7657
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 5.75206,
+      "owner": 5951656,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.4539
+    },
+    {
+      "id": "garden-tree-14",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        104.7732,
+        -14.4306,
+        81.4657
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 3.32256,
+      "owner": 5951656,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8531
+    },
+    {
+      "id": "garden-tree-15",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -129.5,
+        12.2846,
+        -63.5843
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 2.26376,
+      "owner": 5950858,
+      "source": "inferred private-yard pocket",
+      "clearance": 6.7367
+    },
+    {
+      "id": "garden-tree-16",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -134.1,
+        16.2279,
+        -25.3697
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 0.02692,
+      "owner": 5960508,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.3007
+    },
+    {
+      "id": "garden-tree-17",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        52.5098,
+        1.7093,
+        -108.7176
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 0.05441,
+      "owner": 5947118,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.1577
+    },
+    {
+      "id": "garden-tree-18",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        -35.1674,
+        4.2322,
+        6.4068
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 5.27958,
+      "owner": 5951672,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.6021
+    },
+    {
+      "id": "garden-tree-19",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -120.3,
+        14.4047,
+        -27.6697
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 5.17741,
+      "owner": 5960508,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.5798
+    },
+    {
+      "id": "garden-tree-20",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -104.0644,
+        9.363,
+        -60.2976
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 2.5608,
+      "owner": 5954019,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8669
+    },
+    {
+      "id": "garden-tree-21",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        0.7324,
+        2.7024,
+        -23.5769
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 1.79091,
+      "owner": 5963709,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.5683
+    },
+    {
+      "id": "garden-tree-22",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -78.7522,
+        7.9173,
+        -30.3179
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 5.31916,
+      "owner": 5951676,
+      "source": "inferred private-yard pocket",
+      "clearance": 6.0359
+    },
+    {
+      "id": "garden-tree-23",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        -126.5081,
+        6.5389,
+        -119.2902
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 1.53314,
+      "owner": 5961527,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6206
+    },
+    {
+      "id": "garden-tree-24",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -63.7698,
+        6.7388,
+        -24.7391
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 0.75141,
+      "owner": 5951675,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.4313
+    },
+    {
+      "id": "garden-tree-25",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -83.3522,
+        7.9015,
+        -39.5179
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 5.85235,
+      "owner": 5951676,
+      "source": "inferred private-yard pocket",
+      "clearance": 6.509
+    },
+    {
+      "id": "garden-tree-26",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        122.5755,
+        -14.2958,
+        68.4903
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 2.53279,
+      "owner": 5951657,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.4494
+    },
+    {
+      "id": "garden-tree-27",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -127.2,
+        15.0837,
+        -29.7789
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.72746,
+      "owner": 5963703,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.8991
+    },
+    {
+      "id": "garden-tree-28",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -18.6166,
+        0.5888,
+        70.3222
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 0.53032,
+      "owner": 5960538,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.1567
+    },
+    {
+      "id": "garden-tree-29",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -28.7252,
+        3.4449,
+        7.0728
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 2.43253,
+      "owner": 5939740,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.0883
+    },
+    {
+      "id": "garden-tree-30",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        102.5751,
+        -13.1879,
+        72.4808
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 4.0936,
+      "owner": 5951658,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.7753
+    },
+    {
+      "id": "garden-tree-31",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -37.9252,
+        4.597,
+        13.9728
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 0.4159,
+      "owner": 5939740,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6924
+    },
+    {
+      "id": "garden-tree-32",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -110.9644,
+        10.6154,
+        -57.9976
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 2.66654,
+      "owner": 5954019,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.9683
+    },
+    {
+      "id": "garden-tree-33",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -39.2827,
+        5.4654,
+        -25.5404
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 1.47496,
+      "owner": 5951673,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6918
+    },
+    {
+      "id": "garden-tree-34",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        88.7751,
+        -12.7208,
+        74.7808
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 5.01532,
+      "owner": 5951658,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.2396
+    },
+    {
+      "id": "garden-tree-35",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        14.0046,
+        2.9924,
+        -124.038
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 0.28426,
+      "owner": 5953754,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.0433
+    },
+    {
+      "id": "garden-tree-36",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -14.7378,
+        1.1043,
+        43.7886
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 2.31281,
+      "owner": 5951670,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.7625
+    },
+    {
+      "id": "garden-tree-37",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -129.5,
+        7.471,
+        -113.7944
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 1.90626,
+      "owner": 5947762,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.1983
+    },
+    {
+      "id": "garden-tree-38",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -25.5031,
+        2.9401,
+        21.4644
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 3.23338,
+      "owner": 5943945,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.7963
+    },
+    {
+      "id": "garden-tree-39",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        -83.901,
+        8.8895,
+        -24.7317
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 5.84339,
+      "owner": 5951677,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.8617
+    },
+    {
+      "id": "garden-tree-40",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -116.0885,
+        9.5406,
+        121.4969
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 2.19728,
+      "owner": 5949435,
+      "source": "inferred private-yard pocket",
+      "clearance": 5.206
+    },
+    {
+      "id": "garden-tree-41",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -134.1,
+        16.6759,
+        -18.2789
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 4.501,
+      "owner": 5963703,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8438
+    },
+    {
+      "id": "garden-tree-42",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        9.6105,
+        3.8102,
+        -78.6481
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 6.17956,
+      "owner": 5963719,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.772
+    },
+    {
+      "id": "garden-tree-43",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        132.5783,
+        -2.8313,
+        -86.4266
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 0.78479,
+      "owner": 5942405,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.2142
+    },
+    {
+      "id": "garden-tree-44",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -77.1912,
+        3.21,
+        -98.3064
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 4.34024,
+      "owner": 5947755,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.2621
+    },
+    {
+      "id": "garden-tree-45",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -55.8674,
+        6.7582,
+        15.6068
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 3.34795,
+      "owner": 5951672,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.0721
+    },
+    {
+      "id": "garden-tree-46",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        -10.729,
+        3.4525,
+        -21.2674
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 1.47423,
+      "owner": 5960554,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.3977
+    },
+    {
+      "id": "garden-tree-47",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -16.3166,
+        -0.2015,
+        74.9222
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 5.03721,
+      "owner": 5960538,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8975
+    },
+    {
+      "id": "garden-tree-48",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        9.9324,
+        2.5195,
+        -28.1769
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 4.71632,
+      "owner": 5963709,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.9992
+    },
+    {
+      "id": "garden-tree-49",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -26.5602,
+        3.1028,
+        16.0354
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 5.99363,
+      "owner": 5951669,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8116
+    },
+    {
+      "id": "garden-tree-50",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        -108.9418,
+        9.4695,
+        95.17
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 0.34609,
+      "owner": 5951681,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7397
+    },
+    {
+      "id": "garden-tree-51",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        -56.424,
+        6.2921,
+        -25.9748
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 2.49894,
+      "owner": 5963706,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.4318
+    },
+    {
+      "id": "garden-tree-52",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        19.2205,
+        -5.0153,
+        58.8268
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.51958,
+      "owner": 5951661,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6481
+    },
+    {
+      "id": "garden-tree-53",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -87.3919,
+        5.4954,
+        -85.3527
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 2.83937,
+      "owner": 5947756,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.3332
+    },
+    {
+      "id": "garden-tree-54",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        16.2339,
+        2.8046,
+        -134.1
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 5.78135,
+      "owner": 5953752,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6966
+    },
+    {
+      "id": "garden-tree-55",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        18.5364,
+        -3.6398,
+        31.1043
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 1.06051,
+      "owner": 5951665,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7145
+    },
+    {
+      "id": "garden-tree-56",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        -101.8271,
+        9.9641,
+        -46.0537
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 6.20588,
+      "owner": 5963704,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8562
+    },
+    {
+      "id": "garden-tree-57",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -122.5271,
+        14.1296,
+        -34.5537
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 0.36251,
+      "owner": 5963704,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7801
+    },
+    {
+      "id": "garden-tree-58",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -72.5297,
+        4.9813,
+        -73.6746
+      ],
+      "height": 6.1496,
+      "radius": 2.4797,
+      "heading": 1.05127,
+      "owner": 5963715,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.5597
+    },
+    {
+      "id": "garden-tree-59",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -118.3885,
+        10.1702,
+        116.8969
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 3.3364,
+      "owner": 5949435,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7797
+    },
+    {
+      "id": "garden-tree-60",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -5.6239,
+        2.2184,
+        -123.9871
+      ],
+      "height": 7.84,
+      "radius": 2.24,
+      "heading": 6.1789,
+      "owner": 5961420,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.8284
+    },
+    {
+      "id": "garden-tree-61",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        49.6523,
+        2.7143,
+        -62.138
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 2.18284,
+      "owner": 5953977,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.6138
+    },
+    {
+      "id": "garden-tree-62",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        127.1755,
+        -16.8641,
+        91.4903
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 1.11033,
+      "owner": 5951657,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7834
+    },
+    {
+      "id": "garden-tree-63",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        -45.6116,
+        0.2432,
+        106.4361
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 1.85039,
+      "owner": 5950921,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.775
+    },
+    {
+      "id": "garden-tree-64",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        43.0175,
+        2.2058,
+        -94.772
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 4.17166,
+      "owner": 5947122,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8701
+    },
+    {
+      "id": "garden-tree-65",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        49.2123,
+        2.0106,
+        -105.1174
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 3.0812,
+      "owner": 5947120,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.907
+    },
+    {
+      "id": "garden-tree-66",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -21.0077,
+        2.1198,
+        48.4343
+      ],
+      "height": 5.04,
+      "radius": 2.128,
+      "heading": 2.83273,
+      "owner": 5960553,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8118
+    },
+    {
+      "id": "garden-tree-67",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -10.1378,
+        0.3348,
+        39.1886
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 1.37944,
+      "owner": 5951670,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.629
+    },
+    {
+      "id": "garden-tree-68",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -13.4053,
+        2.8887,
+        -13.7022
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 5.89181,
+      "owner": 5951671,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.8449
+    },
+    {
+      "id": "garden-tree-69",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        131.7839,
+        -3.2288,
+        -93.0425
+      ],
+      "height": 6.448,
+      "radius": 2.6,
+      "heading": 3.96437,
+      "owner": 5953971,
+      "source": "inferred private-yard pocket",
+      "clearance": 4.8073
+    },
+    {
+      "id": "garden-tree-70",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -59.1698,
+        6.4098,
+        -22.4391
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.43582,
+      "owner": 5951675,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.7127
+    },
+    {
+      "id": "garden-tree-71",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -74.8297,
+        6.1527,
+        -59.8746
+      ],
+      "height": 7.784,
+      "radius": 2.224,
+      "heading": 0.30436,
+      "owner": 5963715,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.304
+    },
+    {
+      "id": "garden-tree-72",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        -18.0053,
+        2.2291,
+        0.0978
+      ],
+      "height": 5.824,
+      "radius": 2.352,
+      "heading": 5.20427,
+      "owner": 5951671,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.9083
+    },
+    {
+      "id": "garden-tree-73",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -111.2418,
+        8.4566,
+        120.47
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 6.2034,
+      "owner": 5951681,
+      "source": "inferred private-yard pocket",
+      "clearance": 3.4242
+    },
+    {
+      "id": "garden-tree-74",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        8.8726,
+        4.0765,
+        -67.3374
+      ],
+      "height": 5.376,
+      "radius": 2.24,
+      "heading": 0.89778,
+      "owner": 5963716,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.5313
+    },
+    {
+      "id": "garden-tree-75",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -127.2,
+        8.0676,
+        -109.1944
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.1311,
+      "owner": 5947762,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.5165
+    },
+    {
+      "id": "garden-tree-76",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        -25.6019,
+        3.0131,
+        -110.5752
+      ],
+      "height": 7.168,
+      "radius": 2.576,
+      "heading": 2.92158,
+      "owner": 5939492,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.9498
+    },
+    {
+      "id": "garden-tree-77",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        127.1839,
+        -3.5352,
+        -99.9425
+      ],
+      "height": 4.928,
+      "radius": 2.016,
+      "heading": 2.71664,
+      "owner": 5953971,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.4312
+    },
+    {
+      "id": "garden-tree-78",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -105.909,
+        14.2532,
+        13.058
+      ],
+      "height": 5.2672,
+      "radius": 2.1239,
+      "heading": 2.90859,
+      "owner": 5951653,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.2039
+    },
+    {
+      "id": "garden-tree-79",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -13.816,
+        -2.5356,
+        97.7118
+      ],
+      "height": 7.5343,
+      "radius": 2.1527,
+      "heading": 3.7345,
+      "owner": 5945465,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.2327
+    },
+    {
+      "id": "garden-tree-80",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        97.2723,
+        -15.8128,
+        99.8245
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 5.01398,
+      "owner": 5963818,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.6102
+    },
+    {
+      "id": "garden-tree-81",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        13.4726,
+        3.6589,
+        -69.6374
+      ],
+      "height": 4.7957,
+      "radius": 2.0248,
+      "heading": 2.244,
+      "owner": 5963716,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1048
+    },
+    {
+      "id": "garden-tree-82",
+      "asset": "jujube",
+      "kind": "tree",
+      "root": [
+        46.9123,
+        2.1252,
+        -100.5174
+      ],
+      "height": 5.152,
+      "radius": 2.016,
+      "heading": 5.31698,
+      "owner": 5947120,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.3264
+    },
+    {
+      "id": "garden-tree-83",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -5.6239,
+        2.4602,
+        -119.3871
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.9322,
+      "owner": 5961420,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1875
+    },
+    {
+      "id": "garden-tree-84",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        -77.2867,
+        4.8661,
+        -77.9758
+      ],
+      "height": 5.3645,
+      "radius": 2.2352,
+      "heading": 3.67156,
+      "owner": 5954018,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.3152
+    },
+    {
+      "id": "garden-tree-85",
+      "asset": "magnolia",
+      "kind": "tree",
+      "root": [
+        -82.3705,
+        3.2515,
+        122.8289
+      ],
+      "height": 5.4852,
+      "radius": 2.2118,
+      "heading": 2.86564,
+      "owner": 5963795,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.2918
+    },
+    {
+      "id": "garden-tree-86",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        111.1752,
+        -18.3553,
+        131.4501
+      ],
+      "height": 5.6396,
+      "radius": 2.2775,
+      "heading": 6.25388,
+      "owner": 5950925,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.3575
+    },
+    {
+      "id": "garden-tree-87",
+      "asset": "lilac",
+      "kind": "tree",
+      "root": [
+        -56.7812,
+        0.9013,
+        -119.108
+      ],
+      "height": 4.144,
+      "radius": 1.792,
+      "heading": 2.3644,
+      "owner": 5954012,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.2257
+    },
+    {
+      "id": "garden-tree-88",
+      "asset": "pine",
+      "kind": "tree",
+      "root": [
+        59.9424,
+        -6.3988,
+        22.6277
+      ],
+      "height": 5.6116,
+      "radius": 2.0167,
+      "heading": 5.02055,
+      "owner": 5960987,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.0967
+    },
+    {
+      "id": "garden-tree-89",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -7.1227,
+        -3.2083,
+        105.8479
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 5.73425,
+      "owner": 5963805,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1533
+    },
+    {
+      "id": "garden-tree-90",
+      "asset": "crape-myrtle",
+      "kind": "tree",
+      "root": [
+        -113.8514,
+        14.209,
+        -18.1983
+      ],
+      "height": 4.4909,
+      "radius": 1.8372,
+      "heading": 4.88112,
+      "owner": 5963705,
+      "source": "inferred private-yard pocket",
+      "clearance": 1.9172
+    },
+    {
+      "id": "garden-tree-91",
+      "asset": "ginkgo",
+      "kind": "tree",
+      "root": [
+        -48.8399,
+        0.9783,
+        100.782
+      ],
+      "height": 7.2915,
+      "radius": 2.0833,
+      "heading": 3.68774,
+      "owner": 5960537,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1633
+    },
+    {
+      "id": "garden-tree-92",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        -91.0867,
+        7.6078,
+        -57.2758
+      ],
+      "height": 4.8471,
+      "radius": 2.0466,
+      "heading": 4.24273,
+      "owner": 5954018,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1266
+    },
+    {
+      "id": "garden-tree-93",
+      "asset": "persimmon",
+      "kind": "tree",
+      "root": [
+        38.4175,
+        2.2036,
+        -87.872
+      ],
+      "height": 4.8171,
+      "radius": 1.9454,
+      "heading": 6.1796,
+      "owner": 5947122,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.0254
+    },
+    {
+      "id": "garden-tree-94",
+      "asset": "juniper",
+      "kind": "tree",
+      "root": [
+        -124.8398,
+        7.0756,
+        -115.5408
+      ],
+      "height": 6.496,
+      "radius": 1.344,
+      "heading": 1.70136,
+      "owner": 5947761,
+      "source": "inferred private-yard pocket",
+      "clearance": 1.8692
+    },
+    {
+      "id": "garden-tree-95",
+      "asset": "maple",
+      "kind": "tree",
+      "root": [
+        79.6241,
+        1.4959,
+        -70.3346
+      ],
+      "height": 4.6414,
+      "radius": 1.9339,
+      "heading": 0.33355,
+      "owner": 5949854,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.0139
+    },
+    {
+      "id": "garden-tree-96",
+      "asset": "cornelian",
+      "kind": "tree",
+      "root": [
+        74.924,
+        -2.101,
+        -128.6394
+      ],
+      "height": 4.804,
+      "radius": 2.0283,
+      "heading": 0.49161,
+      "owner": 5961504,
+      "source": "inferred private-yard pocket",
+      "clearance": 2.1083
+    }
+  ],
+  "qa": {
+    "newGardenTrees": 96,
+    "species": {
+      "persimmon": 10,
+      "lilac": 9,
+      "maple": 10,
+      "pine": 9,
+      "crape-myrtle": 9,
+      "magnolia": 9,
+      "ginkgo": 9,
+      "jujube": 9,
+      "cornelian": 10,
+      "juniper": 12
+    },
+    "buildingCrownOverlaps": 0,
+    "roadCrownOverlaps": 0,
+    "structureCrownOverlaps": 0,
+    "blockedRootPositions": 0,
+    "treeCrownOverlaps": 0
+  }
+}

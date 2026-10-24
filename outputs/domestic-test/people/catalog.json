@@ -1,0 +1,5565 @@
+{
+  "version": 27,
+  "style": "faceless, separate flat colors, no gradients or cel shading",
+  "source": "built-in image_gen",
+  "angleConvention": "index increases when camera moves to the character left: 0 front, 2 screen-right profile, 4 back, 6 screen-left profile",
+  "animated": false,
+  "people": [
+    {
+      "id": "woman-cardigan",
+      "name": "아이보리 가디건 여성",
+      "height": 1.65,
+      "subject": "Korean woman in her late 20s, average build, shoulder-length straight dark-brown hair, ivory open cardigan over a dusty-blue plain T-shirt, medium-blue straight jeans, off-white low-top sneakers. Empty hands, no jewelry, no bag.",
+      "image": "woman-cardigan.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            121,
+            17,
+            160,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            192.0,
+            502
+          ],
+          "alphaPixels": 44140
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            499,
+            18,
+            145,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            576.0,
+            500
+          ],
+          "alphaPixels": 42829
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            857,
+            18,
+            224,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            960.0,
+            498
+          ],
+          "alphaPixels": 39307
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1263,
+            19,
+            166,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            1344.0,
+            502
+          ],
+          "alphaPixels": 40582
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            116,
+            526,
+            160,
+            479
+          ],
+          "bodyHeightPixels": 475,
+          "anchorPixels": [
+            192.0,
+            1003
+          ],
+          "alphaPixels": 43119
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            488,
+            525,
+            171,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            576.0,
+            1003
+          ],
+          "alphaPixels": 40907
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            834,
+            527,
+            229,
+            474
+          ],
+          "bodyHeightPixels": 470,
+          "anchorPixels": [
+            960.0,
+            999
+          ],
+          "alphaPixels": 38921
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1243,
+            525,
+            171,
+            481
+          ],
+          "bodyHeightPixels": 477,
+          "anchorPixels": [
+            1344.0,
+            1004
+          ],
+          "alphaPixels": 42362
+        }
+      ],
+      "sourceImage": "local-source/exec-fae0d62c-877a-46c5-ab0c-bf487254b535.png",
+      "elevations": [
+        {
+          "image": "woman-cardigan.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                121,
+                17,
+                160,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                192.0,
+                502
+              ],
+              "alphaPixels": 44140
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                499,
+                18,
+                145,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                576.0,
+                500
+              ],
+              "alphaPixels": 42829
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                857,
+                18,
+                224,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                960.0,
+                498
+              ],
+              "alphaPixels": 39307
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1263,
+                19,
+                166,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                1344.0,
+                502
+              ],
+              "alphaPixels": 40582
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                116,
+                526,
+                160,
+                479
+              ],
+              "bodyHeightPixels": 475,
+              "anchorPixels": [
+                192.0,
+                1003
+              ],
+              "alphaPixels": 43119
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                488,
+                525,
+                171,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                576.0,
+                1003
+              ],
+              "alphaPixels": 40907
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                834,
+                527,
+                229,
+                474
+              ],
+              "bodyHeightPixels": 470,
+              "anchorPixels": [
+                960.0,
+                999
+              ],
+              "alphaPixels": 38921
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1243,
+                525,
+                171,
+                481
+              ],
+              "bodyHeightPixels": 477,
+              "anchorPixels": [
+                1344.0,
+                1004
+              ],
+              "alphaPixels": 42362
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "woman-cardigan-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                108,
+                30,
+                188,
+                470
+              ],
+              "bodyHeightPixels": 466,
+              "anchorPixels": [
+                192.0,
+                498
+              ],
+              "alphaPixels": 46149
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                492,
+                33,
+                171,
+                465
+              ],
+              "bodyHeightPixels": 461,
+              "anchorPixels": [
+                576.0,
+                496
+              ],
+              "alphaPixels": 45297
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                849,
+                41,
+                226,
+                425
+              ],
+              "bodyHeightPixels": 421,
+              "anchorPixels": [
+                960.0,
+                464
+              ],
+              "alphaPixels": 40670
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1267,
+                34,
+                185,
+                458
+              ],
+              "bodyHeightPixels": 454,
+              "anchorPixels": [
+                1344.0,
+                490
+              ],
+              "alphaPixels": 43033
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                115,
+                542,
+                183,
+                436
+              ],
+              "bodyHeightPixels": 432,
+              "anchorPixels": [
+                192.0,
+                976
+              ],
+              "alphaPixels": 41855
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                494,
+                537,
+                177,
+                442
+              ],
+              "bodyHeightPixels": 438,
+              "anchorPixels": [
+                576.0,
+                977
+              ],
+              "alphaPixels": 39455
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                840,
+                531,
+                231,
+                440
+              ],
+              "bodyHeightPixels": 436,
+              "anchorPixels": [
+                960.0,
+                969
+              ],
+              "alphaPixels": 42125
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1250,
+                530,
+                180,
+                459
+              ],
+              "bodyHeightPixels": 455,
+              "anchorPixels": [
+                1344.0,
+                987
+              ],
+              "alphaPixels": 44728
+            }
+          ],
+          "sourceImage": "local-source/exec-2cef4a14-8571-4c05-a612-cc7992ab1220.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "woman-cardigan-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                97,
+                79,
+                197,
+                395
+              ],
+              "bodyHeightPixels": 391,
+              "anchorPixels": [
+                192.0,
+                472
+              ],
+              "alphaPixels": 40164
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                482,
+                82,
+                189,
+                378
+              ],
+              "bodyHeightPixels": 374,
+              "anchorPixels": [
+                576.0,
+                458
+              ],
+              "alphaPixels": 39058
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                857,
+                82,
+                197,
+                342
+              ],
+              "bodyHeightPixels": 338,
+              "anchorPixels": [
+                960.0,
+                422
+              ],
+              "alphaPixels": 34911
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1268,
+                81,
+                192,
+                379
+              ],
+              "bodyHeightPixels": 375,
+              "anchorPixels": [
+                1344.0,
+                458
+              ],
+              "alphaPixels": 36034
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                97,
+                560,
+                195,
+                387
+              ],
+              "bodyHeightPixels": 383,
+              "anchorPixels": [
+                192.0,
+                945
+              ],
+              "alphaPixels": 38690
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                481,
+                558,
+                183,
+                374
+              ],
+              "bodyHeightPixels": 370,
+              "anchorPixels": [
+                576.0,
+                930
+              ],
+              "alphaPixels": 36134
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                842,
+                564,
+                209,
+                345
+              ],
+              "bodyHeightPixels": 341,
+              "anchorPixels": [
+                960.0,
+                907
+              ],
+              "alphaPixels": 33736
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1244,
+                563,
+                199,
+                373
+              ],
+              "bodyHeightPixels": 369,
+              "anchorPixels": [
+                1344.0,
+                934
+              ],
+              "alphaPixels": 38687
+            }
+          ],
+          "sourceImage": "local-source/exec-d07fcd74-43dc-4b08-bf53-17f23a51f244.png"
+        }
+      ]
+    },
+    {
+      "id": "man-jacket",
+      "name": "회녹색 재킷 남성",
+      "height": 1.76,
+      "subject": "Korean man in his mid 30s, average build, short tidy black hair, muted gray-olive lightweight zip jacket over a light gray T-shirt, charcoal straight trousers, worn white sneakers. Empty hands, no bag.",
+      "image": "man-jacket.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            111,
+            17,
+            174,
+            490
+          ],
+          "bodyHeightPixels": 486,
+          "anchorPixels": [
+            192.0,
+            505
+          ],
+          "alphaPixels": 45340
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            490,
+            18,
+            163,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            576.0,
+            503
+          ],
+          "alphaPixels": 44459
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            846,
+            18,
+            239,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            960.0,
+            503
+          ],
+          "alphaPixels": 40596
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1255,
+            18,
+            183,
+            488
+          ],
+          "bodyHeightPixels": 484,
+          "anchorPixels": [
+            1344.0,
+            504
+          ],
+          "alphaPixels": 44499
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            111,
+            522,
+            177,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            192.0,
+            1007
+          ],
+          "alphaPixels": 45446
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            485,
+            522,
+            185,
+            486
+          ],
+          "bodyHeightPixels": 482,
+          "anchorPixels": [
+            576.0,
+            1006
+          ],
+          "alphaPixels": 43901
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            835,
+            524,
+            243,
+            477
+          ],
+          "bodyHeightPixels": 473,
+          "anchorPixels": [
+            960.0,
+            999
+          ],
+          "alphaPixels": 41679
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1242,
+            522,
+            183,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            1344.0,
+            1007
+          ],
+          "alphaPixels": 44935
+        }
+      ],
+      "sourceImage": "local-source/exec-e374e968-61fe-48a3-935d-f95932e44c6d.png",
+      "elevations": [
+        {
+          "image": "man-jacket.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                111,
+                17,
+                174,
+                490
+              ],
+              "bodyHeightPixels": 486,
+              "anchorPixels": [
+                192.0,
+                505
+              ],
+              "alphaPixels": 45340
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                490,
+                18,
+                163,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                576.0,
+                503
+              ],
+              "alphaPixels": 44459
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                846,
+                18,
+                239,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                960.0,
+                503
+              ],
+              "alphaPixels": 40596
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1255,
+                18,
+                183,
+                488
+              ],
+              "bodyHeightPixels": 484,
+              "anchorPixels": [
+                1344.0,
+                504
+              ],
+              "alphaPixels": 44499
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                111,
+                522,
+                177,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                192.0,
+                1007
+              ],
+              "alphaPixels": 45446
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                485,
+                522,
+                185,
+                486
+              ],
+              "bodyHeightPixels": 482,
+              "anchorPixels": [
+                576.0,
+                1006
+              ],
+              "alphaPixels": 43901
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                835,
+                524,
+                243,
+                477
+              ],
+              "bodyHeightPixels": 473,
+              "anchorPixels": [
+                960.0,
+                999
+              ],
+              "alphaPixels": 41679
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1242,
+                522,
+                183,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                1344.0,
+                1007
+              ],
+              "alphaPixels": 44935
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "man-jacket-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                104,
+                17,
+                185,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                192.0,
+                497
+              ],
+              "alphaPixels": 46329
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                489,
+                22,
+                179,
+                470
+              ],
+              "bodyHeightPixels": 466,
+              "anchorPixels": [
+                576.0,
+                490
+              ],
+              "alphaPixels": 45445
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                846,
+                24,
+                242,
+                451
+              ],
+              "bodyHeightPixels": 447,
+              "anchorPixels": [
+                960.0,
+                473
+              ],
+              "alphaPixels": 41586
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1263,
+                23,
+                197,
+                464
+              ],
+              "bodyHeightPixels": 460,
+              "anchorPixels": [
+                1344.0,
+                485
+              ],
+              "alphaPixels": 43304
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                108,
+                522,
+                190,
+                477
+              ],
+              "bodyHeightPixels": 473,
+              "anchorPixels": [
+                192.0,
+                997
+              ],
+              "alphaPixels": 44284
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                469,
+                522,
+                208,
+                465
+              ],
+              "bodyHeightPixels": 461,
+              "anchorPixels": [
+                576.0,
+                985
+              ],
+              "alphaPixels": 43185
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                831,
+                523,
+                251,
+                451
+              ],
+              "bodyHeightPixels": 447,
+              "anchorPixels": [
+                960.0,
+                972
+              ],
+              "alphaPixels": 43995
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1248,
+                523,
+                189,
+                477
+              ],
+              "bodyHeightPixels": 473,
+              "anchorPixels": [
+                1344.0,
+                998
+              ],
+              "alphaPixels": 44851
+            }
+          ],
+          "sourceImage": "local-source/exec-3f7d7db6-ade8-411a-afe2-9849c65f3f16.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "man-jacket-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                86,
+                78,
+                216,
+                384
+              ],
+              "bodyHeightPixels": 380,
+              "anchorPixels": [
+                192.0,
+                460
+              ],
+              "alphaPixels": 41931
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                475,
+                74,
+                196,
+                375
+              ],
+              "bodyHeightPixels": 371,
+              "anchorPixels": [
+                576.0,
+                447
+              ],
+              "alphaPixels": 40021
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                844,
+                79,
+                232,
+                353
+              ],
+              "bodyHeightPixels": 349,
+              "anchorPixels": [
+                960.0,
+                430
+              ],
+              "alphaPixels": 35162
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1249,
+                88,
+                221,
+                372
+              ],
+              "bodyHeightPixels": 368,
+              "anchorPixels": [
+                1344.0,
+                458
+              ],
+              "alphaPixels": 39672
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                88,
+                558,
+                212,
+                397
+              ],
+              "bodyHeightPixels": 393,
+              "anchorPixels": [
+                192.0,
+                953
+              ],
+              "alphaPixels": 40594
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                466,
+                562,
+                195,
+                380
+              ],
+              "bodyHeightPixels": 376,
+              "anchorPixels": [
+                576.0,
+                940
+              ],
+              "alphaPixels": 37132
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                863,
+                571,
+                209,
+                357
+              ],
+              "bodyHeightPixels": 353,
+              "anchorPixels": [
+                960.0,
+                926
+              ],
+              "alphaPixels": 36225
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1240,
+                572,
+                213,
+                380
+              ],
+              "bodyHeightPixels": 376,
+              "anchorPixels": [
+                1344.0,
+                950
+              ],
+              "alphaPixels": 40627
+            }
+          ],
+          "sourceImage": "local-source/exec-ebef0db8-b682-46de-b1d0-15537693a745.png"
+        }
+      ]
+    },
+    {
+      "id": "woman-vest",
+      "name": "자주색 조끼 중년 여성",
+      "height": 1.59,
+      "subject": "Korean woman in her late 50s, short softly waved dark hair, modest slightly stocky build, muted burgundy quilted sleeveless vest over a pale beige long-sleeve top, warm taupe straight pants, dark brown walking shoes. Empty hands, no bag, no special action.",
+      "image": "woman-vest.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            112,
+            23,
+            175,
+            478
+          ],
+          "bodyHeightPixels": 474,
+          "anchorPixels": [
+            192.0,
+            499
+          ],
+          "alphaPixels": 45618
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            494,
+            23,
+            156,
+            476
+          ],
+          "bodyHeightPixels": 472,
+          "anchorPixels": [
+            576.0,
+            497
+          ],
+          "alphaPixels": 44507
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            852,
+            24,
+            227,
+            475
+          ],
+          "bodyHeightPixels": 471,
+          "anchorPixels": [
+            960.0,
+            497
+          ],
+          "alphaPixels": 40905
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1260,
+            25,
+            179,
+            476
+          ],
+          "bodyHeightPixels": 472,
+          "anchorPixels": [
+            1344.0,
+            499
+          ],
+          "alphaPixels": 43473
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            112,
+            528,
+            174,
+            476
+          ],
+          "bodyHeightPixels": 472,
+          "anchorPixels": [
+            192.0,
+            1002
+          ],
+          "alphaPixels": 46082
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            486,
+            528,
+            176,
+            475
+          ],
+          "bodyHeightPixels": 471,
+          "anchorPixels": [
+            576.0,
+            1001
+          ],
+          "alphaPixels": 42760
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            835,
+            529,
+            231,
+            471
+          ],
+          "bodyHeightPixels": 467,
+          "anchorPixels": [
+            960.0,
+            998
+          ],
+          "alphaPixels": 41058
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1244,
+            525,
+            180,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            1344.0,
+            1003
+          ],
+          "alphaPixels": 44682
+        }
+      ],
+      "sourceImage": "local-source/exec-7dab9cb9-f564-42aa-9cc9-a3bbe6f8f3ca.png",
+      "elevations": [
+        {
+          "image": "woman-vest.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                112,
+                23,
+                175,
+                478
+              ],
+              "bodyHeightPixels": 474,
+              "anchorPixels": [
+                192.0,
+                499
+              ],
+              "alphaPixels": 45618
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                494,
+                23,
+                156,
+                476
+              ],
+              "bodyHeightPixels": 472,
+              "anchorPixels": [
+                576.0,
+                497
+              ],
+              "alphaPixels": 44507
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                852,
+                24,
+                227,
+                475
+              ],
+              "bodyHeightPixels": 471,
+              "anchorPixels": [
+                960.0,
+                497
+              ],
+              "alphaPixels": 40905
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1260,
+                25,
+                179,
+                476
+              ],
+              "bodyHeightPixels": 472,
+              "anchorPixels": [
+                1344.0,
+                499
+              ],
+              "alphaPixels": 43473
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                112,
+                528,
+                174,
+                476
+              ],
+              "bodyHeightPixels": 472,
+              "anchorPixels": [
+                192.0,
+                1002
+              ],
+              "alphaPixels": 46082
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                486,
+                528,
+                176,
+                475
+              ],
+              "bodyHeightPixels": 471,
+              "anchorPixels": [
+                576.0,
+                1001
+              ],
+              "alphaPixels": 42760
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                835,
+                529,
+                231,
+                471
+              ],
+              "bodyHeightPixels": 467,
+              "anchorPixels": [
+                960.0,
+                998
+              ],
+              "alphaPixels": 41058
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1244,
+                525,
+                180,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                1344.0,
+                1003
+              ],
+              "alphaPixels": 44682
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "woman-vest-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                92,
+                27,
+                198,
+                466
+              ],
+              "bodyHeightPixels": 462,
+              "anchorPixels": [
+                192.0,
+                491
+              ],
+              "alphaPixels": 48498
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                479,
+                29,
+                179,
+                452
+              ],
+              "bodyHeightPixels": 448,
+              "anchorPixels": [
+                576.0,
+                479
+              ],
+              "alphaPixels": 46950
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                856,
+                37,
+                227,
+                430
+              ],
+              "bodyHeightPixels": 426,
+              "anchorPixels": [
+                960.0,
+                465
+              ],
+              "alphaPixels": 42682
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1257,
+                34,
+                197,
+                449
+              ],
+              "bodyHeightPixels": 445,
+              "anchorPixels": [
+                1344.0,
+                481
+              ],
+              "alphaPixels": 44723
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                87,
+                533,
+                201,
+                447
+              ],
+              "bodyHeightPixels": 443,
+              "anchorPixels": [
+                192.0,
+                978
+              ],
+              "alphaPixels": 47448
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                475,
+                532,
+                197,
+                437
+              ],
+              "bodyHeightPixels": 433,
+              "anchorPixels": [
+                576.0,
+                967
+              ],
+              "alphaPixels": 43814
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                846,
+                538,
+                239,
+                420
+              ],
+              "bodyHeightPixels": 416,
+              "anchorPixels": [
+                960.0,
+                956
+              ],
+              "alphaPixels": 43106
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1241,
+                533,
+                204,
+                447
+              ],
+              "bodyHeightPixels": 443,
+              "anchorPixels": [
+                1344.0,
+                978
+              ],
+              "alphaPixels": 47620
+            }
+          ],
+          "sourceImage": "local-source/exec-ff03f402-6d38-4712-a3a8-96312a5523a8.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "woman-vest-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                91,
+                51,
+                214,
+                417
+              ],
+              "bodyHeightPixels": 413,
+              "anchorPixels": [
+                192.0,
+                466
+              ],
+              "alphaPixels": 45470
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                489,
+                56,
+                203,
+                396
+              ],
+              "bodyHeightPixels": 392,
+              "anchorPixels": [
+                576.0,
+                450
+              ],
+              "alphaPixels": 43091
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                839,
+                58,
+                231,
+                353
+              ],
+              "bodyHeightPixels": 349,
+              "anchorPixels": [
+                960.0,
+                409
+              ],
+              "alphaPixels": 39077
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1238,
+                57,
+                211,
+                400
+              ],
+              "bodyHeightPixels": 396,
+              "anchorPixels": [
+                1344.0,
+                455
+              ],
+              "alphaPixels": 41535
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                94,
+                549,
+                209,
+                409
+              ],
+              "bodyHeightPixels": 405,
+              "anchorPixels": [
+                192.0,
+                956
+              ],
+              "alphaPixels": 43790
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                474,
+                550,
+                208,
+                388
+              ],
+              "bodyHeightPixels": 384,
+              "anchorPixels": [
+                576.0,
+                936
+              ],
+              "alphaPixels": 42386
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                843,
+                546,
+                227,
+                383
+              ],
+              "bodyHeightPixels": 379,
+              "anchorPixels": [
+                960.0,
+                927
+              ],
+              "alphaPixels": 40731
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1238,
+                544,
+                209,
+                414
+              ],
+              "bodyHeightPixels": 410,
+              "anchorPixels": [
+                1344.0,
+                956
+              ],
+              "alphaPixels": 43793
+            }
+          ],
+          "sourceImage": "local-source/exec-617c037e-d982-4d9f-a4b8-273e6a4c137e.png"
+        }
+      ]
+    },
+    {
+      "id": "man-senior",
+      "name": "베이지 점퍼 노년 남성",
+      "height": 1.68,
+      "subject": "Korean man in his late 60s, slightly slender build, neatly trimmed gray hair, light beige windbreaker zipped halfway over a muted blue polo, dark navy trousers, dark gray walking shoes. Upright relaxed posture, no cane, empty hands, no hat.",
+      "image": "man-senior.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            115,
+            19,
+            171,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            192.0,
+            497
+          ],
+          "alphaPixels": 44717
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            492,
+            19,
+            162,
+            479
+          ],
+          "bodyHeightPixels": 475,
+          "anchorPixels": [
+            576.0,
+            496
+          ],
+          "alphaPixels": 44418
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            850,
+            19,
+            230,
+            475
+          ],
+          "bodyHeightPixels": 471,
+          "anchorPixels": [
+            960.0,
+            492
+          ],
+          "alphaPixels": 38858
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1261,
+            22,
+            172,
+            477
+          ],
+          "bodyHeightPixels": 473,
+          "anchorPixels": [
+            1344.0,
+            497
+          ],
+          "alphaPixels": 41641
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            110,
+            522,
+            170,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            192.0,
+            1002
+          ],
+          "alphaPixels": 44502
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            490,
+            521,
+            178,
+            483
+          ],
+          "bodyHeightPixels": 479,
+          "anchorPixels": [
+            576.0,
+            1002
+          ],
+          "alphaPixels": 43296
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            838,
+            523,
+            233,
+            478
+          ],
+          "bodyHeightPixels": 474,
+          "anchorPixels": [
+            960.0,
+            999
+          ],
+          "alphaPixels": 40660
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1246,
+            522,
+            181,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            1344.0,
+            1000
+          ],
+          "alphaPixels": 44969
+        }
+      ],
+      "sourceImage": "local-source/exec-7bbeb561-7e79-4789-af47-75b93e209ade.png",
+      "elevations": [
+        {
+          "image": "man-senior.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                115,
+                19,
+                171,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                192.0,
+                497
+              ],
+              "alphaPixels": 44717
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                492,
+                19,
+                162,
+                479
+              ],
+              "bodyHeightPixels": 475,
+              "anchorPixels": [
+                576.0,
+                496
+              ],
+              "alphaPixels": 44418
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                850,
+                19,
+                230,
+                475
+              ],
+              "bodyHeightPixels": 471,
+              "anchorPixels": [
+                960.0,
+                492
+              ],
+              "alphaPixels": 38858
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1261,
+                22,
+                172,
+                477
+              ],
+              "bodyHeightPixels": 473,
+              "anchorPixels": [
+                1344.0,
+                497
+              ],
+              "alphaPixels": 41641
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                110,
+                522,
+                170,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                192.0,
+                1002
+              ],
+              "alphaPixels": 44502
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                490,
+                521,
+                178,
+                483
+              ],
+              "bodyHeightPixels": 479,
+              "anchorPixels": [
+                576.0,
+                1002
+              ],
+              "alphaPixels": 43296
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                838,
+                523,
+                233,
+                478
+              ],
+              "bodyHeightPixels": 474,
+              "anchorPixels": [
+                960.0,
+                999
+              ],
+              "alphaPixels": 40660
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1246,
+                522,
+                181,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                1344.0,
+                1000
+              ],
+              "alphaPixels": 44969
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "man-senior-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                105,
+                41,
+                191,
+                457
+              ],
+              "bodyHeightPixels": 453,
+              "anchorPixels": [
+                192.0,
+                496
+              ],
+              "alphaPixels": 46244
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                488,
+                35,
+                176,
+                451
+              ],
+              "bodyHeightPixels": 447,
+              "anchorPixels": [
+                576.0,
+                484
+              ],
+              "alphaPixels": 43782
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                850,
+                41,
+                231,
+                424
+              ],
+              "bodyHeightPixels": 420,
+              "anchorPixels": [
+                960.0,
+                463
+              ],
+              "alphaPixels": 39842
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1258,
+                40,
+                187,
+                446
+              ],
+              "bodyHeightPixels": 442,
+              "anchorPixels": [
+                1344.0,
+                484
+              ],
+              "alphaPixels": 42018
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                103,
+                535,
+                191,
+                449
+              ],
+              "bodyHeightPixels": 445,
+              "anchorPixels": [
+                192.0,
+                982
+              ],
+              "alphaPixels": 42960
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                477,
+                528,
+                184,
+                454
+              ],
+              "bodyHeightPixels": 450,
+              "anchorPixels": [
+                576.0,
+                980
+              ],
+              "alphaPixels": 41339
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                849,
+                544,
+                219,
+                417
+              ],
+              "bodyHeightPixels": 413,
+              "anchorPixels": [
+                960.0,
+                959
+              ],
+              "alphaPixels": 38911
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1247,
+                541,
+                190,
+                443
+              ],
+              "bodyHeightPixels": 439,
+              "anchorPixels": [
+                1344.0,
+                982
+              ],
+              "alphaPixels": 44323
+            }
+          ],
+          "sourceImage": "local-source/exec-97abc222-2670-4717-aaff-c0f874bcbde8.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "man-senior-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                92,
+                63,
+                216,
+                410
+              ],
+              "bodyHeightPixels": 406,
+              "anchorPixels": [
+                192.0,
+                471
+              ],
+              "alphaPixels": 48092
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                482,
+                64,
+                187,
+                399
+              ],
+              "bodyHeightPixels": 395,
+              "anchorPixels": [
+                576.0,
+                461
+              ],
+              "alphaPixels": 43672
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                871,
+                64,
+                217,
+                378
+              ],
+              "bodyHeightPixels": 374,
+              "anchorPixels": [
+                960.0,
+                440
+              ],
+              "alphaPixels": 39220
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1245,
+                70,
+                207,
+                393
+              ],
+              "bodyHeightPixels": 389,
+              "anchorPixels": [
+                1344.0,
+                461
+              ],
+              "alphaPixels": 42851
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                95,
+                545,
+                217,
+                397
+              ],
+              "bodyHeightPixels": 393,
+              "anchorPixels": [
+                192.0,
+                940
+              ],
+              "alphaPixels": 45125
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                482,
+                553,
+                199,
+                391
+              ],
+              "bodyHeightPixels": 387,
+              "anchorPixels": [
+                576.0,
+                942
+              ],
+              "alphaPixels": 44506
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                858,
+                554,
+                200,
+                377
+              ],
+              "bodyHeightPixels": 373,
+              "anchorPixels": [
+                960.0,
+                929
+              ],
+              "alphaPixels": 38633
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1237,
+                557,
+                213,
+                389
+              ],
+              "bodyHeightPixels": 385,
+              "anchorPixels": [
+                1344.0,
+                944
+              ],
+              "alphaPixels": 43647
+            }
+          ],
+          "sourceImage": "local-source/exec-fc94cac4-553f-4a83-8377-a91545938928.png"
+        }
+      ]
+    },
+    {
+      "id": "man-backpack",
+      "name": "남색 후드 청년",
+      "height": 1.78,
+      "subject": "Korean man in his early 20s, slim build, slightly tousled short black hair, muted navy hoodie with hood DOWN, washed blue straight jeans, gray sneakers. A small plain charcoal backpack worn on BOTH shoulders; preserve exact backpack straps/front and backpack rear in correct views. Empty hands.",
+      "image": "man-backpack.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            115,
+            16,
+            172,
+            489
+          ],
+          "bodyHeightPixels": 485,
+          "anchorPixels": [
+            192.0,
+            503
+          ],
+          "alphaPixels": 45094
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            490,
+            16,
+            168,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            576.0,
+            499
+          ],
+          "alphaPixels": 44910
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            852,
+            16,
+            233,
+            483
+          ],
+          "bodyHeightPixels": 479,
+          "anchorPixels": [
+            960.0,
+            497
+          ],
+          "alphaPixels": 42779
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1254,
+            17,
+            180,
+            488
+          ],
+          "bodyHeightPixels": 484,
+          "anchorPixels": [
+            1344.0,
+            503
+          ],
+          "alphaPixels": 43222
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            111,
+            524,
+            170,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            192.0,
+            1006
+          ],
+          "alphaPixels": 44476
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            485,
+            525,
+            183,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            576.0,
+            1003
+          ],
+          "alphaPixels": 42370
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            831,
+            526,
+            239,
+            475
+          ],
+          "bodyHeightPixels": 471,
+          "anchorPixels": [
+            960.0,
+            999
+          ],
+          "alphaPixels": 42852
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1242,
+            526,
+            184,
+            481
+          ],
+          "bodyHeightPixels": 477,
+          "anchorPixels": [
+            1344.0,
+            1005
+          ],
+          "alphaPixels": 44071
+        }
+      ],
+      "sourceImage": "local-source/exec-8591fcf4-c31f-47d7-9169-4e690347d795.png",
+      "elevations": [
+        {
+          "image": "man-backpack.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                115,
+                16,
+                172,
+                489
+              ],
+              "bodyHeightPixels": 485,
+              "anchorPixels": [
+                192.0,
+                503
+              ],
+              "alphaPixels": 45094
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                490,
+                16,
+                168,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                576.0,
+                499
+              ],
+              "alphaPixels": 44910
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                852,
+                16,
+                233,
+                483
+              ],
+              "bodyHeightPixels": 479,
+              "anchorPixels": [
+                960.0,
+                497
+              ],
+              "alphaPixels": 42779
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1254,
+                17,
+                180,
+                488
+              ],
+              "bodyHeightPixels": 484,
+              "anchorPixels": [
+                1344.0,
+                503
+              ],
+              "alphaPixels": 43222
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                111,
+                524,
+                170,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                192.0,
+                1006
+              ],
+              "alphaPixels": 44476
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                485,
+                525,
+                183,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                576.0,
+                1003
+              ],
+              "alphaPixels": 42370
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                831,
+                526,
+                239,
+                475
+              ],
+              "bodyHeightPixels": 471,
+              "anchorPixels": [
+                960.0,
+                999
+              ],
+              "alphaPixels": 42852
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1242,
+                526,
+                184,
+                481
+              ],
+              "bodyHeightPixels": 477,
+              "anchorPixels": [
+                1344.0,
+                1005
+              ],
+              "alphaPixels": 44071
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "man-backpack-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                114,
+                47,
+                174,
+                431
+              ],
+              "bodyHeightPixels": 427,
+              "anchorPixels": [
+                192.0,
+                476
+              ],
+              "alphaPixels": 39045
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                496,
+                47,
+                172,
+                433
+              ],
+              "bodyHeightPixels": 429,
+              "anchorPixels": [
+                576.0,
+                478
+              ],
+              "alphaPixels": 38655
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                860,
+                48,
+                203,
+                420
+              ],
+              "bodyHeightPixels": 416,
+              "anchorPixels": [
+                960.0,
+                466
+              ],
+              "alphaPixels": 39286
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1254,
+                46,
+                181,
+                430
+              ],
+              "bodyHeightPixels": 426,
+              "anchorPixels": [
+                1344.0,
+                474
+              ],
+              "alphaPixels": 37921
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                113,
+                550,
+                178,
+                426
+              ],
+              "bodyHeightPixels": 422,
+              "anchorPixels": [
+                192.0,
+                974
+              ],
+              "alphaPixels": 38734
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                495,
+                547,
+                177,
+                421
+              ],
+              "bodyHeightPixels": 417,
+              "anchorPixels": [
+                576.0,
+                966
+              ],
+              "alphaPixels": 38488
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                853,
+                550,
+                211,
+                405
+              ],
+              "bodyHeightPixels": 401,
+              "anchorPixels": [
+                960.0,
+                953
+              ],
+              "alphaPixels": 39613
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1254,
+                550,
+                177,
+                432
+              ],
+              "bodyHeightPixels": 428,
+              "anchorPixels": [
+                1344.0,
+                980
+              ],
+              "alphaPixels": 40293
+            }
+          ],
+          "sourceImage": "local-source/exec-a01b745a-cc61-455d-8e38-87c9467cbbe8.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "man-backpack-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                95,
+                56,
+                194,
+                406
+              ],
+              "bodyHeightPixels": 402,
+              "anchorPixels": [
+                192.0,
+                460
+              ],
+              "alphaPixels": 40913
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                482,
+                58,
+                194,
+                401
+              ],
+              "bodyHeightPixels": 397,
+              "anchorPixels": [
+                576.0,
+                457
+              ],
+              "alphaPixels": 40865
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                868,
+                56,
+                214,
+                380
+              ],
+              "bodyHeightPixels": 376,
+              "anchorPixels": [
+                960.0,
+                434
+              ],
+              "alphaPixels": 41002
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1262,
+                56,
+                201,
+                397
+              ],
+              "bodyHeightPixels": 393,
+              "anchorPixels": [
+                1344.0,
+                451
+              ],
+              "alphaPixels": 40401
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                92,
+                566,
+                201,
+                419
+              ],
+              "bodyHeightPixels": 415,
+              "anchorPixels": [
+                192.0,
+                983
+              ],
+              "alphaPixels": 40816
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                477,
+                559,
+                202,
+                409
+              ],
+              "bodyHeightPixels": 405,
+              "anchorPixels": [
+                576.0,
+                966
+              ],
+              "alphaPixels": 44184
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                851,
+                567,
+                225,
+                368
+              ],
+              "bodyHeightPixels": 364,
+              "anchorPixels": [
+                960.0,
+                933
+              ],
+              "alphaPixels": 42570
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1261,
+                573,
+                198,
+                395
+              ],
+              "bodyHeightPixels": 391,
+              "anchorPixels": [
+                1344.0,
+                966
+              ],
+              "alphaPixels": 40660
+            }
+          ],
+          "sourceImage": "local-source/exec-1703dfc5-c386-4eb2-89cd-c4517e9abf5e.png"
+        }
+      ]
+    },
+    {
+      "id": "woman-coat",
+      "name": "세이지색 코트 여성",
+      "height": 1.66,
+      "subject": "Korean woman in her early 40s, average build, dark hair tied in a low ponytail, knee-length light sage-gray unbuttoned coat over a cream top, dark charcoal straight trousers, beige flats. A small tan crossbody bag resting at HER LEFT hip; strap from HER RIGHT shoulder, identical handedness in every view, empty hands.",
+      "image": "woman-coat.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            111,
+            20,
+            169,
+            486
+          ],
+          "bodyHeightPixels": 482,
+          "anchorPixels": [
+            192.0,
+            504
+          ],
+          "alphaPixels": 43764
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            495,
+            20,
+            157,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            576.0,
+            502
+          ],
+          "alphaPixels": 45558
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            860,
+            20,
+            225,
+            481
+          ],
+          "bodyHeightPixels": 477,
+          "anchorPixels": [
+            960.0,
+            499
+          ],
+          "alphaPixels": 39615
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1269,
+            20,
+            167,
+            486
+          ],
+          "bodyHeightPixels": 482,
+          "anchorPixels": [
+            1344.0,
+            504
+          ],
+          "alphaPixels": 43810
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            109,
+            525,
+            166,
+            481
+          ],
+          "bodyHeightPixels": 477,
+          "anchorPixels": [
+            192.0,
+            1004
+          ],
+          "alphaPixels": 42909
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            489,
+            524,
+            170,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            576.0,
+            1004
+          ],
+          "alphaPixels": 43782
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            837,
+            526,
+            228,
+            477
+          ],
+          "bodyHeightPixels": 473,
+          "anchorPixels": [
+            960.0,
+            1001
+          ],
+          "alphaPixels": 39971
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1245,
+            524,
+            171,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            1344.0,
+            1004
+          ],
+          "alphaPixels": 45508
+        }
+      ],
+      "sourceImage": "local-source/exec-6bd6e80a-d33f-4cb7-a3d5-c4c4a7543b00.png",
+      "elevations": [
+        {
+          "image": "woman-coat.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                111,
+                20,
+                169,
+                486
+              ],
+              "bodyHeightPixels": 482,
+              "anchorPixels": [
+                192.0,
+                504
+              ],
+              "alphaPixels": 43764
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                495,
+                20,
+                157,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                576.0,
+                502
+              ],
+              "alphaPixels": 45558
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                860,
+                20,
+                225,
+                481
+              ],
+              "bodyHeightPixels": 477,
+              "anchorPixels": [
+                960.0,
+                499
+              ],
+              "alphaPixels": 39615
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1269,
+                20,
+                167,
+                486
+              ],
+              "bodyHeightPixels": 482,
+              "anchorPixels": [
+                1344.0,
+                504
+              ],
+              "alphaPixels": 43810
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                109,
+                525,
+                166,
+                481
+              ],
+              "bodyHeightPixels": 477,
+              "anchorPixels": [
+                192.0,
+                1004
+              ],
+              "alphaPixels": 42909
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                489,
+                524,
+                170,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                576.0,
+                1004
+              ],
+              "alphaPixels": 43782
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                837,
+                526,
+                228,
+                477
+              ],
+              "bodyHeightPixels": 473,
+              "anchorPixels": [
+                960.0,
+                1001
+              ],
+              "alphaPixels": 39971
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1245,
+                524,
+                171,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                1344.0,
+                1004
+              ],
+              "alphaPixels": 45508
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "woman-coat-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                122,
+                35,
+                188,
+                464
+              ],
+              "bodyHeightPixels": 460,
+              "anchorPixels": [
+                192.0,
+                497
+              ],
+              "alphaPixels": 46546
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                495,
+                35,
+                176,
+                463
+              ],
+              "bodyHeightPixels": 459,
+              "anchorPixels": [
+                576.0,
+                496
+              ],
+              "alphaPixels": 45848
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                867,
+                35,
+                218,
+                444
+              ],
+              "bodyHeightPixels": 440,
+              "anchorPixels": [
+                960.0,
+                477
+              ],
+              "alphaPixels": 42860
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1261,
+                35,
+                182,
+                457
+              ],
+              "bodyHeightPixels": 453,
+              "anchorPixels": [
+                1344.0,
+                490
+              ],
+              "alphaPixels": 44308
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                106,
+                530,
+                190,
+                457
+              ],
+              "bodyHeightPixels": 453,
+              "anchorPixels": [
+                192.0,
+                985
+              ],
+              "alphaPixels": 45579
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                487,
+                526,
+                182,
+                454
+              ],
+              "bodyHeightPixels": 450,
+              "anchorPixels": [
+                576.0,
+                978
+              ],
+              "alphaPixels": 46879
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                848,
+                529,
+                232,
+                434
+              ],
+              "bodyHeightPixels": 430,
+              "anchorPixels": [
+                960.0,
+                961
+              ],
+              "alphaPixels": 43204
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1246,
+                527,
+                193,
+                464
+              ],
+              "bodyHeightPixels": 460,
+              "anchorPixels": [
+                1344.0,
+                989
+              ],
+              "alphaPixels": 48266
+            }
+          ],
+          "sourceImage": "local-source/exec-2a1a9d47-f9bd-4565-8d56-7b4e0a33d448.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "woman-coat-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                95,
+                40,
+                202,
+                444
+              ],
+              "bodyHeightPixels": 440,
+              "anchorPixels": [
+                192.0,
+                482
+              ],
+              "alphaPixels": 45936
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                476,
+                43,
+                202,
+                433
+              ],
+              "bodyHeightPixels": 429,
+              "anchorPixels": [
+                576.0,
+                474
+              ],
+              "alphaPixels": 45875
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                855,
+                41,
+                232,
+                392
+              ],
+              "bodyHeightPixels": 388,
+              "anchorPixels": [
+                960.0,
+                431
+              ],
+              "alphaPixels": 42819
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1251,
+                46,
+                202,
+                427
+              ],
+              "bodyHeightPixels": 423,
+              "anchorPixels": [
+                1344.0,
+                471
+              ],
+              "alphaPixels": 43751
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                91,
+                544,
+                200,
+                425
+              ],
+              "bodyHeightPixels": 421,
+              "anchorPixels": [
+                192.0,
+                967
+              ],
+              "alphaPixels": 43875
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                473,
+                546,
+                201,
+                407
+              ],
+              "bodyHeightPixels": 403,
+              "anchorPixels": [
+                576.0,
+                951
+              ],
+              "alphaPixels": 43350
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                836,
+                549,
+                241,
+                380
+              ],
+              "bodyHeightPixels": 376,
+              "anchorPixels": [
+                960.0,
+                927
+              ],
+              "alphaPixels": 40650
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1246,
+                546,
+                202,
+                421
+              ],
+              "bodyHeightPixels": 417,
+              "anchorPixels": [
+                1344.0,
+                965
+              ],
+              "alphaPixels": 44570
+            }
+          ],
+          "sourceImage": "local-source/exec-5dd55059-07d5-466b-bc1b-111b5a8e89c8.png"
+        }
+      ]
+    },
+    {
+      "id": "man-sweatshirt",
+      "name": "회색 후드·조거팬츠 남성",
+      "height": 1.75,
+      "subject": "Korean adult man late 20s with a broader, slightly stocky build, short black cropped hair, loose warm-light-gray hooded sweatshirt with hood DOWN, muted olive tapered jogger pants with cuffed ankles, off-white sneakers. No backpack and no bag. No logos. A quiet relaxed everyday neighborhood walk.",
+      "image": "man-sweatshirt.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            106,
+            16,
+            189,
+            487
+          ],
+          "bodyHeightPixels": 483,
+          "anchorPixels": [
+            192.0,
+            501
+          ],
+          "alphaPixels": 48428
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            488,
+            17,
+            156,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            576.0,
+            499
+          ],
+          "alphaPixels": 45861
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            853,
+            18,
+            232,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            960.0,
+            498
+          ],
+          "alphaPixels": 40917
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1258,
+            17,
+            175,
+            486
+          ],
+          "bodyHeightPixels": 482,
+          "anchorPixels": [
+            1344.0,
+            501
+          ],
+          "alphaPixels": 43972
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            104,
+            526,
+            183,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            192.0,
+            1004
+          ],
+          "alphaPixels": 46438
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            490,
+            525,
+            176,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            576.0,
+            1003
+          ],
+          "alphaPixels": 43884
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            836,
+            526,
+            237,
+            476
+          ],
+          "bodyHeightPixels": 472,
+          "anchorPixels": [
+            960.0,
+            1000
+          ],
+          "alphaPixels": 40495
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1249,
+            525,
+            181,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            1344.0,
+            1003
+          ],
+          "alphaPixels": 45931
+        }
+      ],
+      "sourceImage": "local-source/exec-37d6d485-9beb-4992-9c73-25b13ac30ab2.png",
+      "elevations": [
+        {
+          "image": "man-sweatshirt.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                106,
+                16,
+                189,
+                487
+              ],
+              "bodyHeightPixels": 483,
+              "anchorPixels": [
+                192.0,
+                501
+              ],
+              "alphaPixels": 48428
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                488,
+                17,
+                156,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                576.0,
+                499
+              ],
+              "alphaPixels": 45861
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                853,
+                18,
+                232,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                960.0,
+                498
+              ],
+              "alphaPixels": 40917
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1258,
+                17,
+                175,
+                486
+              ],
+              "bodyHeightPixels": 482,
+              "anchorPixels": [
+                1344.0,
+                501
+              ],
+              "alphaPixels": 43972
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                104,
+                526,
+                183,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                192.0,
+                1004
+              ],
+              "alphaPixels": 46438
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                490,
+                525,
+                176,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                576.0,
+                1003
+              ],
+              "alphaPixels": 43884
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                836,
+                526,
+                237,
+                476
+              ],
+              "bodyHeightPixels": 472,
+              "anchorPixels": [
+                960.0,
+                1000
+              ],
+              "alphaPixels": 40495
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1249,
+                525,
+                181,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                1344.0,
+                1003
+              ],
+              "alphaPixels": 45931
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "man-sweatshirt-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                96,
+                18,
+                206,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                192.0,
+                501
+              ],
+              "alphaPixels": 51510
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                488,
+                21,
+                182,
+                474
+              ],
+              "bodyHeightPixels": 470,
+              "anchorPixels": [
+                576.0,
+                493
+              ],
+              "alphaPixels": 50300
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                849,
+                20,
+                262,
+                451
+              ],
+              "bodyHeightPixels": 447,
+              "anchorPixels": [
+                960.0,
+                469
+              ],
+              "alphaPixels": 42583
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1253,
+                21,
+                192,
+                470
+              ],
+              "bodyHeightPixels": 466,
+              "anchorPixels": [
+                1344.0,
+                489
+              ],
+              "alphaPixels": 47924
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                94,
+                522,
+                204,
+                472
+              ],
+              "bodyHeightPixels": 468,
+              "anchorPixels": [
+                192.0,
+                992
+              ],
+              "alphaPixels": 47978
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                488,
+                519,
+                187,
+                459
+              ],
+              "bodyHeightPixels": 455,
+              "anchorPixels": [
+                576.0,
+                976
+              ],
+              "alphaPixels": 44926
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                827,
+                521,
+                259,
+                444
+              ],
+              "bodyHeightPixels": 440,
+              "anchorPixels": [
+                960.0,
+                963
+              ],
+              "alphaPixels": 44753
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1253,
+                521,
+                199,
+                471
+              ],
+              "bodyHeightPixels": 467,
+              "anchorPixels": [
+                1344.0,
+                990
+              ],
+              "alphaPixels": 49602
+            }
+          ],
+          "sourceImage": "local-source/exec-40d7c4cd-cc66-4fd1-bc14-6c145160a7d6.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "man-sweatshirt-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                79,
+                63,
+                226,
+                401
+              ],
+              "bodyHeightPixels": 397,
+              "anchorPixels": [
+                192.0,
+                462
+              ],
+              "alphaPixels": 46224
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                479,
+                71,
+                213,
+                388
+              ],
+              "bodyHeightPixels": 384,
+              "anchorPixels": [
+                576.0,
+                457
+              ],
+              "alphaPixels": 45605
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                851,
+                84,
+                240,
+                338
+              ],
+              "bodyHeightPixels": 334,
+              "anchorPixels": [
+                960.0,
+                420
+              ],
+              "alphaPixels": 38894
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1234,
+                71,
+                216,
+                388
+              ],
+              "bodyHeightPixels": 384,
+              "anchorPixels": [
+                1344.0,
+                457
+              ],
+              "alphaPixels": 42398
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                72,
+                560,
+                223,
+                393
+              ],
+              "bodyHeightPixels": 389,
+              "anchorPixels": [
+                192.0,
+                951
+              ],
+              "alphaPixels": 43636
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                484,
+                560,
+                190,
+                387
+              ],
+              "bodyHeightPixels": 383,
+              "anchorPixels": [
+                576.0,
+                945
+              ],
+              "alphaPixels": 40127
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                837,
+                561,
+                227,
+                364
+              ],
+              "bodyHeightPixels": 360,
+              "anchorPixels": [
+                960.0,
+                923
+              ],
+              "alphaPixels": 39471
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1233,
+                568,
+                229,
+                383
+              ],
+              "bodyHeightPixels": 379,
+              "anchorPixels": [
+                1344.0,
+                949
+              ],
+              "alphaPixels": 43443
+            }
+          ],
+          "sourceImage": "local-source/exec-32c2427d-eb84-4448-95cd-b200ce6b9a62.png"
+        }
+      ]
+    },
+    {
+      "id": "woman-skirt",
+      "name": "살구 니트·긴 치마 여성",
+      "height": 1.63,
+      "subject": "Korean adult woman early 30s, slim build, chin-length straight dark-brown bob haircut. Dusty-peach plain long-sleeve knit sweater, dark muted teal calf-length A-line skirt, cream ankle socks and simple brown flat shoes. No bag, no jewelry. Skirt stays modest and moves very slightly with her walking step.",
+      "image": "woman-skirt.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            119,
+            17,
+            164,
+            486
+          ],
+          "bodyHeightPixels": 482,
+          "anchorPixels": [
+            192.0,
+            501
+          ],
+          "alphaPixels": 48422
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            478,
+            18,
+            169,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            576.0,
+            500
+          ],
+          "alphaPixels": 48260
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            857,
+            18,
+            223,
+            483
+          ],
+          "bodyHeightPixels": 479,
+          "anchorPixels": [
+            960.0,
+            499
+          ],
+          "alphaPixels": 43220
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1255,
+            19,
+            175,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            1344.0,
+            501
+          ],
+          "alphaPixels": 45922
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            116,
+            524,
+            165,
+            483
+          ],
+          "bodyHeightPixels": 479,
+          "anchorPixels": [
+            192.0,
+            1005
+          ],
+          "alphaPixels": 49367
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            488,
+            522,
+            175,
+            484
+          ],
+          "bodyHeightPixels": 480,
+          "anchorPixels": [
+            576.0,
+            1004
+          ],
+          "alphaPixels": 45095
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            836,
+            526,
+            228,
+            474
+          ],
+          "bodyHeightPixels": 470,
+          "anchorPixels": [
+            960.0,
+            998
+          ],
+          "alphaPixels": 42965
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1244,
+            524,
+            175,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            1344.0,
+            1004
+          ],
+          "alphaPixels": 47385
+        }
+      ],
+      "sourceImage": "local-source/exec-f5dce02c-d265-436e-9102-fd0d04371709.png",
+      "elevations": [
+        {
+          "image": "woman-skirt.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                119,
+                17,
+                164,
+                486
+              ],
+              "bodyHeightPixels": 482,
+              "anchorPixels": [
+                192.0,
+                501
+              ],
+              "alphaPixels": 48422
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                478,
+                18,
+                169,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                576.0,
+                500
+              ],
+              "alphaPixels": 48260
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                857,
+                18,
+                223,
+                483
+              ],
+              "bodyHeightPixels": 479,
+              "anchorPixels": [
+                960.0,
+                499
+              ],
+              "alphaPixels": 43220
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1255,
+                19,
+                175,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                1344.0,
+                501
+              ],
+              "alphaPixels": 45922
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                116,
+                524,
+                165,
+                483
+              ],
+              "bodyHeightPixels": 479,
+              "anchorPixels": [
+                192.0,
+                1005
+              ],
+              "alphaPixels": 49367
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                488,
+                522,
+                175,
+                484
+              ],
+              "bodyHeightPixels": 480,
+              "anchorPixels": [
+                576.0,
+                1004
+              ],
+              "alphaPixels": 45095
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                836,
+                526,
+                228,
+                474
+              ],
+              "bodyHeightPixels": 470,
+              "anchorPixels": [
+                960.0,
+                998
+              ],
+              "alphaPixels": 42965
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1244,
+                524,
+                175,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                1344.0,
+                1004
+              ],
+              "alphaPixels": 47385
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "woman-skirt-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                121,
+                43,
+                165,
+                437
+              ],
+              "bodyHeightPixels": 433,
+              "anchorPixels": [
+                192.0,
+                478
+              ],
+              "alphaPixels": 42125
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                498,
+                43,
+                161,
+                435
+              ],
+              "bodyHeightPixels": 431,
+              "anchorPixels": [
+                576.0,
+                476
+              ],
+              "alphaPixels": 42776
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                869,
+                42,
+                205,
+                410
+              ],
+              "bodyHeightPixels": 406,
+              "anchorPixels": [
+                960.0,
+                450
+              ],
+              "alphaPixels": 38355
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1258,
+                45,
+                174,
+                427
+              ],
+              "bodyHeightPixels": 423,
+              "anchorPixels": [
+                1344.0,
+                470
+              ],
+              "alphaPixels": 40196
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                115,
+                547,
+                170,
+                427
+              ],
+              "bodyHeightPixels": 423,
+              "anchorPixels": [
+                192.0,
+                972
+              ],
+              "alphaPixels": 42014
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                485,
+                548,
+                178,
+                419
+              ],
+              "bodyHeightPixels": 415,
+              "anchorPixels": [
+                576.0,
+                965
+              ],
+              "alphaPixels": 40560
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                839,
+                544,
+                223,
+                408
+              ],
+              "bodyHeightPixels": 404,
+              "anchorPixels": [
+                960.0,
+                950
+              ],
+              "alphaPixels": 39184
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1260,
+                549,
+                176,
+                426
+              ],
+              "bodyHeightPixels": 422,
+              "anchorPixels": [
+                1344.0,
+                973
+              ],
+              "alphaPixels": 42312
+            }
+          ],
+          "sourceImage": "local-source/exec-2f747ca2-558d-4f3d-a77c-dbeb29bf31d1.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "woman-skirt-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                105,
+                83,
+                182,
+                381
+              ],
+              "bodyHeightPixels": 377,
+              "anchorPixels": [
+                192.0,
+                462
+              ],
+              "alphaPixels": 37840
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                497,
+                81,
+                157,
+                383
+              ],
+              "bodyHeightPixels": 379,
+              "anchorPixels": [
+                576.0,
+                462
+              ],
+              "alphaPixels": 38218
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                851,
+                85,
+                221,
+                349
+              ],
+              "bodyHeightPixels": 345,
+              "anchorPixels": [
+                960.0,
+                432
+              ],
+              "alphaPixels": 37717
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1264,
+                94,
+                188,
+                353
+              ],
+              "bodyHeightPixels": 349,
+              "anchorPixels": [
+                1344.0,
+                445
+              ],
+              "alphaPixels": 35154
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                105,
+                578,
+                186,
+                366
+              ],
+              "bodyHeightPixels": 362,
+              "anchorPixels": [
+                192.0,
+                942
+              ],
+              "alphaPixels": 38270
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                478,
+                564,
+                189,
+                370
+              ],
+              "bodyHeightPixels": 366,
+              "anchorPixels": [
+                576.0,
+                932
+              ],
+              "alphaPixels": 37843
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                865,
+                571,
+                211,
+                349
+              ],
+              "bodyHeightPixels": 345,
+              "anchorPixels": [
+                960.0,
+                918
+              ],
+              "alphaPixels": 37942
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1252,
+                572,
+                185,
+                359
+              ],
+              "bodyHeightPixels": 355,
+              "anchorPixels": [
+                1344.0,
+                929
+              ],
+              "alphaPixels": 37348
+            }
+          ],
+          "sourceImage": "local-source/exec-33c7fe5f-d4a2-4a8d-b7de-4ccc88b201f6.png"
+        }
+      ]
+    },
+    {
+      "id": "woman-sweater",
+      "name": "연보라 스웨터 중년 여성",
+      "height": 1.56,
+      "subject": "Korean middle-aged woman early 60s, short soft gray-black permed hair, shorter and rounder body build. Plain dusty-lavender crew-neck sweater, dark charcoal loose cropped trousers, muted plum slip-on walking shoes. No bag or accessories. Relaxed upright everyday walking pose, natural proportions.",
+      "image": "woman-sweater.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            112,
+            17,
+            174,
+            482
+          ],
+          "bodyHeightPixels": 478,
+          "anchorPixels": [
+            192.0,
+            497
+          ],
+          "alphaPixels": 47030
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            490,
+            17,
+            173,
+            479
+          ],
+          "bodyHeightPixels": 475,
+          "anchorPixels": [
+            576.0,
+            494
+          ],
+          "alphaPixels": 49248
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            846,
+            17,
+            235,
+            478
+          ],
+          "bodyHeightPixels": 474,
+          "anchorPixels": [
+            960.0,
+            493
+          ],
+          "alphaPixels": 44763
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1257,
+            16,
+            177,
+            483
+          ],
+          "bodyHeightPixels": 479,
+          "anchorPixels": [
+            1344.0,
+            497
+          ],
+          "alphaPixels": 45605
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            104,
+            522,
+            178,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            192.0,
+            1005
+          ],
+          "alphaPixels": 48554
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            481,
+            522,
+            178,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            576.0,
+            1005
+          ],
+          "alphaPixels": 47113
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            831,
+            522,
+            240,
+            480
+          ],
+          "bodyHeightPixels": 476,
+          "anchorPixels": [
+            960.0,
+            1000
+          ],
+          "alphaPixels": 45690
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1240,
+            522,
+            182,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            1344.0,
+            1005
+          ],
+          "alphaPixels": 47692
+        }
+      ],
+      "sourceImage": "local-source/exec-94cf5882-30d8-4931-a393-1d080940b5ad.png",
+      "elevations": [
+        {
+          "image": "woman-sweater.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                112,
+                17,
+                174,
+                482
+              ],
+              "bodyHeightPixels": 478,
+              "anchorPixels": [
+                192.0,
+                497
+              ],
+              "alphaPixels": 47030
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                490,
+                17,
+                173,
+                479
+              ],
+              "bodyHeightPixels": 475,
+              "anchorPixels": [
+                576.0,
+                494
+              ],
+              "alphaPixels": 49248
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                846,
+                17,
+                235,
+                478
+              ],
+              "bodyHeightPixels": 474,
+              "anchorPixels": [
+                960.0,
+                493
+              ],
+              "alphaPixels": 44763
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1257,
+                16,
+                177,
+                483
+              ],
+              "bodyHeightPixels": 479,
+              "anchorPixels": [
+                1344.0,
+                497
+              ],
+              "alphaPixels": 45605
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                104,
+                522,
+                178,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                192.0,
+                1005
+              ],
+              "alphaPixels": 48554
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                481,
+                522,
+                178,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                576.0,
+                1005
+              ],
+              "alphaPixels": 47113
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                831,
+                522,
+                240,
+                480
+              ],
+              "bodyHeightPixels": 476,
+              "anchorPixels": [
+                960.0,
+                1000
+              ],
+              "alphaPixels": 45690
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1240,
+                522,
+                182,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                1344.0,
+                1005
+              ],
+              "alphaPixels": 47692
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "woman-sweater-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                106,
+                37,
+                194,
+                452
+              ],
+              "bodyHeightPixels": 448,
+              "anchorPixels": [
+                192.0,
+                487
+              ],
+              "alphaPixels": 48127
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                479,
+                35,
+                204,
+                449
+              ],
+              "bodyHeightPixels": 445,
+              "anchorPixels": [
+                576.0,
+                482
+              ],
+              "alphaPixels": 49639
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                847,
+                34,
+                218,
+                433
+              ],
+              "bodyHeightPixels": 429,
+              "anchorPixels": [
+                960.0,
+                465
+              ],
+              "alphaPixels": 44015
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1241,
+                33,
+                198,
+                441
+              ],
+              "bodyHeightPixels": 437,
+              "anchorPixels": [
+                1344.0,
+                472
+              ],
+              "alphaPixels": 47124
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                93,
+                530,
+                205,
+                450
+              ],
+              "bodyHeightPixels": 446,
+              "anchorPixels": [
+                192.0,
+                978
+              ],
+              "alphaPixels": 49500
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                479,
+                534,
+                200,
+                443
+              ],
+              "bodyHeightPixels": 439,
+              "anchorPixels": [
+                576.0,
+                975
+              ],
+              "alphaPixels": 47561
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                830,
+                533,
+                242,
+                418
+              ],
+              "bodyHeightPixels": 414,
+              "anchorPixels": [
+                960.0,
+                949
+              ],
+              "alphaPixels": 44504
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1238,
+                528,
+                206,
+                455
+              ],
+              "bodyHeightPixels": 451,
+              "anchorPixels": [
+                1344.0,
+                981
+              ],
+              "alphaPixels": 51336
+            }
+          ],
+          "sourceImage": "local-source/exec-1c706e1c-9442-4c0f-88dc-4aef341afef9.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "woman-sweater-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                96,
+                80,
+                212,
+                388
+              ],
+              "bodyHeightPixels": 384,
+              "anchorPixels": [
+                192.0,
+                466
+              ],
+              "alphaPixels": 42969
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                492,
+                93,
+                203,
+                366
+              ],
+              "bodyHeightPixels": 362,
+              "anchorPixels": [
+                576.0,
+                457
+              ],
+              "alphaPixels": 42691
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                859,
+                91,
+                217,
+                340
+              ],
+              "bodyHeightPixels": 336,
+              "anchorPixels": [
+                960.0,
+                429
+              ],
+              "alphaPixels": 39732
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1247,
+                81,
+                212,
+                383
+              ],
+              "bodyHeightPixels": 379,
+              "anchorPixels": [
+                1344.0,
+                462
+              ],
+              "alphaPixels": 42816
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                92,
+                552,
+                210,
+                392
+              ],
+              "bodyHeightPixels": 388,
+              "anchorPixels": [
+                192.0,
+                942
+              ],
+              "alphaPixels": 45729
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                477,
+                560,
+                198,
+                365
+              ],
+              "bodyHeightPixels": 361,
+              "anchorPixels": [
+                576.0,
+                923
+              ],
+              "alphaPixels": 41148
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                853,
+                552,
+                216,
+                347
+              ],
+              "bodyHeightPixels": 343,
+              "anchorPixels": [
+                960.0,
+                897
+              ],
+              "alphaPixels": 40927
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1229,
+                557,
+                217,
+                377
+              ],
+              "bodyHeightPixels": 373,
+              "anchorPixels": [
+                1344.0,
+                932
+              ],
+              "alphaPixels": 42678
+            }
+          ],
+          "sourceImage": "local-source/exec-e04b53b0-c345-4dac-a24b-a565aecb98db.png"
+        }
+      ]
+    },
+    {
+      "id": "man-shirt",
+      "name": "하늘색 셔츠·면바지 남성",
+      "height": 1.8,
+      "subject": "Korean adult man early 40s, tall slender build, neatly side-parted black hair. Plain pale-blue button-up shirt, sleeves loosely rolled to forearms, tucked into warm tan straight chinos with narrow brown belt; dark-brown simple loafers. No bag, no glasses, no accessories. Calm everyday mid-stride walk.",
+      "image": "man-shirt.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "frames": [
+        {
+          "index": 0,
+          "angle": 0,
+          "rect": [
+            118,
+            12,
+            165,
+            494
+          ],
+          "bodyHeightPixels": 490,
+          "anchorPixels": [
+            192.0,
+            504
+          ],
+          "alphaPixels": 43071
+        },
+        {
+          "index": 1,
+          "angle": 45,
+          "rect": [
+            494,
+            13,
+            162,
+            490
+          ],
+          "bodyHeightPixels": 486,
+          "anchorPixels": [
+            576.0,
+            501
+          ],
+          "alphaPixels": 44338
+        },
+        {
+          "index": 2,
+          "angle": 90,
+          "rect": [
+            846,
+            13,
+            237,
+            490
+          ],
+          "bodyHeightPixels": 486,
+          "anchorPixels": [
+            960.0,
+            501
+          ],
+          "alphaPixels": 37010
+        },
+        {
+          "index": 3,
+          "angle": 135,
+          "rect": [
+            1266,
+            13,
+            179,
+            492
+          ],
+          "bodyHeightPixels": 488,
+          "anchorPixels": [
+            1344.0,
+            503
+          ],
+          "alphaPixels": 41140
+        },
+        {
+          "index": 4,
+          "angle": 180,
+          "rect": [
+            120,
+            519,
+            162,
+            493
+          ],
+          "bodyHeightPixels": 489,
+          "anchorPixels": [
+            192.0,
+            1010
+          ],
+          "alphaPixels": 41947
+        },
+        {
+          "index": 5,
+          "angle": 225,
+          "rect": [
+            489,
+            520,
+            173,
+            492
+          ],
+          "bodyHeightPixels": 488,
+          "anchorPixels": [
+            576.0,
+            1010
+          ],
+          "alphaPixels": 39780
+        },
+        {
+          "index": 6,
+          "angle": 270,
+          "rect": [
+            829,
+            520,
+            241,
+            485
+          ],
+          "bodyHeightPixels": 481,
+          "anchorPixels": [
+            960.0,
+            1003
+          ],
+          "alphaPixels": 37841
+        },
+        {
+          "index": 7,
+          "angle": 315,
+          "rect": [
+            1245,
+            519,
+            178,
+            492
+          ],
+          "bodyHeightPixels": 488,
+          "anchorPixels": [
+            1344.0,
+            1009
+          ],
+          "alphaPixels": 42144
+        }
+      ],
+      "sourceImage": "local-source/exec-ac6dfe0f-1fad-4fb0-be79-4d22d6173462.png",
+      "elevations": [
+        {
+          "image": "man-shirt.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                118,
+                12,
+                165,
+                494
+              ],
+              "bodyHeightPixels": 490,
+              "anchorPixels": [
+                192.0,
+                504
+              ],
+              "alphaPixels": 43071
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                494,
+                13,
+                162,
+                490
+              ],
+              "bodyHeightPixels": 486,
+              "anchorPixels": [
+                576.0,
+                501
+              ],
+              "alphaPixels": 44338
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                846,
+                13,
+                237,
+                490
+              ],
+              "bodyHeightPixels": 486,
+              "anchorPixels": [
+                960.0,
+                501
+              ],
+              "alphaPixels": 37010
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1266,
+                13,
+                179,
+                492
+              ],
+              "bodyHeightPixels": 488,
+              "anchorPixels": [
+                1344.0,
+                503
+              ],
+              "alphaPixels": 41140
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                120,
+                519,
+                162,
+                493
+              ],
+              "bodyHeightPixels": 489,
+              "anchorPixels": [
+                192.0,
+                1010
+              ],
+              "alphaPixels": 41947
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                489,
+                520,
+                173,
+                492
+              ],
+              "bodyHeightPixels": 488,
+              "anchorPixels": [
+                576.0,
+                1010
+              ],
+              "alphaPixels": 39780
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                829,
+                520,
+                241,
+                485
+              ],
+              "bodyHeightPixels": 481,
+              "anchorPixels": [
+                960.0,
+                1003
+              ],
+              "alphaPixels": 37841
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1245,
+                519,
+                178,
+                492
+              ],
+              "bodyHeightPixels": 488,
+              "anchorPixels": [
+                1344.0,
+                1009
+              ],
+              "alphaPixels": 42144
+            }
+          ],
+          "pitch": 0,
+          "label": "눈높이"
+        },
+        {
+          "pitch": 30,
+          "label": "살짝 위",
+          "image": "man-shirt-e30.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                109,
+                40,
+                189,
+                454
+              ],
+              "bodyHeightPixels": 450,
+              "anchorPixels": [
+                192.0,
+                492
+              ],
+              "alphaPixels": 43201
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                499,
+                39,
+                185,
+                454
+              ],
+              "bodyHeightPixels": 450,
+              "anchorPixels": [
+                576.0,
+                491
+              ],
+              "alphaPixels": 42083
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                841,
+                42,
+                247,
+                433
+              ],
+              "bodyHeightPixels": 429,
+              "anchorPixels": [
+                960.0,
+                473
+              ],
+              "alphaPixels": 38127
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1268,
+                39,
+                187,
+                445
+              ],
+              "bodyHeightPixels": 441,
+              "anchorPixels": [
+                1344.0,
+                482
+              ],
+              "alphaPixels": 39453
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                104,
+                527,
+                192,
+                464
+              ],
+              "bodyHeightPixels": 460,
+              "anchorPixels": [
+                192.0,
+                989
+              ],
+              "alphaPixels": 43787
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                481,
+                528,
+                194,
+                455
+              ],
+              "bodyHeightPixels": 451,
+              "anchorPixels": [
+                576.0,
+                981
+              ],
+              "alphaPixels": 42652
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                830,
+                533,
+                262,
+                441
+              ],
+              "bodyHeightPixels": 437,
+              "anchorPixels": [
+                960.0,
+                972
+              ],
+              "alphaPixels": 41729
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1239,
+                533,
+                209,
+                463
+              ],
+              "bodyHeightPixels": 459,
+              "anchorPixels": [
+                1344.0,
+                994
+              ],
+              "alphaPixels": 45092
+            }
+          ],
+          "sourceImage": "local-source/exec-fe977b1c-c709-4ad4-9f00-a98e746e7e04.png"
+        },
+        {
+          "pitch": 60,
+          "label": "높은 곳",
+          "image": "man-shirt-e60.png",
+          "imageWidth": 1536,
+          "imageHeight": 1024,
+          "frames": [
+            {
+              "index": 0,
+              "angle": 0,
+              "rect": [
+                103,
+                78,
+                192,
+                399
+              ],
+              "bodyHeightPixels": 395,
+              "anchorPixels": [
+                192.0,
+                475
+              ],
+              "alphaPixels": 38989
+            },
+            {
+              "index": 1,
+              "angle": 45,
+              "rect": [
+                487,
+                79,
+                201,
+                396
+              ],
+              "bodyHeightPixels": 392,
+              "anchorPixels": [
+                576.0,
+                473
+              ],
+              "alphaPixels": 37998
+            },
+            {
+              "index": 2,
+              "angle": 90,
+              "rect": [
+                865,
+                82,
+                203,
+                362
+              ],
+              "bodyHeightPixels": 358,
+              "anchorPixels": [
+                960.0,
+                442
+              ],
+              "alphaPixels": 32544
+            },
+            {
+              "index": 3,
+              "angle": 135,
+              "rect": [
+                1251,
+                78,
+                204,
+                385
+              ],
+              "bodyHeightPixels": 381,
+              "anchorPixels": [
+                1344.0,
+                461
+              ],
+              "alphaPixels": 36868
+            },
+            {
+              "index": 4,
+              "angle": 180,
+              "rect": [
+                106,
+                559,
+                190,
+                392
+              ],
+              "bodyHeightPixels": 388,
+              "anchorPixels": [
+                192.0,
+                949
+              ],
+              "alphaPixels": 37579
+            },
+            {
+              "index": 5,
+              "angle": 225,
+              "rect": [
+                483,
+                564,
+                200,
+                380
+              ],
+              "bodyHeightPixels": 376,
+              "anchorPixels": [
+                576.0,
+                942
+              ],
+              "alphaPixels": 38925
+            },
+            {
+              "index": 6,
+              "angle": 270,
+              "rect": [
+                850,
+                569,
+                230,
+                358
+              ],
+              "bodyHeightPixels": 354,
+              "anchorPixels": [
+                960.0,
+                925
+              ],
+              "alphaPixels": 35165
+            },
+            {
+              "index": 7,
+              "angle": 315,
+              "rect": [
+                1251,
+                578,
+                204,
+                383
+              ],
+              "bodyHeightPixels": 379,
+              "anchorPixels": [
+                1344.0,
+                959
+              ],
+              "alphaPixels": 37207
+            }
+          ],
+          "sourceImage": "local-source/exec-b59655bc-1226-4c26-ae26-628c60845ebf.png"
+        }
+      ]
+    }
+  ],
+  "elevationAngles": [
+    0,
+    30,
+    60
+  ],
+  "viewsPerCharacter": 24
+}

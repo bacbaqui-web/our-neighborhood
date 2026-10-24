@@ -1,0 +1,23 @@
+{
+  "address": "서울 강북구 도봉로 188-1",
+  "query": "서울특별시 강북구 도봉로 188-1",
+  "origin": [
+    37.625513523469,
+    127.026651155374
+  ],
+  "roadAddress": {
+    "address_name": "서울 강북구 도봉로 188-1",
+    "building_name": "구두수선대-01",
+    "main_building_no": "188",
+    "region_1depth_name": "서울",
+    "region_2depth_name": "강북구",
+    "region_3depth_name": "미아동",
+    "road_name": "도봉로",
+    "sub_building_no": "1",
+    "underground_yn": "N",
+    "x": "127.026651155374",
+    "y": "37.625513523469",
+    "zone_no": "01157"
+  },
+  "sizeMetres": 300
+}

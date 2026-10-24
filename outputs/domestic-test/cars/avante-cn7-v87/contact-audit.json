@@ -1,0 +1,674 @@
+[
+  {
+    "angle": 0,
+    "elevation": 0,
+    "guideToImageScale": 1.3346692239429765,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 7.2288808947587455
+  },
+  {
+    "angle": 15,
+    "elevation": 0,
+    "guideToImageScale": 1.2895952285350105,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 18.539504174688478
+  },
+  {
+    "angle": 30,
+    "elevation": 0,
+    "guideToImageScale": 1.1751691854561126,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 14.777966335634202
+  },
+  {
+    "angle": 45,
+    "elevation": 0,
+    "guideToImageScale": 1.0655150927018946,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 24.317238224292943
+  },
+  {
+    "angle": 60,
+    "elevation": 0,
+    "guideToImageScale": 1.0214492091154284,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.753382323284022
+  },
+  {
+    "angle": 75,
+    "elevation": 0,
+    "guideToImageScale": 1.0699923941798128,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 19.649794851179788
+  },
+  {
+    "angle": 90,
+    "elevation": 0,
+    "guideToImageScale": 1.0345065408109821,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 15.752770689380473
+  },
+  {
+    "angle": 105,
+    "elevation": 0,
+    "guideToImageScale": 0.9863924517319275,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.94759728365015
+  },
+  {
+    "angle": 120,
+    "elevation": 0,
+    "guideToImageScale": 0.9933151358818193,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 21.33205384610791
+  },
+  {
+    "angle": 135,
+    "elevation": 0,
+    "guideToImageScale": 1.0389300890881796,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.81221019538183
+  },
+  {
+    "angle": 150,
+    "elevation": 0,
+    "guideToImageScale": 1.0483348517949764,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.31313069850075
+  },
+  {
+    "angle": 165,
+    "elevation": 0,
+    "guideToImageScale": 1.2300678760777797,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 20.10626424155791
+  },
+  {
+    "angle": 180,
+    "elevation": 0,
+    "guideToImageScale": 1.2810821651166904,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 6.181061632325181
+  },
+  {
+    "angle": 195,
+    "elevation": 0,
+    "guideToImageScale": 1.2151064053389937,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 11.36173049053689
+  },
+  {
+    "angle": 210,
+    "elevation": 0,
+    "guideToImageScale": 1.1459113885149017,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 11.820236395103837
+  },
+  {
+    "angle": 225,
+    "elevation": 0,
+    "guideToImageScale": 1.0056641073186872,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 22.658374471101467
+  },
+  {
+    "angle": 240,
+    "elevation": 0,
+    "guideToImageScale": 1.0349692137832962,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 13.562772034879284
+  },
+  {
+    "angle": 255,
+    "elevation": 0,
+    "guideToImageScale": 1.038346662864275,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 9.494305083358386
+  },
+  {
+    "angle": 270,
+    "elevation": 0,
+    "guideToImageScale": 1.0066041692254288,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 14.11643034543102
+  },
+  {
+    "angle": 285,
+    "elevation": 0,
+    "guideToImageScale": 0.9808332726980822,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 12.664255668144976
+  },
+  {
+    "angle": 300,
+    "elevation": 0,
+    "guideToImageScale": 1.0070962855520953,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 24.671678787276864
+  },
+  {
+    "angle": 315,
+    "elevation": 0,
+    "guideToImageScale": 1.0130745272750574,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 22.59372242130696
+  },
+  {
+    "angle": 330,
+    "elevation": 0,
+    "guideToImageScale": 1.0075527846270707,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 19.621998563473547
+  },
+  {
+    "angle": 345,
+    "elevation": 0,
+    "guideToImageScale": 1.0259233416598224,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 21.37296048330365
+  },
+  {
+    "angle": 0,
+    "elevation": 20,
+    "guideToImageScale": 1.0606409998985695,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 13.60443237028868
+  },
+  {
+    "angle": 15,
+    "elevation": 20,
+    "guideToImageScale": 1.0117122718967675,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 21.6557907106228
+  },
+  {
+    "angle": 30,
+    "elevation": 20,
+    "guideToImageScale": 1.0456751842067487,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.84417787380327
+  },
+  {
+    "angle": 45,
+    "elevation": 20,
+    "guideToImageScale": 1.0043299398973091,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.153755646323127
+  },
+  {
+    "angle": 60,
+    "elevation": 20,
+    "guideToImageScale": 1.0211000973624489,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 7.08801851079599
+  },
+  {
+    "angle": 75,
+    "elevation": 20,
+    "guideToImageScale": 1.0223170779389883,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 10.216171387462577
+  },
+  {
+    "angle": 90,
+    "elevation": 20,
+    "guideToImageScale": 1.0101133610273605,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 10.256616902697337
+  },
+  {
+    "angle": 105,
+    "elevation": 20,
+    "guideToImageScale": 1.0137363437618805,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 14.793089327580521
+  },
+  {
+    "angle": 120,
+    "elevation": 20,
+    "guideToImageScale": 1.0109342347164203,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 11.232474083834251
+  },
+  {
+    "angle": 135,
+    "elevation": 20,
+    "guideToImageScale": 1.0010406050528349,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 14.444028430459365
+  },
+  {
+    "angle": 150,
+    "elevation": 20,
+    "guideToImageScale": 0.9878660350564407,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.114033989533517
+  },
+  {
+    "angle": 165,
+    "elevation": 20,
+    "guideToImageScale": 0.9802910581035845,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.08560281143438
+  },
+  {
+    "angle": 180,
+    "elevation": 20,
+    "guideToImageScale": 1.1079808149096058,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 18.54802425817619
+  },
+  {
+    "angle": 195,
+    "elevation": 20,
+    "guideToImageScale": 1.0305549944995636,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 24.443625672321865
+  },
+  {
+    "angle": 210,
+    "elevation": 20,
+    "guideToImageScale": 1.043591588560244,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.393308153445556
+  },
+  {
+    "angle": 225,
+    "elevation": 20,
+    "guideToImageScale": 0.9859357399560156,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.515539012803703
+  },
+  {
+    "angle": 240,
+    "elevation": 20,
+    "guideToImageScale": 1.037013365771414,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 19.829196530377704
+  },
+  {
+    "angle": 255,
+    "elevation": 20,
+    "guideToImageScale": 1.0166432252587119,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 16.658527833027936
+  },
+  {
+    "angle": 270,
+    "elevation": 20,
+    "guideToImageScale": 1.0166346501403472,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 17.046140978669932
+  },
+  {
+    "angle": 285,
+    "elevation": 20,
+    "guideToImageScale": 0.9603005217966093,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 8.986653529792214
+  },
+  {
+    "angle": 300,
+    "elevation": 20,
+    "guideToImageScale": 1.0055882572636183,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 18.535970799854532
+  },
+  {
+    "angle": 315,
+    "elevation": 20,
+    "guideToImageScale": 0.9933033858158312,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 17.743761087874255
+  },
+  {
+    "angle": 330,
+    "elevation": 20,
+    "guideToImageScale": 0.9764336396845064,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 23.321644958390866
+  },
+  {
+    "angle": 345,
+    "elevation": 20,
+    "guideToImageScale": 0.9583581028949754,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 24.429645306705833
+  },
+  {
+    "angle": 0,
+    "elevation": 45,
+    "guideToImageScale": 0.9991203545743355,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.56882996417006
+  },
+  {
+    "angle": 15,
+    "elevation": 45,
+    "guideToImageScale": 0.9745632221263434,
+    "visibleContacts": 1,
+    "maxContactCorrectionPixels": 25.530540188543494
+  },
+  {
+    "angle": 30,
+    "elevation": 45,
+    "guideToImageScale": 0.9927403685901851,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.93582611453206
+  },
+  {
+    "angle": 45,
+    "elevation": 45,
+    "guideToImageScale": 1.021042449154462,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 27.11393711521039
+  },
+  {
+    "angle": 60,
+    "elevation": 45,
+    "guideToImageScale": 1.0115190193118495,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 23.93630610337122
+  },
+  {
+    "angle": 75,
+    "elevation": 45,
+    "guideToImageScale": 1.0242316870512018,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 18.166952514846486
+  },
+  {
+    "angle": 90,
+    "elevation": 45,
+    "guideToImageScale": 1.0064523315692036,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 15.571690394225731
+  },
+  {
+    "angle": 105,
+    "elevation": 45,
+    "guideToImageScale": 0.9895919643876571,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 16.535913435210254
+  },
+  {
+    "angle": 120,
+    "elevation": 45,
+    "guideToImageScale": 0.972594289896306,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.876771477409733
+  },
+  {
+    "angle": 135,
+    "elevation": 45,
+    "guideToImageScale": 0.9767496547876092,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.38112632100354
+  },
+  {
+    "angle": 150,
+    "elevation": 45,
+    "guideToImageScale": 0.9433678059962387,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.77061842854089
+  },
+  {
+    "angle": 165,
+    "elevation": 45,
+    "guideToImageScale": 0.9265370607378688,
+    "visibleContacts": 1,
+    "maxContactCorrectionPixels": 26.939503828138903
+  },
+  {
+    "angle": 180,
+    "elevation": 45,
+    "guideToImageScale": 0.9911299656261378,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 27.097088513453564
+  },
+  {
+    "angle": 195,
+    "elevation": 45,
+    "guideToImageScale": 0.9703914232570773,
+    "visibleContacts": 1,
+    "maxContactCorrectionPixels": 25.847754979178923
+  },
+  {
+    "angle": 210,
+    "elevation": 45,
+    "guideToImageScale": 0.9638342840300176,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.87289267854442
+  },
+  {
+    "angle": 225,
+    "elevation": 45,
+    "guideToImageScale": 0.9875531641718082,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.63360062028834
+  },
+  {
+    "angle": 240,
+    "elevation": 45,
+    "guideToImageScale": 0.9892830806866921,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 24.922082578692912
+  },
+  {
+    "angle": 255,
+    "elevation": 45,
+    "guideToImageScale": 1.0171117036947757,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 12.225559463497456
+  },
+  {
+    "angle": 270,
+    "elevation": 45,
+    "guideToImageScale": 0.9990345642299937,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 10.508907377668187
+  },
+  {
+    "angle": 285,
+    "elevation": 45,
+    "guideToImageScale": 0.9905025017075085,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 13.470897523741108
+  },
+  {
+    "angle": 300,
+    "elevation": 45,
+    "guideToImageScale": 0.9939099198130275,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.951602202055597
+  },
+  {
+    "angle": 315,
+    "elevation": 45,
+    "guideToImageScale": 0.9461219748618531,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 25.22561285924563
+  },
+  {
+    "angle": 330,
+    "elevation": 45,
+    "guideToImageScale": 0.9272297459801014,
+    "visibleContacts": 2,
+    "maxContactCorrectionPixels": 26.264831045514054
+  },
+  {
+    "angle": 345,
+    "elevation": 45,
+    "guideToImageScale": 0.937062194955603,
+    "visibleContacts": 1,
+    "maxContactCorrectionPixels": 25.539323909063636
+  },
+  {
+    "angle": 0,
+    "elevation": 70,
+    "guideToImageScale": 1.012886087747904,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 15,
+    "elevation": 70,
+    "guideToImageScale": 0.9889712930392152,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 30,
+    "elevation": 70,
+    "guideToImageScale": 0.9801236673714577,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 45,
+    "elevation": 70,
+    "guideToImageScale": 0.9891538962590704,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 60,
+    "elevation": 70,
+    "guideToImageScale": 0.991429139186196,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 75,
+    "elevation": 70,
+    "guideToImageScale": 1.0229838610511803,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 90,
+    "elevation": 70,
+    "guideToImageScale": 1.049442928308784,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 105,
+    "elevation": 70,
+    "guideToImageScale": 1.0109626172176955,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 120,
+    "elevation": 70,
+    "guideToImageScale": 0.9791569545232358,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 135,
+    "elevation": 70,
+    "guideToImageScale": 0.9574458623625793,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 150,
+    "elevation": 70,
+    "guideToImageScale": 0.9257908319907943,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 165,
+    "elevation": 70,
+    "guideToImageScale": 0.9174920153627655,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 180,
+    "elevation": 70,
+    "guideToImageScale": 1.0112371811388714,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 195,
+    "elevation": 70,
+    "guideToImageScale": 0.9761761677674574,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 210,
+    "elevation": 70,
+    "guideToImageScale": 0.9881991320638953,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 225,
+    "elevation": 70,
+    "guideToImageScale": 0.9904215959575569,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 240,
+    "elevation": 70,
+    "guideToImageScale": 0.9770950612899393,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 255,
+    "elevation": 70,
+    "guideToImageScale": 1.0188638086706243,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 270,
+    "elevation": 70,
+    "guideToImageScale": 1.0385331805124436,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 285,
+    "elevation": 70,
+    "guideToImageScale": 1.0072096435330955,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 300,
+    "elevation": 70,
+    "guideToImageScale": 0.9776044857375534,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 315,
+    "elevation": 70,
+    "guideToImageScale": 0.9697647948531609,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 330,
+    "elevation": 70,
+    "guideToImageScale": 0.9769330151899517,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  },
+  {
+    "angle": 345,
+    "elevation": 70,
+    "guideToImageScale": 0.9851024401381504,
+    "visibleContacts": 0,
+    "maxContactCorrectionPixels": 0
+  }
+]

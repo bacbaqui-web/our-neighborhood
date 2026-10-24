@@ -1,0 +1,38 @@
+{
+  "version": 91,
+  "triangles": 1978,
+  "triangleBudget": 2000,
+  "objects": 19,
+  "materials": 14,
+  "imageTextures": 0,
+  "proportionsNote": "Stylistic CN7 approximation, not a CAD measurement or homologation model",
+  "dimensionsMetres": {
+    "length": 4.71,
+    "bodyWidth": 1.825,
+    "roofHeight": 1.42,
+    "wheelbase": 2.72
+  },
+  "wheelContacts": [
+    [
+      -0.8025,
+      -1.36,
+      0
+    ],
+    [
+      -0.8025,
+      1.36,
+      0
+    ],
+    [
+      0.8025,
+      -1.36,
+      0
+    ],
+    [
+      0.8025,
+      1.36,
+      0
+    ]
+  ],
+  "reference": "https://www.hyundai.com/worldwide/en/cars/elantra-2023/design"
+}

@@ -1,0 +1,22 @@
+// A hierarchy: street context -> house program -> related activity clusters -> detail.
+// Programs are inferred art direction. They are not claims about actual residents or shops.
+export const programs={
+ garden:{name:'화분과 정원이 있는 주택',wall:'brick',floor:0xbdb6a1,primary:[154,182,199,151],edge:[151,152,153,155,198,200,117,124],clusters:[[[151,0,0],[116,.7,.2],[117,-.65,.25],[130,0,.8]],[[199,0,0],[198,.95,.3],[29,-.9,.15]]]},
+ laundry:{name:'빨래·휴식 생활마당',wall:'stone',floor:0xbfb7a9,primary:[159,178,182,156],edge:[156,160,186,188,129,157,27,117],clusters:[[[156,0,0],[29,.95,.1],[30,-.9,.15]],[[178,0,0],[151,1.25,-.4],[128,-1.1,.3]],[[157,0,0],[188,.95,0],[130,-.7,.2]]]},
+ parking:{name:'차양과 주차 마당',wall:'rail',floor:0xa6a69b,primary:[181,173,174,172],edge:[171,172,151,198,117,31,206,152],clusters:[[[173,0,0],[37,-1.8,.9],[107,1.9,.9]],[[172,0,0],[171,1.6,0],[34,-1.2,.3]]]},
+ service:{name:'다세대 설비·수거 구간',wall:'stone',floor:0xafa99b,primary:[161,166,187,206],edge:[161,162,164,166,168,169,194,44,113],clusters:[[[161,0,0],[162,1.1,0],[163,-1.1,.2],[112,.8,.8]],[[166,0,0],[169,1,.1],[194,-.9,.2]]]},
+ workshop:{name:'작업·보관이 모인 마당',wall:'brick',floor:0xb1a997,primary:[179,189,180,174],edge:[179,180,187,189,165,131,133,134],clusters:[[[179,0,0],[180,1.6,.4],[131,-1.15,.2],[133,.5,.9]],[[189,0,0],[98,-1,.1],[163,1.1,0],[30,.65,.8]]]},
+ rear:{name:'뒤편 녹음과 생활 공간',wall:'green',floor:0xb5b09b,primary:[154,182,200,155],edge:[155,196,197,200,188,198,129,47],clusters:[[[154,0,0],[49,1.2,.4],[117,-1,.3]],[[157,0,0],[188,1,.1],[158,-.8,.3]]]},
+ slope:{name:'경사지 담장과 식재',wall:'green',floor:0xb4ad9b,primary:[155,200,153,198],edge:[155,196,197,198,200,151,124],clusters:[[[153,0,0],[151,1.25,.1],[197,-.85,.3]],[[200,0,0],[198,1.3,.1],[125,-1,.2]]]},
+ narrow:{name:'좁은 틈의 설비와 수납',wall:'stone',floor:0xb5aea1,primary:[187,166,153],edge:[169,190,197,160,186,85,111],clusters:[[[187,0,0],[160,.95,0],[111,-.75,.25]]]}
+};
+export function classifyYards(data,specs,elevation){const by=new Map(specs.map(s=>[s.seed,s]));return data.yards.map(y=>{const s=by.get(y.owner),f=s?.frontage;const hs=y.rings.flatMap(r=>r.outer.filter((_,i)=>i%5===0).map(p=>elevation(...p))),slope=hs.length?Math.max(...hs)-Math.min(...hs):0;const seed=Math.abs(y.owner),block=(Math.floor(y.x/35)*7+Math.floor(y.z/35)*13+10000)%5;
+ let type=y.area<16?'narrow':!f?'rear':s.levels>=4&&y.area>70&&f.mean>2.5?'parking':s.levels>=4?'service':slope/Math.sqrt(y.area)>.23&&seed%3===1?'slope':block===0?'workshop':seed%3===0?'laundry':'garden';
+ return {...y,type,label:programs[type].name,wall:programs[type].wall,floor:programs[type].floor,levels:s?.levels||1,slope,angle:f?.angle||0,frontage:f||null};});}
+export function insideRing(x,z,p){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const a=p[i],b=p[j];if((a[1]>z)!==(b[1]>z)&&x<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+export function inYard(y,x,z){return y.rings.some(r=>insideRing(x,z,r.outer)&&!r.holes.some(h=>insideRing(x,z,h)))}
+export function yardCandidates(y){const list=[];for(const r of y.rings){const xs=r.outer.map(p=>p[0]),zs=r.outer.map(p=>p[1]);for(let x=Math.min(...xs)+1;x<Math.max(...xs)-.5;x+=1.8)for(let z=Math.min(...zs)+1;z<Math.max(...zs)-.5;z+=1.8){if(!inYard(y,x,z))continue;let clearance=Infinity;for(const ring of [r.outer,...r.holes])for(let i=0;i<ring.length-1;i++){const a=ring[i],b=ring[i+1],dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz||1)));clearance=Math.min(clearance,Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz))}if(clearance>.65)list.push({x,z,angle:y.angle,clearance})}}
+ return list.sort((a,b)=>b.clearance-a.clearance).slice(0,350);}
+
+// Continuous perimeter sampling follows irregular building/road edges, not square modules.
+export function edgeCandidates(y){const out=[];let total=0;for(const r of y.rings)for(const ring of [r.outer,...r.holes]){let next=.7;total=0;for(let i=0;i<ring.length-1;i++){const a=ring[i],b=ring[i+1],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.001)continue;const ux=(b[0]-a[0])/L,uz=(b[1]-a[1])/L;for(;next<=total+L;next+=1.9){const t=next-total,px=a[0]+ux*t,pz=a[1]+uz*t;for(const sign of [1,-1]){const x=px-uz*.86*sign,z=pz+ux*.86*sign;if(inYard(y,x,z)&&inYard(y,px-uz*.24*sign,pz+ux*.24*sign)){out.push({x,z,angle:Math.atan2(-uz,ux)+(sign<0?Math.PI:0)});break}}}total+=L;}}return out.filter((p,i)=>!out.slice(0,i).some(q=>Math.hypot(p.x-q.x,p.z-q.z)<1.45));}

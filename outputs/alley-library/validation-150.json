@@ -1,0 +1,12 @@
+{
+  "models": 150,
+  "additional": 100,
+  "additionalDistinctGeometry": 100,
+  "finiteCoordinates": true,
+  "placements": 1176,
+  "types": 75,
+  "independentShapelyBuildingOverlap": 0,
+  "footprintPaddingMeters": 0.08,
+  "renderBatches": 26,
+  "limitations": "Footprint intersection is not a surveyed real-world placement check. Terrain and facades remain estimated."
+}

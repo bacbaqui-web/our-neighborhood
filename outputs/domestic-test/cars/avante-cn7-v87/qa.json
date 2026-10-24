@@ -1,0 +1,15 @@
+{
+  "cameraChecks": 3024,
+  "forcedFramesValidated": 96,
+  "adaptiveFramesUsed": 96,
+  "semanticContacts": 384,
+  "visibleContacts": 140,
+  "maxVisibleTireErrorPixelsAt800pxHeight": 0.00001946315485737478,
+  "maxGlobalSimilarityResidualPixels": 75.79558919565342,
+  "maxImageRotationDegrees": 14.943142258709091,
+  "foldedCases": 0,
+  "forcedFoldedCases": 0,
+  "folds": [],
+  "forcedFolds": [],
+  "notes": "All four 3D rig vertices remain fixed. Actual rendered visible tire vertices checked against independent world projections. Hidden wheels do not warp foreground paint and their source coordinates remain estimates."
+}

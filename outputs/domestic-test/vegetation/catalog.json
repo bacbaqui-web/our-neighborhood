@@ -1,0 +1,4051 @@
+{
+  "version": 31,
+  "source": "built-in image_gen",
+  "style": "hand-drawn flat-color botanical cutouts",
+  "horizontalViews": 4,
+  "treeElevationAngles": [
+    -30,
+    0,
+    30,
+    60,
+    85
+  ],
+  "plantElevationAngles": [
+    0,
+    40,
+    80
+  ],
+  "rootAnchored": true,
+  "assets": [
+    {
+      "id": "persimmon",
+      "name": "감나무",
+      "height": 5.2,
+      "radius": 2.1,
+      "subject": "persimmon tree, thick brown single trunk splitting into irregular branches, broad crown of pointed oval olive leaves and a few muted orange persimmons",
+      "kind": "tree",
+      "image": "sources/persimmon.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            26,
+            23,
+            246,
+            243
+          ],
+          "anchorPixels": [
+            151.5,
+            263.0
+          ],
+          "alphaPixels": 35261
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            302,
+            23,
+            248,
+            245
+          ],
+          "anchorPixels": [
+            443.0,
+            265.0
+          ],
+          "alphaPixels": 34901
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            574,
+            24,
+            247,
+            244
+          ],
+          "anchorPixels": [
+            681.0,
+            265.0
+          ],
+          "alphaPixels": 34721
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            856,
+            25,
+            242,
+            243
+          ],
+          "anchorPixels": [
+            967.0,
+            265.0
+          ],
+          "alphaPixels": 34048
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            20,
+            295,
+            256,
+            264
+          ],
+          "anchorPixels": [
+            151.0,
+            556.0
+          ],
+          "alphaPixels": 36274
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            302,
+            296,
+            246,
+            264
+          ],
+          "anchorPixels": [
+            437.0,
+            557.0
+          ],
+          "alphaPixels": 35435
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            572,
+            296,
+            248,
+            264
+          ],
+          "anchorPixels": [
+            688.0,
+            557.0
+          ],
+          "alphaPixels": 37344
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            851,
+            299,
+            251,
+            261
+          ],
+          "anchorPixels": [
+            974.0,
+            557.0
+          ],
+          "alphaPixels": 36610
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            25,
+            584,
+            245,
+            239
+          ],
+          "anchorPixels": [
+            154.0,
+            820.0
+          ],
+          "alphaPixels": 31555
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            300,
+            586,
+            250,
+            236
+          ],
+          "anchorPixels": [
+            436.0,
+            819.0
+          ],
+          "alphaPixels": 33299
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            572,
+            585,
+            250,
+            239
+          ],
+          "anchorPixels": [
+            691.0,
+            821.0
+          ],
+          "alphaPixels": 32647
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            847,
+            589,
+            251,
+            235
+          ],
+          "anchorPixels": [
+            979.0,
+            821.0
+          ],
+          "alphaPixels": 33634
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            34,
+            852,
+            234,
+            228
+          ],
+          "anchorPixels": [
+            151.0,
+            1067.007
+          ],
+          "alphaPixels": 32726
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            307,
+            854,
+            236,
+            227
+          ],
+          "anchorPixels": [
+            425.0,
+            1068.056
+          ],
+          "alphaPixels": 34121
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            576,
+            856,
+            235,
+            223
+          ],
+          "anchorPixels": [
+            693.5,
+            1066.252
+          ],
+          "alphaPixels": 32976
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            856,
+            857,
+            237,
+            227
+          ],
+          "anchorPixels": [
+            974.5,
+            1071.056
+          ],
+          "alphaPixels": 35029
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            35,
+            1128,
+            232,
+            233
+          ],
+          "anchorPixels": [
+            151.0,
+            1261.577
+          ],
+          "alphaPixels": 34830
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            304,
+            1126,
+            238,
+            235
+          ],
+          "anchorPixels": [
+            423.0,
+            1260.726
+          ],
+          "alphaPixels": 35815
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            580,
+            1127,
+            231,
+            234
+          ],
+          "anchorPixels": [
+            695.5,
+            1261.152
+          ],
+          "alphaPixels": 36047
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            858,
+            1131,
+            236,
+            231
+          ],
+          "anchorPixels": [
+            976.0,
+            1263.428
+          ],
+          "alphaPixels": 34726
+        }
+      ]
+    },
+    {
+      "id": "jujube",
+      "name": "대추나무",
+      "height": 4.6,
+      "radius": 1.8,
+      "subject": "jujube tree, slim crooked gray-brown trunk, airy small oval sage green leaves on irregular fine twigs, a handful of tiny russet jujube fruits, sparse branching visible through the crown",
+      "kind": "tree",
+      "image": "sources/jujube.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            25,
+            23,
+            248,
+            239
+          ],
+          "anchorPixels": [
+            155.0,
+            259.0
+          ],
+          "alphaPixels": 31455
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            305,
+            17,
+            238,
+            245
+          ],
+          "anchorPixels": [
+            432.0,
+            259.0
+          ],
+          "alphaPixels": 31597
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            576,
+            19,
+            248,
+            243
+          ],
+          "anchorPixels": [
+            689.0,
+            259.0
+          ],
+          "alphaPixels": 31168
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            856,
+            20,
+            243,
+            242
+          ],
+          "anchorPixels": [
+            966.5,
+            259.0
+          ],
+          "alphaPixels": 30779
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            24,
+            282,
+            250,
+            273
+          ],
+          "anchorPixels": [
+            155.0,
+            552.0
+          ],
+          "alphaPixels": 30544
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            308,
+            280,
+            238,
+            275
+          ],
+          "anchorPixels": [
+            442.0,
+            552.0
+          ],
+          "alphaPixels": 29670
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            577,
+            285,
+            244,
+            269
+          ],
+          "anchorPixels": [
+            686.0,
+            551.0
+          ],
+          "alphaPixels": 31036
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            861,
+            280,
+            237,
+            274
+          ],
+          "anchorPixels": [
+            966.0,
+            551.0
+          ],
+          "alphaPixels": 30591
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            26,
+            576,
+            247,
+            242
+          ],
+          "anchorPixels": [
+            159.0,
+            815.0
+          ],
+          "alphaPixels": 30561
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            307,
+            572,
+            241,
+            246
+          ],
+          "anchorPixels": [
+            440.0,
+            815.0
+          ],
+          "alphaPixels": 29832
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            577,
+            579,
+            246,
+            240
+          ],
+          "anchorPixels": [
+            688.0,
+            816.0
+          ],
+          "alphaPixels": 30034
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            858,
+            571,
+            240,
+            247
+          ],
+          "anchorPixels": [
+            966.0,
+            815.0
+          ],
+          "alphaPixels": 29755
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            35,
+            845,
+            233,
+            235
+          ],
+          "anchorPixels": [
+            151.5,
+            1069.432
+          ],
+          "alphaPixels": 31262
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            315,
+            843,
+            227,
+            231
+          ],
+          "anchorPixels": [
+            428.5,
+            1063.58
+          ],
+          "alphaPixels": 31481
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            581,
+            846,
+            238,
+            231
+          ],
+          "anchorPixels": [
+            700.0,
+            1066.58
+          ],
+          "alphaPixels": 31802
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            864,
+            846,
+            228,
+            233
+          ],
+          "anchorPixels": [
+            978.0,
+            1068.506
+          ],
+          "alphaPixels": 31036
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            43,
+            1107,
+            225,
+            236
+          ],
+          "anchorPixels": [
+            155.5,
+            1242.853
+          ],
+          "alphaPixels": 32603
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            321,
+            1106,
+            218,
+            234
+          ],
+          "anchorPixels": [
+            430.0,
+            1240.699
+          ],
+          "alphaPixels": 30728
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            581,
+            1107,
+            237,
+            238
+          ],
+          "anchorPixels": [
+            699.5,
+            1244.007
+          ],
+          "alphaPixels": 32760
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            856,
+            1109,
+            225,
+            239
+          ],
+          "anchorPixels": [
+            968.5,
+            1246.584
+          ],
+          "alphaPixels": 32377
+        }
+      ]
+    },
+    {
+      "id": "magnolia",
+      "name": "목련",
+      "height": 6.2,
+      "radius": 2.5,
+      "subject": "Korean garden magnolia in late spring, branching smooth light gray trunk, large elongated muted green leaves with a few ivory cup-shaped blossoms, broad slightly upright crown",
+      "kind": "tree",
+      "image": "sources/magnolia.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            24,
+            17,
+            247,
+            234
+          ],
+          "anchorPixels": [
+            142.0,
+            248.0
+          ],
+          "alphaPixels": 35520
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            304,
+            12,
+            244,
+            239
+          ],
+          "anchorPixels": [
+            431.0,
+            248.0
+          ],
+          "alphaPixels": 31836
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            578,
+            12,
+            240,
+            239
+          ],
+          "anchorPixels": [
+            706.0,
+            248.0
+          ],
+          "alphaPixels": 33341
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            851,
+            17,
+            247,
+            234
+          ],
+          "anchorPixels": [
+            979.0,
+            248.0
+          ],
+          "alphaPixels": 35402
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            26,
+            264,
+            249,
+            283
+          ],
+          "anchorPixels": [
+            144.0,
+            544.0
+          ],
+          "alphaPixels": 36268
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            302,
+            266,
+            238,
+            281
+          ],
+          "anchorPixels": [
+            426.0,
+            544.0
+          ],
+          "alphaPixels": 32775
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            571,
+            264,
+            251,
+            283
+          ],
+          "anchorPixels": [
+            689.0,
+            544.0
+          ],
+          "alphaPixels": 35978
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            847,
+            264,
+            249,
+            283
+          ],
+          "anchorPixels": [
+            977.0,
+            544.0
+          ],
+          "alphaPixels": 36135
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            31,
+            561,
+            236,
+            249
+          ],
+          "anchorPixels": [
+            148.0,
+            807.0
+          ],
+          "alphaPixels": 33118
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            311,
+            564,
+            223,
+            247
+          ],
+          "anchorPixels": [
+            426.0,
+            808.0
+          ],
+          "alphaPixels": 30993
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            566,
+            569,
+            248,
+            242
+          ],
+          "anchorPixels": [
+            692.0,
+            808.0
+          ],
+          "alphaPixels": 31979
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            855,
+            561,
+            238,
+            250
+          ],
+          "anchorPixels": [
+            973.0,
+            808.0
+          ],
+          "alphaPixels": 32533
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            30,
+            840,
+            231,
+            230
+          ],
+          "anchorPixels": [
+            145.5,
+            1057.039
+          ],
+          "alphaPixels": 33685
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            315,
+            842,
+            220,
+            229
+          ],
+          "anchorPixels": [
+            425.0,
+            1058.088
+          ],
+          "alphaPixels": 32192
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            575,
+            841,
+            235,
+            230
+          ],
+          "anchorPixels": [
+            692.5,
+            1058.039
+          ],
+          "alphaPixels": 33462
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            860,
+            839,
+            233,
+            225
+          ],
+          "anchorPixels": [
+            976.5,
+            1051.282
+          ],
+          "alphaPixels": 33377
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            34,
+            1110,
+            228,
+            229
+          ],
+          "anchorPixels": [
+            148.0,
+            1241.304
+          ],
+          "alphaPixels": 33744
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            315,
+            1107,
+            221,
+            237
+          ],
+          "anchorPixels": [
+            425.5,
+            1242.902
+          ],
+          "alphaPixels": 33761
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            575,
+            1110,
+            235,
+            234
+          ],
+          "anchorPixels": [
+            692.5,
+            1244.178
+          ],
+          "alphaPixels": 35063
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            860,
+            1108,
+            227,
+            231
+          ],
+          "anchorPixels": [
+            973.5,
+            1240.454
+          ],
+          "alphaPixels": 34678
+        }
+      ]
+    },
+    {
+      "id": "maple",
+      "name": "청단풍나무",
+      "height": 4.8,
+      "radius": 2,
+      "subject": "Korean green maple tree, slender forked dark trunk, layered spreading branches and delicate five pointed green maple leaves, wide umbrella-shaped irregular canopy",
+      "kind": "tree",
+      "image": "sources/maple.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            19,
+            38,
+            257,
+            229
+          ],
+          "anchorPixels": [
+            154.0,
+            264.0
+          ],
+          "alphaPixels": 33994
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            295,
+            34,
+            254,
+            233
+          ],
+          "anchorPixels": [
+            436.0,
+            264.0
+          ],
+          "alphaPixels": 36585
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            569,
+            34,
+            254,
+            233
+          ],
+          "anchorPixels": [
+            681.0,
+            264.0
+          ],
+          "alphaPixels": 35067
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            848,
+            36,
+            255,
+            231
+          ],
+          "anchorPixels": [
+            961.0,
+            264.0
+          ],
+          "alphaPixels": 33986
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            20,
+            309,
+            261,
+            246
+          ],
+          "anchorPixels": [
+            156.0,
+            552.0
+          ],
+          "alphaPixels": 33380
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            300,
+            299,
+            252,
+            256
+          ],
+          "anchorPixels": [
+            435.0,
+            552.0
+          ],
+          "alphaPixels": 35293
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            572,
+            301,
+            250,
+            254
+          ],
+          "anchorPixels": [
+            685.0,
+            552.0
+          ],
+          "alphaPixels": 34950
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            848,
+            305,
+            256,
+            250
+          ],
+          "anchorPixels": [
+            970.0,
+            552.0
+          ],
+          "alphaPixels": 33790
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            29,
+            596,
+            250,
+            212
+          ],
+          "anchorPixels": [
+            154.0,
+            805.0
+          ],
+          "alphaPixels": 30621
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            299,
+            588,
+            250,
+            221
+          ],
+          "anchorPixels": [
+            431.0,
+            806.0
+          ],
+          "alphaPixels": 31888
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            567,
+            589,
+            255,
+            220
+          ],
+          "anchorPixels": [
+            689.0,
+            806.0
+          ],
+          "alphaPixels": 32314
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            846,
+            593,
+            255,
+            216
+          ],
+          "anchorPixels": [
+            968.0,
+            806.0
+          ],
+          "alphaPixels": 31479
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            36,
+            855,
+            238,
+            207
+          ],
+          "anchorPixels": [
+            155.0,
+            1047.665
+          ],
+          "alphaPixels": 31158
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            303,
+            852,
+            243,
+            207
+          ],
+          "anchorPixels": [
+            424.5,
+            1044.665
+          ],
+          "alphaPixels": 31940
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            576,
+            853,
+            242,
+            207
+          ],
+          "anchorPixels": [
+            697.0,
+            1045.665
+          ],
+          "alphaPixels": 32685
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            849,
+            851,
+            237,
+            210
+          ],
+          "anchorPixels": [
+            967.5,
+            1046.483
+          ],
+          "alphaPixels": 31029
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            35,
+            1108,
+            233,
+            247
+          ],
+          "anchorPixels": [
+            151.5,
+            1249.066
+          ],
+          "alphaPixels": 36256
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            306,
+            1112,
+            239,
+            241
+          ],
+          "anchorPixels": [
+            425.5,
+            1249.632
+          ],
+          "alphaPixels": 36674
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            572,
+            1105,
+            246,
+            249
+          ],
+          "anchorPixels": [
+            695.0,
+            1247.21
+          ],
+          "alphaPixels": 37042
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            849,
+            1109,
+            240,
+            246
+          ],
+          "anchorPixels": [
+            969.0,
+            1249.494
+          ],
+          "alphaPixels": 35678
+        }
+      ]
+    },
+    {
+      "id": "pine",
+      "name": "소나무",
+      "height": 6.4,
+      "radius": 2.3,
+      "subject": "Korean red pine tree, naturally bent reddish gray scaly trunk, open irregular horizontal branches, fine dark sage needles arranged in irregular flat clusters, natural garden pine NOT topiary and NOT spheres",
+      "kind": "tree",
+      "image": "sources/pine.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            23,
+            40,
+            255,
+            228
+          ],
+          "anchorPixels": [
+            158.0,
+            265.0
+          ],
+          "alphaPixels": 31576
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            304,
+            36,
+            243,
+            232
+          ],
+          "anchorPixels": [
+            451.0,
+            265.0
+          ],
+          "alphaPixels": 29630
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            571,
+            36,
+            247,
+            232
+          ],
+          "anchorPixels": [
+            685.0,
+            265.0
+          ],
+          "alphaPixels": 31286
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            849,
+            40,
+            248,
+            229
+          ],
+          "anchorPixels": [
+            957.0,
+            266.0
+          ],
+          "alphaPixels": 30474
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            21,
+            314,
+            254,
+            250
+          ],
+          "anchorPixels": [
+            161.5,
+            561.0
+          ],
+          "alphaPixels": 29248
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            306,
+            312,
+            235,
+            253
+          ],
+          "anchorPixels": [
+            450.0,
+            562.0
+          ],
+          "alphaPixels": 27801
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            570,
+            313,
+            248,
+            252
+          ],
+          "anchorPixels": [
+            687.0,
+            562.0
+          ],
+          "alphaPixels": 28651
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            851,
+            313,
+            245,
+            252
+          ],
+          "anchorPixels": [
+            961.0,
+            562.0
+          ],
+          "alphaPixels": 29958
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            22,
+            601,
+            254,
+            224
+          ],
+          "anchorPixels": [
+            170.0,
+            822.0
+          ],
+          "alphaPixels": 29030
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            304,
+            602,
+            240,
+            224
+          ],
+          "anchorPixels": [
+            442.0,
+            823.0
+          ],
+          "alphaPixels": 27389
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            572,
+            601,
+            246,
+            225
+          ],
+          "anchorPixels": [
+            692.0,
+            823.0
+          ],
+          "alphaPixels": 29744
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            853,
+            598,
+            246,
+            228
+          ],
+          "anchorPixels": [
+            968.0,
+            823.0
+          ],
+          "alphaPixels": 31921
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            23,
+            869,
+            250,
+            205
+          ],
+          "anchorPixels": [
+            148.0,
+            1071.223
+          ],
+          "alphaPixels": 28156
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            305,
+            876,
+            239,
+            204
+          ],
+          "anchorPixels": [
+            424.5,
+            1077.227
+          ],
+          "alphaPixels": 27681
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            581,
+            875,
+            235,
+            206
+          ],
+          "anchorPixels": [
+            698.5,
+            1078.219
+          ],
+          "alphaPixels": 28866
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            861,
+            878,
+            232,
+            204
+          ],
+          "anchorPixels": [
+            977.0,
+            1079.227
+          ],
+          "alphaPixels": 29297
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            40,
+            1133,
+            221,
+            206
+          ],
+          "anchorPixels": [
+            150.5,
+            1252.918
+          ],
+          "alphaPixels": 27903
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            317,
+            1125,
+            222,
+            217
+          ],
+          "anchorPixels": [
+            428.0,
+            1251.339
+          ],
+          "alphaPixels": 28764
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            592,
+            1127,
+            218,
+            215
+          ],
+          "anchorPixels": [
+            701.0,
+            1252.171
+          ],
+          "alphaPixels": 27832
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            860,
+            1126,
+            230,
+            218
+          ],
+          "anchorPixels": [
+            975.0,
+            1252.923
+          ],
+          "alphaPixels": 28979
+        }
+      ]
+    },
+    {
+      "id": "juniper",
+      "name": "향나무",
+      "height": 5.8,
+      "radius": 1.2,
+      "subject": "Korean garden upright juniper, narrow irregular tapering conical evergreen shape, visible brown trunk base and fine feathery muted deep green scale-like foliage, not a clipped geometric cone",
+      "kind": "tree",
+      "image": "sources/juniper.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            45,
+            28,
+            244,
+            243
+          ],
+          "anchorPixels": [
+            169.0,
+            268.0
+          ],
+          "alphaPixels": 27704
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            316,
+            30,
+            230,
+            241
+          ],
+          "anchorPixels": [
+            413.0,
+            268.0
+          ],
+          "alphaPixels": 25893
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            574,
+            34,
+            234,
+            237
+          ],
+          "anchorPixels": [
+            692.0,
+            268.0
+          ],
+          "alphaPixels": 25033
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            838,
+            32,
+            240,
+            239
+          ],
+          "anchorPixels": [
+            964.5,
+            268.0
+          ],
+          "alphaPixels": 27827
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            48,
+            292,
+            241,
+            283
+          ],
+          "anchorPixels": [
+            166.0,
+            572.0
+          ],
+          "alphaPixels": 28716
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            325,
+            292,
+            220,
+            283
+          ],
+          "anchorPixels": [
+            419.0,
+            572.0
+          ],
+          "alphaPixels": 27905
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            576,
+            292,
+            221,
+            282
+          ],
+          "anchorPixels": [
+            692.0,
+            571.0
+          ],
+          "alphaPixels": 27765
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            840,
+            292,
+            237,
+            283
+          ],
+          "anchorPixels": [
+            964.5,
+            572.0
+          ],
+          "alphaPixels": 29682
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            46,
+            600,
+            234,
+            247
+          ],
+          "anchorPixels": [
+            164.0,
+            844.0
+          ],
+          "alphaPixels": 28726
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            331,
+            600,
+            211,
+            247
+          ],
+          "anchorPixels": [
+            422.0,
+            844.0
+          ],
+          "alphaPixels": 25994
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            578,
+            599,
+            216,
+            248
+          ],
+          "anchorPixels": [
+            691.0,
+            844.0
+          ],
+          "alphaPixels": 27246
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            848,
+            599,
+            224,
+            248
+          ],
+          "anchorPixels": [
+            967.5,
+            844.0
+          ],
+          "alphaPixels": 27157
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            50,
+            876,
+            222,
+            224
+          ],
+          "anchorPixels": [
+            161.0,
+            1098.0
+          ],
+          "alphaPixels": 26514
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            331,
+            877,
+            206,
+            215
+          ],
+          "anchorPixels": [
+            434.0,
+            1090.0
+          ],
+          "alphaPixels": 26208
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            592,
+            877,
+            203,
+            213
+          ],
+          "anchorPixels": [
+            693.5,
+            1088.0
+          ],
+          "alphaPixels": 24489
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            853,
+            878,
+            215,
+            224
+          ],
+          "anchorPixels": [
+            960.5,
+            1100.0
+          ],
+          "alphaPixels": 27078
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            51,
+            1137,
+            218,
+            223
+          ],
+          "anchorPixels": [
+            160.0,
+            1280.178
+          ],
+          "alphaPixels": 29028
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            320,
+            1144,
+            224,
+            207
+          ],
+          "anchorPixels": [
+            432.0,
+            1276.864
+          ],
+          "alphaPixels": 28102
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            576,
+            1133,
+            224,
+            230
+          ],
+          "anchorPixels": [
+            688.0,
+            1280.691
+          ],
+          "alphaPixels": 28785
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            855,
+            1144,
+            218,
+            222
+          ],
+          "anchorPixels": [
+            964.0,
+            1286.534
+          ],
+          "alphaPixels": 28315
+        }
+      ]
+    },
+    {
+      "id": "lilac",
+      "name": "라일락",
+      "height": 3.7,
+      "radius": 1.6,
+      "subject": "mature lilac small garden tree, three slender woody stems growing from one root base, heart-shaped sage leaves, a few pale dusty lilac flower panicles, informal branching rounded crown",
+      "kind": "tree",
+      "image": "sources/lilac.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            32,
+            46,
+            250,
+            217
+          ],
+          "anchorPixels": [
+            159.0,
+            260.0
+          ],
+          "alphaPixels": 33733
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            304,
+            43,
+            244,
+            220
+          ],
+          "anchorPixels": [
+            443.0,
+            260.0
+          ],
+          "alphaPixels": 32010
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            575,
+            40,
+            249,
+            223
+          ],
+          "anchorPixels": [
+            685.0,
+            260.0
+          ],
+          "alphaPixels": 33733
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            853,
+            42,
+            240,
+            222
+          ],
+          "anchorPixels": [
+            965.0,
+            261.0
+          ],
+          "alphaPixels": 32558
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            27,
+            295,
+            253,
+            269
+          ],
+          "anchorPixels": [
+            155.0,
+            561.0
+          ],
+          "alphaPixels": 38433
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            300,
+            295,
+            251,
+            268
+          ],
+          "anchorPixels": [
+            439.0,
+            560.0
+          ],
+          "alphaPixels": 36055
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            567,
+            294,
+            254,
+            268
+          ],
+          "anchorPixels": [
+            687.5,
+            559.0
+          ],
+          "alphaPixels": 38109
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            845,
+            296,
+            253,
+            266
+          ],
+          "anchorPixels": [
+            966.0,
+            559.0
+          ],
+          "alphaPixels": 37876
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            33,
+            586,
+            245,
+            235
+          ],
+          "anchorPixels": [
+            155.0,
+            818.0
+          ],
+          "alphaPixels": 33419
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            300,
+            591,
+            249,
+            229
+          ],
+          "anchorPixels": [
+            438.0,
+            817.0
+          ],
+          "alphaPixels": 33743
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            567,
+            590,
+            258,
+            231
+          ],
+          "anchorPixels": [
+            687.5,
+            818.0
+          ],
+          "alphaPixels": 34787
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            847,
+            587,
+            248,
+            233
+          ],
+          "anchorPixels": [
+            975.0,
+            817.0
+          ],
+          "alphaPixels": 35280
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            34,
+            851,
+            234,
+            234
+          ],
+          "anchorPixels": [
+            151.0,
+            1065.889
+          ],
+          "alphaPixels": 34909
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            305,
+            848,
+            242,
+            238
+          ],
+          "anchorPixels": [
+            426.0,
+            1066.591
+          ],
+          "alphaPixels": 36162
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            577,
+            859,
+            240,
+            225
+          ],
+          "anchorPixels": [
+            697.0,
+            1065.558
+          ],
+          "alphaPixels": 36164
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            854,
+            854,
+            235,
+            229
+          ],
+          "anchorPixels": [
+            971.5,
+            1064.261
+          ],
+          "alphaPixels": 36154
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            44,
+            1131,
+            219,
+            219
+          ],
+          "anchorPixels": [
+            153.5,
+            1255.477
+          ],
+          "alphaPixels": 32247
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            316,
+            1125,
+            225,
+            226
+          ],
+          "anchorPixels": [
+            428.5,
+            1253.465
+          ],
+          "alphaPixels": 33788
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            581,
+            1124,
+            225,
+            227
+          ],
+          "anchorPixels": [
+            693.5,
+            1253.035
+          ],
+          "alphaPixels": 34066
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            863,
+            1130,
+            220,
+            221
+          ],
+          "anchorPixels": [
+            973.0,
+            1255.617
+          ],
+          "alphaPixels": 33932
+        }
+      ]
+    },
+    {
+      "id": "cornelian",
+      "name": "산수유",
+      "height": 4.5,
+      "radius": 1.9,
+      "subject": "Korean cornelian cherry tree in green leaf, short rugged brown trunk, small spreading branches, layered oval muted green leaves with a few tiny muted red berries, irregular open crown",
+      "kind": "tree",
+      "image": "sources/cornelian.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            22,
+            27,
+            260,
+            223
+          ],
+          "anchorPixels": [
+            154.0,
+            247.0
+          ],
+          "alphaPixels": 35188
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            298,
+            31,
+            250,
+            218
+          ],
+          "anchorPixels": [
+            442.0,
+            246.0
+          ],
+          "alphaPixels": 33940
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            566,
+            29,
+            257,
+            220
+          ],
+          "anchorPixels": [
+            675.0,
+            246.0
+          ],
+          "alphaPixels": 34844
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            839,
+            32,
+            260,
+            218
+          ],
+          "anchorPixels": [
+            963.0,
+            247.0
+          ],
+          "alphaPixels": 33921
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            26,
+            299,
+            254,
+            256
+          ],
+          "anchorPixels": [
+            155.0,
+            552.0
+          ],
+          "alphaPixels": 36125
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            293,
+            299,
+            262,
+            256
+          ],
+          "anchorPixels": [
+            437.0,
+            552.0
+          ],
+          "alphaPixels": 36804
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            566,
+            299,
+            254,
+            256
+          ],
+          "anchorPixels": [
+            678.0,
+            552.0
+          ],
+          "alphaPixels": 37815
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            837,
+            300,
+            262,
+            255
+          ],
+          "anchorPixels": [
+            976.0,
+            552.0
+          ],
+          "alphaPixels": 36283
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            22,
+            587,
+            258,
+            228
+          ],
+          "anchorPixels": [
+            150.0,
+            812.0
+          ],
+          "alphaPixels": 33079
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            299,
+            590,
+            250,
+            225
+          ],
+          "anchorPixels": [
+            435.0,
+            812.0
+          ],
+          "alphaPixels": 35211
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            567,
+            591,
+            251,
+            224
+          ],
+          "anchorPixels": [
+            685.0,
+            812.0
+          ],
+          "alphaPixels": 34977
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            840,
+            591,
+            259,
+            224
+          ],
+          "anchorPixels": [
+            974.0,
+            812.0
+          ],
+          "alphaPixels": 34479
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            24,
+            851,
+            251,
+            217
+          ],
+          "anchorPixels": [
+            149.5,
+            1052.015
+          ],
+          "alphaPixels": 34098
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            299,
+            858,
+            244,
+            211
+          ],
+          "anchorPixels": [
+            421.0,
+            1053.409
+          ],
+          "alphaPixels": 34120
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            569,
+            859,
+            246,
+            214
+          ],
+          "anchorPixels": [
+            692.0,
+            1057.212
+          ],
+          "alphaPixels": 34144
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            847,
+            860,
+            251,
+            212
+          ],
+          "anchorPixels": [
+            972.5,
+            1056.344
+          ],
+          "alphaPixels": 35382
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            38,
+            1125,
+            234,
+            231
+          ],
+          "anchorPixels": [
+            155.0,
+            1256.694
+          ],
+          "alphaPixels": 36559
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            303,
+            1120,
+            237,
+            239
+          ],
+          "anchorPixels": [
+            421.5,
+            1256.265
+          ],
+          "alphaPixels": 37787
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            572,
+            1120,
+            237,
+            236
+          ],
+          "anchorPixels": [
+            690.5,
+            1254.551
+          ],
+          "alphaPixels": 37713
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            847,
+            1124,
+            244,
+            235
+          ],
+          "anchorPixels": [
+            969.0,
+            1257.98
+          ],
+          "alphaPixels": 37554
+        }
+      ]
+    },
+    {
+      "id": "crape-myrtle",
+      "name": "배롱나무",
+      "height": 4.4,
+      "radius": 1.8,
+      "subject": "crape myrtle garden tree, several smooth twisting light tan trunks from one compact base, small green oval leaves, sparse dusty pink flower panicles at tips, airy vase-shaped crown",
+      "kind": "tree",
+      "image": "sources/crape-myrtle.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            24,
+            20,
+            245,
+            247
+          ],
+          "anchorPixels": [
+            155.0,
+            264.0
+          ],
+          "alphaPixels": 33419
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            301,
+            31,
+            252,
+            236
+          ],
+          "anchorPixels": [
+            428.0,
+            264.0
+          ],
+          "alphaPixels": 33436
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            571,
+            28,
+            247,
+            239
+          ],
+          "anchorPixels": [
+            686.5,
+            264.0
+          ],
+          "alphaPixels": 34197
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            855,
+            29,
+            245,
+            238
+          ],
+          "anchorPixels": [
+            966.0,
+            264.0
+          ],
+          "alphaPixels": 33542
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            27,
+            295,
+            249,
+            268
+          ],
+          "anchorPixels": [
+            155.0,
+            560.0
+          ],
+          "alphaPixels": 34275
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            303,
+            298,
+            244,
+            264
+          ],
+          "anchorPixels": [
+            430.0,
+            559.0
+          ],
+          "alphaPixels": 34980
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            563,
+            293,
+            257,
+            270
+          ],
+          "anchorPixels": [
+            687.0,
+            560.0
+          ],
+          "alphaPixels": 35089
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            848,
+            297,
+            253,
+            266
+          ],
+          "anchorPixels": [
+            967.0,
+            560.0
+          ],
+          "alphaPixels": 34928
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            33,
+            593,
+            242,
+            230
+          ],
+          "anchorPixels": [
+            157.0,
+            820.0
+          ],
+          "alphaPixels": 30555
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            300,
+            598,
+            244,
+            225
+          ],
+          "anchorPixels": [
+            432.0,
+            820.0
+          ],
+          "alphaPixels": 31840
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            572,
+            593,
+            245,
+            230
+          ],
+          "anchorPixels": [
+            685.0,
+            820.0
+          ],
+          "alphaPixels": 32099
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            850,
+            593,
+            249,
+            230
+          ],
+          "anchorPixels": [
+            965.0,
+            820.0
+          ],
+          "alphaPixels": 31511
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            34,
+            857,
+            236,
+            218
+          ],
+          "anchorPixels": [
+            152.0,
+            1061.46
+          ],
+          "alphaPixels": 32106
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            304,
+            856,
+            238,
+            223
+          ],
+          "anchorPixels": [
+            423.0,
+            1065.19
+          ],
+          "alphaPixels": 31607
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            573,
+            853,
+            244,
+            227
+          ],
+          "anchorPixels": [
+            695.0,
+            1065.975
+          ],
+          "alphaPixels": 32187
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            848,
+            859,
+            247,
+            216
+          ],
+          "anchorPixels": [
+            971.5,
+            1061.568
+          ],
+          "alphaPixels": 32543
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            36,
+            1116,
+            228,
+            240
+          ],
+          "anchorPixels": [
+            150.0,
+            1253.374
+          ],
+          "alphaPixels": 34422
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            306,
+            1120,
+            230,
+            242
+          ],
+          "anchorPixels": [
+            421.0,
+            1258.522
+          ],
+          "alphaPixels": 35392
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            579,
+            1110,
+            235,
+            251
+          ],
+          "anchorPixels": [
+            696.5,
+            1253.684
+          ],
+          "alphaPixels": 35092
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            860,
+            1121,
+            230,
+            235
+          ],
+          "anchorPixels": [
+            975.0,
+            1255.506
+          ],
+          "alphaPixels": 34112
+        }
+      ]
+    },
+    {
+      "id": "ginkgo",
+      "name": "은행나무",
+      "height": 7,
+      "radius": 2,
+      "subject": "young mature ginkgo garden tree, straight gray trunk, upright somewhat conical natural crown, distinctive fan-shaped muted yellow-green leaves, slim enough for a private garden edge, no fruit",
+      "kind": "tree",
+      "image": "sources/ginkgo.png",
+      "imageWidth": 1122,
+      "imageHeight": 1402,
+      "elevationAngles": [
+        -30,
+        0,
+        30,
+        60,
+        85
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": -30,
+          "rect": [
+            32,
+            24,
+            233,
+            247
+          ],
+          "anchorPixels": [
+            152.0,
+            268.0
+          ],
+          "alphaPixels": 34640
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": -30,
+          "rect": [
+            311,
+            29,
+            232,
+            242
+          ],
+          "anchorPixels": [
+            431.0,
+            268.0
+          ],
+          "alphaPixels": 31681
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": -30,
+          "rect": [
+            576,
+            26,
+            233,
+            245
+          ],
+          "anchorPixels": [
+            686.0,
+            268.0
+          ],
+          "alphaPixels": 33720
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": -30,
+          "rect": [
+            851,
+            29,
+            238,
+            242
+          ],
+          "anchorPixels": [
+            969.5,
+            268.0
+          ],
+          "alphaPixels": 32866
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            28,
+            287,
+            241,
+            285
+          ],
+          "anchorPixels": [
+            151.0,
+            569.0
+          ],
+          "alphaPixels": 36287
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            308,
+            287,
+            238,
+            285
+          ],
+          "anchorPixels": [
+            429.0,
+            569.0
+          ],
+          "alphaPixels": 34780
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            575,
+            288,
+            237,
+            284
+          ],
+          "anchorPixels": [
+            692.0,
+            569.0
+          ],
+          "alphaPixels": 34049
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            855,
+            289,
+            239,
+            283
+          ],
+          "anchorPixels": [
+            972.0,
+            569.0
+          ],
+          "alphaPixels": 35735
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 30,
+          "rect": [
+            32,
+            586,
+            241,
+            248
+          ],
+          "anchorPixels": [
+            153.0,
+            831.0
+          ],
+          "alphaPixels": 33585
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 30,
+          "rect": [
+            308,
+            586,
+            236,
+            251
+          ],
+          "anchorPixels": [
+            429.0,
+            834.0
+          ],
+          "alphaPixels": 33297
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 30,
+          "rect": [
+            580,
+            586,
+            233,
+            251
+          ],
+          "anchorPixels": [
+            694.0,
+            834.0
+          ],
+          "alphaPixels": 33397
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 30,
+          "rect": [
+            853,
+            586,
+            240,
+            248
+          ],
+          "anchorPixels": [
+            975.0,
+            831.0
+          ],
+          "alphaPixels": 33961
+        },
+        {
+          "index": 12,
+          "yaw": 0,
+          "pitch": 60,
+          "rect": [
+            37,
+            851,
+            224,
+            208
+          ],
+          "anchorPixels": [
+            149.0,
+            1057.0
+          ],
+          "alphaPixels": 28455
+        },
+        {
+          "index": 13,
+          "yaw": 90,
+          "pitch": 60,
+          "rect": [
+            312,
+            858,
+            223,
+            201
+          ],
+          "anchorPixels": [
+            423.5,
+            1057.0
+          ],
+          "alphaPixels": 28463
+        },
+        {
+          "index": 14,
+          "yaw": 180,
+          "pitch": 60,
+          "rect": [
+            589,
+            854,
+            217,
+            205
+          ],
+          "anchorPixels": [
+            697.5,
+            1057.0
+          ],
+          "alphaPixels": 28332
+        },
+        {
+          "index": 15,
+          "yaw": 270,
+          "pitch": 60,
+          "rect": [
+            862,
+            854,
+            221,
+            204
+          ],
+          "anchorPixels": [
+            972.5,
+            1056.0
+          ],
+          "alphaPixels": 30045
+        },
+        {
+          "index": 16,
+          "yaw": 0,
+          "pitch": 85,
+          "rect": [
+            38,
+            1113,
+            234,
+            238
+          ],
+          "anchorPixels": [
+            155.0,
+            1256.61
+          ],
+          "alphaPixels": 35889
+        },
+        {
+          "index": 17,
+          "yaw": 90,
+          "pitch": 85,
+          "rect": [
+            308,
+            1117,
+            232,
+            233
+          ],
+          "anchorPixels": [
+            424.0,
+            1257.584
+          ],
+          "alphaPixels": 35318
+        },
+        {
+          "index": 18,
+          "yaw": 180,
+          "pitch": 85,
+          "rect": [
+            579,
+            1111,
+            231,
+            239
+          ],
+          "anchorPixels": [
+            694.5,
+            1255.215
+          ],
+          "alphaPixels": 36064
+        },
+        {
+          "index": 19,
+          "yaw": 270,
+          "pitch": 85,
+          "rect": [
+            853,
+            1115,
+            235,
+            234
+          ],
+          "anchorPixels": [
+            970.5,
+            1256.189
+          ],
+          "alphaPixels": 35453
+        }
+      ]
+    },
+    {
+      "id": "leafy-herb",
+      "name": "초록 잎 화분 식물",
+      "height": 0.65,
+      "radius": 0.32,
+      "subject": "a small naturally growing mint and leafy herb clump, many clean pointed oval sage leaves on slender branching stems, all stems start at one compact visible root contact, NO pot",
+      "kind": "plant",
+      "image": "sources/leafy-herb.png",
+      "imageWidth": 1448,
+      "imageHeight": 1086,
+      "elevationAngles": [
+        0,
+        40,
+        80
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            36,
+            46,
+            324,
+            329
+          ],
+          "anchorPixels": [
+            202.0,
+            372.0
+          ],
+          "alphaPixels": 45692
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            393,
+            46,
+            300,
+            329
+          ],
+          "anchorPixels": [
+            554.0,
+            372.0
+          ],
+          "alphaPixels": 38349
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            745,
+            45,
+            309,
+            327
+          ],
+          "anchorPixels": [
+            893.0,
+            369.0
+          ],
+          "alphaPixels": 44426
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            1117,
+            48,
+            304,
+            327
+          ],
+          "anchorPixels": [
+            1263.0,
+            372.0
+          ],
+          "alphaPixels": 39873
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 40,
+          "rect": [
+            35,
+            411,
+            331,
+            285
+          ],
+          "anchorPixels": [
+            126.0,
+            693.0
+          ],
+          "alphaPixels": 49508
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 40,
+          "rect": [
+            393,
+            417,
+            321,
+            284
+          ],
+          "anchorPixels": [
+            497.0,
+            698.0
+          ],
+          "alphaPixels": 45113
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 40,
+          "rect": [
+            736,
+            412,
+            330,
+            287
+          ],
+          "anchorPixels": [
+            953.0,
+            696.0
+          ],
+          "alphaPixels": 50415
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 40,
+          "rect": [
+            1106,
+            422,
+            312,
+            279
+          ],
+          "anchorPixels": [
+            1218.5,
+            698.0
+          ],
+          "alphaPixels": 44780
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 80,
+          "rect": [
+            49,
+            742,
+            311,
+            289
+          ],
+          "anchorPixels": [
+            204.5,
+            912.656
+          ],
+          "alphaPixels": 50559
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 80,
+          "rect": [
+            393,
+            743,
+            300,
+            285
+          ],
+          "anchorPixels": [
+            543.0,
+            911.289
+          ],
+          "alphaPixels": 49423
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 80,
+          "rect": [
+            746,
+            746,
+            311,
+            288
+          ],
+          "anchorPixels": [
+            901.5,
+            916.064
+          ],
+          "alphaPixels": 52347
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 80,
+          "rect": [
+            1122,
+            749,
+            286,
+            287
+          ],
+          "anchorPixels": [
+            1265.0,
+            918.473
+          ],
+          "alphaPixels": 48789
+        }
+      ]
+    },
+    {
+      "id": "hydrangea",
+      "name": "수국 화분 식물",
+      "height": 0.8,
+      "radius": 0.43,
+      "subject": "a compact hydrangea plant, broad green serrated leaves, three irregular dusty blue-lavender flower heads drawn with small individual four-petal florets, short woody stalks start at one compact root contact, NO pot",
+      "kind": "plant",
+      "image": "sources/hydrangea.png",
+      "imageWidth": 1448,
+      "imageHeight": 1086,
+      "elevationAngles": [
+        0,
+        40,
+        80
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            31,
+            47,
+            341,
+            289
+          ],
+          "anchorPixels": [
+            198.0,
+            333.0
+          ],
+          "alphaPixels": 59341
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            402,
+            50,
+            289,
+            287
+          ],
+          "anchorPixels": [
+            552.0,
+            334.0
+          ],
+          "alphaPixels": 47979
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            716,
+            47,
+            321,
+            289
+          ],
+          "anchorPixels": [
+            875.0,
+            333.0
+          ],
+          "alphaPixels": 51872
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            1079,
+            51,
+            333,
+            286
+          ],
+          "anchorPixels": [
+            1236.5,
+            334.0
+          ],
+          "alphaPixels": 55880
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 40,
+          "rect": [
+            44,
+            392,
+            328,
+            291
+          ],
+          "anchorPixels": [
+            306.0,
+            680.0
+          ],
+          "alphaPixels": 62201
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 40,
+          "rect": [
+            404,
+            395,
+            298,
+            293
+          ],
+          "anchorPixels": [
+            451.0,
+            685.0
+          ],
+          "alphaPixels": 53990
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 40,
+          "rect": [
+            726,
+            401,
+            316,
+            273
+          ],
+          "anchorPixels": [
+            882.0,
+            671.0
+          ],
+          "alphaPixels": 53808
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 40,
+          "rect": [
+            1080,
+            398,
+            325,
+            285
+          ],
+          "anchorPixels": [
+            1149.0,
+            680.0
+          ],
+          "alphaPixels": 58428
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 80,
+          "rect": [
+            42,
+            736,
+            325,
+            302
+          ],
+          "anchorPixels": [
+            204.5,
+            912.108
+          ],
+          "alphaPixels": 63145
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 80,
+          "rect": [
+            399,
+            733,
+            298,
+            304
+          ],
+          "anchorPixels": [
+            548.0,
+            910.276
+          ],
+          "alphaPixels": 56798
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 80,
+          "rect": [
+            734,
+            725,
+            306,
+            313
+          ],
+          "anchorPixels": [
+            887.0,
+            907.535
+          ],
+          "alphaPixels": 60185
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 80,
+          "rect": [
+            1080,
+            729,
+            330,
+            307
+          ],
+          "anchorPixels": [
+            1245.0,
+            908.029
+          ],
+          "alphaPixels": 61354
+        }
+      ]
+    },
+    {
+      "id": "pepper",
+      "name": "고추 화분 식물",
+      "height": 1,
+      "radius": 0.35,
+      "subject": "a Korean pepper plant, slender upright branching stalk, pointed medium green leaves, a few narrow long muted red and green peppers, naturally open silhouette, single root contact, NO pot, no support stake",
+      "kind": "plant",
+      "image": "sources/pepper.png",
+      "imageWidth": 1448,
+      "imageHeight": 1086,
+      "elevationAngles": [
+        0,
+        40,
+        80
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "rect": [
+            43,
+            25,
+            308,
+            397
+          ],
+          "anchorPixels": [
+            197.0,
+            419.0
+          ],
+          "alphaPixels": 40809
+        },
+        {
+          "index": 1,
+          "yaw": 90,
+          "pitch": 0,
+          "rect": [
+            443,
+            25,
+            238,
+            396
+          ],
+          "anchorPixels": [
+            545.0,
+            418.0
+          ],
+          "alphaPixels": 30747
+        },
+        {
+          "index": 2,
+          "yaw": 180,
+          "pitch": 0,
+          "rect": [
+            761,
+            25,
+            283,
+            396
+          ],
+          "anchorPixels": [
+            895.0,
+            418.0
+          ],
+          "alphaPixels": 39522
+        },
+        {
+          "index": 3,
+          "yaw": 270,
+          "pitch": 0,
+          "rect": [
+            1134,
+            24,
+            270,
+            399
+          ],
+          "anchorPixels": [
+            1256.5,
+            420.0
+          ],
+          "alphaPixels": 36258
+        },
+        {
+          "index": 4,
+          "yaw": 0,
+          "pitch": 40,
+          "rect": [
+            38,
+            446,
+            310,
+            299
+          ],
+          "anchorPixels": [
+            197.5,
+            742.0
+          ],
+          "alphaPixels": 34828
+        },
+        {
+          "index": 5,
+          "yaw": 90,
+          "pitch": 40,
+          "rect": [
+            416,
+            445,
+            277,
+            301
+          ],
+          "anchorPixels": [
+            557.0,
+            743.0
+          ],
+          "alphaPixels": 29877
+        },
+        {
+          "index": 6,
+          "yaw": 180,
+          "pitch": 40,
+          "rect": [
+            756,
+            448,
+            293,
+            297
+          ],
+          "anchorPixels": [
+            889.5,
+            742.0
+          ],
+          "alphaPixels": 33158
+        },
+        {
+          "index": 7,
+          "yaw": 270,
+          "pitch": 40,
+          "rect": [
+            1115,
+            446,
+            295,
+            298
+          ],
+          "anchorPixels": [
+            1265.5,
+            741.0
+          ],
+          "alphaPixels": 31877
+        },
+        {
+          "index": 8,
+          "yaw": 0,
+          "pitch": 80,
+          "rect": [
+            40,
+            771,
+            302,
+            283
+          ],
+          "anchorPixels": [
+            191.0,
+            948.021
+          ],
+          "alphaPixels": 36515
+        },
+        {
+          "index": 9,
+          "yaw": 90,
+          "pitch": 80,
+          "rect": [
+            418,
+            783,
+            263,
+            268
+          ],
+          "anchorPixels": [
+            549.5,
+            950.611
+          ],
+          "alphaPixels": 32900
+        },
+        {
+          "index": 10,
+          "yaw": 180,
+          "pitch": 80,
+          "rect": [
+            763,
+            775,
+            278,
+            279
+          ],
+          "anchorPixels": [
+            902.0,
+            949.512
+          ],
+          "alphaPixels": 33908
+        },
+        {
+          "index": 11,
+          "yaw": 270,
+          "pitch": 80,
+          "rect": [
+            1128,
+            778,
+            273,
+            272
+          ],
+          "anchorPixels": [
+            1264.5,
+            948.121
+          ],
+          "alphaPixels": 34196
+        }
+      ]
+    }
+  ]
+}

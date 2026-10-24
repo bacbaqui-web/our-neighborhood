@@ -1,0 +1,13 @@
+{
+  "project": "EZ-Tree",
+  "author": "Daniel Greenheck",
+  "source": "https://github.com/dgreenheck/ez-tree",
+  "commit": "dcf309bd86bd521083d9c70f01f2de45fdc7c457",
+  "license": "MIT",
+  "changes": [
+    "Explicit .js module extensions for native browser modules.",
+    "Preset JSON converted to equivalent JavaScript default exports.",
+    "Public skeleton-only entry point and level/parent metadata (see tree.js)."
+  ],
+  "retrieved": "2026-10-15"
+}

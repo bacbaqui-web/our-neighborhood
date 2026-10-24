@@ -1,0 +1,37 @@
+{
+  "version": 21,
+  "origin": [
+    37.625513523469,
+    127.026651155374
+  ],
+  "context": "Korean hillside low-rise residential neighborhood",
+  "status": "roadview-informed art direction, not surveyed utility positions or engineering standards",
+  "poles": {
+    "radius": 0.145,
+    "edgeOffsets": [
+      0.32,
+      0.5,
+      0.72
+    ],
+    "sampleStep": 1.8,
+    "minSpacing": 22,
+    "preferredSpacing": 32,
+    "maxSpan": 48,
+    "buildingClearance": 0.38,
+    "entranceClearance": 0.5,
+    "maxDegree": 3,
+    "wireBuildingClearance": 0.24,
+    "minimumWireGroundClearance": 4.8
+  },
+  "curb": {
+    "height": 0.12,
+    "followTerrain": true,
+    "stepOnlyForRetainingWalls": true
+  },
+  "localBounds": [
+    -136,
+    -136,
+    136,
+    136
+  ]
+}

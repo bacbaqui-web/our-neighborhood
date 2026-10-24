@@ -1,0 +1,18 @@
+{
+  "structures": 464,
+  "houses": 195,
+  "roofArea": 6750.071000000001,
+  "types": {
+    "지붕 있는 작업 공간": 162,
+    "건물 부착 주차 차양": 74,
+    "벽면 자전거 차양": 97,
+    "처마형 생활 공간": 40,
+    "외벽 부착 창고": 34,
+    "설비 덮개": 44,
+    "셔터 작업 창고": 13
+  },
+  "buildingOverlap": 0.0,
+  "roadOverlap": 0.0,
+  "solidAccessOverlap": 0.0,
+  "maxAttachmentGap": 0.1840219352387521
+}

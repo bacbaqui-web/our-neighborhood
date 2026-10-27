@@ -9,7 +9,7 @@ import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=117';
 import {loadData} from './load-data.js?v=92';
 import {applyRoadContext} from './road-context.js?v=76';
-import {createIllustrationRenderer} from './illustration-renderer.js?v=inner-angle-126';
+import {createIllustrationRenderer} from './illustration-renderer.js?v=134';
 import {createIllustrationShading} from './illustration-shading.js?v=42';
 import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=inner-angle-126';
 import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=37';
@@ -21,7 +21,7 @@ import {createStreetlights} from './streetlights.js?v=82';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=43';
 import {loadVegetationAssets} from './vegetation.js?v=44';
 import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=117';
-import {loadSpeciesTextures} from './hybrid-tree.js?v=117';
+import {loadSpeciesTextures} from './hybrid-tree.js?v=134';
 let canopyTexture=null,finishedGround=null;
 let shops=null,shopCatalog=null,shopPlaces=null,shopPlan=null;
 import {createBuildingShellGeometry} from './building-shell.js?v=30';

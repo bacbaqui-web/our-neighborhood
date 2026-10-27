@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from './tree-species.js?v=65';
 import {createCanopyLayers} from './canopy-layers.js?v=68';
-import {createWinterLeaves} from './winter-leaves.js?v=69';
+import {createWinterLeaves} from './winter-leaves.js?v=134';
 import {createTreeWood} from './tree-wood.js?v=117';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=43';
 import {canopyAtlasRect} from './canopy-atlas.js?v=65';
@@ -41,7 +41,7 @@ function createHybridTreeBatch(plans,texture){
  material.onBeforeCompile=shader=>{atlasShader(shader);injectBillboardLight(shader,sunlight);shader.uniforms.canopyStyle=style;shader.fragmentShader='uniform float canopyStyle;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
  if(canopyStyle>1.5){float g=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722));diffuseColor.rgb=vec3(g);}
  else if(canopyStyle>.5){float g=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722));diffuseColor.rgb=vec3(mix(.16,1.,smoothstep(.09,.26,g)));}`);};material.customProgramCacheKey=()=> 'hybrid-leaf-sprays-v65';
- const mesh=new T.InstancedMesh(geometry,material,leaves.length);mesh.name='independent-leaf-masses';mesh.userData={isVegetationBillboard:true,noInk:true,fixedCenters:true,orientation:'camera-plane-fixed-roll'};mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);group.add(mesh);
+ const mesh=new T.InstancedMesh(geometry,material,leaves.length);mesh.name='independent-leaf-masses';mesh.userData={isVegetationBillboard:true,isFoliageSilhouette:true,outlineOnly:true,fixedCenters:true,orientation:'camera-plane-fixed-roll'};mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);group.add(mesh);
  const shadowGroup=new T.Group();shadowGroup.name='fixed-leaf-sun-casters';group.add(shadowGroup);
  const sg=new T.PlaneGeometry(1,1),sr=new T.InstancedBufferAttribute(new Float32Array(leaves.length*4),4);sg.setAttribute('spriteRect',sr);
  const sm=new T.MeshBasicMaterial({map:texture,alphaTest:.48,side:T.DoubleSide,colorWrite:false,depthWrite:false,transparent:true,opacity:0});

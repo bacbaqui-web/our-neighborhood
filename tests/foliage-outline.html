@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>Foliage silhouette regression</title>
+<script type="importmap">{"imports":{"three":"../outputs/domestic-test/vendor/three.module.js"}}</script>
+<style>body{background:#e8eef0;font:16px system-ui}canvas{width:300px;height:300px;margin:8px}pre{white-space:pre-wrap}</style><h1>잎 외곽선 · 겹침 경계 검증</h1><div id="views"></div><pre id="result">검증 중</pre>
+<script type="module">
+import * as T from 'three';
+import {createIllustrationRenderer} from '../outputs/domestic-test/illustration-renderer.js';
+const settings={lines:true,outerWidth:4,innerWidth:0,outerBrightness:0,outerSaturation:100,innerBrightness:0,innerSaturation:100,minDistance:0,acrossObjects:true,outerFace:false,innerFace:false,antialias:'off'};
+function run(label,grouped,innerWidth=0,outerWidth=4){
+ const renderer=new T.WebGLRenderer({preserveDrawingBuffer:true});renderer.setSize(300,300);renderer.setPixelRatio(1);document.getElementById('views').append(renderer.domElement);
+ const scene=new T.Scene();scene.background=new T.Color('#ffffff');const camera=new T.PerspectiveCamera(40,1,.1,20);camera.position.z=5;
+ const canvas=document.createElement('canvas');canvas.width=canvas.height=128;const c=canvas.getContext('2d');c.fillStyle='#58a040';c.beginPath();c.arc(64,64,58,0,Math.PI*2);c.fill();c.globalCompositeOperation='destination-out';c.beginPath();c.arc(48,45,9,0,Math.PI*2);c.fill();
+ const map=new T.CanvasTexture(canvas);map.colorSpace=T.SRGBColorSpace;
+ for(const [x,z] of [[-.45,0],[.45,.7]]){const mesh=new T.Mesh(new T.PlaneGeometry(1.8,1.8),new T.MeshBasicMaterial({map,alphaTest:.48,side:T.DoubleSide}));mesh.position.set(x,0,z);mesh.userData={isFoliageSilhouette:grouped,outlineOnly:true};scene.add(mesh);}
+ const ink=createIllustrationRenderer(renderer);ink.render(scene,camera,()=>renderer.render(scene,camera),{...settings,innerWidth,outerWidth});
+ const gl=renderer.getContext(),pixels=new Uint8Array(300*300*4);gl.readPixels(0,0,300,300,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let black=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]<10&&pixels[i+1]<10&&pixels[i+2]<10)black++;
+ renderer.domElement.title=label;return{label,black,pixels};
+}
+const off=run('외부선 없음',true,0,0),separate=run('빌보드마다 선',false),merged=run('수관 한 덩어리 외부선',true),inner=run('내부선 8px — 잎에는 영향 없음',true,8);
+const checks={visibleOuter:merged.black>off.black,overlapsRemoved:merged.black<separate.black,innerIgnored:merged.pixels.every((v,i)=>v===inner.pixels[i])};
+document.getElementById('result').textContent=JSON.stringify({checks,counts:[off,separate,merged,inner].map(({label,black})=>({label,black}))},null,2);document.body.dataset.pass=String(Object.values(checks).every(Boolean));
+</script>

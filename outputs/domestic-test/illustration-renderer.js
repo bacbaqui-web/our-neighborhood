@@ -37,10 +37,13 @@ void main(){
   bool both=center.a!=0.&&adjacent.a!=0.;
   float before=texture2D(depths,vUv-offset).r;
   bool outerJump=minDistance>0.?jump(vUv,offset):(abs(after-d)>.0003&&abs(after-d)>4.*abs(d-before)+.00001);
-  bool boundary=widths.x>0.&&(center.a!=adjacent.a||(both&&outerJump));
-  // Foliage masses keep depth/occlusion, but never get contour strokes.
-  // Test the front surface so leaves do not erase a building's foreground edge.
-  if(boundary&&(after<d?adjacent.a:center.a)<-1000000.)boundary=false;
+  // All foliage cards share one silhouette, across species and winter leaves.
+  // Their real depths still occlude buildings, but overlaps within the canopy
+  // must not become strokes just because separate cards sit at different depths.
+  bool sameFoliage=center.a==-1000001.&&adjacent.a==-1000001.;
+  bool boundary=widths.x>0.&&(center.a!=adjacent.a||(both&&!sameFoliage&&outerJump));
+  // Only explicitly ink-free surfaces suppress the foreground contour.
+  if(boundary&&(after<d?adjacent.a:center.a)==-16777216.)boundary=false;
   bool limited=both&&(center.a==adjacent.a||acrossObjects>.5);
   if(boundary&&limited&&minDistance>0.&&abs(meters(d)-meters(after))<minDistance)boundary=false;
   if(boundary){outer=1.;if(adjacent.a!=0.&&after<nearest){foreground=faceAt(vUv+offset);nearest=after;}}
@@ -85,7 +88,7 @@ export function createIllustrationRenderer(renderer){
   let mat=byMaterial.get(original);if(mat)return mat;
   const atlas=!!object.geometry.attributes.spriteRect,ids=!!object.geometry.attributes.inkObjectId;
   mat=new T.ShaderMaterial({side:original.side,polygonOffset:original.polygonOffset,polygonOffsetFactor:original.polygonOffsetFactor,polygonOffsetUnits:original.polygonOffsetUnits,
-   uniforms:{map:{value:original.map||null},alphaCutoff:{value:original.alphaTest||.01},objectId:{value:object.userData.noInk?16777216:object.id},outlineSign:{value:object.userData.noInk||object.userData.isPedestrianBillboard||object.userData.outlineOnly?-1:1}},
+   uniforms:{map:{value:original.map||null},alphaCutoff:{value:original.alphaTest||.01},objectId:{value:object.userData.noInk?16777216:object.userData.isFoliageSilhouette?1000001:object.id},outlineSign:{value:object.userData.noInk||object.userData.isFoliageSilhouette||object.userData.isPedestrianBillboard||object.userData.outlineOnly?-1:1}},
    defines:{...(original.map?{HAS_MAP:1}:{}),...(atlas?{HAS_ATLAS:1}:{}),...(ids?{HAS_IDS:1}:{})},
    vertexShader:`varying vec3 vSurfaceNormal;varying float vObjectId;uniform float objectId;
    #ifdef HAS_MAP

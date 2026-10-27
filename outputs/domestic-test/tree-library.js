@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {TREE_SPECIES} from './tree-species.js?v=65';
 import {planCanopy,validateCanopy} from './canopy-growth.js?v=67';
-import {createHybridTrees,loadSpeciesTextures} from './hybrid-tree.js?v=69';
+import {createHybridTrees,loadSpeciesTextures} from './hybrid-tree.js?v=134';
 import {createBillboardLightField} from './billboard-lighting.js?v=43';
 import {environmentProfile,bearingVector} from './environment-policy.js?v=43';
 const catalog=document.getElementById('catalog'),status=document.getElementById('status'),seasonNames={spring:'봄꽃·새순',summer:'여름 잎',autumn:'가을 잎·열매',winter:'겨울 모습'};

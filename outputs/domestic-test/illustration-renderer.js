@@ -8,7 +8,7 @@ precision highp float;
 varying vec2 vUv;
 uniform sampler2D image, surfaces, depths;
 uniform vec2 texel, widths, outerAdjust, innerAdjust, cameraRange;
-uniform float minDistance, acrossObjects, outerFace, innerFace;
+uniform float minDistance, acrossObjects, outerFace, innerFace, innerNormalThreshold;
 vec3 srgb(vec3 c){return mix(c*12.92,1.055*pow(max(c,vec3(0.)),vec3(1./2.4))-.055,step(vec3(.0031308),c));}
 vec3 faceAt(vec2 uv){return clamp(srgb(texture2D(image,uv).rgb),0.,1.);}
 float meters(float d){return cameraRange.x*cameraRange.y/(cameraRange.y-d*(cameraRange.y-cameraRange.x));}
@@ -46,7 +46,7 @@ void main(){
   if(boundary){outer=1.;if(adjacent.a!=0.&&after<nearest){foreground=faceAt(vUv+offset);nearest=after;}}
   vec2 innerOffset=dir*texel*max(.5,widths.y*.5);vec4 inside=texture2D(surfaces,vUv+innerOffset);
   if(widths.y>0.&&center.a>0.&&center.a==inside.a&&(minDistance<=0.||!jump(vUv,innerOffset)))
-    inner=max(inner,step(.36,length(inside.rgb-center.rgb)));
+    inner=max(inner,step(innerNormalThreshold,length(inside.rgb-center.rgb)));
  }
  color=mix(color,ink(color,innerAdjust,innerFace),inner*min(1.,widths.y));
  color=mix(color,ink(foreground,outerAdjust,outerFace),outer*min(1.,widths.x));
@@ -74,7 +74,7 @@ export function createIllustrationRenderer(renderer){
  const surface=new T.WebGLRenderTarget(1,1,{type:T.FloatType,minFilter:T.NearestFilter,magFilter:T.NearestFilter});
  surface.depthTexture=new T.DepthTexture(1,1,T.UnsignedIntType);
  const finished=new T.WebGLRenderTarget(1,1,{depthBuffer:false});
- const uniforms={image:{value:color.texture},surfaces:{value:surface.texture},depths:{value:surface.depthTexture},texel:{value:new T.Vector2(1,1)},widths:{value:new T.Vector2()},outerAdjust:{value:new T.Vector2()},innerAdjust:{value:new T.Vector2()},cameraRange:{value:new T.Vector2()},minDistance:{value:0},acrossObjects:{value:1},outerFace:{value:1},innerFace:{value:1}};
+ const uniforms={image:{value:color.texture},surfaces:{value:surface.texture},depths:{value:surface.depthTexture},texel:{value:new T.Vector2(1,1)},widths:{value:new T.Vector2()},outerAdjust:{value:new T.Vector2()},innerAdjust:{value:new T.Vector2()},cameraRange:{value:new T.Vector2()},minDistance:{value:0},acrossObjects:{value:1},outerFace:{value:1},innerFace:{value:1},innerNormalThreshold:{value:.36}};
  const inkMaterial=new T.ShaderMaterial({uniforms,vertexShader:screenVertex,fragmentShader:inkFragment,depthTest:false,depthWrite:false,toneMapped:false});
  const aaMaterial=new T.ShaderMaterial({uniforms:{image:{value:finished.texture},texel:uniforms.texel,enabled:{value:1}},vertexShader:screenVertex,fragmentShader:aaFragment,depthTest:false,depthWrite:false,toneMapped:false});
  const screen=new T.Scene(),screenCamera=new T.Camera(),quad=new T.Mesh(new T.PlaneGeometry(2,2),inkMaterial);screen.add(quad);quad.frustumCulled=false;
@@ -132,6 +132,7 @@ export function createIllustrationRenderer(renderer){
   uniforms.texel.value.set(1/w,1/h);uniforms.cameraRange.value.set(camera.near,camera.far);
   uniforms.widths.value.set(settings.lines?settings.outerWidth*cssScale:0,settings.lines?settings.innerWidth*cssScale:0);
   uniforms.outerAdjust.value.set(settings.outerBrightness/100,settings.outerSaturation/100);uniforms.innerAdjust.value.set(settings.innerBrightness/100,settings.innerSaturation/100);
+  uniforms.innerNormalThreshold.value=Number.isFinite(settings.innerAngle)?2*Math.sin(settings.innerAngle*Math.PI/360):.36;
   uniforms.minDistance.value=settings.minDistance/100;uniforms.acrossObjects.value=Number(settings.acrossObjects);uniforms.outerFace.value=Number(settings.outerFace);uniforms.innerFace.value=Number(settings.innerFace);aaMaterial.uniforms.enabled.value=settings.antialias==='off'?0:1;
   const target=renderer.getRenderTarget(),auto=renderer.autoClear,shadow=renderer.shadowMap.enabled,clear=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha(),infoAuto=renderer.info.autoReset;
   const hidden=hideLegacyLines(scene),replaced=[];renderer.info.autoReset=false;renderer.info.reset();

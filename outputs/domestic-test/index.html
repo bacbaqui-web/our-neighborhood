@@ -47,7 +47,7 @@
 <label class="art-row" for="art-outerSaturation"><span>외부선 채도</span><input id="range-outerSaturation" type="range" aria-label="외부선 채도 슬라이더" min="0" max="200" value="110" step="1"><span class="number-field"><input id="art-outerSaturation" type="number" aria-label="외부선 채도" min="0" max="200" value="110" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
 <label class="art-row" for="art-minDistance"><span>최소 거리</span><input id="range-minDistance" type="range" aria-label="최소 거리 슬라이더" min="0" max="200" value="0" step="1"><span class="number-field"><input id="art-minDistance" type="number" aria-label="최소 거리" min="0" max="200" value="0" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>cm</span></span></label>
 <label class="check-row"><input id="art-acrossObjects" type="checkbox" checked> 다른 오브젝트 사이에도 적용</label><p class="micro-hint">앞뒤 면의 간격이 작으면 숨김 · 0cm는 제한 없음</p></div><div class="line-subsection"><h3>내부선</h3><label class="art-row" for="art-innerWidth"><span>내부선 두께</span><input id="range-innerWidth" type="range" aria-label="내부선 두께 슬라이더" min="0" max="6" value="1" step=".1"><span class="number-field"><input id="art-innerWidth" type="number" aria-label="내부선 두께" min="0" max="6" value="1" step=".1" title="직접 입력 · 휠 또는 드래그로 조절"><span>px</span></span></label>
-<label class="check-row"><input id="art-innerFace" type="checkbox" checked> 내부선에 면색 적용</label><label class="art-row" for="art-innerBrightness"><span>내부선 명도</span><input id="range-innerBrightness" type="range" aria-label="내부선 명도 슬라이더" min="0" max="200" value="90" step="1"><span class="number-field"><input id="art-innerBrightness" type="number" aria-label="내부선 명도" min="0" max="200" value="90" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
+<label class="art-row" for="art-innerAngle"><span>내부선 각도</span><input id="range-innerAngle" type="range" aria-label="내부선 각도 슬라이더" min="1" max="90" value="20.7395196109548" step="any"><span class="number-field"><input id="art-innerAngle" type="number" aria-label="내부선 각도" min="1" max="90" value="20.7395196109548" step=".1"><span>°</span></span></label><p class="micro-hint">낮으면 작은 굴곡까지 표시 · 기본 약 20.74°</p><label class="check-row"><input id="art-innerFace" type="checkbox" checked> 내부선에 면색 적용</label><label class="art-row" for="art-innerBrightness"><span>내부선 명도</span><input id="range-innerBrightness" type="range" aria-label="내부선 명도 슬라이더" min="0" max="200" value="90" step="1"><span class="number-field"><input id="art-innerBrightness" type="number" aria-label="내부선 명도" min="0" max="200" value="90" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
 <label class="art-row" for="art-innerSaturation"><span>내부선 채도</span><input id="range-innerSaturation" type="range" aria-label="내부선 채도 슬라이더" min="0" max="200" value="110" step="1"><span class="number-field"><input id="art-innerSaturation" type="number" aria-label="내부선 채도" min="0" max="200" value="110" step="1" title="직접 입력 · 휠 또는 드래그로 조절"><span>%</span></span></label>
 </div><p class="micro-hint">면색 기준 · 명도·채도 100%는 원래 면색</p></details>
         <details class="art-panel" id="shadingPanel" open><summary>명암 <span>시간에 따른 자연광</span></summary>
@@ -126,6 +126,6 @@
     </section>
   </div>
 </dialog>
-<script type="module" src="./app.js?v=92"></script>
+<script type="module" src="./app.js?v=inner-angle-126"></script>
 </body>
 </html>

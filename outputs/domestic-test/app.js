@@ -6,9 +6,9 @@ import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=80';
 import {loadData} from './load-data.js?v=92';
 import {applyRoadContext} from './road-context.js?v=76';
-import {createIllustrationRenderer} from './illustration-renderer.js?v=64';
+import {createIllustrationRenderer} from './illustration-renderer.js?v=inner-angle-126';
 import {createIllustrationShading} from './illustration-shading.js?v=42';
-import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=37';
+import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=inner-angle-126';
 import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=37';
 import {createPrecipitation} from './precipitation.js?v=35';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=82';
@@ -248,7 +248,7 @@ for(const [key,value] of Object.entries(appearance)){
   $('range-'+key).oninput=event=>{appearance[key]=Number(event.target.value);appearanceChanged();};
  }else input.onchange=()=>{appearance[key]=input.type==='checkbox'?input.checked:input.value;appearanceChanged();};
 }
-$('resetLines').onclick=()=>{for(const key of ['lines','outerWidth','outerFace','outerBrightness','outerSaturation','minDistance','acrossObjects','innerWidth','innerFace','innerBrightness','innerSaturation'])appearance[key]=DEFAULT_APPEARANCE[key];appearanceChanged();};
+$('resetLines').onclick=()=>{for(const key of ['lines','outerWidth','outerFace','outerBrightness','outerSaturation','minDistance','acrossObjects','innerWidth','innerAngle','innerFace','innerBrightness','innerSaturation'])appearance[key]=DEFAULT_APPEARANCE[key];appearanceChanged();};
 $('resetShading').onclick=()=>{for(const key of ['shading','brightness','density','shadows','shadingMode'])appearance[key]=DEFAULT_APPEARANCE[key];appearanceChanged();};
 syncAppearance();
 // Review links can open a particular local shop and hour without changing defaults.

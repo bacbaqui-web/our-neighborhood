@@ -32,7 +32,7 @@ export function applyRepresentative(object,legacyId){
  if(templates.has(target))replacement=templates.get(target).clone(true);
  else {
   const key=source+':'+(info?.assetId||'native');
-  if(!nativeCache.has(key)){refineGroup(old,{id:source,name:object.name});nativeCache.set(key,old)}
+  if(!nativeCache.has(key)){old.traverse(o=>{if(o.isMesh)o.userData.representativeOriginalGeometryType=o.geometry.type;});refineGroup(old,{id:source,name:object.name});nativeCache.set(key,old)}
   replacement=nativeCache.get(key).clone(true);target=source;
  }
  replacement.updateMatrixWorld(true);const rb=new T.Box3().setFromObject(replacement),sz=rb.getSize(new T.Vector3());

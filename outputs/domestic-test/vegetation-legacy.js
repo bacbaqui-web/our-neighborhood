@@ -9,7 +9,7 @@ const plantAssets=['leafy-herb','hydrangea','pepper'];
 export function extractVegetation(root){
  root.updateMatrixWorld(true);const records=[],assets=[];root.traverse(o=>{if(o.userData.vegetationAssetId)assets.push(o);});
  for(const obj of assets){const id=obj.userData.vegetationAssetId;if(!trees.has(id)&&!plants.has(id))continue;
-  const candidates=[];obj.traverse(o=>{if(o.isMesh&&((o.userData.part==='leaf'||o.userData.part==='green'&&(id===197||!['CylinderGeometry','TubeGeometry'].includes(o.geometry.type))||trees.has(id)&&o.userData.part==='wood')||(['red','yellow'].includes(o.userData.part)&&o.geometry.type==='SphereGeometry'&&new T.Box3().setFromObject(o).getSize(new T.Vector3()).length()<.7)))candidates.push({object:o,box:new T.Box3().setFromObject(o)});});
+  const candidates=[];obj.traverse(o=>{if(o.isMesh&&((o.userData.part==='leaf'||o.userData.part==='green'&&(id===197||!['CylinderGeometry','TubeGeometry'].includes((o.userData.representativeOriginalGeometryType||o.geometry.type)))||trees.has(id)&&o.userData.part==='wood')||(['red','yellow'].includes(o.userData.part)&&(o.userData.representativeOriginalGeometryType||o.geometry.type)==='SphereGeometry'&&new T.Box3().setFromObject(o).getSize(new T.Vector3()).length()<.7)))candidates.push({object:o,box:new T.Box3().setFromObject(o)});});
   if(!candidates.length)continue;
   const clusters=[];
   for(const c of candidates){const touching=[];for(let i=0;i<clusters.length;i++)if(clusters[i].box.clone().expandByScalar(obj.userData.roadview50?.assetId?.startsWith('a')?.008:.13).intersectsBox(c.box))touching.push(i);

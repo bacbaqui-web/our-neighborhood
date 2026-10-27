@@ -38,7 +38,8 @@ export function spatialBatch(root, cellSize=48, cellHeight=48) {
       for(let k=0;k<s.step;k++){
         const j=index?index.getX(i*s.step+k):i*s.step+k,o=b.offsets[level];
         v.fromBufferAttribute(s.position,j).applyMatrix4(s.object.matrixWorld);b.p[o]=v.x;b.p[o+1]=v.y;b.p[o+2]=v.z;
-        b.c[o]=color.r;b.c[o+1]=color.g;b.c[o+2]=color.b;
+        const vc=s.material.vertexColors?s.geometry.attributes.color:null;
+        b.c[o]=color.r*(vc?.getX(j)??1);b.c[o+1]=color.g*(vc?.getY(j)??1);b.c[o+2]=color.b*(vc?.getZ(j)??1);
         if(b.n){if(normals)n.fromBufferAttribute(normals,j).applyNormalMatrix(normalMatrix);else n.set(0,1,0);b.n[o]=n.x;b.n[o+1]=n.y;b.n[o+2]=n.z;}
         b.inkIds[o/3]=s.geometry.attributes.inkObjectId?.getX(j)||s.object.id;b.offsets[level]+=3;
       }

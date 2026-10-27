@@ -2,7 +2,7 @@ import * as T from 'three';
 import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from './tree-species.js?v=65';
 import {createCanopyLayers} from './canopy-layers.js?v=68';
 import {createWinterLeaves} from './winter-leaves.js?v=69';
-import {createTreeWood} from './tree-wood.js?v=55';
+import {createTreeWood} from './tree-wood.js?v=117';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=43';
 import {canopyAtlasRect} from './canopy-atlas.js?v=65';
 import {bearingVector} from './environment-policy.js?v=43';

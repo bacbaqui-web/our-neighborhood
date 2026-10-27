@@ -5,9 +5,21 @@ import {speciesById} from './tree-species.js?v=55';
 // Continuous tapered rings per woody axis. Parallel transport avoids twisting
 // rings, separate cylinders, and ball-shaped knobs at each growth sample.
 export function createTreeWood(plan){
- const pieces=[];
+ const pieces=[],axes=new Map();
+ // Keep every branch and every leaf anchor. Reduce only cross sections and
+ // redundant samples along each axis; snap child roots to the simplified parent.
+ const compact=(path)=>{const original=path.nodes.map(i=>plan.nodes[i]),limit=[8,3,2,2][path.level]||2;
+  const chosen=new Set([0,original.length-1]);
+  while(chosen.size<Math.min(limit,original.length)){let best=-1,error=-1;const ids=[...chosen].sort((a,b)=>a-b);
+   for(let k=1;k<ids.length;k++){const a=ids[k-1],b=ids[k],line=new T.Line3(new T.Vector3(...original[a].p),new T.Vector3(...original[b].p));for(let j=a+1;j<b;j++){const v=new T.Vector3(...original[j].p),e=v.distanceToSquared(line.closestPointToPoint(v,true,new T.Vector3()));if(e>error){best=j;error=e;}}}
+   if(best<0)break;chosen.add(best);
+  }
+  const rings=[...chosen].sort((a,b)=>a-b).map(i=>({...original[i],p:[...original[i].p]})),parent=axes.get(path.parent);
+  if(parent){const origin=new T.Vector3(...rings[0].p);let hit=null,d=Infinity;for(let j=1;j<parent.length;j++){const q=new T.Line3(new T.Vector3(...parent[j-1].p),new T.Vector3(...parent[j].p)).closestPointToPoint(origin,true,new T.Vector3()),dist=q.distanceToSquared(origin);if(dist<d){d=dist;hit=q;}}if(hit)rings[0].p=hit.toArray();}
+  axes.set(path.index,rings);return rings;
+ };
  for(const path of plan.paths){
-  const rings=path.nodes.map(i=>plan.nodes[i]),sides=[12,9,7,5][path.level]||5,positions=[],uvs=[],indices=[];
+  const rings=compact(path),sides=[6,5,4,3][path.level]||3,positions=[],uvs=[],indices=[];
   let previousTangent=null,side=new T.Vector3(1,0,0);const q=new T.Quaternion();
   for(let i=0;i<rings.length;i++){
    const a=new T.Vector3(...rings[Math.max(0,i-1)].p),b=new T.Vector3(...rings[Math.min(rings.length-1,i+1)].p),tangent=b.sub(a).normalize();

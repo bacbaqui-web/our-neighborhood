@@ -5,10 +5,11 @@ import {FacadeBatch} from '../korean-facades.js?v=39';
 // logos or photographic textures are embedded in these editable face meshes.
 const c = v => typeof v === 'string' ? Number('0x' + v.replace('#','')) : v;
 export function buildStorefront(spec, {shell=true, props=true, attachment=false}={}) {
-  const batch=new FacadeBatch(), out=batch.writer(), B=(x,y,z,w,h,d,col)=>out.box(x,y,z,w,h,d,c(col)), Q=(x,y,z,w,h,col)=>out.quad(x,y,z,w,h,c(col),false), R=(a,b,r,col)=>out.rod(a,b,r,c(col),8);
+  const batch=new FacadeBatch(), out=batch.writer(), B=(x,y,z,w,h,d,col)=>out.box(x,y,z,w,h,d,c(col)), Q=(x,y,z,w,h,col)=>out.quad(x,y,z,w,h,c(col),false), R=(a,b,r,col)=>out.rod(a,b,r,c(col),r>.08?8:4);
   const signBatch=new FacadeBatch(),windowBatch=new FacadeBatch(),signOut=signBatch.writer(),windowOut=windowBatch.writer();
   const S=(x,y,z,w,h,d,col)=>signOut.box(x,y,z,w,h,d,c(col));
   const G=(x,y,z,w,h,col)=>windowOut.quad(x,y,z,w,h,c(col),false);
+  const plantAnchors=[];
   const W=spec.width,H=spec.height;
   const polygon=(points,col)=>{
     const b=batch.bucket(c(col));
@@ -18,7 +19,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       for(const p of tri){b.p.push(...p.toArray());b.n.push(...normal.toArray());b.inkIds.push(0);}
     }
   };
-  const horizontalDisc=(x,y,z,r,col)=>polygon(Array.from({length:24},(_,i)=>{const a=-i*Math.PI/12;return[x+Math.cos(a)*r,y,z+Math.sin(a)*r];}),col);
+  const horizontalDisc=(x,y,z,r,col)=>polygon(Array.from({length:12},(_,i)=>{const a=-i*Math.PI/6;return[x+Math.cos(a)*r,y,z+Math.sin(a)*r];}),col);
   if(shell){
     B(0,H/2,-.24,W,H,.48,spec.wall);
     B(0,H+.04,-.03,W+.06,.08,.62,spec.cap||'#b4b1aa');
@@ -29,9 +30,9 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   if(spec.pattern){
     const brick=spec.pattern==='brick',dy=brick?.18:.42,dx=brick?.40:.70;
     out.detail(0,()=>{for(let row=0,y=.15;y<H;y+=dy,row++){
-      Q(0,y,attachment?.05:.006,W,.008,spec.joint||'#aaa59c');
+      batch.lineBucket(c(spec.joint||'#aaa59c')).push(-W/2,y,attachment?.05:.006,W/2,y,attachment?.05:.006);
       const rh=Math.min(dy,H-y);
-      for(let x=-W/2+dx/2+(row%2)*dx/2;x<W/2-.01;x+=dx)Q(x,y+rh/2,attachment?.051:.007,.008,rh,spec.joint||'#aaa59c');
+      for(let x=-W/2+dx/2+(row%2)*dx/2;x<W/2-.01;x+=dx)batch.lineBucket(c(spec.joint||'#aaa59c')).push(x,y,attachment?.051:.007,x,y+rh,attachment?.051:.007);
     }});
   }
   for(const p of spec.panels||[])B(p.x,p.y,p.z??.04,p.w,p.h,p.d??.06,p.color);
@@ -53,7 +54,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
         for(let row=0;row<shelves;row++){
           const yy=bottom+.46+row*.44;
           B(x,yy,z+.018,pw-.08,.035,.055,'#acb9b2');
-          for(let j=0;j<4;j++)B(x-pw*.32+j*pw*.215,yy+.12,z+.025,pw*.14,.19,.035,['#c5d3bd','#d9cbb6','#a7bbb4','#e1ddd0'][(row+j)%4]);
+          for(let j=0;j<3;j++)B(x-pw*.30+j*pw*.30,yy+.12,z+.025,pw*.14,.19,.035,['#c5d3bd','#d9cbb6','#a7bbb4','#e1ddd0'][(row+j)%4]);
         }
         if(o.display==='counter')B(x,bottom+.38,z+.02,pw-.08,.5,.05,'#917f68');
       }
@@ -78,9 +79,9 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
     B(s.x,s.y-s.h/2+.08,.19,.14,.035,.04,'#555c57');
   }
   for(const a of spec.awnings||[]){
-    const depth=a.depth||1,rows=a.kind==='curve'?16:1;
+    const depth=a.depth||1,rows=a.kind==='curve'?6:1;
     const yAt=z=>a.y-(a.drop||.40)*(a.kind==='curve'?(1-Math.sqrt(Math.max(0,1-(z/depth)**2))):z/depth);
-    const strips=a.stripe?Math.max(2,Math.round(a.w/.18)):1;
+    const strips=a.stripe?Math.max(2,Math.round(a.w/.30)):1;
     for(let i=0;i<strips;i++)for(let j=0;j<rows;j++){
       const x0=a.x-a.w/2+a.w*i/strips,x1=x0+a.w/strips,z0=.18+depth*j/rows,z1=.18+depth*(j+1)/rows;
       polygon([[x0,yAt(z0-.18),z0],[x1,yAt(z0-.18),z0],[x1,yAt(z1-.18),z1],[x0,yAt(z1-.18),z1]],a.stripe&&i%2?a.stripe:a.color);
@@ -103,9 +104,9 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       const count=p.stack||1;
       for(let k=0;k<count;k++){
         const yy=.37+k*.75;box(0,yy,0,.92,.64,.4,'#d1cfc0');
-        polygon(Array.from({length:20},(_,j)=>{const a=j*Math.PI/10;return[x+(-.19+.21*Math.cos(a))*scale,y+(yy+.21*Math.sin(a))*scale,z+.211*scale];}),'#535d55');
-        for(let j=0;j<7;j++)box(.25,yy-.19+j*.062,.215,.22,.012,.025,'#6d776d');
-        for(let j=0;j<8;j++){const q=j*Math.PI/4;R([x-.19*scale,y+yy*scale,z+.237*scale],[x+(-.19+.18*Math.cos(q))*scale,y+(yy+.18*Math.sin(q))*scale,z+.237*scale],.008*scale,'#9ba094');}
+        polygon(Array.from({length:12},(_,j)=>{const a=j*Math.PI/6;return[x+(-.19+.21*Math.cos(a))*scale,y+(yy+.21*Math.sin(a))*scale,z+.211*scale];}),'#535d55');
+        for(let j=0;j<5;j++)box(.25,yy-.19+j*.093,.215,.22,.012,.025,'#6d776d');
+        for(let j=0;j<4;j++){const q=j*Math.PI/2;R([x-.19*scale,y+yy*scale,z+.237*scale],[x+(-.19+.18*Math.cos(q))*scale,y+(yy+.18*Math.sin(q))*scale,z+.237*scale],.008*scale,'#9ba094');}
       }
       if(count>1)for(const xx of [-.51,.51])box(xx,count*.375,0,.035,count*.75,.48,'#535c56');
     }else if(p.type==='freezer'){
@@ -117,7 +118,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       for(let k=0;k<4;k++)box(0,.12+k*(h-.18)/3,0,w,.035,.5,'#8b9286');
       if(p.stock)for(let k=0;k<3;k++)for(let j=0;j<3;j++)box(-w*.31+j*w*.31,.29+k*(h-.18)/3,0,w*.25,.28,.36,['#b1baa4','#c7b597','#a0ad9d'][j]);
     }else if(p.type==='crates'){
-      for(let k=0;k<(p.stack||3);k++){box(0,.11+k*.22,0,.57,.21,.43,p.color||'#355e8e');for(let j=0;j<4;j++)box(-.22+j*.145,.13+k*.22,.222,.085,.10,.01,'#273f54');}
+      for(let k=0;k<(p.stack||3);k++){box(0,.11+k*.22,0,.57,.21,.43,p.color||'#355e8e');for(let j=0;j<4;j++)Q(x+(-.22+j*.145)*scale,y+(.13+k*.22)*scale,z+.222*scale,.085*scale,.10*scale,'#273f54');}
     }else if(p.type==='garments'){
       for(const xx of [-.55,.55]){box(xx,.8,0,.025,1.6,.025,'#a3aaa1');box(xx,.04,0,.04,.06,.55,'#727c74');}
       box(0,1.57,0,1.16,.025,.025,'#a3aaa1');
@@ -132,12 +133,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       box(0,.44,0,p.w||1.5,.08,.40,p.color||'#9b8162');for(const xx of [-.5,.5])box(xx,.22,0,.07,.44,.32,'#646d66');
     }else if(p.type==='planter'){
       box(0,.24,0,.43,.48,.43,p.color||'#a48d73');box(0,.47,0,.34,.025,.34,'#6d6751');
-      for(let k=0;k<9;k++){
-        const angle=k*2.399,base=[x,y+.46*scale,z],tip=[x+Math.cos(angle)*.20*scale,y+(.68+(k%3)*.12)*scale,z+Math.sin(angle)*.18*scale];
-        R(base,tip,.008*scale,'#687651');
-        const dir=new T.Vector3(Math.cos(angle)*.12,.16,Math.sin(angle)*.12).multiplyScalar(scale),side=new T.Vector3(-Math.sin(angle)*.07,0,Math.cos(angle)*.07).multiplyScalar(scale),v=new T.Vector3(...tip);
-        polygon([v.clone().sub(dir).toArray(),v.clone().add(side).toArray(),v.clone().add(dir).toArray(),v.clone().sub(side).toArray()],k%3?'#62844f':'#7c9c5b');
-      }
+      plantAnchors.push({id:'shop-planter-'+spec.id+'-'+plantAnchors.length,kind:'plant',asset:'leafy-herb',root:[x,y+.48*scale,z],height:.45*scale,radius:.22*scale,source:'storefront-planter'});
     }else if(p.type==='cafeTable'){
       R([x,y+.69*scale,z],[x,y+.73*scale,z],.36*scale,'#999d92');
       horizontalDisc(x,y+.73*scale,z,.36*scale,'#999d92');
@@ -146,7 +142,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       for(const side of [-1,1]){
         const cx=x+side*.65*scale;R([cx,y+.42*scale,z],[cx,y+.45*scale,z],.22*scale,'#8d9788');horizontalDisc(cx,y+.45*scale,z,.22*scale,'#8d9788');
         for(const dz of [-.16,.16])for(const dx of [-.15,.15])R([cx+dx*scale,y+.43*scale,z+dz*scale],[cx+dx*1.2*scale,y+.025*scale,z+dz*1.2*scale],.012*scale,'#5d6b61');
-        for(let j=0;j<12;j++){const a=j*Math.PI/12,b=(j+1)*Math.PI/12;R([cx+Math.cos(a)*.22*scale,y+(.52+Math.sin(a)*.36)*scale,z-.16*scale],[cx+Math.cos(b)*.22*scale,y+(.52+Math.sin(b)*.36)*scale,z-.16*scale],.012*scale,'#5d6b61');}
+        for(let j=0;j<6;j++){const a=j*Math.PI/6,b=(j+1)*Math.PI/6;R([cx+Math.cos(a)*.22*scale,y+(.52+Math.sin(a)*.36)*scale,z-.16*scale],[cx+Math.cos(b)*.22*scale,y+(.52+Math.sin(b)*.36)*scale,z-.16*scale],.012*scale,'#5d6b61');}
         R([cx,y+.46*scale,z-.16*scale],[cx,y+.86*scale,z-.16*scale],.009*scale,'#657067');
       }
     }else if(p.type==='lantern'){
@@ -165,7 +161,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   for(const [parts,role] of [[signBatch,'sign'],[windowBatch,'interior']]){
     const group=parts.finish('Storefront-'+role);group.traverse(o=>{if(o.isMesh)o.userData.storefrontLightRole=role;});root.add(group);
   }
-  root.userData={storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:true,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true};
+  root.userData={plantAnchors,storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:true,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true};
   root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
   return root;
 }

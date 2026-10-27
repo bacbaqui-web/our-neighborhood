@@ -1,13 +1,13 @@
 import * as T from 'three';
 import {fittedRibbon} from './terrain-fit.js?v=81';
 import {fitSupportBase,footprintHeights} from './support-geometry.js?v=82';
-import {seatGroundAsset} from './ground-contact.js?v=79';
+import {seatGroundAsset} from './ground-contact.js?v=122';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=79';
-import {createAsset,addLines} from '../alley-library/models.js?v=22.5';
+import {createAsset,addLines} from '../alley-library/models.js?v=122';
 // Architecture is dimensioned for the measured space between a facade and its parcel edge.
 // It is reserved before the small asset scatter, so big functions cannot be crowded out.
 export function renderAttachedStructures(plan,elevation){
- const group=new T.Group();group.name='facade-attached-architecture';const colliders=[],records=[],groundContacts=[],supportQA={posts:0,plinths:0,wheelStops:0,groundStrips:0};
+ const group=new T.Group();group.name='facade-attached-architecture';const colliders=[],records=[],groundContacts=[],assetPlacements=[],supportQA={posts:0,plinths:0,wheelStops:0,groundStrips:0};
  const materials=new Map();function material(c,overlay=false){const key=c+':'+overlay;if(!materials.has(key))materials.set(key,new T.MeshStandardMaterial({color:c,roughness:.88,side:T.DoubleSide}));return materials.get(key)}
  const C={steel:0x586b6c,post:0xa7aaa1,wall:0xb9b6a5,trim:0xd9d3be,glass:0x536e72,wood:0x907956,concrete:0xabaeaa,dark:0x3e494a};
  for(const s of plan.structures){const g=new T.Group();g.name=s.name;const {width:w,depth:d,ux,uz,nx,nz,origin:o}=s;const angle=-Math.atan2(uz,ux),seed=Math.abs(s.owner),roofColors=[0x648b94,0x7c897c,0x9b7c6a,0x7b8588],roofColor=s.roofColor??roofColors[seed%4],roofKind=s.roofKind??'lean-metal',covered=roofKind!=='none';
@@ -26,7 +26,7 @@ export function renderAttachedStructures(plan,elevation){
   const m=mesh(fittedRibbon([P(u0,v0),P(u1,v1)],width,(x,z)=>pavedSurface(x,z)+.002,(x,z)=>pavedSurface(x,z)+.006,.10),color,name);
   m.userData.surfaceOverlay=true;supportQA.groundStrips++;return m;
  }
- function asset(id,u,v,lift=0,scale=1){const a=createAsset(id);a.userData.vegetationAssetId=id;const b=new T.Box3().setFromObject(a),p=P(u,v);a.userData.localBounds=b;a.position.set(p[0],Y(u,v)-b.min.y*scale+.06+lift,p[1]);a.rotation.y=angle;a.scale.multiplyScalar(scale);if(!lift){const qa=seatGroundAsset(a,pavedSurface);groundContacts.push({id,owner:s.owner,...qa});}a.updateMatrixWorld(true);g.add(a);return a}
+ function asset(id,u,v,lift=0,scale=1){const a=createAsset(id);a.userData.vegetationAssetId=id;const b=new T.Box3().setFromObject(a),p=P(u,v);a.userData.localBounds=b;a.position.set(p[0],Y(u,v)-b.min.y*scale+.06+lift,p[1]);a.rotation.y=angle;a.scale.multiplyScalar(scale);if(!lift){const qa=seatGroundAsset(a,pavedSurface);groundContacts.push({id,owner:s.owner,...qa});}a.updateMatrixWorld(true);g.add(a);const bb=new T.Box3().setFromObject(a);assetPlacements.push({id,name:a.name,owner:s.owner,x:a.position.x,y:a.position.y,z:a.position.z,angle,height:bb.max.y-bb.min.y,role:s.type==='carport'?'주차면 차량':'차양 아래 생활 소품',groundFit:a.userData.groundFit,footprint:[[bb.min.x,bb.min.z],[bb.max.x,bb.min.z],[bb.max.x,bb.max.z],[bb.min.x,bb.max.z]]});return a}
  // Ground layers have real height separation. A strong depth bias would hide
  // parking paint and lift the apparent floor over tyre/column contacts.
  // Flush concrete apron follows the terrain, with visible expansion joints and parking paint.
@@ -68,7 +68,7 @@ export function renderAttachedStructures(plan,elevation){
   if(s.type==='carport'&&s.car){const {x,z}=s.car;asset(seed%7===0?173:seed%2?211:212,x,z);
 solid(x,z,3.8,1.8,Y(x,z),Y(x,z)+1.95,'parked-car');
    for(const x1 of [x-2,x+2])if(x1>.18&&x1<w-.18)groundStrip(x1,.2,x1,d-.15,.05,'trim','parking-paint');
-   mesh(fittedRibbon([P(x-.575,.42),P(x+.575,.42)],.15,(xx,zz)=>pavedSurface(xx,zz)-.015,(xx,zz)=>pavedSurface(xx,zz)+.16,.12),'dark','grounded-wheel-stop');supportQA.wheelStops++;
+   for(const side of [-1,1]){const center=z+side*.68;mesh(fittedRibbon([P(x-1.48,center-.20),P(x-1.48,center+.20)],.12,(xx,zz)=>pavedSurface(xx,zz)-.015,(xx,zz)=>pavedSurface(xx,zz)+.10,.12),'dark','grounded-wheel-stop');supportQA.wheelStops++;}
   }else{
    // Planner-provided clear subzones also keep canopy posts and belongings off door routes.
    for(const item of s.furnishings||[]){asset(item.id,item.x,item.z);solid(item.x,item.z,item.width,item.depth,Y(item.x,item.z),Y(item.x,item.z)+item.height,'covered-furnishing');}
@@ -78,5 +78,5 @@ solid(x,z,3.8,1.8,Y(x,z),Y(x,z)+1.95,'parked-car');
  }
  addLines(g);g.traverse(m=>{if(m.userData.surfaceOverlay)for(const line of [...m.children])if(line.isLineSegments){m.remove(line);line.geometry.dispose();line.material.dispose();}});group.add(g);records.push({...s,base:lo,roofClearance:s.roofHeight,roofHeight:roofY,x:P(w/2,d/2)[0],z:P(w/2,d/2)[1]});
  }
- group.userData.groundContacts=groundContacts;group.userData.supportFit=supportQA;return{group,colliders,records,groundContacts};
+ group.userData.groundContacts=groundContacts;group.userData.supportFit=supportQA;return{group,colliders,records,groundContacts,assetPlacements};
 }

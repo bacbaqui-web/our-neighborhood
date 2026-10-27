@@ -1,11 +1,15 @@
+import {planPlantCanopies} from './plant-canopy-layout.js?v=2';
 import {fitSupportBase} from './support-geometry.js?v=82';
 import {createVegetation} from './vegetation.js?v=44';
-import {createHybridTrees} from './hybrid-tree.js?v=69';
+import {createHybridTrees} from './hybrid-tree.js?v=117';
 import {planNeighborhoodTrees} from './neighborhood-tree-plans.js?v=82';
 export function createNeighborhoodVegetation(placements,assets,elevation,shadowElevation,texture,buildings,structures){
  const {plans,report}=planNeighborhoodTrees(placements,buildings,structures,elevation,shadowElevation);
  const plants=placements.filter(p=>p.kind!=='tree'),contacts=[...plants,...plans.map(p=>({...p,kind:'tree',source:p.stats.source}))];
- const original=createVegetation(plants,assets,elevation,shadowElevation,contacts),hybrid=createHybridTrees(plans,texture);original.group.add(hybrid.group);
+ const plantPlans=planPlantCanopies(plants);
+ const original=createVegetation([],assets,elevation,shadowElevation,contacts),hybrid=createHybridTrees([...plans,...plantPlans],texture);
+ for(const figure of hybrid.figures)if(figure.plan.stats.kind==='plant')figure.placement.kind='plant';
+ original.group.userData.plants=plants.length;original.group.userData.plantFoliage={method:'same createHybridTrees atlas renderer',plants:plants.length,species:'fringe',layout:'compact-offset-crown-v2',maxCardsPerPlant:7,cards:plantPlans.reduce((n,p)=>n+p.clumps.length,0),triangles:plantPlans.reduce((n,p)=>n+p.clumps.length*2,0),oldCards:plantPlans.length*3,oldTriangles:plantPlans.length*6,lightSamplesPerPlant:1};original.group.add(hybrid.group);
  let rootRims=0;
  for(const mesh of hybrid.wood.children){const plan=plans.find(p=>mesh.name==='rooted-trunk-'+p.id);if(!plan)continue;let offset=0;const indices=[];
   for(const path of plan.paths){const sides=[12,9,7,5][path.level]||5,node=plan.nodes[path.nodes[0]];if(Math.hypot(...node.p.map((v,i)=>v-plan.root[i]))<.001)for(let j=0;j<sides;j++)indices.push(offset+j);offset+=path.nodes.length*sides;}

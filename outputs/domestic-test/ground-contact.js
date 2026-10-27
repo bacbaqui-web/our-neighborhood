@@ -41,8 +41,8 @@ export function contactReport(root,contacts,surface){
 export function libraryWheelContacts(root){
  root.updateMatrixWorld(true);const inverse=root.matrixWorld.clone().invert(),wheels=[];
  root.traverse(m=>{if(!m.isMesh)return;const g=m.geometry,p=g.parameters||{},rubber=m.userData.detailKind==='rubber'||m.userData.part==='dark';
-  const matrix=inverse.clone().multiply(m.matrixWorld),torus=g.type==='TorusGeometry',axis=new T.Vector3(0,torus?0:1,torus?1:0).transformDirection(matrix);
-  if(rubber&&Math.abs(axis.y)<.35&&((torus&&p.radius>=.085&&p.tube>=.025)||(g.type==='CylinderGeometry'&&p.radiusTop>=.12))){const points=contactPoints(g,matrix);if(Math.min(...points.map(v=>v.y))<.12)wheels.push({mesh:m,points});}
+  const matrix=inverse.clone().multiply(m.matrixWorld),torus=g.type==='TorusGeometry';g.computeBoundingBox();const size=g.boundingBox.getSize(new T.Vector3()),dims=size.toArray(),axisIndex=dims.indexOf(Math.min(...dims)),axis=new T.Vector3(axisIndex===0?1:0,axisIndex===1?1:0,axisIndex===2?1:0).transformDirection(matrix);
+  if(m.userData.groundContactWheel||(rubber&&Math.abs(axis.y)<.35&&((torus&&p.radius>=.085&&p.tube>=.025)||(g.type==='CylinderGeometry'&&p.radiusTop>=.12)))){const points=contactPoints(g,matrix);if(Math.min(...points.map(v=>v.y))<.12)wheels.push({mesh:m,points});}
  });return wheels;
 }
 export function seatGroundAsset(root,surface,{wheels=true}={}){

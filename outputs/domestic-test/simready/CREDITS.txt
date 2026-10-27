@@ -1,0 +1,16 @@
+NVIDIA SimReady experimental webtoon props
+Creator: NVIDIA
+License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+Revision: 9eadae061bf3f6fcee629b3286d5593c05415b42
+
+냉장고 / appliance_refrigerator_a01
+https://huggingface.co/datasets/nvidia/simready-assets/tree/9eadae061bf3f6fcee629b3286d5593c05415b42/appliance_refrigerator_a01
+Triangles: 232329 -> 997
+사무용 의자 / chair_office_amf_black_a01
+https://huggingface.co/datasets/nvidia/simready-assets/tree/9eadae061bf3f6fcee629b3286d5593c05415b42/chair_office_amf_black_a01
+Triangles: 32253 -> 1000
+쓰레기통 / bin_waste_a01
+https://huggingface.co/datasets/nvidia/simready-assets/tree/9eadae061bf3f6fcee629b3286d5593c05415b42/bin_waste_a01
+Triangles: 44723 -> 991
+
+Changes: USD to GLB/OBJ; normalized placement; common flat webtoon palette on both original-geometry and low-poly comparisons. Textures removed. Original geometry retained in *-original.glb. Refrigerator low-poly: 15mm voxel shell, decimation, nearest-surface material transfer; closed static prop, interior/door articulation not preserved. Chair: planar cleanup and decimation. Bin: separate material regions, weld vertices, per-region decimation.

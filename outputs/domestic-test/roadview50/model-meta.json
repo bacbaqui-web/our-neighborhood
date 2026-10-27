@@ -3777,48 +3777,6 @@
     "placementRuleText": "도로 접근 가능한 분리수거 구역 · 허용 구역: 외벽 등 확인된 설치 구역 · 건물당 최대 2개"
   },
   {
-    "id": "a91",
-    "name": "뚜껑 드럼통",
-    "category": "생활·청소",
-    "triangles": 380,
-    "file": "a91.glb",
-    "thumbnail": "a91.png",
-    "size": [
-      0.51,
-      0.78,
-      0.51
-    ],
-    "geometryHash": "91cc19206599c1c5a82332ffe4ac4483b488cb4610bfe56abc8f981812202cc3",
-    "description": "새로 제작한 독립 저폴리 모델. 텍스처 없이 꼭짓점 색상 사용. 치수는 추정.",
-    "revision": "new",
-    "sourceId": "s17",
-    "evidence": "adapted",
-    "reason": "작업장용 수납 용기를 추가합니다.",
-    "observation": "가게 주변 생활용기를 참고한 드럼통 변형입니다.",
-    "placementHint": "작업 구역 가장자리에 둡니다.",
-    "placedInstances": 0,
-    "placementRule": {
-      "label": "작업·자재 보관 구역",
-      "auto": true,
-      "support": "ground",
-      "zones": [
-        "workshop"
-      ],
-      "maxPerOwner": 2,
-      "clearance": 0.2,
-      "frontClearance": 0.5,
-      "minScale": 0.85,
-      "assetId": "a91",
-      "name": "뚜껑 드럼통",
-      "profile": "workshop",
-      "placementHint": "작업 구역 가장자리에 둡니다.",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
-    },
-    "placementRuleText": "작업·자재 보관 구역 · 허용 구역: 작업 공간 · 건물당 최대 2개 · 앞쪽 사용 공간 0.5m 확보"
-  },
-  {
     "id": "a92",
     "name": "손잡이 뚜껑양동이",
     "category": "생활·청소",
@@ -6883,47 +6841,6 @@
     "placementRuleText": "현관 옆, 벽을 등진 신발 정리대 · 허용 구역: 정원 마당, 세탁 공간, 뒤편 마당, 좁은 생활 공간, 설비·수거 공간 · 건물당 최대 1개 · 뒤쪽 벽 간격 0.3m 이하 · 현관에서 1.5–4m · 앞쪽 사용 공간 0.65m 확보"
   },
   {
-    "id": "a166",
-    "name": "현관 신발 한 켤레",
-    "category": "주택·생활설비",
-    "triangles": 196,
-    "file": "a166.glb",
-    "thumbnail": "a166.png",
-    "size": [
-      0.32,
-      0.115,
-      0.29
-    ],
-    "geometryHash": "416eed4f22dc4d67321f9604313c2ab2c0b66823c4e1c129c7acb6ef1528b89b",
-    "description": "주택과 생활공간용 독립 저폴리 모델. 직접 관찰 사실을 주장하지 않는 응용 제작이며 치수는 추정.",
-    "provenanceType": "응용 제작",
-    "sourceId": "s24",
-    "evidence": "adapted",
-    "reason": "생활감을 주는 신발 한 켤레를 독립 소품으로 추가했습니다.",
-    "placementHint": "신발장·현관 안",
-    "observation": "로드뷰에서 확인한 주택·점포의 용도와 주변 구성을 바탕으로 응용했습니다. 이 물건의 개별 형태를 현장에서 확인한 것은 아닙니다.",
-    "revision": "new200",
-    "assetVersion": "collection200",
-    "placedInstances": 0,
-    "placementRule": {
-      "label": "정확한 설치면 확인 후 배치",
-      "auto": false,
-      "support": "interior-or-confirmed-shop",
-      "zones": [],
-      "maxPerOwner": 1,
-      "clearance": 0.3,
-      "minScale": 0.85,
-      "assetId": "a166",
-      "name": "현관 신발 한 켤레",
-      "profile": "deferred",
-      "placementHint": "신발장·현관 안",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
-    },
-    "placementRuleText": "정확한 설치면 확인 후 배치 · 자동 배치 보류: 실내 또는 용도가 확인된 가게을 확인해야 합니다. · 건물당 최대 1개"
-  },
-  {
     "id": "a167",
     "name": "자물쇠와 걸쇠",
     "category": "주택·생활설비",
@@ -7598,47 +7515,6 @@
       "slopeMax": 0.12
     },
     "placementRuleText": "넓고 비어 있는 정원 휴식 공간 · 허용 구역: 정원 마당, 뒤편 마당 · 건물당 최대 1개 · 마당 32㎡ 이상 · 앞쪽 사용 공간 0.8m 확보"
-  },
-  {
-    "id": "a183",
-    "name": "얼음 위 생선 진열대",
-    "category": "시장·조리",
-    "triangles": 415,
-    "file": "a183.glb",
-    "thumbnail": "a183.png",
-    "size": [
-      0.95,
-      0.83,
-      0.6
-    ],
-    "geometryHash": "2aed6a43ddc3fdc8d28b8ce2b579b16e10830a8001c81863adbc89450a7bf808",
-    "description": "새로 제작한 독립 저폴리 모델. 텍스처 없이 꼭짓점 색상 사용. 치수는 추정.",
-    "sourceId": "s25",
-    "evidence": "adapted",
-    "reason": "수산물 점포를 꾸밀 수 있는 생선·얼음 진열대입니다.",
-    "placementHint": "점포 조리·판매 구역",
-    "observation": "로드뷰에서 확인한 주택·점포의 용도와 주변 구성을 바탕으로 응용했습니다. 이 물건의 개별 형태를 현장에서 확인한 것은 아닙니다.",
-    "provenanceType": "응용 제작",
-    "revision": "new200",
-    "assetVersion": "collection200",
-    "placedInstances": 0,
-    "placementRule": {
-      "label": "정확한 설치면 확인 후 배치",
-      "auto": false,
-      "support": "worktop",
-      "zones": [],
-      "maxPerOwner": 1,
-      "clearance": 0.3,
-      "minScale": 0.85,
-      "assetId": "a183",
-      "name": "얼음 위 생선 진열대",
-      "profile": "deferred",
-      "placementHint": "점포 조리·판매 구역",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
-    },
-    "placementRuleText": "정확한 설치면 확인 후 배치 · 자동 배치 보류: 작업대·선반 위을 확인해야 합니다. · 건물당 최대 1개"
   },
   {
     "id": "a184",

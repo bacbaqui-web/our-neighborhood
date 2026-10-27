@@ -1873,25 +1873,6 @@
       "orientation": "follow-context",
       "slopeMax": 0.24
     },
-    "a91": {
-      "label": "작업·자재 보관 구역",
-      "auto": true,
-      "support": "ground",
-      "zones": [
-        "workshop"
-      ],
-      "maxPerOwner": 2,
-      "clearance": 0.2,
-      "frontClearance": 0.5,
-      "minScale": 0.85,
-      "assetId": "a91",
-      "name": "뚜껑 드럼통",
-      "profile": "workshop",
-      "placementHint": "작업 구역 가장자리에 둡니다.",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
-    },
     "a92": {
       "label": "정원 관리 소품",
       "auto": true,
@@ -3174,22 +3155,6 @@
       "orientation": "front-away-from-wall",
       "slopeMax": 0.12
     },
-    "a166": {
-      "label": "정확한 설치면 확인 후 배치",
-      "auto": false,
-      "support": "interior-or-confirmed-shop",
-      "zones": [],
-      "maxPerOwner": 1,
-      "clearance": 0.3,
-      "minScale": 0.85,
-      "assetId": "a166",
-      "name": "현관 신발 한 켤레",
-      "profile": "deferred",
-      "placementHint": "신발장·현관 안",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
-    },
     "a167": {
       "label": "정확한 설치면 확인 후 배치",
       "auto": false,
@@ -3465,22 +3430,6 @@
       "doorPassageWidth": 1.2,
       "orientation": "follow-context",
       "slopeMax": 0.12
-    },
-    "a183": {
-      "label": "정확한 설치면 확인 후 배치",
-      "auto": false,
-      "support": "worktop",
-      "zones": [],
-      "maxPerOwner": 1,
-      "clearance": 0.3,
-      "minScale": 0.85,
-      "assetId": "a183",
-      "name": "얼음 위 생선 진열대",
-      "profile": "deferred",
-      "placementHint": "점포 조리·판매 구역",
-      "doorPassageWidth": 1.2,
-      "orientation": "follow-context",
-      "slopeMax": 0.24
     },
     "a184": {
       "label": "정확한 설치면 확인 후 배치",

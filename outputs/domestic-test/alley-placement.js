@@ -1,7 +1,7 @@
-import {applyRepresentative} from './representative-assets.js?v=126';
+import {applyRepresentative} from './representative-assets.js?v=129';
 import {getLegacyPlacementRule} from './legacy-placement-policy.js?v=113';
 import {evaluatePlacement} from './placement-policy.js?v=110';
-import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=126';
+import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=129';
 import {inArterial} from './arterial.js?v=79';
 import {seatGroundAsset} from './ground-contact.js?v=122';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=82';
@@ -9,7 +9,7 @@ import {inShopApproach} from './shops/neighborhood-plan.js?v=72';
 import {extractVegetation} from './vegetation-legacy.js?v=115';
 import {partMaxLOD} from './lod-policy.js?v=29';
 import {populateStreetLife,contextOnly} from './street-life.js?v=59';
-import {renderAttachedStructures} from './attached-structures.js?v=126';
+import {renderAttachedStructures} from './attached-structures.js?v=129';
 import {classifyYards,programs,inYard,yardCandidates,edgeCandidates} from './neighborhood-rules.js?v=17.2';
 import {renderParcels} from './parcel-renderer.js?v=82';
 import * as T from 'three';

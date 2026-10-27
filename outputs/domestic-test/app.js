@@ -1,6 +1,6 @@
-import {loadRepresentatives,representativeAudit,installRepresentativeControls} from './representative-assets.js?v=126';
+import {loadRepresentatives,representativeAudit,installRepresentativeControls} from './representative-assets.js?v=129';
 import {installAssetInspection,collectShopPlants} from './asset-inspection.js?v=116';
-import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v=126';
+import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v=129';
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=80';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=80';
 let arterialPlan=null,arterial=null;
@@ -31,7 +31,7 @@ import {createUtilityNetwork} from './utility-network.js?v=82';
 import {facadeStyles} from './korean-facades.js?v=39';
 import {planFrontages} from './frontage.js?v=14.5';
 import {setupWalk} from './walk.js?v=81';
-import {decorateAlleys} from './alley-placement.js?v=126';
+import {decorateAlleys} from './alley-placement.js?v=129';
 import {createStreet} from './street.js?v=117';
 import {createDetails} from './details.js?v=82';
 import * as T from 'three';
@@ -313,7 +313,7 @@ async function benchmarkStreetLife({root,views,focus,summary,out}){
  }finally{root.visible=saved.visible;renderer.setPixelRatio(saved.ratio);renderer.setSize(saved.size.x,saved.size.y,false);camera.aspect=saved.aspect;camera.updateProjectionMatrix();camera.position.copy(saved.pos);controls.target.copy(saved.target);controls.enabled=saved.enabled;controls.update();renderer.shadowMap.needsUpdate=true;benchmarking=false;requestRender();}
 }
 if(loaded){
- try{const {installSimReadyPreview}=await import('./simready-preview.js?v=126');streetLifeRoot=(await installSimReadyPreview({scene,assetParent:streetGroup,camera,controls,shopPlan,elevation:finishedGround||elevation,requestRender,renderer,applyStyle,obstacles:[detailGroup,shops.group,utilityGroup],benchmark:benchmarkStreetLife})).root;}catch(e){$('status').textContent='생활 소품 배치 실패: '+e.message;console.error(e);}
+ try{const {installSimReadyPreview}=await import('./simready-preview.js?v=129');streetLifeRoot=(await installSimReadyPreview({scene,assetParent:streetGroup,camera,controls,shopPlan,elevation:finishedGround||elevation,requestRender,renderer,applyStyle,obstacles:[detailGroup,shops.group,utilityGroup],benchmark:benchmarkStreetLife})).root;}catch(e){$('status').textContent='생활 소품 배치 실패: '+e.message;console.error(e);}
 }
 
 if(loaded&&alleyGroup?.userData.roadview50)installRoadview50Controls({summary:alleyGroup.userData.roadview50,camera,controls,elevation:finishedGround||elevation,requestRender});

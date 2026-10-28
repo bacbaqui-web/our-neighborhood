@@ -1,31 +1,35 @@
 """Generate a complete independent location dataset; publish manifest only on success."""
 import argparse,sys,json,os,subprocess,hashlib,time,shutil
 from pathlib import Path
-from generation_scope import validate_radius
+from kakao_terrain import profile_for, profile_identity, KakaoTerrain, VERSION
+from generation_scope import validate_radius, validate_center
 from arterial_plan import build as build_arterial
 from neighborhood_sources import geocode,acquire_buildings,acquire_roads,write_glb,Terrain,acquire_places
 WORK=Path(__file__).resolve().parent;PROJECT=WORK.parent;SHARED=PROJECT/'outputs/domestic-test';GEN=SHARED/'generation'
 def write(path,value):
  tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2));os.replace(tmp,path)
-def generate(query,job_dir,radius=150):
+def generate(query,job_dir,radius=100,center=None):
+ center=validate_center(center)
  radius=validate_radius(radius)
  job_dir=Path(job_dir);job_dir.mkdir(parents=True,exist_ok=True)
  def progress(message,percent):
   write(job_dir/'status.json',{'state':'running','message':message,'percent':percent});print(message,flush=True)
- progress('주소의 중심 좌표를 확인하고 있습니다…',3);loc=geocode(query);loc['sizeMetres']=radius*2;loc['detailRadius']=radius
- key=hashlib.sha256(('v137:'+str(radius)+':'+','.join(f'{n:.6f}' for n in loc['origin'])).encode()).hexdigest()[:16]
+ progress('주소의 중심 좌표를 확인하고 있습니다…',3);loc=({'address':query,'query':query,'origin':center,'roadAddress':None} if center else geocode(query));loc['sizeMetres']=radius*2;loc['detailRadius']=radius
+ progress('저장된 카카오 경로 고도를 확인하고 있습니다…',5);profile=profile_for(loc)
+ key=hashlib.sha256(('circular-background-v145:'+VERSION+':'+profile_identity(profile)+':'+str(radius)+':'+','.join(f'{n:.6f}' for n in loc['origin'])).encode()).hexdigest()[:16]
  final=PROJECT/'outputs/generated-neighborhoods'/key;root=final/'data';root.mkdir(parents=True,exist_ok=True)
  if (root/'manifest.json').exists():
-  if json.loads((root/'manifest.json').read_text()).get('arterial',{}).get('version')!=80:build_arterial(root)
+  if json.loads((root/'manifest.json').read_text()).get('arterial',{}).get('version')!=82:build_arterial(root)
   return {'id':key,'address':loc['address'],'url':f'/domestic-test/?location={key}','cached':True}
  for folder in ['generation','people','vegetation','environment','shops']:(root/folder).mkdir(exist_ok=True)
  for folder in ['alley-v62','environment-v32','vegetation-v31']:(final/folder).mkdir(exist_ok=True)
  write(root/'location.json',loc)
+ write(root/'kakao-elevation.json',profile)
  rules=json.loads((SHARED/'site-rules.json').read_text());rules['origin']=loc['origin'];rules['localBounds']=[-radius+14,-radius+14,radius-14,radius-14];write(root/'site-rules.json',rules)
  progress(loc['address']+' · 국내 건물을 조회하고 있습니다…',8)
  buildings=acquire_buildings(root,loc)
  progress(f'건물 {len(buildings["features"])}개 · 도로와 지형을 조회하고 있습니다…',16)
- roads=acquire_roads(root,loc);terrain=Terrain(*loc['origin']);baseQA=write_glb(root,terrain,roads,buildings,loc);write(root/'base-qa.json',baseQA)
+ roads=acquire_roads(root,loc);terrain=KakaoTerrain(*loc['origin'],profile);baseQA=write_glb(root,terrain,roads,buildings,loc);baseQA['terrainSource']='Kakao road profiles with Mapzen background';write(root/'base-qa.json',baseQA)
  progress('새 주소 주변 상가를 확인하고 있습니다…',24)
  warnings=[]
  try:places=acquire_places(root,loc)
@@ -54,7 +58,7 @@ def generate(query,job_dir,radius=150):
  for i in range(1,len(horizon['positions']),3):horizon['positions'][i]+=delta
  for b in horizon['city']:b[1]+=delta
  horizon['datumMetres']=terrain.datum;write(root/'environment/terrain.json',horizon)
- manifest={**loc,'id':key,'version':74,'buildings':len(buildings['features']),'places':places,'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%S%z'),'warnings':warnings,'sources':{'address':'Kakao Local','buildings':'MOIS / Esri Korea','roads':'OpenFreeMap / OpenMapTiles / OpenStreetMap','terrain':'Mapzen Terrain Tiles'},'inferred':'Road widths and surfaces, facade styles, plot boundaries, props and shop appearances are procedural, not surveyed.'}
+ manifest={**loc,'id':key,'version':74,'buildings':len(buildings['features']),'places':places,'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%S%z'),'warnings':warnings,'elevation':{'mode':VERSION,'profileHash':profile_identity(profile),'segments':len(profile['segments']),'notice':'카카오 고도를 확보한 도로 주변을 보정했습니다. 경로 밖은 기존 지형으로 연결합니다.','automaticallyFetched':False},'sources':{'address':'Kakao Local','buildings':'MOIS / Esri Korea','roads':'OpenFreeMap / OpenMapTiles / OpenStreetMap','terrain':'Kakao road profiles; Mapzen outside observed corridors'},'inferred':'Road widths and surfaces, facade styles, plot boundaries, props and shop appearances are procedural, not surveyed.'}
  required=['corrected-base.glb','buildings.geojson','parcels.json','attached-structures.json','streetscape-context.json','utilities.json','people/placements.json','vegetation/placements.json','environment/terrain.json','environment/streetlights.json','road-context.json','shops/places.json']
  for name in required:
   if not (root/name).stat().st_size:raise RuntimeError(name+' 결과가 비어 있습니다.')
@@ -62,8 +66,8 @@ def generate(query,job_dir,radius=150):
  progress('큰길의 차로·보도·대중교통 시설을 배치하고 있습니다…',96);build_arterial(root)
  return {'id':key,'address':loc['address'],'url':f'/domestic-test/?location={key}','cached':False}
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('query');p.add_argument('--radius',type=int,default=150);p.add_argument('--job-dir',required=True);args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('query');p.add_argument('--radius',type=int,default=150);p.add_argument('--center',nargs=2,type=float);p.add_argument('--job-dir',required=True);args=p.parse_args()
  try:
-  result=generate(args.query,args.job_dir,args.radius);write(Path(args.job_dir)/'status.json',{'state':'complete','message':'새 동네 생성 완료','percent':100,**result})
+  result=generate(args.query,args.job_dir,args.radius,args.center);write(Path(args.job_dir)/'status.json',{'state':'complete','message':'새 동네 생성 완료','percent':100,**result})
  except Exception as e:
   write(Path(args.job_dir)/'status.json',{'state':'error','message':str(e)});raise

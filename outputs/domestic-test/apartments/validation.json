@@ -1,0 +1,73 @@
+{
+  "assets": [
+    {
+      "id": "old-1",
+      "triangles": 9182,
+      "grounds": 8
+    },
+    {
+      "id": "old-2",
+      "triangles": 25526,
+      "grounds": 10
+    },
+    {
+      "id": "old-3",
+      "triangles": 19238,
+      "grounds": 6
+    },
+    {
+      "id": "middle-1",
+      "triangles": 17686,
+      "grounds": 8
+    },
+    {
+      "id": "middle-2",
+      "triangles": 26930,
+      "grounds": 10
+    },
+    {
+      "id": "middle-3",
+      "triangles": 20758,
+      "grounds": 6
+    },
+    {
+      "id": "new-1",
+      "triangles": 25278,
+      "grounds": 8
+    },
+    {
+      "id": "new-2",
+      "triangles": 40962,
+      "grounds": 10
+    },
+    {
+      "id": "new-3",
+      "triangles": 30518,
+      "grounds": 6
+    }
+  ],
+  "map": {
+    "buildings": 343,
+    "apartments": 1,
+    "slots": 0,
+    "rejected": 7,
+    "types": [
+      "middle-3"
+    ]
+  },
+  "checks": [
+    "9종 좌표 유효",
+    "건물 윤곽·높이 보존",
+    "도로 위 배치 제외",
+    "급경사 배치 제외",
+    "준공 연도 우선",
+    "동일 단지 유형 일관성",
+    "실제 단지 31동 윤곽 배치",
+    "9개 GLB 파일 다시 불러오기"
+  ],
+  "complex": {
+    "apartments": 31,
+    "slots": 341,
+    "flatPreview": true
+  }
+}

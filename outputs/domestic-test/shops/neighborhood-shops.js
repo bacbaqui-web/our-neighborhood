@@ -1,6 +1,7 @@
+import {reviseShopSpec} from '../memo-scene.js?v=133';
 import {applySignEmission} from './sign-lighting.js?v=73';
 import * as T from 'three';
-import {buildStorefront} from './storefront-models.js?v=117';
+import {buildStorefront} from './storefront-models.js?v=134';
 import {lightingState} from './storefront-hours.js?v=71';
 
 const tints={convenience:'#eef5e8',laundry:'#e5efff',salon:'#ffe8cb',estate:'#f3ecd9',food:'#ffdfa9',cafe:'#ffd39d',pharmacy:'#f0f6e6',retail:'#eaf5df',bakery:'#ffe0bb',optical:'#edf1e1',telecom:'#eee7f8'};
@@ -9,23 +10,36 @@ export function createNeighborhoodShops(plan,renderer,{elevation}={}){
  const lamps=new T.Group();lamps.name='StorefrontSpillLights';lamps.userData.environmentOwned=true;
  const records=[],sources=[],baseColors=new WeakMap();let hour=12,night=0,style='color',signature='';
  for(const p of plan.placements){
-  const spec={...p.spec,id:String(p.placeId),hours:p.hours},root=buildStorefront(spec,{shell:false,attachment:true});
+  const spec=structuredClone({...reviseShopSpec(p.spec,p.assetId),id:String(p.placeId),hours:p.hours});
+  const groundProps=(spec.props||[]).filter(q=>(q.y||0)<.2),floorY=Math.max(0,...(spec.steps||[]).map(q=>q.h));
+  const apronDepth=Math.max(.42,...groundProps.map(q=>(q.z||.55)+(q.type==='freezer'?.39:q.type==='rack'?.26:q.type==='ac'?.25:.24)*(q.scale||1)+.14));
+  if(groundProps.length){spec.steps=[];for(const q of groundProps)q.y=(q.y||0)+floorY;}
+  const root=buildStorefront(spec,{shell:false,attachment:true});
   root.name='Shop-'+p.placeId;root.position.fromArray(p.position);root.rotation.y=p.angle;root.scale.fromArray(p.scale);
   root.userData={...root.userData,placeId:p.placeId,name:p.name,address:p.address,reference:p.reference,referenceAsset:p.assetId,match:p.match,hours:p.hours};
   root.traverse(o=>{if(o.isMesh){o.userData.storefrontPlaceId=p.placeId;if(o.userData.storefrontLightRole){o.userData.storefrontBaseColor=o.material.color.getHex();o.userData.storefrontLightKey=p.placeId+':'+o.userData.storefrontLightRole+':'+o.material.color.getHexString();} }});
-  // Fill the short slope under a level shop threshold instead of floating its sill.
-  const grade=p.position[1]-p.groundMin;
-  if(grade>.05){
-   const ps=[],heights=p.groundSamples||Array(9).fill(p.groundMin),quad=(a,b,c,d)=>ps.push(...a,...b,...c,...a,...c,...d);
-   for(let i=0;i<heights.length-1;i++){
-    const x0=-p.spec.width/2+p.spec.width*i/(heights.length-1),x1=-p.spec.width/2+p.spec.width*(i+1)/(heights.length-1),y0=(heights[i]-p.position[1])/p.scale[1],y1=(heights[i+1]-p.position[1])/p.scale[1];
-    quad([x0,y0,.12],[x1,y1,.12],[x1,0,.12],[x0,0,.12]);
-    quad([x0,0,.12],[x1,0,.12],[x1,0,-.02],[x0,0,-.02]);
-   }
-   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(ps,3));g.computeVertexNormals();
-   root.add(new T.Mesh(g,new T.MeshStandardMaterial({color:p.spec.base||'#93978c',roughness:.95,side:T.DoubleSide})));
-  }
+  // A continuous support must extend beneath the whole prop footprint, not just the facade.
   root.updateWorldMatrix(true,true);
+  if(elevation){
+   const inv=root.matrixWorld.clone().invert(),terrain=(x,z)=>{const v=new T.Vector3(x,0,z).applyMatrix4(root.matrixWorld);v.y=elevation(v.x,v.z)-.025;return v.applyMatrix4(inv).y;};
+   const ps=[],quad=(a,b,c,d)=>ps.push(...a,...b,...c,...a,...c,...d),top=groundProps.length?floorY:0,depth=groundProps.length?apronDepth:.16,W=spec.width,N=Math.ceil(W/.4);
+   for(let i=0;i<N;i++){const l=-W/2+W*i/N,r=-W/2+W*(i+1)/N,z0=-.025,z1=depth;
+    quad([l,top,z0],[r,top,z0],[r,top,z1],[l,top,z1]);
+    quad([l,terrain(l,z1),z1],[r,terrain(r,z1),z1],[r,top,z1],[l,top,z1]);
+    if(i===0)quad([l,terrain(l,z0),z0],[l,terrain(l,z1),z1],[l,top,z1],[l,top,z0]);
+    if(i===N-1)quad([r,terrain(r,z1),z1],[r,terrain(r,z0),z0],[r,top,z0],[r,top,z1]);
+   }
+   // Door-sized treads bridge the remaining height to the sloping pavement.
+   for(const door of spec.openings.filter(o=>o.door!==undefined)){
+    const n=door.panes||2,pw=door.w/n,x=door.x-door.w/2+(door.door+.5)*pw,w=Math.min(pw+.15,1.45),ground=terrain(x,depth+.3),rise=top-ground;
+    const count=Math.min(5,Math.max(0,Math.ceil(rise*p.scale[1]/.18)-1));
+    for(let k=0;k<count;k++){const y=top-(k+1)*rise/(count+1),z0=depth+k*.28/p.scale[2],z1=depth+(k+1)*.28/p.scale[2],l=x-w/2,r=x+w/2;
+     quad([l,y,z0],[r,y,z0],[r,y,z1],[l,y,z1]);quad([l,terrain(l,z1),z1],[r,terrain(r,z1),z1],[r,y,z1],[l,y,z1]);
+     for(const xx of [l,r])quad([xx,terrain(xx,z0),z0],[xx,terrain(xx,z1),z1],[xx,y,z1],[xx,y,z0]);
+    }
+   }
+   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(ps,3));g.computeVertexNormals();const apron=new T.Mesh(g,new T.MeshStandardMaterial({color:spec.base||'#a1aaa5',roughness:.95,side:T.DoubleSide}));apron.name='grounded-shop-apron';root.add(apron);root.userData.groundApron={depth,top,groundProps:groundProps.length};
+  }
   if(p.arterial&&elevation){
    const inv=root.matrixWorld.clone().invert(),floor=(x,z)=>{const w=new T.Vector3(x,0,z).applyMatrix4(root.matrixWorld);w.y=elevation(w.x,w.z)+.012;return w.applyMatrix4(inv).y;};
    const ps=[],quad=(a,b,c,d)=>ps.push(...a,...b,...c,...a,...c,...d);
@@ -71,6 +85,6 @@ export function createNeighborhoodShops(plan,renderer,{elevation}={}){
   if(signature!==next){signature=next;renderer.shadowMap.needsUpdate=true;return true;}return false;
  }
  function stats(){const phases={open:0,cleanup:0,closed:0};for(const r of records)if(r.state)phases[r.state.phase]++;return {...plan.qa,hour,...phases,activeSpill:activeIds.length,maxSpill:2};}
- function dispose(){group.traverse(o=>{o.geometry?.dispose();o.material?.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});for(const {light} of pool)light.shadow.dispose();}
+ function dispose(){group.traverse(o=>{o.geometry?.dispose();o.material?.map?.dispose();o.material?.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});for(const {light} of pool)light.shadow.dispose();}
  return {group,lamps,records,sources,set,update,stats,dispose,get activeIds(){return activeIds;}};
 }

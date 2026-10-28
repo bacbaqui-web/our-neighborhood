@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist'
+subprocess.run(['python3', str(ROOT / 'work/browser-generation/pack.py'), '--check'], cwd=ROOT, check=True)
 files = subprocess.check_output(['git', 'ls-files', '-z', 'outputs'], cwd=ROOT).decode().split('\0')
 if not any(name.endswith('/app.js') for name in files):
     raise SystemExit('Stage the application files before building.')

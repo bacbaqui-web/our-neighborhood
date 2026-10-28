@@ -1,0 +1,81 @@
+{
+  "buildings": 343,
+  "facilities": {
+    "applied": [
+      {
+        "owner": 5951353,
+        "id": "post",
+        "sourceId": "post",
+        "match": "building-record",
+        "frontEdge": 3,
+        "reconstruction": "reference-based type fitted to mapped building; not surveyed replica"
+      },
+      {
+        "owner": 5963926,
+        "id": "apartment",
+        "sourceId": "apartment",
+        "match": "building-record",
+        "frontEdge": 3,
+        "reconstruction": "reference-based type fitted to mapped building; not surveyed replica"
+      }
+    ],
+    "skipped": []
+  },
+  "brands": [
+    {
+      "name": "GS25 신미아역점",
+      "asset": "reference-gs25",
+      "owner": 5963909,
+      "address": "솔매로 124",
+      "edge": 0,
+      "width": 7.4,
+      "clearance": 0.3
+    },
+    {
+      "name": "GS25 미아보람점",
+      "asset": "reference-gs25",
+      "owner": 5957534,
+      "address": "도봉로46길 9",
+      "edge": 4,
+      "width": 7.4,
+      "clearance": 2.3
+    },
+    {
+      "name": "메가MGC커피 미아역점",
+      "asset": "reference-mega",
+      "owner": 5965461,
+      "address": "도봉로 201-2",
+      "edge": 0,
+      "width": 7.534439956781071,
+      "clearance": 3.3
+    },
+    {
+      "name": "스타벅스 미아역점",
+      "asset": "reference-starbucks",
+      "owner": 5965452,
+      "address": "도봉로 196",
+      "edge": 7,
+      "width": 8.930183118116087,
+      "clearance": 4.05
+    },
+    {
+      "name": "CU 미아역점",
+      "asset": "reference-cu",
+      "owner": 5963913,
+      "address": "솔매로 134",
+      "edge": 2,
+      "width": 6.6,
+      "clearance": 0.3
+    },
+    {
+      "name": "메가MGC커피 미아중앙점",
+      "asset": "reference-mega",
+      "owner": 5965429,
+      "address": "도봉로 174",
+      "edge": 1,
+      "width": 9.52,
+      "clearance": 2.3
+    }
+  ],
+  "shopCount": 92
+}

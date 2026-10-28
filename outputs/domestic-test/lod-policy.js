@@ -25,3 +25,11 @@ export function partMaxLOD(object) {
  if(dimensions[2]<.17||dimensions[1]<.024)return 1;
  return 2;
 }
+
+// Shared world-space camera distance for generation and drawing.
+export function chooseDistanceLOD(distance,previous=null){
+ if(previous===0&&distance<85)return 0;
+ if(previous===1&&distance>=65&&distance<165)return 1;
+ if(previous===2&&distance>=140)return 2;
+ return distance<75?0:distance<150?1:2;
+}

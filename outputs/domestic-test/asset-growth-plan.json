@@ -1,0 +1,76 @@
+{
+  "version": 138,
+  "target": 1000,
+  "unit": "distinct reusable asset types, excluding color-only variants, duplicate geometry, placements and deleted assets",
+  "status": "long-term target, not claimed complete",
+  "budget": {
+    "trianglesPerNewProp": 1000,
+    "plants": "same current tree leaf atlas and seasonal lighting rules",
+    "performance": "instance shared geometry, stream by view, measure identical cameras before acceptance"
+  },
+  "categoryTargets": {
+    "대문·담장·옹벽·경계": 150,
+    "창호·현관·차양·반지하": 140,
+    "배관·전기·외벽설비": 120,
+    "주택생활·수납·세탁": 150,
+    "상점·시장·업종별진열": 150,
+    "식물·화분·정원": 120,
+    "도로·배수·주차시설": 90,
+    "이동수단·정비": 50,
+    "공공시설·골목표지": 30
+  },
+  "admissionGates": [
+    "로드뷰 관찰 위치와 촬영시기 기록, 직접 관찰과 응용을 구분",
+    "기존 도감 및 삭제 목록 대조, 형태가 같은 색상 변형은 별도 종으로 세지 않기",
+    "상업 이용 출처와 라이선스 기록",
+    "실측 또는 추정 치수 표시, 삼각형 실측",
+    "지지면·통행 여유·사용 공간·설치 용도·경사 한계 기록",
+    "컬러와 외부선/내부선 모드에서 근접·거리별 확인",
+    "최소 서로 다른 3개 배치 맥락에서 접지·충돌·가림 확인",
+    "같은 카메라에서 성능 비교 후 도감 등록"
+  ],
+  "nextPriorityFamilies": [
+    {
+      "name": "경사지 옹벽 상단·계단식 화단 경계",
+      "evidence": "observed",
+      "source": "rv138-03",
+      "gap": "좁고 긴 화단과 계단식 경계, 높은 담장과 구분",
+      "status": "candidate, model not created"
+    },
+    {
+      "name": "현관 문턱·반지하 진입 단차·배수턱",
+      "evidence": "observed",
+      "source": "rv138-04",
+      "gap": "낮은 진입 계단과 배수 구역을 한 덩어리 평면과 구분",
+      "status": "candidate, model not created"
+    },
+    {
+      "name": "필로티 주차 앞 경사 받침·차단 콘",
+      "evidence": "observed",
+      "source": "rv138-05",
+      "gap": "차량 진입부와 소품 공간 분리",
+      "status": "candidate, model not created"
+    },
+    {
+      "name": "크기가 다른 벽면 화분 줄·짧은 군집",
+      "evidence": "observed",
+      "source": "rv138-05",
+      "gap": "같은 묘목 반복 대신 높이와 용기 변주, 기존 잎 규칙 유지",
+      "status": "candidate, model not created"
+    },
+    {
+      "name": "대문 상단 덮개·초인종·주소판 묶음",
+      "evidence": "observed",
+      "source": "rv138-01",
+      "gap": "각각 떠다니는 장식 대신 대문 기능 묶음",
+      "status": "candidate, model not created"
+    },
+    {
+      "name": "외벽 배관의 꺾임·고정대·하부 연결",
+      "evidence": "observed",
+      "source": "rv138-01",
+      "gap": "배관 끝점과 설비의 연결성",
+      "status": "candidate, model not created"
+    }
+  ]
+}

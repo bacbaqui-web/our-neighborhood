@@ -1,3 +1,4 @@
+import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
 import {stableHash,scheduleFor} from './storefront-hours.js?v=71';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
@@ -22,8 +23,10 @@ export function categoryFor(p){
 export function shopLocal(p,x,z){const dx=x-p.position[0],dz=z-p.position[2];return [dx*p.n[1]-dz*p.n[0],dx*p.n[0]+dz*p.n[1]];}
 export function inShopApproach(plans,x,z,pad=0){return plans.some(p=>{const [u,v]=shopLocal(p,x,z);return Math.abs(u)<p.width/2+.25+pad&&v>-.1-pad&&v<p.accessDepth+pad;});}
 export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roadInfo,arterial}){
+ catalog=withFacilityShops(catalog);
+ buildings=buildings.filter(b=>!b.facility);
  const placements=[],skipped=[],byOwner=new Map(),seen=new Set();
- const candidates=places.map(place=>({place,category:categoryFor(place),exact:catalog.assets.find(s=>String(s.source.placeId)===String(place.id))})).sort((a,b)=>Number(!!b.exact)-Number(!!a.exact)||String(a.place.id).localeCompare(String(b.place.id)));
+ const candidates=places.map(place=>({place,category:referenceShop(place)?.category||categoryFor(place),exact:catalog.assets.find(s=>s.source?.placeId&&String(s.source.placeId)===String(place.id))||referenceShop(place)})).sort((a,b)=>Number(!!b.exact)-Number(!!a.exact)||String(a.place.id).localeCompare(String(b.place.id)));
  for(const {place,category,exact} of candidates){
   const skip=reason=>skipped.push({id:place.id,name:place.place_name,reason});
   if(!category){skip('unsupported-category');continue;}
@@ -46,7 +49,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
    const u=[(c[0]-a[0])/L,(c[1]-a[1])/L],n=[u[1]*sign,-u[0]*sign];
    const onArterial=frontEdges.some(f=>f.edge===edge);
    if(frontEdges.length&&!onArterial) return;
-   const assets=exact?[exact]:catalog.assets.filter(s=>(onArterial?s.arterialOnly||!catalog.assets.some(a=>a.arterialOnly&&a.category===category):!s.arterialOnly)&&s.category===category&&s.height<4.6&&!(category==='salon'&&s.id==='salon-03')&&!(category==='laundry'&&s.id!=='laundry-02'));
+   const assets=exact?[exact]:catalog.assets.filter(s=>!s.referenceOnly&&(onArterial?s.arterialOnly||!catalog.assets.some(a=>a.arterialOnly&&a.category===category):!s.arterialOnly)&&s.category===category&&s.height<4.6&&!(category==='salon'&&s.id==='salon-03')&&!(category==='laundry'&&s.id!=='laundry-02'));
    for(const asset of assets){
     const grade=Math.abs(elevation(a[0]+n[0]*.3,a[1]+n[1]*.3)-elevation(c[0]+n[0]*.3,c[1]+n[1]*.3))/L;
     const width=Math.min(asset.width*(onArterial?1.7:1),L-.7,onArterial?Math.max(3.15,(L-.7)/Math.min(4,frontPeers)-.22):Infinity,onArterial&&grade>.15?1.7/grade:Infinity),sx=width/asset.width;if(sx<(onArterial?.52:.69))continue;
@@ -65,7 +68,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
      if(sy<.82||Math.min(...asset.openings.filter(o=>o.door!==undefined).map(o=>o.h*sy))<1.9)continue;
      const clearance=Math.min(...depths.filter(d=>d>0)),mean=depths.filter(d=>d>0).reduce((a,b)=>a+b,0)/depths.filter(d=>d>0).length;
      const score=mean*.8+Math.abs(center-target)*.1+(1-sx)*4+Math.abs(asset.width-width)*.2+(edge===b.frontEdge?-.7:0)+(stableHash(place.id+asset.id)%100)/500;
-     choices.push({owner:b.seed,edge,lo,hi,width,height:asset.height*sy,groundSamples:heights,arterial:!!onArterial,scale:[sx,sy,1],position:[...origin.slice(0,1),ground,origin[1]],n,angle:Math.atan2(n[0],n[1]),clearance,accessDepth:Math.max(1.3,mean+.3),assetId:asset.id,score,groundMin:Math.min(...heights),address:b.address,category,placeId:place.id,name:place.place_name,placeUrl:place.place_url,reference:exact?.observedLocal||exact&&!exact.arterialOnly?'observed-local-frontage':'category-reference',match:'exact-road-address',floorSource:'ground-floor-inferred',poiDistance:dist});
+     choices.push({owner:b.seed,edge,lo,hi,width,height:asset.height*sy,groundSamples:heights,arterial:!!onArterial,scale:[sx,sy,1],position:[...origin.slice(0,1),ground,origin[1]],n,angle:Math.atan2(n[0],n[1]),clearance,accessDepth:Math.max(1.3,mean+.3),assetId:asset.id,score,groundMin:Math.min(...heights),address:b.address,category,placeId:place.id,name:place.place_name,placeUrl:place.place_url,reference:exact?.referenceOnly?'reference-derived-brand':exact?.observedLocal||exact&&!exact.arterialOnly?'observed-local-frontage':'category-reference',match:'exact-road-address',floorSource:'ground-floor-inferred',poiDistance:dist});
     }
    }
   });
@@ -75,6 +78,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   // Keep the reviewed facade proportions. Only projecting objects yield to narrow streets.
   spec.props=(spec.props||[]).filter(p=>(p.z||.55)+(['freezer','cafeTable'].includes(p.type)?.8:.35)<chosen.clearance-.15);
   spec.steps=(spec.steps||[]).filter(s=>s.z+s.d/2<chosen.clearance-.10);
+  if(spec.referenceOnly&&chosen.clearance<.55)spec.awnings=[];
   for(const a of spec.awnings||[])a.depth=Math.min(a.depth,Math.max(.30,chosen.clearance-.24));
   // The house keeps its real polygon; the shop gets a thin facing, not a second building.
   if(chosen.arterial){for(const o of spec.openings||[])if(o.door!==undefined&&spec.openings.length===1)o.door=(o.panes||2)-1;}

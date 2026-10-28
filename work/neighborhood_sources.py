@@ -67,7 +67,13 @@ class Terrain:
    if key not in self.tiles:
     directory=CACHE/'terrain-tiles';directory.mkdir(parents=True,exist_ok=True);path=directory/f'14-{key[0]}-{key[1]}.png'
     if not path.exists():path.write_bytes(request(f'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/14/{key[0]}/{key[1]}.png'))
-    rgb=np.asarray(Image.open(path).convert('RGB'),dtype=np.float32);self.tiles[key]=rgb[:,:,0]*256+rgb[:,:,1]+rgb[:,:,2]/256-32768
+    rgb=np.asarray(Image.open(path).convert('RGB'),dtype=np.float32);heights=rgb[:,:,0]*256+rgb[:,:,1]+rgb[:,:,2]/256-32768
+    invalid=heights < -100
+    if invalid.any():
+     from scipy.ndimage import distance_transform_edt
+     if invalid.all():raise ValueError('이 위치의 표고 자료가 비어 있습니다.')
+     heights=heights[tuple(distance_transform_edt(invalid,return_distances=False,return_indices=True))]
+    self.tiles[key]=heights
    return float(self.tiles[key][b%256,a%256])
   return (sample(ix,iy)*(1-fx)+sample(ix+1,iy)*fx)*(1-fy)+(sample(ix,iy+1)*(1-fx)+sample(ix+1,iy+1)*fx)*fy
  def height(self,x,z):return self.absolute(x,z)-self.datum
@@ -107,9 +113,11 @@ def acquire_roads(root,location):
  return lines
 
 def write_glb(root,terrain,roads,buildings,location):
+ from road_priority import reserve
+ reserved=reserve(root,location,roads,buildings)
  lat,lon=location['origin'];sx,sy=scales(lat);radius=int(location.get('sizeMetres',300)/2)
  built=unary_union([transform(lambda x,y:((x-lon)*sx,-(y-lat)*sy),shape(f['geometry'])) for f in buildings['features']])
- road=unary_union([shape(r['geometry']).buffer(r['width']/2,cap_style=2,join_style=2) for r in roads]).intersection(box(-radius,-radius,radius,radius)).difference(built.buffer(.065,join_style=2)).buffer(0)
+ road=shape(reserved['road']).union(shape(reserved['majorPublic'])).intersection(box(-radius,-radius,radius,radius))
  if road.area<1:raise ValueError('표시할 도로 영역이 없습니다.')
  # Indexed glTF, world coordinates; no node transforms. Existing site rules read it directly.
  doc={'asset':{'version':'2.0','generator':'Neighborhood location pipeline v74'},'scene':0,'scenes':[{'nodes':[]}],'nodes':[],'meshes':[],'materials':[],'bufferViews':[],'accessors':[],'buffers':[{'byteLength':0}]};binary=bytearray()
@@ -145,7 +153,7 @@ def write_glb(root,terrain,roads,buildings,location):
 
 def acquire_places(root,location):
  lat,lon=location['origin'];found={};radius=math.ceil(location.get('sizeMetres',300)/2*math.sqrt(2))
- queries=[('category',{'category_group_code':c}) for c in ['CS2','FD6','CE7','MT1','PM9']]+[('keyword',{'query':q}) for q in ['미용실','세탁소','부동산']]
+ queries=[('category',{'category_group_code':c}) for c in ['CS2','FD6','CE7','MT1','PM9','SC4','PO3']]+[('keyword',{'query':q}) for q in ['미용실','세탁소','부동산','소방서','다이소']]
  for kind,extra in queries:
   for page in range(1,4):
    d=kakao(kind,{**extra,'x':lon,'y':lat,'radius':radius,'sort':'distance','size':15,'page':page})

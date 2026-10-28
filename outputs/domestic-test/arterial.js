@@ -1,7 +1,7 @@
-import {roadVehicle} from './scene-vehicles.js?v=140';
+import {roadVehicle,recordMemoScene} from './memo-scene.js?v=134';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {seatGroundAsset,contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=140';
+import {seatGroundAsset,contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=133';
 import {supportSampler,connectedRuns,fittedRibbon,supportFrame,roofPlane} from './terrain-fit.js?v=78';
 
 const C={metal:0x535e60,silver:0xa5ada9,glass:0x668e98,rubber:0x303b40,white:0xd7dad4,curb:0xb6b9ad,paving:0xa7aaa2,yellow:0xc9ad53,blue:0x367daf};
@@ -232,7 +232,7 @@ export function createArterial(plan,elevation){
   });
  }
  let vehicleIndex=0,busIndex=0;for(const p of plan.vehicles){
- const fresh=roadVehicle(p.kind==='bus',p.kind==='bus'?busIndex++:vehicleIndex++);if(fresh){fresh.position.fromArray(p.position);fresh.rotation.y=p.heading;group.add(fresh);seatGroundAsset(fresh,(x,z)=>support(x,z,.015));block(p.footprint,.06);continue;}
+ const fresh=roadVehicle(p.kind==='bus',p.kind==='bus'?busIndex++:vehicleIndex++);if(fresh){fresh.position.fromArray(p.position);fresh.rotation.y=p.heading;group.add(fresh);const surface=(x,z)=>support(x,z,.015);seatGroundAsset(fresh,surface);if(fresh.userData.groundFit.maxGap>.025){const base=fresh.position.clone();let best={position:fresh.position.clone(),quaternion:fresh.quaternion.clone(),qa:fresh.userData.groundFit};for(const delta of [-.5,.5,-1,1,-1.5,1.5]){fresh.position.copy(base).add(new T.Vector3(Math.sin(p.heading)*delta,0,Math.cos(p.heading)*delta));fresh.rotation.set(0,p.heading,0);seatGroundAsset(fresh,surface);if(fresh.userData.groundFit.maxGap<best.qa.maxGap)best={position:fresh.position.clone(),quaternion:fresh.quaternion.clone(),qa:fresh.userData.groundFit};}fresh.position.copy(best.position);fresh.quaternion.copy(best.quaternion);fresh.userData.groundFit=best.qa;}recordMemoScene(fresh);block(p.footprint,.06);continue;}
   const a=unit(p.kind==='bus'?'low-floor-city-bus':'arterial-car',p.position,p.heading),bus=p.kind==='bus';
   if(bus){
    const col=p.variant?0x49865d:0x3d70a4;

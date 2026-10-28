@@ -1,4 +1,4 @@
-import {applyRepresentative,representativeAudit} from './representative-assets.js?v=129';
+import {applyRepresentative,representativeAudit} from './representative-assets.js?v=133';
 import * as T from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
@@ -7,7 +7,7 @@ import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 export async function installSimReadyPreview(ctx){
  const {scene,assetParent,camera,controls,shopPlan,elevation,requestRender,renderer,applyStyle,obstacles=[],benchmark}=ctx;
  const loader=new GLTFLoader(),templates={};
- await Promise.all(['fridge','chair','bin'].map(async id=>{templates[id]=(await loader.loadAsync('./simready/'+id+'-1000.glb')).scene;}));
+ await Promise.all(['chair','bin'].map(async id=>{templates[id]=(await loader.loadAsync(id==='bin'?'./memo-131/simready-bin.glb':'./simready/'+id+'-1000.glb')).scene;}));
  // Procedural props based on visible forms in June 2026 Kakao Roadview; no photo textures.
  function part(g,geo,color,x,y,z){const m=new T.Mesh(geo,new T.MeshStandardMaterial({color,roughness:.92}));m.position.set(x,y,z);g.add(m);return m;}
  const planter=new T.Group();

@@ -1,20 +1,23 @@
-import {applyRepresentative} from './representative-assets.js?v=129';
+import {livingRejection,rankPocketAssets,nearestFacade} from './living-context.js?v=138';
+import {repairCourtyardBoundaries} from './courtyard-rules.js?v=138';
+import {retiredLegacy,recordMemoScene} from './memo-scene.js?v=134';
+import {applyRepresentative} from './representative-assets.js?v=133';
 import {getLegacyPlacementRule} from './legacy-placement-policy.js?v=113';
 import {evaluatePlacement} from './placement-policy.js?v=110';
-import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=129';
-import {inArterial} from './arterial.js?v=140';
-import {seatGroundAsset} from './ground-contact.js?v=140';
+import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=133';
+import {inArterial} from './arterial.js?v=79';
+import {seatGroundAsset} from './ground-contact.js?v=141';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=82';
 import {inShopApproach} from './shops/neighborhood-plan.js?v=72';
 import {extractVegetation} from './vegetation-legacy.js?v=115';
 import {partMaxLOD} from './lod-policy.js?v=29';
 import {populateStreetLife,contextOnly} from './street-life.js?v=59';
-import {renderAttachedStructures} from './attached-structures.js?v=140';
+import {renderAttachedStructures} from './attached-structures.js?v=141';
 import {classifyYards,programs,inYard,yardCandidates,edgeCandidates} from './neighborhood-rules.js?v=17.2';
-import {renderParcels} from './parcel-renderer.js?v=82';
+import {renderParcels} from './parcel-renderer.js?v=136';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {createAsset,addLines} from '../alley-library/models.js?v=140';
+import {createAsset,addLines} from '../alley-library/models.js?v=134';
 export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,attachedPlan,streetscapePlan,arterialPlan=null,options={}){
  const eligible=owner=>!options.propOwners||options.propOwners.has(Number(owner));
  const shopPlans=specs.flatMap(s=>s.storefronts||[]);
@@ -41,6 +44,7 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  function structuralShape(seg){const {a,b,width}=seg,L=Math.hypot(b[0]-a[0],b[1]-a[1]),ux=L?(b[0]-a[0])/L:Math.cos(seg.angle||0),uz=L?(b[1]-a[1])/L:-Math.sin(seg.angle||0),r=width/2+.035,cx=(a[0]+b[0])/2,cz=(a[1]+b[1])/2,half=L?L/2+.035:r;
  const fp=[[-half,-r],[half,-r],[half,r],[-half,r]].map(([x,z])=>[cx+ux*x-uz*z,cz+uz*x+ux*z]);const box=new T.Box3();for(const q of fp){box.expandByPoint(new T.Vector3(q[0],seg.base,q[1]));box.expandByPoint(new T.Vector3(q[0],seg.top,q[1]))}return {fp,box,cx,cz,ux,uz,localBox:new T.Box3(new T.Vector3(-half,seg.base,-r),new T.Vector3(half,seg.top,r))};}
  function obstacleHit(shape,b){if(!b.intersectsBox(shape.box))return false;if(!b.triangle)return true;const vs=[];for(let i=0;i<3;i++){const x=b.triangle[i*3]-shape.cx,z=b.triangle[i*3+2]-shape.cz;vs.push(new T.Vector3(x*shape.ux+z*shape.uz,b.triangle[i*3+1],-x*shape.uz+z*shape.ux))}return shape.localBox.intersectsTriangle(new T.Triangle(...vs))}
+ streetscapePlan=options.staticCache?.streetscapePlan||repairCourtyardBoundaries(streetscapePlan,parcelData,attachedPlan,polys,roadInfo);report.courtyardRepair=streetscapePlan.qa.courtyardRepair;
  const yards=classifyYards(parcelData,polys,elevation);const architecture=options.staticCache?.architecture||renderAttachedStructures(attachedPlan,elevation);if(!options.staticCache)root.add(architecture.group);report.attachedStructures=architecture.records;report.attachedGroundContacts=architecture.groundContacts;report.attachedAssetPlacements=architecture.assetPlacements;report.attachedSupportFit=architecture.group.userData.supportFit;report.attachedValidation=attachedPlan.qa;report.households=attachedPlan.households.map(h=>({...h,frontage:polys.find(p=>p.seed===h.owner)?.frontage}));const parcel=options.staticCache?.parcel||renderParcels({...parcelData,segments:attachedPlan.wallSegments},elevation,yards,streetscapePlan,roadInfo);if(!options.staticCache)root.add(parcel.group);report.openBoundaries=parcel.segments.filter(s=>s.kind!=='low-curb');report.streetscape={...streetscapePlan.qa,gateViews:parcel.views,boundaryFit:parcel.group.userData.boundaryFit};
  for(const seg of parcel.segments){const shape=structuralShape(seg);shape.box.fp=shape.fp;shape.box.parcelWall=true;shape.box.role="wall";shape.box.owner=seg.owner;placed.push(shape.box);footprints.push(shape.fp)}
  for(const c of [...architecture.colliders,...parcel.colliders]){const box=new T.Box3();for(const q of c.fp){box.expandByPoint(new T.Vector3(q[0],c.base,q[1]));box.expandByPoint(new T.Vector3(q[0],c.top,q[1]))}box.fp=c.fp;box.attachedPart=true;box.role=c.role;box.owner=c.owner;placed.push(box);footprints.push(c.fp)}
@@ -56,14 +60,15 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  function reservedHit(fp,box){const seen=new Set();for(let x=Math.floor(box.min.x/8);x<=Math.floor(box.max.x/8);x++)for(let z=Math.floor(box.min.z/8);z<=Math.floor(box.max.z/8);z++)for(const b of reservationCells.get(x+','+z)||[]){if(seen.has(b))continue;seen.add(b);if(b.minX<box.max.x&&b.maxX>box.min.x&&b.minZ<box.max.z&&b.maxZ>box.min.z&&overlapPolys(fp,b.fp))return true}return false;}
  const coverByOwner=new Map(attachedPlan.houses.map(a=>[a.owner,a]));
  report.rule=attachedPlan.rule+'; wall-supported equipment and bikes, road-accessible spaced pickup pockets, driveway-validated parking before yard decoration';report.parcels=yards.map(({triangles,anchors,...p})=>p);report.parcelValidation=parcelData.qa;
- function template(id){if(!cache.has(id)){const legacy=createAsset(id);legacy.updateMatrixWorld(true);const m=getRoadview50Template(id,legacy);m.updateMatrixWorld(true);const b=new T.Box3().setFromObject(m);cache.set(id,{m,b});}return cache.get(id)}
+ function template(id){if(!cache.has(id)){const legacy=createAsset(id);legacy.updateMatrixWorld(true);const m=getRoadview50Template(id,legacy);m.updateMatrixWorld(true);const b=new T.Box3().setFromObject(m);let triangles=0;m.traverse(o=>{if(o.isMesh)triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;});cache.set(id,{m,b,triangles});}return cache.get(id)}
  function commercialFaceAt(owner,x,z){const b=polys.find(b=>b.seed===owner);if(b?.arterialKiosk)return true;return (b?.arterialFacades||[]).some(f=>{const a=b.points[f.edge],c=b.points[(f.edge+1)%b.points.length],dx=c[0]-a[0],dz=c[1]-a[1],L=Math.hypot(dx,dz),u=((x-a[0])*dx+(z-a[1])*dz)/L,d=Math.abs((x-a[0])*dz-(z-a[1])*dx)/L;return u>-.4&&u<L+.4&&d<2.0;});}
- function tryPlace(id,x,z,angle,lift=0,owner=null,role="household"){if(!eligible(owner))return false;if(commercialFaceAt(owner,x,z)){report.rejected++;return false;}if(inArterial(arterialPlan,x,z,.7)||inShopApproach(shopPlans,x,z,.6)){report.rejected++;return false;}if((id>=201&&id<=205)||[15,76,77,78,79,80,162].includes(id))return false;const {m,b:local}=template(id),info=m.userData.roadview50,rule=info?getPlacementRule(info):getLegacyPlacementRule(id),policyKey=info?.assetId||'legacy-'+id;
+ function tryPlace(id,x,z,angle,lift=0,owner=null,role="household"){if(!eligible(owner))return false;if(retiredLegacy(id))return false;if(commercialFaceAt(owner,x,z)){report.rejected++;return false;}if(inArterial(arterialPlan,x,z,.7)||inShopApproach(shopPlans,x,z,.6)){report.rejected++;return false;}if((id>=201&&id<=205)||[15,76,77,78,79,80,162].includes(id))return false;if(role.startsWith('courtyard-')&&template(id).triangles>1000)return policyReject('courtyard-triangle-budget');const {m,b:local}=template(id),info=m.userData.roadview50,rule=info?getPlacementRule(info):getLegacyPlacementRule(id),policyKey=info?.assetId||'legacy-'+id;
  const yard=yards.find(y=>y.owner===owner&&inYard(y,x,z))||yards.find(y=>y.owner===owner);
  const wall=nearestPolicyWall(x,z,owner);const entry=entries.find(e=>e.owner===owner);
  const context={zone:yard?.type||'unknown',role,area:yard?.area||0,lift,scale:info?.fitScale||1,count:policyCounts.get(owner+':'+policyKey)||0,wallGap:wall?Math.max(0,wall.distance-(local.max.z-local.min.z)/2):Infinity,entryDistance:entry?Math.hypot(x-entry.x,z-entry.z):Infinity};
  if(rule){const reason=evaluatePlacement(rule,context);if(reason)return policyReject(reason);if(rule.orientation==='front-away-from-wall')angle=wall.angle;
  if(info?.assetId==='a182'&&policyAccepted.some(v=>v.assetId==='a182'&&Math.hypot(v.x-x,v.z-z)<18))return policyReject('rest-area-spacing');}
+ const livingReason=livingRejection({id,role,lift,area:yard?.area,zone:yard?.type,footprintArea:(local.max.x-local.min.x+.24)*(local.max.z-local.min.z+.24),depth:local.max.z-local.min.z,wallGap:context.wallGap,facadeDistance:nearestFacade(x,z,owner,polys),entryDistance:context.entryDistance,existing:report.placements,x,z,owner});if(livingReason)return policyReject(livingReason);
  const y=elevation(x,z)-local.min.y+.03+lift;const mat=new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),angle),new T.Vector3(1,1,1));const pad=Math.max(['wall-meter','wall-riser'].includes(role)?.02:.08,rule?.clearance||0),box=local.clone().applyMatrix4(mat),padded=box.clone().expandByScalar(.08),fp=[[local.min.x-pad,local.min.z-pad],[local.max.x+pad,local.min.z-pad],[local.max.x+pad,local.max.z+pad],[local.min.x-pad,local.max.z+pad]].map(([xx,zz])=>[x+xx*Math.cos(angle)+zz*Math.sin(angle),z-xx*Math.sin(angle)+zz*Math.cos(angle)]);if(elevation.detailRadius&&fp.some(p=>Math.hypot(...p)>elevation.detailRadius))return policyReject('outside-detail-circle');if(policyApproaches.some(a=>overlapPolys(fp,a))||report.placements.some(p=>p.driveway&&overlapPolys(fp,p.driveway))||reservedHit(fp,padded)||footprintHits(fp)||lots.some(l=>l.owner!==owner&&overlapPolys(fp,l.yard))||placed.some(b=>b.intersectsBox(padded)&&overlapPolys(fp,b.fp))){report.rejected++;return}
  if(lift<.8&&accessShapes.some(a=>a.minX<padded.max.x&&a.maxX>padded.min.x&&a.minZ<padded.max.z&&a.maxZ>padded.min.z&&overlapPolys(fp,a.fp))){report.rejected++;return}
  if(lift<.8&&parcelData.yards.some(y=>(y.entrance||[]).slice(1).some((b,i)=>{const a=y.entrance[i],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz),t=((x-a[0])*dx+(z-a[1])*dz)/(L*L);return t>=0&&t<=1&&Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz)<.95+Math.max(box.max.x-box.min.x,box.max.z-box.min.z)/2}))){report.rejected++;return}
@@ -76,7 +81,7 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  const obj=m.clone(true);obj.position.set(x,max-local.min.y+.02+lift,z);obj.rotation.y=angle;obj.userData={...m.userData,vegetationAssetId:id,placementOwner:owner,placement:'roadview-inspired, not surveyed'};
  // Wall equipment keeps its intentional mounting height. All free-standing props
  // rest on the visible courtyard paving, including its height above raw terrain.
- const groundFit=lift===0&&!['wall-meter','wall-riser'].includes(role)&&![154,155,196,197,200].includes(id)?seatGroundAsset(obj,placementSurface):null;
+ const groundFit=lift===0&&!['wall-meter','wall-riser'].includes(role)&&![154,155,196,197,200].includes(id)?seatGroundAsset(obj,placementSurface,{suspension:!!elevation.routeCorrected}):null;
  obj.updateMatrixWorld(true);const fittedBox=new T.Box3().setFromObject(obj),pb=fittedBox.clone().expandByScalar(.08);
  // Recheck the fitted pose: pitching must not push a roof/handlebar into a facade.
  if(groundFit?.method==='rendered-contact-vertices'&&intersectsBuilding(pb)){report.rejected++;return false;}
@@ -108,6 +113,22 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  if(!fp.every(p=>inYard(y,...p)))return false;for(let i=0;i<4;i++){const p=fp[i],q=fp[(i+1)%4];for(let t=.25;t<1;t+=.25)if(!inYard(y,p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t))return false}
  const ok=tryPlace(id,x,z,a.angle,lift,y.owner,role);if(ok)ownerCounts.set(key,(ownerCounts.get(key)||0)+1);return ok;
  }
+ // Reserve a few compact household activity pockets before generic decoration.
+ report.livingContext={version:138,targetUniqueAssets:1000,source:'Solmae-ro roadview, observed 2026-10-28; heuristic placement',rules:['open-space-budget','entry-storage','building-side-wet-work','one-functional-fixture','neighbor-variety','narrow-passage'],rejected:policyRejected};report.courtyardPockets=[];
+ const repairedOwners=new Set(report.courtyardRepair.bridges.map(r=>r.owner));
+ const pocketYards=yards.filter(y=>y.area>=24&&y.area<350&&y.type!=='parking').sort((a,b)=>(Number(repairedOwners.has(b.owner))-Number(repairedOwners.has(a.owner)))||Math.hypot(a.x,a.z)-Math.hypot(b.x,b.z));
+ for(const y of pocketYards.filter(y=>eligible(y.owner))){if(report.courtyardPockets.length>=40)break;if(report.courtyardPockets.some(p=>p.owner===y.owner))continue;
+  const occupied=report.placements.filter(p=>p.owner===y.owner&&p.lift<.8);if(occupied.length>=6)continue;
+  const entry=entries.find(e=>e.owner===y.owner),spots=edgeCandidates(y).filter(a=>nearestPolicyWall(a.x,a.z,y.owner).distance<1.25);
+  spots.sort((a,b)=>entry?Math.hypot(a.x-entry.x,a.z-entry.z)-Math.hypot(b.x-entry.x,b.z-entry.z):0);
+  for(const a of spots){if(occupied.some(p=>Math.hypot(p.x-a.x,p.z-a.z)<2.3))continue;
+   const nearEntry=entry&&Math.hypot(a.x-entry.x,a.z-entry.z)<4.5,ids=nearEntry?[160,186]:y.type==='garden'?[129,156]:['laundry','rear'].includes(y.type)?[157,188,156,129]:[129,188,156,157];
+   let first=null,chosen=a;for(const id of rankPocketAssets(ids,y.owner,a.x,a.z,report.placements)){const wall=nearestPolicyWall(a.x,a.z,y.owner),local=template(id).b,d=(local.max.z-local.min.z)/2+.28,at=wall.point?{x:wall.point[0]+Math.sin(wall.angle)*d,z:wall.point[1]+Math.cos(wall.angle)*d,angle:wall.angle}:a;if(fit(y,id,at,0,0,0,nearEntry?'courtyard-entry-storage':'courtyard-service-corner')){first=report.placements.at(-1);chosen=at;break;}}
+   if(!first)continue;const members=[first];
+   if(!nearEntry)for(const dx of [1,-1,1.3,-1.3])if(fit(y,first.id===129?129:30,chosen,dx,0,0,'courtyard-companion')){members.push(report.placements.at(-1));break;}
+   report.courtyardPockets.push({owner:y.owner,label:nearEntry?'현관 옆 수납 공간':first.id===129?'마당 가장자리 장독':first.id===156?'벽 옆 빨래 건조 공간':'벽 옆 세탁·급수 공간',members:members.map(p=>({id:p.id,name:p.name,x:p.x,y:p.y,z:p.z,angle:p.angle,height:p.height,footprint:p.footprint,groundFit:p.groundFit,triangles:template(p.id).triangles}))});break;
+  }
+ }
  for(const y of yards.filter(y=>eligible(y.owner)).sort((a,b)=>Math.hypot(a.x,a.z)-Math.hypot(b.x,b.z))){const p=programs[y.type],start=report.placements.length,seed=Math.abs(y.owner),interior=yardCandidates(y),edges=edgeCandidates(y),covered=coverByOwner.get(y.owner)?.structureArea||0,budget=Math.min(16,Math.max(4,Math.round((y.area-covered)/18)));
  report.neighborhood.programs[y.label]=(report.neighborhood.programs[y.label]||0)+1;
  const spots=[];const recipes=p.clusters;
@@ -136,8 +157,9 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  report.cameraBlockers=placed.filter(b=>b.max.y-b.min.y>.4).map(b=>[b.min.toArray(),b.max.toArray(),b.role,b.owner]);report.count=report.placements.length;report.boundaryCount=report.compounds.length;report.standaloneWallAssets=report.placements.filter(p=>[1,2,3,4,5,6,51,52,53,54,55,56,57,58,59,60].includes(p.id)).length;report.types=[...new Set(report.placements.map(p=>p.id))];report.footprintOverlap=0;for(const fp of footprints)if(footprintHits(fp))report.footprintOverlap++;
  // Batch drawing by material; editable individual models remain in the library.
  const representativeObjects=[];root.traverse(obj=>{if(obj.userData.vegetationAssetId)representativeObjects.push(obj);});for(const obj of representativeObjects){if(applyRepresentative(obj,obj.userData.vegetationAssetId))addLines(obj);}
- report.vegetationReplacements=options.staticCache?[]:extractVegetation(root);report.foliageExtraction=root.userData.foliageExtraction;
+ recordMemoScene(root);
  const retained=[];root.traverse(o=>{if(o.userData.memoVehicle)retained.push(o)});for(const o of retained){root.attach(o);root.remove(o);}
+ report.vegetationReplacements=extractVegetation(root);report.foliageExtraction=root.userData.foliageExtraction;
  root.updateMatrixWorld(true);const batches=new Map(),discard=new Set(),oldMaterials=new Set();
  root.traverse(o=>{if(!o.isMesh&&!o.isLineSegments)return;const mat=o.material,k=[o.isMesh?(['house-shaped-yard','yard-access-surface'].includes(o.name)?'ground':'surface'):'edge',mat.color.getHex(),mat.side,!!mat.vertexColors,mat.opacity,!!mat.transparent,mat.polygonOffset,mat.polygonOffsetFactor,mat.polygonOffsetUnits,!!o.userData.surfaceOverlay,o.userData.detailKind||''].join(':');if(!batches.has(k))batches.set(k,{material:mat.clone(),line:o.isLineSegments,detailKind:o.userData.detailKind,surfaceOverlay:o.userData.surfaceOverlay,geometries:[]});let g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);g.deleteAttribute('uv');g.userData.lodMaxLevel=partMaxLOD(o);g.setAttribute('lodMax',new T.Uint8BufferAttribute(new Uint8Array(g.attributes.position.count).fill(g.userData.lodMaxLevel),1));g.clearGroups();batches.get(k).geometries.push(g);discard.add(o.geometry);oldMaterials.add(mat)});
  root.clear();for(const [key,b] of batches){b.geometries.sort((a,c)=>c.userData.lodMaxLevel-a.userData.lodMaxLevel);const lodCounts=[0,1,2].map(level=>b.geometries.reduce((n,g)=>n+(g.userData.lodMaxLevel>=level?g.attributes.position.count:0),0));const geometry=mergeGeometries(b.geometries,false);if(!geometry)throw new Error('Asset batch geometry mismatch: '+key);const obj=b.line?new T.LineSegments(geometry,b.material):new T.Mesh(geometry,b.material);obj.name='alley-batch-'+key;obj.userData.detailKind=b.detailKind;obj.userData.surfaceOverlay=b.surfaceOverlay;obj.userData.lodCounts=lodCounts;obj.userData.faceLineColor=b.line?b.material.color.getHex():undefined;root.add(obj);b.geometries.forEach(g=>g.dispose())}discard.forEach(g=>g.dispose());oldMaterials.forEach(m=>m.dispose());for(const o of retained)root.add(o);report.renderBatches=root.children.length;

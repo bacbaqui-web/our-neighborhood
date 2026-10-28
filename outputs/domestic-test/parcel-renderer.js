@@ -59,7 +59,7 @@ export function renderParcels(data,elevation,profiles=[],plan,roadInfo=null){
    const body=tint(brick?(kind==='dark-brick'?C.dark:C.brick):kind==='stone-gate'?C.stone:C.render,r.tint??1);
    const railH=rail?Math.min(height-.30,height*(kind==='green-fence'?.65:r.railRatio??.36)):kind==='brick-vent'?.15:0;
    const distance=(x,z)=>{let best=Infinity,s=0;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],dx=b[0]-a[0],dz=b[1]-a[1],len=lengths[i]-lengths[i-1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(len*len))),d=(x-a[0]-dx*t)**2+(z-a[1]-dz*t)**2;if(d<best){best=d;s=lengths[i-1]+len*t;}}return s;};
-   const top=(x,z)=>elevation(x,z)+height+(curved?.20*Math.cos(2*Math.PI*distance(x,z)/(L/Math.max(1,Math.round(L/4.2)))):0),solid=(x,z)=>top(x,z)-railH;
+   const top=(x,z)=>elevation(x,z)+(r.repair?r.startHeight+(r.endHeight-r.startHeight)*distance(x,z)/L:height+(curved?.20*Math.cos(2*Math.PI*distance(x,z)/(L/Math.max(1,Math.round(L/4.2)))):0)),solid=(x,z)=>top(x,z)-railH;
    addBoundaryRibbon(batch,points,.22,(x,z)=>elevation(x,z)-.08,solid,body,{step:.6});
    addBoundaryRibbon(batch,points,.252,solid,(x,z)=>solid(x,z)+.05,tint(C.cap,r.tint??1),{ink:true,step:.5});
    if(kind==='brick-vent')addBoundaryRibbon(batch,points,.254,top,(x,z)=>top(x,z)+.07,C.cap,{ink:true,step:.5});

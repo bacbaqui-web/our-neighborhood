@@ -1,4 +1,4 @@
-import {chooseLOD} from './lod-policy.js?v=29';
+import {chooseDistanceLOD} from './lod-policy.js?v=139';
 import * as T from 'three';
 
 // Draw proxies are separate from editable geometry, collision meshes and exports.
@@ -10,7 +10,10 @@ export function spatialBatch(root, cellSize=48, cellHeight=48) {
   try{root.traverseVisible(object=>{
     if ((!object.isMesh&&!object.isLineSegments)||Array.isArray(object.material)) return;
     const material=object.material, geometry=object.geometry;
-    if (material.map||object.isSkinnedMesh||object.isInstancedMesh) return; // preserve textured vehicle
+    // Procedural paving and its A/B switch must retain the original shader and visibility.
+    if(material.userData.groundCharacter||object.name==='wall-base-contact-bands')return;
+    // Textured models retain UVs and their original draw path.
+    if (material.map||object.isSkinnedMesh||object.isInstancedMesh) return;
     const position=geometry.attributes.position, step=object.isLineSegments?2:3;
     const count=(geometry.index?.count??position.count)/step;
     const source={object,geometry,material,position,step,count,ids:new Uint32Array(count),levels:new Uint8Array(count),matrix:object.matrixWorld.elements};
@@ -129,7 +132,7 @@ export function createVisibilityOptimizer({scene,roots,buildings,shapes}){
   function hide(object){if(object.visible){restore.push(object);object.visible=false;}}
   function reset(){for(const [g,start,count] of restoreRanges)g.setDrawRange(start,count);restoreRanges.length=0;for(const object of restore)object.visible=true;restore.length=0;for(const b of batches)b.group.visible=false;}
   function prepare(camera,{enabled=true,occlusion=true,lod=false,lodMode="auto",viewportHeight=720}={}){
-    reset();camera.updateMatrixWorld();vp.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(vp);
+    reset();camera.updateMatrixWorld();const cameraPosition=camera.getWorldPosition(new T.Vector3());vp.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(vp);
     stats={enabled,screenCulled:0,occluded:0,drawnCells:0,totalCells:batches.reduce((n,b)=>n+b.cells.length,0),adaptiveRoots:0,lodEnabled:lod,lodLevels:[0,0,0],lodSavedTriangles:0,lodSavedLines:0};
     if(!enabled&&!lod)return stats;
     const faces=enabled&&occlusion&&buildings.some(active)?projectOccluders(blocks.filter(b=>frustum.intersectsBox(b.box)).map(b=>({b,d:b.box.distanceToPoint(camera.position)})).sort((a,b)=>a.d-b.d).slice(0,24).map(e=>e.b),camera):[];
@@ -142,8 +145,8 @@ export function createVisibilityOptimizer({scene,roots,buildings,shapes}){
         else if(blocked(c.box)){c.object.visible=false;occluded++;}
         else {
           c.object.visible=true;kept++;
-          const distance=Math.max(.01,c.box.distanceToPoint(camera.position)),pixelsPerMetre=Math.abs(camera.projectionMatrix.elements[5])*viewportHeight/(2*distance);
-          const level=!lod?0:lodMode==='auto'?chooseLOD(pixelsPerMetre,c.level):Number(lodMode);
+          const distance=Math.max(.01,c.box.distanceToPoint(cameraPosition));
+          const level=!lod?0:lodMode==='auto'?chooseDistanceLOD(distance,c.level):Number(lodMode);
           c.level=Math.max(0,Math.min(2,level));levels[c.level]++;
           for(const o of c.object.children){const counts=o.userData.lodCounts,count=counts[c.level];o.geometry.setDrawRange(0,count);o.visible=count>0;if(count)draws++;if(o.isMesh)savedTriangles+=(counts[0]-count)/3;else savedLines+=(counts[0]-count)/2;}
         }

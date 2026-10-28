@@ -18,3 +18,12 @@ assert.equal(desiredDetail(200),2);assert.equal(desiredDetail(300),null);
 const triangleCount=g=>{let n=0;g.traverse(o=>{if(o.isMesh)n+=(o.geometry.index?.count||o.geometry.attributes.position.count)/3;});return n;};
 const full=createDetails([spec(1,0)],()=>0,{structures:[]},{minimumLOD:0});const simple=createDetails([spec(1,0)],()=>0,{structures:[]},{minimumLOD:2});assert(triangleCount(simple)<triangleCount(full));assert(simple.userData.windows>0);
 console.log(JSON.stringify({passed:true,fullTriangles:triangleCount(full),distantTriangles:triangleCount(simple)}));
+// Camera translation, including a parent transform, must restore generated detail.
+const rig=new T.Group(),cam=new T.PerspectiveCamera(60,1,.1,1000);rig.add(cam);cam.position.set(0,5,0);cam.lookAt(0,5,-1);
+let mode={lod:true,lodMode:'auto'},lastLevel;
+const moving=createViewStreamer({cells:buildingCells([spec(4,-200)]),camera:cam,getSettings:()=>mode,create(c,l){lastLevel=l;return {object:new T.Group()};},remove(){}});
+rig.updateMatrixWorld(true);moving.update(0,true);assert.equal(lastLevel,2);
+rig.position.z=-150;rig.updateMatrixWorld(true);moving.update(100,true);assert.equal(lastLevel,0);
+mode={lod:true,lodMode:'2'};moving.update(200,true);assert.equal(lastLevel,2);
+mode={lod:false,lodMode:'auto'};moving.update(300,true);assert.equal(lastLevel,0);moving.dispose();
+assert.equal(buildingCells([spec(5,0),spec(6,1)]).length,2,'neighbor buildings have independent detail');

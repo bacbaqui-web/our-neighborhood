@@ -1,3 +1,4 @@
+import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
 import {FacadeBatch} from '../korean-facades.js?v=39';
 
@@ -102,6 +103,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
     const box=(xx,yy,zz,w,h,d,col)=>B(x+xx*scale,y+yy*scale,z+zz*scale,w*scale,h*scale,d*scale,col);
     if(p.type==='ac'){
       const count=p.stack||1;
+      for(const xx of [-.34,.34])box(xx,.025,0,.10,.05,.34,'#777e78');
       for(let k=0;k<count;k++){
         const yy=.37+k*.75;box(0,yy,0,.92,.64,.4,'#d1cfc0');
         polygon(Array.from({length:12},(_,j)=>{const a=j*Math.PI/6;return[x+(-.19+.21*Math.cos(a))*scale,y+(yy+.21*Math.sin(a))*scale,z+.211*scale];}),'#535d55');
@@ -163,5 +165,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   }
   root.userData={plantAnchors,storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:true,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true};
   root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+  addSignText(root,spec);
+  root.userData.textFree=!spec.signText;
   return root;
 }

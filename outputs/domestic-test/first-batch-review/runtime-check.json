@@ -1,0 +1,45 @@
+{
+  "brands": [
+    {
+      "address": "솔매로 124",
+      "asset": "reference-gs25",
+      "clearance": 0.3,
+      "name": "GS25 신미아역점",
+      "width": 7.4
+    },
+    {
+      "address": "도봉로46길 9",
+      "asset": "reference-gs25",
+      "clearance": 2.3,
+      "name": "GS25 미아보람점",
+      "width": 7.4
+    },
+    {
+      "address": "도봉로 196",
+      "asset": "reference-starbucks",
+      "clearance": 2.8,
+      "name": "스타벅스 미아역점",
+      "width": 8.930183118116087
+    },
+    {
+      "address": "솔매로 134",
+      "asset": "reference-cu",
+      "clearance": 0.3,
+      "name": "CU 미아역점",
+      "width": 6.6
+    },
+    {
+      "address": "도봉로 174",
+      "asset": "reference-mega",
+      "clearance": 0.3,
+      "name": "메가MGC커피 미아중앙점",
+      "width": 9.52
+    }
+  ],
+  "checkedOn": "2026-10-29",
+  "facilities": {
+    "applied": [],
+    "skipped": []
+  },
+  "radius": "150"
+}

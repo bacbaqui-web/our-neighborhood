@@ -1,0 +1,142 @@
+{
+  "scope": "Local catalog snapshot, reconciled with memo-131 deletion list; not a count of quality-approved unique geometries",
+  "registeredIds": 492,
+  "removedIds": [
+    "a177",
+    "car-cn7-mesh",
+    "legacy-173",
+    "legacy-174",
+    "legacy-181",
+    "legacy-202",
+    "legacy-204",
+    "legacy-205",
+    "legacy-211",
+    "legacy-212",
+    "simready-fridge",
+    "street-5"
+  ],
+  "remainingRegisteredIds": 480,
+  "hashCovered": 198,
+  "duplicateHashGroups": [],
+  "over1000Recorded": [
+    {
+      "id": "legacy-121",
+      "name": "담장 너머 침엽수",
+      "triangles": 1052
+    },
+    {
+      "id": "legacy-122",
+      "name": "줄기 갈라진 정원수",
+      "triangles": 1276
+    },
+    {
+      "id": "legacy-154",
+      "name": "가지 벌어진 골목 나무",
+      "triangles": 1142
+    },
+    {
+      "id": "tree-pine",
+      "name": "소나무",
+      "triangles": 1234
+    },
+    {
+      "id": "tree-ginkgo",
+      "name": "은행나무",
+      "triangles": 1456
+    },
+    {
+      "id": "tree-maple",
+      "name": "단풍나무",
+      "triangles": 1388
+    },
+    {
+      "id": "tree-cherry",
+      "name": "왕벚나무",
+      "triangles": 1424
+    },
+    {
+      "id": "tree-zelkova",
+      "name": "느티나무",
+      "triangles": 1812
+    },
+    {
+      "id": "tree-fringe",
+      "name": "이팝나무",
+      "triangles": 1348
+    },
+    {
+      "id": "tree-magnolia",
+      "name": "백목련",
+      "triangles": 1164
+    },
+    {
+      "id": "tree-persimmon",
+      "name": "감나무",
+      "triangles": 1120
+    },
+    {
+      "id": "tree-metasequoia",
+      "name": "메타세쿼이아",
+      "triangles": 1624
+    },
+    {
+      "id": "tree-plane",
+      "name": "플라타너스",
+      "triangles": 1684
+    },
+    {
+      "id": "vegetation-persimmon",
+      "name": "감나무 · 기존 식재 원형",
+      "triangles": 1056
+    },
+    {
+      "id": "vegetation-jujube",
+      "name": "대추나무 · 기존 식재 원형",
+      "triangles": 1066
+    },
+    {
+      "id": "vegetation-magnolia",
+      "name": "목련 · 기존 식재 원형",
+      "triangles": 1086
+    },
+    {
+      "id": "vegetation-maple",
+      "name": "청단풍나무 · 기존 식재 원형",
+      "triangles": 1268
+    },
+    {
+      "id": "vegetation-pine",
+      "name": "소나무 · 기존 식재 원형",
+      "triangles": 1052
+    },
+    {
+      "id": "vegetation-juniper",
+      "name": "향나무 · 기존 식재 원형",
+      "triangles": 1124
+    },
+    {
+      "id": "vegetation-lilac",
+      "name": "라일락 · 기존 식재 원형",
+      "triangles": 1260
+    },
+    {
+      "id": "vegetation-cornelian",
+      "name": "산수유 · 기존 식재 원형",
+      "triangles": 1248
+    },
+    {
+      "id": "vegetation-crape-myrtle",
+      "name": "배롱나무 · 기존 식재 원형",
+      "triangles": 1284
+    },
+    {
+      "id": "vegetation-ginkgo",
+      "name": "은행나무 · 기존 식재 원형",
+      "triangles": 1392
+    }
+  ],
+  "missingTriangleCount": [
+    "car-cn7-billboard"
+  ],
+  "qualityApprovedUniqueCount": null
+}

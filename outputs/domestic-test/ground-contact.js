@@ -45,11 +45,35 @@ export function libraryWheelContacts(root){
   if(m.userData.groundContactWheel||(rubber&&Math.abs(axis.y)<.35&&((torus&&p.radius>=.085&&p.tube>=.025)||(g.type==='CylinderGeometry'&&p.radiusTop>=.12)))){const points=contactPoints(g,matrix);if(Math.min(...points.map(v=>v.y))<.12)wheels.push({mesh:m,points});}
  });return wheels;
 }
-export function seatGroundAsset(root,surface,{wheels=true}={}){
- if(root.userData.wheelContactPoints){const qa=fitContactPose(root,root.userData.wheelContactPoints.map(ps=>ps.map(p=>new T.Vector3(...p))),surface);root.userData.groundFit=qa;return qa;}
+export function seatGroundAsset(root,surface,{wheels=true,suspension=false}={}){
+ if(root.userData.wheelContactPoints){
+  let contacts=root.userData.wheelContactPoints.map(ps=>ps.map(p=>new T.Vector3(...p))),qa=fitContactPose(root,contacts,surface);
+  if(suspension&&contacts.length===4&&qa.maxGap>.025&&qa.maxGap<=.12){
+   root.updateMatrixWorld(true);const inverse=root.matrixWorld.clone().invert();
+   const travel=qa.contacts.map(h=>new T.Vector3(0,-Math.max(0,h.gap),0).applyMatrix4(inverse).sub(new T.Vector3().applyMatrix4(inverse)));
+   const centers=contacts.map(ps=>ps.reduce((a,p)=>a.add(p),new T.Vector3()).multiplyScalar(1/ps.length));
+   root.traverse(m=>{if(!m.isMesh)return;m.geometry=m.geometry.clone();const matrix=inverse.clone().multiply(m.matrixWorld),back=matrix.clone().invert(),p=m.geometry.attributes.position;
+    for(let i=0;i<p.count;i++){const v=new T.Vector3().fromBufferAttribute(p,i).applyMatrix4(matrix);let k=0;for(let j=1;j<4;j++)if(Math.hypot(v.x-centers[j].x,v.z-centers[j].z)<Math.hypot(v.x-centers[k].x,v.z-centers[k].z))k=j;
+     const d=Math.hypot(v.x-centers[k].x,v.z-centers[k].z),blend=Math.max(0,Math.min(1,(.32-(v.y-centers[k].y))/.10));
+     if(d<.25&&blend>0){v.addScaledVector(travel[k],blend).applyMatrix4(back);p.setXYZ(i,v.x,v.y,v.z);}
+    }p.needsUpdate=true;m.geometry.computeVertexNormals();m.geometry.computeBoundingSphere();m.geometry.computeBoundingBox();
+   });
+   contacts=contacts.map((ps,k)=>ps.map(p=>p.clone().add(travel[k])));root.userData.wheelContactPoints=contacts.map(ps=>ps.map(p=>p.toArray()));qa=contactReport(root,contacts,surface);qa.suspension=true;
+  }
+  root.userData.groundFit=qa;return qa;
+ }
  const wheelParts=wheels?libraryWheelContacts(root):[];
  if(wheelParts.length>=2){
-  const qa=fitContactPose(root,wheelParts.map(w=>w.points),surface);root.userData.groundFit=qa;return qa;
+  let qa=fitContactPose(root,wheelParts.map(w=>w.points),surface);
+  if(suspension&&qa.maxGap>.025&&qa.maxGap<=.12){
+   // Limited independent wheel travel preserves the rigid chassis on a twisted road.
+   wheelParts.forEach((w,i)=>{const gap=qa.contacts[i].gap;if(gap<=.0001)return;
+    w.mesh.parent.updateMatrixWorld(true);const inv=w.mesh.parent.matrixWorld.clone().invert();
+    const d=new T.Vector3(0,-gap,0).applyMatrix4(inv).sub(new T.Vector3().applyMatrix4(inv));w.mesh.position.add(d);
+   });
+   const adjusted=libraryWheelContacts(root);qa=contactReport(root,adjusted.map(w=>w.points),surface);qa.suspension=true;
+  }
+  root.userData.groundFit=qa;return qa;
  }
  // Fixed furniture stays vertical. Only the bottom of its feet/plinth adapts;
  // shelves, doors and seats keep their original rectangular shape.

@@ -1,18 +1,18 @@
 import * as T from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {flatten} from './roadview50-loader.js?v=129';
-import {refineGroup} from './refine-assets.js?v=129';
+import {flatten} from './roadview50-loader.js?v=133';
+import {refineGroup} from './refine-assets.js?v=133';
 let manifest={mapping:{},assets:{}},enabled=true;
 const templates=new Map(),nativeCache=new Map(),applications=[],failures=[];
 export async function loadRepresentatives(){
  enabled=new URLSearchParams(location.search).get('representatives')!=='0';
  if(!enabled)return;
- const response=await fetch('./representatives/manifest.json?v=129');
+ const response=await fetch('./representatives/manifest.json?v=133');
  if(!response.ok)throw new Error('대표 에셋 목록을 불러오지 못했습니다');
  manifest=await response.json();const loader=new GLTFLoader();
  await Promise.all(Object.values(manifest.assets).filter(a=>a.file).map(async a=>{
-  const loaded=await loader.loadAsync('./representatives/'+a.file+'?v=129');
-  const model=flatten(loaded.scene);refineGroup(model,a,{preserveGeometry:a.preserveGeometry});
+  const loaded=await loader.loadAsync('./representatives/'+a.file+'?v=133');
+  const model=flatten(loaded.scene);if(!a.memoBaked)refineGroup(model,a,{preserveGeometry:a.preserveGeometry});
   model.updateMatrixWorld(true);templates.set(a.id,model);
  }));
 }
@@ -22,11 +22,11 @@ const count=g=>{let n=0;g.traverse(o=>{if(o.isMesh)n+=(o.geometry.index?.count??
 // Called only after all placement, contact, clearance and collision decisions.
 // The placement object's matrix and its collision/inspection records never change.
 export function applyRepresentative(object,legacyId){
- if(!enabled||object.userData.representative)return;
+ if(!enabled||object.userData.representative||object.userData.memoAsset||object.userData.memoVehicle)return;
  const source=typeof legacyId==='number'?'legacy-'+legacyId:legacyId,semantic=manifest.mapping[source],info=object.userData.roadview50;
  let target=semantic&&semantic!==source?semantic:(info?.componentIds?.length>1?source:(manifest.mapping[info?.assetId]||info?.assetId||source));
  // Tree/vehicle image variants keep their existing dedicated rendering pipeline.
- if(manifest.retired?.includes(target)){object.clear();return true;}
+ if(manifest.retired?.includes(source)||manifest.retired?.includes(info?.assetId)||manifest.retired?.includes(target)){object.clear();return true;}
  const asset=manifest.assets[target]||{id:target,name:object.name};
  const old=localCopy(object),box=new T.Box3().setFromObject(old),oldSize=box.getSize(new T.Vector3());
  const before=count(old);let replacement;
@@ -51,7 +51,7 @@ export function representativeAudit(){return {enabled,review:manifest.review,loa
 export function installRepresentativeControls(camera,controls,requestRender){
  const section=document.createElement('section');section.style.cssText='padding:12px;border:1px solid #b3c7c8;border-radius:10px;margin:12px 0;font-size:13px';
  const title=document.createElement('b');title.textContent='대표 에셋 · 통합 다듬기';section.append(title);
- const info=document.createElement('p');info.textContent=enabled?`${applications.length}개 적용 · 기존 배치 유지`:'이전 모델 비교 중';section.append(info);if(manifest.review){const note=document.createElement('p');note.textContent='메모 반영: 재제작 11종 · 삭제 3종';section.append(note);}
+ const info=document.createElement('p');info.textContent=enabled?`${applications.length}개 적용 · 기존 배치 유지`:'이전 모델 비교 중';section.append(info);if(manifest.review){const note=document.createElement('p');note.textContent='메모 반영: 재제작 52종 · 삭제 12종';section.append(note);}
  const select=document.createElement('select');select.setAttribute('aria-label','대표 에셋 위치');select.add(new Option('다듬은 에셋 가까이 보기',''));
  const seen=new Set();applications.forEach((a,i)=>{if(seen.has(a.target))return;seen.add(a.target);select.add(new Option(a.name,String(i)))});
  select.onchange=()=>{if(select.value==='')return;const a=applications[+select.value],p=new T.Vector3(...a.position);controls.target.copy(p).add(new T.Vector3(0,.5,0));camera.position.copy(p).add(new T.Vector3(3,2.2,3));controls.update();requestRender();};section.append(select);

@@ -9,6 +9,7 @@ import shapely as S
 from shapely.geometry import Polygon,LineString,Point,box,shape
 from shapely.ops import unary_union,transform
 from neighborhood_sources import Terrain,scales,kakao
+from kakao_terrain import load_terrain
 WORK=Path(__file__).resolve().parent
 
 def parts(g,kind='Polygon'):return [q for q in S.get_parts(g) if q.geom_type==kind and not q.is_empty]
@@ -18,7 +19,7 @@ def rings(g):return [{'outer':list(p.exterior.coords),'holes':[list(h.coords) fo
 def write(p,d):p.parent.mkdir(exist_ok=True,parents=True);tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));tmp.replace(p)
 def build(root):
  root=Path(root);read=lambda p:json.loads((root/p).read_text());loc=read('location.json');lat,lon=loc['origin'];sx,sy=scales(lat);radius=int(loc.get('sizeMetres',300)/2)
- sources=read('roads-source.json')['roads'];major=[r for r in sources if r['properties']['class'] in ['primary','trunk','secondary']]
+ sources=read('roads-source.json')['roads'];major=[r for r in sources if r['properties']['class'] in ['primary','trunk','secondary','tertiary']]
  if not major:return None
  # Pair parallel carriageways. Keep distinct crossings out of the dominant corridor.
  leader=max(major,key=lambda r:LineString(r['geometry']['coordinates']).length)
@@ -40,7 +41,7 @@ def build(root):
  def local(p):
   p=np.asarray(p);t=float(p@u);return t,float((p-center(t))@n)
  def ll(x,y):return [(float(x)-lon)*sx,(lat-float(y))*sy]
- terrain=Terrain(lat,lon);height=terrain.mesh_height
+ terrain=load_terrain(root,loc);height=terrain.mesh_height
  buildings=read('buildings.geojson');underground={f['properties']['objectid'] for f in buildings['features'] if str(f['properties'].get('house_number','')).startswith('지하')}
  buildings['features']=[f for f in buildings['features'] if f['properties']['objectid'] not in underground]
  built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']]).buffer(.12)
@@ -80,7 +81,7 @@ def build(root):
  hasbus=bool(transit['stops']) or any(r['properties'].get('class')=='busway' for r in sources)
  # Six lanes for the surveyed Dobong-ro corridor; generic major roads derive count
  # from one-way pair spacing. No bus lane unless there is supporting bus evidence.
- lanes=6 if hasbus else (6 if len(samples)>1 else 4)
+ lanes=6 if hasbus else (2 if leader['properties']['class']=='tertiary' else 4)
  lane=3.2;baseHalf=lanes/2*lane+.35
  def widen(t,side):
   return max([0]+[2.4*max(0,min(1,(32-abs(t-s['t']))/12)) for s in transit['stops'] if s['side']==side])
@@ -89,12 +90,35 @@ def build(root):
   ts=np.linspace(start,end,max(2,math.ceil((end-start)/2)+1));pts=[xy(t,lo(t)) for t in ts]+[xy(t,hi(t)) for t in ts[::-1]]
   return S.make_valid(Polygon(pts)).intersection(extent)
  road=strip(lambda t:-half(t,-1),lambda t:half(t,1)).difference(built)
- public=strip(lambda t:-half(t,-1)-5.3,lambda t:half(t,1)+5.3).difference(built)
+ public=strip(lambda t:-half(t,-1)-3.0,lambda t:half(t,1)+3.0).difference(built)
+ # Keep intersecting major roads in the network, instead of flattening them
+ # into the dominant alignment. Tile fragments never imply extra lanes.
+ branches=[];junctionTs=[];junctionArea=Polygon()
+ mainLine=LineString([xy(t) for t in np.linspace(t0,t1,110)])
+ for r in sources:
+  if r['properties']['class'] not in ['primary','trunk','secondary','tertiary'] or r in major:continue
+  line=LineString(r['geometry']['coordinates'])
+  if line.distance(mainLine)>1:continue
+  hits=line.intersection(mainLine.buffer(.6))
+  if hits.is_empty:continue
+  point=hits.centroid;jt,_=local([point.x,point.y])
+  if not any(abs(jt-t)<4 for t in junctionTs):junctionTs.append(jt)
+  width=float(r['width'])
+  br=line.buffer(width/2,cap_style=2,join_style=2).intersection(extent).difference(built)
+  bp=line.buffer(width/2+3,cap_style=2,join_style=2).intersection(extent).difference(built)
+  branches.append({'line':line,'road':br,'public':bp,'width':width,'junction':point})
+  road=road.union(br);public=public.union(bp)
+  junctionArea=junctionArea.union(point.buffer(baseHalf+width/2+2))
+ # New scenes reserve roads and both sidewalks before any building is generated.
+ reservation=read('road-reservation.json') if (root/'road-reservation.json').exists() else None
+ if reservation:
+  public=shape(reservation['majorPublic'])
+  if not hasbus:road=shape(reservation['road']).intersection(public)
  sidewalks=public.difference(road)
  # Side streets must remain joined to the arterial; remove the sidewalk at mouths.
  mouths=[]
  for r in sources:
-  if r['properties']['class'] not in ['minor','tertiary','service','secondary']:continue
+  if r['properties']['class'] not in ['minor','tertiary','service']:continue
   ps=r['geometry']['coordinates'];l=LineString(ps)
   for side in [-1,1]:
    edge=LineString([xy(t,side*half(t,side)) for t in np.linspace(t0,t1,100)])
@@ -104,7 +128,7 @@ def build(root):
     if any(abs(t-m['t'])<8 and side==m['side'] for m in mouths):continue
     if t0+8<t<t1-8:mouths.append({'t':t,'side':side,'width':max(3.6,min(8,r['width']))})
  for m in mouths:
-  t,side,w=m['t'],m['side'],m['width'];cut=strip(lambda q:side*half(q,side)-.2 if side>0 else -half(q,side)-5.5,lambda q:half(q,side)+5.5 if side>0 else -half(q,side)+.2,t-w/2,t+w/2)
+  t,side,w=m['t'],m['side'],m['width'];cut=strip(lambda q:side*half(q,side)-.2 if side>0 else -half(q,side)-3.2,lambda q:half(q,side)+3.2 if side>0 else -half(q,side)+.2,t-w/2,t+w/2)
   sidewalks=sidewalks.difference(cut);road=road.union(cut.intersection(public))
  def at_mouth(t,side,pad=0):return any(m['side']==side and abs(m['t']-t)<m['width']/2+pad for m in mouths)
  # Fit exits to the sidewalk. Keep measured position and render offset separately.
@@ -154,15 +178,20 @@ def build(root):
  # Reserve a continuous curb-to-curb crossing before furniture and vehicles.
  # The platform-access relationship is observed; exact stripe positions are inferred.
  crosswalks=[]
- for stop in platforms:
-  t=stop['t']-stop['length']/2-3
+ crossingSources=[{'id':s['id'],'t':s['t']-s['length']/2-3,'platform':s['id']} for s in platforms]
+ for j,t in enumerate(junctionTs):
+  for side in [-1,1]:
+   tt=t+side*(baseHalf+10)
+   if t0+4<tt<t1-4:crossingSources.append({'id':f'junction-{j}-{side}','t':tt,'platform':None})
+ for stop in crossingSources:
+  t=stop['t']
   width=4.2
   corridor=rect(t,0,width,2*(baseHalf+8))
   if any(corridor.intersects(Polygon(e['footprint'])) for e in exits):continue
   if any(corridor.intersection(Polygon(s['footprint'])).area>.01 for s in platforms):continue
   if any(abs(c['t']-t)<12 for c in crosswalks):continue
   p=xy(t)
-  crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(corridor.intersection(public).exterior.coords),'source':'roadview-form-platform-access-inferred','platform':stop['id']})
+  crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(corridor.intersection(public).exterior.coords),'source':'mapped-junction-roadview-form' if stop['platform'] is None else 'roadview-form-platform-access-inferred','platform':stop['platform']})
   reservations.append(corridor.intersection(sidewalks).buffer(.4))
   # Recess only the curb approach; triangulation is shared by paint, feet and walking.
   for side in [-1,1]:
@@ -222,7 +251,7 @@ def build(root):
  rc['normals']={};rc['positions']['arterial']=mesh(road,.035);rc['positions']['sidewalk']=mesh(sidewalks,.145)
  rc['positions']['platform']=mesh(unary_union([Polygon(s['footprint']) for s in platforms]),.19)
  for k,v in rc.get('wear',{}).get('positions',{}).items():rc['wear']['positions'][k]=cut3(v,public)
- rc['qa']['arterialVersion']=80;save('road-context.json',rc)
+ rc['qa']['arterialVersion']=82;save('road-context.json',rc)
  def clipseg(records):
   result=[]
   for r in records:
@@ -288,7 +317,7 @@ def build(root):
   for t in np.arange(t0+8,t1-5,12):
    if not at_mouth(t,side,2):
     d=side*(half(t,side)-.24);fp=rect(t,d,.7,.30)
-    if road.covers(fp):
+    if road.covers(fp) and not junctionArea.intersects(fp):
      p=xy(t,d);furniture.append({'kind':'drain','position':[p[0],height(*p)+.043,p[1]],'heading':math.atan2(u[0],u[1]),'footprint':list(fp.exterior.coords),'walkable':True})
   for t in np.arange(t0+20,t1-8,53):
    if not at_mouth(t,side,3):place('utility-cover',t,side*(half(t,side)+.72),.7,.55)
@@ -319,7 +348,7 @@ def build(root):
  pp=read('people/placements.json');characters=[p['character'] for p in pp['people']];pp['people']=[p for p in pp['people'] if not public.covers(Point(p['x'],p['z']))]
  for side in [-1,1]:
   for i,t in enumerate(np.arange(t0+20,t1-12,15.5)):
-   p=xy(t,side*(half(t,side)+3.4));fp=Point(p).buffer(.42)
+   p=xy(t,side*(half(t,side)+2.1));fp=Point(p).buffer(.42)
    if not sidewalks.covers(fp) or any(fp.intersects(o.buffer(.3)) for o in occupied):continue
    pp['people'].append({'id':f'arterial-person-{side}-{i}','x':p[0],'z':p[1],'ground':height(*p)+.15,'height':1.62+i%5*.025,'heading':math.atan2(u[0]*side,u[1]*side),'character':characters[i%len(characters)],'radius':.42,'pose':'walk-mid-stride','animated':False})
  save('people/placements.json',pp)
@@ -337,12 +366,14 @@ def build(root):
   for t in np.arange(t0,t1-4,9):
    for k in range(1,lanes//2):
     if k==1 and hasbus:continue
-    if at_crossing(t+2,3):continue
+    if at_crossing(t+2,3) or junctionArea.covers(Point(xy(t+2))):continue
     d=lambda q:side*(.35+lane*k+widen(q,side))
     mark(strip(lambda q:d(q)-.06,lambda q:d(q)+.06,t,t+4),'white')
   for t in np.arange(t0,t1-1,1.1):
    if at_mouth(t,side,.3) or at_crossing(t,.9):continue
-   a=xy(t,side*half(t,side));b=xy(min(t+1.1,t1),side*half(min(t+1.1,t1),side));curbs.append({'a':a,'b':b})
+   a=xy(t,side*half(t,side));b=xy(min(t+1.1,t1),side*half(min(t+1.1,t1),side))
+   if any(br['road'].buffer(.1).intersects(LineString([a,b])) for br in branches):continue
+   curbs.append({'a':a,'b':b})
   def tactileD(t):
    offset=2.7
    for e in exits:
@@ -367,11 +398,12 @@ def build(root):
  for side in [-1,1]:
   for t in np.arange(t0+32,t1-10,62):
    for k in range(lanes//2):
-    if at_crossing(t,5):continue
+    if at_crossing(t,5) or junctionArea.covers(Point(xy(t))):continue
     d=side*(.35+lane*(k+.5)+(widen(t,side) if k else 0));flow=-side
     arrow=Polygon([xy(t+v*flow,d+w) for w,v in [(-.16,-2),(.16,-2),(.16,.55),(.65,.55),(0,2),(-.65,.55),(-.16,.55)]])
     mark(arrow.intersection(road),'white')
  for t in np.arange(t0+2,t1-2,2.4):
+  if junctionArea.intersects(LineString([xy(t),xy(t+2.4)])):continue
   # Gaps at the ends of bus platforms connect passengers to a marked crosswalk.
   if any(min(abs(t-c['t']),abs(t+2.4-c['t']))<c['width']/2+1.1 for c in crosswalks):continue
   fences.append({'a':xy(t,0),'b':xy(min(t+2.4,t1),0)})
@@ -384,18 +416,42 @@ def build(root):
    tt=t+side*(W/2+.8);d=side*(half(tt,side)+.6);p=xy(tt,d)
    crossings.append({'crosswalkId':c['id'],'t':t,'side':side,'position':[p[0],height(*p)+.145,p[1]],'heading':math.atan2(u[0]*(-side),u[1]*(-side))})
    stopT=t+side*(W/2+2.3)
-   mark(rect(stopT,side*half(stopT,side)/2,.45,half(stopT,side)-.4).intersection(road),'white')
+   if not junctionTs or min(abs(stopT-j) for j in junctionTs)>min(abs(t-j) for j in junctionTs):
+    mark(rect(stopT,side*half(stopT,side)/2,.45,half(stopT,side)-.4).intersection(road),'white')
    # Detectable warning strip and a branch from the longitudinal tactile route.
    mark(rect(t,side*(half(t,side)+1.45),W-.4,.55).intersection(sidewalks),'tactile',.162)
    mark(rect(t,side*(half(t,side)+2.15),.30,1.45).intersection(sidewalks),'tactile',.162)
  for m in mouths:
   side=m['side'];d=side*(half(m['t'],side)+2.4)
   for tt in np.arange(m['t']-m['width']/2+.4,m['t']+m['width']/2,.85):mark(rect(tt,d,.43,3.4),'white')
+ branchCrosswalks=0
+ # Paint and curbs on the other junction arms follow their own centerlines.
+ for bi,br in enumerate(branches):
+  line=br['line'];L=line.length;halfB=br['width']/2
+  def bxy(t,d):
+   p=np.array(line.interpolate(max(0,min(L,t))).coords[0]);v=np.array(line.interpolate(min(L,t+.2)).coords[0])-np.array(line.interpolate(max(0,t-.2)).coords[0]);v/=np.linalg.norm(v)
+   return (p+np.array([v[1],-v[0]])*d).tolist()
+  def brect(t,d,l,w):return Polygon([bxy(t-l/2,d-w/2),bxy(t+l/2,d-w/2),bxy(t+l/2,d+w/2),bxy(t-l/2,d+w/2)])
+  jt=line.project(br['junction']);direction=1 if jt<L/2 else -1;ct=jt+direction*(baseHalf+10)
+  for t in np.arange(1,L-1,1):
+   if junctionArea.covers(line.interpolate(t)):continue
+   if abs(t-ct)>3:
+    for d in [-.13,.13]:mark(brect(t,d,1,.09).intersection(road),'yellow')
+   if abs(t-ct)>4 and int(t)%9<4:
+    for side in [-1,1]:mark(brect(t,side*halfB/2,1,.12).intersection(road),'white')
+   for side in [-1,1]:
+    a,b=bxy(t,side*halfB),bxy(min(t+1,L),side*halfB)
+    if abs(t-ct)>3 and sidewalks.distance(LineString([a,b]))<.08:curbs.append({'a':a,'b':b})
+  if 3<ct<L-3:
+   branchCrosswalks+=1
+   for d in np.arange(-halfB+.4,halfB-.2,.95):mark(brect(ct,d,4.2,.48).intersection(road),'white')
+   for side in [-1,1]:
+    if side==direction:mark(brect(ct+side*4.4,side*halfB/2,.4,halfB-.3).intersection(road),'white')
  vehicles=[]
  for side in [-1,1]:
   for i,t in enumerate(np.arange(t0+22,t1-15,42)):
-   k=1+(i%2);d=side*(.35+lane*(k+.5)+widen(t,side));p=xy(t,d)
-   if not road.covers(rect(t,d,5.2,2)) or at_crossing(t,5.2):continue
+   k=i%(lanes//2);d=side*(.35+lane*(k+.5)+widen(t,side));p=xy(t,d)
+   if not road.covers(rect(t,d,5.2,2)) or at_crossing(t,5.2) or junctionArea.intersects(rect(t,d,5.2,2)):continue
    vehicles.append({'kind':'car','position':[p[0],height(*p)+.045,p[1]],'heading':math.atan2(u[0]*(-side),u[1]*(-side)),'variant':(i+(side+1)*2)%5,'footprint':list(rect(t,d,4.7,1.85).exterior.coords)})
   if hasbus:
    t=next((s['t'] for s in platforms if s['side']==side),side*50);d=side*(.35+lane/2);p=xy(t,d)
@@ -430,14 +486,14 @@ def build(root):
    ray=LineString([mid+normal*.35,center(t)+n*np.sign(d)*(half(t,1 if d>0 else -1)+.4)])
    if ray.intersection(built).length>.1:continue
    frontages.append({'owner':owner,'edge':i,'length':float(L),'t':t,'side':1 if d>0 else -1})
- qa={'version':80,'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks),'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
+ qa={'version':82,'roadPriority':reservation['qa'] if reservation else None,'junctionArms':len(branches),'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks)+branchCrosswalks,'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
  if qa['footprintBuildingOverlapM2']>.01:raise ValueError('Arterial footprint/building intersection')
  storefrontOverrides=json.loads((WORK/'arterial-v77/frontage-references.json').read_text()) if root.parent.name=='f20b139277e4d2a5' else []
  extent=int(loc.get('sizeMetres',300)/2)+20
  supportTerrain={'origin':[-extent,-extent],'step':5,'size':extent*2//5+1,'heights':[round(height(x,z),6) for z in range(-extent,extent+1,5) for x in range(-extent,extent+1,5)]}
- plan={'version':80,'supportTerrain':supportTerrain,'landings':landings,'name':loc['roadAddress'].get('road_name','큰길'),'alignment':{'u':u.tolist(),'n':n.tolist(),'knots':knots},'halfWidth':baseHalf,'laneWidth':lane,'lanes':lanes,'busLanes':hasbus,'publicRings':rings(public),'surfaces':{'ground':mesh(box(-extent,-extent,extent,extent).difference(holes))},'decals':decals,'curbs':curbs,'fences':fences,'crossings':crossings,'crosswalks':crosswalks,'shopFrontages':frontages,'platforms':platforms,'exits':exits,'furniture':furniture,'vehicles':vehicles,'commercialFacades':commercial,'mappedKiosks':mappedKiosks,'storefrontOverrides':storefrontOverrides,'qa':qa,'provenance':{'road':'OpenStreetMap / OpenFreeMap','busStops':'https://data.seoul.go.kr/dataList/OA-15067/A/1/datasetView.do','exits':'Kakao Local POI','appearance':'2026-06 Kakao Roadview, samples in arterial-study-v75 and arterial-v77/roadview','inferred':'Widths, lengths, furniture intervals and crossing access are visual reconstruction, not measured survey.'}}
+ plan={'version':82,'supportTerrain':supportTerrain,'landings':landings,'name':(loc.get('roadAddress') or {}).get('road_name','큰길'),'alignment':{'u':u.tolist(),'n':n.tolist(),'knots':knots},'halfWidth':baseHalf,'laneWidth':lane,'lanes':lanes,'busLanes':hasbus,'publicRings':rings(public),'surfaces':{'ground':mesh(box(-extent,-extent,extent,extent).difference(holes))},'decals':decals,'curbs':curbs,'fences':fences,'crossings':crossings,'crosswalks':crosswalks,'shopFrontages':frontages,'platforms':platforms,'exits':exits,'furniture':furniture,'vehicles':vehicles,'commercialFacades':commercial,'mappedKiosks':mappedKiosks,'storefrontOverrides':storefrontOverrides,'qa':qa,'provenance':{'road':'OpenStreetMap / OpenFreeMap','busStops':'https://data.seoul.go.kr/dataList/OA-15067/A/1/datasetView.do','exits':'Kakao Local POI','appearance':'2026-06 Kakao Roadview, samples in arterial-study-v75 and arterial-v77/roadview','inferred':'Widths, lengths, furniture intervals and crossing access are visual reconstruction, not measured survey.'}}
  write(out/'plan.json',plan)
  manifest=read('manifest.json') if (root/'manifest.json').exists() else {}
- manifest['arterial']={'version':80,'plan':'arterial/plan.json','overrides':override,'qa':qa};write(root/'manifest.json',manifest)
+ manifest['arterial']={'version':82,'plan':'arterial/plan.json','overrides':override,'qa':qa};write(root/'manifest.json',manifest)
  print(json.dumps(qa,ensure_ascii=False));return manifest['arterial']
 if __name__=='__main__':build(sys.argv[1])

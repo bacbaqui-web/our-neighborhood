@@ -1,0 +1,20 @@
+우리동네 파일 안내 — 2026-10-29 통합
+
+기준: code/13_our_neighborhood
+실행: outputs/domestic-test (동네, 차량, 아파트, 시설, 검토 화면)
+공통 소품: outputs/alley-library
+생성 원본: outputs/domestic-test/generation, work의 추적된 Python 파일
+브라우저 생성: work/browser-generation/entry.py → pack.py → outputs/domestic-test/browser-generation/sources.json
+배포 결과: dist. 직접 수정하지 않습니다. scripts/build-site.py로 다시 만듭니다.
+과거 생성 지도: outputs/generated-neighborhoods. 기존 주소/데이터 보존을 위해 경로 유지.
+실험·연구: work의 버전별 폴더와 outputs의 과거 결과. 경로 참조가 남아 있으므로 무작정 이동하지 않습니다. folder-inventory.json에 목록을 남겼습니다.
+검사 증거: verification와 work의 화면/검사 결과.
+전체 원본 보관: /Users/bacbaqui/Desktop/code/_neighborhood_preserved/20261029
+
+대화별 보존 작업
+우리동네: 브라우저 생성, 도로 우선 배치, 도로 4종, 교차로 수정, 도봉로 높이 보정.
+소품 텍스처: 차량 31개 버전/개인택시, 원본 잎과 원본 나무 배치 복원. 고해상도·분산 배치 실험은 기본값으로 되돌리지 않음.
+카카오지도 연결 실패 확인: 사진·로드뷰 출처, 시설/매장 17종, 시대별 아파트 9종 및 지도 배치. 지하주차장 경사로/실제 단지 외곽 울타리는 미완료.
+허깅페이스 무료 모델 정보 찾기: 소품 메모 반영, 삭제 제외, 접지, 마당·담장 규칙, 원형 상세 범위/전체 경계 건물/주변 도시·산.
+
+이번 정리에서는 공개 코드와 로컬 미반영 기능을 병합했습니다. 자료와 에셋은 삭제하지 않았습니다. 공개 사이트는 아직 기존 배포 버전입니다.

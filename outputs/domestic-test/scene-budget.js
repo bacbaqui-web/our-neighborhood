@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {chooseDistanceLOD} from './lod-policy.js?v=139';
 export function normalizeRadius(value=150,max=300){const n=Number(value);return Math.max(50,Math.min(max,Math.round((Number.isFinite(n)&&n>0?n:150)/50)*50));}
 export function selectedRadius(context,search=location.search){return normalizeRadius(new URLSearchParams(search).get('radius')||150,Math.max(50,Math.min(300,(context.sizeMetres||300)/2)));}
 export function withinScope(points,radius){
@@ -42,15 +43,15 @@ export function cropTerrain(root,radius){
 }
 export function disposeGenerated(root){const geometries=new Set(),materials=new Set();root.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const m of [o.material,o._originalMaterial].flat().filter(Boolean))materials.add(m);});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());root.removeFromParent();}
 export function buildingCells(specs,size=24){
- const cells=new Map();for(const b of specs){const x=b.points.reduce((s,p)=>s+p[0],0)/b.points.length,z=b.points.reduce((s,p)=>s+p[1],0)/b.points.length,key=Math.floor(x/size)+','+Math.floor(z/size);let c=cells.get(key);if(!c){c={key,owners:new Set(),box:new T.Box3(),buildings:[]};cells.set(key,c);}c.owners.add(b.seed);c.buildings.push(b);for(const [xx,zz] of b.points){c.box.expandByPoint(new T.Vector3(xx,b.base,zz));c.box.expandByPoint(new T.Vector3(xx,b.top+3,zz));}}return [...cells.values()];
+ const cells=new Map();for(const b of specs){const x=b.points.reduce((s,p)=>s+p[0],0)/b.points.length,z=b.points.reduce((s,p)=>s+p[1],0)/b.points.length,key=String(b.seed);let c=cells.get(key);if(!c){c={key,owners:new Set(),box:new T.Box3(),buildings:[]};cells.set(key,c);}c.owners.add(b.seed);c.buildings.push(b);for(const [xx,zz] of b.points){c.box.expandByPoint(new T.Vector3(xx,b.base,zz));c.box.expandByPoint(new T.Vector3(xx,b.top+3,zz));}}return [...cells.values()];
 }
-export function desiredDetail(distance,previous=null){if(previous===0&&distance<85)return 0;if(previous===1&&distance>=65&&distance<165)return 1;if(previous===2&&distance>=140&&distance<250)return 2;return distance<75?0:distance<150?1:distance<230?2:null;}
-export function createViewStreamer({cells,camera,create,remove,onChange}){
+export function desiredDetail(distance,previous=null){return distance>=(previous===2?250:230)?null:chooseDistanceLOD(distance,previous);}
+export function createViewStreamer({cells,camera,create,remove,onChange,getSettings=()=>({lod:true,lodMode:"auto"})}){
  const frustum=new T.Frustum(),matrix=new T.Matrix4(),expanded=new T.Box3(),state=new Map();let epoch=0,lastWork=-Infinity,pending=0;
  function update(now=performance.now(),force=false){
   camera.updateMatrixWorld();matrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(matrix);
-  const wanted=[];let changed=false;
-  for(const c of cells){const old=state.get(c.key),visible=frustum.intersectsBox(expanded.copy(c.box).expandByScalar(6)),distance=c.box.distanceToPoint(camera.position),level=visible?desiredDetail(distance,old?.level):null;
+  const wanted=[],settings=getSettings(),cameraPosition=camera.getWorldPosition(new T.Vector3());let changed=false;
+  for(const c of cells){const old=state.get(c.key),visible=frustum.intersectsBox(expanded.copy(c.box).expandByScalar(6)),distance=c.box.distanceToPoint(cameraPosition),inRange=distance<(old?250:230),level=visible&&inRange?(!settings.lod?0:settings.lodMode!=="auto"?Number(settings.lodMode):chooseDistanceLOD(distance,old?.level)):null;
    if(level!==null){wanted.push({c,level,distance,props:distance<(old?.props?125:105)});if(old)old.lastSeen=now;}
    else if(old){old.object.visible=false;if(now-old.lastSeen>1800||force){remove(old,c);state.delete(c.key);changed=true;}}
   }

@@ -1,4 +1,4 @@
-import {memoTemplate} from '../domestic-test/scene-vehicles.js?v=140';
+import {memoTemplate} from '../domestic-test/memo-scene.js?v=134';
 import {koreanVehicleCatalog,createKoreanVehicle} from './korean-vehicles.js?v=124';
 import {residentVehicleCatalog,createResidentVehicle} from './resident-vehicles.js?v=122';
 import {neighborhoodCatalog,createNeighborhoodAsset} from './neighborhood-models.js?v=122';
@@ -12,7 +12,7 @@ const rows=[
 ['묶인 흰 쓰레기봉투','수거·조경',0],['검은 쓰레기봉투 묶음','수거·조경',0],['접어 쌓은 종이상자','수거·조경',0],['재활용 분리수거함','수거·조경',0],['음식물 수거통','수거·조경',0],['테라코타 화분','수거·조경',0],['사각 텃밭 화분','수거·조경',0],['담장 덩굴','수거·조경',1],['골목 관목','수거·조경',1],['목재 평상','수거·조경',0]];
 export const catalog=rows.map(([name,category,seen],i)=>({id:i+1,name,category,source:seen?'로드뷰 형태 참고':'골목 보완 제안',file:`alley-${String(i+1).padStart(2,'0')}.glb`})).concat(moreCatalog,neighborhoodCatalog,residentVehicleCatalog);
 import {ALLEY_PALETTE as C} from './alley-palette.js?v=117';
-export function createAsset(id){const replacement=memoTemplate(id);if(replacement)return replacement;if(id>=213&&id<=215)return createKoreanVehicle(id);if(id===173||id>210)return createResidentVehicle(id);if(id>150)return createNeighborhoodAsset(id);if(id>50)return createMoreAsset(id);const root=new T.Group();root.name=catalog[id-1].name;let count=0;
+export function createAsset(id){const memo=memoTemplate(id);if(memo)return memo;if(id>=213&&id<=215)return createKoreanVehicle(id);if(id===173||id>210)return createResidentVehicle(id);if(id>150)return createNeighborhoodAsset(id);if(id>50)return createMoreAsset(id);const root=new T.Group();root.name=catalog[id-1].name;let count=0;
 function mesh(g,k='stone',x=0,y=0,z=0){const m=new T.Mesh(g,new T.MeshStandardMaterial({color:C[k]??k,roughness:.83}));m.position.set(x,y,z);m.name=k+'-'+(++count);m.userData.part=k;root.add(m);return m}
 function box(x,y,z,w,h,d,k='stone',bevel=0){return mesh(new T.BoxGeometry(w,h,d),k,x,y,z)}
 function cyl(x,y,z,r,h,k='metal',rt=r){return mesh(new T.CylinderGeometry(rt,r,h,r>.15?8:6),k,x,y,z)}
@@ -71,4 +71,4 @@ case 49:cyl(0,.3,0,.055,.6,'wood');for(let i=0;i<8;i++){const a=i*2.4;ball(Math.
 case 50:for(let i=0;i<7;i++)box(0,.43,-.6+i*.2,1.6,.07,.18,'wood');for(const x of [-.65,.65])for(const z of [-.48,.48])box(x,.20,z,.12,.4,.12,'wood');break;
 }
 root.userData={...catalog[id-1],units:'meters',style:'solid face colors; low-poly silhouettes; separated material parts'};return root;}
-export function addLines(root){root.traverse(o=>{if(o.isMesh){const c=o.material.color.clone().multiplyScalar(.38);const line=new T.LineSegments(new T.EdgesGeometry(o.geometry,38),new T.LineBasicMaterial({color:c}));o.add(line)}});return root}
+export function addLines(root){root.traverse(o=>{if(o.isMesh&&!o.userData.outlineOnly){const c=o.material.color.clone().multiplyScalar(.38);const line=new T.LineSegments(new T.EdgesGeometry(o.geometry,38),new T.LineBasicMaterial({color:c}));o.add(line)}});return root}

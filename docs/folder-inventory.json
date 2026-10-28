@@ -1,0 +1,2216 @@
+[
+  {
+    "path": "outputs/alley-expanded-walk.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-library",
+    "kind": "directory",
+    "role": "active",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v13.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v14.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v15.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v16.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v17.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v18.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v19.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report-v24.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-placement-report.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-v59",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-v60",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-v61",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-v62",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/alley-walking-preview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-study-v75",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-v76",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-v77",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-v78",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-v79",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/arterial-v80",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/asset-ac-preview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/asset-bins-preview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-layout-v18.txt",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-mesh-validation-v18.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-mesh-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-mesh-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-neighborhood-v18.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-parking-v18.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/attached-structure-validation-v18.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/billboard-experiment-v25.zip",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/billboard-lighting-v33",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/billboard-study-v25",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/billboard-test",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/boundary-ui-v14.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/boundary-v81",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v44",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v46",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v47",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v48",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v49",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v50",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v51",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v52",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v53",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v54",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v55",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v56",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/canopy-v57",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v83",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v84",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v85",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v86",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v87",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-billboard-v88",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/car-research",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/circular-preview",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/collision-fixed-close.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/collision-fixed-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/collision-fixed.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/collision-fixed.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/continuous-boundary-preview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/daylight-v40",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/decorated-alley-close.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/decorated-alley-overview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/decorated-alley-v11.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/detailed-assets-v10.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/domestic-neighborhood.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/domestic-neighborhood.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/domestic-test",
+    "kind": "directory",
+    "role": "active",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/domestic-test-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/door-cover-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/elevation-check",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/environment-v32",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/faceless-pedestrians-v24.zip",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/filled-neighborhood.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/filled-neighborhood.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v63",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v64",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v65",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v66",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v67",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v68",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/foliage-v69",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/generated-neighborhoods",
+    "kind": "directory",
+    "role": "active",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/ground-audit-v82",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/hourly-v36",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/household-structure-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/household-variation-summary-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-alley-boundary-line-v20.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-alley-boundary-v20.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-alley-close-v19.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-brick-frontage-v20.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-frontage-v20.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-gate-eye-v20.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-lived-alley-v22.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-neighborhood-lines-v19.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-neighborhood-v19.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-utility-alley-v21.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-utility-line-v21.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-utility-street-v21.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-windows-10.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-windows-v19.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/korean-windows-validation-v19.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/layout-rules-v14.txt",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/layout-validation-v14.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/layout-validation-v15.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/lighting-v42",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/line-style-v37",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/living-alley-walk-v17.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/living-neighborhood-v17.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/location-v74",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/lod-v29",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-assets-v9.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-saved-v24.zip",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v18.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v19.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/neighborhood-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/open-space-preview-v15.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/open-space-v15.txt",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/optimization-v28",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/parcel-backyards-v16.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/parcel-layout-v16.txt",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/parcel-street-v16.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/parcel-validation-v16.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/parcel-validation-v17.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-fix-v38",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-placement-validation-v24.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-placement-validation-v26.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-runtime-validation-v24.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-runtime-validation-v26.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrian-runtime-validation-v27.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrians-10-types-v26.zip",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/pedestrians-24-views-v27.zip",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-image-validation-v24.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-image-validation-v26.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-image-validation-v27.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-study-v24",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-study-v26",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/people-study-v27",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/placement-report.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/road-placement-validation-v19.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/road-placement-validation-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/road-placement-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/road-placement-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/road-placement-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v17",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v19",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v20",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v21",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v22",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v23",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/roadview-study-v59",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/rokehan-props-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/rokehan-props.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/rokehan-props.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/rooftops-v41",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/saved-v24",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/solmae-300m.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/solmae-overview.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/storefront-colors-v73",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/storefront-lighting-v71",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/storefront-neighborhood-v72",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/storefront-v70",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/street-life-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/street-life-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/street-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-prop-validation-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-render-validation-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-render-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-render-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-validation-v20.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/streetscape-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/sunlight-v43",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/sunset-v34",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/surfaces-v30",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/test-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/ui-v35",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-geometry-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-geometry-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-prop-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-prop-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-prop-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-validation-v21.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/utility-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/variety-color.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/variety-neighborhood.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/variety-tone.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/vegetation-v31",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/vehicle-validation-v22.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/vehicle-validation-v23.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/walk-ui-v45",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-color.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-foundation.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-line.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-neighborhood.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-screen.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-street.glb",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-street.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/webtoon-tone.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "outputs/windows-v39",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/__pycache__",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/add-assets.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/add-district-views.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/add-variants.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/address.html",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-placement-before150.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-placement-v13.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-placement-v14.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-placement-v15.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-v59",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-v60",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-v61",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/alley-v62",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/apartment-nine",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/apartment-research",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/app-before-details.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial-v76",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial-v77",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial-v78",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial-v79",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial-v80",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/arterial_plan.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/billboard-lighting-v33",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/billboard-v25",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/boundary-v81",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/browser-generation",
+    "kind": "directory",
+    "role": "active",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/buildings-check.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v44",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v46",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v47",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v48",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v49",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v50",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v51",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v52",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v53",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v54",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v55",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v56",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/canopy-v57",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v83",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v84",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v85",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v86",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v87",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-billboard-v88",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-mesh-v89",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-mesh-v90",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/car-mesh-v91",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-cars-v22.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-cars-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v17.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v19.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v20.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v21.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v22.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-road-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-street-life-v22.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-street-life-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-streetscape-props-v20.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-utilities-v21.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-utilities-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-utility-props-v21.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-utility-props-v22.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/check-utility-props-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/circular-v145",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/daylight-v40",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/denser-placement.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/details-before-variants.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/details-v13.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/domestic-buildings.geojson",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/elevation-v141",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/environment-v32",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/expand-assets.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/finish-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/first-batch-reference",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/fix-district-camera.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/fix-props.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v63",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v64",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v65",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v66",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v67",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v68",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/foliage-v69",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/generate-neighborhood.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/generation_scope.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/geo-env",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/ground-audit-v82",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/hourly-v36",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/inspect-props.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/integrate-v18.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/integrate-v21.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/kakao_terrain.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/korea-item.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/lighting-v42",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/line-style-v37",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/living-garden-camera-before-v17.png",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/location-v74",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/lod-v29",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/model-qa",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/neighborhood_sources.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/open-space-v15.js",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/optimization-v28",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/pedestrian-fix-v38",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/people-v24",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/people-v26",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/people-v27",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/plumb-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/polish-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/refine-assets.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/refine-composition-v17.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/refine-v17.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/render-boundaries-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/report-v17-first.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/report-v17-second.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/report-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/rewrite-layout-v14.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/road_priority.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/roadview50",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/rokehan.html",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/rooftops-v41",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/serve-neighborhood.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/service.json",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/storefront-colors-v73",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/storefront-lighting-v71",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/storefront-neighborhood-v72",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/storefront-v70",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/sunlight-v43",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/sunset-v34",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/surfaces-v30",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/three",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/three.tgz",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/ui-v35",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/update-expanded.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/update-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v16-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v17-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v18-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v19-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v20-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v21-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v22-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/v23-backup",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/vegetation-v31",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v18.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v19.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v20.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v21.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v22.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-attached-v23.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-layout-v14.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-layout-v15.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-parcels-v16.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-parcels-v17.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/verify-placement-150.py",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/walk-ui-v45",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/walk-v58",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/windows-v39",
+    "kind": "directory",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  },
+  {
+    "path": "work/yard-snippet.txt",
+    "kind": "file",
+    "role": "preserved-source-or-experiment",
+    "action": "kept-at-original-path"
+  }
+]

@@ -31,7 +31,7 @@ export function rememberLocation(context){try{localStorage.setItem(key,context.i
 export function setupLocationSearch(context,getHour){
  const input=document.getElementById('address'),button=document.getElementById('findAddress'),status=document.getElementById('status'),form=document.getElementById('addressForm'),history=document.getElementById('locationHistory');
  input.disabled=button.disabled=false;if(context.address)input.value=context.address;
- const range=document.getElementById('detailRadius');range.value=selectedRadius(context);range.title='주소 중심에서 동서남북으로 생성할 거리 · 50m 단위 · 돋보기 버튼으로 적용';
+ const range=document.getElementById('detailRadius');range.value=selectedRadius(context);range.title='중심에서 원형으로 자세히 만들 거리 · 50m 단위 · 돋보기 버튼으로 적용';
  range.addEventListener('change',()=>{range.value=normalizeRadius(range.value,Number(range.max));});
  let busy=false;
  const message=text=>{status.textContent=text;};

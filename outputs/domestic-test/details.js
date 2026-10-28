@@ -1,3 +1,4 @@
+import {emitFacility,addFacilityLabels} from './facilities/models.js';
 import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=59.1';
 import * as T from 'three';
 import {addBoundaryRibbon} from './boundary-geometry.js?v=82';
@@ -16,7 +17,9 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
  function segments(lo,hi,cuts){let a=[[lo,hi]];for(const [c,d] of cuts)a=a.flatMap(([x,y])=>d<=x||c>=y?[[x,y]]:[[x,Math.min(y,c)],[Math.max(x,d),y]].filter(([u,v])=>v-u>.008));return a;}
  for(const [buildingIndex,b] of buildings.entries()){
   if(b.arterialKiosk||(options.owners&&!options.owners.has(b.seed)))continue;
-  batch.inkObjectId=b.inkObjectId;const gasFaces=[];
+  batch.inkObjectId=b.inkObjectId;
+  if(b.facility){counts.windows+=emitFacility(batch,b,buildings,elevation).windows;continue;}
+  const gasFaces=[];
   const {points,top,base,floor,levels,seed,holes}=b,style=facadeStyles[Math.abs(seed)%6],covers=architecture.structures.filter(s=>s.owner===seed&&s.roofKind!=='none'),annexes=architecture.structures.filter(s=>s.owner===seed&&['shed','workshop'].includes(s.type));styleCounts[Math.abs(seed)%6]++;
   let signed=0;for(let i=0;i<points.length;i++){const a=points[i],c=points[(i+1)%points.length];signed+=a[0]*c[1]-c[0]*a[1]}const sign=signed>=0?1:-1;
   const front=Number.isInteger(b.frontEdge)?b.frontEdge:points.reduce((k,p,i)=>Math.hypot(points[(i+1)%points.length][0]-p[0],points[(i+1)%points.length][1]-p[1])>Math.hypot(points[(k+1)%points.length][0]-points[k][0],points[(k+1)%points.length][1]-points[k][1])?i:k,0);
@@ -172,5 +175,5 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
   const rooftop=roofsByBuilding.get(buildingIndex);
   if(rooftop){emitRooftop(batch,rooftop,style);counts.roofs++;}
  }
- const group=batch.finish();let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
+ const group=batch.finish();addFacilityLabels(group,buildings.filter(b=>!options.owners||options.owners.has(b.seed)));let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!buildings[p.buildingIndex]?.facility).filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
 }

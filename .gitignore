@@ -51,3 +51,12 @@ dist/
 /work/car-mesh-v91/*
 !/work/car-mesh-v91/build-avante.py
 !/work/car-mesh-v91/verify.mjs
+
+# Required generation source: keep it alongside the browser bundle.
+!/work/browser-generation/
+!/work/kakao_terrain.py
+!/work/road_priority.py
+!/work/generation_scope.py
+!/work/arterial-v76/
+/work/arterial-v76/*
+!/work/arterial-v76/seoul-stops-20260902.json

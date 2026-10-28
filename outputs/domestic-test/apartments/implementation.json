@@ -1,0 +1,7 @@
+{
+ "status":"9종 제작 및 지도 외관 자동 적용 연결",
+ "styles":{"old":"반복 옥탑·수평 발코니·지상 주차·성장한 나무","middle":"베이지 외벽·갈색 수직부·층층이 지붕 덮개·주차와 정원 혼합","new":"밝은 외벽·짙은 수직부와 저층부·옥상 프레임·보행 입구와 정원"},
+ "sources":{"old":["../apartment-research/#evidence","https://www.khan.co.kr/article/202302200700011"],"middle":["https://www.kne.co.kr/business/construct.asp?cate1=A&cate2=A&idx=13&pmode=VIEW"],"new":["https://www.raemian.co.kr/community/times/raemianHomeStyling/view.do?pg=3&searchStr=&searchType=&seq=98","https://news.samsungcnt.com/en/features/engineering-construction/2023-05-creating-a-beautiful-lived-environment-from-the-outside-in-with-landscaping/"]},
+ "mapRules":["원래 건물의 윤곽·위치·방향·층수 유지","설정 또는 준공일 우선, 없으면 이름 기반 유형 추정","주변 시설은 도로·건물·주요 부속 구조물·급경사를 피한 빈 공간에 배치","실제 단지 경계가 없으므로 폐쇄된 외곽 울타리는 생성하지 않음"],
+ "limits":["지하주차장 굴착과 진입 경사로는 아직 생성하지 않음","단지 비교 화면의 지면은 평탄화하며 길과 시설은 실제 위치가 아닌 추정","연도 자료가 없는 일반 아파트는 중간 시대를 기본값으로 사용","나무·벤치 등 기존의 작은 소품과의 정밀 겹침 검사는 별도 보완 필요"]
+}

@@ -1,0 +1,47 @@
+{
+  "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
+  "state": "consolidated-local-tested-not-published",
+  "publicCommit": "8830636b56a047a4d0cc75eab51a57089c678722",
+  "backup": "/Users/bacbaqui/Desktop/code/_neighborhood_preserved/20261029",
+  "retiredPublicationCopy": "/tmp/our-neighborhood-foliage-134",
+  "threads": {
+    "우리동네": "01a13524-5649-7602-ac5c-3b8756d03178",
+    "소품 텍스처": "01a17d6d-90db-7203-a31e-d9ce0f630ea3",
+    "카카오지도 연결 실패 확인": "01a18331-8bfb-7962-bf8a-f1228b814874",
+    "허깅페이스 무료 모델 정보 찾기": "01a1795f-36fc-7510-a7ab-21cc03b4bb86"
+  },
+  "preservedFeatures": [
+    "apartments-9",
+    "facilities-17",
+    "vehicles-31",
+    "original-leaf-layout",
+    "memo-remakes-and-deletions",
+    "courtyard-ground-contact",
+    "circular-boundary",
+    "street-types-4",
+    "dobong-flat-correction"
+  ],
+  "remaining": [
+    "public deployment of consolidated local features",
+    "intersection layout improvements"
+  ],
+  "validation": {
+    "preservedAssetFiles": 916,
+    "missingAssets": 0,
+    "changedAssets": 0,
+    "builtFiles": 968,
+    "builtMegabytes": 717.3,
+    "builtModuleMissing": 0,
+    "tests": [
+      "circular-background",
+      "full-detail",
+      "apartments-9",
+      "facilities-17",
+      "browser-generation-31-vehicles",
+      "scene-budget",
+      "road-priority-4",
+      "dobong-flat",
+      "loading"
+    ]
+  }
+}

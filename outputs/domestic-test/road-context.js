@@ -20,7 +20,7 @@ function geometry(positions,normals){
 let blockTexture;
 function sidewalkBlocks(){
  if(blockTexture)return blockTexture;
- const canvas=document.createElement('canvas');canvas.width=canvas.height=128;const c=canvas.getContext('2d');
+ const canvas=typeof document==='undefined'?new OffscreenCanvas(128,128):document.createElement('canvas');canvas.width=canvas.height=128;const c=canvas.getContext('2d');
  c.fillStyle='#565e5c';c.fillRect(0,0,128,128);
  const colors=['#949d98','#828d88','#89948e','#9aa39d'];
  for(let y=0;y<2;y++)for(let x=0;x<2;x++){c.fillStyle=colors[y*2+x];c.fillRect(x*64+1,y*64+1,62,62);}

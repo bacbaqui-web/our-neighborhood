@@ -10,7 +10,7 @@ import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=117';
 import {loadData} from './load-data.js?v=92';
 import {selectedRadius,withinScope,fullyInScope,scopePlan,scopeUtilities,scopeArterial,cropTerrain,buildingCells,createViewStreamer,disposeGenerated} from './scene-budget.js?v=148';
-import {applyRoadContext} from './road-context.js?v=144';
+import {applyRoadContext} from './road-context.js?v=149';
 import {createIllustrationRenderer} from './illustration-renderer.js?v=134';
 import {createIllustrationShading} from './illustration-shading.js?v=42';
 import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=inner-angle-126';

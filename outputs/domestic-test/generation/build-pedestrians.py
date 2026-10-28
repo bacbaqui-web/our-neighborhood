@@ -2,7 +2,7 @@
 import json,math,random
 from pathlib import Path
 import numpy as np
-from shapely.geometry import Point,Polygon,LineString,box
+from shapely.geometry import Point,Polygon,LineString,box,shape
 from shapely.ops import unary_union
 from site_geometry import Site
 from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC;site=Site(ROOT,ORIGIN);r=json.load(open(REPORT/'alley-placement-report-v23.json'));catalog=json.load(open(SHARED/'people/catalog.json'))['people'];ap=json.load(open(ROOT/'attached-structures.json'));sp=json.load(open(ROOT/'streetscape.json'));up=json.load(open(ROOT/'utilities.json'));parcels=json.load(open(ROOT/'parcels.json'))
@@ -12,7 +12,11 @@ walls=[LineString(w['points']).buffer(.15) for w in sp['wallRuns']]+[Polygon(p['
 props=[Polygon(p['footprint']) for p in r['placements'] if p['id'] not in range(201,206) and p.get('lift',0)<1.85]
 fixed=unary_union([site.built,*walls,*props,*[Polygon(s['footprint']) for s in ap['structures']],*[Point(p['x'],p['z']).buffer(p['radius']+.05) for p in up['poles']]])
 entries=unary_union([LineString(y['entrance']).buffer(.95) for y in parcels['yards'] if y['entrance']]+[Polygon(p['polygon']).buffer(.40) for p in ap['drives']]);limits=box(-128,-128,128,128);candidates=[]
-polys=[site.road] if site.road.geom_type=='Polygon' else list(site.road.geoms)
+walking=site.road
+if (ROOT/'road-reservation.json').exists():
+ reservation=json.loads((ROOT/'road-reservation.json').read_text())
+ if reservation.get('surfaces'):walking=site.road.difference(shape(reservation['surfaces']['carriageway']))
+polys=[walking] if walking.geom_type=='Polygon' else [p for p in getattr(walking,'geoms',[]) if p.geom_type=='Polygon']
 for poly in polys:
  for ring in [poly.exterior,*poly.interiors]:
   line=LineString(ring.coords)
@@ -20,10 +24,10 @@ for poly in polys:
    q=line.interpolate(float(t));a=line.interpolate(float(t)-1.2);b=line.interpolate(float(t)+1.2);L=a.distance(b)
    if L<1.9:continue
    ux,uz=(b.x-a.x)/L,(b.y-a.y)/L;nx,nz=-uz,ux
-   if not site.road.covers(Point(q.x+nx*.45,q.y+nz*.45)):nx,nz=-nx,-nz
+   if not walking.covers(Point(q.x+nx*.45,q.y+nz*.45)):nx,nz=-nx,-nz
    for off in [radius+.16,radius+.36,radius+.56]:
     x,z=q.x+nx*off,q.y+nz*off;pt=Point(x,z);fp=pt.buffer(radius)
-    if not limits.covers(fp) or not site.road.covers(fp) or fp.intersects(fixed) or fp.intersects(entries):continue
+    if not limits.covers(fp) or not walking.covers(fp) or fp.intersects(fixed) or fp.intersects(entries):continue
     hs=[site.height(x+dx,z+dz) for dx,dz in [(0,0),(radius,0),(-radius,0),(0,radius),(0,-radius)]]
     if max(hs)-min(hs)>.20:continue
     direction=1 if (int(abs(x)*13+abs(z)*19)%2) else -1

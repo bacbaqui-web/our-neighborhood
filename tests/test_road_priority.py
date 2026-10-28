@@ -1,7 +1,7 @@
 import unittest,tempfile,sys,json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'work'))
-from road_priority import reserve,scales
+from road_priority import reserve,scales,street_type
 from shapely.geometry import box,mapping,shape,LineString
 from shapely.ops import transform,unary_union
 class RoadPriority(unittest.TestCase):
@@ -28,4 +28,18 @@ class RoadPriority(unittest.TestCase):
    result=reserve(temp,{'origin':[37.62,127.02],'sizeMetres':100},roads,{'features':[]})
    self.assertEqual([e['width'] for e in result['entries']],[13.5,13.5])
    self.assertEqual(len(list(shape(result['road']).geoms)) if shape(result['road']).geom_type=='MultiPolygon' else 1,1)
+ def test_access_overrides_width_and_class(self):
+  self.assertEqual(street_type({'class':'secondary','motor_vehicle':'no'}),'pedestrian')
+  self.assertEqual(street_type({'class':'service'}),'shared')
+  self.assertEqual(street_type({'class':'path','subclass':'sidewalk'}),'sidewalk')
+  self.assertEqual(street_type({'class':'path','subclass':'footway'}),'pedestrian')
+ def test_four_surfaces_connect_without_overlapping(self):
+  roads=[{'geometry':mapping(LineString(a)),'width':w,'properties':p} for a,w,p in [([(-40,0),(40,0)],11,{'class':'secondary'}), ([(0,0),(0,40)],4.2,{'class':'minor'}), ([(0,20),(-40,20)],1.6,{'class':'path','subclass':'footway'})]]
+  with tempfile.TemporaryDirectory() as temp:
+   result=reserve(temp,{'origin':[37.62,127.02],'sizeMetres':100},roads,{'features':[]})
+   surfaces={k:shape(v) for k,v in result['surfaces'].items()}
+   self.assertTrue(all(v.area>0 for v in surfaces.values()))
+   self.assertAlmostEqual(sum(v.area for v in surfaces.values()),unary_union(list(surfaces.values())).area)
+   self.assertEqual([e['streetType'] for e in result['entries']],['carriageway','shared','pedestrian'])
+   self.assertEqual(result['entries'][2]['vehicleAccess'],False)
 if __name__=='__main__':unittest.main()

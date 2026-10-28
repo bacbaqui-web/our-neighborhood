@@ -5,7 +5,7 @@ import json, math, struct
 import numpy as np
 from pathlib import Path
 import shapely as S
-from shapely.geometry import Polygon, LineString, Point
+from shapely.geometry import Polygon, LineString, Point, shape
 from shapely.ops import unary_union
 from site_geometry import Site
 from road_wear import build_wear
@@ -23,6 +23,18 @@ def triangles(g):
 # Infer connected routes first; classify each whole street, not width blobs.
 print('Tracing connected street network…',flush=True)
 regions,network=build_road_network(free)
+if (ROOT/'road-reservation.json').exists():
+ # A connected alley remains asphalt regardless of local width.
+ reservation=json.loads((ROOT/'road-reservation.json').read_text())
+ surfaces=reservation.get('surfaces')
+ if surfaces:
+  sidewalk=shape(surfaces['sidewalk']).intersection(free)
+  pedestrian=shape(surfaces['pedestrian']).intersection(free).difference(sidewalk)
+  regions={'asphalt':free.difference(sidewalk.union(pedestrian)),'concrete':pedestrian,'pavers':Polygon(),'sidewalk':sidewalk}
+ else:regions={'asphalt':free,'concrete':Polygon(),'pavers':Polygon()}
+ network['qa']['surfacePolicy']='four-street-types'
+ network['streetTypes']=reservation['entries']
+
 wide=regions['asphalt'];concrete=regions['concrete'];narrow=free.difference(wide)
 # Preserve every source terrain triangle plane; retriangulating the whole road
 # created folds where the imported ground and road elevations differ.
@@ -58,6 +70,7 @@ for mesh in doc['meshes']:
       normals[kind].extend([round(float(n),6) for n in normal])
 plan=json.load(open(ROOT/'streetscape.json'))
 paint=unary_union([Polygon(t) for t in plan['paintTriangles']]).intersection(wide.buffer(.18)).difference(blocked.buffer(.12))
+if (ROOT/'road-reservation.json').exists():paint=Polygon()
 plan['paintTriangles']=triangles(paint)
 plan['apronTriangles']=triangles(unary_union([Polygon(t) for t in plan['apronTriangles']]).difference(blocked).difference(narrow))
 # Remove freestanding curb fragments on constrained fronts; retain real masonry boundaries.
@@ -77,7 +90,7 @@ print('Building aged concrete, block paving and wall-foot weeds…',flush=True)
 wear=build_wear(regions,source_triangles,site.built)
 qa={'originalBuildingOverlapM2':round(site.road.intersection(site.built).area,3),'remainingBuildingOverlapM2':round(free.intersection(site.built).area,8),'surfaceAreasM2':{k:round(g.area,2) for k,g in regions.items()},'surfaceOverlapM2':round(sum(g.area for g in regions.values())-free.area,8),'paintBuildingOverlapM2':round(paint.intersection(blocked).area,8),'concretePatches':len(polygons(concrete)),'concreteSeams':wear['qa'].get('pourJoints',0),'wear':wear['qa'],'network':network['qa'],'vertices':{k:len(v)//3 for k,v in vertices.items()}}
 assert qa['remainingBuildingOverlapM2']==0 and abs(qa['surfaceOverlapM2'])<.0001 and qa['paintBuildingOverlapM2']==0
-out={'version':62,'rule':'footprints first; connected centerline graph; one material per continuous street stroke; through streets own junctions; width is measured over a whole path; worn concrete and pavers on alleys','source':'OSM road geometry; Korean alley surface rules inferred, not surveyed','positions':vertices,'normals':normals,'seams':seams,'wear':wear,'network':network,'qa':qa}
+out={'version':62,'roadPriority':(ROOT/'road-reservation.json').exists(),'rule':'footprints first; connected centerline graph; one material per continuous street stroke; through streets own junctions; width is measured over a whole path; worn concrete and pavers on alleys','source':'OSM road geometry; Korean alley surface rules inferred, not surveyed','positions':vertices,'normals':normals,'seams':seams,'wear':wear,'network':network,'qa':qa}
 # Publish complete files atomically so a browser cannot read a half-written JSON.
 import os
 for name,body in [('road-context.json',out),('streetscape-context.json',plan)]:

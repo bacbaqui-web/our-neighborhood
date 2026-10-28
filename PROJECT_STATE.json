@@ -62,7 +62,7 @@
     "source": "Kakao map and aerial manually traced; existing public building footprints",
     "buildings": 28,
     "gardenZones": 11,
-    "treesPlanned": 149,
+    "treesPlanned": 123,
     "entryConnections": 28,
     "checks": [
       "apartment-garden",
@@ -73,6 +73,14 @@
       "tree species, fence materials and props are inferred",
       "terrain flattened for comparison"
     ],
-    "publicVersionUnchanged": true
+    "publicVersionUnchanged": true,
+    "shrubsPlanned": 203,
+    "naturalGardenRefinement": [
+      "uneven mature tree groups",
+      "low shrubs and root beds",
+      "continuous road ribbons",
+      "neutral lighting and building shadows"
+    ],
+    "previousSourceBackup": "work/apartment-garden/natural-before/"
   }
 }

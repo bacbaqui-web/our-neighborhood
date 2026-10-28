@@ -1,10 +1,11 @@
 {
   "buildings": 28,
   "connectedBuildings": 28,
-  "trees": 149,
+  "trees": 123,
+  "shrubs": 203,
   "fenceSegments": 754,
   "gardenZones": 11,
-  "triangles": 138864,
+  "triangles": 256902,
   "checks": [
     "28동 누락·중복 없음",
     "건물 윤곽이 단지 범위 안에 있음",

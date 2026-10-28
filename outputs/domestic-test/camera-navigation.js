@@ -8,7 +8,7 @@ export function setupCameraNavigation({camera,controls,canvas,host,isWalking,isR
  const style=document.createElement('style');style.textContent='.walking #walkHUD{top:238px}';host.append(style);
  const ctx=map.getContext('2d'),base=document.createElement('canvas');base.width=base.height=360;const b=base.getContext('2d');
  const keys=new Set(),direction=new T.Vector3(),right=new T.Vector3();let drag=null,last=0,baked=false,radius=100,lastMap=0;
- canvas.tabIndex=0;
+ canvas.tabIndex=0;controls.maxPolarAngle=Math.PI-.05;controls.minPolarAngle=.05;
  const editable=()=>document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')||document.querySelector('dialog[open]');
  const clear=()=>{keys.clear();if(drag&&canvas.hasPointerCapture(drag.id))canvas.releasePointerCapture(drag.id);drag=null;};
  window.addEventListener('blur',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();});

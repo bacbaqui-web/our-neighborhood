@@ -1,6 +1,6 @@
 import {chooseMapPoint} from './map-picker.js?v=151';
 import {browserContext,listScenes} from './browser-generation/storage.js';
-import {createNeighborhood} from './browser-generation/progress.js?v=151';
+import {createNeighborhood} from './browser-generation/progress.js?v=153';
 import {normalizeRadius,selectedRadius} from './scene-budget.js?v=151';
 const original={id:'original',address:'서울 강북구 솔매로17가길 7',origin:[37.626469,127.015677],sizeMetres:300,roadAddress:{road_name:'솔매로17가길',main_building_no:'7',sub_building_no:''}};
 const key='neighborhood-last-location-v74';
@@ -48,6 +48,16 @@ export function setupLocationSearch(context,getHour){
   catch(error){message(error.name==='AbortError'?'동네 만들기를 취소했습니다.':'동네를 만들지 못했습니다. '+error.message);}
   finally{busy=false;rebuild.disabled=button.disabled=false;}
  };
+ // Older maps remain saved; generate a new record with the current rules once per visit.
+ if((context.browserGenerationVersion||0)<8){
+  const notice=document.createElement('p');notice.textContent='기존 동네를 새 길·주변 배경 규칙으로 갱신합니다. 이전 자료는 보존됩니다.';notice.style.cssText='font-size:12px;color:#fff';form.append(notice);
+  queueMicrotask(async()=>{
+   if(busy)return;busy=true;rebuild.disabled=button.disabled=true;
+   try{const result=await createNeighborhood({address:context.address,center:context.origin,radius:normalizeRadius(range.value)});visit(result.id);}
+   catch(error){notice.textContent=error.name==='AbortError'?'갱신을 취소했습니다. 이 위치 다시 만들기로 재시도할 수 있습니다.':'갱신하지 못했습니다. 이 위치 다시 만들기로 재시도해 주세요. '+error.message;}
+   finally{busy=false;rebuild.disabled=button.disabled=false;}
+  });
+ }
  form.onsubmit=async event=>{
   event.preventDefault();if(busy)return;let address=input.value.trim();let center=null;
   const point=await chooseMapPoint({query:address,origin:context.origin,radius:Number(range.value)});if(!point)return;address=point.address;center=point.center;range.value=point.radius;input.value=address;

@@ -1,4 +1,4 @@
-import {prepareScene} from './prepare-scene.js?v=151';
+import {prepareScene} from './prepare-scene.js?v=153';
 const base=new URL('./',import.meta.url);
 // Synchronous network access is restricted to this disposable background Worker.
 self.browserRequest=url=>{
@@ -16,7 +16,7 @@ self.onmessage=async({data})=>{
   const py=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v314.0.0/full/'});
   await py.loadPackage(['numpy','scipy','scikit-image','shapely','pillow','pyclipper','protobuf','micropip']);
   await py.runPythonAsync("import micropip\nawait micropip.install('mapbox-vector-tile==2.2.0',deps=False)");
-  const [sources,terrainText,bounds]=await Promise.all([fetch(new URL('sources.json?v=150',base),{cache:'no-cache'}).then(r=>r.json()),fetch(new URL('terrain-source.txt',base)).then(r=>r.text()),fetch(new URL('vehicle-bounds.json',base)).then(r=>r.json())]);
+  const [sources,terrainText,bounds]=await Promise.all([fetch(new URL('sources.json?v=153',base),{cache:'no-cache'}).then(r=>r.json()),fetch(new URL('terrain-source.txt',base)).then(r=>r.text()),fetch(new URL('vehicle-bounds.json',base)).then(r=>r.json())]);
   for(const [path,text] of Object.entries(sources)){py.FS.mkdirTree(path.slice(0,path.lastIndexOf('/')));py.FS.writeFile(path,text);}
   py.globals.set('PARAMETERS',JSON.stringify(data));
   await py.runPythonAsync("exec(open('/work/browser-entry.py').read())");

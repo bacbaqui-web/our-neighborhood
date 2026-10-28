@@ -65,7 +65,26 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
   const h=i=>p.getY(i*N+j)*(1-v)+p.getY(i*N+(j+1)%N)*v;
   return h(r)*(1-u)+h(r+1)*u;
  }
- function bridgeGround(nearRoot){nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;o.material=landMaterial(false,o.name!=='ground');o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
+ function buildContextRoads(){
+  const vertices=[];
+  for(const road of data.roads||[]){
+   const lines=road.geometry.type==='LineString'?[road.geometry.coordinates]:road.geometry.coordinates;
+   for(const points of lines)for(let i=1;i<points.length;i++){
+    const a=points[i-1],b=points[i],dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);if(!length)continue;
+    const w=(road.width||4)/2,nx=-dz/length*w,nz=dx/length*w,steps=Math.max(1,Math.ceil(length/8));
+    for(let j=0;j<steps;j++){
+     const t=j/steps,v=(j+1)/steps,x=a[0]+dx*t,z=a[1]+dz*t,xx=a[0]+dx*v,zz=a[1]+dz*v;
+     if(Math.hypot((x+xx)/2,(z+zz)/2)<detailRadius+55)continue;
+     const q=[[x+nx,z+nz],[xx+nx,zz+nz],[x-nx,z-nz],[xx-nx,zz-nz]];
+     for(const k of [0,2,1,1,2,3])vertices.push(q[k][0],heightAt(...q[k])+.10,q[k][1]);
+    }
+   }
+  }
+  const old=root.getObjectByName('SimpleContextRoads');if(old){old.geometry.dispose();old.material.dispose();root.remove(old);}
+  if(vertices.length){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.computeVertexNormals();const m=landMaterial(false,true);m.fragmentShader=m.fragmentShader.replace(/float roadBlend=.*?;c=mix/, 'float roadBlend=1.;c=mix');const mesh=new T.Mesh(g,m);mesh.name='SimpleContextRoads';root.add(mesh);}
+  stats.contextRoadSegments=(data.roads||[]).length;stats.contextRoadTriangles=vertices.length/9;
+ }
+ function bridgeGround(nearRoot){nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;if(o.name!=='ground')return;o.material=landMaterial(false,false);o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
  function fitGround(sample){
   const p=geo.attributes.position,changes=new Map();
   // Match the inner terrain to the actual road/ground surface and ease out the correction.
@@ -81,7 +100,7 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
    }
   }
   entries.forEach(({b},i)=>{const d=Math.hypot(b[0],b[2]),angle=(Math.atan2(b[0],-b[2])+Math.PI*2)%(Math.PI*2),j=Math.round(angle/(Math.PI*2)*N)%N,u=Math.max(0,Math.min(1,(d-detailRadius)/140));place([b[0],b[1]+changes.get(j)*(1-u*u*(3-2*u)),...b.slice(2)],i);});
-  p.needsUpdate=true;geo.computeVertexNormals();geo.computeBoundingSphere();city.instanceMatrix.needsUpdate=true;city.computeBoundingSphere();
+  buildContextRoads();p.needsUpdate=true;geo.computeVertexNormals();geo.computeBoundingSphere();city.instanceMatrix.needsUpdate=true;city.computeBoundingSphere();
  }
  let profile=environmentProfile(12,'clear',solarContext),style='color',enabled=true;
  function set(hour,weather,nextStyle=style,chance,pattern=0){

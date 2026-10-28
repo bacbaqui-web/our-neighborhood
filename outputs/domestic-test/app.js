@@ -11,7 +11,7 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=151';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=153';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=151';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=151';
 import {loadData} from './load-data.js?v=151';
@@ -23,7 +23,7 @@ import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=151';
 import {createPrecipitation} from './precipitation.js?v=151';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
 import {createBillboardLightField} from './billboard-lighting.js?v=151';
-import {createAtmosphere} from './atmosphere.js?v=151';
+import {createAtmosphere} from './atmosphere.js?v=153';
 import {createStreetlights} from './streetlights.js?v=151';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
 import {loadVegetationAssets} from './vegetation.js?v=151';

@@ -36,7 +36,7 @@ def elevation(x,z):
 # Use the same near-ground source and datum as the detailed map.
 import sys
 sys.path.insert(0,str(SHARED.parents[1]/'work'))
-from neighborhood_sources import acquire_buildings
+from neighborhood_sources import acquire_buildings,acquire_roads
 from kakao_terrain import load_terrain
 near=load_terrain(ROOT,{'origin':ORIGIN})
 coarse_elevation=elevation
@@ -69,6 +69,7 @@ else:
    for f in batch['features']:records[f['properties']['objectid']]=f
  raw={'type':'FeatureCollection','features':list(records.values()),'origin':ORIGIN}
  cache.write_text(json.dumps(raw,separators=(',',':')))
+context_roads=acquire_roads(context,{'origin':ORIGIN,'sizeMetres':4000})
 city=[];cityFootprints=[]
 for f in raw['features']:
  g=shape(f['geometry'])
@@ -90,7 +91,7 @@ profiles=[]
 for j in range(angles):
  best=max(((math.degrees(math.atan2(heights[i*angles+j]-datum-1.65,r)),i) for i,r in enumerate(radii) if r>700))
  profiles.append({'bearing':round(j*360/angles,2),'angle':round(best[0],3),'distance':round(float(radii[best[1]])),'height':round(heights[best[1]*angles+j],1)})
-result={'version':32,'origin':[LAT,LON],'axes':'x east, z south, y elevation minus origin DEM','datumMetres':round(datum,3),'radius':rad,'angles':angles,'radii':[round(float(r),2) for r in radii],'positions':positions,'city':city,'cityFootprints':cityFootprints,'contextRadius':2000,'skyline':profiles,'sources':{'terrain':'https://registry.opendata.aws/terrain-tiles/','format':'https://github.com/tilezen/joerd/blob/master/docs/formats.md','attribution':'https://github.com/tilezen/joerd/blob/master/docs/attribution.md','accessed':'2026-10-14','tileZoom':ZOOM,'tileCount':len(tiles)},'contextBuildings':'MOIS / Esri Korea footprints; minimum bounding rectangles; height estimated as floors x 3m'}
+result={'version':32,'origin':[LAT,LON],'axes':'x east, z south, y elevation minus origin DEM','datumMetres':round(datum,3),'radius':rad,'angles':angles,'radii':[round(float(r),2) for r in radii],'positions':positions,'city':city,'cityFootprints':cityFootprints,'contextRadius':2000,'roads':context_roads,'skyline':profiles,'sources':{'terrain':'https://registry.opendata.aws/terrain-tiles/','format':'https://github.com/tilezen/joerd/blob/master/docs/formats.md','attribution':'https://github.com/tilezen/joerd/blob/master/docs/attribution.md','accessed':'2026-10-14','tileZoom':ZOOM,'tileCount':len(tiles)},'contextBuildings':'MOIS / Esri Korea footprints; minimum bounding rectangles; height estimated as floors x 3m'}
 (OUT/'terrain.json').write_text(json.dumps(result,separators=(',',':')))
 qa={'tileCount':len(tiles),'datumMetres':datum,'vertices':len(positions)//3,'triangles':(len(radii)-1)*angles*2,'minElevation':min(heights),'maxElevation':max(heights),'contextBuildings':len(city),'highestSkyline':max(profiles,key=lambda a:a['angle']),'allFinite':bool(np.isfinite(positions).all())}
 (REPORT/'environment-v32/terrain-validation.json').write_text(json.dumps(qa,indent=2));print(qa)

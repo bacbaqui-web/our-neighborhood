@@ -1,7 +1,7 @@
 {
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
   "state": "consolidated-public-verified",
-  "publicCommit": "a9e0aff173fa348f35ae756f9b16fb6798d66b9e",
+  "publicCommit": "eabd960e886e4c5cb4de0183728e53c056167337",
   "backup": "/Users/bacbaqui/Desktop/code/_neighborhood_preserved/20261029",
   "retiredPublicationCopy": "/tmp/our-neighborhood-foliage-134",
   "threads": {
@@ -114,12 +114,56 @@
     "publicRoadIncluded": "솔샘로"
   },
   "cameraNavigation": {
-    "status": "local-verified",
+    "status": "public-verified",
     "minimap": "buildings, roads, camera position and heading",
     "controls": "WASD movement; left drag look; existing walk controls retained",
     "validation": [
       "W held 700ms moved camera and minimap",
       "left drag without browser errors",
+      "pack --check"
+    ],
+    "publicURL": "https://magamiscom.ing/neighborhood/"
+  },
+  "structureLab": {
+    "status": "local-only",
+    "path": "work/structure-lab/index.html",
+    "url": "http://127.0.0.1:8799/work/structure-lab/",
+    "presets": [
+      "Solmae alley",
+      "Dobong avenue"
+    ],
+    "features": [
+      "structural data only, no decorative assets",
+      "wall deduplication",
+      "terrain fitted walls",
+      "wall height limit",
+      "layer toggles",
+      "export rules"
+    ],
+    "limits": [
+      "saved road geometry, no fresh address generation",
+      "intersection recalculation and footprint collision checks pending"
+    ],
+    "publicVersionUnchanged": true
+  },
+  "apartmentInfillConcept": {
+    "status": "image-concept-only-not-implemented",
+    "image": "outputs/domestic-test/apartments/garden/infill-study/living-spaces-concept-v1.png",
+    "references": "outputs/domestic-test/apartments/garden/infill-study/sources.json",
+    "prompt": "outputs/domestic-test/apartments/garden/infill-study/generation-prompt.txt",
+    "generator": "built-in image_gen",
+    "referencePhotos": 8,
+    "note": "생활 시설과 조경의 분위기 구상. 생성 이미지의 건물·도로 배치는 지도와 정확히 일치하지 않으며 실제 모델 배치에는 적용하지 않음."
+  },
+  "connectedRoadContext": {
+    "status": "local-tested",
+    "generationVersion": 8,
+    "outerRoadRadius": 2000,
+    "preserveNearRoadMaterials": true,
+    "upgradeOldScenes": "new record, preserve original",
+    "checks": [
+      "four road type tests",
+      "background continuity and road ribbon tests",
       "pack --check"
     ]
   }

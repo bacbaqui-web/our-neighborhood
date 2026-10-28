@@ -26,3 +26,10 @@ assert(land.material.isShaderMaterial&&land.userData.noInk&&land.userData.enviro
 assert(near.getObjectByName('GroundShadowReceiver').receiveShadow);
 joined.dispose();
 console.log('Crossing buildings, background deduplication, continuous ground, and shadow receivers passed.');
+// Background roads remain visible beyond the detailed circle; paving keeps its own material.
+const withRoads=createAtmosphere({...d,roads:[{width:5,geometry:{type:'LineString',coordinates:[[0,0],[600,0]]}}]},undefined,50,new Set());
+withRoads.fitGround(()=>0);
+assert(withRoads.stats.contextRoadTriangles>0);
+assert(withRoads.scene.getObjectByName('SimpleContextRoads'));
+const nearRoad=new T.Group(),paving=new T.Mesh(new T.PlaneGeometry(5,5),new T.MeshStandardMaterial({color:0xabcdef}));paving.name='road';nearRoad.add(paving);const pavingMaterial=paving.material;withRoads.bridgeGround(nearRoad);assert.equal(paving.material,pavingMaterial);withRoads.dispose();
+console.log('Outer road ribbons and original paving materials preserved.');

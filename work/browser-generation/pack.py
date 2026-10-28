@@ -25,7 +25,7 @@ files['/work/browser-entry.py']=(ROOT/'work/browser-generation/entry.py').read_t
 out=ROOT/'outputs/domestic-test/browser-generation'
 payloads={'sources.json':json.dumps(files,ensure_ascii=False,separators=(',',':')),'terrain-source.txt':(ROOT/'work/windows-v39/terrain-functions.js.txt').read_text()}
 if '--check' in sys.argv:
- stale=[name for name,text in payloads.items() if not (out/name).exists() or (out/name).read_text()!=text]
+ stale=[name for name,text in payloads.items() if not (out/name).exists() or (json.loads((out/name).read_text())!=json.loads(text) if name.endswith('.json') else (out/name).read_text()!=text)]
  if stale:raise SystemExit('생성 코드 묶음을 갱신하세요: python3 work/browser-generation/pack.py ('+', '.join(stale)+')')
  print('Public source bundle is current:',len(files),'files')
 else:

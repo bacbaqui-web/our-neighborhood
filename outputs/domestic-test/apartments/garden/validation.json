@@ -1,18 +1,24 @@
 {
+  "parkingRows": 29,
+  "parkingBays": 158,
+  "cars": 139,
+  "rejectedBays": 81,
   "buildings": 28,
   "connectedBuildings": 28,
-  "trees": 123,
-  "shrubs": 203,
+  "trees": 118,
+  "shrubs": 182,
   "fenceSegments": 754,
   "gardenZones": 11,
-  "triangles": 256902,
+  "triangles": 265424,
   "checks": [
     "28동 누락·중복 없음",
     "건물 윤곽이 단지 범위 안에 있음",
     "나무가 도로·현관 통로를 비움",
     "울타리가 길·출입구를 비움",
     "28동 현관 연결",
-    "생성 좌표 유효"
+    "생성 좌표 유효",
+    "주차칸이 건물·현관 통로를 비움",
+    "주차 구획 안 수목 제외"
   ],
   "scope": "로컬 비교 페이지; 법적 경계·실측 수종·지형 고도는 미검증"
 }

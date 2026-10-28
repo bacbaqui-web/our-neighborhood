@@ -16,7 +16,9 @@ export function gardenSurfaces(plan,layout){
  for(const f of layout.fences){const dx=f.b[0]-f.a[0],dz=f.b[1]-f.a[1],L=Math.hypot(dx,dz),o=batch.writer([f.a[0],0,f.a[1]],dx/L,dz/L,-dz/L,dx/L);o.box(L/2,.21,0,L,.42,.3,0xa3a493);o.box(L/2,1.37,0,L,.07,.08,0x526a5a);o.box(L/2,.6,0,L,.05,.06,0x526a5a);for(let x=0;x<L;x+=.25)o.box(x,.95,0,.04,.86,.045,0x607460);o.box(0,.79,0,.09,1.5,.09,0x526a5a);}
  for(const b of layout.benches){const c=Math.cos(b.angle),s=Math.sin(b.angle),o=batch.writer([b.point[0],0,b.point[1]],c,s,-s,c);for(const z of [-.22,0,.22])o.box(0,.5,z,1.9,.08,.17,0xa58b69);for(const x of [-.7,.7])o.box(x,.26,0,.09,.5,.5,0x596458);o.box(0,.85,.29,1.9,.48,.08,0xa58b69);}
  for(const p of layout.lamps){B(p[0],1.8,p[1],.09,3.6,.09,0x5e6c63);B(p[0],3.65,p[1],.4,.18,.4,0xe2dfc4);}
- for(const [i,b]of layout.parking.entries()){const s=Math.sin(b.angle),c=Math.cos(b.angle),o=batch.writer([b.point[0],0,b.point[1]],c,-s,s,c);o.box(0,.055,0,2.7,.035,5,0x8d948c);for(const x of [-1.3,1.3])o.box(x,.08,0,.06,.03,4.8,0xe0ddca);o.box(0,.62,0,1.7,.9,3.8,[0x93a6a0,0xc4c5b8,0x687e86][i%3]);o.box(0,1.15,-.15,1.5,.45,1.9,0x70888a);for(const x of [-.86,.86])for(const z of [-1.25,1.2])o.box(x,.32,z,.17,.48,.55,0x3c4944);}
+ for(const b of layout.parkingLanes){const s=Math.sin(b.angle),c=Math.cos(b.angle),o=batch.writer([b.point[0],0,b.point[1]],c,-s,s,c);o.box(0,.095,0,b.width,.025,4,0x69716d);}
+ for(const b of layout.parking){const s=Math.sin(b.angle),c=Math.cos(b.angle),o=batch.writer([b.point[0],0,b.point[1]],c,-s,s,c);o.box(0,.10,0,b.width,.035,5.2,0x69716d);for(const x of [-b.width/2+.05,b.width/2-.05])o.box(x,.13,0,.09,.025,5,0xe7e5d8);o.box(0,.13,-2.45,b.width,.025,.09,0xe7e5d8);for(const x of [-.65,.65]){o.box(x,.20,-1.85,.45,.16,.16,0x343c39);o.box(x,.29,-1.85,.2,.025,.17,0xd4bd6f);}}
+
 
  // One play area at the east courtyard visible in the aerial reference; equipment is stylized.
  const center=layout.playground?.point;

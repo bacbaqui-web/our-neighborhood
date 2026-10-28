@@ -19,13 +19,26 @@ export function emitApartment(batch,b){
  for(const e of es){const {L,i}=e,out=batch.writer([e.a[0],b.base,e.a[1]],e.ux,e.uz,e.nx,e.nz),B=out.box,Q=out.quad;
  Q(L/2,H/2,.018,L,H,style.wall);B(L/2,H+.3,-.09,L,.6,.18,style.wall);B(L/2,.7,.025,L,1.4,.035,style.accent);
  const main=L>longest*.46,cols=Math.max(1,Math.floor(L/(main?3.2:3.8))),pw=L/cols,back=i%2===1;
+ if(style.era==='new')for(let j=0;j<cols;j+=3)B((j+.93)*pw,H/2,.16,.16,H,.3,style.accent);
  if(main)for(let j=2;j<cols;j+=5)B((j+.5)*pw,H/2,.04,1.25,H,.07,style.accent);
  for(let r=0;r<levels;r++)for(let j=0;j<cols;j++){
  const stair=main&&j%5===2,x=(j+.5)*pw,y=r*fh+fh*.57,w=stair?.75:Math.min(pw-.35,style.era==='new'?2.25:2.65),h=stair?fh*.5:fh*.65;
 
- Q(x,y,.092,w,h,style.glass);B(x,y,.12,.045,h,.04,style.wall);B(x,y-h/2,.12,w,.08,.06,style.wall);windows++;
- if(style.era==='old'&&!stair){B(x,y-h*.24,.16,w,.055,.05,0xc0c4b5);if(back)B(x,r*fh+.25,.14,pw-.12,.35,.12,style.wall);}
- if(style.era==='new'&&j%3===0)B(x+pw*.43,H/2,.12,.16,H,.18,style.accent);
+ // Recessed glass, projecting jambs and a slab give each storey readable depth.
+ const frame=style.era==='old'?0xd1d0bf:0xe0dfd3,depth=stair?.19:style.era==='new'?.26:.48;
+ Q(x,y,.075,w,h,((r+j)%11===0)?0x9eaaa4:style.glass);
+ for(const xx of [-w/2,w/2])B(x+xx,y,depth/2,.085,h+.14,depth,frame);
+ for(const yy of [-h/2,h/2])B(x,y+yy,depth/2,w+.12,.09,depth,frame);
+ for(let m=1;m<3;m++)B(x-w/2+w*m/3,y,depth-.035,.045,h,.065,frame);
+ B(x,y-h*.18,depth-.02,w,.045,.055,frame);windows++;
+ if(!stair){
+ B(x,r*fh+.15,.27,pw-.10,.20,.65,style.wall);
+ B(x,y-h/2-.22,.19,w+.18,.35,.42,style.wall);
+ if(style.era==='old'){B(x,y-h/2+.35,.57,w,.045,.045,0x8f9b97);for(let k=0;k<=5;k++)B(x-w/2+w*k/5,y-h/2+.16,.57,.026,.38,.035,0x8f9b97);}
+ if(style.era==='middle'){B(x-pw*.46,r*fh+fh/2,.15,.14,fh,.35,style.accent);}
+ if(style.era!=='new'&&(r+j*3)%7===0){B(x+w*.28,r*fh+.48,.57,.68,.46,.33,0xc2c3b5);for(let l=0;l<4;l++)B(x+w*.28,r*fh+.34+l*.085,.75,.52,.025,.025,0x7a8580);}
+ }else{B(x,y-h/2-.13,.23,w+.3,.16,.48,style.accent);}
+
  }
  if(main&&L>=8){const n=Math.max(1,Math.floor(L/15));for(let k=0;k<n;k++){const x=L*(k+.5)/n,w=Math.min(3.4,L/n*.4),d=3.4;
  if(insideBox(e,x,-d/2-.35,w,d)){
@@ -35,7 +48,11 @@ export function emitApartment(batch,b){
  if(style.era==='new'){for(const xx of [-1,1])B(x+xx*w*.4,H+2,-d/2-.35,.3,3.2,d,style.accent);B(x,H+3.6,-d/2-.35,w+.3,.35,d,style.accent);}
  }
  }}
- if(i===(b.frontEdge??es[0].i)&&L>4){Q(L/2,1.2,.13,1.9,2.4,style.glass);B(L/2,2.65,.5,3,.18,1.1,style.accent);}
+ if(i===(b.frontEdge??es[0].i)&&L>4){Q(L/2,1.2,.15,1.9,2.4,style.glass);for(const x of [-1.12,1.12])B(L/2+x,1.35,.36,.25,2.7,.7,style.accent);B(L/2,2.75,.62,3.2,.22,1.5,style.accent);B(L/2,.08,.65,3.4,.16,1.5,0xb9b8aa);B(L/2,1.2,.24,.055,2.4,.08,0xcbd0c7);for(const x of [-.15,.15])B(L/2+x,1.1,.31,.035,.4,.04,0xbac3c0);}
+ // Roof coping and rainwater pipe stay distinct from the facade.
+ B(L/2,H+.63,-.08,L+.08,.08,.28,0xb8bcb2);
+ if(L>8){B(.18,H/2,.14,.09,H,.1,style.accent);}
+
  }
  return {windows};
 }

@@ -62,25 +62,42 @@
     "source": "Kakao map and aerial manually traced; existing public building footprints",
     "buildings": 28,
     "gardenZones": 11,
-    "treesPlanned": 123,
+    "treesPlanned": 118,
     "entryConnections": 28,
     "checks": [
       "apartment-garden",
+      "apartment-nine",
+      "facility-placement",
       "pack.py --check"
     ],
     "limits": [
       "boundary is not a cadastral survey",
       "tree species, fence materials and props are inferred",
-      "terrain flattened for comparison"
+      "terrain flattened for comparison",
+      "parking rows manually traced; 81 colliding candidate bays excluded",
+      "hidden spaces and underground parking unverified; vehicle types and occupancy illustrative"
     ],
     "publicVersionUnchanged": true,
-    "shrubsPlanned": 203,
+    "shrubsPlanned": 182,
     "naturalGardenRefinement": [
       "uneven mature tree groups",
       "low shrubs and root beds",
       "continuous road ribbons",
       "neutral lighting and building shadows"
     ],
-    "previousSourceBackup": "work/apartment-garden/natural-before/"
+    "previousSourceBackup": "work/apartment-garden/natural-before/",
+    "parkingRows": 29,
+    "parkingBays": 158,
+    "cars": 139,
+    "parkingReference": "outputs/domestic-test/apartments/garden/parking-reference.json",
+    "parkingExcludedCandidates": 81,
+    "parkingBackup": "work/apartment-garden/parking-before/",
+    "facadeDetails": [
+      "recessed glazing and window frames",
+      "balcony slabs and rails",
+      "stairwell sills",
+      "entrance columns and doors",
+      "roof coping and rainwater pipes"
+    ]
   }
 }

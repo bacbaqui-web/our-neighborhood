@@ -24,3 +24,8 @@ outputs/domestic-test/apartments/garden/: 정릉풍림아이원 101~128동, 지�
 work/apartment-garden/build-plan.py: 지도에서 옮긴 선과 원본 건물 자료를 합치는 생성 파일. 자료와 이전 목록 페이지를 같은 폴더에 보존했습니다.
 tests/apartment-garden.mjs: 28동·경계 포함·길과 건물 겹침·출입구·나무 배치 검사.
 경계는 법적 경계가 아니며 수종·시설 세부는 추정, 지면은 평탄화했습니다. 공개 배포 상태는 기존과 같습니다.
+
+지도 길·주차장 재추적 — 로컬 미배포
+work/apartment-garden/retrace-map.py: 확대 일반 지도 4장의 좌표를 바탕으로 길·주차열·정원·건물 교정을 재생성합니다. build-plan.py에서도 마지막에 호출합니다.
+outputs/domestic-test/apartments/garden/trace-{north,center,east,south}.png: 직접 확인한 지도 원본. parking-reference.json에 좌표와 교정 내역을 보관합니다.
+주차열 44곳·재구성 320칸 유지, 충돌 때문에 삭제하는 처리 없음. 비교 버튼으로 같은 위치·배율 대조.

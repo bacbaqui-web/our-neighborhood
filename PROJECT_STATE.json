@@ -59,26 +59,24 @@
   "apartmentGarden": {
     "status": "local-comparison-verified-not-published",
     "page": "outputs/domestic-test/apartments/garden/index.html",
-    "source": "Kakao map and aerial manually traced; existing public building footprints",
+    "source": "Kakao enlarged normal map, roads and parking traced together on 2026-10-29",
     "buildings": 28,
-    "gardenZones": 11,
-    "treesPlanned": 118,
+    "gardenZones": 16,
+    "treesPlanned": 91,
     "entryConnections": 28,
     "checks": [
-      "apartment-garden",
+      "apartment-garden: all traced bays retained, road widths and parking overlap checks",
       "apartment-nine",
-      "facility-placement",
       "pack.py --check"
     ],
     "limits": [
-      "boundary is not a cadastral survey",
-      "tree species, fence materials and props are inferred",
-      "terrain flattened for comparison",
-      "parking rows manually traced; 81 colliding candidate bays excluded",
-      "hidden spaces and underground parking unverified; vehicle types and occupancy illustrative"
+      "manual trace of map symbols, not surveyed geometry",
+      "individual bay count/spacing reconstructed, not registered site capacity",
+      "vehicle types, occupancy and planting are illustrative",
+      "terrain flattened; underground interior not included"
     ],
     "publicVersionUnchanged": true,
-    "shrubsPlanned": 182,
+    "shrubsPlanned": 151,
     "naturalGardenRefinement": [
       "uneven mature tree groups",
       "low shrubs and root beds",
@@ -86,11 +84,11 @@
       "neutral lighting and building shadows"
     ],
     "previousSourceBackup": "work/apartment-garden/natural-before/",
-    "parkingRows": 29,
-    "parkingBays": 158,
-    "cars": 139,
+    "parkingRows": 44,
+    "parkingBays": 320,
+    "cars": 274,
     "parkingReference": "outputs/domestic-test/apartments/garden/parking-reference.json",
-    "parkingExcludedCandidates": 81,
+    "parkingExcludedCandidates": 0,
     "parkingBackup": "work/apartment-garden/parking-before/",
     "facadeDetails": [
       "recessed glazing and window frames",
@@ -98,6 +96,21 @@
       "stairwell sills",
       "entrance columns and doors",
       "roof coping and rainwater pipes"
-    ]
+    ],
+    "mappedBuildingCorrections": [
+      "103동",
+      "105동",
+      "107동"
+    ],
+    "mapRetraceSource": "work/apartment-garden/retrace-map.py",
+    "mapRetraceBackup": "work/apartment-garden/map-retrace-before/",
+    "comparisonAreas": [
+      "north",
+      "center",
+      "east",
+      "south"
+    ],
+    "roadPolylines": 25,
+    "publicRoadIncluded": "솔샘로"
   }
 }

@@ -19,3 +19,7 @@ greens=[('북쪽 녹지',[[470,126],[498,124],[517,132],[518,153],[497,159],[479
 plan={'version':1,'name':'정릉풍림아이원 101~128동','origin':origin,'pixelTransform':{'x':scaleX,'z':scaleZ,'center':[640,360]},'reference':{'map':'source-map.png','aerial':'source-aerial.png','url':'https://map.kakao.com/?q=정릉풍림아이원','checked':'2026-10-29','note':'카카오 일반 지도·스카이뷰를 눈으로 대조하여 선을 옮김. 경계는 법적 지적 경계가 아니며 수목 위치·울타리 재질·시설 세부는 표현용 추정.'},'boundary':[poly(b) for b in bounds],'roads':[{'id':id,'width':w,'points':poly(ps),'evidence':'지도에서 확인한 길의 중심선을 단순화'} for id,w,ps in roads],'gardens':[{'id':str(i),'name':n,'polygon':poly(ps),'evidence':'항공 사진의 녹지 구역을 단순화; 수종·개수는 추정'} for i,(n,ps) in enumerate(greens)],'gates':[{'id':i,'point':local(p),'width':w} for i,p,w in [('west',[491,245],13),('north',[581,117],10),('main',[696,496],15),('east',[717,490],14),('south',[620,631],10)]],'notes':['건물 28동은 기존 공공 건물 윤곽·층수 자료 사용','학교·숲·239-5번지 129·130동을 별도 영역으로 제외','단지의 높낮이는 비교용으로 평탄화','울타리는 경계 후보선을 따라 배치하되 길·출입구와 겹치는 부분을 비움','주차·놀이터 세부 배치와 수목 종류는 추정이며 실제 시설의 실측 복제 아님']}
 json.dump(plan,open(out/'plan.json','w'),ensure_ascii=False,indent=2)
 print('saved',len(features),'buildings,',len(roads),'road lines,',len(greens),'garden zones')
+
+# Map retrace is the current source of the parking and courtyard layout.
+import runpy
+runpy.run_path("work/apartment-garden/retrace-map.py")

@@ -1,15 +1,15 @@
 {
-  "parkingRows": 29,
-  "parkingBays": 158,
-  "cars": 139,
-  "rejectedBays": 81,
+  "parkingRows": 44,
+  "parkingBays": 320,
+  "cars": 274,
+  "rejectedBays": 0,
   "buildings": 28,
   "connectedBuildings": 28,
-  "trees": 118,
-  "shrubs": 182,
-  "fenceSegments": 754,
-  "gardenZones": 11,
-  "triangles": 265424,
+  "trees": 91,
+  "shrubs": 151,
+  "fenceSegments": 601,
+  "gardenZones": 16,
+  "triangles": 288611,
   "checks": [
     "28동 누락·중복 없음",
     "건물 윤곽이 단지 범위 안에 있음",
@@ -18,7 +18,10 @@
     "28동 현관 연결",
     "생성 좌표 유효",
     "주차칸이 건물·현관 통로를 비움",
-    "주차 구획 안 수목 제외"
+    "주차 구획 안 수목 제외",
+    "44개 주차열의 모든 칸 유지",
+    "도로 전체 폭과 건물 겹침 없음",
+    "주차칸끼리·주차칸과 차로 간 겹침 없음"
   ],
   "scope": "로컬 비교 페이지; 법적 경계·실측 수종·지형 고도는 미검증"
 }

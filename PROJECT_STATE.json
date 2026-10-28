@@ -112,5 +112,15 @@
     ],
     "roadPolylines": 25,
     "publicRoadIncluded": "솔샘로"
+  },
+  "cameraNavigation": {
+    "status": "local-verified",
+    "minimap": "buildings, roads, camera position and heading",
+    "controls": "WASD movement; left drag look; existing walk controls retained",
+    "validation": [
+      "W held 700ms moved camera and minimap",
+      "left drag without browser errors",
+      "pack --check"
+    ]
   }
 }

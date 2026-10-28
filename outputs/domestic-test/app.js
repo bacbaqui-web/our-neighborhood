@@ -5,12 +5,12 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=80';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=140';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=143';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=144';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=80';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=117';
 import {loadData} from './load-data.js?v=92';
 import {selectedRadius,withinScope,scopePlan,scopeUtilities,scopeArterial,cropTerrain,buildingCells,createViewStreamer,disposeGenerated} from './scene-budget.js?v=137';
-import {applyRoadContext} from './road-context.js?v=76';
+import {applyRoadContext} from './road-context.js?v=144';
 import {createIllustrationRenderer} from './illustration-renderer.js?v=134';
 import {createIllustrationShading} from './illustration-shading.js?v=42';
 import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=inner-angle-126';

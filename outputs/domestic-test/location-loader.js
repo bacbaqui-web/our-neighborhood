@@ -1,6 +1,6 @@
 import {chooseMapPoint} from './map-picker.js?v=142';
 import {browserContext,listScenes} from './browser-generation/storage.js';
-import {createNeighborhood} from './browser-generation/progress.js?v=143';
+import {createNeighborhood} from './browser-generation/progress.js?v=144';
 import {normalizeRadius,selectedRadius} from './scene-budget.js?v=137';
 const original={id:'original',address:'서울 강북구 솔매로17가길 7',origin:[37.626469,127.015677],sizeMetres:300,roadAddress:{road_name:'솔매로17가길',main_building_no:'7',sub_building_no:''}};
 const key='neighborhood-last-location-v74';

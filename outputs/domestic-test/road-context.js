@@ -17,14 +17,26 @@ function geometry(positions,normals){
  if(normals)g.setAttribute('normal',new T.Float32BufferAttribute(normals,3));else g.computeVertexNormals();
  g.computeBoundingBox();g.computeBoundingSphere();return g;
 }
+let blockTexture;
+function sidewalkBlocks(){
+ if(blockTexture)return blockTexture;
+ const canvas=document.createElement('canvas');canvas.width=canvas.height=128;const c=canvas.getContext('2d');
+ c.fillStyle='#565e5c';c.fillRect(0,0,128,128);
+ const colors=['#949d98','#828d88','#89948e','#9aa39d'];
+ for(let y=0;y<2;y++)for(let x=0;x<2;x++){c.fillStyle=colors[y*2+x];c.fillRect(x*64+1,y*64+1,62,62);}
+ blockTexture=new T.CanvasTexture(canvas);blockTexture.wrapS=blockTexture.wrapT=T.RepeatWrapping;blockTexture.colorSpace=T.SRGBColorSpace;blockTexture.anisotropy=4;return blockTexture;
+}
 export function applyRoadContext(root,plan){
  const old=[];root.traverse(o=>{if(o.isMesh&&['road','path','seam'].includes(o.name))old.push(o);});
  for(const o of old){o.removeFromParent();o.geometry.dispose();}
  const group=new T.Group();group.name='AdaptiveAlleySurfaces';
  for(const [kind,positions] of Object.entries(plan.positions)){
   if(!positions.length)continue;
-  const m=new T.Mesh(geometry(positions,plan.normals?.[kind]),new T.MeshStandardMaterial({
-   color:({concrete:0xb0aea1,pavers:0x919487,sidewalk:0xa9ada5,platform:0xb2b5aa,arterial:0x5f6970})[kind]??0x626a70,roughness:1,side:T.DoubleSide
+  const g=geometry(positions,plan.normals?.[kind]),blocks=kind==='sidewalk'&&plan.roadPriority;
+  if(blocks){const uv=[];for(let i=0;i<positions.length;i+=3)uv.push(positions[i]/.8,positions[i+2]/.8);g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));}
+  const m=new T.Mesh(g,new T.MeshStandardMaterial({
+   map:blocks?sidewalkBlocks():null,
+   color:blocks?0xffffff:kind==='asphalt'&&plan.roadPriority?0x30343a:({concrete:0xb0aea1,pavers:0x919487,sidewalk:0xa9ada5,platform:0xb2b5aa,arterial:0x5f6970})[kind]??0x626a70,roughness:1,side:T.DoubleSide
   }));
   // Road base stays in the outline/depth pass, hiding buried plinth edges.
   m.name='road';m.userData={roadClass:kind,canPark:kind==='asphalt'};

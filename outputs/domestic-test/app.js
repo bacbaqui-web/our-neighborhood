@@ -5,7 +5,7 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=80';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=140';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=137';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=142';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=80';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=117';
 import {loadData} from './load-data.js?v=92';

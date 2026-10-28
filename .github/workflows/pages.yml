@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: '22'
       - name: Check loading behavior
-        run: node scripts/check-loading.mjs
+        run: |
+          node scripts/check-loading.mjs
+          node tests/browser-generation.mjs
       - name: Check scene budget
         run: |
           node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs

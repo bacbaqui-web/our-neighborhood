@@ -34,7 +34,7 @@ def geocode(query):
 def scales(lat):
  a=math.radians(lat);return 111412.84*math.cos(a)-93.5*math.cos(3*a)+.118*math.cos(5*a),111132.92-559.82*math.cos(2*a)+1.175*math.cos(4*a)-.0023*math.cos(6*a)
 def acquire_buildings(root,location):
- lat,lon=location['origin'];sx,sy=scales(lat);r=150
+ lat,lon=location['origin'];sx,sy=scales(lat);r=location.get('sizeMetres',300)/2
  bbox=[lon-r/sx,lat-r/sy,lon+r/sx,lat+r/sy];features=[];offset=0
  while True:
   d=getjson('https://portal.esrikr.com/arcgis/rest/services/MOIS_KR_Buildings_v2/FeatureServer/0/query',{'f':'geojson','where':'1=1','geometry':','.join(map(str,bbox)),'geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'*','outSR':4326,'returnGeometry':'true','resultOffset':offset,'resultRecordCount':1000,'orderByFields':'objectid'})
@@ -77,10 +77,10 @@ class Terrain:
   a,b,c,d=[self.height(xx,zz) for xx,zz in [(ax,az),(ax+5,az),(ax,az+5),(ax+5,az+5)]]
   return a*(1-u-v)+b*u+c*v if u+v<=1 else d*(u+v-1)+b*(1-v)+c*(1-u)
 def acquire_roads(root,location):
- lat,lon=location['origin'];sx,sy=scales(lat);z=14;n=2**z
+ lat,lon=location['origin'];sx,sy=scales(lat);r=location.get('sizeMetres',300)/2;z=14;n=2**z
  def tile(lon,lat):return (lon+180)/360*n,(1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n
- corners=[tile(lon+x/sx,lat-d/sy) for x in [-185,185] for d in [-185,185]]
- source=getjson('https://tiles.openfreemap.org/planet');template=source['tiles'][0];lines=[];limit=box(-155,-155,155,155)
+ corners=[tile(lon+x/sx,lat-d/sy) for x in [-r-35,r+35] for d in [-r-35,r+35]]
+ source=getjson('https://tiles.openfreemap.org/planet');template=source['tiles'][0];lines=[];limit=box(-r-5,-r-5,r+5,r+5)
  directory=CACHE/'map-tiles'/template.split('/')[-4];directory.mkdir(parents=True,exist_ok=True)
  for tx in range(int(min(p[0] for p in corners)),int(max(p[0] for p in corners))+1):
   for ty in range(int(min(p[1] for p in corners)),int(max(p[1] for p in corners))+1):
@@ -107,9 +107,9 @@ def acquire_roads(root,location):
  return lines
 
 def write_glb(root,terrain,roads,buildings,location):
- lat,lon=location['origin'];sx,sy=scales(lat)
+ lat,lon=location['origin'];sx,sy=scales(lat);radius=int(location.get('sizeMetres',300)/2)
  built=unary_union([transform(lambda x,y:((x-lon)*sx,-(y-lat)*sy),shape(f['geometry'])) for f in buildings['features']])
- road=unary_union([shape(r['geometry']).buffer(r['width']/2,cap_style=2,join_style=2) for r in roads]).intersection(box(-150,-150,150,150)).difference(built.buffer(.065,join_style=2)).buffer(0)
+ road=unary_union([shape(r['geometry']).buffer(r['width']/2,cap_style=2,join_style=2) for r in roads]).intersection(box(-radius,-radius,radius,radius)).difference(built.buffer(.065,join_style=2)).buffer(0)
  if road.area<1:raise ValueError('표시할 도로 영역이 없습니다.')
  # Indexed glTF, world coordinates; no node transforms. Existing site rules read it directly.
  doc={'asset':{'version':'2.0','generator':'Neighborhood location pipeline v74'},'scene':0,'scenes':[{'nodes':[]}],'nodes':[],'meshes':[],'materials':[],'bufferViews':[],'accessors':[],'buffers':[{'byteLength':0}]};binary=bytearray()
@@ -128,8 +128,8 @@ def write_glb(root,terrain,roads,buildings,location):
   i=len(doc['meshes']);mat=len(doc['materials']);doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorFactor':[*color,1],'metallicFactor':0,'roughnessFactor':.95}})
   doc['meshes'].append({'name':name,'primitives':[{'attributes':{'POSITION':acc(pos,3,5126),'NORMAL':acc(norm,3,5126)},'indices':acc(list(range(len(pos))),1,5125),'material':mat}]});doc['nodes'].append({'mesh':i,'name':name});doc['scenes'][0]['nodes'].append(i)
  ground=[];roadtris=[];S.prepare(road)
- for x in range(-170,170,5):
-  for z in range(-170,170,5):
+ for x in range(-radius-20,radius+20,5):
+  for z in range(-radius-20,radius+20,5):
    for pts in [[(x,z),(x+5,z),(x,z+5)],[(x+5,z),(x+5,z+5),(x,z+5)]]:
     ground.append(pts);cell=Polygon(pts)
     if not road.intersects(cell):continue
@@ -144,12 +144,12 @@ def write_glb(root,terrain,roads,buildings,location):
  return {'roadAreaM2':round(road.area,2),'buildingOverlapM2':round(road.intersection(built).area,8),'roadSegments':len(roads),'terrainDatum':terrain.datum,'source':'OpenFreeMap / OpenMapTiles / OpenStreetMap; inferred widths; Mapzen Terrain Tiles'}
 
 def acquire_places(root,location):
- lat,lon=location['origin'];found={}
+ lat,lon=location['origin'];found={};radius=math.ceil(location.get('sizeMetres',300)/2*math.sqrt(2))
  queries=[('category',{'category_group_code':c}) for c in ['CS2','FD6','CE7','MT1','PM9']]+[('keyword',{'query':q}) for q in ['미용실','세탁소','부동산']]
  for kind,extra in queries:
   for page in range(1,4):
-   d=kakao(kind,{**extra,'x':lon,'y':lat,'radius':250,'sort':'distance','size':15,'page':page})
+   d=kakao(kind,{**extra,'x':lon,'y':lat,'radius':radius,'sort':'distance','size':15,'page':page})
    for p in d['documents']:found[p['id']]={k:p.get(k,'') for k in ['id','place_name','category_name','category_group_code','category_group_name','address_name','road_address_name','x','y','place_url']}
    if d['meta']['is_end']:break
- out={'version':74,'source':'Kakao Local REST API','center':[lon,lat],'radius':250,'observedAt':datetime.date.today().isoformat(),'places':list(found.values())}
+ out={'version':74,'source':'Kakao Local REST API','center':[lon,lat],'radius':radius,'observedAt':datetime.date.today().isoformat(),'places':list(found.values())}
  (root/'shops/places.json').write_text(json.dumps(out,ensure_ascii=False));return len(found)

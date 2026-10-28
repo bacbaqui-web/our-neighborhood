@@ -8,7 +8,7 @@ import shapely as S
 from shapely.geometry import Polygon,Point,MultiPoint,LineString,box
 from shapely.ops import unary_union,nearest_points
 from shapely.strtree import STRtree
-from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC
+from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC,RADIUS
 src=(ROOT/'corrected-base.glb').read_bytes();n=struct.unpack_from('<I',src,12)[0];doc=json.loads(src[20:20+n]);buf=src[28+n:]
 def acc(i):
  a=doc['accessors'][i];v=doc['bufferViews'][a['bufferView']];cols={'SCALAR':1,'VEC3':3,'VEC4':4}[a['type']];dt={5126:'<f4',5125:'<u4',5123:'<u2',5121:'u1'}[a['componentType']];return np.ndarray((a['count'],cols),dtype=dt,buffer=buf,offset=v.get('byteOffset',0)+a.get('byteOffset',0),strides=(v.get('byteStride',np.dtype(dt).itemsize*cols),np.dtype(dt).itemsize))
@@ -20,7 +20,7 @@ for m in doc['meshes']:
   for tri in pos[ix]:
    p=Polygon(tri[:,[0,2]])
    if p.area>1e-8:roads.append(p)
-road=unary_union(roads).buffer(0);limit=box(-135,-135,135,135)
+road=unary_union(roads).buffer(0);limit=box(-RADIUS+15,-RADIUS+15,RADIUS-15,RADIUS-15)
 lat=math.radians(LAT);mlat=111132.92-559.82*math.cos(2*lat)+1.175*math.cos(4*lat)-.0023*math.cos(6*lat);mlon=111412.84*math.cos(lat)-93.5*math.cos(3*lat)+.118*math.cos(5*lat)
 bs=[];ids=[];raw=[]
 for f in json.load(open(ROOT/'buildings.geojson'))['features']:
@@ -75,7 +75,7 @@ for k,pts in enumerate(raw):
   routes.append(route);entrances[k]=list(route.coords)
 # Rear houses need shared alley access too. Route around buildings instead of sealing them in.
 from collections import deque
-size=276; coords=np.array([(x-137.5,z-137.5) for z in range(size) for x in range(size)])
+size=(RADIUS-12)*2; coords=np.array([(x-size/2+.5,z-size/2+.5) for z in range(size) for x in range(size)])
 gridpoints=S.points(coords);free=~S.contains(built.buffer(.86),gridpoints);roadcells=S.covers(road,gridpoints)&free
 parents=np.full(size*size,-2,dtype=np.int32);queue=deque(np.flatnonzero(roadcells).tolist());parents[roadcells]=-1
 while queue:

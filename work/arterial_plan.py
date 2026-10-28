@@ -17,7 +17,7 @@ def tris(g):
 def rings(g):return [{'outer':list(p.exterior.coords),'holes':[list(h.coords) for h in p.interiors]} for p in parts(g) if p.area>.05]
 def write(p,d):p.parent.mkdir(exist_ok=True,parents=True);tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));tmp.replace(p)
 def build(root):
- root=Path(root);read=lambda p:json.loads((root/p).read_text());loc=read('location.json');lat,lon=loc['origin'];sx,sy=scales(lat)
+ root=Path(root);read=lambda p:json.loads((root/p).read_text());loc=read('location.json');lat,lon=loc['origin'];sx,sy=scales(lat);radius=int(loc.get('sizeMetres',300)/2)
  sources=read('roads-source.json')['roads'];major=[r for r in sources if r['properties']['class'] in ['primary','trunk','secondary']]
  if not major:return None
  # Pair parallel carriageways. Keep distinct crossings out of the dominant corridor.
@@ -29,7 +29,7 @@ def build(root):
  samples=[]
  for r in major:
   ps=np.asarray(r['geometry']['coordinates']);ts=ps@u;ds=ps@n;order=np.argsort(ts);samples.append((ts[order],ds[order],r))
- t0=max(-163,min(s[0].min() for s in samples));t1=min(163,max(s[0].max() for s in samples))
+ t0=max(-radius-13,min(s[0].min() for s in samples));t1=min(radius+13,max(s[0].max() for s in samples))
  knots=[]
  for t in np.linspace(t0,t1,110):
   ds=[np.interp(t,ts,ds) for ts,ds,r in samples if ts.min()-.01<=t<=ts.max()+.01]
@@ -44,14 +44,14 @@ def build(root):
  buildings=read('buildings.geojson');underground={f['properties']['objectid'] for f in buildings['features'] if str(f['properties'].get('house_number','')).startswith('지하')}
  buildings['features']=[f for f in buildings['features'] if f['properties']['objectid'] not in underground]
  built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']]).buffer(.12)
- extent=box(-154,-154,154,154)
+ extent=box(-radius-4,-radius-4,radius+4,radius+4)
  transit={'stops':[],'exits':[]}
  cache=WORK/'arterial-v76/seoul-stops-20260902.json'
  if cache.exists():
   for row in json.loads(cache.read_text())[1:]:
    if len(row)<6:continue
    p=ll(row[3],row[4]);t,d=local(p)
-   if abs(d)<22 and t0+7<t<t1-7 and max(map(abs,p))<150 and row[5]=='중앙차로':
+   if abs(d)<22 and t0+7<t<t1-7 and max(map(abs,p))<radius and row[5]=='중앙차로':
     transit['stops'].append({'id':row[1],'name':row[2],'point':p,'t':t,'side':1 if d>0 else -1,'source':'Seoul bus stops 2026-09-02','lon':float(row[3]),'lat':float(row[4])})
  # Reuse previously inspected POIs. Other addresses use category + exact exit filtering.
  evidence=WORK.parent/'outputs/arterial-study-v75/transport-pois.json'
@@ -433,8 +433,9 @@ def build(root):
  qa={'version':80,'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks),'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
  if qa['footprintBuildingOverlapM2']>.01:raise ValueError('Arterial footprint/building intersection')
  storefrontOverrides=json.loads((WORK/'arterial-v77/frontage-references.json').read_text()) if root.parent.name=='f20b139277e4d2a5' else []
- supportTerrain={'origin':[-170,-170],'step':5,'size':69,'heights':[round(height(x,z),6) for z in range(-170,171,5) for x in range(-170,171,5)]}
- plan={'version':80,'supportTerrain':supportTerrain,'landings':landings,'name':loc['roadAddress'].get('road_name','큰길'),'alignment':{'u':u.tolist(),'n':n.tolist(),'knots':knots},'halfWidth':baseHalf,'laneWidth':lane,'lanes':lanes,'busLanes':hasbus,'publicRings':rings(public),'surfaces':{'ground':mesh(box(-170,-170,170,170).difference(holes))},'decals':decals,'curbs':curbs,'fences':fences,'crossings':crossings,'crosswalks':crosswalks,'shopFrontages':frontages,'platforms':platforms,'exits':exits,'furniture':furniture,'vehicles':vehicles,'commercialFacades':commercial,'mappedKiosks':mappedKiosks,'storefrontOverrides':storefrontOverrides,'qa':qa,'provenance':{'road':'OpenStreetMap / OpenFreeMap','busStops':'https://data.seoul.go.kr/dataList/OA-15067/A/1/datasetView.do','exits':'Kakao Local POI','appearance':'2026-06 Kakao Roadview, samples in arterial-study-v75 and arterial-v77/roadview','inferred':'Widths, lengths, furniture intervals and crossing access are visual reconstruction, not measured survey.'}}
+ extent=int(loc.get('sizeMetres',300)/2)+20
+ supportTerrain={'origin':[-extent,-extent],'step':5,'size':extent*2//5+1,'heights':[round(height(x,z),6) for z in range(-extent,extent+1,5) for x in range(-extent,extent+1,5)]}
+ plan={'version':80,'supportTerrain':supportTerrain,'landings':landings,'name':loc['roadAddress'].get('road_name','큰길'),'alignment':{'u':u.tolist(),'n':n.tolist(),'knots':knots},'halfWidth':baseHalf,'laneWidth':lane,'lanes':lanes,'busLanes':hasbus,'publicRings':rings(public),'surfaces':{'ground':mesh(box(-extent,-extent,extent,extent).difference(holes))},'decals':decals,'curbs':curbs,'fences':fences,'crossings':crossings,'crosswalks':crosswalks,'shopFrontages':frontages,'platforms':platforms,'exits':exits,'furniture':furniture,'vehicles':vehicles,'commercialFacades':commercial,'mappedKiosks':mappedKiosks,'storefrontOverrides':storefrontOverrides,'qa':qa,'provenance':{'road':'OpenStreetMap / OpenFreeMap','busStops':'https://data.seoul.go.kr/dataList/OA-15067/A/1/datasetView.do','exits':'Kakao Local POI','appearance':'2026-06 Kakao Roadview, samples in arterial-study-v75 and arterial-v77/roadview','inferred':'Widths, lengths, furniture intervals and crossing access are visual reconstruction, not measured survey.'}}
  write(out/'plan.json',plan)
  manifest=read('manifest.json') if (root/'manifest.json').exists() else {}
  manifest['arterial']={'version':80,'plan':'arterial/plan.json','overrides':override,'qa':qa};write(root/'manifest.json',manifest)

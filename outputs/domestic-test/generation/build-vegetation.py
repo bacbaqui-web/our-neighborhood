@@ -6,7 +6,7 @@ import numpy as np
 from shapely.geometry import Point,Polygon,LineString,box
 from shapely.ops import unary_union
 from site_geometry import Site
-from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC
+from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC,RADIUS
 site=Site(ROOT,ORIGIN);catalog=json.load(open(SHARED/'vegetation/catalog.json'))
 types=[a for a in catalog['assets'] if a['kind']=='tree']
 parcels=json.load(open(ROOT/'parcels.json'));ap=json.load(open(ROOT/'attached-structures.json'));sp=json.load(open(ROOT/'streetscape.json'));up=json.load(open(ROOT/'utilities.json'))
@@ -25,7 +25,7 @@ cables=unary_union([LineString([(poles[s['a']]['x'],poles[s['a']]['z']),(poles[s
 legacyCrowns=unary_union([Polygon(p['footprint']).buffer(.15) for p in report['placements'] if p['id'] in [121,122,154]])
 rootBlock=unary_union([site.built,site.road.buffer(.55),roofs,drives,entries,walls,props,utilities])
 crownBlock=unary_union([site.built.buffer(.25),roofs,site.road.buffer(.22),cables,legacyCrowns])
-limits=box(-147,-147,147,147)
+limits=box(-RADIUS+3,-RADIUS+3,RADIUS-3,RADIUS-3)
 counts=Counter();ownerCount=Counter();trees=[];candidates=[];rng=random.Random(3107)
 for y,poly in yards:
  if poly.area<12:continue

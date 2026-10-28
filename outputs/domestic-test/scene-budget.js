@@ -1,0 +1,57 @@
+import * as T from 'three';
+export function normalizeRadius(value=150,max=300){const n=Number(value);return Math.max(50,Math.min(max,Math.round((Number.isFinite(n)&&n>0?n:150)/50)*50));}
+export function selectedRadius(context,search=location.search){return normalizeRadius(new URLSearchParams(search).get('radius')||150,Math.max(50,Math.min(300,(context.sizeMetres||300)/2)));}
+export function withinScope(points,radius){return points.length>0&&Math.min(...points.map(p=>p[0]))<=radius&&Math.max(...points.map(p=>p[0]))>=-radius&&Math.min(...points.map(p=>p[1]))<=radius&&Math.max(...points.map(p=>p[1]))>=-radius;}
+export function scopePlan(plan,owners,radius){
+ const point=(x,z)=>Number.isFinite(x)&&Number.isFinite(z)&&Math.abs(x)<=radius&&Math.abs(z)<=radius;
+ function keep(v){
+  if(v?.owner!==undefined&&v.owner!==null)return owners.has(Number(v.owner));
+  if(Array.isArray(v)&&Array.isArray(v[0]))return withinScope(v,radius);
+  if(v?.root)return point(v.root[0],v.root[2]);
+  if(v?.position)return point(v.position[0],v.position[2]);
+  if(Number.isFinite(v?.x)&&Number.isFinite(v?.z))return point(v.x,v.z);
+  if(Array.isArray(v?.points))return withinScope(v.points,radius);
+  return true;
+ }
+ return Object.fromEntries(Object.entries(plan).map(([k,v])=>[k,Array.isArray(v)?v.filter(keep):v]));
+}
+export function cropTerrain(root,radius){
+ // Keep complete crossing triangles, so adjacent road surfaces never get gaps.
+ root.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;const g=o.geometry,p=g.attributes.position,ix=g.index,ids=[];for(let i=0;i<(ix?.count??p.count);i+=3){const vs=[0,1,2].map(j=>ix?ix.getX(i+j):i+j);if(withinScope(vs.map(j=>[p.getX(j),p.getZ(j)]),radius+12))ids.push(...vs);}g.setIndex(ids);g.computeBoundingSphere();});
+}
+export function disposeGenerated(root){const geometries=new Set(),materials=new Set();root.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const m of [o.material,o._originalMaterial].flat().filter(Boolean))materials.add(m);});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());root.removeFromParent();}
+export function buildingCells(specs,size=24){
+ const cells=new Map();for(const b of specs){const x=b.points.reduce((s,p)=>s+p[0],0)/b.points.length,z=b.points.reduce((s,p)=>s+p[1],0)/b.points.length,key=Math.floor(x/size)+','+Math.floor(z/size);let c=cells.get(key);if(!c){c={key,owners:new Set(),box:new T.Box3(),buildings:[]};cells.set(key,c);}c.owners.add(b.seed);c.buildings.push(b);for(const [xx,zz] of b.points){c.box.expandByPoint(new T.Vector3(xx,b.base,zz));c.box.expandByPoint(new T.Vector3(xx,b.top+3,zz));}}return [...cells.values()];
+}
+export function desiredDetail(distance,previous=null){if(previous===0&&distance<85)return 0;if(previous===1&&distance>=65&&distance<165)return 1;if(previous===2&&distance>=140&&distance<250)return 2;return distance<75?0:distance<150?1:distance<230?2:null;}
+export function createViewStreamer({cells,camera,create,remove,onChange}){
+ const frustum=new T.Frustum(),matrix=new T.Matrix4(),expanded=new T.Box3(),state=new Map();let epoch=0,lastWork=-Infinity,pending=0;
+ function update(now=performance.now(),force=false){
+  camera.updateMatrixWorld();matrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(matrix);
+  const wanted=[];let changed=false;
+  for(const c of cells){const old=state.get(c.key),visible=frustum.intersectsBox(expanded.copy(c.box).expandByScalar(6)),distance=c.box.distanceToPoint(camera.position),level=visible?desiredDetail(distance,old?.level):null;
+   if(level!==null){wanted.push({c,level,distance,props:distance<(old?.props?125:105)});if(old)old.lastSeen=now;}
+   else if(old){old.object.visible=false;if(now-old.lastSeen>1800||force){remove(old,c);state.delete(c.key);changed=true;}}
+  }
+  const tasks=wanted.filter(w=>{const s=state.get(w.c.key);if(s)s.object.visible=true;return !s||s.level!==w.level||s.props!==w.props;}).sort((a,b)=>a.distance-b.distance);pending=tasks.length;
+  // One cell per frame; do not reconstruct the entire neighborhood on a camera move.
+  if(tasks.length&&(force||now-lastWork>45)){const w=tasks[0],old=state.get(w.c.key);const next=create(w.c,w.level,w.props);if(old)remove(old,w.c);state.set(w.c.key,{...next,level:w.level,props:w.props,lastSeen:now});lastWork=now;changed=true;pending--;}
+  if(changed){epoch++;onChange?.([...state.values()],epoch);}
+  return {epoch,pending,resident:state.size,visible:[...state.values()].filter(s=>s.object.visible).length,props:[...state.values()].filter(s=>s.props&&s.object.visible).length,total:cells.length};
+ }
+ return {update,get epoch(){return epoch;},dispose(){for(const [key,s] of state)remove(s,cells.find(c=>c.key===key));state.clear();}};
+}
+export function scopeUtilities(plan,owners,radius){
+ const map=new Map(),poles=plan.poles.filter((p,i)=>{if(Math.abs(p.x)>radius+5||Math.abs(p.z)>radius+5)return false;map.set(i,map.size);return true;});
+ const spans=plan.spans.filter(s=>map.has(s.a)&&map.has(s.b)).map(s=>({...s,a:map.get(s.a),b:map.get(s.b)}));
+ const drops=plan.drops.filter(d=>map.has(d.pole)&&owners.has(Number(d.owner))).map(d=>({...d,pole:map.get(d.pole)}));
+ return {...plan,poles,spans,drops,qa:{...plan.qa,poles:poles.length,spans:spans.length,houseDrops:drops.length}};
+}
+export function scopeArterial(plan,owners,radius){
+ if(!plan)return null;const result=scopePlan(plan,owners,radius);
+ const flat=values=>{const out=[];for(let i=0;i<values.length;i+=9)if(withinScope([[values[i],values[i+2]],[values[i+3],values[i+5]],[values[i+6],values[i+8]]],radius+5))out.push(...values.slice(i,i+9));return out;};
+ result.surfaces=Object.fromEntries(Object.entries(plan.surfaces).map(([k,v])=>[k,flat(v)]));result.decals=Object.fromEntries(Object.entries(plan.decals).map(([k,v])=>[k,flat(v)]));
+ for(const k of ['curbs','fences'])result[k]=plan[k].filter(v=>withinScope([v.a,v.b],radius+5));
+ for(const k of ['platforms','exits'])result[k]=plan[k].filter(v=>withinScope(v.footprint||[v.point],radius));
+ return result;
+}

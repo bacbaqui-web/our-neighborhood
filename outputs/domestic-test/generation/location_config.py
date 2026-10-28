@@ -9,3 +9,5 @@ ORIGIN = json.loads((ROOT/'location.json').read_text())['origin'] if DYNAMIC els
 LAT,LON = ORIGIN
 CACHE = Path.home()/'Library/Caches/rokehan-neighborhood/terrain-tiles'
 CACHE.mkdir(parents=True,exist_ok=True)
+
+RADIUS = int(json.loads((ROOT/'location.json').read_text()).get('sizeMetres',300)/2) if DYNAMIC else 150

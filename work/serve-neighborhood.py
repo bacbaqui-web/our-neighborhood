@@ -7,6 +7,8 @@ from urllib.parse import urlparse
 from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 
+from generation_scope import validate_radius
+
 ROOT=Path(__file__).resolve().parents[1]/'outputs'
 CACHE=Path.home()/'Library/Caches/rokehan-neighborhood'
 SOURCE=ROOT/'domestic-test/corrected-base.glb'
@@ -16,19 +18,20 @@ JOBS=CACHE/'jobs'
 PYTHON=Path(os.environ.get('NEIGHBORHOOD_PYTHON') or (Path(__file__).resolve().parents[1]/'.venv/bin/python' if (Path(__file__).resolve().parents[1]/'.venv/bin/python').exists() else CACHE/'geo-env-v74/bin/python'))
 JOB_LOCK=threading.Lock()
 ACTIVE={}
-def start_job(address):
+def start_job(address,radius=150):
+ radius=validate_radius(radius)
  with JOB_LOCK:
   for job,item in list(ACTIVE.items()):
    if item['process'].poll() is None:
-    if item['address']==address:return job
+    if item['address']==address and item.get('radius',150)==radius:return job
     raise ValueError('다른 지역을 생성 중입니다. 완료 후 새 주소를 입력해 주세요.')
    del ACTIVE[job]
   if not PYTHON.exists():raise ValueError('지역 생성용 Python 환경이 없습니다.')
   job=uuid.uuid4().hex;directory=JOBS/job;directory.mkdir(parents=True)
   (directory/'status.json').write_text(json.dumps({'state':'running','message':'새 동네 생성을 준비하고 있습니다…','percent':1}))
   log=(directory/'worker.log').open('w')
-  process=subprocess.Popen([str(PYTHON),str(Path(__file__).with_name('generate-neighborhood.py')),address,'--job-dir',str(directory)],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-  log.close();ACTIVE[job]={'address':address,'process':process};return job
+  process=subprocess.Popen([str(PYTHON),str(Path(__file__).with_name('generate-neighborhood.py')),address,'--radius',str(radius),'--job-dir',str(directory)],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+  log.close();ACTIVE[job]={'address':address,'radius':radius,'process':process};return job
 
 def valid_glb(data):
  return len(data)>=20 and data[:4]==b'glTF' and struct.unpack_from('<II',data,4)==(2,len(data))
@@ -64,7 +67,7 @@ class Handler(SimpleHTTPRequestHandler):
    rows=[]
    for p in (ROOT/'generated-neighborhoods').glob('*/data/manifest.json'):
     try:
-     m=json.loads(p.read_text());rows.append({k:m[k] for k in ['id','address','origin','generatedAt']})
+     m=json.loads(p.read_text());rows.append({k:m[k] for k in ['id','address','origin','generatedAt','sizeMetres']})
     except (OSError,ValueError,KeyError):continue
    return self.json_response(200,sorted(rows,key=lambda x:x['generatedAt'],reverse=True))
   if path.startswith('/api/neighborhood/jobs/'):
@@ -91,7 +94,7 @@ class Handler(SimpleHTTPRequestHandler):
    if not isinstance(data,dict):raise ValueError('주소 입력이 올바르지 않습니다.')
    address=data.get('address')
    if not isinstance(address,str) or not 3<=len(address.strip())<=160:raise ValueError('시·구, 도로명과 건물 번호를 입력해 주세요.')
-   job=start_job(address.strip());return self.json_response(202,{'job':job})
+   radius=validate_radius(data.get('radius',150));job=start_job(address.strip(),radius);return self.json_response(202,{'job':job})
   except (ValueError,TypeError,KeyError) as e:return self.json_response(400,{'message':str(e)})
 
 if __name__=='__main__':

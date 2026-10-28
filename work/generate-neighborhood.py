@@ -1,17 +1,19 @@
 """Generate a complete independent location dataset; publish manifest only on success."""
 import argparse,sys,json,os,subprocess,hashlib,time,shutil
 from pathlib import Path
+from generation_scope import validate_radius
 from arterial_plan import build as build_arterial
 from neighborhood_sources import geocode,acquire_buildings,acquire_roads,write_glb,Terrain,acquire_places
 WORK=Path(__file__).resolve().parent;PROJECT=WORK.parent;SHARED=PROJECT/'outputs/domestic-test';GEN=SHARED/'generation'
 def write(path,value):
  tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2));os.replace(tmp,path)
-def generate(query,job_dir):
+def generate(query,job_dir,radius=150):
+ radius=validate_radius(radius)
  job_dir=Path(job_dir);job_dir.mkdir(parents=True,exist_ok=True)
  def progress(message,percent):
   write(job_dir/'status.json',{'state':'running','message':message,'percent':percent});print(message,flush=True)
- progress('주소의 중심 좌표를 확인하고 있습니다…',3);loc=geocode(query)
- key=hashlib.sha256(('v74.1:'+','.join(f'{n:.6f}' for n in loc['origin'])).encode()).hexdigest()[:16]
+ progress('주소의 중심 좌표를 확인하고 있습니다…',3);loc=geocode(query);loc['sizeMetres']=radius*2;loc['detailRadius']=radius
+ key=hashlib.sha256(('v137:'+str(radius)+':'+','.join(f'{n:.6f}' for n in loc['origin'])).encode()).hexdigest()[:16]
  final=PROJECT/'outputs/generated-neighborhoods'/key;root=final/'data';root.mkdir(parents=True,exist_ok=True)
  if (root/'manifest.json').exists():
   if json.loads((root/'manifest.json').read_text()).get('arterial',{}).get('version')!=80:build_arterial(root)
@@ -19,7 +21,7 @@ def generate(query,job_dir):
  for folder in ['generation','people','vegetation','environment','shops']:(root/folder).mkdir(exist_ok=True)
  for folder in ['alley-v62','environment-v32','vegetation-v31']:(final/folder).mkdir(exist_ok=True)
  write(root/'location.json',loc)
- rules=json.loads((SHARED/'site-rules.json').read_text());rules['origin']=loc['origin'];write(root/'site-rules.json',rules)
+ rules=json.loads((SHARED/'site-rules.json').read_text());rules['origin']=loc['origin'];rules['localBounds']=[-radius+14,-radius+14,radius-14,radius-14];write(root/'site-rules.json',rules)
  progress(loc['address']+' · 국내 건물을 조회하고 있습니다…',8)
  buildings=acquire_buildings(root,loc)
  progress(f'건물 {len(buildings["features"])}개 · 도로와 지형을 조회하고 있습니다…',16)
@@ -60,8 +62,8 @@ def generate(query,job_dir):
  progress('큰길의 차로·보도·대중교통 시설을 배치하고 있습니다…',96);build_arterial(root)
  return {'id':key,'address':loc['address'],'url':f'/domestic-test/?location={key}','cached':False}
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('query');p.add_argument('--job-dir',required=True);args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('query');p.add_argument('--radius',type=int,default=150);p.add_argument('--job-dir',required=True);args=p.parse_args()
  try:
-  result=generate(args.query,args.job_dir);write(Path(args.job_dir)/'status.json',{'state':'complete','message':'새 동네 생성 완료','percent':100,**result})
+  result=generate(args.query,args.job_dir,args.radius);write(Path(args.job_dir)/'status.json',{'state':'complete','message':'새 동네 생성 완료','percent':100,**result})
  except Exception as e:
   write(Path(args.job_dir)/'status.json',{'state':'error','message':str(e)});raise

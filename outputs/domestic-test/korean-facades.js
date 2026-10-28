@@ -27,8 +27,8 @@ const unitBox=new T.BoxGeometry(1,1,1).toNonIndexed();
 const edgePoints=new T.EdgesGeometry(new T.BoxGeometry(1,1,1)).attributes.position.array;
 const white=0xe0e2d9, metal=0x777e77, dark=0x343e3a, sill=0xb8b8a8;
 export class FacadeBatch {
- constructor(){this.parts=new Map();this.lines=new Map();this.count=0;this.maxLOD=2;}
- atLOD(level,fn){const previous=this.maxLOD;this.maxLOD=Math.min(previous,level);try{return fn();}finally{this.maxLOD=previous;}}
+ constructor(minimumLOD=0){this.minimumLOD=minimumLOD;this.parts=new Map();this.lines=new Map();this.count=0;this.maxLOD=2;}
+ atLOD(level,fn){if(level<this.minimumLOD)return;const previous=this.maxLOD;this.maxLOD=Math.min(previous,level);try{return fn();}finally{this.maxLOD=previous;}}
  bucket(color,surface=false){const windowBand=this.windowBand??-1,key=color+':'+surface+':'+this.maxLOD+':'+windowBand;if(!this.parts.has(key))this.parts.set(key,{color,surface,maxLOD:this.maxLOD,windowBand,p:[],n:[],inkIds:[]});return this.parts.get(key)}
  lineBucket(color){const key=color+':'+this.maxLOD;if(!this.lines.has(key))this.lines.set(key,{color,maxLOD:this.maxLOD,p:[]});return this.lines.get(key).p;}
  writer(origin=[0,0,0],ux=1,uz=0,nx=0,nz=1){

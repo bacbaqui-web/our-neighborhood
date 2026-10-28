@@ -1,3 +1,4 @@
+import {normalizeRadius,selectedRadius} from './scene-budget.js?v=137';
 const original={id:'original',address:'서울 강북구 솔매로17가길 7',origin:[37.626469,127.015677],sizeMetres:300,roadAddress:{road_name:'솔매로17가길',main_building_no:'7',sub_building_no:''}};
 const key='neighborhood-last-location-v74';
 const deployment=fetch(new URL('./deployment.json',import.meta.url),{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('배포 설정을 불러오지 못했습니다.');return r.json();});
@@ -27,16 +28,18 @@ export function rememberLocation(context){try{localStorage.setItem(key,context.i
 export function setupLocationSearch(context,getHour){
  const input=document.getElementById('address'),button=document.getElementById('findAddress'),status=document.getElementById('status'),form=document.getElementById('addressForm'),history=document.getElementById('locationHistory');
  input.disabled=button.disabled=false;if(context.address)input.value=context.address;
+ const range=document.getElementById('detailRadius');range.value=selectedRadius(context);range.title='주소 중심에서 동서남북으로 생성할 거리 · 50m 단위 · 돋보기 버튼으로 적용';
+ range.addEventListener('change',()=>{range.value=normalizeRadius(range.value,Number(range.max));});
  let busy=false;
  const message=text=>{status.textContent=text;};
- function visit(id){const url=new URL(location.href);url.searchParams.set('location',id);url.searchParams.set('hour',getHour());url.searchParams.delete('shop');location.assign(url.href);}
+ function visit(id){const url=new URL(location.href);url.searchParams.set('location',id);url.searchParams.set('hour',getHour());url.searchParams.set('radius',normalizeRadius(range.value));url.searchParams.delete('shop');location.assign(url.href);}
  history?.addEventListener('change',()=>{if(history.value)visit(history.value);});
  savedLocations.then(rows=>{
-  for(const row of rows){const o=document.createElement('option');o.value=row.id;o.textContent=row.address;history?.append(o);const suggestion=document.createElement('option');suggestion.value=row.address;document.getElementById('addresses')?.append(suggestion);}
+  for(const row of rows){const o=document.createElement('option');o.value=row.id;o.textContent=row.address+` · 반경 ${(row.sizeMetres||300)/2}m`;history?.append(o);const suggestion=document.createElement('option');suggestion.value=row.address;document.getElementById('addresses')?.append(suggestion);}
   if(history)history.value=context.id||'';
  }).catch(()=>{});
  deployment.then(config=>{
-  if(config.mode!=='static')return;
+  if(config.mode!=='static')return;range.max=Math.min(300,(context.sizeMetres||300)/2);range.title='공개된 지도 범위 안에서 조절합니다. 새 범위의 지도 조회는 로컬에서 지원합니다.';
   input.placeholder='공개된 동네 주소 검색';input.setAttribute('aria-label','공개된 동네 주소 검색');
   button.title='공개된 동네 열기';button.setAttribute('aria-label','공개된 동네 열기');
   const note=document.createElement('p');note.className='published-location-note';note.textContent='공개된 동네를 선택하세요. 새 주소 생성은 로컬에서 지원합니다.';form.after(note);
@@ -46,13 +49,15 @@ export function setupLocationSearch(context,getHour){
   busy=true;button.disabled=true;input.readOnly=true;if(history)history.disabled=true;form.setAttribute('aria-busy','true');message('주소를 확인하고 새 동네 생성을 시작합니다…');
   try{
    const config=await deployment;
+   const radius=normalizeRadius(range.value,Number(range.max));range.value=radius;
+   if(config.mode!=='static'&&normalizeAddress(address)===normalizeAddress(context.address||'')&&radius<=(context.sizeMetres||300)/2){visit(context.id);return;}
    if(config.mode==='static'){
     const query=normalizeAddress(address),rows=await savedLocations;
     const matches=rows.filter(row=>[row.address,row.query].filter(Boolean).some(value=>normalizeAddress(value).includes(query)));
     if(matches.length===1){visit(matches[0].id);return;}
     message(matches.length?'여러 동네가 검색되었습니다. 저장된 동네 목록에서 선택해 주세요.':'아직 공개되지 않은 주소입니다. 저장된 동네를 선택하거나 로컬 프로그램에서 새 동네를 생성해 주세요.');return;
    }
-   const r=await fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({address}),signal:AbortSignal.timeout(30000)});
+   const r=await fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({address,radius}),signal:AbortSignal.timeout(30000)});
    const result=await r.json();if(!r.ok)throw Error(result.message||'생성을 시작하지 못했습니다.');
    for(;;){
     const r=await fetch(new URL(`../api/neighborhood/jobs/${result.job}`,import.meta.url),{cache:'no-cache',signal:AbortSignal.timeout(15000)});

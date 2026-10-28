@@ -165,6 +165,8 @@ export function createVisibilityOptimizer({scene,roots,buildings,shapes}){
     if(enabled)for(const b of buildingBounds){if(!active(b.object))continue;if(!frustum.intersectsBox(b.box)){hide(b.object);stats.screenCulled++;}else if(blocked(b.box)){hide(b.object);stats.occluded++;}}
     return stats;
   }
+  function addRoot(root){const batch=spatialBatch(root);batches.push(batch);scene.add(batch.group);return batch;}
+  function removeRoot(root){reset();const i=batches.findIndex(b=>b.source===root);if(i<0)return;const [b]=batches.splice(i,1);scene.remove(b.group);b.group.traverse(o=>{o.geometry?.dispose();o.material?.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});}
   function dispose(){reset();for(const b of batches){scene.remove(b.group);b.group.traverse(o=>{o.geometry?.dispose();const mats=o.material?(Array.isArray(o.material)?o.material:[o.material]):[];for(const m of mats)m.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});}}
-  return {prepare,reset,dispose,batches,get stats(){return stats;}};
+  return {prepare,reset,dispose,addRoot,removeRoot,batches,get stats(){return stats;}};
 }

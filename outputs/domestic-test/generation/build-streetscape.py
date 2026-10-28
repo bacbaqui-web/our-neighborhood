@@ -7,14 +7,14 @@ import numpy as np
 import shapely as S
 from shapely.geometry import Polygon,LineString,Point,MultiLineString,box
 from shapely.ops import unary_union,nearest_points
-from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC
+from location_config import ROOT,SHARED,REPORT,ORIGIN,LAT,LON,CACHE,DYNAMIC,RADIUS
 d=json.load(open(ROOT/'parcels.json'));ap=json.load(open(ROOT/'attached-structures.json'))
 lat=math.radians(LAT);mlat=111132.92-559.82*math.cos(2*lat)+1.175*math.cos(4*lat)-.0023*math.cos(6*lat);mlon=111412.84*math.cos(lat)-93.5*math.cos(3*lat)+.118*math.cos(5*lat)
 bs={}
 for f in json.load(open(ROOT/'buildings.geojson'))['features']:
  rings=f['geometry']['coordinates'] if f['geometry']['type']=='Polygon' else f['geometry']['coordinates'][0]
  bs[int(f['properties']['objectid'])]=Polygon([((p[0]-LON)*mlon,-(p[1]-LAT)*mlat) for p in rings[0]]).buffer(0)
-built=unary_union(list(bs.values()));pedestrian=unary_union([LineString(y['entrance']).buffer(.86,cap_style=2) for y in d['yards'] if y['entrance']]);drive=unary_union([Polygon(p['polygon']) for p in ap['drives']]);architecture=unary_union([Polygon(p['footprint']) for p in ap['structures']]);limit=box(-135,-135,135,135)
+built=unary_union(list(bs.values()));pedestrian=unary_union([LineString(y['entrance']).buffer(.86,cap_style=2) for y in d['yards'] if y['entrance']]);drive=unary_union([Polygon(p['polygon']) for p in ap['drives']]);architecture=unary_union([Polygon(p['footprint']) for p in ap['structures']]);limit=box(-RADIUS+15,-RADIUS+15,RADIUS-15,RADIUS-15)
 b=(ROOT/'corrected-base.glb').read_bytes();n=struct.unpack_from('<I',b,12)[0];g=json.loads(b[20:20+n]);buf=b[28+n:]
 def acc(i):
  a=g['accessors'][i];v=g['bufferViews'][a['bufferView']];c={'SCALAR':1,'VEC3':3,'VEC4':4}[a['type']];t={5126:'<f4',5125:'<u4',5123:'<u2',5121:'u1'}[a['componentType']];return np.ndarray((a['count'],c),dtype=t,buffer=buf,offset=v.get('byteOffset',0)+a.get('byteOffset',0),strides=(v.get('byteStride',np.dtype(t).itemsize*c),np.dtype(t).itemsize))

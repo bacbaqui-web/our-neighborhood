@@ -40,3 +40,5 @@ header{height:124px;}
 @media(max-width:430px){header{height:170px}}
 
 .published-location-note{margin:3px 0 0;font-size:11px;color:#c3d2dc;max-width:390px;line-height:1.35}
+
+.neighborhood{width:560px}.detail-range{display:flex;gap:5px;align-items:center;white-space:nowrap;font-size:12px;color:#e6f0f2;margin:0}.detail-range span{display:flex;align-items:center;gap:3px}.detail-range input{width:64px;height:32px;background:#264553;border:1px solid #4a636f;border-radius:7px;color:white;padding:4px;font:inherit} @media(max-width:760px){#addressForm{flex-wrap:wrap}.neighborhood{width:100%}.detail-range{font-size:11px}.detail-range input{width:57px}}

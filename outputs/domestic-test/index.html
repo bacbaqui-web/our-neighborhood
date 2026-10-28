@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>우리 동네 · 웹툰 배경</title>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
-  <link rel="stylesheet" href="./ui.css?v=92">
+  <link rel="stylesheet" href="./ui.css?v=137">
 </head>
 <body>
 <header>
@@ -13,6 +13,7 @@
     <h1>우리 동네 · 웹툰 배경</h1>
     <form id="addressForm" role="search">
       <input id="address" type="search" aria-label="생성할 동네 주소" placeholder="주소를 입력하면 새 동네 생성" value="솔매로17가길 7" list="addresses" autocomplete="off" disabled>
+      <label class="detail-range" for="detailRadius">상세 범위 <span><input id="detailRadius" type="number" min="50" max="300" step="50" value="150" aria-label="상세 범위 반경 (미터)">m</span></label>
       <datalist id="addresses"></datalist>
       <button id="findAddress" type="submit" class="icon-button" aria-label="이 주소로 동네 생성" title="입력한 주소를 중심으로 새 동네 생성" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
     </form>
@@ -126,6 +127,6 @@
     </section>
   </div>
 </dialog>
-<script type="module" src="./app.js?v=134"></script>
+<script type="module" src="./app.js?v=137"></script>
 </body>
 </html>

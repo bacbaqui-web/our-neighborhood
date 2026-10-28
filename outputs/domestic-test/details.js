@@ -5,9 +5,9 @@ import {footprintHeights} from './support-geometry.js?v=82';
 import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=41';
 import {emitRooftop} from './rooftops.js?v=41';
 import {windowLightBand} from './environment-policy.js?v=32';
-import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=39';
-export function createDetails(buildings,elevation,architecture={structures:[]}){
- const gasNetworks=[],nightWindowSources=[],windowBands=Array(16).fill(0),batch=new FacadeBatch(),spots=[],placementProxies=[],windowTypes={},counts={windows:0,skippedNarrowWindows:0,doors:0,roofs:0,aircons:0,downpipes:0,guardWindows:0,doorCanopies:0,shelteredDoors:0};
+import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=137';
+export function createDetails(buildings,elevation,architecture={structures:[]},options={}){
+ const gasNetworks=[],nightWindowSources=[],windowBands=Array(16).fill(0),batch=new FacadeBatch(options.minimumLOD||0),spots=[],placementProxies=[],windowTypes={},counts={windows:0,skippedNarrowWindows:0,doors:0,roofs:0,aircons:0,downpipes:0,guardWindows:0,doorCanopies:0,shelteredDoors:0};
  const rooftopPlans=planRooftops(buildings),roofsByBuilding=new Map(rooftopPlans.map(p=>[p.buildingIndex,p]));
  const households=new Map((architecture.households||[]).map(h=>[h.owner,h]));
  const styleCounts=Array(6).fill(0),boxes=buildings.map(b=>({b,minX:Math.min(...b.points.map(p=>p[0])),maxX:Math.max(...b.points.map(p=>p[0])),minZ:Math.min(...b.points.map(p=>p[1])),maxZ:Math.max(...b.points.map(p=>p[1]))}));
@@ -15,7 +15,7 @@ export function createDetails(buildings,elevation,architecture={structures:[]}){
  const occupied=(x,z,owner)=>boxes.some(q=>q.b.seed!==owner&&x>=q.minX&&x<=q.maxX&&z>=q.minZ&&z<=q.maxZ&&inside(x,z,q.b.points));
  function segments(lo,hi,cuts){let a=[[lo,hi]];for(const [c,d] of cuts)a=a.flatMap(([x,y])=>d<=x||c>=y?[[x,y]]:[[x,Math.min(y,c)],[Math.max(x,d),y]].filter(([u,v])=>v-u>.008));return a;}
  for(const [buildingIndex,b] of buildings.entries()){
-  if(b.arterialKiosk)continue;
+  if(b.arterialKiosk||(options.owners&&!options.owners.has(b.seed)))continue;
   batch.inkObjectId=b.inkObjectId;const gasFaces=[];
   const {points,top,base,floor,levels,seed,holes}=b,style=facadeStyles[Math.abs(seed)%6],covers=architecture.structures.filter(s=>s.owner===seed&&s.roofKind!=='none'),annexes=architecture.structures.filter(s=>s.owner===seed&&['shed','workshop'].includes(s.type));styleCounts[Math.abs(seed)%6]++;
   let signed=0;for(let i=0;i<points.length;i++){const a=points[i],c=points[(i+1)%points.length];signed+=a[0]*c[1]-c[0]*a[1]}const sign=signed>=0?1:-1;
@@ -29,6 +29,20 @@ export function createDetails(buildings,elevation,architecture={structures:[]}){
    const facadeClear=(u,depth=.8)=>!occupied(a[0]+ux*u+nx*depth,a[1]+uz*u+nz*depth,seed);
    B(L/2,top+.29,0,L,.58,.18,style.wall,true);B(L/2,top+.61,0,L+.025,.065,.28,0xc0beb0,false);
    const exposed=[.2,.5,.8].some(t=>facadeClear(L*t));if(!exposed)continue;
+   // Distant facades keep the color, window rhythm and night lights, without
+   // generating sash solids, mortar, equipment or tiny frame components.
+   if(options.minimumLOD>=2){
+    const bays=Math.max(1,Math.floor((L-.6)/3.35)),space=(L-.6)/bays;
+    for(let f=0;f<levels;f++)for(let j=0;j<bays;j++){
+     const u=.3+space*(j+.5),fy=top-(levels-f)*floor+floor*.57,w=Math.min(1.85,space-.35),h=1.3;
+     if(!facadeClear(u,.4)||(b.storefronts||[]).some(p=>p.edge===i&&u>=p.lo&&u<=p.hi&&f===0))continue;
+     const band=windowLightBand(seed*997+i*131+f*31+j);
+     Q(u,fy,.035,w,h,style.frame,false);out.lit(band,()=>Q(u,fy,.045,w-.10,h-.10,0x79999a,false));
+     counts.windows++;windowBands[band]++;
+    }
+    continue;
+   }
+
    const arterialFace=(b.arterialFacades||[]).find(p=>p.edge===i);
    const shops=(b.storefronts||[]).filter(p=>p.edge===i);
    const shopOpening=p=>[p.lo-.12,p.hi+.12,p.groundMin-.05,p.position[1]+p.height+.12];
@@ -158,5 +172,5 @@ export function createDetails(buildings,elevation,architecture={structures:[]}){
   const rooftop=roofsByBuilding.get(buildingIndex);
   if(rooftop){emitRooftop(batch,rooftop,style);counts.roofs++;}
  }
- const group=batch.finish();let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={gasNetworks,rooftopPlans,rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
+ const group=batch.finish();let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
 }

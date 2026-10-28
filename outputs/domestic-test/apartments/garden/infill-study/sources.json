@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ramp",
+    "title": "주차장 진입부",
+    "page": "https://kbland.kr/se/c/12027",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/13485/MTM0ODUxMDAyNTE3NTcy.jpg",
+    "kind": "대상 단지 페이지",
+    "file": "photos/ramp.jpg",
+    "bytes": 78314,
+    "status": "saved"
+  },
+  {
+    "id": "fitness",
+    "title": "야외 운동시설",
+    "page": "https://kbland.kr/se/c/12027",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/13485/MTM0ODUxMDAyNTE4MDcy.jpg",
+    "kind": "대상 단지 페이지",
+    "file": "photos/fitness.jpg",
+    "bytes": 74541,
+    "status": "saved"
+  },
+  {
+    "id": "walk",
+    "title": "산책로",
+    "page": "https://kbland.kr/se/c/12027",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/13485/MTM0ODUxMDAyNTE3Nzcy.jpg",
+    "kind": "대상 단지 페이지",
+    "file": "photos/walk.jpg",
+    "bytes": 90424,
+    "status": "saved"
+  },
+  {
+    "id": "rest",
+    "title": "쉼터",
+    "page": "https://kbland.kr/se/c/12027",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/13485/MTM0ODUxMDAyNTE3OTcy.jpg",
+    "kind": "대상 단지 페이지",
+    "file": "photos/rest.jpg",
+    "bytes": 71752,
+    "status": "saved"
+  },
+  {
+    "id": "road",
+    "title": "단지 도로 가장자리",
+    "page": "https://kbland.kr/se/c/12027",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/13485/MTM0ODUxMDAyNTE3NDcy.jpg",
+    "kind": "대상 단지 페이지",
+    "file": "photos/road.jpg",
+    "bytes": 74095,
+    "status": "saved"
+  },
+  {
+    "id": "bike",
+    "title": "자전거 보관소",
+    "page": "https://kbland.kr/se/c/566",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/679/Njc5MTAwMTA2Njc3Mg%3D%3D.jpg",
+    "kind": "다른 단지 · 마곡현대",
+    "file": "photos/bike.jpg",
+    "bytes": 68192,
+    "status": "saved"
+  },
+  {
+    "id": "waste",
+    "title": "생활 쓰레기 수거 시설",
+    "page": "https://kbland.kr/se/c/566",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/679/Njc5MTAwMTA2NjY3Mg%3D%3D.jpg",
+    "kind": "다른 단지 · 마곡현대",
+    "file": "photos/waste.jpg",
+    "bytes": 72137,
+    "status": "saved"
+  },
+  {
+    "id": "play",
+    "title": "작은 놀이터",
+    "page": "https://kbland.kr/se/c/1837",
+    "url": "https://file.kbland.kr/image/kbstar/land/img/alian/kms/complex/photo/objctidnfr/2102/MjEwMjEwMDAwMDY2NzI%3D.jpg",
+    "kind": "다른 단지 · 정릉우성",
+    "file": "photos/play.jpg",
+    "bytes": 68864,
+    "status": "saved"
+  }
+]

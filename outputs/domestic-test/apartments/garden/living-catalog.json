@@ -1,0 +1,71 @@
+{
+  "scope": "사진과 승인된 이미지의 분위기를 반영한 모형. 지도상 실제 시설 위치를 확정한 복제본은 아닙니다.",
+  "assets": [
+    {
+      "id": "ramp",
+      "name": "청록 지붕 지하주차장 입구",
+      "w": 5.8,
+      "d": 10.4,
+      "reference": "infill-study/photos/ramp.jpg",
+      "file": "assets/ramp.glb"
+    },
+    {
+      "id": "bike",
+      "name": "곡면 지붕 자전거 보관소",
+      "w": 6,
+      "d": 3.6,
+      "reference": "infill-study/photos/bike.jpg",
+      "file": "assets/bike.glb"
+    },
+    {
+      "id": "recycling",
+      "name": "가림막 분리수거장",
+      "w": 5.2,
+      "d": 3.6,
+      "reference": "infill-study/photos/waste.jpg",
+      "file": "assets/recycling.glb"
+    },
+    {
+      "id": "pergola",
+      "name": "목재 퍼걸러 쉼터",
+      "w": 5.8,
+      "d": 5.4,
+      "reference": "infill-study/photos/rest.jpg",
+      "file": "assets/pergola.glb"
+    },
+    {
+      "id": "guard",
+      "name": "유리 경비실과 안내판",
+      "w": 3.8,
+      "d": 3.6,
+      "reference": "infill-study/living-spaces-concept-v1.png",
+      "file": "assets/guard.glb"
+    },
+    {
+      "id": "play",
+      "name": "어린이 놀이 공간",
+      "w": 13,
+      "d": 11,
+      "reference": "infill-study/photos/play.jpg",
+      "file": "assets/play.glb"
+    }
+  ],
+  "reused": [
+    {
+      "id": 31,
+      "name": "자전거",
+      "source": "../../../alley-library/models.js"
+    },
+    {
+      "id": 44,
+      "name": "분리수거함",
+      "source": "../../../alley-library/models.js"
+    },
+    {
+      "id": 126,
+      "name": "목재 벤치",
+      "source": "../../../alley-library/models.js"
+    }
+  ],
+  "sources": "infill-study/sources.json"
+}

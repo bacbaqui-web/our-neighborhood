@@ -1,11 +1,12 @@
 import * as T from 'three';
+import {inPolygon} from '../../facilities/placement.js';
 import {FacadeBatch} from '../../korean-facades.js';
-export function gardenSurfaces(plan,layout){
+export function gardenSurfaces(plan,layout,holes=[]){
  const ground=new T.Group(),props=new T.Group(),batch=new FacadeBatch(),layers=new Map();ground.name='지도에 맞춘 단지 바닥';
  const material=color=>new T.MeshStandardMaterial({color,roughness:1,side:T.DoubleSide});
- for(const ring of plan.boundary){const s=new T.Shape(ring.map(p=>new T.Vector2(p[0],-p[1]))),g=new T.ShapeGeometry(s);g.rotateX(-Math.PI/2);const m=new T.Mesh(g,material(0xc4c8ba));m.receiveShadow=true;ground.add(m);}
+ for(const boundary of plan.boundary){const shape=new T.Shape(boundary.map(p=>new T.Vector2(p[0],-p[1])));for(const hole of holes)if(hole.every(p=>inPolygon(p,boundary)))shape.holes.push(new T.Path(hole.map(p=>new T.Vector2(p[0],-p[1]))));const geometry=new T.ShapeGeometry(shape);geometry.rotateX(-Math.PI/2);const mesh=new T.Mesh(geometry,material(0xc4c8ba));mesh.receiveShadow=true;ground.add(mesh);}
  const bounds=layout.bounds,step=.65;
- for(let x=bounds.minX;x<bounds.maxX;x+=step)for(let z=bounds.minZ;z<bounds.maxZ;z+=step){const p=[x+step/2,z+step/2];if(!layout.inside(p)||layout.occupied(p))continue;const corners=[[x,z],[x+step,z],[x+step,z+step],[x,z+step]];if(corners.some(p=>layout.occupied(p)||!layout.inside(p)))continue;const r=layout.roadDistance(p),path=layout.pathDistance(p),green=layout.green(p);let col=r<-.45?0x65716f:path<0?0xd2cbbb:r<1.4?0xc5c3b5:green?0x849b73:null;if(col===null)continue;if(!layers.has(col))layers.set(col,[]);const v=layers.get(col);for(const k of [0,1,2,0,2,3])v.push(corners[k][0],.045,corners[k][1]);}
+ for(let x=bounds.minX;x<bounds.maxX;x+=step)for(let z=bounds.minZ;z<bounds.maxZ;z+=step){const p=[x+step/2,z+step/2];if(!layout.inside(p)||layout.occupied(p)||holes.some(h=>inPolygon(p,h)))continue;const corners=[[x,z],[x+step,z],[x+step,z+step],[x,z+step]];if(corners.some(p=>layout.occupied(p)||!layout.inside(p)||holes.some(h=>inPolygon(p,h))))continue;const r=layout.roadDistance(p),path=layout.pathDistance(p),green=layout.green(p);let col=r<-.45?0x65716f:path<0?0xd2cbbb:r<1.4?0xc5c3b5:green?0x849b73:null;if(col===null)continue;if(!layers.has(col))layers.set(col,[]);const v=layers.get(col);for(const k of [0,1,2,0,2,3])v.push(corners[k][0],.045,corners[k][1]);}
  for(const [c,points]of layers){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(points,3));g.computeVertexNormals();const m=new T.Mesh(g,material(c));m.receiveShadow=true;ground.add(m);}
  // Continuous ribbons cover the sampled asphalt edge, avoiding a tiled silhouette.
  const ribbon=[];

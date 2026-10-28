@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {setupNumberScrub} from './ui-controls.js?v=37';
+import {setupNumberScrub} from './ui-controls.js?v=151';
 
 export function setupWalk({camera,controls,renderer,host,elevation,roadInfo,getGround,getBuildings,getBoundarySegments=()=>[],isLoaded}){
  const canvas=renderer.domElement,walkButton=document.getElementById('walk');

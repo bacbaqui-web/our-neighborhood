@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {createVegetation,loadVegetationAssets} from './vegetation.js?v=31';
+import {createVegetation,loadVegetationAssets} from './vegetation.js?v=151';
 const $=id=>document.getElementById(id),host=$('viewer'),scene=new T.Scene();scene.background=new T.Color('#e6ebe1');
 const camera=new T.PerspectiveCamera(38,1,.05,200),renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=T.SRGBColorSpace;host.prepend(renderer.domElement);
 scene.add(new T.HemisphereLight(0xffffff,0x66745c,2.5));const grid=new T.GridHelper(22,44,0xa8b99f,0xcbd5c6);grid.position.y=-.025;scene.add(grid);

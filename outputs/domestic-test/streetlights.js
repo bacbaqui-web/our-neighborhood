@@ -1,7 +1,7 @@
 import * as T from 'three';
-import {fitSupportBase} from './support-geometry.js?v=82';
+import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {windowIsLit} from './environment-policy.js?v=36';
+import {windowIsLit} from './environment-policy.js?v=151';
 
 export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],surface=elevation){
  // Mounted fixtures keep their mounting height; freestanding lights use finished paving.

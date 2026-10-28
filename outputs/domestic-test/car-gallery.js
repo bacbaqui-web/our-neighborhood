@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {loadCarBillboardAssets,createCarBillboard} from './car-billboards.js?v=87';
-import {WHEEL_POINTS} from './car-registration.js?v=86';
+import {loadCarBillboardAssets,createCarBillboard} from './car-billboards.js?v=151';
+import {WHEEL_POINTS} from './car-registration.js?v=151';
 const $=id=>document.getElementById(id),host=$('viewer'),scene=new T.Scene();
 scene.background=new T.Color('#dfe7e1');scene.fog=new T.Fog('#dfe7e1',24,48);
 const camera=new T.PerspectiveCamera(35,1,.1,100),renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});

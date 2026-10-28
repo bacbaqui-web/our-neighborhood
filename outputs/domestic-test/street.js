@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {fittedRibbon} from './terrain-fit.js?v=81';
+import {fittedRibbon} from './terrain-fit.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 export function createStreet(specs,elevation,roadInfo,previewType=null){
  const root=new T.Group();root.name='StreetAndFoundations';const stats={foundationSegments:0,poles:0,cars:0,people:0};const buckets={},edge=[];

@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {speciesById} from './tree-species.js?v=55';
+import {speciesById} from './tree-species.js?v=151';
 
 // Continuous tapered rings per woody axis. Parallel transport avoids twisting
 // rings, separate cylinders, and ball-shaped knobs at each growth sample.

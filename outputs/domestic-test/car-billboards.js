@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {sourceImageLayout,chooseCarFrame,wrapDegrees} from './car-billboard-math.js?v=84';
-import {WHEEL_POINTS,fitSimilarity,applySimilarity,makeFourWheelGrid,safeFourWheelWarp} from './car-registration.js?v=86';
+import {sourceImageLayout,chooseCarFrame,wrapDegrees} from './car-billboard-math.js?v=151';
+import {WHEEL_POINTS,fitSimilarity,applySimilarity,makeFourWheelGrid,safeFourWheelWarp} from './car-registration.js?v=151';
 
 export async function loadCarBillboardAssets(base='./cars/avante-cn7-v87/'){
   const response=await fetch(base+'catalog.json?v=87');

@@ -1,8 +1,8 @@
-import {createVegetationSunShadows} from './vegetation-sun-shadows.js?v=43';
+import {createVegetationSunShadows} from './vegetation-sun-shadows.js?v=151';
 import * as T from 'three';
-import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=43';
-import {createContactShadows} from './contact-shadows.js?v=33';
-import {vegetationView,vegetationExtent} from './vegetation-math.js?v=31';
+import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
+import {createContactShadows} from './contact-shadows.js?v=151';
+import {vegetationView,vegetationExtent} from './vegetation-math.js?v=151';
 export async function loadVegetationAssets(catalog){
  const assets=new Map(),loader=new T.TextureLoader();
  await Promise.all(catalog.assets.map(async a=>{const texture=await loader.loadAsync(new URL('./vegetation/'+a.image,import.meta.url).href);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;assets.set(a.id,{...a,texture});}));return assets;

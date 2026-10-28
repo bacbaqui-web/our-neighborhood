@@ -1,9 +1,9 @@
 import * as T from 'three';
-import {TREE_SPECIES} from './tree-species.js?v=65';
-import {planCanopy,validateCanopy} from './canopy-growth.js?v=67';
-import {createHybridTrees,loadSpeciesTextures} from './hybrid-tree.js?v=134';
-import {createBillboardLightField} from './billboard-lighting.js?v=43';
-import {environmentProfile,bearingVector} from './environment-policy.js?v=43';
+import {TREE_SPECIES} from './tree-species.js?v=151';
+import {planCanopy,validateCanopy} from './canopy-growth.js?v=151';
+import {createHybridTrees,loadSpeciesTextures} from './hybrid-tree.js?v=151';
+import {createBillboardLightField} from './billboard-lighting.js?v=151';
+import {environmentProfile,bearingVector} from './environment-policy.js?v=151';
 const catalog=document.getElementById('catalog'),status=document.getElementById('status'),seasonNames={spring:'봄꽃·새순',summer:'여름 잎',autumn:'가을 잎·열매',winter:'겨울 모습'};
 const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(480,452);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
 const scene=new T.Scene();scene.background=new T.Color(0xe8eee3);const camera=new T.OrthographicCamera(-7.8,7.8,7.35,-7.35,.1,90);camera.position.set(16,10,23);camera.lookAt(0,5.8,0);

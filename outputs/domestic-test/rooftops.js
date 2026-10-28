@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {FacadeBatch,facadeStyles} from './korean-facades.js?v=39';
-import {rooftopCatalog,rooftopDoorX} from './rooftop-plan.js?v=41';
+import {FacadeBatch,facadeStyles} from './korean-facades.js?v=151';
+import {rooftopCatalog,rooftopDoorX} from './rooftop-plan.js?v=151';
 export {rooftopCatalog};
 // Roof mass and door stay in every LOD; only small fittings disappear at distance.
 export function emitRooftop(batch,plan,style){

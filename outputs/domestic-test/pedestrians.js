@@ -1,7 +1,7 @@
 import * as T from 'three';
-import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=43';
-import {createContactShadows} from './contact-shadows.js?v=33';
-import {directionalFrame,elevationTier,projectedHeight,pedestrianView,FRAME_LABELS} from './pedestrian-math.js?v=38';
+import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
+import {createContactShadows} from './contact-shadows.js?v=151';
+import {directionalFrame,elevationTier,projectedHeight,pedestrianView,FRAME_LABELS} from './pedestrian-math.js?v=151';
 export async function loadPedestrianAssets(catalog){
  const loader=new T.TextureLoader(),assets=new Map();
  await Promise.all(catalog.people.map(async p=>{

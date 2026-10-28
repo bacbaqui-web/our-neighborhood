@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {windowIsLit,bearingVector} from './environment-policy.js?v=43';
+import {windowIsLit,bearingVector} from './environment-policy.js?v=151';
 
 const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
 const inside=(x,z,ring)=>{let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>z)!==(b[1]>z)&&x<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};

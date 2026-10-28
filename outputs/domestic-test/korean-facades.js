@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {windowLightBand} from './environment-policy.js?v=32';
-import {finishDepth} from './surface-policy.js?v=30';
+import {windowLightBand} from './environment-policy.js?v=151';
+import {finishDepth} from './surface-policy.js?v=151';
 
 // All parts are solid-color geometry, so exported faces remain editable.
 export const facadeStyles = [

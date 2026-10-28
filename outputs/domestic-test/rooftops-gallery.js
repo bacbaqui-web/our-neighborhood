@@ -1,9 +1,9 @@
 import * as T from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFExporter} from './vendor/GLTFExporter.js';
-import {rooftopCatalog,createRooftopAsset} from './rooftops.js?v=41';
-import {createIllustrationRenderer} from './illustration-renderer.js?v=38';
-import {DEFAULT_APPEARANCE} from './illustration-settings.js?v=37';
+import {rooftopCatalog,createRooftopAsset} from './rooftops.js?v=151';
+import {createIllustrationRenderer} from './illustration-renderer.js?v=151';
+import {DEFAULT_APPEARANCE} from './illustration-settings.js?v=151';
 const $=id=>document.getElementById(id),scene=new T.Scene();scene.background=new T.Color('#d3d6c9');scene.add(new T.HemisphereLight(0xffffff,0x8d998c,2.4));const light=new T.DirectionalLight(0xffffff,2.1);light.position.set(-3,5,8);scene.add(light);const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(460,320);renderer.outputColorSpace=T.SRGBColorSpace;
 const camera=new T.PerspectiveCamera(35,460/320,.01,100),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;let model,selected=0;const ink=createIllustrationRenderer(renderer);
 function draw(){ink.render(scene,camera,()=>renderer.render(scene,camera),{...DEFAULT_APPEARANCE,lines:$('ink').checked});}

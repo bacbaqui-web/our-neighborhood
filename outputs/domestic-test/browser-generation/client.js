@@ -1,5 +1,5 @@
 import {saveScene,listScenes} from './storage.js';
-import {loadSDK} from '../map-picker.js?v=150';
+import {loadSDK} from '../map-picker.js?v=151';
 async function placesNear(point){
  await loadSDK();const service=new kakao.maps.services.Places(),found=new Map(),warnings=[];
  const options={location:new kakao.maps.LatLng(...point.center),radius:Math.ceil(point.radius*Math.SQRT2),sort:kakao.maps.services.SortBy.DISTANCE,size:15};
@@ -25,7 +25,7 @@ export async function generateInBrowser(point,onProgress,{signal}={}){
  onProgress('주변 가게를 확인하고 있습니다…',0);
  const extra=await placesNear(point);if(signal?.aborted)throw new DOMException('취소했습니다.','AbortError');
  return new Promise((resolve,reject)=>{
-  const worker=new Worker(new URL('./worker.js?v=150',import.meta.url),{type:'module'});
+  const worker=new Worker(new URL('./worker.js?v=151',import.meta.url),{type:'module'});
   const finish=()=>{worker.terminate();signal?.removeEventListener('abort',abort);};
   const abort=()=>{finish();reject(new DOMException('동네 만들기를 취소했습니다.','AbortError'));};signal?.addEventListener('abort',abort,{once:true});
   worker.onerror=event=>{finish();reject(Error(event.message||'동네 계산을 시작하지 못했습니다.'));};

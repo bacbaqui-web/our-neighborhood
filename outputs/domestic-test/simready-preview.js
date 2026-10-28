@@ -1,4 +1,4 @@
-import {applyRepresentative,representativeAudit} from './representative-assets.js?v=133';
+import {applyRepresentative,representativeAudit} from './representative-assets.js?v=151';
 import * as T from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';

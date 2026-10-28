@@ -1,5 +1,5 @@
-import {speciesById} from './tree-species.js?v=65';
-import {planCanopy,obstacleVolumes,validateCanopy,seededRandom} from './canopy-growth.js?v=67';
+import {speciesById} from './tree-species.js?v=151';
+import {planCanopy,obstacleVolumes,validateCanopy,seededRandom} from './canopy-growth.js?v=151';
 
 const replacements=Object.freeze({jujube:'zelkova',cornelian:'fringe',lilac:'cherry','crape-myrtle':'plane',juniper:'metasequoia'});
 

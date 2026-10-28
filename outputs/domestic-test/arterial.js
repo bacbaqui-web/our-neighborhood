@@ -1,8 +1,8 @@
-import {roadVehicle,recordMemoScene} from './memo-scene.js?v=134';
+import {roadVehicle,recordMemoScene} from './memo-scene.js?v=151';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {seatGroundAsset,contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=133';
-import {supportSampler,connectedRuns,fittedRibbon,supportFrame,roofPlane} from './terrain-fit.js?v=78';
+import {seatGroundAsset,contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=151';
+import {supportSampler,connectedRuns,fittedRibbon,supportFrame,roofPlane} from './terrain-fit.js?v=151';
 
 const C={metal:0x535e60,silver:0xa5ada9,glass:0x668e98,rubber:0x303b40,white:0xd7dad4,curb:0xb6b9ad,paving:0xa7aaa2,yellow:0xc9ad53,blue:0x367daf};
 const geo=positions=>{const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));g.computeVertexNormals();g.computeBoundingSphere();return g;};

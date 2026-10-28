@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {facadeStyles} from './korean-facades.js?v=39';
-import {environmentProfile,bearingVector} from './environment-policy.js?v=43';
+import {facadeStyles} from './korean-facades.js?v=151';
+import {environmentProfile,bearingVector} from './environment-policy.js?v=151';
 
 // A separate depth pass keeps 22 km terrain from reducing the precision of nearby roofs.
 export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwners=null){

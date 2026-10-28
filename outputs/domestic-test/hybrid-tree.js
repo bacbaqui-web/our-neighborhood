@@ -1,11 +1,11 @@
 import * as T from 'three';
-import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from './tree-species.js?v=65';
-import {createCanopyLayers} from './canopy-layers.js?v=68';
-import {createWinterLeaves} from './winter-leaves.js?v=134';
-import {createTreeWood} from './tree-wood.js?v=117';
-import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=43';
-import {canopyAtlasRect} from './canopy-atlas.js?v=65';
-import {bearingVector} from './environment-policy.js?v=43';
+import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from './tree-species.js?v=151';
+import {createCanopyLayers} from './canopy-layers.js?v=151';
+import {createWinterLeaves} from './winter-leaves.js?v=151';
+import {createTreeWood} from './tree-wood.js?v=151';
+import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
+import {canopyAtlasRect} from './canopy-atlas.js?v=151';
+import {bearingVector} from './environment-policy.js?v=151';
 export async function loadCanopyTexture(id=null){
  const species=speciesById(id),texture=await new T.TextureLoader().loadAsync(new URL(species?.atlas||'./vegetation/clusters/broadleaf-flat-v46.png',import.meta.url).href);
  texture.colorSpace=T.SRGBColorSpace;texture.anisotropy=4;texture.generateMipmaps=false;texture.minFilter=T.LinearFilter;

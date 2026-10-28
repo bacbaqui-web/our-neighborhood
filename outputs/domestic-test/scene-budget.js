@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {chooseDistanceLOD} from './lod-policy.js?v=139';
+import {chooseDistanceLOD} from './lod-policy.js?v=151';
 export function normalizeRadius(value=150,max=300){const n=Number(value);return Math.max(50,Math.min(max,Math.round((Number.isFinite(n)&&n>0?n:150)/50)*50));}
 export function selectedRadius(context,search=location.search){return normalizeRadius(new URLSearchParams(search).get('radius')||150,Math.max(50,Math.min(300,(context.sizeMetres||300)/2)));}
 export function withinScope(points,radius){

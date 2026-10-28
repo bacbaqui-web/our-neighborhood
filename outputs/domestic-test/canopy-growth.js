@@ -1,6 +1,6 @@
-import {growTreeSkeleton} from './tree-skeleton.js?v=57';
-import {speciesById} from './tree-species.js?v=65';
-import {subdivideLeafClusters} from './leaf-cluster-layout.js?v=67';
+import {growTreeSkeleton} from './tree-skeleton.js?v=151';
+import {speciesById} from './tree-species.js?v=151';
+import {subdivideLeafClusters} from './leaf-cluster-layout.js?v=151';
 // Production rule shared by the neighborhood and preview. Branches avoid solids;
 // only leaf-card edges may approach the wall. A seed keeps each tree's bend stable.
 export function seededRandom(seed){let s=2166136261;for(const c of String(seed))s=Math.imul(s^c.charCodeAt(0),16777619);return()=>{s+=0x6D2B79F5;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}

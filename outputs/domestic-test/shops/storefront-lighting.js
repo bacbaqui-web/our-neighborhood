@@ -1,6 +1,6 @@
-import {applySignEmission} from './sign-lighting.js?v=73';
+import {applySignEmission} from './sign-lighting.js?v=151';
 import * as T from 'three';
-import {lightingState} from './storefront-hours.js?v=71';
+import {lightingState} from './storefront-hours.js?v=151';
 
 // Lighting follows the facade's local coordinates so it can move with a building.
 export function createStorefrontLighting(root,spec){

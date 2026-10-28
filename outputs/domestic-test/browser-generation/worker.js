@@ -1,4 +1,4 @@
-import {prepareScene} from './prepare-scene.js?v=150';
+import {prepareScene} from './prepare-scene.js?v=151';
 const base=new URL('./',import.meta.url);
 // Synchronous network access is restricted to this disposable background Worker.
 self.browserRequest=url=>{

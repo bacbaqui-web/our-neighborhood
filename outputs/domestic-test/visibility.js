@@ -1,4 +1,4 @@
-import {chooseDistanceLOD} from './lod-policy.js?v=139';
+import {chooseDistanceLOD} from './lod-policy.js?v=151';
 import * as T from 'three';
 
 // Draw proxies are separate from editable geometry, collision meshes and exports.

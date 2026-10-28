@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {fitSupportBase} from './support-geometry.js?v=82';
+import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 // Dimensions in metres. The graph is planned independently of visual ornament.
 export function createUtilityNetwork(plan,elevation){

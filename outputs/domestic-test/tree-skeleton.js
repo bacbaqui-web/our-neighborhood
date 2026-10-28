@@ -1,4 +1,4 @@
-import {crookedTrunkPaths} from './trunk-crookedness.js?v=51';
+import {crookedTrunkPaths} from './trunk-crookedness.js?v=151';
 import {Tree} from './vendor/ez-tree/tree.js';
 import oak from './vendor/ez-tree/presets/oak_medium.js';
 

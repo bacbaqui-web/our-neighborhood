@@ -1,8 +1,8 @@
-import {memoTemplate} from '../domestic-test/memo-scene.js?v=134';
-import {koreanVehicleCatalog,createKoreanVehicle} from './korean-vehicles.js?v=124';
-import {residentVehicleCatalog,createResidentVehicle} from './resident-vehicles.js?v=122';
-import {neighborhoodCatalog,createNeighborhoodAsset} from './neighborhood-models.js?v=122';
-import {moreCatalog,createMoreAsset} from './more-models.js?v=117';
+import {memoTemplate} from '../domestic-test/memo-scene.js?v=151';
+import {koreanVehicleCatalog,createKoreanVehicle} from './korean-vehicles.js?v=151';
+import {residentVehicleCatalog,createResidentVehicle} from './resident-vehicles.js?v=151';
+import {neighborhoodCatalog,createNeighborhoodAsset} from './neighborhood-models.js?v=151';
+import {moreCatalog,createMoreAsset} from './more-models.js?v=151';
 import * as T from '../domestic-test/vendor/three.module.js';
 const rows=[
 ['낮은 벽돌 담장','담장·출입구',1],['높낮이 벽돌 담장','담장·출입구',1],['돌 마감 대문기둥','담장·출입구',1],['철제 양개 대문','담장·출입구',1],['담장 위 철제 울타리','담장·출입구',1],['콘크리트 옹벽','담장·출입구',0],['출입구 계단','담장·출입구',1],['스테인리스 난간','담장·출입구',0],['주택 캐노피','담장·출입구',1],['대문 기둥 조명','담장·출입구',1],
@@ -11,7 +11,7 @@ const rows=[
 ['주차된 생활 자전거','주차·도로',1],['바구니 자전거','주차·도로',0],['자전거 거치대','주차·도로',0],['주차금지 입간판','주차·도로',0],['라바콘','주차·도로',0],['주차 방지 볼라드','주차·도로',0],['주차 바퀴 멈춤턱','주차·도로',0],['골목 반사경','주차·도로',0],['빗물 배수구','주차·도로',0],['원형 맨홀','주차·도로',0],
 ['묶인 흰 쓰레기봉투','수거·조경',0],['검은 쓰레기봉투 묶음','수거·조경',0],['접어 쌓은 종이상자','수거·조경',0],['재활용 분리수거함','수거·조경',0],['음식물 수거통','수거·조경',0],['테라코타 화분','수거·조경',0],['사각 텃밭 화분','수거·조경',0],['담장 덩굴','수거·조경',1],['골목 관목','수거·조경',1],['목재 평상','수거·조경',0]];
 export const catalog=rows.map(([name,category,seen],i)=>({id:i+1,name,category,source:seen?'로드뷰 형태 참고':'골목 보완 제안',file:`alley-${String(i+1).padStart(2,'0')}.glb`})).concat(moreCatalog,neighborhoodCatalog,residentVehicleCatalog);
-import {ALLEY_PALETTE as C} from './alley-palette.js?v=117';
+import {ALLEY_PALETTE as C} from './alley-palette.js?v=151';
 export function createAsset(id){const memo=memoTemplate(id);if(memo)return memo;if(id>=213&&id<=215)return createKoreanVehicle(id);if(id===173||id>210)return createResidentVehicle(id);if(id>150)return createNeighborhoodAsset(id);if(id>50)return createMoreAsset(id);const root=new T.Group();root.name=catalog[id-1].name;let count=0;
 function mesh(g,k='stone',x=0,y=0,z=0){const m=new T.Mesh(g,new T.MeshStandardMaterial({color:C[k]??k,roughness:.83}));m.position.set(x,y,z);m.name=k+'-'+(++count);m.userData.part=k;root.add(m);return m}
 function box(x,y,z,w,h,d,k='stone',bevel=0){return mesh(new T.BoxGeometry(w,h,d),k,x,y,z)}

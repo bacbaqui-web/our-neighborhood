@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {bearingVector} from './environment-policy.js?v=43';
-import {vegetationView,vegetationExtent} from './vegetation-math.js?v=31';
+import {bearingVector} from './environment-policy.js?v=151';
+import {vegetationView,vegetationExtent} from './vegetation-math.js?v=151';
 
 // An invisible alpha-cutout caster faces the SUN, never the viewing camera.
 // Real shadow-map depth makes its silhouette follow slopes and receiving walls,

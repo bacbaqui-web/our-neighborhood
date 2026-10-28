@@ -1,12 +1,12 @@
 import {emitFacility,addFacilityLabels} from './facilities/models.js';
-import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=59.1';
+import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=151';
 import * as T from 'three';
-import {addBoundaryRibbon} from './boundary-geometry.js?v=82';
-import {footprintHeights} from './support-geometry.js?v=82';
-import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=41';
-import {emitRooftop} from './rooftops.js?v=41';
-import {windowLightBand} from './environment-policy.js?v=32';
-import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=137';
+import {addBoundaryRibbon} from './boundary-geometry.js?v=151';
+import {footprintHeights} from './support-geometry.js?v=151';
+import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=151';
+import {emitRooftop} from './rooftops.js?v=151';
+import {windowLightBand} from './environment-policy.js?v=151';
+import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=151';
 export function createDetails(buildings,elevation,architecture={structures:[]},options={}){
  const gasNetworks=[],nightWindowSources=[],windowBands=Array(16).fill(0),batch=new FacadeBatch(options.minimumLOD||0),spots=[],placementProxies=[],windowTypes={},counts={windows:0,skippedNarrowWindows:0,doors:0,roofs:0,aircons:0,downpipes:0,guardWindows:0,doorCanopies:0,shelteredDoors:0};
  const rooftopPlans=planRooftops(buildings),roofsByBuilding=new Map(rooftopPlans.map(p=>[p.buildingIndex,p]));

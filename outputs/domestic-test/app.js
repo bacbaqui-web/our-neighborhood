@@ -1,45 +1,45 @@
 import {planApartmentGrounds,createApartmentGrounds,chooseApartment} from './apartments/models.js';
 import {planFacilities} from './facilities/placement.js';
-import {routeCorrection,deformTerrain} from './route-elevation.js?v=141';
-import {selectedRadius,withinScope,fullyInScope,scopePlan,scopeUtilities,scopeArterial,cropTerrain} from './scene-budget.js?v=145';
-import {applyGroundCharacter,setGroundCharacter} from './ground-character.js?v=135';
-import {loadMemoScene,installMemoTour} from './memo-scene.js?v=134';
-import {loadRepresentatives,representativeAudit,installRepresentativeControls} from './representative-assets.js?v=133';
-import {installAssetInspection,collectShopPlants} from './asset-inspection.js?v=116';
-import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v=133';
-import {arterialShopInputs} from './shops/arterial-catalog.js?v=80';
-import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=140';
+import {routeCorrection,deformTerrain} from './route-elevation.js?v=151';
+import {selectedRadius,withinScope,fullyInScope,scopePlan,scopeUtilities,scopeArterial,cropTerrain} from './scene-budget.js?v=151';
+import {applyGroundCharacter,setGroundCharacter} from './ground-character.js?v=151';
+import {loadMemoScene,installMemoTour} from './memo-scene.js?v=151';
+import {loadRepresentatives,representativeAudit,installRepresentativeControls} from './representative-assets.js?v=151';
+import {installAssetInspection,collectShopPlants} from './asset-inspection.js?v=151';
+import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v=151';
+import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
+import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=148';
-import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=80';
-import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=134';
-import {loadData} from './load-data.js?v=92';
-import {applyRoadContext} from './road-context.js?v=149';
-import {createIllustrationRenderer} from './illustration-renderer.js?v=134';
-import {createIllustrationShading} from './illustration-shading.js?v=42';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=151';
+import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=151';
+import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=151';
+import {loadData} from './load-data.js?v=151';
+import {applyRoadContext} from './road-context.js?v=151';
+import {createIllustrationRenderer} from './illustration-renderer.js?v=151';
+import {createIllustrationShading} from './illustration-shading.js?v=151';
 import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=inner-angle-126';
-import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=37';
-import {createPrecipitation} from './precipitation.js?v=35';
-import {createContactSurfaceSampler} from './contact-shadows.js?v=82';
-import {createBillboardLightField} from './billboard-lighting.js?v=76';
-import {createAtmosphere} from './atmosphere.js?v=148';
-import {createStreetlights} from './streetlights.js?v=82';
-import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=43';
-import {loadVegetationAssets} from './vegetation.js?v=44';
-import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=117';
-import {loadSpeciesTextures} from './hybrid-tree.js?v=134';
+import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=151';
+import {createPrecipitation} from './precipitation.js?v=151';
+import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
+import {createBillboardLightField} from './billboard-lighting.js?v=151';
+import {createAtmosphere} from './atmosphere.js?v=151';
+import {createStreetlights} from './streetlights.js?v=151';
+import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
+import {loadVegetationAssets} from './vegetation.js?v=151';
+import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=151';
+import {loadSpeciesTextures} from './hybrid-tree.js?v=151';
 let canopyTexture=null,finishedGround=null;
 let shops=null,shopCatalog=null,shopPlaces=null,shopPlan=null;
-import {createBuildingShellGeometry} from './building-shell.js?v=30';
-import {createVisibilityOptimizer} from './visibility.js?v=140';
-import {createPedestrians,loadPedestrianAssets} from './pedestrians.js?v=82';
-import {createUtilityNetwork} from './utility-network.js?v=82';
-import {facadeStyles} from './korean-facades.js?v=39';
-import {planFrontages} from './frontage.js?v=14.5';
-import {setupWalk} from './walk.js?v=81';
-import {decorateAlleys} from './alley-placement.js?v=141';
-import {createStreet} from './street.js?v=133';
-import {createDetails} from './details.js?v=137';
+import {createBuildingShellGeometry} from './building-shell.js?v=151';
+import {createVisibilityOptimizer} from './visibility.js?v=151';
+import {createPedestrians,loadPedestrianAssets} from './pedestrians.js?v=151';
+import {createUtilityNetwork} from './utility-network.js?v=151';
+import {facadeStyles} from './korean-facades.js?v=151';
+import {planFrontages} from './frontage.js?v=151';
+import {setupWalk} from './walk.js?v=151';
+import {decorateAlleys} from './alley-placement.js?v=151';
+import {createStreet} from './street.js?v=151';
+import {createDetails} from './details.js?v=151';
 import * as T from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
@@ -353,7 +353,7 @@ async function benchmarkStreetLife({root,views,focus,summary,out}){
  }finally{root.visible=saved.visible;renderer.setPixelRatio(saved.ratio);renderer.setSize(saved.size.x,saved.size.y,false);camera.aspect=saved.aspect;camera.updateProjectionMatrix();camera.position.copy(saved.pos);controls.target.copy(saved.target);controls.enabled=saved.enabled;controls.update();renderer.shadowMap.needsUpdate=true;benchmarking=false;requestRender();}
 }
 if(loaded){
- try{const {installSimReadyPreview}=await import('./simready-preview.js?v=133');streetLifeRoot=(await installSimReadyPreview({scene,assetParent:streetGroup,camera,controls,shopPlan,elevation:finishedGround||elevation,requestRender,renderer,applyStyle,obstacles:[detailGroup,shops.group,utilityGroup],benchmark:benchmarkStreetLife})).root;}catch(e){$('status').textContent='생활 소품 배치 실패: '+e.message;console.error(e);}
+ try{const {installSimReadyPreview}=await import('./simready-preview.js?v=151');streetLifeRoot=(await installSimReadyPreview({scene,assetParent:streetGroup,camera,controls,shopPlan,elevation:finishedGround||elevation,requestRender,renderer,applyStyle,obstacles:[detailGroup,shops.group,utilityGroup],benchmark:benchmarkStreetLife})).root;}catch(e){$('status').textContent='생활 소품 배치 실패: '+e.message;console.error(e);}
 }
 
 if(loaded&&alleyGroup?.userData.roadview50)installRoadview50Controls({summary:alleyGroup.userData.roadview50,camera,controls,elevation:finishedGround||elevation,requestRender});
@@ -408,7 +408,7 @@ if(loaded){
  box.append(select);$('environmentControls').append(box);
  const proof=new URLSearchParams(location.search).get('groundView');if(proof!==null&&yards[Number(proof)]){select.value=proof;select.onchange();}
 }
-if(loaded){const {installCourtyardTour}=await import('./courtyard-tour.js?v=138');courtyardTour=installCourtyardTour({report:alleyGroup.userData,camera,controls,buildings:meshes,blockers:alleyGroup.userData.cameraBlockers,elevation:finishedGround||elevation,requestRender});}
+if(loaded){const {installCourtyardTour}=await import('./courtyard-tour.js?v=151');courtyardTour=installCourtyardTour({report:alleyGroup.userData,camera,controls,buildings:meshes,blockers:alleyGroup.userData.cameraBlockers,elevation:finishedGround||elevation,requestRender});}
 
 // Reproducible comparison cameras use the same absolute scene frame in both modes.
 if(loaded&&new URLSearchParams(location.search).has('terrainView')){
@@ -422,7 +422,7 @@ if(loaded){
 }
 
 if(loaded&&new URLSearchParams(location.search).has('performanceLab')){
- const {installPerformanceLab}=await import('./performance-lab.js?v=1');
+ const {installPerformanceLab}=await import('./performance-lab.js?v=151');
  installPerformanceLab({T,scene,camera,renderer,controls,appearance,render:renderScene,apply:()=>{applyEnvironment();syncAppearance();},lock:()=>{benchmarking=true;controls.enabled=false;},unlock:()=>{benchmarking=false;controls.enabled=true;requestRender();},update:()=>{vegetationSystem?.update(camera);pedestrianSystem?.update(camera);for(const plants of streamedPlants)plants.update(camera);},stats:()=>({...lastStats,memory:{...renderer.info.memory}}),host});
 }
 

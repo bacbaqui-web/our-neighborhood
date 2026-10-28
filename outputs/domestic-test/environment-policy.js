@@ -1,4 +1,4 @@
-import {solarPosition,SOLAR_CONTEXT} from './solar-position.js?v=36';
+import {solarPosition,SOLAR_CONTEXT} from './solar-position.js?v=151';
 export {SOLAR_CONTEXT};
 const clamp=x=>Math.max(0,Math.min(1,x));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t);};

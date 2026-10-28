@@ -1,4 +1,4 @@
-import {importedCars} from './imported-vehicles-data.js?v=122';
+import {importedCars} from './imported-vehicles-data.js?v=151';
 import * as T from '../domestic-test/vendor/three.module.js';
 export const residentVehicleCatalog=[{id:211,name:'골목 주차용 해치백',category:'주차·이동',source:'Quaternius · CC0 완성차를 단순화',file:'alley-211.glb'},{id:212,name:'골목 주차용 소형 세단',category:'주차·이동',source:'Quaternius · CC0 완성차를 단순화',file:'alley-212.glb'}];
 // Short body fits the existing 3.8 x 1.8 m bays; glass, seals and wheels are separate editable meshes.

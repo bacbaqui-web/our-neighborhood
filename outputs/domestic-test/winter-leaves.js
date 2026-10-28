@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {addBillboardLightAttributes,writeBillboardCrop,writeBillboardLight,writeBillboardSun,injectBillboardLight} from './billboard-lighting.js?v=43';
-import {bearingVector} from './environment-policy.js?v=43';
+import {addBillboardLightAttributes,writeBillboardCrop,writeBillboardLight,writeBillboardSun,injectBillboardLight} from './billboard-lighting.js?v=151';
+import {bearingVector} from './environment-policy.js?v=151';
 
 // A leaf's petiole is the local origin: billboard rotation never detaches it
 // from its twig. These are individual flat leaves, not scaled leaf clusters.

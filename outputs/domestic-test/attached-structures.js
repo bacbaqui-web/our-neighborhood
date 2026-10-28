@@ -1,10 +1,10 @@
-import {retiredLegacy} from './memo-scene.js?v=134';
+import {retiredLegacy} from './memo-scene.js?v=151';
 import * as T from 'three';
-import {fittedRibbon} from './terrain-fit.js?v=81';
-import {fitSupportBase,footprintHeights} from './support-geometry.js?v=82';
-import {seatGroundAsset} from './ground-contact.js?v=141';
-import {createContactSurfaceSampler} from './contact-shadows.js?v=79';
-import {createAsset,addLines} from '../alley-library/models.js?v=134';
+import {fittedRibbon} from './terrain-fit.js?v=151';
+import {fitSupportBase,footprintHeights} from './support-geometry.js?v=151';
+import {seatGroundAsset} from './ground-contact.js?v=151';
+import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
+import {createAsset,addLines} from '../alley-library/models.js?v=151';
 // Architecture is dimensioned for the measured space between a facade and its parcel edge.
 // It is reserved before the small asset scatter, so big functions cannot be crowded out.
 export function renderAttachedStructures(plan,elevation){

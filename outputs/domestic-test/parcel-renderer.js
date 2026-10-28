@@ -1,9 +1,9 @@
-import {inYard} from './neighborhood-rules.js?v=17.2';
-import {FacadeBatch} from './korean-facades.js?v=30';
+import {inYard} from './neighborhood-rules.js?v=151';
+import {FacadeBatch} from './korean-facades.js?v=151';
 import * as T from 'three';
-import {footprintHeights} from './support-geometry.js?v=82';
-import {stitchBoundaryRuns,addBoundaryRibbon,addFittedDrain} from './boundary-geometry.js?v=82';
-import {createContactSurfaceSampler} from './contact-shadows.js?v=79';
+import {footprintHeights} from './support-geometry.js?v=151';
+import {stitchBoundaryRuns,addBoundaryRibbon,addFittedDrain} from './boundary-geometry.js?v=151';
+import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
 // Korean household fronts are whole connected assemblies, not detached wall modules.
 export function renderParcels(data,elevation,profiles=[],plan,roadInfo=null){
  const group=new T.Group(),batch=new FacadeBatch(),segments=[],colliders=[],views=[],programMap=new Map(profiles.map(p=>[p.owner,p]));

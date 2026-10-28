@@ -15,7 +15,7 @@ const names=[
 ];
 const cats=['식재 군집','생활·빨래','수거·보관','외벽 설비','주차·이동','작업·휴식','차양·진입','생활·보관','골목 시설','식재 군집','주민','벽·상부 설비'];
 export const neighborhoodCatalog=names.map((name,i)=>({id:i+151,name,category:cats[Math.floor(i/5)],source:[152,154,155,157,158,159,160,163,164,165,176,177,178,179,180,182,185,186,187,188,189,190,193,195,198,199,201,202,203,204,205].includes(i+151)?'골목 보완 제안':'로드뷰 관찰 재구성',file:`alley-${i+151}.glb`}));
-import {ALLEY_PALETTE as C} from './alley-palette.js?v=117';
+import {ALLEY_PALETTE as C} from './alley-palette.js?v=151';
 export function createNeighborhoodAsset(id){const root=new T.Group();root.name=names[id-151];let part=0;
 function mesh(g,k='stone',x=0,y=0,z=0){const m=new T.Mesh(g,new T.MeshStandardMaterial({color:C[k]??k,roughness:.86}));m.position.set(x,y,z);m.name=k+'-'+(++part);m.userData.part=k;root.add(m);return m}
 function box(x,y,z,w,h,d,k='stone',bevel=0){return mesh(new T.BoxGeometry(w,h,d),k,x,y,z)}

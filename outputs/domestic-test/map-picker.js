@@ -26,7 +26,7 @@ export function chooseMapPoint({query,origin,radius=100}){
   const $=s=>dialog.querySelector(s),message=$('.map-message'),confirm=$('[data-confirm]'),range=$('footer input');
   $('.map-search').onsubmit=event=>event.preventDefault();
   $('.map-search input').value=query;range.value=radius;
-  let selection=null,map,marker,rectangle,geocoder,sequence=0;
+  let selection=null,map,marker,circle,geocoder,sequence=0;
   const finish=value=>{dialog.close();dialog.remove();resolve(value);};
   $('[data-close]').onclick=()=>finish(null);dialog.oncancel=e=>{e.preventDefault();finish(null);};
   confirm.onclick=()=>selection&&finish({...selection,radius:Number(range.value)});
@@ -34,8 +34,8 @@ export function chooseMapPoint({query,origin,radius=100}){
    range.value=Math.max(50,Math.min(300,Math.round(Number(range.value)/50)*50||100));
    if(!selection)return;
    const [lat,lon]=selection.center,r=Number(range.value),dy=r/111132,dx=r/(111320*Math.cos(lat*Math.PI/180));
-   rectangle.setBounds(new kakao.maps.LatLngBounds(new kakao.maps.LatLng(lat-dy,lon-dx),new kakao.maps.LatLng(lat+dy,lon+dx)));
-   $('.map-selection').textContent=`${selection.address} · ${r*2} × ${r*2}m`;
+   circle.setPosition(new kakao.maps.LatLng(lat,lon));circle.setRadius(r);
+   $('.map-selection').textContent=`${selection.address} · 자세한 동네 반경 ${r}m · 밖은 주변 배경`;
   }
   range.onchange=draw;
   function select(point,label){
@@ -51,10 +51,10 @@ export function chooseMapPoint({query,origin,radius=100}){
   loadSDK().then(()=>{
    if(!dialog.isConnected)return;
    map=new kakao.maps.Map($('.map-canvas'),{center:new kakao.maps.LatLng(...origin),level:3});
-   marker=new kakao.maps.Marker();rectangle=new kakao.maps.Rectangle({map,strokeWeight:2,strokeColor:'#326bea',fillColor:'#326bea',fillOpacity:.15});
+   marker=new kakao.maps.Marker();circle=new kakao.maps.Circle({map,center:new kakao.maps.LatLng(...origin),radius:Number(range.value),strokeWeight:2,strokeColor:'#326bea',fillColor:'#326bea',fillOpacity:.15});
    geocoder=new kakao.maps.services.Geocoder();const places=new kakao.maps.services.Places();
    kakao.maps.event.addListener(map,'click',event=>select(event.latLng));
-   message.textContent='검색 후 지도에서 중심점을 찍으세요. 파란 영역이 생성 범위입니다.';
+   message.textContent='검색 후 지도에서 중심점을 찍으세요. 파란 원 안은 자세히 만들고, 밖은 단순한 건물과 산으로 이어집니다.';
    $('.map-search').onsubmit=e=>{
     e.preventDefault();const q=$('.map-search input').value.trim();if(!q)return;
     const token=++sequence;message.textContent='검색 중…';

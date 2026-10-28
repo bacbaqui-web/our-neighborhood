@@ -1,4 +1,4 @@
-import {prepareScene} from './prepare-scene.js';
+import {prepareScene} from './prepare-scene.js?v=147';
 const base=new URL('./',import.meta.url);
 // Synchronous network access is restricted to this disposable background Worker.
 self.browserRequest=url=>{
@@ -16,7 +16,7 @@ self.onmessage=async({data})=>{
   const py=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v314.0.0/full/'});
   await py.loadPackage(['numpy','scipy','scikit-image','shapely','pillow','pyclipper','protobuf','micropip']);
   await py.runPythonAsync("import micropip\nawait micropip.install('mapbox-vector-tile==2.2.0',deps=False)");
-  const [sources,terrainText,bounds]=await Promise.all([fetch(new URL('sources.json',base),{cache:'no-cache'}).then(r=>r.json()),fetch(new URL('terrain-source.txt',base)).then(r=>r.text()),fetch(new URL('vehicle-bounds.json',base)).then(r=>r.json())]);
+  const [sources,terrainText,bounds]=await Promise.all([fetch(new URL('sources.json?v=147',base),{cache:'no-cache'}).then(r=>r.json()),fetch(new URL('terrain-source.txt',base)).then(r=>r.text()),fetch(new URL('vehicle-bounds.json',base)).then(r=>r.json())]);
   for(const [path,text] of Object.entries(sources)){py.FS.mkdirTree(path.slice(0,path.lastIndexOf('/')));py.FS.writeFile(path,text);}
   py.globals.set('PARAMETERS',JSON.stringify(data));
   await py.runPythonAsync("exec(open('/work/browser-entry.py').read())");
@@ -34,7 +34,7 @@ self.onmessage=async({data})=>{
   await py.runPythonAsync("stage_scripts('build-pedestrians,build-vegetation,build-streetlights')");
   progress('주변 산과 큰길을 만들고 있습니다…',90);
   await py.runPythonAsync("stage_scripts('build-environment')\nstage_finish()");
-  const files={};function collect(dir,prefix=''){for(const name of py.FS.readdir(dir)){if(name==='.'||name==='..')continue;const path=dir+'/'+name,rel=prefix+name;if(py.FS.isDir(py.FS.stat(path).mode))collect(path,rel+'/');else files[rel]=py.FS.readFile(path);}}
+  const files={};function collect(dir,prefix=''){for(const name of py.FS.readdir(dir)){if(name==='.'||name==='..')continue;const path=dir+'/'+name,rel=prefix+name;if(rel==='environment/context')continue;if(py.FS.isDir(py.FS.stat(path).mode))collect(path,rel+'/');else files[rel]=py.FS.readFile(path);}}
   collect(root);const manifest=JSON.parse(new TextDecoder().decode(files['manifest.json']));
   postMessage({type:'complete',manifest,files},Object.values(files).map(bytes=>bytes.buffer));
  }catch(error){console.error(error);postMessage({type:'error',message:String(error.message||error).trim().split('\n').at(-1)});}

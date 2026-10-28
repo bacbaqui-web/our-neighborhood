@@ -1,0 +1,23 @@
+{
+  "buildings": 28,
+  "entries": 28,
+  "parkingBays": 664,
+  "cars": 531,
+  "facilities": {
+    "bike": 7,
+    "recycling": 4,
+    "pergola": 3,
+    "guard": 1,
+    "play": 2,
+    "ramp": 2
+  },
+  "trees": 140,
+  "shrubs": 2720,
+  "roadComponents": 1,
+  "gardenWidth": 1.8,
+  "walkWidth": 2.4,
+  "roadWidth": 6,
+  "crosswalks": 33,
+  "inputRoadsUsed": 0,
+  "inputParkingRowsUsed": 0
+}

@@ -1,0 +1,35 @@
+import * as T from 'three';
+import {OrbitControls} from '../../vendor/OrbitControls.js';
+import {chooseApartment} from '../models.js';
+import {createDetails} from '../../details.js';
+import {createBuildingShellGeometry} from '../../building-shell.js';
+import {createParkedCars} from './cars.js';
+import {createRuleGround,createRuleFacilities} from './rule-scene.js';
+import {planNeighborhoodTrees} from '../../neighborhood-tree-plans.js';
+import {loadCanopyTexture,createHybridTrees} from '../../hybrid-tree.js';
+const $=id=>document.getElementById(id),host=$('view'),scene=new T.Scene();scene.background=new T.Color(0xe4e7dc);
+const camera=new T.OrthographicCamera(-200,200,150,-150,.1,3000),renderer=new T.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;host.append(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);controls.maxPolarAngle=Math.PI*.49;scene.add(new T.HemisphereLight(0xffffff,0x8a9881,2));const sun=new T.DirectionalLight(0xfffaf0,1.6);sun.position.set(-160,280,180);sun.castShadow=true;sun.shadow.mapSize.set(4096,4096);Object.assign(sun.shadow.camera,{left:-360,right:360,top:360,bottom:-360,near:1,far:1000});sun.shadow.normalBias=.12;scene.add(sun);
+const buildingsGroup=new T.Group();scene.add(buildingsGroup);let dirty=true,height=150,trees,center=[0,0],data;controls.addEventListener('change',()=>dirty=true);
+function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.left=-height*w/h/2;camera.right=height*w/h/2;camera.top=height/2;camera.bottom=-height/2;camera.updateProjectionMatrix();dirty=true;}
+function focus(p,h=120,top=false){height=h;resize();camera.zoom=1;camera.up.set(0,1,0);controls.target.set(p[0],0,p[1]);camera.position.set(p[0]+(top?0:35),top?500:210,p[1]+(top?.01:100));controls.update();dirty=true;}
+new ResizeObserver(resize).observe(host);renderer.setAnimationLoop(()=>{if(document.hidden||!dirty)return;trees?.update(camera);renderer.render(scene,camera);dirty=false;});
+try{
+ const [d,geo]=await Promise.all([fetch('rule-plan.json').then(r=>r.json()),fetch('buildings.geojson').then(r=>r.json())]);data=d;
+ const xz=p=>[(p[0]-d.origin[0])*111320*Math.cos(37.618*Math.PI/180),-(p[1]-d.origin[1])*111133],buildings=[];
+ for(const f of geo.features){const p=f.properties,points=f.geometry.coordinates[0].slice(0,-1).map(xz),entry=d.entries.find(e=>e.owner===p.objectid),b={points,base:.07,top:.07+p.gro_flo_co*3,levels:p.gro_flo_co,floor:3,seed:p.objectid,inkObjectId:p.objectid,properties:p,facility:{id:'apartment'}};if(entry){let best=Infinity;for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length],dist=Math.hypot((a[0]+z[0])/2-entry.point[0],(a[1]+z[1])/2-entry.point[1]);if(dist<best){best=dist;b.frontEdge=i;b.frontFraction=.5;}}}b.apartment=chooseApartment(b);buildings.push(b);const shape=new T.Shape(points.map(p=>new T.Vector2(p[0],-p[1]))),mesh=new T.Mesh(createBuildingShellGeometry(shape,b.base,b.top,b.apartment.wall,b.apartment.roof),new T.MeshStandardMaterial({vertexColors:true,roughness:1}));mesh.castShadow=true;mesh.receiveShadow=true;buildingsGroup.add(mesh);}
+ buildingsGroup.add(createDetails(buildings,()=>0));scene.add(createRuleGround(d));scene.add(await createRuleFacilities(d));
+ const bounds=d.bounds;center=[(bounds.minX+bounds.maxX)/2,(bounds.minZ+bounds.maxZ)/2];const span=bounds.maxZ-bounds.minZ;
+ const points=d.entries.map(e=>e.point),middle=points.reduce((a,p)=>Math.abs(p[1]+35)<Math.abs(a[1]+35)?p:a,points[0]);
+ $('overview').onclick=()=>focus(center,span*1.08);$('near').onclick=()=>focus(middle,125);$('top').onclick=()=>focus(controls.target.toArray().filter((_,i)=>i!==1),height,true);
+ $('low').onclick=()=>{const low=buildingsGroup.scale.y===1;buildingsGroup.scale.y=low?.23:1;$('low').setAttribute('aria-pressed',String(low));$('heightNote').textContent=low?'배치 확인 중 · 건물 높이 23%':'건물 실제 비율';dirty=true;};
+ $('facility').onchange=()=>{const f=d.facilities.find(f=>f.kind===$('facility').value);if(f)focus(f.point,55);};
+ const ground=scene.children.find(c=>c.name==='건물 기준 정원 보도 차도 주차장');$('green').onclick=()=>{ground.children.filter(c=>c.name==='garden').forEach(c=>c.visible=!c.visible);dirty=true;};
+ drawPlan(d,buildings);$('map').onclick=()=>{const on=$('mapImage').hidden;$('mapImage').hidden=!on;$('diagram').hidden=on;$('map').textContent=on?'생성 배치도 보기':'참고 지도 보기';};
+ $('wide').onclick=()=>{document.querySelector('main').classList.toggle('wide');resize();};
+ focus(middle,135);$('status').textContent='나무와 차량을 불러오고 있습니다.';
+ const plans=planNeighborhoodTrees(d.trees,buildings,[],()=>.1),species=[...new Set(plans.plans.map(p=>p.species))],textures=new Map(await Promise.all(species.map(async id=>[id,await loadCanopyTexture(id)])));trees=createHybridTrees(plans.plans,textures);trees.setFoliage({season:'summer'});scene.add(trees.group);scene.add(await createParkedCars(d.parking));
+ $('status').textContent=`아파트 ${buildings.length}동 · 현관 연결 ${d.entries.length}곳 · 새 주차 ${d.parking.length}칸 · 시설 ${d.facilities.length}곳 · 나무 ${plans.plans.length}그루`;
+ host.dataset.ready='true';host.dataset.qa=JSON.stringify(d.qa);dirty=true;
+}catch(e){host.dataset.ready='error';$('status').textContent='화면을 불러오지 못했습니다: '+e.message;console.error(e);}
+function drawPlan(d,buildings){const svg=$('diagram'),ns='http://www.w3.org/2000/svg',b=d.bounds;svg.setAttribute('viewBox',`${b.minX-8} ${b.minZ-8} ${b.maxX-b.minX+16} ${b.maxZ-b.minZ+16}`);for(const [k,col]of [['site','#d8dacd'],['garden','#91a67b'],['walk','#d9c8b0'],['road','#737b78'],['parking','#8e9691']])for(const r of d.surfaces[k]){const e=document.createElementNS(ns,'path');e.setAttribute('d',[r.outer,...r.holes].map(ps=>'M'+ps.map(p=>p.join(',')).join('L')+'Z').join(''));e.setAttribute('fill',col);e.setAttribute('fill-rule','evenodd');svg.append(e);}for(const b of buildings){const e=document.createElementNS(ns,'polygon');e.setAttribute('points',b.points.map(p=>p.join(',')).join(' '));e.setAttribute('fill','#f1eddf');e.setAttribute('stroke','#8d9388');e.setAttribute('stroke-width','.5');svg.append(e);}for(const f of d.facilities){const e=document.createElementNS(ns,'polygon');e.setAttribute('points',f.footprint.map(p=>p.join(',')).join(' '));e.setAttribute('fill','#598e94');svg.append(e);}}

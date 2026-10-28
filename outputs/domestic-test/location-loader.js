@@ -1,6 +1,6 @@
 import {chooseMapPoint} from './map-picker.js?v=142';
 import {browserContext,listScenes} from './browser-generation/storage.js';
-import {createNeighborhood} from './browser-generation/progress.js';
+import {createNeighborhood} from './browser-generation/progress.js?v=143';
 import {normalizeRadius,selectedRadius} from './scene-budget.js?v=137';
 const original={id:'original',address:'서울 강북구 솔매로17가길 7',origin:[37.626469,127.015677],sizeMetres:300,roadAddress:{road_name:'솔매로17가길',main_building_no:'7',sub_building_no:''}};
 const key='neighborhood-last-location-v74';
@@ -41,6 +41,13 @@ export function setupLocationSearch(context,getHour){
   for(const row of rows){const o=document.createElement('option');o.value=row.id;o.textContent=row.address+` · 반경 ${(row.sizeMetres||300)/2}m`;history?.append(o);const suggestion=document.createElement('option');suggestion.value=row.address;document.getElementById('addresses')?.append(suggestion);}
   if(history)history.value=context.id||'';
  }).catch(()=>{});
+ const rebuild=document.createElement('button');rebuild.type='button';rebuild.style.cssText='background:#254653;color:#fff;border:1px solid #45606c;border-radius:7px;padding:8px 10px;white-space:nowrap';rebuild.textContent='이 위치 다시 만들기';rebuild.title='현재 중심 위치를 유지하고 최신 규칙으로 다시 만듭니다.';form.append(rebuild);
+ rebuild.onclick=async()=>{
+  if(busy)return;busy=true;rebuild.disabled=button.disabled=true;
+  try{const result=await createNeighborhood({address:context.address,center:context.origin,radius:normalizeRadius(range.value),force:true});visit(result.id);}
+  catch(error){message(error.name==='AbortError'?'동네 만들기를 취소했습니다.':'동네를 만들지 못했습니다. '+error.message);}
+  finally{busy=false;rebuild.disabled=button.disabled=false;}
+ };
  form.onsubmit=async event=>{
   event.preventDefault();if(busy)return;let address=input.value.trim();let center=null;
   const point=await chooseMapPoint({query:address,origin:context.origin,radius:Number(range.value)});if(!point)return;address=point.address;center=point.center;range.value=point.radius;input.value=address;

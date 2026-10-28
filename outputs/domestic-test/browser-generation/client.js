@@ -20,12 +20,12 @@ async function placesNear(point){
  return {places:[...found.values()],stations,exits,warnings:[...new Set(warnings)]};
 }
 export async function generateInBrowser(point,onProgress,{signal}={}){
- const cached=(await listScenes()).find(m=>m.browserGenerationVersion===2&&m.sizeMetres===point.radius*2&&m.origin.every((v,i)=>v.toFixed(6)===point.center[i].toFixed(6)));
+ const cached=(await listScenes()).find(m=>!point.force&&m.browserGenerationVersion===3&&m.sizeMetres===point.radius*2&&m.origin.every((v,i)=>v.toFixed(6)===point.center[i].toFixed(6)));
  if(cached)return cached;
  onProgress('주변 가게를 확인하고 있습니다…',0);
  const extra=await placesNear(point);if(signal?.aborted)throw new DOMException('취소했습니다.','AbortError');
  return new Promise((resolve,reject)=>{
-  const worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
+  const worker=new Worker(new URL('./worker.js?v=143',import.meta.url),{type:'module'});
   const finish=()=>{worker.terminate();signal?.removeEventListener('abort',abort);};
   const abort=()=>{finish();reject(new DOMException('동네 만들기를 취소했습니다.','AbortError'));};signal?.addEventListener('abort',abort,{once:true});
   worker.onerror=event=>{finish();reject(Error(event.message||'동네 계산을 시작하지 못했습니다.'));};

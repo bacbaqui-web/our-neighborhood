@@ -20224,7 +20224,7 @@ async function prepareScene(FS, root, mode, terrainText, bounds3) {
     const pr = f.properties, points = rings[0].slice(0, -1).map(xz), cx = points.reduce((n, p) => n + p[0], 0) / points.length, cz = points.reduce((n, p) => n + p[1], 0) / points.length;
     specs.push({ inkObjectId: specs.length + 1, points, base: Math.min(...points.map((v2) => elevation(...v2)), elevation(cx, cz)) - 0.1, top: elevation(cx, cz) + Math.max(1, pr.gro_flo_co) * 3, floor: 3, levels: Math.max(1, pr.gro_flo_co), seed: Number(pr.objectid), address: `${pr.street_name} ${pr.house_number}`, basementLevels: pr.und_flo_co, holes: rings.length > 1, holePoints: rings.slice(1).map((r) => r.slice(0, -1).map(xz)) });
   }
-  elevation.detailRadius = location.sizeMetres / 2;
+  elevation.detailRadius = location2.sizeMetres / 2;
   planFrontages(specs, roadInfo);
   const parcel = read("parcels.json");
   if (mode === "profile") {

@@ -10,7 +10,7 @@ def street_type(props):
  # Access restrictions override road class; width alone never means no vehicles.
  kind=props.get('class','minor');sub=props.get('subclass','')
  if sub=='sidewalk' or props.get('footway')=='sidewalk':return 'sidewalk'
- if sub in {'footway','pedestrian','steps','cycleway'} or kind in {'path','pedestrian'} or props.get('motor_vehicle') in {'no','private'} or props.get('vehicle')=='no':return 'pedestrian'
+ if sub in {'footway','pedestrian','steps','cycleway'} or kind in {'path','pedestrian'} or props.get('motor_vehicle')=='no' or props.get('vehicle')=='no':return 'pedestrian'
  if kind in MAJOR or kind=='motorway':return 'carriageway'
  return 'shared'
 def scales(lat):

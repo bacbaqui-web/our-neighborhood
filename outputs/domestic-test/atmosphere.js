@@ -1,8 +1,9 @@
 import * as T from 'three';
+import {facadeStyles} from './korean-facades.js?v=39';
 import {environmentProfile,bearingVector} from './environment-policy.js?v=43';
 
 // A separate depth pass keeps 22 km terrain from reducing the precision of nearby roofs.
-export function createAtmosphere(data,solarContext,detailRadius=150){
+export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwners=null){
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(43,1,1,60000),root=new T.Group();scene.add(root);
  const color=s=>new T.Color(s),u={zenith:{value:color('#6b9fc8')},horizon:{value:color('#dbe6e2')},cloud:{value:color('#ffffff')},sunColor:{value:color('#fff0d1')},sunDir:{value:new T.Vector3()},night:{value:0},sunset:{value:0},sunVisibility:{value:1},windowChance:{value:0},windowPattern:{value:0},cloudiness:{value:0},style:{value:0}};
  const skyMaterial=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,depthTest:false,uniforms:u,vertexShader:`varying vec3 vDir;void main(){vDir=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,fragmentShader:`
@@ -23,17 +24,21 @@ export function createAtmosphere(data,solarContext,detailRadius=150){
  }`.replace(';#include',';\n#include')});
  const sky=new T.Mesh(new T.SphereGeometry(34000,40,24),skyMaterial);sky.renderOrder=-100;sky.frustumCulled=false;scene.add(sky);
  const terrainUniforms={nearColor:{value:color('#75816c')},hazeColor:{value:color('#b2c8d2')},sunDir:u.sunDir,night:u.night,style:u.style,cloudiness:u.cloudiness,windowChance:u.windowChance,windowPattern:u.windowPattern};
- function landMaterial(city=false){return new T.ShaderMaterial({uniforms:terrainUniforms,side:T.DoubleSide,vertexShader:`varying vec3 vWorld,vNormal,vLocal,vScale,vSeed,vFace;void main(){vec4 p=vec4(position,1.);vLocal=position;vFace=normal;vScale=vec3(1.);vSeed=vec3(0.);
+ function landMaterial(city=false,road=false){return new T.ShaderMaterial({uniforms:terrainUniforms,side:T.DoubleSide,vertexShader:`
  #ifdef USE_INSTANCING
- p=instanceMatrix*p;vScale=vec3(length(instanceMatrix[0].xyz),length(instanceMatrix[1].xyz),length(instanceMatrix[2].xyz));vSeed=instanceMatrix[3].xyz;
+ attribute vec3 facadeColor,roofColor;
+ #endif
+ varying vec3 vWorld,vNormal,vLocal,vScale,vSeed,vFace,vBody,vRoof;void main(){vec4 p=vec4(position,1.);vLocal=position;vFace=normal;vBody=vec3(.5);vRoof=vec3(.3);vScale=vec3(1.);vSeed=vec3(0.);
+ #ifdef USE_INSTANCING
+ vBody=facadeColor;vRoof=roofColor;p=instanceMatrix*p;vScale=vec3(length(instanceMatrix[0].xyz),length(instanceMatrix[1].xyz),length(instanceMatrix[2].xyz));vSeed=instanceMatrix[3].xyz;
  #endif
  vec4 world=modelMatrix*p;vWorld=world.xyz;vec3 n=normal;
  #ifdef USE_INSTANCING
  n=mat3(instanceMatrix)*n;
  #endif
- vNormal=normalize(mat3(modelMatrix)*n);gl_Position=projectionMatrix*viewMatrix*world;}`,fragmentShader:`precision highp float;varying vec3 vWorld,vNormal,vLocal,vScale,vSeed,vFace;uniform vec3 nearColor,hazeColor,sunDir;uniform float night,style,cloudiness,windowChance,windowPattern;
+ vNormal=normalize(mat3(modelMatrix)*n);gl_Position=projectionMatrix*viewMatrix*world;}`,fragmentShader:`precision highp float;varying vec3 vWorld,vNormal,vLocal,vScale,vSeed,vFace,vBody,vRoof;uniform vec3 nearColor,hazeColor,sunDir;uniform float night,style,cloudiness,windowChance,windowPattern;
  void main(){float distance=length(vWorld.xz-cameraPosition.xz);float haze=1.-exp(-distance*mix(.00019,.00030,cloudiness));float shade=.77+.23*max(dot(normalize(vNormal),sunDir),0.);vec3 c=nearColor*shade;
- ${city?`c=mix(c,vec3(.47,.49,.48),.40*(1.-night));float across=abs(vFace.x)>.5?vLocal.z:vLocal.x;float width=abs(vFace.x)>.5?vScale.z:vScale.x;vec2 cell=vec2((across+.5)*max(1.,floor(width/3.6)),(vLocal.y+.5)*max(1.,floor(vScale.y/3.)));vec2 uv=fract(cell),aa=max(fwidth(cell),vec2(.015));vec2 pane=smoothstep(vec2(.20,.28)-aa,vec2(.20,.28)+aa,uv)*(1.-smoothstep(vec2(.78,.80)-aa,vec2(.78,.80)+aa,uv));float window=pane.x*pane.y;float random=fract(sin(dot(vSeed+vec3(floor(cell),0.),vec3(12.9898,78.233,37.719)))*43758.5453);if(abs(vFace.y)<.3){c*=1.-window*.18*(1.-night);c+=vec3(.82,.51,.24)*window*night*step(fract(random+windowPattern/16.),windowChance);}else c*=.86;haze=1.-exp(-distance*mix(.00038,.00055,cloudiness));`:`float urban=(1.-smoothstep(800.,1300.,length(vWorld.xz)))*(1.-smoothstep(70.,120.,vWorld.y));c=mix(c,mix(vec3(.39,.43,.42),vec3(.055,.07,.085),night)*shade,urban);float altitude=smoothstep(60.,600.,vWorld.y);c=mix(c,c*vec3(.89,.96,1.04),altitude*.35);`}
+ ${city?`float contextBlend=smoothstep(${detailRadius+30}.,${detailRadius+500}.,length(vWorld.xz));vec3 wall=mix(vBody*1.75,nearColor,contextBlend*.65);c=wall*shade*mix(1.,.22,night);float across=abs(vFace.x)>.5?vLocal.z:vLocal.x;float width=abs(vFace.x)>.5?vScale.z:vScale.x;vec2 cell=vec2((across+.5)*max(1.,floor(width/3.6)),(vLocal.y+.5)*max(1.,floor(vScale.y/3.)));vec2 uv=fract(cell),aa=max(fwidth(cell),vec2(.015));vec2 pane=smoothstep(vec2(.20,.28)-aa,vec2(.20,.28)+aa,uv)*(1.-smoothstep(vec2(.78,.80)-aa,vec2(.78,.80)+aa,uv));float window=pane.x*pane.y;float random=fract(sin(dot(vSeed+vec3(floor(cell),0.),vec3(12.9898,78.233,37.719)))*43758.5453);if(abs(vFace.y)<.3){c=mix(c,vec3(.25,.38,.40)*mix(1.,.18,night),window*.60*(1.-night));c+=vec3(.82,.51,.24)*window*night*step(fract(random+windowPattern/16.),windowChance);}else c=mix(vRoof*1.55,nearColor,contextBlend*.65)*shade*mix(1.,.22,night);haze=1.-exp(-distance*mix(.00038,.00055,cloudiness));`:`float urban=(1.-smoothstep(800.,1300.,length(vWorld.xz)))*(1.-smoothstep(70.,120.,vWorld.y));c=mix(c,mix(vec3(.39,.43,.42),vec3(.055,.07,.085),night)*shade,urban);float altitude=smoothstep(60.,600.,vWorld.y);c=mix(c,c*vec3(.89,.96,1.04),altitude*.35);${road?`float roadBlend=1.-smoothstep(${detailRadius+15}.,${detailRadius+70}.,length(vWorld.xz));c=mix(c,mix(vec3(.23,.27,.29),vec3(.035,.045,.055),night)*shade,roadBlend);`:''}`}
  c=mix(c,hazeColor,min(.96,haze));if(style>.5){float g=dot(c,vec3(.2126,.7152,.0722));c=style<1.5?vec3(.94-.13*shade*(1.-haze)):vec3(g);}gl_FragColor=vec4(c,1.);
  #include <colorspace_fragment>
  }`});}
@@ -42,13 +47,25 @@ export function createAtmosphere(data,solarContext,detailRadius=150){
  const terrain=new T.Mesh(geo,landMaterial());terrain.name='GeographicTerrain22km';root.add(terrain);
  const entries=data.city.map((b,i)=>({b,points:data.cityFootprints?.[i]})).filter(({b,points})=>{
   // Full detailed buildings are retained; all other records remain as simple background.
+  if(detailedOwners)return !detailedOwners.has(Number(b[6]));
   if(points)return !points.every(p=>Math.hypot(...p)<=detailRadius);
   return Math.hypot(b[0],b[2])-Math.hypot(b[3],b[5])/2>detailRadius;
  });
- const city=new T.InstancedMesh(new T.BoxGeometry(1,1,1),landMaterial(true),entries.length),matrix=new T.Matrix4(),rotation=new T.Quaternion();
+ const cityGeometry=new T.BoxGeometry(1,1,1),facades=[],roofs=[];
+ for(const {b} of entries){const style=facadeStyles[Math.abs(b[6])%facadeStyles.length];facades.push(...new T.Color(style.wall).toArray());roofs.push(...new T.Color(style.roof).toArray());}
+ cityGeometry.setAttribute('facadeColor',new T.InstancedBufferAttribute(new Float32Array(facades),3));cityGeometry.setAttribute('roofColor',new T.InstancedBufferAttribute(new Float32Array(roofs),3));
+ const city=new T.InstancedMesh(cityGeometry,landMaterial(true),entries.length),matrix=new T.Matrix4(),rotation=new T.Quaternion();
  const place=(b,i)=>{const [x,y,z,w,h,d,v,angle=0]=b;rotation.setFromAxisAngle(new T.Vector3(0,1,0),angle);matrix.compose(new T.Vector3(x,y+h/2,z),rotation,new T.Vector3(w,h,d));city.setMatrixAt(i,matrix);};
  entries.forEach(({b},i)=>place(b,i));city.computeBoundingSphere();city.name='GeographicContextBuildings';root.add(city);
- const stats={calls:0,triangles:0,contextBuildings:entries.length,contextRadius:data.contextRadius||null,terrainRadius:data.radius,detailRadius,source:data.contextBuildings,windowGeometry:0};
+ const stats={calls:0,triangles:0,contextBuildings:entries.length,excludedDetailed:data.city.length-entries.length,contextRadius:data.contextRadius||null,terrainRadius:data.radius,detailRadius,source:data.contextBuildings,windowGeometry:0};
+ function heightAt(x,z){
+  const d=Math.hypot(x,z),a=(Math.atan2(x,-z)+Math.PI*2)%(Math.PI*2)*N/(Math.PI*2),j=Math.floor(a),v=a-j;
+  let r=0;while(r<data.radii.length-2&&data.radii[r+1]<d)r++;
+  const u=Math.max(0,Math.min(1,(d-data.radii[r])/(data.radii[r+1]-data.radii[r]||1))),p=geo.attributes.position;
+  const h=i=>p.getY(i*N+j)*(1-v)+p.getY(i*N+(j+1)%N)*v;
+  return h(r)*(1-u)+h(r+1)*u;
+ }
+ function bridgeGround(nearRoot){nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;o.material=landMaterial(false,o.name!=='ground');o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
  function fitGround(sample){
   const p=geo.attributes.position,changes=new Map();
   // Match the inner terrain to the actual road/ground surface and ease out the correction.
@@ -77,5 +94,5 @@ export function createAtmosphere(data,solarContext,detailRadius=150){
  }
  function render(renderer,mainCamera){camera.copy(mainCamera,false);camera.near=1;camera.far=60000;camera.updateProjectionMatrix();camera.updateMatrixWorld();sky.position.copy(mainCamera.position);root.visible=enabled;const auto=renderer.autoClear;renderer.autoClear=true;renderer.render(scene,camera);stats.calls=renderer.info.render.calls;stats.triangles=renderer.info.render.triangles;renderer.clearDepth();renderer.autoClear=false;return auto;}
  function dispose(){scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});}
- return{set,render,dispose,fitGround,setEnabled:value=>{enabled=value;},data,scene,stats};
+ return{set,render,dispose,fitGround,heightAt,bridgeGround,setEnabled:value=>{enabled=value;},data,scene,stats};
 }

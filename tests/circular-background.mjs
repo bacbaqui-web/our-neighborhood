@@ -15,3 +15,14 @@ const d=JSON.parse(fs.readFileSync('outputs/domestic-test/environment/terrain.js
 assert(d.contextBuildings.includes('MOIS'));assert(d.city.length>1000);assert.equal(d.city.length,d.cityFootprints.length);
 const system=createAtmosphere(d,undefined,50);system.fitGround((x,z,alt)=>Math.hypot(x,z)<=50?0:alt);system.set(12,'clear');const day=system.scene.getObjectByName('GeographicContextBuildings').material.uniforms.night.value;system.set(22,'clear');const night=system.scene.getObjectByName('GeographicContextBuildings').material.uniforms.night.value;assert(night>day);assert.equal(system.stats.windowGeometry,0);system.dispose();
 console.log(JSON.stringify({passed:true,area,expectedArea:Math.PI*2500,contextBuildings:d.city.length,day,night,windowGeometry:0}));
+// Touching buildings remain whole, and only their actual records leave the background.
+assert(withinScope([[45,-8],[70,-8],[70,8],[45,8]],50));
+assert(!fullyInScope([[45,-8],[70,-8],[70,8],[45,8]],50));
+const owner=d.city[0][6],joined=createAtmosphere(d,undefined,50,new Set([owner]));
+assert.equal(joined.stats.excludedDetailed,d.city.filter(b=>b[6]===owner).length);
+assert(Number.isFinite(joined.heightAt(75,0)));
+const near=new T.Group(),land=new T.Mesh(new T.PlaneGeometry(100,100),new T.MeshStandardMaterial());land.name='ground';near.add(land);joined.bridgeGround(near);
+assert(land.material.isShaderMaterial&&land.userData.noInk&&land.userData.environmentOwned);
+assert(near.getObjectByName('GroundShadowReceiver').receiveShadow);
+joined.dispose();
+console.log('Crossing buildings, background deduplication, continuous ground, and shadow receivers passed.');

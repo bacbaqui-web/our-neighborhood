@@ -18,7 +18,7 @@ export function scopePlan(plan,owners,radius){
  function keep(v){
   if(v?.owner!==undefined&&v.owner!==null&&!owners.has(Number(v.owner)))return false;
   if(Array.isArray(v)&&Array.isArray(v[0]))return withinScope(v,radius);
-  if(v?.footprint)return fullyInScope(v.footprint,radius);
+  if(v?.footprint)return owners.has(Number(v.owner))||withinScope(v.footprint,radius);
   if(v?.root)return Math.hypot(v.root[0],v.root[2])+(v.radius||0)<=radius;
   if(v?.position)return point(v.position[0],v.position[2]);
   if(Number.isFinite(v?.x)&&Number.isFinite(v?.z))return point(v.x,v.z);

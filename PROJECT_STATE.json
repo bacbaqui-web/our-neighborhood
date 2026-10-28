@@ -1,7 +1,7 @@
 {
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
-  "state": "consolidated-local-tested-not-published",
-  "publicCommit": "8830636b56a047a4d0cc75eab51a57089c678722",
+  "state": "consolidated-public-verified",
+  "publicCommit": "a9e0aff173fa348f35ae756f9b16fb6798d66b9e",
   "backup": "/Users/bacbaqui/Desktop/code/_neighborhood_preserved/20261029",
   "retiredPublicationCopy": "/tmp/our-neighborhood-foliage-134",
   "threads": {
@@ -22,8 +22,8 @@
     "dobong-flat-correction"
   ],
   "remaining": [
-    "public deployment of consolidated local features",
-    "intersection layout improvements"
+    "intersection layout improvements",
+    "large-scene first-load and day-night transition performance"
   ],
   "validation": {
     "preservedAssetFiles": 916,
@@ -43,5 +43,17 @@
       "dobong-flat",
       "loading"
     ]
+  },
+  "publicValidation": {
+    "fileRequests": 961,
+    "missingFiles": 0,
+    "vehicleVersionsOpened": 31,
+    "facilityTypesOpened": 17,
+    "apartmentMappedBuildings": 31,
+    "memoAssetsLoaded": 217,
+    "memoReplacementsInTestScene": 548,
+    "memoLoadFailures": 0,
+    "dayNightChecked": true,
+    "fixedDuringReview": "apartment complex reference data was local-only; now bundled"
   }
 }

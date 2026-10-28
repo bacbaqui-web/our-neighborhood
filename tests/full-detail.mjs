@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import * as T from 'three';
+import {createVisibilityOptimizer} from '../outputs/domestic-test/visibility.js';
+const app=fs.readFileSync(new URL('../outputs/domestic-test/app.js',import.meta.url),'utf8');
+assert(!app.includes('installViewStreaming('));assert(!app.includes('minimumLOD:level'));assert(app.includes("lod:false,lodMode:'0'"));
+const scene=new T.Scene(),root=new T.Group();scene.add(root);
+const car=new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshStandardMaterial({map:new T.Texture()}));root.add(car);
+const wall=new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshStandardMaterial());wall.position.x=2;root.add(wall);
+const camera=new T.PerspectiveCamera(50,1,.1,100);camera.position.set(0,2,10);camera.lookAt(0,0,0);
+const opt=createVisibilityOptimizer({scene,roots:[root],buildings:[],shapes:[]});opt.prepare(camera,{enabled:true,occlusion:false,lod:false});
+assert(root.visible&&car.visible,'textured vehicles stay visible when untextured geometry uses proxies');opt.reset();opt.dispose();console.log('Full detail and textured vehicle visibility passed');

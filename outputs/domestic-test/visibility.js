@@ -10,7 +10,7 @@ export function spatialBatch(root, cellSize=48, cellHeight=48) {
   try{root.traverseVisible(object=>{
     if ((!object.isMesh&&!object.isLineSegments)||Array.isArray(object.material)) return;
     const material=object.material, geometry=object.geometry;
-    if (material.map||object.isSkinnedMesh||object.isInstancedMesh) throw Error('Unsupported spatial source: '+object.name);
+    if (material.map||object.isSkinnedMesh||object.isInstancedMesh) return; // preserve textured vehicle
     const position=geometry.attributes.position, step=object.isLineSegments?2:3;
     const count=(geometry.index?.count??position.count)/step;
     const source={object,geometry,material,position,step,count,ids:new Uint32Array(count),levels:new Uint8Array(count),matrix:object.matrixWorld.elements};
@@ -160,7 +160,7 @@ export function createVisibilityOptimizer({scene,roots,buildings,shapes}){
         }
         stats.lodSavedTriangles+=removedTriangles;stats.lodSavedLines+=removedLines;stats.lodLevels[uniformLevel]+=kept;continue;
       }
-      hide(b.source);b.group.visible=true;stats.drawnCells+=kept;stats.screenCulled+=screenCulled;stats.occluded+=occluded;stats.lodSavedTriangles+=savedTriangles;stats.lodSavedLines+=savedLines;levels.forEach((n,i)=>stats.lodLevels[i]+=n);
+      for(const {object} of b.originals)hide(object);b.group.visible=true;stats.drawnCells+=kept;stats.screenCulled+=screenCulled;stats.occluded+=occluded;stats.lodSavedTriangles+=savedTriangles;stats.lodSavedLines+=savedLines;levels.forEach((n,i)=>stats.lodLevels[i]+=n);
     }
     if(enabled)for(const b of buildingBounds){if(!active(b.object))continue;if(!frustum.intersectsBox(b.box)){hide(b.object);stats.screenCulled++;}else if(blocked(b.box)){hide(b.object);stats.occluded++;}}
     return stats;

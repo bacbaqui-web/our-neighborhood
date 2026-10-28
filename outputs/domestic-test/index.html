@@ -108,12 +108,6 @@
       <p class="hint">화면 밖과 건물 뒤의 오브젝트를 제외합니다. 그림자·충돌·저장할 모델은 유지됩니다.</p>
     </section>
     <section>
-      <h3>거리별 디테일</h3>
-      <label class="check-row"><input id="distanceLOD" type="checkbox" checked> 거리별 3단계 LOD</label>
-      <select id="lodMode" aria-label="LOD 상세도"><option value="auto">자동 · 가까이에서 상세 복원</option><option value="0">상세 고정 · 비교용</option><option value="1">중간 고정 · 비교용</option><option value="2">간략 고정 · 비교용</option></select>
-      <p class="hint">작은 창틀·방범창·설비를 거리별로 줄이고 외곽 형태와 색면을 유지합니다. PNG·GLB는 원래 상세 모델을 저장합니다.</p>
-    </section>
-    <section>
       <h3>화면 품질</h3>
       <label class="setting-row" for="pixelQuality">화면 해상도<select id="pixelQuality"><option value="1">가볍게 · 1×</option><option value="1.5">균형 · 최대 1.5×</option><option value="2" selected>선명하게 · 최대 2×</option></select></label>
       <label class="check-row"><input id="weatherMotion" type="checkbox" checked> 비·눈 움직임</label>
@@ -122,11 +116,11 @@
     <section class="performance-readout" aria-label="현재 렌더링 상태">
       <h3>현재 화면</h3>
       <p id="lodStats" class="hint"></p><p id="perfStats" class="hint"></p><p id="cullStats" class="hint"></p><p id="renderState" class="hint">준비 중…</p>
-      <div class="buttons"><button id="compareLOD">LOD 켜기·끄기 비교</button><button id="comparePerformance">현재 화면 성능 비교</button></div>
+      <div class="buttons"><button id="comparePerformance">현재 화면 성능 비교</button></div>
       <p id="benchmarkStats" class="hint" role="status"></p>
     </section>
   </div>
 </dialog>
-<script type="module" src="./app.js?v=137"></script>
+<script type="module" src="./app.js?v=140"></script>
 </body>
 </html>

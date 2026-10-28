@@ -2,19 +2,19 @@ import {applyRepresentative} from './representative-assets.js?v=129';
 import {getLegacyPlacementRule} from './legacy-placement-policy.js?v=113';
 import {evaluatePlacement} from './placement-policy.js?v=110';
 import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=129';
-import {inArterial} from './arterial.js?v=79';
-import {seatGroundAsset} from './ground-contact.js?v=122';
+import {inArterial} from './arterial.js?v=140';
+import {seatGroundAsset} from './ground-contact.js?v=140';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=82';
 import {inShopApproach} from './shops/neighborhood-plan.js?v=72';
 import {extractVegetation} from './vegetation-legacy.js?v=115';
 import {partMaxLOD} from './lod-policy.js?v=29';
 import {populateStreetLife,contextOnly} from './street-life.js?v=59';
-import {renderAttachedStructures} from './attached-structures.js?v=129';
+import {renderAttachedStructures} from './attached-structures.js?v=140';
 import {classifyYards,programs,inYard,yardCandidates,edgeCandidates} from './neighborhood-rules.js?v=17.2';
 import {renderParcels} from './parcel-renderer.js?v=82';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {createAsset,addLines} from '../alley-library/models.js?v=122';
+import {createAsset,addLines} from '../alley-library/models.js?v=140';
 export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,attachedPlan,streetscapePlan,arterialPlan=null,options={}){
  const eligible=owner=>!options.propOwners||options.propOwners.has(Number(owner));
  const shopPlans=specs.flatMap(s=>s.storefronts||[]);
@@ -137,8 +137,9 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  // Batch drawing by material; editable individual models remain in the library.
  const representativeObjects=[];root.traverse(obj=>{if(obj.userData.vegetationAssetId)representativeObjects.push(obj);});for(const obj of representativeObjects){if(applyRepresentative(obj,obj.userData.vegetationAssetId))addLines(obj);}
  report.vegetationReplacements=options.staticCache?[]:extractVegetation(root);report.foliageExtraction=root.userData.foliageExtraction;
+ const retained=[];root.traverse(o=>{if(o.userData.memoVehicle)retained.push(o)});for(const o of retained){root.attach(o);root.remove(o);}
  root.updateMatrixWorld(true);const batches=new Map(),discard=new Set(),oldMaterials=new Set();
  root.traverse(o=>{if(!o.isMesh&&!o.isLineSegments)return;const mat=o.material,k=[o.isMesh?(['house-shaped-yard','yard-access-surface'].includes(o.name)?'ground':'surface'):'edge',mat.color.getHex(),mat.side,!!mat.vertexColors,mat.opacity,!!mat.transparent,mat.polygonOffset,mat.polygonOffsetFactor,mat.polygonOffsetUnits,!!o.userData.surfaceOverlay,o.userData.detailKind||''].join(':');if(!batches.has(k))batches.set(k,{material:mat.clone(),line:o.isLineSegments,detailKind:o.userData.detailKind,surfaceOverlay:o.userData.surfaceOverlay,geometries:[]});let g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);g.deleteAttribute('uv');g.userData.lodMaxLevel=partMaxLOD(o);g.setAttribute('lodMax',new T.Uint8BufferAttribute(new Uint8Array(g.attributes.position.count).fill(g.userData.lodMaxLevel),1));g.clearGroups();batches.get(k).geometries.push(g);discard.add(o.geometry);oldMaterials.add(mat)});
- root.clear();for(const [key,b] of batches){b.geometries.sort((a,c)=>c.userData.lodMaxLevel-a.userData.lodMaxLevel);const lodCounts=[0,1,2].map(level=>b.geometries.reduce((n,g)=>n+(g.userData.lodMaxLevel>=level?g.attributes.position.count:0),0));const geometry=mergeGeometries(b.geometries,false);if(!geometry)throw new Error('Asset batch geometry mismatch: '+key);const obj=b.line?new T.LineSegments(geometry,b.material):new T.Mesh(geometry,b.material);obj.name='alley-batch-'+key;obj.userData.detailKind=b.detailKind;obj.userData.surfaceOverlay=b.surfaceOverlay;obj.userData.lodCounts=lodCounts;obj.userData.faceLineColor=b.line?b.material.color.getHex():undefined;root.add(obj);b.geometries.forEach(g=>g.dispose())}discard.forEach(g=>g.dispose());oldMaterials.forEach(m=>m.dispose());report.renderBatches=root.children.length;
+ root.clear();for(const [key,b] of batches){b.geometries.sort((a,c)=>c.userData.lodMaxLevel-a.userData.lodMaxLevel);const lodCounts=[0,1,2].map(level=>b.geometries.reduce((n,g)=>n+(g.userData.lodMaxLevel>=level?g.attributes.position.count:0),0));const geometry=mergeGeometries(b.geometries,false);if(!geometry)throw new Error('Asset batch geometry mismatch: '+key);const obj=b.line?new T.LineSegments(geometry,b.material):new T.Mesh(geometry,b.material);obj.name='alley-batch-'+key;obj.userData.detailKind=b.detailKind;obj.userData.surfaceOverlay=b.surfaceOverlay;obj.userData.lodCounts=lodCounts;obj.userData.faceLineColor=b.line?b.material.color.getHex():undefined;root.add(obj);b.geometries.forEach(g=>g.dispose())}discard.forEach(g=>g.dispose());oldMaterials.forEach(m=>m.dispose());for(const o of retained)root.add(o);report.renderBatches=root.children.length;
  report.roadview50=roadview50Summary(report.placements,{...getPlacementRuleInfo(),accepted:policyAccepted.length,rejected:policyRejected,frontApproaches:policyApproaches.length});root.userData=report;return root;
 }

@@ -1,9 +1,9 @@
 import * as T from 'three';
 import {fittedRibbon} from './terrain-fit.js?v=81';
 import {fitSupportBase,footprintHeights} from './support-geometry.js?v=82';
-import {seatGroundAsset} from './ground-contact.js?v=122';
+import {seatGroundAsset} from './ground-contact.js?v=140';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=79';
-import {createAsset,addLines} from '../alley-library/models.js?v=122';
+import {createAsset,addLines} from '../alley-library/models.js?v=140';
 // Architecture is dimensioned for the measured space between a facade and its parcel edge.
 // It is reserved before the small asset scatter, so big functions cannot be crowded out.
 export function renderAttachedStructures(plan,elevation){
@@ -26,7 +26,7 @@ export function renderAttachedStructures(plan,elevation){
   const m=mesh(fittedRibbon([P(u0,v0),P(u1,v1)],width,(x,z)=>pavedSurface(x,z)+.002,(x,z)=>pavedSurface(x,z)+.006,.10),color,name);
   m.userData.surfaceOverlay=true;supportQA.groundStrips++;return m;
  }
- function asset(id,u,v,lift=0,scale=1){const a=createAsset(id);a.userData.vegetationAssetId=id;const b=new T.Box3().setFromObject(a),p=P(u,v);a.userData.localBounds=b;a.position.set(p[0],Y(u,v)-b.min.y*scale+.06+lift,p[1]);a.rotation.y=angle;a.scale.multiplyScalar(scale);if(!lift){const qa=seatGroundAsset(a,pavedSurface);groundContacts.push({id,owner:s.owner,...qa});}a.updateMatrixWorld(true);g.add(a);const bb=new T.Box3().setFromObject(a);assetPlacements.push({id,name:a.name,owner:s.owner,x:a.position.x,y:a.position.y,z:a.position.z,angle,height:bb.max.y-bb.min.y,role:s.type==='carport'?'주차면 차량':'차양 아래 생활 소품',groundFit:a.userData.groundFit,footprint:[[bb.min.x,bb.min.z],[bb.max.x,bb.min.z],[bb.max.x,bb.max.z],[bb.min.x,bb.max.z]]});return a}
+ function asset(id,u,v,lift=0,scale=1){const a=createAsset(id);a.userData.vegetationAssetId=id;const b=new T.Box3().setFromObject(a),p=P(u,v);a.userData.localBounds=b;a.position.set(p[0],Y(u,v)-b.min.y*scale+.06+lift,p[1]);a.rotation.y=angle+(a.userData.memoVehicle?Math.PI/2:0);a.scale.multiplyScalar(scale);if(!lift){const qa=seatGroundAsset(a,pavedSurface);groundContacts.push({id,owner:s.owner,...qa});}a.updateMatrixWorld(true);g.add(a);const bb=new T.Box3().setFromObject(a);assetPlacements.push({id,name:a.name,owner:s.owner,x:a.position.x,y:a.position.y,z:a.position.z,angle,height:bb.max.y-bb.min.y,role:s.type==='carport'?'주차면 차량':'차양 아래 생활 소품',groundFit:a.userData.groundFit,footprint:[[bb.min.x,bb.min.z],[bb.max.x,bb.min.z],[bb.max.x,bb.max.z],[bb.min.x,bb.max.z]]});return a}
  // Ground layers have real height separation. A strong depth bias would hide
  // parking paint and lift the apparent floor over tyre/column contacts.
  // Flush concrete apron follows the terrain, with visible expansion joints and parking paint.

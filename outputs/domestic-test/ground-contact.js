@@ -46,6 +46,7 @@ export function libraryWheelContacts(root){
  });return wheels;
 }
 export function seatGroundAsset(root,surface,{wheels=true}={}){
+ if(root.userData.wheelContactPoints){const qa=fitContactPose(root,root.userData.wheelContactPoints.map(ps=>ps.map(p=>new T.Vector3(...p))),surface);root.userData.groundFit=qa;return qa;}
  const wheelParts=wheels?libraryWheelContacts(root):[];
  if(wheelParts.length>=2){
   const qa=fitContactPose(root,wheelParts.map(w=>w.points),surface);root.userData.groundFit=qa;return qa;

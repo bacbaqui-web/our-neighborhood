@@ -26,6 +26,7 @@ jobs:
       - name: Check scene budget
         run: |
           node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs
+          node --experimental-loader ./tests/three-loader.mjs tests/full-detail.mjs
           python3 -m unittest discover -s tests -p test_generation_scope.py
       - uses: actions/configure-pages@v5
       - name: Build reviewed public assets

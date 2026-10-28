@@ -1,6 +1,7 @@
+import {roadVehicle} from './scene-vehicles.js?v=140';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-import {contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=79';
+import {seatGroundAsset,contactPoints,fitContactPose,contactReport,lowestContact} from './ground-contact.js?v=140';
 import {supportSampler,connectedRuns,fittedRibbon,supportFrame,roofPlane} from './terrain-fit.js?v=78';
 
 const C={metal:0x535e60,silver:0xa5ada9,glass:0x668e98,rubber:0x303b40,white:0xd7dad4,curb:0xb6b9ad,paving:0xa7aaa2,yellow:0xc9ad53,blue:0x367daf};
@@ -230,7 +231,8 @@ export function createArterial(plan,elevation){
    ps.needsUpdate=true;o.geometry.computeVertexNormals();o.geometry.computeBoundingSphere();
   });
  }
- for(const p of plan.vehicles){
+ let vehicleIndex=0,busIndex=0;for(const p of plan.vehicles){
+ const fresh=roadVehicle(p.kind==='bus',p.kind==='bus'?busIndex++:vehicleIndex++);if(fresh){fresh.position.fromArray(p.position);fresh.rotation.y=p.heading;group.add(fresh);seatGroundAsset(fresh,(x,z)=>support(x,z,.015));block(p.footprint,.06);continue;}
   const a=unit(p.kind==='bus'?'low-floor-city-bus':'arterial-car',p.position,p.heading),bus=p.kind==='bus';
   if(bus){
    const col=p.variant?0x49865d:0x3d70a4;

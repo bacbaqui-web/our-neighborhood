@@ -23,10 +23,14 @@ def build(root):
  if not major:return None
  # Pair parallel carriageways. Keep distinct crossings out of the dominant corridor.
  leader=max(major,key=lambda r:LineString(r['geometry']['coordinates']).length)
- ps=np.asarray(leader['geometry']['coordinates']);u=ps[-1]-ps[0];u=u/np.linalg.norm(u)
+ ps=np.asarray(leader['geometry']['coordinates']);u=ps[-1]-ps[0]
+ if np.linalg.norm(u)<1e-6:return None
+ u=u/np.linalg.norm(u)
  if u[1]<0:u=-u
  n=np.array([u[1],-u[0]])
  major=[r for r in major if abs(np.dot((np.asarray(r['geometry']['coordinates'][-1])-r['geometry']['coordinates'][0])/LineString(r['geometry']['coordinates']).length,u))>.86]
+ # Curved corridors need their original road surface, not a straight override.
+ if not major:return None
  samples=[]
  for r in major:
   ps=np.asarray(r['geometry']['coordinates']);ts=ps@u;ds=ps@n;order=np.argsort(ts);samples.append((ts[order],ds[order],r))

@@ -1,0 +1,31 @@
+{
+  "status": "local-one-bed-tested-not-published",
+  "scope": "벤치 옆 반경 5m 내 식재만 교체",
+  "reuse": [
+    "hybrid-tree.js: 잎 소재, 각도별 잎 이미지, 가지에 고정된 잎 위치",
+    "tree-wood.js: 가늘어지는 연속 가지"
+  ],
+  "qa": {
+    "shrubs": 9,
+    "branches": 180,
+    "leafClusters": 270,
+    "floweringPlants": 140,
+    "sphereCores": 0
+  },
+  "checks": [
+    "가지 연결 및 끝으로 가늘어지는 구조",
+    "유한 좌표와 잎 위치 고정",
+    "전후 전환",
+    "걷기 및 정원 검사",
+    "브라우저 같은 시점 전후 확인, 콘솔 오류 없음"
+  ],
+  "remaining": [
+    "관목 유형별 옆으로 퍼지는 형태 차이를 더 줄 수 있음",
+    "주변 구형 꽃나무와 다른 화단은 기존 상태",
+    "단지 전체 적용 시 성능 검사는 별도로 필요"
+  ],
+  "screenshots": [
+    "planting-before.png",
+    "planting-after.png"
+  ]
+}

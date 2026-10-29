@@ -2,47 +2,47 @@
   "assets": [
     {
       "id": "old-1",
-      "triangles": 32708,
+      "triangles": 43904,
       "grounds": 8
     },
     {
       "id": "old-2",
-      "triangles": 102330,
+      "triangles": 146166,
       "grounds": 10
     },
     {
       "id": "old-3",
-      "triangles": 81648,
+      "triangles": 117672,
       "grounds": 6
     },
     {
       "id": "middle-1",
-      "triangles": 67084,
+      "triangles": 137656,
       "grounds": 8
     },
     {
       "id": "middle-2",
-      "triangles": 108078,
+      "triangles": 228942,
       "grounds": 10
     },
     {
       "id": "middle-3",
-      "triangles": 85040,
+      "triangles": 181880,
       "grounds": 6
     },
     {
       "id": "new-1",
-      "triangles": 77532,
+      "triangles": 96360,
       "grounds": 8
     },
     {
       "id": "new-2",
-      "triangles": 129670,
+      "triangles": 161986,
       "grounds": 10
     },
     {
       "id": "new-3",
-      "triangles": 98688,
+      "triangles": 124200,
       "grounds": 6
     }
   ],

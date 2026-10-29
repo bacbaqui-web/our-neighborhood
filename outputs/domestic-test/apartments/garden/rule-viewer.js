@@ -25,7 +25,7 @@ try{
  const points=d.entries.map(e=>e.point),middle=points.reduce((a,p)=>Math.abs(p[1]+35)<Math.abs(a[1]+35)?p:a,points[0]);
  $('overview').onclick=()=>focus(center,span*1.08);$('near').onclick=()=>focus(middle,125);$('top').onclick=()=>focus(controls.target.toArray().filter((_,i)=>i!==1),height,true);
  $('low').onclick=()=>{const low=buildingsGroup.scale.y===1;buildingsGroup.scale.y=low?.23:1;$('low').setAttribute('aria-pressed',String(low));$('heightNote').textContent=low?'배치 확인 중 · 건물 높이 23%':'건물 실제 비율';dirty=true;};
- $('facility').onchange=()=>{const f=d.facilities.find(f=>f.kind===$('facility').value);if(f)focus(f.point,55);};
+ $('facility').onchange=()=>{if($('facility').value==='bench'&&walker){const b=pilot.benches[0],p=pilotWorld(pilot,b.point),a=pilot.angle+b.angle;walker.startAt([p[0]+Math.sin(a)*3.2,p[1]+Math.cos(a)*3.2],p);return;}const f=d.facilities.find(f=>f.kind===$('facility').value);if(f&&walker){const isPilot=f.id===pilot.replaceFacility,p=isPilot?pilotWorld(pilot,[-3,-1]):f.point,a=isPilot?pilot.angle:f.angle,distance=f.kind==='play'?9:6;walker.startAt([p[0]+Math.sin(a)*distance,p[1]+Math.cos(a)*distance],p);}else if(f)focus(f.point,20);};
  const ground=scene.children.find(c=>c.name==='건물 기준 정원 보도 차도 주차장');addGroundPlantingLeaves(ground,d,shrubTexture);$('green').onclick=()=>{ground.children.filter(c=>c.name==='garden').forEach(c=>c.visible=!c.visible);dirty=true;};
  drawPlan(d,buildings,pilot);$('map').onclick=()=>{const on=$('mapImage').hidden;$('mapImage').hidden=!on;$('diagram').hidden=on;$('map').textContent=on?'생성 배치도 보기':'목표 이미지 보기';};
  $('wide').onclick=()=>{document.querySelector('main').classList.toggle('wide');resize();};

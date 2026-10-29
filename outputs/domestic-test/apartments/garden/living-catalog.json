@@ -48,6 +48,12 @@
       "d": 11,
       "reference": "infill-study/photos/play.jpg",
       "file": "assets/play.glb"
+    },
+    {
+      "id": "bench",
+      "name": "목재 벤치",
+      "reference": "detail-study/sources.json",
+      "file": "assets/bench.glb"
     }
   ],
   "reused": [
@@ -59,11 +65,6 @@
     {
       "id": 44,
       "name": "분리수거함",
-      "source": "../../../alley-library/models.js"
-    },
-    {
-      "id": 126,
-      "name": "목재 벤치",
       "source": "../../../alley-library/models.js"
     }
   ],

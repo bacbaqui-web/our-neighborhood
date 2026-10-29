@@ -26,7 +26,7 @@ export async function createPilotGarden(d){
  for(const x of [-5,-1])for(const side of [-1,1]){R([x+side*.85,1.7,-1.8],[x+side*.85,2.45,-1.8],.035,0x617d7b);R([x+side*.85,2.45,-1.8],[x+side*.85,2.45,-.2],.035,0x617d7b);}
  const pergola=makeLivingAsset('pergola');pergola.position.set(9.5,.16,-11.5);root.add(pergola);
  await addExistingFurniture(root,{placed:[{kind:'pergola',point:[9.5,-11.5],angle:0},{kind:'play',point:[-3,-1],angle:0}]});
- for(const b of d.benches){const bench=createAsset(126);bench.position.set(b.point[0],.24,b.point[1]);bench.rotation.y=b.angle;root.add(bench);}
+ for(const b of d.benches){const bench=makeLivingAsset('bench');bench.position.set(b.point[0],.24,b.point[1]);bench.rotation.y=b.angle;root.add(bench);}
  // Unequal overlapping leaf clumps avoid rows of identical green balls.
  const leafGeo=new T.IcosahedronGeometry(1,1);for(let tone=0;tone<5;tone++){const rows=d.shrubs.filter(s=>s.tone===tone),mesh=new T.InstancedMesh(leafGeo,new T.MeshStandardMaterial({color:[0x587a41,0x70904e,0x8ba359,0x537347,0x809750][tone],roughness:1}),rows.length*4);rows.forEach((s,i)=>{for(let k=0;k<4;k++){mat.makeScale(s.radius*(k? .63:.85),s.height*(k?.35:.45),s.radius*.7);mat.setPosition(s.point[0]+Math.sin(i*2+k)*s.radius*.45,.2+s.height*.5+(k%2)*.1,s.point[1]+Math.cos(i+k)*s.radius*.4);mesh.setMatrixAt(i*4+k,mat);}});mesh.castShadow=true;mesh.receiveShadow=true;root.add(mesh);}
  // Flowers form small planted drifts at path edges, with stems and several blooms.

@@ -20,12 +20,25 @@ export function emitApartment(batch,b){
  Q(L/2,H/2,.018,L,H,style.wall);B(L/2,H+.3,-.09,L,.6,.18,style.wall);B(L/2,.7,.025,L,1.4,.035,style.accent);
  const entrance=i===(b.frontEdge??es[0].i)&&L>4,doorX=L*(b.frontFraction??.5);
  const main=L>longest*.46,cols=Math.max(1,Math.floor(L/(main?3.2:3.8))),pw=L/cols,back=i%2===1;
- if(style.era==='new')for(let j=0;j<cols;j+=3)B((j+.93)*pw,H/2,.16,.16,H,.3,style.accent);
- if(main)for(let j=2;j<cols;j+=5)B((j+.5)*pw,H/2,.04,1.25,H,.07,style.accent);
- // Ground floor has a solid plinth and masonry joints, separate from upper balconies.
- B(L/2,.22,.055,L,.44,.10,0x8e9085);B(L/2,1.62,.05,L,2.36,.07,0xc5c0ae);
- for(let y=.48;y<2.9;y+=.58)B(L/2,y,.092,L,.012,.012,0xaaa99d);
- for(let x=.9;x<L;x+=1.2)B(x,1.65,.094,.012,2.3,.012,0xb2b0a2);
+ if(style.era==='new')for(let j=0;j<cols;j+=3)B((j+.93)*pw,H/2,.54,.16,H,.08,style.accent);
+ if(main)for(let j=2;j<cols;j+=5)B((j+.5)*pw,H/2,.025,1.25,H,.03,style.accent);
+ // Build a continuous outer wall with real openings. The original shell is the
+ // back of the reveal; glazing sits between it and the outer wall face.
+ const openings=[];
+ for(let r=0;r<levels;r++)for(let j=0;j<cols;j++){
+  const stair=main&&j%5===2,x=(j+.5)*pw;
+  const w=r===0?(stair?.62:Math.min(pw-.65,2.2)):(stair?.75:Math.min(pw-.35,style.era==='new'?2.25:2.65));
+  const h=r===0?(stair?.92:1.42):(stair?fh*.5:fh*.65),y=r===0?(stair?1.92:1.83):r*fh+fh*.57;
+  if(r===0&&entrance&&Math.abs(x-doorX)<((stair?.75:Math.min(pw-.35,style.era==='new'?2.25:2.65))/2+1.85))continue;
+  openings.push({x0:x-w/2-.065,x1:x+w/2+.065,y0:y-h/2-.065,y1:y+h/2+.065});
+ }
+ if(entrance)openings.push({x0:doorX-1.52,x1:doorX+1.52,y0:0,y1:2.77});
+ const cuts=[...new Set([0,H,...openings.flatMap(a=>[a.y0,a.y1])])].filter(y=>y>=0&&y<=H).sort((a,b)=>a-b);
+ for(let k=0;k<cuts.length-1;k++){
+  const lo=cuts[k],hi=cuts[k+1],mid=(lo+hi)/2,holes= openings.filter(a=>a.y0<hi&&a.y1>lo).sort((a,b)=>a.x0-b.x0);let start=0;
+  const panel=(end)=>{if(end>start+.001)B((start+end)/2,mid,.27,end-start,hi-lo,.5,mid<.48?0x8e9085:mid<3?0xc5c0ae:style.wall);};
+  for(const hole of holes){panel(Math.max(0,hole.x0));start=Math.max(start,hole.x1);}panel(L);
+ }
  for(let r=0;r<levels;r++)for(let j=0;j<cols;j++){
  const stair=main&&j%5===2,x=(j+.5)*pw,y=r*fh+fh*.57,w=stair?.75:Math.min(pw-.35,style.era==='new'?2.25:2.65),h=stair?fh*.5:fh*.65;
  if(r===0){
@@ -42,20 +55,20 @@ export function emitApartment(batch,b){
  }
 
 
- // Recessed glass, projecting jambs and a slab give each storey readable depth.
- const frame=style.era==='old'?0xd1d0bf:0xe0dfd3,depth=stair?.19:style.era==='new'?.26:.48;
+ // Thin frames sit inside the wall opening; the reveal remains visible from the side.
+ const frame=style.era==='old'?0xd1d0bf:0xe0dfd3,depth=.16;
  Q(x,y,.075,w,h,((r+j)%11===0)?0x9eaaa4:style.glass);
  for(const xx of [-w/2,w/2])B(x+xx,y,depth/2,.085,h+.14,depth,frame);
  for(const yy of [-h/2,h/2])B(x,y+yy,depth/2,w+.12,.09,depth,frame);
  for(let m=1;m<3;m++)B(x-w/2+w*m/3,y,depth-.035,.045,h,.065,frame);
  B(x,y-h*.18,depth-.02,w,.045,.055,frame);windows++;
  if(!stair){
- B(x,r*fh+.15,.27,pw-.10,.20,.65,style.wall);
- B(x,y-h/2-.22,.19,w+.18,.35,.42,style.wall);
- if(style.era==='old'){B(x,y-h/2+.35,.57,w,.045,.045,0x8f9b97);for(let k=0;k<=5;k++)B(x-w/2+w*k/5,y-h/2+.16,.57,.026,.38,.035,0x8f9b97);}
- if(style.era==='middle'){B(x-pw*.46,r*fh+fh/2,.15,.14,fh,.35,style.accent);}
+ B(x,r*fh+.15,.50,pw-.10,.13,.08,style.wall);
+ B(x,y-h/2-.22,.48,w+.18,.25,.08,style.wall);
+ if(style.era!=='new'){B(x,y-h/2+.52,.42,w,.035,.04,0x8f9b97);B(x,y-h/2+.08,.42,w,.03,.04,0x8f9b97);for(let k=0;k<=10;k++)B(x-w/2+w*k/10,y-h/2+.3,.42,.018,.44,.025,0x8f9b97);}
+ if(style.era==='middle'){B(x-pw*.46,r*fh+fh/2,.535,.09,fh,.035,style.accent);}
  if(style.era!=='new'&&(r+j*3)%7===0){B(x+w*.28,r*fh+.48,.57,.68,.46,.33,0xc2c3b5);for(let l=0;l<4;l++)B(x+w*.28,r*fh+.34+l*.085,.75,.52,.025,.025,0x7a8580);}
- }else{B(x,y-h/2-.13,.23,w+.3,.16,.48,style.accent);}
+ }else{B(x,y-h/2-.13,.47,w+.3,.12,.10,style.accent);}
 
  }
  if(main&&L>=8){const n=Math.max(1,Math.floor(L/15));for(let k=0;k<n;k++){const x=L*(k+.5)/n,w=Math.min(3.4,L/n*.4),d=3.4;

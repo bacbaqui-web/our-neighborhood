@@ -1,0 +1,32 @@
+{
+  "status": "local-render-verified-not-published",
+  "implementation": "outputs/domestic-test/apartments/garden/garden-vegetation.js",
+  "pipeline": [
+    "canopy-growth.js / planCanopy",
+    "tree-wood.js / createTreeWood",
+    "hybrid-tree.js / createHybridTrees",
+    "vegetation/species-v65/zelkova.png",
+    "vegetation/species-v65/cherry.png"
+  ],
+  "scope": {
+    "groundShrubs": 2826,
+    "gardenShrubs": 233,
+    "flowerClumps": 172,
+    "ornamentalTrees": 3,
+    "leafClusters": 34056,
+    "sphereCores": 0
+  },
+  "checks": [
+    "root-connected pruned growth paths",
+    "finite geometry and instance matrices",
+    "season thinning retains all three flowering trees",
+    "pilot garden and walk checks",
+    "browser rendering and no console errors",
+    "pack --check"
+  ],
+  "limits": [
+    "Low planting adapts existing tree species silhouettes; not species-accurate grass or flower assets.",
+    "Garden flowers use spring cherry imagery with summer green foliage as an artistic composition."
+  ],
+  "screenshot": "outputs/domestic-test/apartments/garden/detail-study/unified-vegetation.png"
+}

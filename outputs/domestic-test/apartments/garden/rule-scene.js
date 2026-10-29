@@ -26,11 +26,8 @@ export function createRuleGround(data){
  for(const bay of data.parking){const s=Math.sin(bay.angle),c=Math.cos(bay.angle),o=batch.writer([bay.point[0],0,bay.point[1]],c,-s,s,c);for(const x of [-bay.width/2+.05,bay.width/2-.05])o.box(x,.065,0,.07,.02,5,0xe8e7d8);o.box(0,.065,-2.45,bay.width,.02,.07,0xe8e7d8);for(const x of [-.65,.65]){o.box(x,.14,-1.85,.45,.16,.16,0x414a42);o.box(x,.23,-1.85,.2,.02,.17,0xd4bd6f);}}
  for(const p of data.lamps){const o=batch.writer([p[0],0,p[1]]);o.box(0,1.7,0,.08,3.4,.08,0x596b60);o.box(0,3.45,0,.36,.13,.36,0xe7e1c2);}
  for(const entry of data.entries){const dx=entry.end[0]-entry.point[0],dz=entry.end[1]-entry.point[1],L=Math.hypot(dx,dz),o=batch.writer([entry.point[0],0,entry.point[1]],dz/L,-dx/L,dx/L,dz/L);for(const x of [-.95,.95]){o.box(x,.4,2.3,.12,.8,.12,0x65766b);o.box(x,.73,2.3,.14,.07,.14,0xece4c6);}}
- const shrubGeo=new T.IcosahedronGeometry(1,1),matrix=new T.Matrix4();for(let tone=0;tone<4;tone++){const shrubs=data.shrubs.filter(s=>s.tone===tone),mesh=new T.InstancedMesh(shrubGeo,new T.MeshStandardMaterial({color:[0x668151,0x778d5e,0x839768,0x718756][tone]}),shrubs.length);shrubs.forEach((s,i)=>{matrix.makeScale(s.radius*.6,s.height*.35,s.radius*.6);matrix.setPosition(s.point[0],.25,s.point[1]);mesh.setMatrixAt(i,matrix);});mesh.castShadow=true;root.add(mesh);}
  root.add(batch.finish('보도 경계석 주차선 조명'));return root;
 }
 export async function createRuleFacilities(data){const root=new T.Group();for(const f of data.facilities){const m=makeLivingAsset(f.kind);m.position.set(f.point[0],.12,f.point[1]);m.rotation.y=f.angle;root.add(m);}await addExistingFurniture(root,{placed:data.facilities});for(const b of data.benches){const m=makeLivingAsset('bench');m.position.set(b.point[0],.12,b.point[1]);m.rotation.y=b.angle;root.add(m);}return root;}
-export function addGroundPlantingLeaves(root,data,texture){
- const geom=new T.PlaneGeometry(1,1),uv=geom.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*.25,uv.getY(i)/3+2/3);
- const mesh=new T.InstancedMesh(geom,new T.MeshBasicMaterial({map:texture,color:0xb6c49f,alphaTest:.48,side:T.DoubleSide}),data.shrubs.length*5),m=new T.Matrix4(),q=new T.Quaternion();data.shrubs.forEach((s,i)=>{for(let k=0;k<5;k++){q.setFromEuler(new T.Euler(-Math.PI*(.3+(k%2)*.15),i+k*1.8,0));m.compose(new T.Vector3(s.point[0]+Math.sin(i+k)*.25,s.height*.6+.25,s.point[1]+Math.cos(i*2+k)*.25),q,new T.Vector3(.9,.9,1));mesh.setMatrixAt(i*5+k,m);}});root.add(mesh);
-}
+// Ground planting uses garden-vegetation.js, with the same tree growth and atlas renderer.
+export function addGroundPlantingLeaves(){}

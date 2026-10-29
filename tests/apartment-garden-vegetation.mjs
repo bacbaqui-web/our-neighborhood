@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import * as T from 'three';
+import {planGardenVegetation} from '../outputs/domestic-test/apartments/garden/garden-vegetation.js';
+import {createHybridTrees} from '../outputs/domestic-test/hybrid-tree.js';
+const d=JSON.parse(fs.readFileSync('outputs/domestic-test/apartments/garden/rule-plan.json')),pilot=JSON.parse(fs.readFileSync('outputs/domestic-test/apartments/garden/pilot-plan.json')),p=planGardenVegetation(d,pilot);
+assert.equal(p.qa.groundShrubs,d.shrubs.length);assert.equal(p.qa.ornamentalTrees,3);assert.equal(p.qa.gardenShrubs,pilot.shrubs.length);
+for(const plan of [...p.green,...p.bloom]){assert(plan.stats.sourceEngine);for(const leaf of plan.clumps){assert(Number.isInteger(leaf.node));let n=leaf.node,steps=0;while(n>0&&steps++<plan.nodes.length)n=plan.nodes[n].parent;assert.equal(n,0,'root connection');for(const v of leaf.center)assert(Number.isFinite(v));}for(const path of plan.paths)for(const i of path.nodes)assert(plan.nodes[i]);}
+const tex=new T.Texture(),sys=createHybridTrees([...p.green.slice(0,2),...p.bloom.slice(-3)],tex),camera=new T.PerspectiveCamera();camera.position.set(-100,2,-90);camera.updateMatrixWorld();sys.update(camera);sys.group.traverse(o=>{if(o.geometry){assert(!['SphereGeometry','IcosahedronGeometry','CircleGeometry'].includes(o.geometry.type));for(const n of o.geometry.attributes.position.array)assert(Number.isFinite(n));}if(o.isInstancedMesh)for(const n of o.instanceMatrix.array)assert(Number.isFinite(n));});console.log(p.qa);
+
+const bloom=createHybridTrees(p.bloom,tex);bloom.setFoliage({season:'spring'});for(const id of ['ornamental-0','ornamental-1','ornamental-2'])assert(bloom.leaves.slice(0,bloom.mesh.count).some(l=>l.plan.id===id),'season thinning must retain every ornamental tree');

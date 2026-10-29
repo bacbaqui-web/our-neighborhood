@@ -21,9 +21,9 @@ for f in geo['features']:
  buildings.append({'id':f['properties']['objectid'],'name':str(f['properties'].get('buld_nm','')),'poly':p,'props':f['properties']})
 B=unary_union([b['poly'] for b in buildings]); zones=polys(B.buffer(22,join_style=2).buffer(10,join_style=2)); site=unary_union(zones).buffer(3)
 # Thin planting, a continuous pedestrian band, then a 6m service loop.
-GARDEN=1.8; WALK=2.4; ROAD=6
+GARDEN=3.0; WALK=2.4; ROAD=6
 protected=B.buffer(GARDEN+WALK,join_style=2)
-center_envelope=B.buffer(GARDEN+WALK+ROAD/2+.3,join_style=2)
+center_envelope=B.buffer(GARDEN+WALK+ROAD/2,join_style=2)
 road_lines=[LineString(p.exterior.coords) for p in polys(center_envelope)]
 # Connect the building loops using free-space routing; no map polylines are read.
 road_union=unary_union([r.buffer(ROAD/2,join_style=2) for r in road_lines])
@@ -153,7 +153,7 @@ for li,line in enumerate(road_lines):
     mouth=LineString([(p[0]-nx*2.6-ux*1.1,p[1]-nz*2.6-uz*1.1),(p[0]-nx*2.6+ux*1.1,p[1]-nz*2.6+uz*1.1)])
     if not road.buffer(.15).covers(mouth):continue
     baypolys.append(poly);parking.append({'point':coord(p),'angle':angle,'width':2.55,'depth':5,'row':f'{li}-{si}-{side}','occupied':len(parking)%5!=0,'footprint':[coord(c) for c in poly.exterior.coords[:-1]]})
-parking_land=unary_union(baypolys);lawn=site.difference(unary_union([B,road,walk,parking_land,facility_ground])).union(garden)
+parking_land=unary_union(baypolys).buffer(.16,join_style=2).buffer(-.05,join_style=2).difference(reserved);lawn=site.difference(unary_union([B,road,walk,parking_land,facility_ground])).union(garden)
 # Trees fill larger open lawn; low planting follows the thin strips at walls.
 trees=[];shrubs=[];benches=[];lamps=[]
 for _ in range(14000):
@@ -163,7 +163,7 @@ for _ in range(14000):
  trees.append({'id':f'rule-tree-{len(trees)}','root':[p.x,.12,p.y],'height':6+rng.random()*3,'radius':2.6,'clearance':2.6,'kind':'tree','asset':'cherry' if len(trees)%5==0 else 'zelkova','source':'building-first-rules'})
  if len(trees)>=140:break
 for b in buildings:
- for line in lines(b['poly'].buffer(.95,join_style=2).boundary):
+ for line in lines(b['poly'].buffer(1.45,join_style=2).boundary):
   for n in range(int(line.length/1.15)):
    p=line.interpolate(n*1.15)
    if not garden.buffer(-.25).contains(p):continue

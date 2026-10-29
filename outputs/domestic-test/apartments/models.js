@@ -18,11 +18,29 @@ export function emitApartment(batch,b){
  const insideBox=(e,x,z,w,d)=>[-1,0,1].every(u=>[-1,0,1].every(v=>inPolygon([e.a[0]+e.ux*(x+u*w/2)+e.nx*(z+v*d/2),e.a[1]+e.uz*(x+u*w/2)+e.nz*(z+v*d/2)],b.points)&&!(b.holePoints||[]).some(h=>inPolygon([e.a[0]+e.ux*(x+u*w/2)+e.nx*(z+v*d/2),e.a[1]+e.uz*(x+u*w/2)+e.nz*(z+v*d/2)],h))));
  for(const e of es){const {L,i}=e,out=batch.writer([e.a[0],b.base,e.a[1]],e.ux,e.uz,e.nx,e.nz),B=out.box,Q=out.quad;
  Q(L/2,H/2,.018,L,H,style.wall);B(L/2,H+.3,-.09,L,.6,.18,style.wall);B(L/2,.7,.025,L,1.4,.035,style.accent);
+ const entrance=i===(b.frontEdge??es[0].i)&&L>4,doorX=L*(b.frontFraction??.5);
  const main=L>longest*.46,cols=Math.max(1,Math.floor(L/(main?3.2:3.8))),pw=L/cols,back=i%2===1;
  if(style.era==='new')for(let j=0;j<cols;j+=3)B((j+.93)*pw,H/2,.16,.16,H,.3,style.accent);
  if(main)for(let j=2;j<cols;j+=5)B((j+.5)*pw,H/2,.04,1.25,H,.07,style.accent);
+ // Ground floor has a solid plinth and masonry joints, separate from upper balconies.
+ B(L/2,.22,.055,L,.44,.10,0x8e9085);B(L/2,1.62,.05,L,2.36,.07,0xc5c0ae);
+ for(let y=.48;y<2.9;y+=.58)B(L/2,y,.092,L,.012,.012,0xaaa99d);
+ for(let x=.9;x<L;x+=1.2)B(x,1.65,.094,.012,2.3,.012,0xb2b0a2);
  for(let r=0;r<levels;r++)for(let j=0;j<cols;j++){
  const stair=main&&j%5===2,x=(j+.5)*pw,y=r*fh+fh*.57,w=stair?.75:Math.min(pw-.35,style.era==='new'?2.25:2.65),h=stair?fh*.5:fh*.65;
+ if(r===0){
+  // Reserve the entire lobby bay; do not draw a residential window behind the door.
+  if(entrance&&Math.abs(x-doorX)<(w/2+1.85))continue;
+  const ww=stair?.62:Math.min(pw-.65,2.2),hh=stair?.92:1.42,yy=stair?1.92:1.83,frame=0xd8d9cf;
+  Q(x,yy,.105,ww,hh,stair?0x6e8280:style.glass);
+  for(const xx of [-ww/2,ww/2])B(x+xx,yy,.16,.075,hh+.12,.19,frame);
+  for(const dy of [-hh/2,hh/2])B(x,yy+dy,.18,ww+.12,.075,.24,frame);
+  B(x,yy,.21,.045,hh,.045,frame);B(x,yy-.3,.215,ww,.035,.04,frame);
+  B(x,yy-hh/2-.09,.23,ww+.22,.13,.38,0xaaa99a);
+  if(!stair){Q(x,yy-.36,.225,ww-.1,.55,0x94a29b);for(const xx of [-ww*.43,ww*.43])B(x+xx,yy-.35,.25,.025,.5,.03,0xc9cdc2);}
+  continue;
+ }
+
 
  // Recessed glass, projecting jambs and a slab give each storey readable depth.
  const frame=style.era==='old'?0xd1d0bf:0xe0dfd3,depth=stair?.19:style.era==='new'?.26:.48;
@@ -48,7 +66,29 @@ export function emitApartment(batch,b){
  if(style.era==='new'){for(const xx of [-1,1])B(x+xx*w*.4,H+2,-d/2-.35,.3,3.2,d,style.accent);B(x,H+3.6,-d/2-.35,w+.3,.35,d,style.accent);}
  }
  }}
- if(i===(b.frontEdge??es[0].i)&&L>4){const doorX=L*(b.frontFraction??.5);Q(doorX,1.2,.15,1.9,2.4,style.glass);for(const x of [-1.12,1.12])B(doorX+x,1.35,.36,.25,2.7,.7,style.accent);B(doorX,2.75,.62,3.2,.22,1.5,style.accent);B(doorX,.08,.65,3.4,.16,1.5,0xb9b8aa);B(doorX,1.2,.24,.055,2.4,.08,0xcbd0c7);for(const x of [-.15,.15])B(doorX+x,1.1,.31,.035,.4,.04,0xbac3c0);}
+ if(entrance){
+  // Recessed-looking common lobby, stone surround and a separate pair of entrance doors.
+  Q(doorX,1.43,.12,3.35,2.7,0x3d4c49);
+  for(const dx of [-1.7,1.7])B(doorX+dx,1.45,.3,.32,2.9,.58,0xb7b3a2);
+  B(doorX,2.87,.34,3.7,.24,.68,0xb7b3a2);
+  const metal=0xa5afa9;
+  for(const dx of [-.6,.6]){Q(doorX+dx,1.34,.23,1.14,2.12,0x526d70);B(doorX+dx,.37,.26,1.14,.22,.05,0x8b9892);B(doorX+dx,1.16,.27,1.14,.09,.04,0xc8cec2);}
+  for(const dx of [-1.2,0,1.2])B(doorX+dx,1.34,.28,.06,2.2,.09,metal);
+  B(doorX,2.44,.27,2.46,.07,.09,metal);B(doorX,2.62,.28,2.45,.24,.08,0x758880);
+  for(const dx of [-.13,.13]){B(doorX+dx,1.22,.36,.035,.48,.05,0xd7d9cb);}
+  B(doorX,2.98,.78,3.9,.18,1.75,style.accent);B(doorX,2.89,.81,3.65,.025,1.48,0xd4cfba);
+  for(const dx of [-1,1])B(doorX+dx,2.865,1.1,.24,.018,.12,0xf0e5be);
+  const number=String(b.properties?.buld_nm_dc||'').match(/\d+/)?.[0];
+  if(number){const digitSegments=['ab cdef'.replaceAll(' ',''),'bc','abdeg','abcdg','bcfg','acdfg','acdefg','abc','abcdefg','abcdfg'],segments={a:[0,.12,.14,.024],b:[.075,.06,.024,.12],c:[.075,-.06,.024,.12],d:[0,-.12,.14,.024],e:[-.075,-.06,.024,.12],f:[-.075,.06,.024,.12],g:[0,0,.14,.024]};number.split('').forEach((digit,k)=>{for(const seg of digitSegments[Number(digit)]){const [x,y,w,h]=segments[seg];B(doorX+(k-(number.length-1)/2)*.23+x,2.65+y,.34,w,h,.015,0xe5e0cb);}});}
+  B(doorX,.09,.9,3.25,.18,1.8,0xb5b5a7);B(doorX,.19,.55,2.3,.025,.65,0x646f69);
+  for(let dx=-1.4;dx<1.5;dx+=.45)B(doorX+dx,.187,1.45,.012,.01,.55,0x8b9086);
+  // Visitor intercom, door sensor and tactile warning tiles.
+  B(doorX+1.48,1.38,.64,.22,.36,.07,0x535e5b);Q(doorX+1.48,1.45,.681,.15,.10,0x8ca6a4);
+  for(let k=0;k<3;k++)for(let m=0;m<3;m++)B(doorX+1.42+m*.055,1.33-k*.05,.687,.023,.022,.01,0xc9cec3);
+  B(doorX,2.49,.35,.17,.07,.10,0x3c4845);
+  for(let dx=-.8;dx<.9;dx+=.28){B(doorX+dx,.195,1.62,.26,.025,.25,0xc8b679);for(let m=0;m<3;m++)for(let k=0;k<3;k++)B(doorX+dx-.08+m*.08,.218,1.54+k*.08,.035,.015,.035,0xd8c58b);}
+ }
+
  // Roof coping and rainwater pipe stay distinct from the facade.
  B(L/2,H+.63,-.08,L+.08,.08,.28,0xb8bcb2);
  if(L>8){B(.18,H/2,.14,.09,H,.1,style.accent);}

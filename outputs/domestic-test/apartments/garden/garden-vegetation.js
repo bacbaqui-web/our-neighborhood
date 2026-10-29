@@ -34,7 +34,17 @@ export function planLawnInfill(pilot){
 }
 export function planGardenVegetation(d,pilot){
  const green=[],bloom=[],point=(p,y=.17)=>[pilot.origin[0]+Math.cos(pilot.angle)*p[0]+Math.sin(pilot.angle)*p[1],y,pilot.origin[1]-Math.sin(pilot.angle)*p[0]+Math.cos(pilot.angle)*p[1]];
- d.shrubs.forEach((p,i)=>green.push(gardenPlant({id:'ground-'+i,root:[p.point[0],.14,p.point[1]],height:p.height+.15,radius:p.radius,variant:i%6,count:8})));
+ const inBed=p=>d.surfaces.garden.some(r=>inPolygon(p,r.outer)&&!r.holes.some(h=>inPolygon(p,h)));
+ let facadeCover=0;
+ d.shrubs.forEach((p,i)=>{
+  green.push(gardenPlant({id:'ground-'+i,root:[p.point[0],.05,p.point[1]],height:Math.min(.72,p.height+.08),radius:p.radius*1.25,variant:i%6,count:24}));
+  const adjacent=[d.shrubs[i-1],d.shrubs[i+1]].filter(Boolean).sort((a,b)=>Math.hypot(a.point[0]-p.point[0],a.point[1]-p.point[1])-Math.hypot(b.point[0]-p.point[0],b.point[1]-p.point[1]))[0],dx=adjacent.point[0]-p.point[0],dz=adjacent.point[1]-p.point[1],L=Math.hypot(dx,dz)||1;
+  for(const side of [-1,1]){
+   const q=[p.point[0]+side*(-dz/L*.52+dx/L*.28),p.point[1]+side*(dx/L*.52+dz/L*.28)];
+   if(![q,...Array.from({length:8},(_,k)=>[q[0]+Math.cos(k*Math.PI/4)*.25,q[1]+Math.sin(k*Math.PI/4)*.25])].every(inBed))continue;
+   const cover=gardenPlant({id:'facade-cover-'+i+'-'+side,root:[q[0],.05,q[1]],height:.28+(i%3)*.04,radius:.43,variant:i%6,count:6});for(const leaf of cover.clumps){leaf.radius=Math.max(leaf.radius,.20);leaf.lightingRadius=leaf.radius;}green.push(cover);facadeCover++;
+  }
+ });
  pilot.shrubs.forEach((p,i)=>green.push(gardenPlant({id:'garden-'+i,root:point(p.point),height:p.height*(i%3===0?1.1:1.5),radius:p.radius*1.25,variant:i%6,count:24})));
  // Low flowering clumps and evergreen groundcover use the same rooted tree
  // skeleton/atlas renderer at a low, broad scale; no polygon leaves or balls.
@@ -50,11 +60,11 @@ export function planGardenVegetation(d,pilot){
  // Leaf size does not shrink proportionally with plant height. Use readable
  // sprays like the mature trees, while their anchors follow the same branches.
  for(const plant of green)if(!plant.id.startsWith('lawn-cover-')){
-  const min=plant.id.startsWith('underleaf-')?.11:plant.id.startsWith('ground-')?.16:.22;
+  const min=plant.id.startsWith('underleaf-')?.11:plant.id.startsWith('ground-')?.23:.22;
   for(const leaf of plant.clumps){leaf.radius=Math.max(leaf.radius,min);leaf.lightingRadius=leaf.radius;}
  }
  for(const plant of green){const tone=.78+.16*(.5+.5*Math.sin(plant.root[0]*.31+plant.root[2]*.23));for(const leaf of plant.clumps)leaf.tone*=tone;}
- return {green,bloom,qa:{lawnGroundcover:infill.cover.length,lawnLowShrubs:infill.low.length,groundShrubs:d.shrubs.length,gardenShrubs:pilot.shrubs.length,flowerClumps:pilot.flowers.length,ornamentalTrees:pilot.ornamental.length,leafClusters:[...green,...bloom].reduce((n,p)=>n+p.clumps.length,0),sphereCores:0,source:'planCanopy → createTreeWood + createHybridTrees / species-v65'}};
+ return {green,bloom,qa:{facadeGroundcover:facadeCover,lawnGroundcover:infill.cover.length,lawnLowShrubs:infill.low.length,groundShrubs:d.shrubs.length,gardenShrubs:pilot.shrubs.length,flowerClumps:pilot.flowers.length,ornamentalTrees:pilot.ornamental.length,leafClusters:[...green,...bloom].reduce((n,p)=>n+p.clumps.length,0),sphereCores:0,source:'planCanopy → createTreeWood + createHybridTrees / species-v65'}};
 }
 function mergeWood(sys){for(const b of sys.batches){const meshes=b.wood.children.filter(x=>x.isMesh);if(!meshes.length)continue;const geo=mergeGeometries(meshes.map(m=>m.geometry)),m=new T.Mesh(geo,meshes[0].material);m.castShadow=m.receiveShadow=true;b.wood.clear();b.wood.add(m);meshes.forEach(x=>x.geometry.dispose());}}
 export async function createGardenVegetation(d,pilot){

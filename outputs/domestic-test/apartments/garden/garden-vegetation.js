@@ -1,3 +1,4 @@
+import {inPolygon} from '../../facilities/placement.js';
 import * as T from 'three';
 import {planCanopy} from '../../canopy-growth.js';
 import {createHybridTrees,loadCanopyTexture} from '../../hybrid-tree.js';
@@ -22,6 +23,15 @@ export function gardenPlant({id,root,height,radius,species='zelkova',variant=0,c
  const clumps=src.clumps.map(v=>({...v,center:point(v.center),radius:v.radius*scale,lightingCenter:point(v.lightingCenter),lightingRadius:v.lightingRadius*scale}));
  return {...src,id,root,height,radius,nodes,clumps,stats:{...src.stats,actualTop:height,sourceEngine:src.stats.engine,compactGardenPlant:true}};
 }
+export function planLawnInfill(pilot){
+ const inside=(p,rs)=>rs.some(r=>inPolygon(p,r.outer)&&!r.holes.some(h=>inPolygon(p,h)));
+ const allowed=p=>inside(p,pilot.surfaces.lawn)&&!inside(p,pilot.surfaces.paths)&&!inside(p,pilot.surfaces.soil)&&!(p[0]>-10&&p[0]<4&&p[1]>-7&&p[1]<5)&&!(p[0]>5.6&&p[0]<13.4&&p[1]>-15.4&&p[1]<-7.6);
+ const clear=(p,r)=>[p,...Array.from({length:8},(_,i)=>[p[0]+Math.cos(i*Math.PI/4)*r,p[1]+Math.sin(i*Math.PI/4)*r])].every(allowed);
+ const low=[],cover=[];
+ for(let x=-17;x<15;x+=2.3)for(let z=-20;z<7;z+=2.3){const p=[x+Math.sin(x*7+z)*.3,z+Math.cos(z*5+x)*.3];if(clear(p,.6))low.push({point:p,height:.65+(low.length%4)*.12,radius:.6});}
+ for(let x=-18;x<16;x+=.38)for(let z=-21;z<8;z+=.38){const p=[x+Math.sin(x*17+z*13)*.08,z+Math.cos(x*11-z*7)*.08];if(clear(p,.15)&&!low.some(s=>Math.hypot(s.point[0]-p[0],s.point[1]-p[1])<.35))cover.push({point:p,height:.22+(cover.length%5)*.035,radius:.36});}
+ return {low,cover};
+}
 export function planGardenVegetation(d,pilot){
  const green=[],bloom=[],point=(p,y=.17)=>[pilot.origin[0]+Math.cos(pilot.angle)*p[0]+Math.sin(pilot.angle)*p[1],y,pilot.origin[1]-Math.sin(pilot.angle)*p[0]+Math.cos(pilot.angle)*p[1]];
  d.shrubs.forEach((p,i)=>green.push(gardenPlant({id:'ground-'+i,root:[p.point[0],.14,p.point[1]],height:p.height+.15,radius:p.radius,variant:i%6,count:8})));
@@ -34,7 +44,10 @@ export function planGardenVegetation(d,pilot){
  });
  pilot.ornamental.forEach((p,i)=>bloom.push(gardenPlant({id:'ornamental-'+i,root:point(p),height:4.3+i*.15,radius:1.8,species:'cherry',variant:i,count:120})));
  for(let i=0;i<28;i++){const a=i*2.4,p=[9.5+Math.cos(a)*(1+(i%7)*.22),-11.5+Math.sin(a)*(1+(i%5)*.25)];green.push(gardenPlant({id:'pergola-leaf-'+i,root:point(p,3.1),height:.35,radius:.55,variant:i%6,count:12}));}
- return {green,bloom,qa:{groundShrubs:d.shrubs.length,gardenShrubs:pilot.shrubs.length,flowerClumps:pilot.flowers.length,ornamentalTrees:pilot.ornamental.length,leafClusters:[...green,...bloom].reduce((n,p)=>n+p.clumps.length,0),sphereCores:0,source:'planCanopy → createTreeWood + createHybridTrees / species-v65'}};
+ const infill=planLawnInfill(pilot);
+ for(const [i,p] of infill.cover.entries()){const plant=gardenPlant({id:'lawn-cover-'+i,root:point(p.point,.15),height:p.height,radius:p.radius,variant:i%6,count:18});for(const leaf of plant.clumps){leaf.radius*=2.1;leaf.lightingRadius*=2.1;}green.push(plant);}
+ for(const [i,p] of infill.low.entries())green.push(gardenPlant({id:'lawn-shrub-'+i,root:point(p.point,.15),height:p.height,radius:p.radius,variant:i%6,count:32}));
+ return {green,bloom,qa:{lawnGroundcover:infill.cover.length,lawnLowShrubs:infill.low.length,groundShrubs:d.shrubs.length,gardenShrubs:pilot.shrubs.length,flowerClumps:pilot.flowers.length,ornamentalTrees:pilot.ornamental.length,leafClusters:[...green,...bloom].reduce((n,p)=>n+p.clumps.length,0),sphereCores:0,source:'planCanopy → createTreeWood + createHybridTrees / species-v65'}};
 }
 function mergeWood(sys){for(const b of sys.batches){const meshes=b.wood.children.filter(x=>x.isMesh);if(!meshes.length)continue;const geo=mergeGeometries(meshes.map(m=>m.geometry)),m=new T.Mesh(geo,meshes[0].material);m.castShadow=m.receiveShadow=true;b.wood.clear();b.wood.add(m);meshes.forEach(x=>x.geometry.dispose());}}
 export async function createGardenVegetation(d,pilot){

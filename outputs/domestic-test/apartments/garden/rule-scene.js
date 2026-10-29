@@ -4,7 +4,7 @@ import {makeLivingAsset,addExistingFurniture} from './living-models.js';
 import {createAsset} from '../../../alley-library/models.js';
 import {inPolygon} from '../../facilities/placement.js';
 const contains=(p,regions)=>regions.some(r=>inPolygon(p,r.outer)&&!r.holes.some(h=>inPolygon(p,h)));
-function pavingTexture(){
+export function pavingTexture(){
  if(typeof document==='undefined')return null;
  const canvas=document.createElement('canvas');canvas.width=768;canvas.height=384;const ctx=canvas.getContext('2d');ctx.fillStyle='#89877b';ctx.fillRect(0,0,768,384);
  for(let row=0;row<12;row++)for(let col=-1;col<13;col++){const x=col*64+(row%2)*32,y=row*32,n=((row*73+col*37+997)%11)-5;ctx.fillStyle=`rgb(${180+n},${173+n},${157+n})`;ctx.fillRect(x+1,y+1,62,30);ctx.fillStyle='#c9c2b0';ctx.fillRect(x+2,y+2,60,1);ctx.fillStyle='#9e9a8d';ctx.fillRect(x+2,y+29,60,1);}

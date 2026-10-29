@@ -1,3 +1,4 @@
+import {pavingTexture} from './rule-scene.js';
 import * as T from 'three';
 import {FacadeBatch} from '../../korean-facades.js';
 import {makeLivingAsset,addExistingFurniture} from './living-models.js';
@@ -7,11 +8,9 @@ export function pilotWorld(d,p){const c=Math.cos(d.angle),s=Math.sin(d.angle);re
 export function pilotContains(d,p){return inPolygon(p,d.footprint);}
 export async function createPilotGarden(d){
  const root=new T.Group();root.name='놀이터와 쉼터를 묶은 정원';root.position.set(d.origin[0],0,d.origin[1]);root.rotation.y=d.angle;
- const batch=new FacadeBatch(),o=batch.writer(),B=o.box,R=o.rod;
- for(const [kind,regions] of Object.entries(d.surfaces)){const color={lawn:0x8fa773,soil:0x71634a,paths:0xc6aa94}[kind],y={lawn:.14,soil:.155,paths:.19}[kind];for(const r of regions){const s=new T.Shape(r.outer.map(p=>new T.Vector2(p[0],-p[1])));for(const h of r.holes)s.holes.push(new T.Path(h.map(p=>new T.Vector2(p[0],-p[1]))));const g=new T.ShapeGeometry(s);g.rotateX(-Math.PI/2);const m=new T.Mesh(g,new T.MeshStandardMaterial({color,roughness:1,side:T.DoubleSide}));m.position.y=y;m.receiveShadow=true;root.add(m);}}
- // Warm paving bricks and pale edging make paths read as connected garden spaces.
- const tileRows=[[],[],[]];for(let z=-21;z<8;z+=.42)for(let x=-18+(Math.round(z/.42)%2)*.38;x<16;x+=.78){const p=[x+.38,z+.2];if([[x,z],[x+.75,z],[x+.75,z+.38],[x,z+.38]].every(p=>inside(p,d.surfaces.paths)))tileRows[Math.abs(Math.round(x*3+z*7))%3].push(p);}
- const mat=new T.Matrix4();tileRows.forEach((rows,i)=>{const m=new T.InstancedMesh(new T.BoxGeometry(.75,.035,.385),new T.MeshStandardMaterial({color:[0xbc9a82,0xc6a78b,0xb98f79][i],roughness:1}),rows.length);rows.forEach((p,j)=>{mat.makeTranslation(p[0],.208,p[1]);m.setMatrixAt(j,mat);});m.receiveShadow=true;root.add(m);});
+ const batch=new FacadeBatch(),o=batch.writer(),B=o.box,R=o.rod,paving=pavingTexture();
+ for(const [kind,regions] of Object.entries(d.surfaces)){const color={lawn:0x697453,soil:0x71634a,paths:0xc6aa94}[kind],y={lawn:.14,soil:.155,paths:.19}[kind];for(const r of regions){const s=new T.Shape(r.outer.map(p=>new T.Vector2(p[0],-p[1])));for(const h of r.holes)s.holes.push(new T.Path(h.map(p=>new T.Vector2(p[0],-p[1]))));const g=new T.ShapeGeometry(s);g.rotateX(-Math.PI/2);if(kind==='paths'){const pos=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,pos.getX(i)/2.4,pos.getZ(i)/1.2);}const m=new T.Mesh(g,new T.MeshStandardMaterial({color:kind==='paths'&&paving?0xffffff:color,map:kind==='paths'?paving:null,bumpMap:kind==='paths'?paving:null,bumpScale:.012,roughness:1,side:T.DoubleSide}));m.name='garden-'+kind;m.position.y=y;m.receiveShadow=true;root.add(m);}}
+ // The path is one textured surface per polygon; edging remains geometry.
  for(const r of d.surfaces.paths)for(const ring of [r.outer,...r.holes])for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);if(L<.02)continue;const w=batch.writer([a[0],0,a[1]],dx/L,dz/L,-dz/L,dx/L);w.box(L/2,.23,0,L,.18,.13,0xd4c7af);}
  // A low fence and planted margins enclose the play garden, leaving the entrance clear.
  for(const [a,b] of [[[-18,6],[-2,7.8]],[[2,7.8],[16,6]],[[16,6],[16,-18]],[[-18,-18],[-18,6]]]){const dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz),w=batch.writer([a[0],0,a[1]],dx/L,dz/L,-dz/L,dx/L);w.box(L/2,.95,0,L,.06,.06,0x52674d);w.box(L/2,.45,0,L,.05,.05,0x52674d);for(let x=0;x<L;x+=.24)w.box(x,.65,0,.035,.7,.035,0x657b55);for(let x=0;x<L;x+=2)w.box(x,.65,0,.09,1.15,.09,0x445c45);}

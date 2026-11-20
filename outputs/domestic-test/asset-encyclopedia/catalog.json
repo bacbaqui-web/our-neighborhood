@@ -8646,6 +8646,204 @@
       "kind": "glb",
       "file": "../vehicles/sonata-dn8/model.glb",
       "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다."
+    },
+    {
+      "id": "prototype:barrier-v1",
+      "name": "접이식 바리케이드 · 교체안",
+      "category": "도로·안전",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/barrier-v1.glb",
+      "triangles": 1392,
+      "note": "road:a72 교체 후보. 검토용이며 동네에는 미적용.",
+      "link": "../prop-remakes/"
+    },
+    {
+      "id": "prototype:shoe-rack-v1",
+      "name": "2단 신발 정리대 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/shoe-rack-v1.glb",
+      "triangles": 784,
+      "note": "road:a165 교체 후보. 단색 프레임과 금속 봉. 동네 미적용.",
+      "link": "../prop-remakes/?asset=shoe-rack"
+    },
+    {
+      "id": "prototype:bus-stop-v1",
+      "name": "버스정류장 기둥 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/bus-stop-v1.glb",
+      "triangles": 492,
+      "note": "road:a68 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=bus-stop"
+    },
+    {
+      "id": "prototype:manhole-v1",
+      "name": "맨홀뚜껑 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/manhole-v1.glb",
+      "triangles": 1368,
+      "note": "road:a75 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=manhole"
+    },
+    {
+      "id": "prototype:security-gate-v1",
+      "name": "접이식 방범문 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/security-gate-v1.glb",
+      "triangles": 1656,
+      "note": "road:a133 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=security-gate"
+    },
+    {
+      "id": "prototype:antenna-v1",
+      "name": "옥외 TV 안테나 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/antenna-v1.glb",
+      "triangles": 700,
+      "note": "road:a156 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=antenna"
+    },
+    {
+      "id": "prototype:door-lock-v1",
+      "name": "디지털 도어록 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/door-lock-v1.glb",
+      "triangles": 1068,
+      "note": "road:a168 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=door-lock"
+    },
+    {
+      "id": "prototype:cart-v1",
+      "name": "철망 쇼핑카트 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/cart-v1.glb",
+      "triangles": 1912,
+      "note": "road:a181 교체 후보. 동네 미적용.",
+      "link": "../prop-remakes/?asset=cart"
+    },
+    {
+      "id": "prototype:cone-v1",
+      "name": "안전 고깔 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/cone-v1.glb",
+      "triangles": 636,
+      "note": "road:a46 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=cone"
+    },
+    {
+      "id": "prototype:ladder-v1",
+      "name": "알루미늄 사다리 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/ladder-v1.glb",
+      "triangles": 576,
+      "note": "road:a49 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=ladder"
+    },
+    {
+      "id": "prototype:stall-v1",
+      "name": "접이식 판매대 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/stall-v1.glb",
+      "triangles": 364,
+      "note": "road:a51 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=stall"
+    },
+    {
+      "id": "prototype:basins-v1",
+      "name": "포갠 대야 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/basins-v1.glb",
+      "triangles": 1728,
+      "note": "road:a54 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=basins"
+    },
+    {
+      "id": "prototype:open-box-v1",
+      "name": "열린 골판지상자 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/open-box-v1.glb",
+      "triangles": 120,
+      "note": "road:a58 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=open-box"
+    },
+    {
+      "id": "prototype:sink-v1",
+      "name": "야외 싱크대 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/sink-v1.glb",
+      "triangles": 992,
+      "note": "road:a81 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=sink"
+    },
+    {
+      "id": "prototype:dolly-v1",
+      "name": "운반대차 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/dolly-v1.glb",
+      "triangles": 688,
+      "note": "road:a88 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=dolly"
+    },
+    {
+      "id": "prototype:drying-rack-v1",
+      "name": "빨래건조대 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/drying-rack-v1.glb",
+      "triangles": 1024,
+      "note": "road:a93 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=drying-rack"
+    },
+    {
+      "id": "prototype:pallet-v1",
+      "name": "목재 팔레트 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/pallet-v1.glb",
+      "triangles": 240,
+      "note": "road:a146 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=pallet"
+    },
+    {
+      "id": "prototype:tray-rack-v1",
+      "name": "제빵 트레이랙 · 교체안",
+      "category": "생활 소품",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/tray-rack-v1.glb",
+      "triangles": 1332,
+      "note": "road:a176 개선 후보. 10종 첫 묶음. 동네 미적용.",
+      "link": "../prop-remakes/?asset=tray-rack"
     }
   ]
 }

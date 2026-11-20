@@ -1,4 +1,5 @@
-import {applyRemakes} from './remakes.js';
+import {remakeAliases} from './remakes.js';
+import {loadAssetRegistry} from './registry.js';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=1';
@@ -76,10 +77,10 @@ for(const tab of tabs){
  tab.onkeydown=e=>{let i=tabs.indexOf(tab);if(e.key==='ArrowRight')i=(i+1)%tabs.length;else if(e.key==='ArrowLeft')i=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();tabs[i].focus();};
 }
 try{
- const response=await fetch('./catalog.json');if(!response.ok)throw Error('목록 파일을 읽지 못했습니다.');entries=applyRemakes((await response.json()).entries);
+ entries=(await loadAssetRegistry()).entries;
  try{await reviews.load();reviewReady=true;}catch(e){$('reviewError').textContent=e.message;}
  const params=new URLSearchParams(location.search);$('search').value=params.get('search')||'';selectGroup(params.get('tab'));
- const hash=decodeURIComponent(location.hash.slice(1));if(hash){const a=entries.find(a=>a.id===canonicalId(hash)&&curation.items[a.id]?.state!=='deleted');if(a){selectGroup(assetGroup(a));open(a);}}
+ const hash=decodeURIComponent(location.hash.slice(1));if(hash){const a=entries.find(a=>a.id===(remakeAliases.get(canonicalId(hash))||canonicalId(hash))&&curation.items[a.id]?.state!=='deleted');if(a){selectGroup(assetGroup(a));open(a);}}
 }catch(e){$('error').textContent=e.message+' 새로고침 후에도 같으면 목록 파일을 확인해 주세요.';}
 
 $('treeHeight').oninput=()=>{$('treeHeightValue').value=Number($('treeHeight').value).toFixed(1)+'m';};

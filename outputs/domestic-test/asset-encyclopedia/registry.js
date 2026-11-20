@@ -1,4 +1,4 @@
-import {applyRemakes,remakeAliases} from './remakes.js';
+import {applyRemakes,remakeAliases} from './remakes.js?v=authority1';
 import {canonicalId,isDeleted} from './curation.js';
 const base=new URL('./',import.meta.url);
 let pending;

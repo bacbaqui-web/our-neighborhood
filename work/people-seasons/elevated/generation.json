@@ -1,0 +1,786 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "id": "man-backpack",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-21f31a8b-f176-4e3f-9a32-fae374017e82.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-autumn-e30.png",
+      "sha256": "159276524ca08dacab716ce4a2c10a9a49436673ccf9ed2283649d8330d7a7c4",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-autumn.png",
+        "outputs/domestic-test/people/man-backpack-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-backpack",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-892f0e28-b4d8-437c-b4e5-bd52767c3635.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-autumn-e60.png",
+      "sha256": "3ff09aa846a0a292b0b8c59123040d34982a8c0f0ef6e204a94dbdce64eadd99",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-autumn.png",
+        "outputs/domestic-test/people/man-backpack-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-backpack",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-77a09bd4-7d0d-4eb6-8026-c82d96f20923.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-summer-e30.png",
+      "sha256": "5ecfc1d8e2a9c2936079b180ad0c371afbc5600f01621c9a311950f2cf45a92e",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-summer.png",
+        "outputs/domestic-test/people/man-backpack-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-backpack",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-1cc46c6f-9076-4cbc-9dcf-f12c953aa33e.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-summer-e60.png",
+      "sha256": "277bc204294b4d0b398816035ef6941ece5fd4e75a3ea13d545889a244057069",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-summer.png",
+        "outputs/domestic-test/people/man-backpack-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-backpack",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-26531d7d-adf5-4427-bda5-c85b0f775041.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-winter-e30.png",
+      "sha256": "cb0efd9c1ac6823006abf10b271d1160088a50e440233cbd6e0a0d2cfc9092bd",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-winter.png",
+        "outputs/domestic-test/people/man-backpack-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-backpack",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-1cf00b0e-80ef-4e99-870e-40323575d928.png",
+      "output": "outputs/domestic-test/people/seasons/man-backpack-winter-e60.png",
+      "sha256": "ff9bada45270fcfb81827eaf9983d9330fb6778401e35b6c9a96118d2abb59bb",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-backpack-winter.png",
+        "outputs/domestic-test/people/man-backpack-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-769fbb4a-0773-4a83-aebb-724e1c84540d.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-autumn-e30.png",
+      "sha256": "3f9569739454e226b0f9ac4b5401a88e4a88b2b0009c488ec4282b76a9af73d2",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-autumn.png",
+        "outputs/domestic-test/people/man-jacket-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-9f899c76-c60b-4307-a4fa-204c12e6ee47.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-autumn-e60.png",
+      "sha256": "44de6c34a1630302219fa9e4eb8588c7b294c7411c08f93e1ef6578ae6121d45",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-autumn.png",
+        "outputs/domestic-test/people/man-jacket-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-33dc5827-fa16-44c3-8d5e-e47195514ae6.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-summer-e30.png",
+      "sha256": "037a4f4f208af1bb9b275c8a63a2d1633f532e600a1cbcdb157b62e14e9e0ffa",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-summer.png",
+        "outputs/domestic-test/people/man-jacket-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-c60e4942-097d-44d9-85fe-6175a8b48e86.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-summer-e60.png",
+      "sha256": "902631c06c779dc3e8d13ccdf356df5aefdac1ba172316ccfc88839be2381065",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-summer.png",
+        "outputs/domestic-test/people/man-jacket-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-7347f600-060a-4665-b01d-bcdc92199e1d.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-winter-e30.png",
+      "sha256": "640e0c7ede9ff5903267c31f00c99368d50c584daaa4ca425ee3567f585478c7",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-winter.png",
+        "outputs/domestic-test/people/man-jacket-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-jacket",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-702ee052-4fce-4ef4-8a1b-00ecacc74b15.png",
+      "output": "outputs/domestic-test/people/seasons/man-jacket-winter-e60.png",
+      "sha256": "bd1cdd8d9fd83f4d30e434ac8a4d6a2d5870d25afde6662317f5c8347628c71e",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-jacket-winter.png",
+        "outputs/domestic-test/people/man-jacket-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-d0c41523-2d3c-47dd-aa33-09e6d78dcfd5.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-autumn-e30.png",
+      "sha256": "a54ce14c492a39a5fb3b75df7026c0df90857b5db8f2ceada3bd8ddae2b5bfd9",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-autumn.png",
+        "outputs/domestic-test/people/man-senior-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-eee0acdc-f3dc-4a75-ab7b-15b77ffb5154.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-autumn-e60.png",
+      "sha256": "5f7950da2a2ffea256cdb73ff3c0d1ffa74ec217e547cd59f5c24dce1f6b7630",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-autumn.png",
+        "outputs/domestic-test/people/man-senior-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-14bd212b-c2a6-4856-8fe3-2964a071a887.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-summer-e30.png",
+      "sha256": "2969c7d11a4bffd762a408cdb7ccbb4324abb71655d53133fa6d0076698a2456",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-summer.png",
+        "outputs/domestic-test/people/man-senior-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-968f301b-2d67-44d1-9f95-a18e20e1ab93.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-summer-e60.png",
+      "sha256": "07e384de6b0d567e9c42c86bbdbb98d04fc34079db8979da2207a4140051f140",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-summer.png",
+        "outputs/domestic-test/people/man-senior-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-c8b3d93e-a86e-4bd5-9b1b-550cff3744d8.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-winter-e30.png",
+      "sha256": "1f2f0390d8ef3dcaa4bdbca2efd7bfad0bca59f5cc2aaf250b6a5554cdeb8306",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-winter.png",
+        "outputs/domestic-test/people/man-senior-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-senior",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5216bcee-7f17-4a9c-a346-c10146a42ce2.png",
+      "output": "outputs/domestic-test/people/seasons/man-senior-winter-e60.png",
+      "sha256": "e8e26fd65271fbc1daba2ecb72f5427803918d2bad3609d95c0a7c0c0b6d62bf",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-senior-winter.png",
+        "outputs/domestic-test/people/man-senior-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-4536c930-8ebd-4c04-9ad2-dd42c8b277f3.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-autumn-e30.png",
+      "sha256": "68255cd2b1eb5d74ddbf2bda6c2d725f1e52582f2b23c1de66195ec39a377a21",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-autumn.png",
+        "outputs/domestic-test/people/man-shirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5e92632c-e1d9-4fd8-a50a-b8d95e39a0ae.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-autumn-e60.png",
+      "sha256": "24f525003d2d0bfc4fe601f7d695acc268b21ea0bb14df3aa486d80e659277b6",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-autumn.png",
+        "outputs/domestic-test/people/man-shirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-37f4997f-dca8-4981-a197-82d69b1d20f9.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-summer-e30.png",
+      "sha256": "df6ceb0e09e183c2661820fae457cb7a1bec77f07f743e0a6c3faa46d9889bb9",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-summer.png",
+        "outputs/domestic-test/people/man-shirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-2dd07c36-e9eb-498b-8de2-4679967bc9fe.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-summer-e60.png",
+      "sha256": "d8257f1b6d354b931604f91e54c039e5a25298662532fee74a269689b2907448",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-summer.png",
+        "outputs/domestic-test/people/man-shirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-a626566d-5219-46c9-993c-4f1dbaf21189.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-winter-e30.png",
+      "sha256": "f56e40653a2dd29c08276fef86de08e7fdf90e2405c0495406feb1a8779f4658",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-winter.png",
+        "outputs/domestic-test/people/man-shirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-shirt",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-94940968-0a35-4513-b6af-8932db8b3ea6.png",
+      "output": "outputs/domestic-test/people/seasons/man-shirt-winter-e60.png",
+      "sha256": "08f356c36ae8c220a915c3dbbe4e3eaa32fb082c1dee6aaf5b283425609d4b93",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-shirt-winter.png",
+        "outputs/domestic-test/people/man-shirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-eb35cb57-a127-4181-bf25-1a291527ff4f.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-autumn-e30.png",
+      "sha256": "3dee4b3315a84916b9e18f3fefdc90339f9b82524806676bd12a478014589ee9",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-autumn.png",
+        "outputs/domestic-test/people/man-sweatshirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-dd9bc478-68a4-457d-9786-a0212e652bcc.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-autumn-e60.png",
+      "sha256": "7528fa6426f9fac89b3c4da8aa7607e625da4ee22170472020b690c22c3b3700",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-autumn.png",
+        "outputs/domestic-test/people/man-sweatshirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-a0fe898e-97db-4303-89cd-579f2c6080b8.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-summer-e30.png",
+      "sha256": "24b2e9efdbc0532127f74acf3ca0ff5fd033a47b65f88952eeb66f0c92d2e119",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-summer.png",
+        "outputs/domestic-test/people/man-sweatshirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-b62204ef-7c14-4196-984b-5f41aa8573c6.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-summer-e60.png",
+      "sha256": "e5d84dba2e9baa97f12b8d4375f4767e05cfe14bd69af9e0ef7aabf9c3fb3342",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-summer.png",
+        "outputs/domestic-test/people/man-sweatshirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-7201f19f-46d2-4a3f-b471-c6aff04c94da.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-winter-e30.png",
+      "sha256": "f192675e78a40d4f5ca9bde3aa9d087da7c3b4a36ac6e76206dbbd07620cd642",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-winter.png",
+        "outputs/domestic-test/people/man-sweatshirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "man-sweatshirt",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3cfc1806-e219-4f3e-8109-ba55e5253992.png",
+      "output": "outputs/domestic-test/people/seasons/man-sweatshirt-winter-e60.png",
+      "sha256": "1e1bc16736936b194e0448902251d3b1590709fea992802f1b4dd81a2bfedc37",
+      "references": [
+        "outputs/domestic-test/people/seasons/man-sweatshirt-winter.png",
+        "outputs/domestic-test/people/man-sweatshirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-8e9a6b9d-1743-48af-80ab-6f1e00b48205.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-autumn-e30.png",
+      "sha256": "12bbd446ea7609ad7e23e7fcc4c3f3a193b0d1e0d69a4fb85a96c4fdca18cace",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-autumn.png",
+        "outputs/domestic-test/people/woman-cardigan-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-4ac9a48d-75fd-438d-9717-a99f72508b4c.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-autumn-e60.png",
+      "sha256": "35495e61f0be7306aa962b848ae1fde9daa371730be89ca1dc3816c49b3727e2",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-autumn.png",
+        "outputs/domestic-test/people/woman-cardigan-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-6b9269cb-a821-4d99-b68f-8d69e950923f.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-summer-e30.png",
+      "sha256": "1f62c7ea5952d57674c8ad2d4d56b227b883a2603683d5c82b76f7aa6fbd5666",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-summer.png",
+        "outputs/domestic-test/people/woman-cardigan-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Create elevated 30 degree camera sprite sheet for this SAME woman in the EXACT summer outfit of image 1: blue short sleeve tee, ivory trousers and white sneakers. Image 2 is the precise camera pitch, poses, eight direction ordering and thin flat webtoon linework reference. Replace only clothing on image 2 to match image 1 exactly. 4 columns x 2 rows, eight whole figures, same azimuth order, ample transparent margins in each cell, 1536x1024. Preserve hair, faceless style, proportions. True transparent background; no glow/shadows/background/text. Save resulting asset."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-48a4a143-88a5-46b4-94db-d626bab88562.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-summer-e60.png",
+      "sha256": "484e3d5f1da473f6e79f0b3c4934739e8d669de62897f050d275ab0c074b0dd7",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-summer.png",
+        "outputs/domestic-test/people/woman-cardigan-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3c360460-73ab-4615-b655-ad23a0b2f162.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-winter-e30.png",
+      "sha256": "d393c94a2598c95465e6018508a50df46bb9e395295930c69398fe5ae64bee72",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-winter.png",
+        "outputs/domestic-test/people/woman-cardigan-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-cardigan",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-9f6fa7a7-f60a-4e53-aa3c-2060f9ffa565.png",
+      "output": "outputs/domestic-test/people/seasons/woman-cardigan-winter-e60.png",
+      "sha256": "525ce897523fde57ff59597090329c15be0768661fadee7cedbe1460e240215d",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-cardigan-winter.png",
+        "outputs/domestic-test/people/woman-cardigan-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-dc12b3a2-4c42-43fc-8086-5ccc977add13.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-autumn-e30.png",
+      "sha256": "63a2d86a2ed3d322ad45cd4d627c55a0a26b917638deab382b1e9365ce5cb77c",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-autumn.png",
+        "outputs/domestic-test/people/woman-coat-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-c0642d72-2577-41bf-82f5-a21c4b4e1846.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-autumn-e60.png",
+      "sha256": "87097c8313db99ee1cb452290377162d18c1d443723f9075dde70561d0f61a30",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-autumn.png",
+        "outputs/domestic-test/people/woman-coat-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-b16ac113-70eb-4c40-ae77-804ad0ab7b15.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-summer-e30.png",
+      "sha256": "822d6ada8f7500358c80e9c5f6a4d83b22be75ea2f807c680ef43f14c7f7baef",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-summer.png",
+        "outputs/domestic-test/people/woman-coat-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-0cfe2aa5-1073-411f-aa87-1cf6229c19d1.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-summer-e60.png",
+      "sha256": "d724a2ede3d6a08eed1fec95284fac6021c2b1d0c3c079e295be32e775b4b126",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-summer.png",
+        "outputs/domestic-test/people/woman-coat-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-df776eea-0c99-4399-a381-b7921b3cd779.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-winter-e30.png",
+      "sha256": "9767f5d221f655bbab080ebd46b6e329b14e4b2721fa3004d60eaee9b020fedf",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-winter.png",
+        "outputs/domestic-test/people/woman-coat-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-coat",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-9c730d3c-3847-4838-a2c4-cc45d42b45f1.png",
+      "output": "outputs/domestic-test/people/seasons/woman-coat-winter-e60.png",
+      "sha256": "cab8addceb9fa88bb90b1cf80695fb513ffd5b7977815634bc3279310bdbde46",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-coat-winter.png",
+        "outputs/domestic-test/people/woman-coat-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-da602088-d063-4542-81f9-ff35d4041570.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-autumn-e30.png",
+      "sha256": "9586f7788b7d2735a54a404768c602e44ac323ad2f1cbf1e11de5739233694eb",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-autumn.png",
+        "outputs/domestic-test/people/woman-skirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-e362b239-8c61-498e-a468-910b325eb028.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-autumn-e60.png",
+      "sha256": "32bed555413f132bfb0c920bc8674a61ed35e48d2a9295315b1c5a33f5edfccb",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-autumn.png",
+        "outputs/domestic-test/people/woman-skirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-e9eea42c-dd14-4e8b-be57-6fabfdacc1c0.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-summer-e30.png",
+      "sha256": "b3db94e8152e0c6b99b62cbcf347ee4474a643ddf5a72cb9b5d0b587845cea7b",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-summer.png",
+        "outputs/domestic-test/people/woman-skirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-d0930512-94b8-4f7c-b2a1-3116b612604c.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-summer-e60.png",
+      "sha256": "e0c762e3509b1a40654d335e54114d487fb661b67fba69cd77b4dd382516edee",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-summer.png",
+        "outputs/domestic-test/people/woman-skirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-fc4e2597-c6e6-4ed5-8b4a-5f8c800c2b14.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-winter-e30.png",
+      "sha256": "dc33e5e50771f5297f5e0b33fbb1e0343435815a302b66bc240b53a45ca8f048",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-winter.png",
+        "outputs/domestic-test/people/woman-skirt-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-skirt",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-645bdda0-11c7-4d0f-8dd7-b09d579a7b3d.png",
+      "output": "outputs/domestic-test/people/seasons/woman-skirt-winter-e60.png",
+      "sha256": "04b99122609179966cc59bd5acc0752e3339bf3fd48e832e5d3c4acb1c8d18ab",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-skirt-winter.png",
+        "outputs/domestic-test/people/woman-skirt-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-f53c3114-29fa-47c7-9e95-effd91f0a222.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-autumn-e30.png",
+      "sha256": "88c4fc734e4d145fb0d0dfa95c12d704ae4896361965e4f3d2380b6e931542bf",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-autumn.png",
+        "outputs/domestic-test/people/woman-sweater-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-7c42caa4-a67e-4945-911c-8b8eca2bc0db.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-autumn-e60.png",
+      "sha256": "2c47b0a3bd0b2c34d86d1704c735f72efb9fa35305d166333a2ffab5baccb999",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-autumn.png",
+        "outputs/domestic-test/people/woman-sweater-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-391b2f34-5dfe-46bf-8a3c-528ec46ee32a.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-summer-e30.png",
+      "sha256": "a00441053b933c43e887b2e4d8758545d4657432105e598feea6a75ae2f5e894",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-summer.png",
+        "outputs/domestic-test/people/woman-sweater-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3518e643-f7be-4864-a0c5-7562fa9f1742.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-summer-e60.png",
+      "sha256": "21f7c8bb9576a27d11e7323e504e635af3a10a235d59e8d02dad9eaa2b2f62bd",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-summer.png",
+        "outputs/domestic-test/people/woman-sweater-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-b8cf6c18-5862-4ebb-8e3e-133a806a7e22.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-winter-e30.png",
+      "sha256": "bf54c69dcc1b6a2f5c1fba8d3ca47936f3f5a790005fa87a6690c2a3e75043b7",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-winter.png",
+        "outputs/domestic-test/people/woman-sweater-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-sweater",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-4c768210-5561-435a-9bd1-bdb54fc0d6d9.png",
+      "output": "outputs/domestic-test/people/seasons/woman-sweater-winter-e60.png",
+      "sha256": "c8bdefa82c2b0f10ae811e70f996b58a80c83b6c7320f10f9ac00818f85017a5",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-sweater-winter.png",
+        "outputs/domestic-test/people/woman-sweater-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "autumn",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-8345ff9f-6e58-4270-a452-5cd224034fd0.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-autumn-e30.png",
+      "sha256": "4390c5c6130f980dd1b2478922860087a2a43b47f32a190f3eef09f41a746455",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-autumn.png",
+        "outputs/domestic-test/people/woman-vest-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "autumn",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3ba22292-1a8b-4da8-9ad3-90247fe981a9.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-autumn-e60.png",
+      "sha256": "de90f5ee9e5609adea612ec2264520f6d829e14bf733afbf72426db17ec5f28a",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-autumn.png",
+        "outputs/domestic-test/people/woman-vest-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "summer",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-e02dda11-1ba7-4a8d-9dde-88b0c360f400.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-summer-e30.png",
+      "sha256": "dcd282f50fe47ef15193590f2b19a27f40191ffaf9594024d20238ef50867f0d",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-summer.png",
+        "outputs/domestic-test/people/woman-vest-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "summer",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5957c4ab-8755-4ae7-b7f2-42a80cd8ffcb.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-summer-e60.png",
+      "sha256": "fea40c54db9c52af1afd56cbb4ecb3db5dc15a6a38eb1d76fe559f420d8b211e",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-summer.png",
+        "outputs/domestic-test/people/woman-vest-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "winter",
+      "pitch": 30,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-984954a6-93dc-486b-9a6c-e44762fd2d9c.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-winter-e30.png",
+      "sha256": "e96cb5404dd5855e0a52f3118e4687951e3097659d6015f2bddb0f4063ea57e7",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-winter.png",
+        "outputs/domestic-test/people/woman-vest-e30.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 30 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    },
+    {
+      "id": "woman-vest",
+      "season": "winter",
+      "pitch": 60,
+      "source": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3d3a2a21-8723-47ed-8ee3-215c5595cd45.png",
+      "output": "outputs/domestic-test/people/seasons/woman-vest-winter-e60.png",
+      "sha256": "2af1b3179139ff17da240206e6443c15b8bd363998cb7e4c77227574c9748da0",
+      "references": [
+        "outputs/domestic-test/people/seasons/woman-vest-winter.png",
+        "outputs/domestic-test/people/woman-vest-e60.png"
+      ],
+      "prompt": "Use case: identity-preserve. Asset: transparent webtoon pedestrian sprite sheet, 1536x1024, exactly 4 columns by 2 rows. Image 1 is the outfit and identity reference; image 2 is the EDIT TARGET and exact elevated camera pitch/poses/style reference. Replace ONLY clothing/accessories on image 2 with the EXACT same clothing colors, layers, shoes and accessories from image 1. Retain image 2 camera elevation 60 degrees, foreshortening, hair, faceless simplified style, thin linework, flat colors, and eight azimuth directions in original order. All eight figures full body uncropped, individually centered in equal cells with generous transparent margins. Do not copy image 2 spring clothes. No labels, no background, no glow, no cast shadows. True alpha transparency."
+    }
+  ]
+}

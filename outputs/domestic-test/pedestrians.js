@@ -3,16 +3,17 @@ import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injec
 import {createContactShadows} from './contact-shadows.js?v=151';
 import {directionalFrame,elevationTier,projectedHeight,pedestrianView,FRAME_LABELS} from './pedestrian-math.js?v=151';
 export async function loadPedestrianAssets(catalog){
- const loader=new T.TextureLoader(),assets=new Map();
- await Promise.all(catalog.people.map(async p=>{
-  const tiers=await Promise.all((p.elevations||[{pitch:0,image:p.image,imageWidth:p.imageWidth,imageHeight:p.imageHeight,frames:p.frames}]).map(async tier=>{
-   const texture=await loader.loadAsync(new URL('./people/'+tier.image,import.meta.url).href);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
-  }));assets.set(p.id,{...p,tiers,texture:tiers[0].texture});
- }));return assets;
+ const loader=new T.TextureLoader(),assets=new Map(),textures=[];
+ const results=await Promise.allSettled(catalog.people.map(async p=>{
+  const results=await Promise.allSettled((p.elevations||[{pitch:0,image:p.image,imageWidth:p.imageWidth,imageHeight:p.imageHeight,frames:p.frames}]).map(async tier=>{
+   const texture=await loader.loadAsync(new URL('./people/'+tier.image,import.meta.url).href);textures.push(texture);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
+  }));const failed=results.find(r=>r.status==='rejected');if(failed)throw failed.reason;const tiers=results.map(r=>r.value);assets.set(p.id,{...p,tiers,texture:tiers[0].texture});
+ }));const failed=results.find(r=>r.status==='rejected');if(failed){textures.forEach(t=>t.dispose());throw failed.reason;}assets.season=catalog.season||'spring';return assets;
 }
 export function createPedestrians(plan,assets,elevation,shadowElevation=elevation){
  const sunlight=createBillboardSunUniforms();const group=new T.Group();group.name='ImagePedestrians';const figures=[],materials=new Map(),mode={value:0};
- for(const [id,person] of assets)for(const [tierIndex,a] of person.tiers.entries()){const mat=new T.MeshBasicMaterial({map:a.texture,color:0xffffff,alphaTest:.48,transparent:false,depthWrite:true,side:T.DoubleSide,toneMapped:false});
+ function installMaterials(nextAssets){
+ for(const [id,person] of nextAssets)for(const [tierIndex,a] of person.tiers.entries()){const mat=new T.MeshBasicMaterial({map:a.texture,color:0xffffff,alphaTest:.48,transparent:false,depthWrite:true,side:T.DoubleSide,toneMapped:false});
   // Keep texture alpha in every scene style. Never turn the entire card into a solid rectangle.
   mat.onBeforeCompile=shader=>{injectBillboardLight(shader,sunlight);shader.uniforms.peopleStyle=mode;shader.uniforms.peopleTexel={value:new T.Vector2(1/a.imageWidth,1/a.imageHeight)};shader.fragmentShader='uniform float peopleStyle;\nuniform vec2 peopleTexel;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
    if(peopleStyle>1.5){float gray=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722));diffuseColor.rgb=vec3(gray);}
@@ -21,6 +22,8 @@ export function createPedestrians(plan,assets,elevation,shadowElevation=elevatio
     diffuseColor.rgb=mix(vec3(1.),vec3(.24),smoothstep(.09,.29,edge));
    }`);};mat.customProgramCacheKey=()=> 'pedestrian-lit-cutout-v43';materials.set(id+':'+tierIndex,mat);
  }
+ }
+ installMaterials(assets);
  for(const p of plan.people){const a=assets.get(p.character);if(!a)throw Error('Unknown pedestrian '+p.character);const pivot=new T.Group();pivot.position.set(p.x,shadowElevation(p.x,p.z)+.008,p.z);pivot.name='walker-'+p.id;const mesh=new T.Mesh(new T.PlaneGeometry(1,1),materials.get(p.character+':0'));mesh.name='image-walker-'+p.character;mesh.userData={isPedestrianBillboard:true,outlineOnly:true,id:p.id,character:p.character,pose:'walking-static',heading:p.heading,frame:0};mesh.castShadow=false;mesh.receiveShadow=false;pivot.add(mesh);group.add(pivot);
   addBillboardLightAttributes(mesh.geometry);
   figures.push({placement:p,asset:a,pivot,mesh,frame:-1,tier:-1,azimuth:0,feet:pivot.position.clone()});
@@ -57,6 +60,16 @@ export function createPedestrians(plan,assets,elevation,shadowElevation=elevatio
 
  function setLighting(field){if(field.sunlight)Object.assign(sunlight,field.sunlight);for(const f of figures){const colors=typeof field==='string'?[0,1,2].map(()=>new T.Color(field)):field.sampleFigure(f.feet,f.placement.height);f.sunExposure=field.sunExposure?.(f.feet,f.placement.height,.22)||[0,0,0];writeBillboardSun(f.mesh.geometry,0,f.feet,f.placement.height,f.sunExposure);f.lighting=colors;writeBillboardLight(f.mesh.geometry,0,colors);}}
  function exportGroup(){const out=new T.Group();out.name=group.name;for(const f of figures){const pivot=f.pivot.clone(),mesh=pivot.children[0];mesh.geometry=f.mesh.geometry.clone();mesh.material=f.mesh.material.clone();mesh.material.onBeforeCompile=()=>{};mesh.material.customProgramCacheKey=()=>'';mesh.material.vertexColors=true;const colors=f.lighting||[0,1,2].map(()=>new T.Color(1,1,1)),data=[];for(let i=0;i<4;i++){const y=f.mesh.geometry.attributes.position.getY(i),crop=f.mesh.geometry.attributes.billboardCrop,h=(y+.5)*crop.getY(i)+crop.getX(i),a=h<.48?0:1,t=T.MathUtils.smoothstep(h,a===0?.10:.48,a===0?.48:.86);data.push(...colors[a].clone().lerp(colors[a+1],t).toArray());}mesh.geometry.setAttribute('color',new T.Float32BufferAttribute(data,3));out.add(pivot);}if(shadows.mesh.visible)out.add(shadows.mesh.clone());return out;}
+ function setAssets(nextAssets){
+  for(const f of figures)if(!nextAssets.has(f.placement.character))throw Error('사람 옷 파일이 빠졌습니다: '+f.placement.character);
+  const previous=[...materials.values()];materials.clear();installMaterials(nextAssets);
+  assets=nextAssets;
+  for(const f of figures){f.asset=assets.get(f.placement.character);f.frame=-1;f.tier=-1;f.mesh.material=materials.get(f.placement.character+':0');f.mesh.userData.season=assets.season;}
+  previous.forEach(m=>m.dispose());
+  group.userData.season=assets.season;
+  group.userData.elevationTiers=Math.max(...[...assets.values()].map(a=>a.tiers.length));
+  group.userData.viewsPerCharacter=8*group.userData.elevationTiers;
+ }
  function setStyle(style){mode.value=style==='line'?1:style==='tone'?2:0;}
- group.userData={...plan.qa,directions:8,elevationTiers:3,viewsPerCharacter:24,source:'image_gen',staticWalkingPose:true,groundFit:{figures:figures.length,finishedSurface:true,maxGap:Math.max(0,...figures.map(f=>f.feet.y-shadowElevation(f.feet.x,f.feet.z)))}};return{group,figures,update,setStyle,setLighting,shadows,exportGroup};
+ group.userData={...plan.qa,directions:8,season:assets.season||'spring',elevationTiers:Math.max(...[...assets.values()].map(a=>a.tiers.length)),viewsPerCharacter:8*Math.max(...[...assets.values()].map(a=>a.tiers.length)),source:'image_gen',staticWalkingPose:true,groundFit:{figures:figures.length,finishedSurface:true,maxGap:Math.max(0,...figures.map(f=>f.feet.y-shadowElevation(f.feet.x,f.feet.z)))}};return{group,figures,update,setAssets,setStyle,setLighting,shadows,exportGroup};
 }

@@ -166,5 +166,35 @@
       "background continuity and road ribbon tests",
       "pack --check"
     ]
+  },
+  "peopleSeasonalOutfits": {
+    "date": "2026-11-21",
+    "status": "release-candidate-verified",
+    "people": 10,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "elevations": [
+      0,
+      30,
+      60
+    ],
+    "newSheets": 90,
+    "originals": "work/people-seasons/originals",
+    "publicAssets": "outputs/domestic-test/people/seasons",
+    "publicEncoding": "lossless WebP; all 90 RGBA buffers verified identical to PNG",
+    "preview": "Drag and keyboard rotation, 8 azimuths x 3 elevations, season changes preserve view",
+    "scope": "Based on previous public commit de1e3ec; unrelated local scene changes excluded; encyclopedia catalog includes existing published models",
+    "checks": [
+      "season runtime/cache/retry/export",
+      "120 sheets / 960 frame bounds and hashes",
+      "799 catalog entries and file references",
+      "build 1164 files / 996.5 MB",
+      "loading, browser generation, scene budget, circular background, full detail, generation scope",
+      "local browser mouse drag, keyboard, seasonal view preservation and reset"
+    ]
   }
 }

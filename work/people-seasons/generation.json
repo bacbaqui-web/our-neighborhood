@@ -1,0 +1,210 @@
+[
+  {
+    "id": "woman-cardigan",
+    "season": "summer",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5cab501e-e4f7-42be-b1bb-46a70e43b0b1.png"
+  },
+  {
+    "id": "woman-cardigan",
+    "outfit": "camel hip-length wool jacket over cream knit, blue jeans, brown loafers",
+    "season": "autumn",
+    "prompt": "Identity-preserve edit of supplied Korean pedestrian 8-view sprite sheet. Change ONLY clothing to autumn: camel hip-length wool jacket over cream knit, blue jeans, brown loafers. Preserve exact same person, hairstyle, faceless face, age, build, walking poses and thin muted outlines, plain flat muted webtoon coloring. All 8 figures wear same new outfit. Exact same 4 columns x 2 rows directional layout and image size, full bodies centered in each cell. Row1 front, front-right, right, back-right; row2 back, back-left, left, front-left. Transparent background alpha, no text, no shadows, no glow, no environment. Production sprite asset.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-d9ba26f8-f17e-4e98-8c94-c7ef63a00754.png"
+  },
+  {
+    "id": "woman-cardigan",
+    "outfit": "ivory padded winter jacket, dusty blue scarf, dark blue full-length jeans, tan ankle boots",
+    "season": "winter",
+    "prompt": "Identity-preserve edit of supplied Korean pedestrian 8-view sprite sheet. Change ONLY clothing to winter: ivory padded winter jacket, dusty blue scarf, dark blue full-length jeans, tan ankle boots. Preserve exact same person, hairstyle, faceless face, age, build, walking poses and thin muted outlines, plain flat muted webtoon coloring. All 8 figures wear same new outfit. Exact same 4 columns x 2 rows directional layout and image size, full bodies centered in each cell. Row1 front, front-right, right, back-right; row2 back, back-left, left, front-left. Transparent background alpha, no text, no shadows, no glow, no environment. Production sprite asset.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-8ab7e3f0-16f0-464c-b614-fbaff52d9ee0.png"
+  },
+  {
+    "id": "man-jacket",
+    "outfit": "light gray short sleeve tee, khaki knee shorts, white sneakers",
+    "season": "summer",
+    "prompt": "Identity-preserve edit of supplied Korean pedestrian 8-view sprite sheet. Change ONLY clothing to summer: light gray short sleeve tee, khaki knee shorts, white sneakers. Preserve exact same person, hairstyle, faceless face, age, build, walking poses and thin muted outlines, plain flat muted webtoon coloring. All 8 figures wear same new outfit. Exact same 4 columns x 2 rows directional layout and image size, full bodies centered in each cell. Row1 front, front-right, right, back-right; row2 back, back-left, left, front-left. Transparent background alpha, no text, no shadows, no glow, no environment. Production sprite asset.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-95c77443-d343-409f-b41f-3c45495519ee.png"
+  },
+  {
+    "id": "man-jacket",
+    "outfit": "charcoal padded winter jacket zipped, gray scarf, navy trousers, dark boots",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian sprite sheet clothing ONLY for winter: charcoal padded winter jacket zipped, gray scarf, navy trousers, dark boots. Keep exact identity, faceless face, hair, build, thin muted outlines and flat webtoon colors, same walking poses. 8 views in same 4x2 grid, same dimensions. Top front/front-right/right/back-right, bottom back/back-left/left/front-left. Full body centered each cell. Identical clothing across views. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-1da39e6a-6906-4a8c-83eb-979118dbd314.png"
+  },
+  {
+    "id": "man-jacket",
+    "outfit": "olive corduroy overshirt over cream tee, charcoal trousers, white sneakers",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian sprite sheet clothing ONLY for autumn: olive corduroy overshirt over cream tee, charcoal trousers, white sneakers. Keep exact identity, faceless face, hair, build, thin muted outlines and flat webtoon colors, same walking poses. 8 views in same 4x2 grid, same dimensions. Top front/front-right/right/back-right, bottom back/back-left/left/front-left. Full body centered each cell. Identical clothing across views. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-dc7069fb-5bb4-4fca-a5bb-e2c848284e5b.png"
+  },
+  {
+    "id": "woman-vest",
+    "outfit": "pale beige short sleeve blouse, taupe light trousers, brown walking shoes",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian sprite sheet clothing ONLY for summer: pale beige short sleeve blouse, taupe light trousers, brown walking shoes. Keep exact identity, faceless face, hair, build, thin muted outlines and flat webtoon colors, same walking poses. 8 views in same 4x2 grid, same dimensions. Top front/front-right/right/back-right, bottom back/back-left/left/front-left. Full body centered each cell. Identical clothing across views. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-37da9905-db71-41e4-bc34-a1c7e483ee43.png"
+  },
+  {
+    "id": "woman-vest",
+    "outfit": "burgundy long sleeve cardigan over cream top, brown trousers, brown walking shoes",
+    "season": "autumn",
+    "prompt": "Identity-preserve clothing edit of supplied Korean pedestrian sheet for autumn: burgundy long sleeve cardigan over cream top, brown trousers, brown walking shoes. Keep same person, faceless face, hair, build, pose, thin muted outline, flat muted color areas with no texture/no shading. Exact 4x2 eight-direction layout and dimensions. Top front/front-right/right/back-right; bottom back/back-left/left/front-left. Full body each cell, same clothing in all views. Transparent alpha background. No glow, shadow, labels or environment.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-65be5d3a-389f-49fa-865a-c9b909f39ebf.png"
+  },
+  {
+    "id": "woman-vest",
+    "outfit": "burgundy padded hip length winter coat, beige scarf, warm dark taupe trousers, brown boots",
+    "season": "winter",
+    "prompt": "Identity-preserve clothing edit of supplied Korean pedestrian sheet for winter: burgundy padded hip length winter coat, beige scarf, warm dark taupe trousers, brown boots. Keep same person, faceless face, hair, build, pose, thin muted outline, flat muted color areas with no texture/no shading. Exact 4x2 eight-direction layout and dimensions. Top front/front-right/right/back-right; bottom back/back-left/left/front-left. Full body each cell, same clothing in all views. Transparent alpha background. No glow, shadow, labels or environment.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-92b19aff-3f80-442c-86ad-9ead7b7526e7.png"
+  },
+  {
+    "id": "man-senior",
+    "outfit": "muted blue short sleeve polo, light beige trousers, gray walking shoes",
+    "season": "summer",
+    "prompt": "Identity-preserve clothing edit of supplied Korean pedestrian sheet for summer: muted blue short sleeve polo, light beige trousers, gray walking shoes. Keep same person, faceless face, hair, build, pose, thin muted outline, flat muted color areas with no texture/no shading. Exact 4x2 eight-direction layout and dimensions. Top front/front-right/right/back-right; bottom back/back-left/left/front-left. Full body each cell, same clothing in all views. Transparent alpha background. No glow, shadow, labels or environment.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-000cd26e-db89-434c-b5a5-f036f103e254.png"
+  },
+  {
+    "id": "man-senior",
+    "outfit": "brown knit cardigan over blue collared shirt, navy trousers, gray shoes",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: brown knit cardigan over blue collared shirt, navy trousers, gray shoes. Identity and style locked: same faceless person, hair, age, body, walking poses, thin muted line art, flat solid muted colors, no texture. Preserve 4x2 eight-direction grid, 1536x1024, whole bodies centered per cell, identical outfit each view. Transparent alpha, no glow, shadows, text, background.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-36d022a9-45d4-478b-982a-4709c7f35180.png"
+  },
+  {
+    "id": "man-senior",
+    "outfit": "beige padded winter coat, muted blue scarf, navy full length trousers, dark winter shoes",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: beige padded winter coat, muted blue scarf, navy full length trousers, dark winter shoes. Identity and style locked: same faceless person, hair, age, body, walking poses, thin muted line art, flat solid muted colors, no texture. Preserve 4x2 eight-direction grid, 1536x1024, whole bodies centered per cell, identical outfit each view. Transparent alpha, no glow, shadows, text, background.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-856b9e44-2bf4-4270-9ddf-7cb4c60588be.png"
+  },
+  {
+    "id": "man-backpack",
+    "outfit": "navy short sleeve tee, light blue jeans, gray sneakers; retain charcoal backpack on BOTH shoulders",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: navy short sleeve tee, light blue jeans, gray sneakers; retain charcoal backpack on BOTH shoulders. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-14c430a3-4a87-43ad-9e9b-fb23c0654ab8.png"
+  },
+  {
+    "id": "man-backpack",
+    "outfit": "tan zip jacket over navy top, blue jeans, gray sneakers; retain charcoal backpack on BOTH shoulders",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: tan zip jacket over navy top, blue jeans, gray sneakers; retain charcoal backpack on BOTH shoulders. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5240edf1-668d-4c72-896d-78b1b93056ae.png"
+  },
+  {
+    "id": "man-backpack",
+    "outfit": "navy padded winter jacket, gray scarf, dark jeans, winter sneakers; retain charcoal backpack on BOTH shoulders",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: navy padded winter jacket, gray scarf, dark jeans, winter sneakers; retain charcoal backpack on BOTH shoulders. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-d3c5698e-8da5-4b9c-95f3-3dd81f5e82c2.png"
+  },
+  {
+    "id": "woman-coat",
+    "outfit": "cream short sleeve blouse, sage wide light trousers, beige flats; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: cream short sleeve blouse, sage wide light trousers, beige flats; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-4b34a8bb-3759-4e13-a493-f79723c4cb70.png"
+  },
+  {
+    "id": "woman-coat",
+    "outfit": "camel knee length trench coat, cream top, charcoal trousers, brown loafers; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: camel knee length trench coat, cream top, charcoal trousers, brown loafers; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-2b60183a-52d3-444a-809f-625e8f2f2568.png"
+  },
+  {
+    "id": "woman-coat",
+    "outfit": "sage thick wool knee length winter coat, cream scarf, charcoal trousers, brown ankle boots; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: sage thick wool knee length winter coat, cream scarf, charcoal trousers, brown ankle boots; retain tan crossbody bag at HER LEFT hip strap HER RIGHT shoulder. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-95a3254e-c470-48e8-8220-f8cff584d0f7.png"
+  },
+  {
+    "id": "man-sweatshirt",
+    "outfit": "warm gray short sleeve tee, olive knee shorts, white sneakers",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: warm gray short sleeve tee, olive knee shorts, white sneakers. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-23586a7a-b5c0-4715-abac-cb5f02053740.png"
+  },
+  {
+    "id": "man-sweatshirt",
+    "outfit": "rust brown sweatshirt with no hood, olive long joggers, cream sneakers",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: rust brown sweatshirt with no hood, olive long joggers, cream sneakers. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-296c76a0-77ba-436e-8fde-bdaff805d33c.png"
+  },
+  {
+    "id": "man-sweatshirt",
+    "outfit": "dark olive padded winter parka, cream scarf, charcoal joggers, brown winter boots",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: dark olive padded winter parka, cream scarf, charcoal joggers, brown winter boots. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-5ee5fbc6-eddf-41de-ae21-1c801ca4c225.png"
+  },
+  {
+    "id": "woman-skirt",
+    "outfit": "peach short sleeve blouse, light cream calf length A-line skirt, brown flats",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: peach short sleeve blouse, light cream calf length A-line skirt, brown flats. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-065526ad-4d1a-4551-9b54-3239a5775c89.png"
+  },
+  {
+    "id": "woman-skirt",
+    "outfit": "cream cardigan over rust top, dark teal calf length skirt, cream socks, brown loafers",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: cream cardigan over rust top, dark teal calf length skirt, cream socks, brown loafers. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-8e74003f-5311-4903-8e56-60df09d1f4a0.png"
+  },
+  {
+    "id": "woman-skirt",
+    "outfit": "camel knee length wool winter coat, rust scarf, dark teal long skirt, opaque dark tights, brown ankle boots",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: camel knee length wool winter coat, rust scarf, dark teal long skirt, opaque dark tights, brown ankle boots. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-3fbafd55-fcb7-4c54-86e1-2bf5f2cf2f31.png"
+  },
+  {
+    "id": "woman-sweater",
+    "outfit": "lavender short sleeve blouse, light gray loose trousers, plum slip-on shoes",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: lavender short sleeve blouse, light gray loose trousers, plum slip-on shoes. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-12c62b16-fbf5-4c4b-ac9e-f642614bd8b4.png"
+  },
+  {
+    "id": "woman-sweater",
+    "outfit": "mauve buttoned cardigan over cream blouse, charcoal trousers, plum shoes",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: mauve buttoned cardigan over cream blouse, charcoal trousers, plum shoes. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-d3c5f452-b378-4b67-a86a-b7bab6a0e381.png"
+  },
+  {
+    "id": "woman-sweater",
+    "outfit": "plum padded winter coat, lavender scarf, charcoal full length trousers, dark plum winter shoes",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: plum padded winter coat, lavender scarf, charcoal full length trousers, dark plum winter shoes. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-cabbee01-3dbf-4e16-a3a1-649cf0c2eac5.png"
+  },
+  {
+    "id": "man-shirt",
+    "outfit": "pale blue short sleeve button shirt, light tan trousers, brown loafers",
+    "season": "summer",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to summer clothing: pale blue short sleeve button shirt, light tan trousers, brown loafers. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-9aa6acae-c7a8-4615-853a-fc49ac6335f9.png"
+  },
+  {
+    "id": "man-shirt",
+    "outfit": "navy knit vest over pale blue long sleeve shirt, tan chinos, brown loafers",
+    "season": "autumn",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to autumn clothing: navy knit vest over pale blue long sleeve shirt, tan chinos, brown loafers. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-2baa9b9d-8a62-498b-a153-bff8196a42da.png"
+  },
+  {
+    "id": "man-shirt",
+    "outfit": "navy wool thigh length winter coat, beige scarf, warm tan full length trousers, dark brown boots",
+    "season": "winter",
+    "prompt": "Edit supplied Korean pedestrian 8-view sheet to winter clothing: navy wool thigh length winter coat, beige scarf, warm tan full length trousers, dark brown boots. Keep exact person identity, faceless face, hairstyle, body proportions, walking poses, thin muted outline and flat solid muted webtoon colors, no texture or shading. Preserve exact 4x2 eight-direction layout and 1536x1024 canvas, whole bodies centered per cell. Identical outfit all directions. Transparent alpha background, no glow, shadows, text or scenery.",
+    "path": "/Users/bacbaqui/.codex/generated_images/01a1fa52-63f7-70a2-aa93-808c72fa788e/exec-68545607-6322-4cd0-bab6-eae573acda74.png"
+  }
+]

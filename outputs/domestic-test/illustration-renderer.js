@@ -140,6 +140,7 @@ export function createIllustrationRenderer(renderer){
   const target=renderer.getRenderTarget(),auto=renderer.autoClear,shadow=renderer.shadowMap.enabled,clear=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha(),infoAuto=renderer.info.autoReset;
   const hidden=hideLegacyLines(scene),replaced=[];renderer.info.autoReset=false;renderer.info.reset();
   try{
+   scene.traverseVisible(o=>{if(o.userData.styledWire)o.userData.setWireStyle(settings);});
    renderer.setRenderTarget(color);drawColor();
    // This cheap unlit pass runs only for visible LOD geometry. It never changes
    // the full-scene shadow cache, and transparent shadows / halos aren't edges.

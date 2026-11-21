@@ -1,10 +1,12 @@
 import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
+import {createSecurityLamp} from './grade1-street/models.js';
 import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 import {windowIsLit} from './environment-policy.js?v=151';
 
-export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],surface=elevation){
+export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],surface=elevation,utilityPlan=null){
+ if(utilityPlan)plan={...plan,lights:[...plan.lights.filter(l=>l.type!=='pole'),...utilityPlan.poles.filter(p=>p.lamp).map(p=>({id:'utility-lamp-'+p.id,type:'pole',root:[p.x,elevation(p.x,p.z),p.z],direction:[-p.nx,-p.nz],height:5.4,reach:1.1,variant:0,intensity:95}))]};
  // Mounted fixtures keep their mounting height; freestanding lights use finished paving.
  plan={...plan,lights:plan.lights.map(l=>({...l,root:[l.root[0],l.type==='arterial'?surface(l.root[0],l.root[2]):l.type==='pole'?elevation(l.root[0],l.root[2]):l.root[1],l.root[2]]})).filter(l=>visibleObject(l.root[0],l.root[2],l.height,Math.max(.5,l.reach||0),l.root[1],false))};
  const group=new T.Group();group.name='AlleySecurityLights';const bucket=new Map(),lenses=[],heads=[],halos=[],pools=[];
@@ -19,20 +21,16 @@ export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],s
   const [x,y,z]=l.root,[nx,nz]=l.direction,ux=nz,uz=-nx,H=l.height,angle=Math.atan2(nx,nz),at=(f,h,s=0)=>[x+nx*f+ux*s,y+h,z+nz*f+uz*s];
   const pos=at(l.reach,H+.05);heads.push(new T.Vector3(...pos));
   if(l.type!=='transit'){
-  if(l.type==='arterial'){rod(at(0,0),at(0,H-.35),.085,0x657574);box(x,y+.3,z,.23,.6,.23,angle,0x556563,true);box(x,y+.65,z,.13,.32,.14,angle,0x596966);}
-  if(l.type==='pole')for(const h of [H-.50,H-.06]){const g=new T.TorusGeometry(.155,.018,6,16);g.rotateX(Math.PI/2);g.translate(x,y+h,z);add(g,0x596965);}
-  else box(...at(.01,H-.25),.16,.54,.10,angle,0x56635f);
-  const pts=[at(.02,H-.45),at(.10,H-.05),at(l.reach*.55,H+.12),at(l.reach,H+.10)].map(p=>new T.Vector3(...p));
-  add(new T.TubeGeometry(new T.CatmullRomCurve3(pts),10,.038,8,false),0x7c8984);
-  rod(at(.03,H-.55),at(l.reach*.60,H+.04),.018,0x59665e);
-  const w=l.variant===1?.32:.26,d=l.variant===2?.62:.48;
-  box(...pos,w,.11,d,angle,l.variant===1?0x55645f:0x89938a);box(pos[0],pos[1]+.075,pos[2],w*.8,.04,d*.72,angle,0x65726b);
-  for(let f=0;f<5;f++)box(...at(l.reach-.16+f*.08,H+.087),w*.91,.025,.018,angle,0x4e5e59);
-  const lens=new T.BoxGeometry(w*.83,.025,d*.82);lens.rotateY(angle);lens.translate(pos[0],pos[1]-.065,pos[2]);lenses.push(lens);
-  // Visible LED rows and a small sensor on top distinguish the fixture from a box.
-  for(const side of [-1,1])for(let j=0;j<3;j++)box(...at(l.reach-.13+j*.13,H-.082,side*w*.22),.034,.012,.065,angle,0xe9e7d4);
-  box(...at(l.reach-.12,H+.13),.06,.05,.06,angle,0x425654);
-  if(l.type==='wall')rod(at(.035,H-.5),at(.035,.6),.011,0x67736b);
+   if(l.type==='arterial'){
+    const shaft=new T.CylinderGeometry(.055,.095,H,12);shaft.translate(x,y+H/2,z);add(shaft,0x657574);
+    box(x,y+.12,z,.26,.24,.26,angle,0x556563,true);box(...at(.085,.72),.11,.32,.025,angle,0x596966);
+   }
+   const radius=l.type==='pole'?.15:l.type==='arterial'?.06:0;
+   const fixture=createSecurityLamp({poleRadius:radius,reach:l.reach});
+   fixture.position.set(...at(radius,H));fixture.rotation.y=angle;
+   fixture.traverse(o=>{if(o.userData.lampEmitter){o.material.dispose();o.material=lensMaterial;}});
+   fixture.updateMatrixWorld(true);heads[heads.length-1]=new T.Vector3(...fixture.userData.lightOrigin).applyMatrix4(fixture.matrixWorld);group.add(fixture);
+   if(l.type==='wall')rod(at(.035,H-.1),at(.035,.6),.011,0x67736b);
   }
   const halo=new T.Sprite(glowMat);halo.position.copy(heads.at(-1));halo.scale.setScalar(l.type==='transit'?.6:1.15);group.add(halo);halos.push(halo);
   const center=at(l.reach+.6,0),verts=[],values=[],R=l.type==='arterial'?8:5.7,step=.65;
@@ -70,6 +68,9 @@ export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],s
   pools.forEach((p,i)=>p.visible=!indices.includes(i));if(changed)renderer.shadowMap.needsUpdate=true;return indices.length+(room>=0?1:0);
  }
  function dispose(){group.traverse(o=>{o.geometry?.dispose();if(o.material)o.material.dispose();if(o.isLight)o.shadow?.dispose();});glowTexture.dispose();lensMaterial.dispose();glowMat.dispose();poolMat.dispose();}
- function exportGroup(){const out=new T.Group();out.name=group.name;for(const o of group.children)if(o.isMesh&&o.material.isMeshStandardMaterial)out.add(o.clone());return out;}
+ function exportGroup(){
+  const out=new T.Group();out.name=group.name;group.updateMatrixWorld(true);const inverse=group.matrixWorld.clone().invert();
+  group.traverse(o=>{if(o.isMesh&&o.material.isMeshStandardMaterial){const copy=o.clone(false);copy.matrix.copy(inverse).multiply(o.matrixWorld);copy.matrixAutoUpdate=false;out.add(copy);}});return out;
+ }
  group.traverse(o=>o.userData.environmentOwned=true);group.userData={environmentOwned:true,qa:plan.qa,supportFit:{freeStanding:plan.lights.filter(l=>l.type==='arterial').length,mounted:plan.lights.filter(l=>l.type!=='arterial').length}};return{group,set,update,heads,plan,dispose,exportGroup,sourcesForCamera,getBillboardSources:()=>billboardSources,getBillboardSignature:()=>billboardSignature};
 }

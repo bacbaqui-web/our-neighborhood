@@ -41,7 +41,7 @@ def prepare_roads():
  return json.dumps(roads)
 
 def stage_base():
- global buildings,terrain
+ global buildings,terrain,roads
  source_loc={**loc,'sizeMetres':(radius+30)*2}
  all_buildings=source.acquire_buildings(root,source_loc if view else loc)
  buildings=select_buildings(all_buildings,source_loc if view else loc)
@@ -113,7 +113,7 @@ def stage_finish():
 
 def stage_site_layout():
  import site_layout
- site_layout.build(root,[lat,lon],radius)
+ site_layout.build(root,[lat,lon],radius,roads=roads)
 
 # Outside-city building requests are intentionally omitted; real mountains remain.
 def context_request_urls():

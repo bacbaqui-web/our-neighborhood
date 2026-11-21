@@ -1,16 +1,17 @@
 import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
+import {createOutlinedWires,saggingCable} from './grade1-street/wires.js';
 import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 // Dimensions in metres. The graph is planned independently of visual ornament.
 export function createUtilityNetwork(plan,elevation){
- const group=new T.Group();group.name='RoadsideUtilityNetwork';const buckets=new Map(),lines=new Map(),proxies=[],colliders=[],feet=[];
+ const group=new T.Group();group.name='RoadsideUtilityNetwork';const buckets=new Map(),lines=new Map(),proxies=[],colliders=[],feet=[],cablePaths=[];
  const colors={pole:0x909185,metal:0x53605b,dark:0x303b39,box:0x727d76,ceramic:0xb0b4a4,yellow:0xb79b45,label:0xc2c3b5};
  function add(g,color,kind='poles',edge=false){const key=color+':'+kind;if(!buckets.has(key))buckets.set(key,{color,kind,gs:[]});buckets.get(key).gs.push(g);if(edge){const e=new T.EdgesGeometry(g,35);if(!lines.has(color))lines.set(color,[]);lines.get(color).push(e);}}
  function box(x,y,z,w,h,d,angle,color,kind='metal'){const g=new T.BoxGeometry(w,h,d);g.rotateY(angle);g.translate(x,y,z);add(g,color,kind,true);}
  function cylinder(x,y,z,r1,r2,h,color,kind='poles',sides=12){const g=new T.CylinderGeometry(r1,r2,h,sides);g.translate(x,y,z);add(g,color,kind);}
  function rod(A,B,r,color,kind='metal'){const d=new T.Vector3(...B).sub(new T.Vector3(...A)),g=new T.CylinderGeometry(r,r,d.length(),6);g.applyQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),d.normalize()));g.translate((A[0]+B[0])/2,(A[1]+B[1])/2,(A[2]+B[2])/2);add(g,color,kind);}
- function cable(A,B,r,sag){const pts=[];for(let k=0;k<=20;k++){const t=k/20;pts.push(new T.Vector3(A[0]*(1-t)+B[0]*t,A[1]*(1-t)+B[1]*t-Math.sin(Math.PI*t)*sag,A[2]*(1-t)+B[2]*t));}const g=new T.TubeGeometry(new T.CatmullRomCurve3(pts),24,r,5,false);add(g,colors.dark,'wire');}
+ function cable(A,B,r,sag){cablePaths.push({points:saggingCable(A,B,sag),radius:r});}
  function ring(x,y,z,r,t,angle,color){const g=new T.TorusGeometry(r,t,6,24);g.rotateY(angle);g.translate(x,y,z);add(g,color,'wire');}
  for(const p of plan.poles){if(!visibleObject(p.x,p.z,p.poleHeight,1,elevation(p.x,p.z)))continue;const {x,z,nx,nz,ux,uz,id,poleHeight:H,radius:r}=p,y=elevation(x,z),angle=-Math.atan2(nz,nx),at=(u,v,h)=>[x+nx*u+ux*v,y+h,z+nz*u+uz*v];
   // Separate the adaptive lower shaft from the rigid upper pole and wires.
@@ -29,7 +30,6 @@ export function createUtilityNetwork(plan,elevation){
   box(...at(-.15,0,1.8),.02,.28,.14,angle,colors.label,'mortar');
   if(id%3!==1)ring(...at(-.24,.1,6.05),.23,.024,angle,colors.dark);
   if(p.kind==='distribution'&&id%3===0){const q=at(-.43,0,5.05);cylinder(...q,.235,.235,.73,colors.box,'metal');cylinder(q[0],q[1]+.40,q[2],.265,.265,.07,colors.metal,'metal');for(const v of [-.12,.12])cylinder(q[0]+ux*v,q[1]+.5,q[2]+uz*v,.045,.05,.14,colors.ceramic,'metal',8);rod(at(-.12,0,4.6),at(-.7,0,4.6),.04,colors.metal);}
-  if(p.lamp){rod(at(0,0,5.4),at(-.75,0,5.8),.045,colors.metal);rod(at(-.75,0,5.8),at(-1.25,0,5.8),.045,colors.metal);box(...at(-1.25,0,5.72),.55,.12,.25,angle,colors.dark);box(...at(-1.25,0,5.65),.45,.025,.19,angle,0xe8dcc0);}
   // Pole shaft is a walking obstacle, with a tight footprint rather than a road-sized AABB.
   const fp=Array.from({length:12},(_,i)=>[x+Math.cos(i*Math.PI/6)*(r+.05),z+Math.sin(i*Math.PI/6)*(r+.05)]);colliders.push(...fp.map((a,i)=>({a,b:fp[(i+1)%fp.length],width:.025})));
   proxies.push([[-r,-r],[r,-r],[-r,r],[r,r]].flatMap(([dx,dz])=>[[x+dx,y,z+dz],[x+dx,y+H,z+dz]]));
@@ -40,6 +40,7 @@ export function createUtilityNetwork(plan,elevation){
  }
  for(const d of plan.drops){const p=plan.poles[d.pole];if(!visibleObject((p.x+d.end[0])/2,(p.z+d.end[2])/2,7,Math.hypot(p.x-d.end[0],p.z-d.end[2])/2,elevation(p.x,p.z),false))continue;cable([p.x-p.nx*.16,elevation(p.x,p.z)+6.35,p.z-p.nz*.16],d.end,.011,.16);}
  for(const {color,kind,gs} of buckets.values()){const m=new T.Mesh(mergeGeometries(gs,false),new T.MeshStandardMaterial({color,roughness:.88}));m.name='utility-'+kind;m.userData.detailKind=kind;group.add(m);gs.forEach(g=>g.dispose());}
+ if(cablePaths.length)group.add(createOutlinedWires(cablePaths));
  for(const [color,gs] of lines){const c=new T.Color(color).multiplyScalar(.48),m=new T.LineSegments(mergeGeometries(gs,false),new T.LineBasicMaterial({color:c}));m.userData.faceLineColor=c.getHex();group.add(m);gs.forEach(g=>g.dispose());}
  group.userData={...plan.qa,walkObstacles:colliders,placementProxies:proxies};
  group.fitGroundSurface=surface=>{const contacts=[];for(const foot of feet){fitSupportBase(foot.geometry,surface);contacts.push(...foot.geometry.userData.groundRim);}group.userData.supportFit={poles:feet.length,baseVertices:contacts.length,maxGap:Math.max(0,...contacts.map(([x,y,z])=>y-surface(x,z)))};};

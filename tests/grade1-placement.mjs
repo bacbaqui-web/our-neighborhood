@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {planGrade1Props} from '../outputs/domestic-test/grade1-street/placement.js';
+import {configureViewVisibility} from '../outputs/domestic-test/view-generation-visibility.js?v=view3c';
+const poly=(x,z,w,d)=>({type:'Polygon',coordinates:[[[x,z],[x+w,z],[x+w,z+d],[x,z+d],[x,z]]]});
+const building={id:1,building:poly(0,0,10,10),plot:poly(-2,-4,14,16),streetProfile:{grade:1,frontStart:[0,0],frontEnd:[10,0]}};
+const layout={owners:new Set([1]),plots:new Map([[1,building]]),data:{walls:[],gaps:[],vehicleApproaches:[{type:'Polygon',coordinates:[]}]}};
+const dimensions={'gas-meter-bank':{min:[-.5,-.5,0],max:[.5,.5,.23]}};
+const options={elevation:()=>0,roadInfo:()=>null};
+assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,1,'empty approaches remain safe');
+layout.data.protectedAccess=poly(0,-2,2,2);assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'door/pedestrian access stays clear');
+delete layout.data.protectedAccess;layout.data.bays=[{footprint:poly(0,-2,2,2)}];assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'reserved parking stays clear');
+layout.data.bays=[];configureViewVisibility({version:3},{position:[1,-10],radius:30,eyeY:1.7,proxies:[{geometry:poly(-10,-6,30,2),top:6}]});assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'hidden facade omitted');configureViewVisibility(null,null);
+building.streetProfile.grade=2;assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'only grade1');
+console.log('grade1 placement: empty geometry, protected paths, bays, grade and occlusion passed');

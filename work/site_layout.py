@@ -20,9 +20,16 @@ def protect_public_surfaces(package,root):
   return None
  def clean(rows):
   return [p for p in rows if (g:=footprint(p)) is None or g.intersection(public).area<1e-6]
- for key in ['bays','roadBays','plants','walls','gaps','poles']:
+ for key in ['bays','roadBays','plants','walls','gaps']:
   if key in data:
    before=len(data[key]);data[key]=clean(data[key]);removed[key]=before-len(data[key])
+ if 'poles' in data:
+  kept=clean(data['poles'])
+  ids={id(p) for p in kept}
+  indices={i:j for j,i in enumerate(i for i,p in enumerate(data['poles']) if id(p) in ids)}
+  removed['poles']=len(data['poles'])-len(kept)
+  data['poles']=kept
+  data['poleLinks']=[(indices[a],indices[b]) for a,b in data.get('poleLinks',[]) if a in indices and b in indices]
  for key in ['fences','gates','props','booths']:
   if key in data.get('siteDetails',{}):data['siteDetails'][key]=clean(data['siteDetails'][key])
  for z in data['zones']:z['geometry']=mapping(shape(z['geometry']).difference(public))
@@ -32,6 +39,7 @@ def protect_public_surfaces(package,root):
  # Road-marking authority belongs to the arterial plan inside this surface.
  data['yellowLines']=[line for line in data.get('yellowLines',[]) if not LineString(line).intersects(public)]
  package['publicSurfaceQA']={'removed':removed,'source':'arterial/plan.json publicRings'}
+ return public
 
 def align_road_paint(package,root):
  from shapely.geometry import shape,mapping
@@ -39,7 +47,7 @@ def align_road_paint(package,root):
  context=json.loads((Path(root)/'road-context.json').read_text())
  surfaces=context.get('surfaces',{})
  roads=unary_union([shape(surfaces[k]) for k in ('asphalt','arterial') if k in surfaces])
- if roads.is_empty:return
+ if roads.is_empty:return surfaces
  # The test's flat road mask is not the rendered road mask. Preserve every road surface.
  road_area=unary_union([shape(g) for g in surfaces.values()])
  for z in package['infill']['zones']:
@@ -57,8 +65,9 @@ def align_road_paint(package,root):
   return [line for child in getattr(g,'geoms',[]) for line in lines(child)]
  package['infill']['yellowLines']=lines(paint)
  package['infill']['paintSource']='rendered asphalt boundary, inset 0.20m'
+ return surfaces
 
-def build(root,origin,radius):
+def build(root,origin,radius,roads=None):
  root=Path(root).resolve(); out=root/'site-layout';out.mkdir(parents=True,exist_ok=True)
  source=Path(__file__).resolve().parent/'house-plots-test'
  if not json.loads((root/'buildings.geojson').read_text()).get('features'):
@@ -77,8 +86,11 @@ def build(root,origin,radius):
    package[key]=json.loads((out/(file+'.json')).read_text())
   from alley_housing import decorate
   decorate(package)
-  align_road_paint(package,root)
-  protect_public_surfaces(package,root)
+  surfaces=align_road_paint(package,root)
+  public=protect_public_surfaces(package,root)
+  if roads and surfaces:
+   from grade1_poles import apply_alley_poles
+   apply_alley_poles(package,roads,surfaces,public)
   (root/'site-layout.json').write_text(json.dumps(package,ensure_ascii=False,separators=(',',':')))
   return package['plots']['qa']
  finally:

@@ -1,0 +1,17 @@
+1차도로 골목 소품 제작 카드 · 2026-11-22
+
+미아동 저장 로드뷰 008, 022, 038, 041을 이번 사용자 승인에 따라 참고했습니다.
+catalog.js에 모델 ID, 대응 사진 ID, 보이는 형태와 추정 범위를 기록합니다.
+사진 원본이나 사진 픽셀을 모델과 공개 파일에 넣지 않습니다.
+크기는 골목 안에서 문·창·차량과 비교해 정한 제작값입니다.
+
+공통 좌표는 미터, 위 +Y, 앞 +Z입니다.
+벽붙이 모델의 벽 접촉면은 z=0입니다. 위치는 모델 기준점의 높이이며 최저점에서의 높이가 아닙니다.
+바구니의 발과 빗물받이 틀은 y=0에 닿습니다. 빗물받이를 실제 노면에 매립할 때는 표면이 프레임 y=.039m에 닿고 집수 틈을 가리는 노면이 없도록 합니다.
+전주 보안등은 조명 팔이 향하는 쪽의 전주 표면에 원점을 놓습니다. poleRadius를 지정하면 그 표면 뒤로 전주를 감는 띠를 만듭니다.
+createSecurityLamp의 reach는 전주 표면에서 등기구 끝까지의 거리(기본 약 .98m, 최소 .70m)입니다.
+광원 기준점은 root.userData.lightOrigin입니다. 위치는 모델의 월드 변환을 적용하고, 발광 재질은 userData.lampEmitter로 찾습니다. 기본 GLB는 꺼진 상태입니다.
+기존 유사 ID는 참조용입니다. 삭제 검토 기록이 적용된 기존 ID를 되살리지 않습니다.
+
+내보내기: node --no-warnings --loader ./tests/three-loader.mjs work/grade1-street/export.mjs
+검사: node --no-warnings --loader ./tests/three-loader.mjs tests/grade1-assets.mjs

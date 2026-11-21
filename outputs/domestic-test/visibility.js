@@ -11,7 +11,7 @@ export function spatialBatch(root, cellSize=48, cellHeight=48) {
     if ((!object.isMesh&&!object.isLineSegments)||Array.isArray(object.material)) return;
     const material=object.material, geometry=object.geometry;
     // Procedural paving and its A/B switch must retain the original shader and visibility.
-    if(material.userData.groundCharacter||object.name==='wall-base-contact-bands')return;
+    if(material.userData.groundCharacter||object.userData.styledWire||object.name==='wall-base-contact-bands')return;
     // Textured models retain UVs and their original draw path.
     if (material.map||object.isSkinnedMesh||object.isInstancedMesh) return;
     const position=geometry.attributes.position, step=object.isLineSegments?2:3;

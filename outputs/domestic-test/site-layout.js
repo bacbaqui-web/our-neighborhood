@@ -80,11 +80,17 @@ export function installSiteLayoutTour(layout,{camera,controls,elevation,requestR
 }
 export function siteUtilityPlan(layout,original,elevation){
  if(!layout)return original;
- const poles=original.poles.filter(p=>!layout.active([p.x,p.z])).map(p=>({...p})),oldIndices=new Map();
+ const poles=original.poles.filter(p=>!layout.active([p.x,p.z])&&!contains(layout.data.grade1PoleArea,[p.x,p.z])).map(p=>({...p})),oldIndices=new Map();
  original.poles.forEach((p,i)=>{const j=poles.findIndex(q=>q.id===p.id);if(j>=0)oldIndices.set(i,j);});
  const spans=original.spans.filter(s=>oldIndices.has(s.a)&&oldIndices.has(s.b)).map(s=>({...s,a:oldIndices.get(s.a),b:oldIndices.get(s.b)}));const indices=new Map();
- for(const [i,p] of layout.data.poles.entries()){if(poles.some(q=>Math.hypot(q.x-p.point[0],q.z-p.point[1])<6))continue;const near=original.poles.slice().sort((a,b)=>Math.hypot(a.x-p.point[0],a.z-p.point[1])-Math.hypot(b.x-p.point[0],b.z-p.point[1]))[0];indices.set(i,poles.length);poles.push({...(near||{nx:1,nz:0,ux:0,uz:1}),x:p.point[0],z:p.point[1],poleHeight:7.5,radius:.14,kind:'alley',lamp:i%3===0});}
- for(const [a,b] of layout.data.poleLinks||[])if(indices.has(a)&&indices.has(b)){const A=poles[indices.get(a)],B=poles[indices.get(b)];spans.push({a:indices.get(a),b:indices.get(b),length:Math.hypot(A.x-B.x,A.z-B.z)});}
+ for(const [i,p] of layout.data.poles.entries()){
+  const duplicate=poles.findIndex(q=>Math.hypot(q.x-p.point[0],q.z-p.point[1])<6);
+  if(duplicate>=0){indices.set(i,duplicate);continue;}
+  const near=original.poles.slice().sort((a,b)=>Math.hypot(a.x-p.point[0],a.z-p.point[1])-Math.hypot(b.x-p.point[0],b.z-p.point[1]))[0];
+  indices.set(i,poles.length);poles.push({...(near||{nx:1,nz:0,ux:0,uz:1}),...Object.fromEntries(['nx','nz','ux','uz'].filter(k=>Number.isFinite(p[k])).map(k=>[k,p[k]])),x:p.point[0],z:p.point[1],poleHeight:p.height||7.5,radius:.14,kind:'alley',lamp:p.lamp??(i%3===0)});
+ }
+
+ for(const [a,b] of layout.data.poleLinks||[])if(indices.has(a)&&indices.has(b)&&indices.get(a)!==indices.get(b)){const A=poles[indices.get(a)],B=poles[indices.get(b)];spans.push({a:indices.get(a),b:indices.get(b),length:Math.hypot(A.x-B.x,A.z-B.z)});}
  poles.forEach((p,i)=>p.id=i);const drops=original.drops.filter(d=>oldIndices.has(d.pole)&&!layout.owners.has(d.owner)).map(d=>({...d,pole:oldIndices.get(d.pole)}));layout.qa.poles=poles.length;return {...original,poles,spans,drops,qa:{...original.qa,poles:poles.length,spans:spans.length,houseDrops:drops.length}};
 }
 

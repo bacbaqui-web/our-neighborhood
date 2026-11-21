@@ -1,0 +1,110 @@
+{
+  "local": {
+    "source": "9a65b85260561d94",
+    "copy": "0f15a2ecaefc48ee",
+    "originalDigest": "5cbf1c365d402df64de65ed7afacd3386d27a04f7489f5ae4d01a826cc737349",
+    "changed": {
+      "1100778330": {
+        "use": "mixed"
+      }
+    },
+    "sourceBuildingCount": 17,
+    "firstRoadResidentialCount": 5
+  },
+  "public": {
+    "source": "93a0ec9684018ff4",
+    "copy": "760de79fc4234e79",
+    "originalDigest": "2ff856c97892ac2eb26302a248234efbd67b434024383c05630c6b138ece0539",
+    "changed": {
+      "1100771877": {
+        "use": "mixed"
+      },
+      "1100771882": {
+        "use": "mixed"
+      }
+    },
+    "result": {
+      "placed": 23,
+      "inferredAlley": 0,
+      "skipped": [
+        {
+          "owner": 1100771877,
+          "reason": "no-clear-fitting-frontage"
+        },
+        {
+          "owner": 1100771882,
+          "reason": "no-clear-fitting-frontage"
+        }
+      ],
+      "originalDigestVerifiedAfterRegeneration": true,
+      "evidence": "verification/shop-expansion-50/public-review-placement.json"
+    }
+  },
+  "candidateDiagnosis": {
+    "owner": 1100784348,
+    "address": "솔매로 99",
+    "knownPlaces": [
+      "소문난순곡주",
+      "케이원헤어",
+      "제일부동산"
+    ],
+    "storedFrontEdgeMetres": 0.546,
+    "fix": "normalize separators and require road-name token boundary",
+    "sourceCommit": "40f6e6d963d800daccf0eab825cb90f09e27b9c1",
+    "hostingRun": 44934517706
+  },
+  "screening": {
+    "script": "work/shop-expansion-50/screen-actual-candidates.mjs",
+    "miadong": {
+      "firstRoad": 7,
+      "protected": 2,
+      "noRoadAccess": 5,
+      "alternativeFacesFitting": 0
+    },
+    "dobong": {
+      "firstRoad": 5,
+      "protected": 4,
+      "noRoadAccess": 1
+    },
+    "limitations": "Saved road mesh triangles and original DEM; live terrain fitting and browser manual selections require public UI verification.",
+    "solmae61ce": {
+      "firstRoad": 1,
+      "fitting": 0,
+      "alternateFitting": 0
+    }
+  },
+  "newGeneration": {
+    "address": "서울 마포구 동교로46길 21 근처 길 위 선택 지점",
+    "timeUTC": "2026-11-21T18:30~18:32Z",
+    "sourceRoadsCommit": "c0b4a35",
+    "result": "Kakao map and road selection succeeded; VWorld building request failed",
+    "evidence": "verification/shop-expansion-50/public-yeonnam-generation-blocked.png"
+  },
+  "latestSource": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
+  "latestHostingRun": 44935643510,
+  "networkDiagnosis": {
+    "timeUTC": "2026-11-21T18:38Z",
+    "browser": "Edge",
+    "directApiNavigationError": "net::ERR_HTTP2_SERVER_REFUSED_STREAM",
+    "apiOrigin": "https://api.vworld.kr",
+    "publicConfigOrigin": "https://magamiscom.ing",
+    "localHttpStatus": 200,
+    "providerStatus": "OK",
+    "jsonpContentType": "application/javascript;charset=UTF-8",
+    "testedPageSizes": [
+      1,
+      1000
+    ],
+    "refererVariants": [
+      "none",
+      "public origin"
+    ],
+    "localVsPublic": "localhost uses same-origin /api/buildings server request; public uses sandbox JSONP directly from browser",
+    "unconfirmed": [
+      "Underlying browser/proxy/server HTTP2 cause",
+      "CORS cause not observed",
+      "No security or proxy settings changed"
+    ]
+  },
+  "latestHostingStatus": "success"
+}

@@ -6159,5 +6159,22 @@
     "blockedEntranceRays": 0,
     "limitations": "Interior layouts are inferred by trade; sign names are adapted and typefaces/icons simplified, preserving observed colors and layout.",
     "report": "work/sungshin-commercial-50/interior-lettering-public.json"
+  },
+  "shopExpansion50": {
+    "date": "2026-11-22",
+    "status": "deployed; six pasted-reference models and 50 modules checked; real random placement blocked pending suitable scene and browser API connectivity",
+    "sourceCommit": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
+    "hostingRun": 44935643510,
+    "shopIds": "shop:alley-01..50 (separate from Sungshin 50 whole buildings)",
+    "approvedPastedModels": 6,
+    "chairTypes": 6,
+    "tradeTextures": 16,
+    "report": "work/shop-expansion-50/report.txt",
+    "evidence": "verification/shop-expansion-50/",
+    "remaining": [
+      "Actual new alley shop road/wall/interior connection and reload stability: public review copy yielded no fitting frontage; other saved candidates also excluded in limited offline screening.",
+      "New public commercial alley generation fails in browser; direct api.vworld.kr navigation reproduces ERR_HTTP2_SERVER_REFUSED_STREAM while local HTTP API succeeds. Underlying transport cause unresolved.",
+      "Existing salon-03 tree/fence foreground needs further classification; not confirmed a placement defect."
+    ]
   }
 }

@@ -1,0 +1,19 @@
+{
+  "scene": "61ce65488f210b03",
+  "limitations": "Candidate screening only: saved road mesh triangles (including sidewalks, as production roadInfo does) and original DEM; live terrain fitting and saved browser manual-asset selections require public UI verification. No scene is modified.",
+  "rows": [
+    {
+      "owner": 1100784177,
+      "address": "인수봉로20나길 58",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 0,
+      "rejected": {
+        "road-access-depth": 200
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    }
+  ]
+}

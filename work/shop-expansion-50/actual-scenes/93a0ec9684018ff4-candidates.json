@@ -1,0 +1,105 @@
+{
+  "scene": "93a0ec9684018ff4",
+  "limitations": "Candidate screening only: saved road mesh triangles (including sidewalks, as production roadInfo does) and original DEM; live terrain fitting and saved browser manual-asset selections require public UI verification. No scene is modified.",
+  "rows": [
+    {
+      "owner": 1100771672,
+      "address": "도봉로51길 32",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 2,
+      "rejected": {
+        "road-access-depth": 200,
+        "front-width": 3
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100771676,
+      "address": "도봉로51길 46",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 5,
+      "rejected": {
+        "front-width": 4,
+        "road-access-depth": 200
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100771877,
+      "address": "솔매로40길 6",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 3,
+      "rejected": {
+        "front-width": 3,
+        "asset-width": 28,
+        "road-access-depth": 88
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100771882,
+      "address": "솔매로40길 14",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 2,
+      "rejected": {
+        "road-access-depth": 200
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100771884,
+      "address": "솔매로40길 18",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 3,
+      "rejected": {
+        "road-access-depth": 200,
+        "front-width": 1
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100778365,
+      "address": "도봉로49길 54",
+      "originalUse": "residential",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 2,
+      "rejected": {
+        "asset-width": 3,
+        "road-access-depth": 12,
+        "front-width": 1
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100784348,
+      "address": "솔매로 99",
+      "originalUse": "mixed",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 0,
+      "rejected": {
+        "front-width": 43,
+        "road-access-depth": 24
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    }
+  ]
+}

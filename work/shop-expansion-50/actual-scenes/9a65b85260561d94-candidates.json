@@ -1,0 +1,79 @@
+{
+  "scene": "9a65b85260561d94",
+  "limitations": "Candidate screening only: saved road mesh triangles (including sidewalks, as production roadInfo does) and original DEM; live terrain fitting and saved browser manual-asset selections require public UI verification. No scene is modified.",
+  "rows": [
+    {
+      "owner": 1100778329,
+      "address": "도봉로49길 7",
+      "originalUse": "residential",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 3,
+      "rejected": {
+        "building-collision": 12,
+        "road-access-depth": 36,
+        "front-width": 1
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100778330,
+      "address": "도봉로49길 7",
+      "originalUse": "residential",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 2,
+      "rejected": {
+        "road-access-depth": 12,
+        "building-collision": 4,
+        "front-width": 1
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100778332,
+      "address": "도봉로49길 11",
+      "originalUse": "residential",
+      "reason": "no-clear-fitting-frontage",
+      "frontEdge": 5,
+      "rejected": {
+        "front-width": 1,
+        "road-access-depth": 200
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100785869,
+      "address": "도봉로 189",
+      "originalUse": "residential",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 0,
+      "rejected": {
+        "road-access-depth": 28,
+        "asset-width": 2,
+        "building-collision": 12
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    },
+    {
+      "owner": 1100785874,
+      "address": "도봉로 193",
+      "originalUse": "residential",
+      "reason": "known-POI-or-manual-or-facility",
+      "frontEdge": 3,
+      "rejected": {
+        "road-access-depth": 48,
+        "front-width": 1
+      },
+      "validChoices": 0,
+      "assetId": null,
+      "placement": null
+    }
+  ]
+}

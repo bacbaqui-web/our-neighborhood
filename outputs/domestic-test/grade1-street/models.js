@@ -263,10 +263,11 @@ export function createSecurityLamp({poleRadius=0, reach=.98, emissiveIntensity=0
   b.rod([x,.290,.701+row*.032+reachOffset],[x,.294,.701+row*.032+reachOffset],.008,5,8);
  }
  const root = finish(b,'security-lamp',poleRadius>0?'pole':'wall',[[0,-.091,0],[0,.091,0]],{lightOrigin:[0,.286,.771+reachOffset]});
- const emitter = root.children.at(-1);
- emitter.userData.lampEmitter = true;
- emitter.material.emissive.setHex(0xffe3ae);
- emitter.material.emissiveIntensity = emissiveIntensity;
+ for(const emitter of root.children.slice(-2)){
+  emitter.userData.lampEmitter = true;
+  emitter.material.emissive.setHex(0xffe3ae);
+  emitter.material.emissiveIntensity = emissiveIntensity;
+ }
  return root;
 }
 

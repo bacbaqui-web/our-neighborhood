@@ -79,7 +79,9 @@ def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
      fp=local_rect(center,u,n,-1.2,1.2,sign*half,sign*(half+candidate))
      if sidewalk.buffer(.04).covers(fp):depth=candidate;break
     if not depth:break
-    fp=local_rect(center,u,n,-1.2,1.2,sign*half,sign*(half+depth));landing_rows.append({'footprint':mapping(fp),'center':[center[0]+n[0]*sign*(half+depth/2),center[1]+n[1]*sign*(half+depth/2)],'out':[n[0]*sign,n[1]*sign],'depth':depth,'width':2.4})
+    fp=local_rect(center,u,n,-1.2,1.2,sign*half,sign*(half+depth)).intersection(sidewalk).intersection(zone)
+    if fp.geom_type!='Polygon' or fp.area<2.4*depth*.99:break
+    landing_rows.append({'footprint':mapping(fp),'center':[center[0]+n[0]*sign*(half+depth/2),center[1]+n[1]*sign*(half+depth/2)],'out':[n[0]*sign,n[1]*sign],'depth':depth,'width':2.4})
    if len(landing_rows)!=2:skipped.append({'junction':ji,'arm':ai,'reason':'no pair of clear sidewalk landings'});continue
    allfp=corridor.union(unary_union([shape(l['footprint']) for l in landing_rows]))
    if not unary_union(zones).buffer(-2).covers(allfp):skipped.append({'junction':ji,'arm':ai,'reason':'complete crossing exceeds junction patch'});continue
@@ -228,7 +230,9 @@ def build(root,roads=None,terrain=None):
    out+=surface_positions(piece,height,plane_datum);band=band.difference(poly)
   out+=surface_positions(band,height,datum)
   return out
- ramps=[r for r in plan['ramps'] if zone.covers(shape(r['footprint']))];rm=unary_union([shape(r['footprint']) for r in ramps])
+ # Approved footprints already share the exact public/patch mask. Do not drop
+ # whole ramps on a strict covers predicate at floating-point boundaries.
+ ramps=plan['ramps'];rm=unary_union([shape(r['footprint']) for r in ramps])
  for k,v in rc['positions'].items():rc['positions'][k]=cut_positions(v,zone)
  rc['normals']={}
  road_surface=connected_surface(shape(plan['road']).intersection(zone),.035)
@@ -259,7 +263,9 @@ def build(root,roads=None,terrain=None):
   c=r['center'];n=r['out'];d=r['depth']
   def ry(x,z):
    distance=(x-c[0])*n[0]+(z-c[1])*n[1]+d/2;f=max(0,min(1,distance/(d-.2)));return asphalt(x,z)+(walk(x,z)-asphalt(x,z))*f
-  geometry['ramp']+=surface_positions(shape(r['footprint']),height,ry)
+  ramp_positions=surface_positions(shape(r['footprint']),height,ry)
+  if not ramp_positions:raise ValueError('Approved crossing ramp produced no surface')
+  geometry['ramp']+=ramp_positions
  for seg in plan['curbs']:
   a,b=seg['a'],seg['b'];mid=Point((a[0]+b[0])/2,(a[1]+b[1])/2)
   if not zone.covers(mid):continue
@@ -272,6 +278,7 @@ def build(root,roads=None,terrain=None):
    j=(i+1)%4
    for tri in [(bottom[i],bottom[j],top[j]),(bottom[i],top[j],top[i])]:geometry['curb'] += [v for p in tri for v in p]
  plan['assets']=[a for a in plan['assets'] if zone.covers(Point(a['position'][0],a['position'][2])) and feather_boundary.distance(Point(a['position'][0],a['position'][2]))>2]
+ plan['qa'].update({'plannedRamps':len(plan['ramps']),'generatedRamps':len(ramps),'generatedTactileParts':len(plan['assets'])})
  rc['junctions']={'geometry':geometry,'assets':plan['assets'],'qa':plan['qa'],'parts':{'curb':'junction:curb-straight','ramp':'junction:curb-ramp','white':'junction:crossing-stop','yellow':'junction:edge-corner'},'dimensions':'parameterized from reviewed parts; inferred, not survey dimensions'}
  rc.setdefault('qa',{})['junctions']=plan['qa'];write(path,rc)
  if arterial:

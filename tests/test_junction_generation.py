@@ -98,6 +98,26 @@ class Junctions(unittest.TestCase):
       if poly.area<1e-9 or not poly.buffer(1e-7).covers(point):continue
       x,z=point.x,point.y;den=(b[2]-c[2])*(a[0]-c[0])+(c[0]-b[0])*(a[2]-c[2]);u=((b[2]-c[2])*(x-c[0])+(c[0]-b[0])*(z-c[2]))/den;v=((c[2]-a[2])*(x-c[0])+(a[0]-c[0])*(z-c[2]))/den;ys.append(u*a[1]+v*b[1]+(1-u-v)*c[1])
     self.assertTrue(ys);self.assertLess(max(ys)-min(ys),1e-6)
+ def test_actual_landing_boundary_keeps_all_approved_ramps(self):
+  from unittest.mock import patch
+  fixture=json.loads((Path(__file__).resolve().parents[1]/'work/junction-generation-review/actual-landing-boundary-fixture.json').read_text())
+  road_shape=shape(fixture['road']);walk_shape=shape(fixture['sidewalk'])
+  plan=plan_junctions(fixture['roads'],road_shape,walk_shape,lambda x,z:0,barriers=shape(fixture['barriers']))
+  self.assertEqual(len(plan['ramps']),4)
+  for ramp in plan['ramps']:self.assertLess(shape(ramp['footprint']).difference(shape(plan['zone'])).area,1e-10)
+  class Terrain:
+   def mesh_height(self,x,z):return 0
+  with tempfile.TemporaryDirectory() as f:
+   root=Path(f)
+   def write(n,x):(root/n).write_text(json.dumps(x))
+   write('location.json',{});write('manifest.json',{})
+   write('road-reservation.json',{'surfaces':{'carriageway':mapping(road_shape),'shared':mapping(Polygon()),'sidewalk':mapping(walk_shape)}})
+   write('road-context.json',{'positions':{'asphalt':surface_positions(road_shape,lambda x,z:0,.035),'sidewalk':surface_positions(walk_shape,lambda x,z:0,.185)}})
+   with patch('junction_generation.plan_junctions',return_value=plan):build(root,fixture['roads'],Terrain())
+   out=json.loads((root/'road-context.json').read_text());values=out['junctions']['geometry']['ramp']
+   actual=unary_union([Polygon([(values[i+j],values[i+j+2]) for j in (0,3,6)]) for i in range(0,len(values),9)])
+   for ramp in plan['ramps']:self.assertLess(shape(ramp['footprint']).difference(actual).area,1e-8)
+   self.assertEqual(out['junctions']['qa']['generatedRamps'],4)
  def test_shallow_crossing_is_skipped_whole(self):
   p=plan([road([[-80,0],[80,0]],4),road([[0,0],[70,30]],2)])
   for c in p['crossings']:self.assertLess(shape(c['footprint']).difference(shape(p['zone'])).area,1e-6)

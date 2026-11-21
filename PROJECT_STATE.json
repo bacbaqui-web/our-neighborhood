@@ -5807,5 +5807,22 @@
     ],
     "proof": "verification/scene-edit/public-road-groups.jpg",
     "limits": "Public verification covers editing UI; full save/regeneration and reload verified locally."
+  },
+  "manualRoadOverlapFix20261121": {
+    "status": "implemented-tested-public-verified",
+    "sourceCommit": "c51e0fc4f752e7eee2dbc1a3dc016c16223f7106",
+    "hostingCommit": "84861605da4cbdc573b4bde45ce834b350552e30",
+    "deploymentRun": "44898181540",
+    "ciRun": "44898161931",
+    "cause": "Manual grades alone triggered a 1.5m centreline-buffer rejection before the existing footprint-preserving surface fit. Identical inferred grades did not.",
+    "behavior": "Manual and inferred grades use the same surface fit. Known building footprints and explicit grade/group values are preserved. Genuine centreline conflicts remain flagged as roadReviewRequired with a visible roadWarning; their connectivity is not claimed resolved.",
+    "checks": [
+      "26 Python road tests including regression reproduction",
+      "6 scene edit tests and 11 visibility tests",
+      "required JS/CI checks and reviewed site build",
+      "public saved 50m scene: main-road segments grouped, grade 2 regeneration and reload completed",
+      "local 100m full generation completed with main-road grade 2 group preserved and genuine source-conflict warning visible"
+    ],
+    "proof": "verification/scene-edit/public-road-overlap-fixed.jpg"
   }
 }

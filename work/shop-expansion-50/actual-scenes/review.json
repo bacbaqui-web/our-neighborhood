@@ -104,7 +104,58 @@
       "Underlying browser/proxy/server HTTP2 cause",
       "CORS cause not observed",
       "No security or proxy settings changed"
-    ]
+    ],
+    "alternateBrowser": {
+      "name": "ChatGPT in-app browser",
+      "apiDirectResponse": "valid provider JSON error PARAM_REQUIRED for keyless request; transport succeeded",
+      "publicGeneration": "success: 48be062bb9edbb32"
+    },
+    "resolution": "Continued public-site generation successfully in in-app browser; Edge HTTP2 problem remains outside placement code."
   },
-  "latestHostingStatus": "success"
+  "latestHostingStatus": "success",
+  "yeonnam": {
+    "source": "48be062bb9edbb32",
+    "copy": "d5482f6a3dbc4ec0",
+    "sourceCommit": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
+    "sourceDigest": "226e973e8a1610b1066dffb8ad67be97a735f01f2b70b0bad4b4fc2b90eebd70",
+    "browser": "ChatGPT in-app browser",
+    "knownTradePlacement": {
+      "owner": 1100857992,
+      "address": "동교로46길 29",
+      "asset": "alley-03",
+      "placeId": "27468834",
+      "evidence": "verification/shop-expansion-50/public-yeonnam-alley03-street.png"
+    },
+    "changed": {
+      "1100884774": {
+        "use": "mixed"
+      }
+    },
+    "testCondition": "Only copied scene use changed via existing building editor. Original source and automatic entrance kept. No asset ID, road class or clearance forced.",
+    "randomRegeneration": {
+      "result": "placed",
+      "owner": 1100884774,
+      "asset": "alley-35",
+      "reference": "inferred-alley-trade",
+      "match": "commercial-ground-floor-rule",
+      "reloadStable": true,
+      "originalDigestVerifiedAfterRegeneration": true,
+      "visualChecks": [
+        "facade joins actual host exterior",
+        "entrance and plinth meet actual street ground",
+        "chair display and counter visible through opening",
+        "adjacent actual building and sidewalk visible"
+      ],
+      "evidence": [
+        "verification/shop-expansion-50/public-random-shop-front.png",
+        "verification/shop-expansion-50/public-random-shop-junction.png",
+        "verification/shop-expansion-50/public-yeonnam-random-plan.json",
+        "verification/shop-expansion-50/public-yeonnam-original-preserved.png"
+      ]
+    }
+  },
+  "remaining": [
+    "Shop focus uses fixed minimum 8m distance and may put camera inside opposite building on narrow streets; visual inspection used manual zoom/rotation.",
+    "Edge API connection failed while in-app browser and local HTTP succeeded; underlying Edge connection cause not changed."
+  ]
 }

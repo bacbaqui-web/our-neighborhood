@@ -6162,7 +6162,7 @@
   },
   "shopExpansion50": {
     "date": "2026-11-22",
-    "status": "deployed; six pasted-reference models and 50 modules checked; real random placement blocked pending suitable scene and browser API connectivity",
+    "status": "deployed and verified: six pasted references, 50 modules, real public copied-neighborhood random placement and reload stability",
     "sourceCommit": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
     "hostingRun": 44935643510,
     "shopIds": "shop:alley-01..50 (separate from Sungshin 50 whole buildings)",
@@ -6172,9 +6172,15 @@
     "report": "work/shop-expansion-50/report.txt",
     "evidence": "verification/shop-expansion-50/",
     "remaining": [
-      "Actual new alley shop road/wall/interior connection and reload stability: public review copy yielded no fitting frontage; other saved candidates also excluded in limited offline screening.",
-      "New public commercial alley generation fails in browser; direct api.vworld.kr navigation reproduces ERR_HTTP2_SERVER_REFUSED_STREAM while local HTTP API succeeds. Underlying transport cause unresolved.",
-      "Existing salon-03 tree/fence foreground needs further classification; not confirmed a placement defect."
-    ]
+      "Fixed minimum 8m shop-focus camera can enter opposite building on narrow streets; inspection used manual zoom/rotation.",
+      "Edge direct VWorld connection failed with ERR_HTTP2_SERVER_REFUSED_STREAM; same public generation succeeded in in-app browser.",
+      "All 50 models checked as assets and by tests; representative real placement verified, not all 50 separately in real streets."
+    ],
+    "realScene": "48be062bb9edbb32",
+    "reviewCopy": "d5482f6a3dbc4ec0",
+    "actualRandomAsset": "alley-35",
+    "actualRandomOwner": 1100884774,
+    "originalPreserved": true,
+    "reloadStable": true
   }
 }

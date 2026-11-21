@@ -11,7 +11,7 @@ export function inferredAlleyPlaces(buildings,places){
  const normal=s=>(s||'').replace(/\s/g,'');
  return buildings.filter(b=>{
   const p=b.properties?.streetProfile;
-  return p?.grade===1&&p.use==='mixed'&&!p.assetId&&!b.manualAssetChoice&&!b.facility&&!places.some(v=>normal(v.road_address_name)===normal(b.address));
+  return p?.grade===1&&p.use==='mixed'&&!p.assetId&&!b.manualAssetChoice&&!b.facility&&!places.some(v=>b.address&&normal(v.road_address_name).endsWith(normal(b.address)));
  }).map(b=>({id:'inferred-alley-'+b.seed,place_name:'추정 골목 가게',road_address_name:b.address,alleyOwner:b.seed,localXY:[b.points.reduce((s,p)=>s+p[0],0)/b.points.length,b.points.reduce((s,p)=>s+p[1],0)/b.points.length],inferredShop:true}));
 }
 // Match confirmed POI trade labels before applying the generic shop lottery.

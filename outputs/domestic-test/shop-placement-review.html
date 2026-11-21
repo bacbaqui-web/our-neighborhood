@@ -7,7 +7,7 @@
 <p id="result" role="status" aria-live="polite">저장 동네를 읽는 중…</p><p><a id="open" target="_blank" rel="noopener" hidden>검사 사본 열기</a></p><pre id="details"></pre></main>
 <script type="module">
 import {getScene,listScenes,saveScene} from './browser-generation/storage.js';
-import {makeReviewCopy,sceneDigest,sceneJSON} from './shops/review-copy.js';
+import {makeReviewCopy,sceneDigest,sceneJSON} from './shops/review-copy.js?v=legacy2';
 const $=id=>document.getElementById(id);let review=null;
 async function source(){const s=await getScene($('scenes').value);if(!s)throw Error('선택한 저장 동네가 없습니다.');return s;}
 async function run(fn){for(const id of ['copy','export','verify'])$(id).disabled=true;try{await fn();}catch(e){$('result').textContent=e.message;}finally{$('copy').disabled=$('export').disabled=!$('scenes').value;$('verify').disabled=!review;}}

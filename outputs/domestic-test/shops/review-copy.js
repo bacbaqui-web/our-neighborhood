@@ -12,7 +12,15 @@ export async function sceneDigest(scene){
 }
 export async function makeReviewCopy(source,id){
  if(!/^[a-f0-9]{16}$/.test(id)||id===source?.manifest?.id)throw Error('원본과 다른 사본 번호가 필요합니다.');
- const input=sceneJSON(source,'generation-input.json');
+ // Match the existing editor's legacy-snapshot reconstruction. Keep every
+ // original file untouched; only the separate copy gains this input record.
+ const input=source.files['generation-input.json']?sceneJSON(source,'generation-input.json'):{
+  center:source.manifest.origin,radius:source.manifest.detailRadius||source.manifest.sizeMetres/2,
+  address:source.manifest.address,view:source.manifest.view,
+  buildingCollection:sceneJSON(source,source.files['visibility-source.json']?'visibility-source.json':'buildings-source.geojson'),
+  sourceRoads:sceneJSON(source,'roads-source.json').roads,
+  places:sceneJSON(source,'shops/places.json').places||[],stations:[],exits:[]
+ };
  if(!input.buildingCollection?.features||source.manifest.view?.mode!=='visible360')throw Error('길 위 360도 생성 원본이 있는 동네를 선택해 주세요.');
  const copy=structuredClone(source),sourceDigest=await sceneDigest(source);
  copy.id=id;copy.manifest.id=id;

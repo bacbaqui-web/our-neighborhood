@@ -1,4 +1,4 @@
-import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop50v3';
+import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop-address1';
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
 import {stableHash,scheduleFor} from './storefront-hours.js?v=shop50v3';
 

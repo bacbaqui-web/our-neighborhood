@@ -41995,7 +41995,7 @@ var rng = (seed) => () => {
   return seed / 4294967296;
 };
 function paint(kind) {
-  const c = document.createElement("canvas");
+  const c = typeof document === "undefined" ? new OffscreenCanvas(SIZE, SIZE) : document.createElement("canvas");
   c.width = c.height = SIZE;
   const ctx = c.getContext("2d"), r = rng(kind === "concrete" ? 2901 : 2902), cement = kind === "concrete";
   const base2 = cement ? [183, 183, 173] : [76, 80, 80], image = ctx.createImageData(SIZE, SIZE), tau = Math.PI * 2;

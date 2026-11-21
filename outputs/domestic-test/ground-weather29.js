@@ -6,7 +6,7 @@ const maps=new Map(),materials=new Set();
 const TILE=12,SIZE=1024;
 const rng=seed=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
 function paint(kind){
- const c=document.createElement('canvas');c.width=c.height=SIZE;const ctx=c.getContext('2d'),r=rng(kind==='concrete'?2901:2902),cement=kind==='concrete';
+ const c=typeof document==='undefined'?new OffscreenCanvas(SIZE,SIZE):document.createElement('canvas');c.width=c.height=SIZE;const ctx=c.getContext('2d'),r=rng(kind==='concrete'?2901:2902),cement=kind==='concrete';
  const base=cement?[183,183,173]:[76,80,80],image=ctx.createImageData(SIZE,SIZE),tau=Math.PI*2;
  for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
   const i=(y*SIZE+x)*4,cloud=Math.sin(tau*(x/SIZE+y/SIZE*2))*.34+Math.cos(tau*(x/SIZE*3-y/SIZE))*.24+Math.sin(tau*(x/SIZE*7+y/SIZE*4))*.15;

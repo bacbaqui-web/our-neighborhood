@@ -5526,7 +5526,7 @@
     "evidence": "verification/viewer-ui/public.png"
   },
   "visibleHorizon20261121": {
-    "state": "tested-local-pending-public",
+    "state": "public-verified",
     "nearDetailRadius": 100,
     "distanceCutoff": null,
     "buildingCountCutoff": null,
@@ -5545,6 +5545,31 @@
     "limitations": [
       "Open views may require Continue after45seconds of active query work.",
       "Source coverage, supported200floors and sampled visibility are not a survey guarantee."
+    ],
+    "publicSourceCommit": "3d2ca4cec9915323492fca423517f1fd2051c154",
+    "hostingCommit": "d8b96b381f4e4c46886a1c21e94d94614a9cad34",
+    "hostingRun": 44859502290,
+    "publicEvidence": {
+      "browser": "Edge",
+      "scene": "61ce65488f210b03",
+      "state": "complete",
+      "queries": 31,
+      "skipped": 38,
+      "sourceBuildings": 4908,
+      "additionalVisibleBuildings": 3,
+      "farthestAdditionalMetres": 62.66419368769398,
+      "publicFilesMatched": 6,
+      "screenshot": "verification/visible-horizon/public.png"
+    },
+    "checks": [
+      "visibility far5km, hidden/tall/thin and300buildings",
+      "worker failure/cancellation/work-budget pause",
+      "VWorld pagination and bounds",
+      "street-end ink IDs and normals",
+      "scene budget/circular background/full detail",
+      "generation scope",
+      "source pack current",
+      "hosting workflow success"
     ]
   }
 }

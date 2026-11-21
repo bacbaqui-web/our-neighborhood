@@ -1,5 +1,5 @@
-import {createReferenceReview} from './reference-review.js?v=references1';
-import {remakeAliases} from './remakes.js?v=authority1';
+import {createReferenceReview} from './reference-review.js?v=approvedroad2';
+import {remakeAliases} from './remakes.js?v=approvedroad1';
 import {loadAssetRegistry} from './registry.js?v=approvedroad1';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
@@ -16,7 +16,7 @@ const $=id=>document.getElementById(id),cache=new Map();let entries=[],version=0
 const getLineSettings=mountLineOptions($('lineOptions'),settings=>viewer?.setLines?.(settings));
 const reviews=createReviewStore();let reviewReady=false,reviewBusy=false;
 function reviewStatus(a){return reviews.state.items[a.id]?.status||'none';}
-function reviewButtons(a){const group=document.createElement('div');group.className='review-buttons';for(const [status,symbol]of [['discard','×'],['remake','↻']]){const b=document.createElement('button');b.type='button';b.dataset.review=status;const pressed=reviewStatus(a)===status;b.setAttribute('aria-pressed',String(pressed));b.setAttribute('aria-label',`${a.name} · ${a.collection} · ${LABELS[status]} 표시`);b.title=LABELS[status]+(pressed?' 표시 취소':' 표시');b.disabled=!reviewReady||reviewBusy;const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent=symbol;b.append(icon);b.onclick=()=>mark(a,status);group.append(b);}const label=document.createElement('span');label.className='review-label';label.textContent=[appliedLabel(a.id),LABELS[reviewStatus(a)]].filter(Boolean).join(' · ')||'표시 안 함';group.append(label);return group;}
+function reviewButtons(a){const group=document.createElement('div');group.className='review-buttons';for(const [status,symbol]of [['discard','×'],['remake','↻']]){const b=document.createElement('button');b.type='button';b.dataset.review=status;const pressed=reviewStatus(a)===status;b.setAttribute('aria-pressed',String(pressed));b.setAttribute('aria-label',`${a.name} · ${a.collection} · ${LABELS[status]} 표시`);b.title=LABELS[status]+(pressed?' 표시 취소':' 표시');b.disabled=!reviewReady||reviewBusy;const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent=symbol;b.append(icon);b.onclick=()=>mark(a,status);group.append(b);}const label=document.createElement('span');label.className='review-label';label.textContent=[a.approvedReferenceId?'새 모델 반영':appliedLabel(a.id),LABELS[reviewStatus(a)]].filter(Boolean).join(' · ')||'표시 안 함';group.append(label);return group;}
 function refreshDetailReview(){if(active){const note=document.createElement('p');note.className='review-detail-status';note.setAttribute('role','status');note.textContent=$('reviewError').textContent;$('detailReview').replaceChildren(reviewButtons(active),note);}}
 async function mark(a,status){
  if(!reviewReady||reviewBusy)return;

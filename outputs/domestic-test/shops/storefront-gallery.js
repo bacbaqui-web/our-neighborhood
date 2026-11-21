@@ -11,7 +11,7 @@ import {createIllustrationRenderer} from '../illustration-renderer.js?v=151';
 import {DEFAULT_APPEARANCE} from '../illustration-settings.js?v=151';
 const $=id=>document.getElementById(id);
 try{await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);}catch(e){$('count').textContent=e.message;throw e;}
-const response=await fetch('./shops/library/catalog.json?v=70');
+const response=await fetch('./shops/library/catalog.json?v=estatecomic3');
 if(!response.ok)throw Error('상가 목록을 불러오지 못했습니다');
 const catalog=await response.json(),assets=catalog.assets;
 const scene=new T.Scene();scene.background=new T.Color('#dfe5db');

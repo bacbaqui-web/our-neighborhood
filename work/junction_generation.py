@@ -234,6 +234,9 @@ def build(root,roads=None,terrain=None):
  road_surface=connected_surface(shape(plan['road']).intersection(zone),.035)
  rc['positions'].setdefault('asphalt',[]);rc['positions']['asphalt']+=road_surface
  rc['positions'].setdefault('sidewalk',[]);rc['positions']['sidewalk']+=connected_surface(shape(plan['sidewalk']).intersection(zone).difference(rm),.185)
+ # Both classes use the same asphalt material. One mesh avoids a false object
+ # silhouette at the patch edge while retaining real depth/normal contours.
+ rc['positions']['asphalt']+=rc['positions'].pop('arterial',[])
  # Existing wear and large-road overlays relinquish this exact region.
  for k,v in rc.get('wear',{}).get('positions',{}).items():rc['wear']['positions'][k]=cut_positions(v,zone)
  geometry={'white':[],'yellow':[],'curb':[],'ramp':[]}

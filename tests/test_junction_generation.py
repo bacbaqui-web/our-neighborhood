@@ -85,8 +85,9 @@ class Junctions(unittest.TestCase):
    def write(n,x):(root/n).write_text(json.dumps(x))
    write('location.json',{'origin':[37.6,127]});write('manifest.json',{})
    write('road-reservation.json',{'surfaces':{'carriageway':mapping(r),'shared':mapping(Polygon()),'sidewalk':mapping(public.difference(r))}})
-   write('road-context.json',{'positions':{'asphalt':original(r),'sidewalk':original(public.difference(r))}})
+   write('road-context.json',{'positions':{'arterial':original(r),'sidewalk':original(public.difference(r))}})
    build(root,rs,Terrain());out=json.loads((root/'road-context.json').read_text());plan=json.loads((root/'junction-plan.json').read_text())
+   self.assertNotIn('arterial',out['positions']);self.assertTrue(out['positions']['asphalt'])
    points=parts(shape(plan['zone']).boundary.intersection(LineString([[2.23,-50],[2.23,50]])),'Point')
    self.assertTrue(points)
    for point in points:

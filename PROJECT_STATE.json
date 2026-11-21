@@ -5571,5 +5571,28 @@
       "source pack current",
       "hosting workflow success"
     ]
+  },
+  "terrainClearance20261121": {
+    "date": "2026-11-21",
+    "sourceCommit": "5261ddc",
+    "hostingCommit": "084f8d242b3fb73adcb33541097c13cc14c7b417",
+    "hostingRun": 44867800492,
+    "status": "deployed-and-verified-in-edge",
+    "changes": [
+      "Preserve already-baked gentle terrain; do not subtract finished sidewalk heights twice",
+      "Keep ground and ground-shadow depth behind road surfaces",
+      "Increase near clipping distance only at elevated camera heights to retain centimetre depth precision",
+      "Exclude zero-above-ground-floor subway stations from distant building roofs; publish initial corrected context immediately"
+    ],
+    "verification": [
+      "terrain-clearance.mjs passed",
+      "gentle-terrain30.mjs passed",
+      "visible-horizon.mjs passed",
+      "visible-horizon-worker.mjs passed",
+      "test_street_end_context.py: 7 passed",
+      "pack.py --check passed",
+      "Same public Dobong-ro scene in Edge overhead view: triangular road overlap cleared; lines and shadows enabled"
+    ],
+    "proof": "verification/terrain-clearance/public.jpg"
   }
 }

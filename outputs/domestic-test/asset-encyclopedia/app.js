@@ -4,7 +4,7 @@ import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';
 import {treeProfile,treeProfileText} from '../tree-profiles.js';
-import {GROUPS,assetGroup} from './groups.js';
+import {GROUPS,assetGroup} from './groups.js?v=assembly1';
 import {curation,canonicalId,appliedLabel} from './curation.js';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';

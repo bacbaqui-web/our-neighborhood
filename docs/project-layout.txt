@@ -285,3 +285,13 @@ tests/prop-barrier.mjs : 형태·재질·여섯 접점 검사
 2026-11-21 메인 고정·공개 배포 준비: canonical root + origin/main만 수정/배포 기준. 전체백업20261029, 이전 release 작업사본, archive 실물은 /Users/bacbaqui/.project-archives/our-neighborhood로 이동. archive 링크는 문서 호환 조회용. 통합 지침과 AGENTS에 명시.
 
 2026-11-21 공개 반영 완료: 소스 b6636c1, 호스팅 34f3b20, 배포 실행 44841919625 성공. 공개 파일 최신화와 Edge 지도 검색·지점 선택 확인. 새 동네 생성은 외부 건물 자료 조회 실패로 완료 검증하지 못함. PROJECT_STATE.json 참조.
+
+Codex 연결 시험판 — 2026-11-21, 로컬 전용
+work/codex-mcp/: Codex stdio MCP 서버와 고정된 의존성.
+work/codex_bridge.py: 로컬 웹과 MCP 사이의 작업 전달 및 결과 기록.
+outputs/domestic-test/codex-bridge/: 로드뷰 준비, 배치 검사, 카메라·소품·건물 연결.
+docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
+
+2026-11-21 브이월드 건물 조회(로컬): work/vworld_buildings.py → work/serve-neighborhood.py /api/buildings → 브라우저 생성기. 키는 .local-settings.json에만 보관. 공개 반영 전 동일 출처 건물 조회 경로를 준비해야 하며, 현재 공개 사이트에는 미반영.
+
+2026-11-21 브이월드 공개 적용 완료: 소스8511849, 호스팅e4ba75c, 배포44852639377 성공. 브라우저에서 직접 조회하므로 이 Mac의 서버 불필요. Edge 공개 지도에서 솔매로17가길7·50m를 새로 생성해 건물9동과 도로 화면 확인. 공개용 키는 빌드 설정 VWORLD_WEB_KEY로 주입하며 설정 원본은 비공개. docs/vworld-building-source.txt 참조.

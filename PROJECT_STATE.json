@@ -1,7 +1,7 @@
 {
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
   "state": "canonical-visible360-public",
-  "publicCommit": "b6636c148fa710fde827096846d0564bea001f2d",
+  "publicCommit": "85118499d768d76fff82db4446b6c06a52fd1f8b",
   "backup": "/Users/bacbaqui/.project-archives/our-neighborhood/20261029",
   "retiredPublicationCopy": "/Users/bacbaqui/.project-archives/our-neighborhood/retired-release-aaf38f6",
   "threads": {
@@ -5152,7 +5152,7 @@
   },
   "peopleUmbrellaVariants": {
     "date": "2026-11-21",
-    "status": "structure-repair-in-progress-originals-preserved",
+    "status": "structure-repair-partially-applied",
     "people": 10,
     "seasons": [
       "spring",
@@ -5195,7 +5195,7 @@
       "Not yet connected to encyclopedia or neighborhood runtime",
       "Not deployed to public site",
       "Frame artHeightPixels includes umbrella; human-height calibration required for neighborhood placement",
-      "Structure defects confirmed in all 120 umbrella sheets; do not treat previous bounds/alpha checks as visual approval."
+      "71 of 120 umbrella sheets corrected locally; 49 still pending repair/review. This is not full visual approval."
     ],
     "structureReview": {
       "date": "2026-11-21",
@@ -5205,14 +5205,18 @@
       "audit": "work/people-umbrella/repair-20261121/audit-list.txt",
       "auditData": "work/people-umbrella/repair-20261121/audit.json",
       "repairAgent": "umbrella_repair",
-      "generatedCandidates": 6,
-      "candidateSheets": 3,
-      "acceptedCandidates": 0,
-      "sourceReplacements": 0,
-      "method": "User-authorized localized pixel editing; geometry anchors under visual review",
-      "finding": "All sheets contain at least one tip/shaft alignment or head occlusion problem. Six representative edits improved parts but retained alignment defects. Original assets preserved.",
-      "nextStep": "Correct tip/hand/old-shaft anchors, generate original-preserving candidates and independently inspect before replacement.",
-      "directPixelEditingAuthorized": true
+      "generatedCandidates": 120,
+      "candidateSheets": 120,
+      "acceptedCandidates": 71,
+      "sourceReplacements": 71,
+      "method": "User-authorized local pixel editing with manually reviewed shaft anchors; masked restoration and selective paint/alpha cleanup",
+      "finding": "71 sheets independently visually accepted and applied locally. 49 sheets still require repair or final re-review; their original files remain. Full repair is incomplete.",
+      "nextStep": "Repair and independently recheck the 49 pending sheets listed in repair-report.txt. Always use original backup as immutable source.",
+      "directPixelEditingAuthorized": true,
+      "pendingSheets": 49,
+      "report": "work/people-umbrella/repair-20261121/repair-report.txt",
+      "validation": "work/people-umbrella/repair-20261121/validation-final.json",
+      "originalBackup": "work/people-umbrella/repair-20261121/originals"
     }
   },
   "unifiedVersion": {
@@ -5332,19 +5336,109 @@
     "branch": "main",
     "root": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
     "url": "https://magamiscom.ing/neighborhood/",
-    "status": "deployed-generation-verification-blocked",
+    "status": "deployed-generation-verified",
     "archiveRoot": "/Users/bacbaqui/.project-archives/our-neighborhood",
     "guidelines": "docs/project-guidelines.txt",
-    "sourceCommit": "b6636c148fa710fde827096846d0564bea001f2d",
-    "hostingCommit": "34f3b2099bc34060a6a09d77da5a42dc78b83531",
-    "hostingRun": "44841919625",
+    "sourceCommit": "85118499d768d76fff82db4446b6c06a52fd1f8b",
+    "hostingCommit": "e4ba75c4bf13fbad242f731219337b3347024849",
+    "hostingRun": "44852639377",
     "verifiedDate": "2026-11-21",
     "verification": {
       "deployment": "success",
-      "publicFiles": "Latest viewer, strict visible-only loader, asphalt material and terrain rebasing confirmed over HTTPS",
-      "edge": "Kakao address search, point selection and visible360 generation started successfully",
-      "generation": "Failed at external ESRI building query with browser NetworkError. Independent curl certificate verification also failed (unable to get local issuer certificate). Full generation not verified; TLS bypass not used.",
-      "screenshot": "verification/public-deployment-check.jpg"
+      "publicFiles": "HTTPS byte comparison passed for app, client, worker, VWorld loader, sandbox script and packed Python sources",
+      "edge": "Kakao search and selection: 서울특별시 강북구 솔매로17가길 7; radius 50m",
+      "generation": "New scene d88519e7828f02ab generated and rendered in the public Edge site; 9 buildings shown in layout UI",
+      "screenshot": "verification/vworld/public-scene.png"
+    }
+  },
+  "buildingSourceConnection": {
+    "checkedDate": "2026-11-21",
+    "status": "blocked-expired-provider-certificate",
+    "host": "portal.esrikr.com",
+    "certificateSubject": "CN=*.esrikr.com",
+    "certificateExpiresUTC": "2026-11-20T23:59:59Z",
+    "certificateExpiresKST": "2026-11-21T08:59:59+09:00",
+    "evidence": "Python urllib TLS verification returned certificate has expired; OpenSSL leaf certificate dates match. curl also failed certificate chain verification.",
+    "alternateCheck": "ArcGIS Online search for MOIS_KR_Buildings returned no results. No verified equivalent endpoint found.",
+    "changedConnection": false,
+    "resolution": "Provider must renew HTTPS certificate; no insecure bypass applied.",
+    "supersededBy": "VWorld browser API; public generation verified 2026-11-21"
+  },
+  "codexControl": {
+    "status": "local-prototype-not-deployed",
+    "date": "2026-11-21",
+    "mcp": "our-neighborhood",
+    "entry": "http://127.0.0.1:8765/domestic-test/start.html",
+    "documentation": "docs/codex-control.txt",
+    "verified": [
+      "MCP stdio handshake and 11 tools",
+      "Edge map selection and Roadview loading",
+      "MCP Roadview pan 90 degrees",
+      "existing visible360 scene connected",
+      "cone placement on pavement",
+      "scene PNG capture",
+      "undo preserves manual edits",
+      "building style replacement",
+      "camera movement"
+    ],
+    "checks": [
+      "tests/codex-bridge.mjs",
+      "tests/test_codex_bridge.py",
+      "Python compile",
+      "browser-generation pack --check (44 files)"
+    ],
+    "limitations": [
+      "new MCP tools not loaded into current chat yet",
+      "Roadview screenshots require computer-use",
+      "collision-aware prop placement not complete",
+      "GLB inclusion implemented but export not visually verified"
+    ]
+  },
+  "vworldBuildings": {
+    "updatedAt": "2026-11-21",
+    "scope": "public and local",
+    "provider": "VWorld / 도로명주소 건물 (LT_C_SPBD)",
+    "keyExpires": "2027-05-21",
+    "privateSettings": ".local-settings.json (ignored; mode 0600)",
+    "endpoint": "/api/buildings?bbox=west,south,east,north",
+    "verification": {
+      "liveQueryFeatures": 398,
+      "featuresWithReportedFloors": 398,
+      "invalidBoundsHTTP": 400,
+      "crossSiteHTTP": 403,
+      "unitTests": 3,
+      "browserContracts": "passed",
+      "browserGeneration": "complete; rendered scene visually verified in Edge",
+      "sceneId": "30f72485f2943102",
+      "generatedBuildings": 54,
+      "generationMilliseconds": 213802,
+      "inputBuildings": 180,
+      "eyeHeight": 2,
+      "rayCount": 5142,
+      "scope": "100m radius; shop lookup omitted in connection test",
+      "screenshot": "verification/vworld/scene.png"
+    },
+    "publicMethod": "VWorld official JSONP in opaque-origin sandbox iframe; domain-bound browser key injected at build",
+    "publicURL": "https://magamiscom.ing/neighborhood/",
+    "publicSourceCommit": "85118499d768d76fff82db4446b6c06a52fd1f8b",
+    "hostingCommit": "e4ba75c4bf13fbad242f731219337b3347024849",
+    "hostingRun": "44852639377",
+    "publicVerification": {
+      "date": "2026-11-21",
+      "sceneId": "d88519e7828f02ab",
+      "address": "서울특별시 강북구 솔매로17가길 7",
+      "radius": 50,
+      "buildingsShown": 9,
+      "steps": [
+        "map search",
+        "select location",
+        "live VWorld query",
+        "browser generation",
+        "saved scene rendered",
+        "overview rendered"
+      ],
+      "screenshot": "verification/vworld/public-scene.png",
+      "requiresLocalServer": false
     }
   }
 }

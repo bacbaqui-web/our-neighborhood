@@ -1,4 +1,4 @@
-import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=interiors2';
+import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=interiors3';
 import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
@@ -29,7 +29,13 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
     for(const o of hasInterior?(spec.openings||[]):[]){const cut=[o.x-o.w/2,o.x+o.w/2,o.y-o.h/2,o.y+o.h/2],next=[];
       for(const q of pieces){const l=Math.max(q[0],cut[0]),r=Math.min(q[1],cut[1]),b=Math.max(q[2],cut[2]),t=Math.min(q[3],cut[3]);if(l>=r||b>=t){next.push(q);continue;}if(q[0]<l)next.push([q[0],l,q[2],q[3]]);if(r<q[1])next.push([r,q[1],q[2],q[3]]);if(q[2]<b)next.push([l,r,q[2],b]);if(t<q[3])next.push([l,r,t,q[3]]);}pieces=next;
     }
-    for(const [l,r,b,t]of pieces)B((l+r)/2,(b+t)/2,z,r-l,t-b,depth,spec.wall);
+    if(!hasInterior){B(0,H/2,z,W,H,depth,spec.wall);return;}
+    // Coplanar wall pieces have no internal side faces: otherwise the ink pass
+    // outlines the subtraction grid across the facade.
+    for(const [l,r,b,t]of pieces)for(const face of [-1,1])Q((l+r)/2,(b+t)/2,z+face*depth/2,r-l,t-b,spec.wall);
+    const edges=[[[-W/2,0],[W/2,0]],[[W/2,0],[W/2,H]],[[W/2,H],[-W/2,H]],[[-W/2,H],[-W/2,0]]];
+    for(const o of spec.openings||[]){const l=o.x-o.w/2,r=o.x+o.w/2,b=Math.max(0,o.y-o.h/2),t=Math.min(H,o.y+o.h/2);edges.push([[l,b],[r,b]],[[r,b],[r,t]],[[r,t],[l,t]],[[l,t],[l,b]]);}
+    for(const [a,b]of edges)polygon([[...a,z-depth/2],[...b,z-depth/2],[...b,z+depth/2],[...a,z+depth/2]],spec.wall);
   };
   if(shell){
     facadeWall(-.24,.48);

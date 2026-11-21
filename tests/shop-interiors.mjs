@@ -36,6 +36,6 @@ const fixture=createNeighborhoodShops({placements:[placement],qa:{}},{shadowMap:
 const cut=fixture.cutShells(host);assert.equal(cut.matchedWindows,first.openings.length);assert.equal(cut.blockedPanes,0);
 console.log('Real host wall aperture cut and all furniture positions behind the facade verified.');
 
-const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=interiors2');
+const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=interiors3');
 for(const spec of assets){const root=buildStorefront(spec),room=root.getObjectByName('ShopInteriorRoom');for(const f of room.userData.furniture.filter(f=>f.name==='chair-base'))assert(Math.abs(f.center[1]-f.size[1]/2-root.userData.interior.bottom)<1e-6);const original=root.getObjectByName('ShopInteriorFurniture').material,gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,original,'gray');assert.equal(gray.map,original.map);assert.equal(gray.emissiveMap,original.emissiveMap);const shader={fragmentShader:'#include <opaque_fragment>'};gray.onBeforeCompile(shader);assert(shader.fragmentShader.includes('dot(gl_FragColor.rgb'));applyInteriorEmission(gray,{on:1,night:1});assert.equal(gray.color.r,gray.color.g);}
 console.log('Cuboid chair supports reach the floor and grayscale mode retains furniture textures.');

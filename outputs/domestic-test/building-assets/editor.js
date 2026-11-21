@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {categories,assetById,inferCategory,readPalette,readEdits} from './catalog.js?v=scene-edit1';
+import {categories,assetById,inferCategory,readPalette,readEdits,chooseBuildingAsset} from './catalog.js?v=scene-edit1';
 import {createPreview} from './preview.js?v=context-preview1';
 import {readEditorSource,rebuildEditedScene,nearestRoad} from './scene-edit-store.js';
 import {localPolygons,editorContext,previewSpecs,eraStyle} from './preview-data.js';
@@ -34,7 +34,7 @@ export function installBuildingEditor({canvas,scene,camera,controls,getBuildings
   if(!preview||!selected||!$('[data-floors]').checkValidity())return;
   const floors=Number($('[data-floors]').value),frontEdge=Number($('[data-front]').value),era=$('[data-era]').value,use=$('[data-use]').value;
   const owner=String(selected.userData.objectid),edit=source.edits.buildings[owner]||{},legacy=!edit.resetLegacyAsset&&readEdits()[owner];
-  if(dirty.has('era')&&!dirty.has('assetId')&&!edit.assetId&&edit.styleIndex===undefined&&!legacy&&model.value.startsWith('home-')){const predicted='home-'+eraStyle(owner,era);if(![...model.options].some(o=>o.value===predicted))model.add(new Option(assetById[predicted].name,predicted));model.value=predicted;}
+  if(dirty.has('era')&&!dirty.has('assetId')&&!edit.assetId&&edit.styleIndex===undefined&&!legacy&&model.value.startsWith('home-')){const predicted=chooseBuildingAsset({...selected.userData,streetProfile:{...selected.userData.streetProfile,styleIndex:eraStyle(owner,era),assetId:null}},palette,{}).id;if(![...model.options].some(o=>o.value===predicted))model.add(new Option(assetById[predicted].name,predicted));model.value=predicted;}
   const specs=previewSpecs(feature(),context.origin,{floors,frontEdge,era,use});
   try{preview.show(assetById[model.value],specs);$('[data-preview-info]').textContent=`실제 건물 윤곽 · ${floors}층 · ${assetById[model.value].name} · 입구 면 ${frontEdge+1}`;}
   catch(e){$('[data-preview-info]').textContent='미리보기를 표시하지 못했습니다. '+e.message;}

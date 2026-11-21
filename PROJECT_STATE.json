@@ -6117,7 +6117,6 @@
       "required browser-generation/loading/scene budget checks",
       "local actual street and day/night lamp render"
     ],
-    "deploymentPendingReason": "release size optimization from shop task; waiting shared hosting run44927761625",
     "proof": "verification/grade1-street",
     "deployment": {
       "run": 44928638389,

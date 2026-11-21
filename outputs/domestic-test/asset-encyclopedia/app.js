@@ -12,7 +12,7 @@ import {curation,canonicalId,appliedLabel} from './curation.js?v=review527';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {createReviewStore,LABELS} from './reviews.js?v=review1';
-import {createModel,release} from './models.js?v=sungshin50-final1';
+import {createModel,release} from './models.js?v=shop50v4';
 const $=id=>document.getElementById(id),cache=new Map();let entries=[],version=0,detailVersion=0,active=null,viewer=null,currentGroup='building',personViewState={angle:0,pitch:0,zoom:1};
 
 const getLineSettings=mountLineOptions($('lineOptions'),settings=>viewer?.setLines?.(settings));

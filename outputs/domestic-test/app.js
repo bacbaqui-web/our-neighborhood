@@ -27,7 +27,7 @@ import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
 import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=replacements3';
-import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=shop-address2';
+import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=shop-address3';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=shop50v3';
 import {loadData} from './load-data.js?v=151';
 import {applyRoadContext} from './road-context.js?v=junction1';

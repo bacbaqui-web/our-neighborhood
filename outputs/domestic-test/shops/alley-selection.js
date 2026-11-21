@@ -7,15 +7,14 @@ export function chooseAlleyPlacement(choices,key){
  let h=stableHash(key);h=Math.imul(h^(h>>>16),0x85ebca6b);h=Math.imul(h^(h>>>13),0xc2b2ae35);h=(h^(h>>>16))>>>0;
  return pool[h%pool.length];
 }
+export function sameRoadAddress(full,short){
+ const normal=s=>(s||'').trim().replace(/\s+/g,' '),a=normal(full),b=normal(short);
+ return !!b&&(a===b||a.endsWith(' '+b));
+}
 export function inferredAlleyPlaces(buildings,places){
- const normal=s=>(s||'').trim().replace(/\s+/g,' ');
  return buildings.filter(b=>{
   const p=b.properties?.streetProfile;
-  const address=normal(b.address);
-  return p?.grade===1&&p.use==='mixed'&&!p.assetId&&!b.manualAssetChoice&&!b.facility&&!places.some(v=>{
-   const full=normal(v.road_address_name);
-   return address&&(full===address||full.endsWith(' '+address));
-  });
+  return p?.grade===1&&p.use==='mixed'&&!p.assetId&&!b.manualAssetChoice&&!b.facility&&!places.some(v=>sameRoadAddress(v.road_address_name,b.address));
  }).map(b=>({id:'inferred-alley-'+b.seed,place_name:'추정 골목 가게',road_address_name:b.address,alleyOwner:b.seed,localXY:[b.points.reduce((s,p)=>s+p[0],0)/b.points.length,b.points.reduce((s,p)=>s+p[1],0)/b.points.length],inferredShop:true}));
 }
 // Match confirmed POI trade labels before applying the generic shop lottery.

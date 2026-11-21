@@ -1,9 +1,8 @@
-import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop-address2';
+import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor,sameRoadAddress} from './alley-selection.js?v=shop-address3';
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
 import {stableHash,scheduleFor} from './storefront-hours.js?v=shop50v3';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
-const normalize=s=>(s||'').replace(/\s/g,'');
 export function inside(p,ring){let c=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])c=!c;}return c;}
 export function categoryFor(p){
  const c=p.category_name||'';
@@ -33,14 +32,14 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   const skip=reason=>skipped.push({id:place.id,name:place.place_name,reason});
   if(!category){skip('unsupported-category');continue;}
   if(seen.has(place.id))continue;seen.add(place.id);
-  const xy=place.localXY||xz([Number(place.x),Number(place.y)]),address=normalize(place.road_address_name);
-  const matches=buildings.filter(b=>place.inferredShop?b.seed===place.alleyOwner:b.address&&address.endsWith(normalize(b.address)));
+  const xy=place.localXY||xz([Number(place.x),Number(place.y)]),address=place.road_address_name;
+  const matches=buildings.filter(b=>place.inferredShop?b.seed===place.alleyOwner:sameRoadAddress(address,b.address));
   const containing=matches.filter(b=>inside(xy,b.points));
   if(matches.length!==1&&containing.length!==1){skip(matches.length?'ambiguous-building':'outside-or-unmatched-address');continue;}
   const b=containing[0]||matches[0];if(!exact&&b.properties?.streetProfile?.grade===1&&alleyTradeFor(place))category='alley';if(category==='alley'&&b.properties?.streetProfile?.grade!==1){skip('new-trade-outside-alley');continue;}const count=byOwner.get(b.seed)||0;
   // A POI alone gives neither a shop floor nor a unit. Avoid inventing a mall row.
   const frontEdges=(arterial?.shopFrontages||[]).filter(f=>f.owner===b.seed);
-  const frontPeers=candidates.filter(c=>c.category&&normalize(c.place.road_address_name).endsWith(normalize(b.address))).length;
+  const frontPeers=candidates.filter(c=>c.category&&sameRoadAddress(c.place.road_address_name,b.address)).length;
   if(count>=(frontEdges.length?6:2)){skip('multiple-units-need-review');continue;}
   const dist=Math.min(...b.points.map((a,i)=>{const c=b.points[(i+1)%b.points.length],dx=c[0]-a[0],dz=c[1]-a[1],t=clamp(((xy[0]-a[0])*dx+(xy[1]-a[1])*dz)/(dx*dx+dz*dz),0,1);return Math.hypot(xy[0]-a[0]-t*dx,xy[1]-a[1]-t*dz);}));
   if(!inside(xy,b.points)&&dist>12){skip('poi-too-far-from-address');continue;}

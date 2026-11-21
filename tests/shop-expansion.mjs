@@ -16,3 +16,8 @@ assert.equal(inferredAlleyPlaces([b(5)],[{road_address_name:'서울 강북구 �
 assert.equal(inferredAlleyPlaces([b(5)],[{road_address_name:'서울 강북구 긴검사길 5'}]).length,1,'a different road name sharing a suffix must not suppress a shop candidate');
 assert.equal(inferredAlleyPlaces([b(5)],[{road_address_name:'  서울  강북구  검사길  5  '}]).length,0,'repeated separators preserve the address boundary');
 console.log('50 real-source facades; 6 pasted-reference identities; all furniture bounded at shallow/deep rooms; 100 actual placements; stable diverse random selection; manual/residential/known-POI protection verified.');
+
+const poi={id:'address-boundary-poi',place_name:'가게',category_group_code:'CS2',road_address_name:'서울 강북구 긴검사길 5',localXY:[105,0]};
+const environment={xz:p=>p,elevation:()=>0,roadInfo:(x,z)=>z<-.3?{road:true}:null};
+assert(planNeighborhoodShops([b(5)],[poi],cat,environment).skipped.some(p=>p.id===poi.id&&p.reason==='outside-or-unmatched-address'));
+assert(planNeighborhoodShops([b(5)],[{...poi,road_address_name:'서울 강북구 검사길 5'}],cat,environment).placements.some(p=>p.placeId===poi.id));

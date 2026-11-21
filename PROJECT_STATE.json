@@ -5594,5 +5594,28 @@
       "Same public Dobong-ro scene in Edge overhead view: triangular road overlap cleared; lines and shadows enabled"
     ],
     "proof": "verification/terrain-clearance/public.jpg"
+  },
+  "groundsAndDistantWindows20261121": {
+    "date": "2026-11-21",
+    "status": "deployed-and-verified",
+    "sourceCommit": "5b4c9ec",
+    "hostingCommit": "db9a8cef8cfeb00462277cb8920453d4eb7ca85c",
+    "hostingRun": "44868917182",
+    "changes": [
+      "인도와 마당 표면에 깊이 보정을 적용해 먼 거리의 겹침을 줄임",
+      "먼 건물 벽에 층별 창문과 창틀을 그리며 기존 낮밤 조명 설정을 공유함"
+    ],
+    "verification": [
+      "terrain-clearance, street-end-context, distant-windows tests passed",
+      "browser-generation pack --check passed",
+      "Edge public day/night visual verification",
+      "112 distant buildings, 2 existing draw calls, 0 added window triangles",
+      "Latest public shader zero-light-ratio fix verified"
+    ],
+    "proof": [
+      "verification/grounds-windows/public-day.jpg",
+      "verification/grounds-windows/public-night.jpg",
+      "verification/grounds-windows/public-street-day.jpg"
+    ]
   }
 }

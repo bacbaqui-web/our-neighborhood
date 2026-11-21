@@ -3,7 +3,7 @@ import * as T from 'three';
 // Normalized registered vehicles face +Z. Fractions refer to their original
 // body bounds; attachment depth is sampled from the actual GLB surface.
 export const LAMP_LAYOUTS={
- 'city-bus':{front:[.34,.19,.20,.16],rear:[.35,.38,.13,.20]},
+ 'city-bus':{front:[.34,.19,.20,.16],rear:[.37,.45,.13,.20]},
  porter2:{front:[.34,.43,.20,.25],rear:[.37,.18,.18,.09]},
  'porter2-delivery':{front:[.34,.31,.20,.15],rear:[.34,.13,.19,.07]},
  'sonata-dn8':{front:[.35,.51,.30,.095],rear:[.32,.65,.22,.055]},

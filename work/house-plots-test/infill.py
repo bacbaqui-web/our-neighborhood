@@ -16,7 +16,7 @@ for b in d['buildings']:
  p=shape(b['plot']);h=shape(b['building']);yard=p.difference(h.buffer(1.0,join_style=2))
  core=yard.buffer(-3,join_style=2).buffer(3,join_style=2).intersection(yard)
  for q in parts(core):
-  if q.area<120:continue
+  if q.area<120 or (b.get('streetProfile') or {}).get('housingType')=='detached':continue
   remaining=p.difference(q)
   keepers=[v for v in parts(remaining) if v.covers(h)]
   if not keepers:continue
@@ -39,7 +39,7 @@ def parking(p,free,owner,limit):
   bays.append(dict(owner=owner,point=v['point'],direction=v['direction'],footprint=mapping(footprint),entrance=mapping(v['access']),occupied=len(bays)%5!=0))
  return found
 for b in d['buildings']:
- p=shape(b['plot']);h=shape(b['building']);free=p.difference(h.buffer(.45));ps=parking(p,free,b['id'],3)
+ p=shape(b['plot']);h=shape(b['building']);free=p.difference(h.buffer(.45));ps=[] if (b.get('streetProfile') or {}).get('housingType')=='detached' else parking(p,free,b['id'],3)
  zones.append(dict(kind='yard',owner=b['id'],geometry=mapping(p.difference(h)),reason='출입·정비 공간은 비워 둡니다.'))
  # Behind or beside houses: reserve facade access strip and road frontage.
  green=free.intersection(h.buffer(1.6)).difference(h.buffer(.7)).difference(road.buffer(1.1)).difference(unary_union(ps).buffer(.7)) if b['id']%5==0 else Polygon()

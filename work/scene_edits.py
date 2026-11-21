@@ -80,7 +80,17 @@ def apply_building_rules(collection,roads,edits,origin=None,local=False):
   default_use='residential' if known_use.startswith(('01','02')) else 'mixed' if known_use.startswith(('03','04','05','07')) else 'residential' if grade==1 else 'mixed'
   use=manual.get('use',default_use)
   if use not in ('residential','mixed'):raise ValueError('건물 용도를 다시 선택해 주세요.')
-  p['streetProfile']={'grade':grade,'roadId':best[4]['editId'] if best else None,'frontEdge':front,'frontStart':list(ring[front]),'frontEnd':list(ring[front+1]),'era':era,'styleIndex':style,'use':use,'source':'user' if manual else 'inferred','manualFields':list(manual),'assetId':manual.get('assetId'),'resetLegacyAsset':bool(manual.get('resetLegacyAsset'))}
+  housing={}
+  if best and grade==1 and use=='residential' and not manual.get('assetId') and (not known_use or known_use.startswith(('01','02'))):
+   from alley_housing import classify
+   housing=classify(poly,front,shape(best[4]['geometry']))
+   if housing['housingType']=='detached':
+    if 'floors' not in manual:p['gro_flo_co']=2;p['floorsSource']='alley-housing-rule';p['floorsEstimated']=True
+    if 'styleIndex' not in manual:style=0
+    if 'era' not in manual:era='old'
+   elif housing['housingType']=='old-villa' and 'era' not in manual:era='old'
+   if 'floors' not in manual and p.get('floorsEstimated'):p['gro_flo_co']=max(2,p['gro_flo_co'])
+  p['streetProfile']={**housing,'grade':grade,'roadId':best[4]['editId'] if best else None,'frontEdge':front,'frontStart':list(ring[front]),'frontEnd':list(ring[front+1]),'era':era,'styleIndex':style,'use':use,'source':'user' if manual else 'inferred','manualFields':list(manual),'assetId':manual.get('assetId'),'resetLegacyAsset':bool(manual.get('resetLegacyAsset'))}
  return collection
 
 def align_profile(profile,polygon):

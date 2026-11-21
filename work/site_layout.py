@@ -75,6 +75,8 @@ def build(root,origin,radius):
   package={'version':1,'source':'roadview-derived; inferred parcels and uses','origin':origin,'radius':radius}
   for key,file in [('plots','infill-plots'),('frontages','frontages'),('piloti','piloti'),('groundFloors','ground-floors'),('infill','street-infill')]:
    package[key]=json.loads((out/(file+'.json')).read_text())
+  from alley_housing import decorate
+  decorate(package)
   align_road_paint(package,root)
   protect_public_surfaces(package,root)
   (root/'site-layout.json').write_text(json.dumps(package,ensure_ascii=False,separators=(',',':')))

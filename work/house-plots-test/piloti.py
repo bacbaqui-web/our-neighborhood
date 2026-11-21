@@ -9,9 +9,11 @@ def build():
  d=json.loads((OUT/'infill-plots.json').read_text());road=shape(d['road']);camera_road=road.buffer(-.35);buildings=d['buildings']; plans=[]; counts=[0,0,0]
  for b in sorted(buildings,key=lambda b:b['id']):
   profile=b.get('streetProfile')
+  if profile and profile.get('housingType') in ('detached','old-villa'):continue
   if profile and (profile['use']=='mixed' or 'frontEdge' in profile.get('manualFields',[])):continue
   p=shape(b['building'])
-  if p.geom_type!='Polygon' or p.interiors or not 3<=b['levels']<=6 or not 75<p.area<300:continue
+  alley=bool(profile and profile.get('housingType')=='piloti')
+  if p.geom_type!='Polygon' or p.interiors or not (2 if alley else 3)<=b['levels']<=6 or not (45 if alley else 75)<p.area<(500 if alley else 300):continue
   other=unary_union([shape(x['building']) for x in buildings if x['id']!=b['id'] and shape(x['building']).distance(p)<15])
   ring=list(p.exterior.coords); options=[]
   for i,(a,c) in enumerate(zip(ring,ring[1:])):

@@ -33,6 +33,7 @@ def build():
    # Source supplies shape/floors, not a reliable use label. Stable inferred family.
    roadWidth=math.dist(cameras[0],cameras[-1]);rng=random.Random(b['id']);family='house' if b['levels']<=2 else 'mixed' if roadWidth>=5 or (p.area>170 and b['levels']>=4) else 'villa'
    if profile:family='mixed' if profile['use']=='mixed' else 'house' if b['levels']<=2 else 'villa'
+   if profile and profile.get('housingType'):family='villa' # Parcel gate belongs beside the road, not on the house facade.
    choices={'house':['gate-solid','gate-rail','lobby-steps'],'villa':['lobby-center','lobby-side','lobby-steps'],'mixed':['shop-single','shop-pair','shop-shutter']}[family];rng.shuffle(choices)
    # Basement layout is only eligible with an uninterrupted 11m deep frontage.
    ramp=rect(.6,0,3.4,11)

@@ -90,5 +90,5 @@ export function createVehicleLighting(scene,onShadowChange=()=>{}){
   if(changed)onShadowChange();
   return Math.min(pool.length,candidates.length);
  }
- return {set,update,stats:()=>({vehicles:rigs.size,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group}]of rigs)root.remove(group);rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}for(const geometry of geometries.values())geometry.dispose();geometries.clear();frontMaterial.dispose();rearMaterial.dispose();}};
+ return {set,update,stats:()=>({vehicles:rigs.size,lamps:[...rigs.values()].reduce((n,r)=>n+r.group.children.length,0),litVehicles:[...rigs.values()].filter(r=>visibleInScene(r.group)).length,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group}]of rigs)root.remove(group);rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}for(const geometry of geometries.values())geometry.dispose();geometries.clear();frontMaterial.dispose();rearMaterial.dispose();}};
 }

@@ -5,7 +5,7 @@ header{padding-top:24px;padding-bottom:24px}header h1{margin:0}#filters{margin-b
 
 #treeOptions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #bfcec5;border-radius:8px;margin:0 0 16px;padding:12px}#treeOptions legend{font-size:13px}#treeHeight{width:180px;accent-color:#23665d}#treeOptions small{color:#61736f}
 
-#personOptions{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:0 0 1rem;padding:.5rem 1rem;border:1px solid #bfcec5;border-radius:.5rem}#personOptions legend{font-size:.9rem}#personOptions input{min-height:0;margin:0;accent-color:#23665d}#personOptions label{display:flex;align-items:center;min-height:3rem;padding-inline:.25rem .8rem;font-size:1rem;cursor:pointer}
+:is(#personOptions,#personActionOptions){display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:0 0 1rem;padding:.5rem 1rem;border:1px solid #bfcec5;border-radius:.5rem}:is(#personOptions,#personActionOptions) legend{font-size:.9rem}:is(#personOptions,#personActionOptions) input{min-height:0;margin:0;accent-color:#23665d}:is(#personOptions,#personActionOptions) label{display:flex;align-items:center;min-height:3rem;padding-inline:.25rem .8rem;font-size:1rem;cursor:pointer}
 
 .person-preview{display:block;width:100%;height:100%;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.person-preview.dragging{cursor:grabbing}.person-preview:focus-visible{outline:3px solid #d59038;outline-offset:-3px}#personRotate{margin-block:.75rem}
 

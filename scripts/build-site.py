@@ -62,6 +62,8 @@ default = locations[-1]['id'] if locations else 'original'
 target.hash=location.hash;location.replace(target.href);</script>
 <a href="./domestic-test/">우리 동네 열기</a></html>'''.replace('DEFAULT', json.dumps(default)))
 (OUT / '.nojekyll').touch()
+subprocess.run(['python3', str(ROOT / 'scripts/optimize-people-site.py')], check=True)
+total = sum(path.stat().st_size for path in OUT.rglob('*') if path.is_file())
 if total >= 1_000_000_000:
     raise ValueError('Site exceeds the Pages size budget.')
 print(f'Built {count} files, {total / 1e6:.1f} MB, {len(locations) + 1} neighborhoods.')

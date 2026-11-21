@@ -7,9 +7,9 @@ export async function loadPedestrianAssets(catalog){
  const loader=new T.TextureLoader(),assets=new Map(),textures=[];
  const results=await Promise.allSettled(catalog.people.map(async p=>{
   const results=await Promise.allSettled((p.elevations||[{pitch:0,image:p.image,imageWidth:p.imageWidth,imageHeight:p.imageHeight,frames:p.frames}]).map(async tier=>{
-   const texture=await loader.loadAsync(new URL('./people/'+tier.image,import.meta.url).href);textures.push(texture);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
+   const imageURL=new URL('./people/'+tier.image,import.meta.url);if(tier.sha256)imageURL.searchParams.set('v',tier.sha256.slice(0,12));const texture=await loader.loadAsync(imageURL.href);textures.push(texture);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
   }));const failed=results.find(r=>r.status==='rejected');if(failed)throw failed.reason;const tiers=results.map(r=>r.value);assets.set(p.id,{...p,tiers,texture:tiers[0].texture});
- }));const failed=results.find(r=>r.status==='rejected');if(failed){textures.forEach(t=>t.dispose());throw failed.reason;}assets.season=catalog.season||'spring';return assets;
+ }));const failed=results.find(r=>r.status==='rejected');if(failed){textures.forEach(t=>t.dispose());throw failed.reason;}assets.season=catalog.season||'spring';assets.action=catalog.action||'walk';return assets;
 }
 export function createPedestrians(plan,assets,elevation,shadowElevation=elevation){
  plan={...plan,people:plan.people.filter(p=>visibleRecord(p,elevation))};
@@ -26,7 +26,7 @@ export function createPedestrians(plan,assets,elevation,shadowElevation=elevatio
  }
  }
  installMaterials(assets);
- for(const p of plan.people){const a=assets.get(p.character);if(!a)throw Error('Unknown pedestrian '+p.character);const pivot=new T.Group();pivot.position.set(p.x,shadowElevation(p.x,p.z)+.008,p.z);pivot.name='walker-'+p.id;const mesh=new T.Mesh(new T.PlaneGeometry(1,1),materials.get(p.character+':0'));mesh.name='image-walker-'+p.character;mesh.userData={isPedestrianBillboard:true,outlineOnly:true,id:p.id,character:p.character,pose:'walking-static',heading:p.heading,frame:0};mesh.castShadow=false;mesh.receiveShadow=false;pivot.add(mesh);group.add(pivot);
+ for(const p of plan.people){const a=assets.get(p.character);if(!a)throw Error('Unknown pedestrian '+p.character);const pivot=new T.Group();pivot.position.set(p.x,shadowElevation(p.x,p.z)+.008,p.z);pivot.name='walker-'+p.id;const mesh=new T.Mesh(new T.PlaneGeometry(1,1),materials.get(p.character+':0'));mesh.name='image-walker-'+p.character;mesh.userData={isPedestrianBillboard:true,outlineOnly:true,id:p.id,character:p.character,pose:assets.action==='umbrella'?'umbrella-walking-static':'walking-static',action:assets.action||'walk',season:assets.season||'spring',heading:p.heading,frame:0};mesh.castShadow=false;mesh.receiveShadow=false;pivot.add(mesh);group.add(pivot);
   addBillboardLightAttributes(mesh.geometry);
   figures.push({placement:p,asset:a,pivot,mesh,frame:-1,tier:-1,azimuth:0,feet:pivot.position.clone()});
  }
@@ -66,12 +66,12 @@ export function createPedestrians(plan,assets,elevation,shadowElevation=elevatio
   for(const f of figures)if(!nextAssets.has(f.placement.character))throw Error('사람 옷 파일이 빠졌습니다: '+f.placement.character);
   const previous=[...materials.values()];materials.clear();installMaterials(nextAssets);
   assets=nextAssets;
-  for(const f of figures){f.asset=assets.get(f.placement.character);f.frame=-1;f.tier=-1;f.mesh.material=materials.get(f.placement.character+':0');f.mesh.userData.season=assets.season;}
+  for(const f of figures){f.asset=assets.get(f.placement.character);f.frame=-1;f.tier=-1;f.mesh.material=materials.get(f.placement.character+':0');f.mesh.userData.season=assets.season;f.mesh.userData.action=assets.action||'walk';f.mesh.userData.pose=assets.action==='umbrella'?'umbrella-walking-static':'walking-static';}
   previous.forEach(m=>m.dispose());
-  group.userData.season=assets.season;
+  group.userData.season=assets.season;group.userData.action=assets.action||'walk';
   group.userData.elevationTiers=Math.max(...[...assets.values()].map(a=>a.tiers.length));
   group.userData.viewsPerCharacter=8*group.userData.elevationTiers;
  }
  function setStyle(style){mode.value=style==='line'?1:style==='tone'?2:0;}
- group.userData={...plan.qa,directions:8,season:assets.season||'spring',elevationTiers:Math.max(...[...assets.values()].map(a=>a.tiers.length)),viewsPerCharacter:8*Math.max(...[...assets.values()].map(a=>a.tiers.length)),source:'image_gen',staticWalkingPose:true,groundFit:{figures:figures.length,finishedSurface:true,maxGap:Math.max(0,...figures.map(f=>f.feet.y-shadowElevation(f.feet.x,f.feet.z)))}};return{group,figures,update,setAssets,setStyle,setLighting,shadows,exportGroup};
+ group.userData={...plan.qa,directions:8,season:assets.season||'spring',action:assets.action||'walk',elevationTiers:Math.max(...[...assets.values()].map(a=>a.tiers.length)),viewsPerCharacter:8*Math.max(...[...assets.values()].map(a=>a.tiers.length)),source:'image_gen',staticWalkingPose:true,groundFit:{figures:figures.length,finishedSurface:true,maxGap:Math.max(0,...figures.map(f=>f.feet.y-shadowElevation(f.feet.x,f.feet.z)))}};return{group,figures,update,setAssets,setStyle,setLighting,shadows,exportGroup};
 }

@@ -12,3 +12,10 @@ delete layout.data.protectedAccess;layout.data.bays=[{footprint:poly(0,-2,2,2)}]
 layout.data.bays=[];configureViewVisibility({version:3},{position:[1,-10],radius:30,eyeY:1.7,proxies:[{geometry:poly(-10,-6,30,2),top:6}]});assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'hidden facade omitted');configureViewVisibility(null,null);
 building.streetProfile.grade=2;assert.equal(planGrade1Props(layout,[],dimensions,options).placed.length,0,'only grade1');
 console.log('grade1 placement: empty geometry, protected paths, bays, grade and occlusion passed');
+
+// A shallow drain must rest on the rendered paving, not the terrain beneath it.
+building.streetProfile.grade=1;
+layout.data.walls=[{owner:1,a:[-1,-3],b:[11,-3]}];
+const groundDimensions={'storm-grate':{min:[-.24,0,-.18],max:[.24,.04,.18]}};
+const paved=planGrade1Props(layout,[],groundDimensions,{...options,groundElevation:()=>.12});
+assert.equal(paved.placed.length,1);assert.equal(paved.placed[0].position[1],.122);

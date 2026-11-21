@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createContactSurfaceSampler} from '../contact-shadows.js';
 import {visibleObject} from '../view-generation-visibility.js?v=view3c';
 import {GLTFLoader} from '../vendor/GLTFLoader.js';
 import {loadAssetRegistry} from '../asset-encyclopedia/registry.js';
@@ -6,19 +7,19 @@ const inside=(p,r)=>{let c=false;for(let i=0,j=r.length-1;i<r.length;j=i++){cons
 const polygons=g=>!g?[]:g.type==='Polygon'?(g.coordinates.length?[g.coordinates]:[]):g.type==='MultiPolygon'?g.coordinates:g.type==='GeometryCollection'?g.geometries.flatMap(polygons):[];
 const contains=(g,p)=>polygons(g).some(r=>inside(p,r[0])&&!r.slice(1).some(h=>inside(p,h)));
 const segmentDistance=(p,a,b)=>{const dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/(dx*dx+dz*dz||1)));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dz);};
-export function planGrade1Props(layout,specs,dimensions,{elevation,roadInfo,obstacles=[]}){
+export function planGrade1Props(layout,specs,dimensions,{elevation,groundElevation=elevation,roadInfo,obstacles=[]}){
  const placed=[],rejected={clearance:0,slope:0},occupied=obstacles.slice();if(!layout)return {placed,rejected};
  const data=layout.data,access=[...(data.vehicleApproaches||[]),data.vehicleAccess,data.protectedAccess,...(data.accessPaths||[]).map(p=>p.geometry),...[...(data.bays||[]),...(data.entries||[])].flatMap(p=>['footprint','connector','entrance','approach'].map(k=>p[k]))].filter(g=>g?.type),openings=[...(data.gaps||[]),...(data.siteDetails?.gates||[])].filter(g=>g.a&&g.b);
  const buildings=[...layout.plots.values()];
  function attempt(key,owner,p,n,height=0,wall=false){
   const dim=dimensions[key];if(!dim)return false;
-  const angle=Math.atan2(n[0],n[1]),cs=Math.cos(angle),sn=Math.sin(angle),base=elevation(...p)+height;
+  const angle=Math.atan2(n[0],n[1]),cs=Math.cos(angle),sn=Math.sin(angle),base=(wall?elevation:groundElevation)(...p)+height;
   const points=[[dim.min[0],dim.min[2]],[dim.max[0],dim.min[2]],[dim.max[0],dim.max[2]],[dim.min[0],dim.max[2]]].map(([x,z])=>[p[0]+x*cs+z*sn,p[1]-x*sn+z*cs]);
   if(!visibleObject(p[0],p[1],dim.max[1]-dim.min[1],Math.hypot(dim.max[0]-dim.min[0],dim.max[2]-dim.min[2])*.5,base+dim.min[1])){rejected.clearance++;return false;}
   const samples=[...points,points.reduce((a,q)=>[a[0]+q[0]/4,a[1]+q[1]/4],[0,0])];
   const bounds=new T.Box3();for(const q of points){bounds.expandByPoint(new T.Vector3(q[0],base+dim.min[1],q[1]));bounds.expandByPoint(new T.Vector3(q[0],base+dim.max[1],q[1]));}
   if(samples.some(q=>buildings.some(b=>contains(b.building,q))||access.some(g=>contains(g,q))||openings.some(g=>segmentDistance(q,g.a,g.b)<.85)||(!wall&&roadInfo?.(...q)))||occupied.some(b=>b.intersectsBox(bounds))){rejected.clearance++;return false;}
-  if(!wall&&Math.max(...points.map(q=>elevation(...q)))-Math.min(...points.map(q=>elevation(...q)))>.06){rejected.slope++;return false;}
+  if(!wall&&Math.max(...points.map(q=>groundElevation(...q)))-Math.min(...points.map(q=>groundElevation(...q)))>.06){rejected.slope++;return false;}
   occupied.push(bounds);placed.push({key,owner,position:[p[0],base,p[1]],angle,wall,footprint:points});return true;
  }
  for(const b of buildings){
@@ -47,7 +48,8 @@ export async function createGrade1Props(layout,specs,{elevation,roadInfo,detailG
   const model=(await loader.loadAsync(entry.url)).scene;model.updateMatrixWorld(true);const box=new T.Box3().setFromObject(model);dimensions[key]={min:box.min.toArray(),max:box.max.toArray()};templates.set(key,model);
  }
  const obstacles=(detailGroup?.userData.placementProxies||[]).map(ps=>new T.Box3().setFromPoints(ps.map(p=>new T.Vector3(...p))));
- const plan=planGrade1Props(layout,specs,dimensions,{elevation,roadInfo,obstacles});
+ const groundElevation=createContactSurfaceSampler([layout.group],elevation,o=>o.userData.surfaceOverlay===true);
+ const plan=planGrade1Props(layout,specs,dimensions,{elevation,groundElevation,roadInfo,obstacles});
  for(const p of plan.placed){const object=templates.get(p.key).clone(true);object.position.set(...p.position);object.rotation.y=p.angle;object.userData={...object.userData,grade1Prop:p.key,owner:p.owner};object.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});root.add(object);}
  root.userData={placements:plan.placed,rejected:plan.rejected,source:'saved Mia roadview, inferred placement'};return root;
 }

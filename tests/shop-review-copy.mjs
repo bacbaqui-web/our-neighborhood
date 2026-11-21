@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {makeReviewCopy,sceneDigest} from '../outputs/domestic-test/shops/review-copy.js';
+const enc=new TextEncoder(),decode=b=>JSON.parse(new TextDecoder().decode(b));
+const original={id:'1111111111111111',manifest:{id:'1111111111111111',address:'실제 동네',view:{mode:'visible360',version:3}},files:{'generation-input.json':enc.encode(JSON.stringify({sceneId:'1111111111111111',sceneEdits:{buildings:{123:{use:'mixed',assetId:'home-2'}},roads:{}},buildingCollection:{features:[{properties:{objectid:123}}]}})),'mesh.glb':new Uint8Array([1,2,3])}};
+const before=structuredClone(original),digest=await sceneDigest(original);
+const copy=await makeReviewCopy(original,'2222222222222222');
+assert.deepEqual(original,before);
+assert.equal(await sceneDigest(original),digest);
+assert.equal(copy.manifest.reviewCopy.sourceDigest,digest);
+assert.equal(copy.manifest.id,'2222222222222222');
+assert.equal(decode(copy.files['generation-input.json']).sceneId,copy.manifest.id);
+assert.deepEqual(decode(copy.files['generation-input.json']).sceneEdits,decode(original.files['generation-input.json']).sceneEdits);
+copy.files['mesh.glb'][0]=99;
+assert.equal(original.files['mesh.glb'][0],1);
+await assert.rejects(makeReviewCopy(original,original.id));
+await assert.rejects(makeReviewCopy(original,'bad'));
+console.log('Review copy preserves original bytes, manual edits and independent IDs.');

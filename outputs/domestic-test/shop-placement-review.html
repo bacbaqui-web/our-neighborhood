@@ -1,0 +1,29 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>상가 배치 검사 사본 · 우리동네</title>
+<style>body{font:1rem/1.6 system-ui;max-width:48rem;margin:2rem auto;padding:1rem;color:#20383c;background:#f3f5f0}button,select{font:inherit;padding:.6rem;margin:.4rem 0}select{width:100%}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{color:#24675e}</style>
+<main><h1>상가 배치 검사 사본</h1><p>이 브라우저에 저장된 동네를 새 번호로 복사합니다. 사본에서 Shift + 건물 클릭으로 용도를 변경한 뒤 자동 갱신을 확인하세요.</p>
+<label for="scenes">저장된 동네</label><select id="scenes"></select>
+<p><button id="copy" disabled>검사 사본 만들기</button> <button id="export" disabled>검사용 자료 내려받기</button> <button id="verify" disabled>원본 보존 확인</button></p>
+<p id="result" role="status" aria-live="polite">저장 동네를 읽는 중…</p><p><a id="open" target="_blank" rel="noopener" hidden>검사 사본 열기</a></p><pre id="details"></pre></main>
+<script type="module">
+import {getScene,listScenes,saveScene} from './browser-generation/storage.js';
+import {makeReviewCopy,sceneDigest,sceneJSON} from './shops/review-copy.js';
+const $=id=>document.getElementById(id);let review=null;
+async function source(){const s=await getScene($('scenes').value);if(!s)throw Error('선택한 저장 동네가 없습니다.');return s;}
+async function run(fn){for(const id of ['copy','export','verify'])$(id).disabled=true;try{await fn();}catch(e){$('result').textContent=e.message;}finally{$('copy').disabled=$('export').disabled=!$('scenes').value;$('verify').disabled=!review;}}
+$('copy').onclick=()=>run(async()=>{
+ const s=await source();let id;do{id=crypto.randomUUID().replaceAll('-','').slice(0,16);}while(await getScene(id));
+ const c=await makeReviewCopy(s,id);await saveScene(c.manifest,c.files);review=c.manifest.reviewCopy;
+ const preserved=await sceneDigest(await getScene(review.sourceId))===review.sourceDigest;
+ if(!preserved)throw Error('원본이 동시에 변경됐습니다. 원본 보존 확인을 다시 실행해 주세요.');
+ $('result').textContent='검사 사본을 저장했습니다. 원본의 모든 저장 파일과 수동 지정값이 유지됩니다.';
+ $('details').textContent=JSON.stringify({copyId:id,...review},null,2);
+ $('open').href='./?location='+id+'&hour=12';$('open').hidden=false;
+});
+$('verify').onclick=()=>run(async()=>{$('result').textContent=await sceneDigest(await getScene(review.sourceId))===review.sourceDigest?'원본의 모든 저장 파일과 수동 지정값이 그대로입니다.':'원본이 변경됐습니다. 다른 창에서 수정했는지 확인해 주세요.';});
+$('export').onclick=()=>run(async()=>{
+ const s=await source(),files={};for(const name of ['generation-input.json','buildings.geojson','roads-source.json','road-context.json','environment/terrain.json','shops/places.json'])if(s.files[name])files[name]=sceneJSON(s,name);
+ const a=document.createElement('a'),url=URL.createObjectURL(new Blob([JSON.stringify({manifest:s.manifest,files})],{type:'application/json'}));a.href=url;a.download='shop-review-'+s.manifest.id+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('result').textContent='검사용 자료를 내려받았습니다.';
+});
+try{const rows=await listScenes();$('scenes').replaceChildren(...rows.filter(r=>r.view?.mode==='visible360').map(r=>new Option(r.address+' · '+r.id,r.id)));$('copy').disabled=$('export').disabled=!$('scenes').value;$('result').textContent=$('scenes').value?'검사할 저장 동네를 선택하세요.':'이 브라우저에 저장된 360도 동네가 없습니다.';}catch(e){$('result').textContent=e.message;}
+</script></html>

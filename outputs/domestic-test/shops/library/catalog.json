@@ -981,145 +981,24 @@
     {
       "id": "estate-01",
       "category": "estate",
-      "name": "작은 남색 간판 · 매물 게시창",
-      "width": 3.9,
-      "height": 3.65,
+      "name": "사랑채부동산 · 파란 간판 · 사진 외관",
+      "width": 5.8,
+      "height": 3.6,
       "wall": "#997d69",
       "pattern": "stone",
       "joint": "#b29a85",
-      "signs": [
-        {
-          "x": -0.3,
-          "y": 3.08,
-          "w": 2.65,
-          "h": 0.55,
-          "color": "#334550",
-          "bands": [
-            {
-              "y": 0.17,
-              "w": 1.3,
-              "h": 0.014,
-              "color": "#c6b484"
-            }
-          ]
-        }
-      ],
+      "signs": [],
       "openings": [
         {
-          "x": -1.13,
-          "y": 1.4,
-          "w": 0.88,
-          "h": 2.37,
-          "panes": 1,
-          "door": 0,
-          "frame": "#9b8d67",
-          "glass": "#43584f"
-        },
-        {
-          "x": 0.67,
-          "y": 1.4,
-          "w": 2.33,
-          "h": 2.37,
-          "panes": 1,
-          "frame": "#9b8d67",
-          "glass": "#43584f",
-          "papers": [
-            {
-              "x": -0.8,
-              "y": 0.4,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.8,
-              "y": 0.7,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.8,
-              "y": 1.0,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.26,
-              "y": 0.4,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.26,
-              "y": 0.7,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.26,
-              "y": 1.0,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.28,
-              "y": 0.4,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.28,
-              "y": 0.7,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.28,
-              "y": 1.0,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.8200000000000001,
-              "y": 0.4,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.8200000000000001,
-              "y": 0.7,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.8200000000000001,
-              "y": 1.0,
-              "w": 0.47,
-              "h": 0.25,
-              "color": "#dddcca"
-            }
-          ]
-        }
-      ],
-      "steps": [
-        {
           "x": 0,
-          "w": 3.8,
-          "h": 0.14,
-          "z": 0.24,
-          "d": 0.5
+          "y": 1.25,
+          "w": 5.6499999999999995,
+          "h": 2.45,
+          "panes": 3,
+          "door": 1
         }
       ],
+      "steps": [],
       "source": {
         "name": "브리치부동산공인중개사사무소",
         "placeId": "496493472",
@@ -1136,124 +1015,26 @@
           "차양 없는 전면. 가로수에 가려진 오른쪽 끝 상세는 단순 처리"
         ]
       },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-01",
+      "props": []
     },
     {
       "id": "estate-02",
       "category": "estate",
-      "name": "노란 간판 · 계단형 진입",
-      "width": 5.7,
-      "height": 4.25,
+      "name": "88부동산 · 노란 간판 · 사진 외관",
+      "width": 4.2,
+      "height": 3.6,
       "wall": "#8b7665",
-      "signs": [
-        {
-          "x": 0,
-          "y": 3.66,
-          "w": 5.48,
-          "h": 0.85,
-          "color": "#ddd14d",
-          "bands": [
-            {
-              "x": 1.25,
-              "y": 0,
-              "w": 1.05,
-              "h": 0.66,
-              "color": "#ae4e48"
-            }
-          ]
-        },
-        {
-          "x": -2.28,
-          "y": 1.76,
-          "w": 0.6,
-          "h": 2.57,
-          "color": "#e0cd52"
-        }
-      ],
+      "signs": [],
       "openings": [
         {
-          "x": 0.28,
-          "y": 1.78,
-          "w": 4.35,
-          "h": 2.48,
+          "x": 0,
+          "y": 1.25,
+          "w": 4.05,
+          "h": 2.45,
           "panes": 3,
-          "door": 0,
-          "frame": "#7c8980",
-          "glass": "#52645c",
-          "frost": 0.45,
-          "frostColor": "#d8be45",
-          "papers": [
-            {
-              "x": -0.3,
-              "y": 1.43,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": -0.3,
-              "y": 1.69,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.16000000000000003,
-              "y": 1.43,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.16000000000000003,
-              "y": 1.69,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.6200000000000001,
-              "y": 1.43,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 0.6200000000000001,
-              "y": 1.69,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 1.08,
-              "y": 1.43,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 1.08,
-              "y": 1.69,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 1.54,
-              "y": 1.43,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            },
-            {
-              "x": 1.54,
-              "y": 1.69,
-              "w": 0.4,
-              "h": 0.21,
-              "color": "#dddcca"
-            }
-          ]
+          "door": 1
         }
       ],
       "awnings": [
@@ -1266,32 +1047,7 @@
           "drop": 0.08
         }
       ],
-      "steps": [
-        {
-          "x": 0,
-          "w": 5.3,
-          "h": 0.15,
-          "z": 0.85,
-          "d": 0.36,
-          "color": "#6a6256"
-        },
-        {
-          "x": 0,
-          "w": 5.3,
-          "h": 0.3,
-          "z": 0.55,
-          "d": 0.36,
-          "color": "#6a6256"
-        },
-        {
-          "x": 0,
-          "w": 5.3,
-          "h": 0.44999999999999996,
-          "z": 0.25,
-          "d": 0.36,
-          "color": "#6a6256"
-        }
-      ],
+      "steps": [],
       "source": {
         "name": "마포부동산114공인중개사사무소",
         "placeId": "1079404060",
@@ -1308,88 +1064,28 @@
           "매장으로 올라가는 짙은 갈색 3단 계단"
         ]
       },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-02",
+      "props": []
     },
     {
       "id": "estate-03",
       "category": "estate",
-      "name": "붉은 간판 · 낮은 차양",
-      "width": 3.5,
-      "height": 3.65,
+      "name": "가이드공인중개사 · 노란 간판 · 사진 외관",
+      "width": 3.6,
+      "height": 3.6,
       "wall": "#64594e",
       "pattern": "brick",
       "joint": "#a89782",
-      "signs": [
-        {
-          "x": 0,
-          "y": 3.18,
-          "w": 3.3,
-          "h": 0.65,
-          "color": "#ae6259"
-        }
-      ],
+      "signs": [],
       "openings": [
         {
-          "x": -0.4,
-          "y": 1.45,
-          "w": 2.0,
-          "h": 2.34,
-          "panes": 2,
-          "frame": "#685b4f",
-          "glass": "#3c534a",
-          "papers": [
-            {
-              "x": -0.45,
-              "y": 0.45,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            },
-            {
-              "x": -0.45,
-              "y": 0.73,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            },
-            {
-              "x": 0.02999999999999997,
-              "y": 0.45,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            },
-            {
-              "x": 0.02999999999999997,
-              "y": 0.73,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            },
-            {
-              "x": 0.51,
-              "y": 0.45,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            },
-            {
-              "x": 0.51,
-              "y": 0.73,
-              "w": 0.41,
-              "h": 0.22,
-              "color": "#d0d6c4"
-            }
-          ]
-        },
-        {
-          "x": 1.1,
-          "y": 1.45,
-          "w": 0.84,
-          "h": 2.34,
-          "panes": 1,
-          "door": 0,
-          "frame": "#825a4f"
+          "x": 0,
+          "y": 1.25,
+          "w": 3.45,
+          "h": 2.45,
+          "panes": 3,
+          "door": 1
         }
       ],
       "awnings": [
@@ -1402,30 +1098,8 @@
           "drop": 0.24
         }
       ],
-      "props": [
-        {
-          "type": "planter",
-          "x": -0.87,
-          "z": 0.62,
-          "color": "#cdd4c8"
-        },
-        {
-          "type": "planter",
-          "x": -1.43,
-          "z": 0.52,
-          "color": "#dce0d5",
-          "scale": 0.75
-        }
-      ],
-      "steps": [
-        {
-          "x": 0,
-          "w": 3.4,
-          "h": 0.1,
-          "z": 0.24,
-          "d": 0.48
-        }
-      ],
+      "props": [],
+      "steps": [],
       "source": {
         "name": "부자성북부동산공인중개사사무소",
         "placeId": "2022787104",
@@ -1442,7 +1116,8 @@
           "낮은 문턱과 유리 앞 흰 화분. 현재 등록명과 촬영 당시 간판명은 구분"
         ]
       },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed."
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-03"
     },
     {
       "id": "food-01",

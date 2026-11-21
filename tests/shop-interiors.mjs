@@ -36,6 +36,23 @@ const fixture=createNeighborhoodShops({placements:[placement],qa:{}},{shadowMap:
 const cut=fixture.cutShells(host);assert.equal(cut.matchedWindows,first.openings.length);assert.equal(cut.blockedPanes,0);
 console.log('Real host wall aperture cut and all furniture positions behind the facade verified.');
 
-const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=interiors3');
+const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=exteriors1');
 for(const spec of assets){const root=buildStorefront(spec),room=root.getObjectByName('ShopInteriorRoom');for(const f of room.userData.furniture.filter(f=>f.name==='chair-base'))assert(Math.abs(f.center[1]-f.size[1]/2-root.userData.interior.bottom)<1e-6);const original=root.getObjectByName('ShopInteriorFurniture').material,gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,original,'gray');assert.equal(gray.map,original.map);assert.equal(gray.emissiveMap,original.emissiveMap);const shader={fragmentShader:'#include <opaque_fragment>'};gray.onBeforeCompile(shader);assert(shader.fragmentShader.includes('dot(gl_FragColor.rgb'));applyInteriorEmission(gray,{on:1,night:1});assert.equal(gray.color.r,gray.color.g);}
 console.log('Cuboid chair supports reach the floor and grayscale mode retains furniture textures.');
+
+// Photo facades must preserve real lettering and leave clear-glass areas open.
+const {referenceExteriors}=await import('../outputs/domestic-test/shops/reference-exteriors.js?v=exteriors1');
+for(const [id,p]of Object.entries(referenceExteriors)){
+ const spec=assets.find(s=>s.id===id),root=buildStorefront(spec);root.updateMatrixWorld(true);
+ const sign=root.getObjectByName('ReferenceExterior-sign'),wall=root.getObjectByName('ReferenceExterior-wall');
+ assert(sign.material.map);assert.equal(sign.material.emissiveMap,sign.material.map);assert.equal(sign.material.map,wall.material.map);
+ const gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,wall.material,'gray');assert.equal(gray.map,wall.material.map);
+ const [l,t,r,b]=p.crop;
+ for(const [a,d,c,e]of p.holes){const x=((a+c)/2-l)/(r-l)*spec.width-spec.width/2,y=(b-(d+e)/2)/(b-t)*spec.height;
+  const ray=new T.Raycaster(new T.Vector3(x,y,1),new T.Vector3(0,0,-1));
+  assert.equal(ray.intersectObjects([sign,wall]).length,0,id+' glass obscured by photo');
+  assert(ray.intersectObject(root.getObjectByName('ShopInteriorRoom'),true).length>0,id+' missing real room behind glass');
+ }
+ assert.equal(root.userData.referenceExterior,id);
+}
+console.log('Three reference-photo facades retain sign textures, gray maps and unobstructed views into actual rooms.');

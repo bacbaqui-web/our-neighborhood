@@ -1,3 +1,4 @@
+import {prepareReferenceExteriors} from './reference-exteriors.js?v=exteriors1';
 import * as T from 'three';
 
 export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe'];
@@ -5,7 +6,8 @@ const atlas=new T.Texture();atlas.colorSpace=T.SRGBColorSpace;atlas.name='ShopFu
 // One atlas belongs to the module, not to any individual shop's lifetime.
 atlas.userData.sharedShopInterior=true;
 let ready;
-export function prepareShopInteriors(){
+export async function prepareShopInteriors(){
+ await prepareReferenceExteriors();
  if(typeof document==='undefined')return Promise.resolve();
  return ready??=new Promise((resolve,reject)=>{
   const image=new Image();image.onload=()=>{atlas.image=image;atlas.needsUpdate=true;resolve();};
@@ -70,7 +72,7 @@ export function applyInteriorEmission(material,{on,night,line=false}){
 }
 
 export function applyInteriorStyle(material,original,style){
- if(!original.userData.shopInterior)return;
+ if(!original.userData.shopInterior&&!original.userData.shopExterior)return;
  material.map=original.map;material.emissiveMap=original.emissiveMap;material.vertexColors=original.vertexColors;
  material.userData={...original.userData,interiorMonochrome:style!=='color'};
  if(style!=='color'){

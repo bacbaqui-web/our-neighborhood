@@ -1,0 +1,20 @@
+{
+  "estate-01": {
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1792/17923743/1792374351.jpg/1x338x85/1x338_1792374351.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service?idx=85125&mode=view",
+    "sourceName": "목포시 목포BIZ · 사랑채부동산",
+    "usage": "User requested exact facade textures from approved references on 2026-11-22. Third-party license not verified. Original reference image bytes retained; only mesh UVs and window openings adjusted."
+  },
+  "estate-02": {
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1547/15476136/1547613608.jpg/1x338x85/1x338_1547613608.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=79551",
+    "sourceName": "목포시 목포BIZ · 88부동산",
+    "usage": "User requested exact facade textures from approved references on 2026-11-22. Third-party license not verified. Original reference image bytes retained; only mesh UVs and window openings adjusted."
+  },
+  "estate-03": {
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1605/16050720/1605072092.jpg/1x338x85/1x338_1605072092.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=83456",
+    "sourceName": "목포시 목포BIZ · 가이드공인중개사",
+    "usage": "User requested exact facade textures from approved references on 2026-11-22. Third-party license not verified. Original reference image bytes retained; only mesh UVs and window openings adjusted."
+  }
+}

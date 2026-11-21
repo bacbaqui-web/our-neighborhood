@@ -1,11 +1,11 @@
-import {prepareShopInteriors} from './interiors.js?v=interiors3';
+import {prepareShopInteriors} from './interiors.js?v=exteriors1';
 import {prepareBuildingIdentity} from '../building-remakes/identity.js?v=replacements3';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {GLTFExporter} from '../vendor/GLTFExporter.js';
-import {buildStorefront} from './storefront-models.js?v=interiors3';
-import {createStorefrontLighting} from './storefront-lighting.js?v=interiors3';
-import {lightingState,scheduleFor,clockText} from './storefront-hours.js?v=interiors3';
+import {buildStorefront} from './storefront-models.js?v=exteriors1';
+import {createStorefrontLighting} from './storefront-lighting.js?v=exteriors1';
+import {lightingState,scheduleFor,clockText} from './storefront-hours.js?v=exteriors1';
 import {environmentProfile,bearingVector} from '../environment-policy.js?v=151';
 import {createIllustrationRenderer} from '../illustration-renderer.js?v=151';
 import {DEFAULT_APPEARANCE} from '../illustration-settings.js?v=151';

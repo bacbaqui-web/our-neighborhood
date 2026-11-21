@@ -1,0 +1,13 @@
+# Visible buildings beyond the near detail budget
+
+The approved scope is visibility-based buildings in all directions from the picked road observer, simpler distant models with both line passes, fast first scene, and public deployment.
+
+Implementation: retain a near-detail quality budget but remove it as a building visibility boundary. Draw the near scene first. Continue querying small map tiles outward in background, deduplicate/cache results, and use observer horizon/footprint occlusion to skip covered tiles. No fixed radius or building-count cutoff. Stop when potential geometry is occluded or below a screen pixel, or outside source coverage; source errors remain explicit incomplete states. A maximum possible height follows the existing source parser's supported 200 floors. Terrain/height data is approximate, so visibility is approximate rather than survey truth.
+
+Distant buildings use batched actual footprints/roofs without props, with per-building ink IDs and normals for outer/inner outlines. Reuse scene daylight/shading and PNG path. Pause background queries in hidden tabs, abort on page close, yield between tiles, cache map tiles. Existing saved scenes also gain the progressive backdrop.
+
+Verification: isolated visibility tests (beyond250m, tall building behind lower foreground, hidden buildings, duplicate/multipart IDs, more than256 visible, no fixed radius cutoff), mocked query/cache/error/cancellation tests, mesh outline metadata/terrain tests, existing generation checks, Edge real public scene and day/night/line settings. Preserve unrelated Codex bridge edits. Publish only task files.
+
+Review findings and fixes: thin silhouettes now use exact centre-ray intersection; geometry calculations moved to a worker. Queries use 1km tiles and a minimum floor filter derived from the local terrain upper envelope and foreground occlusion. Unchanged visible geometry does not rebuild. Empty/open directions can still require many source queries: after 45 seconds of active lookup work, preserve the frontier and show an explicit continue button rather than exhaust the provider or silently declare completion. This is a workload pause, not a distance/building cutoff. The user must continue in unusually open scenes; automatic unlimited completion is not promised.
+
+Local evidence: saved Solmae scene completed 31 source tiles, skipped38, loaded4908 source buildings and needed zero additional visible owners (the near scene already covered them). Policy/worker tests include4–5km visible geometry and >256 buildings. Dedicated renderer preview verified both silhouette and roof/wall edges in day/night.

@@ -8,7 +8,8 @@ from pathlib import Path
 
 SOURCE = 'VWorld / 도로명주소 건물 (LT_C_SPBD)'
 
-def fetch_buildings(bbox):
+def fetch_buildings(bbox, min_floors=1):
+    if not isinstance(min_floors,int) or not 1 <= min_floors <= 200: raise ValueError("건물 높이 조건이 올바르지 않습니다.")
     if len(bbox) != 4 or not all(math.isfinite(x) for x in bbox):
         raise ValueError('건물 조회 범위가 올바르지 않습니다.')
     west, south, east, north = bbox
@@ -24,6 +25,7 @@ def fetch_buildings(bbox):
         params = dict(service='data', version='2.0', request='GetFeature', data='LT_C_SPBD',
                       geomFilter='BOX('+','.join(map(str,bbox))+')', crs='EPSG:4326', format='json',
                       size=1000, page=page, key=key, domain=settings['vworldDomain'])
+        if min_floors > 1: params["attrFilter"] = "gro_flo_co:>=:"+str(min_floors)
         try:
             with urllib.request.urlopen('https://api.vworld.kr/req/data?'+urllib.parse.urlencode(params), timeout=25) as response:
                 payload = json.load(response)['response']

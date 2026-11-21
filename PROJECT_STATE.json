@@ -5524,5 +5524,27 @@
     "hostingRun": 44857050990,
     "publicScene": "61ce65488f210b03",
     "evidence": "verification/viewer-ui/public.png"
+  },
+  "visibleHorizon20261121": {
+    "state": "tested-local-pending-public",
+    "nearDetailRadius": 100,
+    "distanceCutoff": null,
+    "buildingCountCutoff": null,
+    "worker": true,
+    "tileMetres": 1000,
+    "activeLookupPauseMs": 45000,
+    "pauseAction": "먼 건물 계속 확인",
+    "visibility": "original picked observer, 360 degrees, approximate source floors/terrain",
+    "farGeometry": "actual footprint walls and roof, no props, outer and inner ink enabled",
+    "localEvidence": {
+      "queries": 31,
+      "skipped": 38,
+      "sourceBuildings": 4908,
+      "additionalVisibleBuildings": 0
+    },
+    "limitations": [
+      "Open views may require Continue after45seconds of active query work.",
+      "Source coverage, supported200floors and sampled visibility are not a survey guarantee."
+    ]
   }
 }

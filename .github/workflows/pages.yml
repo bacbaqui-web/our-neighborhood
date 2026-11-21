@@ -26,6 +26,8 @@ jobs:
           node scripts/check-loading.mjs
           node tests/browser-generation.mjs
           node tests/vworld-browser.mjs
+          node tests/visible-horizon.mjs
+          node tests/visible-horizon-worker.mjs
           node --experimental-loader ./tests/three-loader.mjs tests/street-end-context.mjs
       - name: Check scene budget
         run: |

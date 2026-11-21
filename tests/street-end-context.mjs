@@ -35,3 +35,9 @@ const overlap=near.getObjectByName('StreetEndRoads').geometry.attributes.positio
 for(let i=0;i<overlap.count;i++)if(Math.hypot(overlap.getX(i),overlap.getZ(i))<90)assert(Math.abs(overlap.getY(i)-1.025)<1e-5);
 assert.equal(atmosphere.stats.streetEnd.buildings,1);atmosphere.dispose();assert(!near.getObjectByName('StreetEndContext'));
 console.log('Foreground overlap stays above the real surface; context is disposed with the scene.');
+const inkContext=createStreetEndContext({buildings:[...data.buildings],roads:[]},new Set(),()=>0);
+const inkMesh=inkContext.group.getObjectByName('StreetEndBuildings');
+assert.equal(inkMesh.userData.noInk,false,'distant buildings participate in both line passes');
+assert.equal(new Set(inkMesh.geometry.getAttribute('inkObjectId').array).size,2,'joined buildings retain separate silhouettes');
+assert(inkMesh.geometry.getAttribute('normal'),'face normals drive internal roof/wall creases');
+inkContext.dispose();

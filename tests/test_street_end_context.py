@@ -30,14 +30,14 @@ class ContextTest(unittest.TestCase):
    def height(self,x,z):return max(0,x-25)*.8
   out=build_context(collection([front,back]),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([front]),Hill())
   self.assertEqual([b['owner'] for b in out['buildings']],[2])
- def test_dense_scene_cap(self):
+ def test_dense_scene_without_count_cap(self):
   fs=[]
   for i in range(360):
    a=i*math.tau/360;x,z=150*math.cos(a),150*math.sin(a)
    fs.append(feature(i,[(x-1.1,z-1.1),(x+1.1,z-1.1),(x+1.1,z+1.1),(x-1.1,z+1.1),(x-1.1,z-1.1)],10))
   out=build_context(collection(fs),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([]))
-  self.assertEqual(len(out['buildings']),256)
-  self.assertLessEqual(out['qa']['rays'],872)
+  self.assertGreater(len(out['buildings']),256)
+  self.assertGreaterEqual(out['qa']['rays'],360)
  def test_preserve_near_paving(self):
   road={'width':6,'geometry':{'type':'LineString','coordinates':[[0,0],[0,190]]}}
   near=box(-3,0,3,67)

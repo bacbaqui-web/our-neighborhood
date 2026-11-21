@@ -35,7 +35,7 @@ import {setupNumberScrub,setupSettingsDialog} from './ui-controls.js?v=151';
 import {createPrecipitation} from './precipitation.js?v=151';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
 import {createBillboardLightField} from './billboard-lighting.js?v=151';
-import {createAtmosphere} from './atmosphere.js?v=gentle30b';
+import {createAtmosphere} from './atmosphere.js?v=horizon1';
 import {createStreetlights} from './streetlights.js?v=height-audit2';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
 import {loadVegetationAssets} from './vegetation.js?v=view3c';
@@ -59,6 +59,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 let billboardLightField=null,lastBillboardSources='';
 let precipitation=null;
+let horizonEpoch=0;
 let atmosphere=null,streetlights=null,environmentData=null,streetlightPlan=null,hour=12,weather='clear',windowPattern=0,automaticWindows=true;
 const locationContext=await readLocation().catch(error=>({error,origin:[37.626469,127.015677]}));
 const detailRadius=selectedRadius(locationContext);
@@ -112,7 +113,7 @@ function renderScene(settings=renderSettings()){
  if(renderer.shadowMap.needsUpdate){drawRawScene();renderer.shadowMap.needsUpdate=false;}
  const start=performance.now(),stats=visibility?.prepare(camera,settings);
  const cullMs=performance.now()-start;
- try{drawScene(renderer.getPixelRatio(),JSON.stringify([camera.matrixWorld.elements,camera.projectionMatrix.elements,settings,meshes.length,viewStreamer?.epoch,streetLifeRoot?.visible,benchmarking?++benchmarkFrame:0]));}finally{visibility?.reset();}
+ try{drawScene(renderer.getPixelRatio(),JSON.stringify([camera.matrixWorld.elements,camera.projectionMatrix.elements,settings,meshes.length,horizonEpoch,viewStreamer?.epoch,streetLifeRoot?.visible,benchmarking?++benchmarkFrame:0]));}finally{visibility?.reset();}
  renderCount++;
  lastStats={...stats,calls:illustrationRenderer.stats.calls,triangles:illustrationRenderer.stats.triangles,lines:illustrationRenderer.stats.lines,illustration:{...illustrationRenderer.stats},cullMs:+cullMs.toFixed(2),renderCount};
  const e=$('perfStats');e.dataset.stats=JSON.stringify(lastStats);
@@ -415,4 +416,26 @@ async function benchmarkStreetLife({root,views,focus,summary,out}){
 }
 if(loaded){
  try{const {installSimReadyPreview}=await import('./simready-preview.js?v=compact1');streetLifeRoot=(await installSimReadyPreview({scene,assetParent:streetGroup,camera,controls,shopPlan,elevation:finishedGround||elevation,requestRender,renderer,applyStyle,obstacles:[detailGroup,shops.group,utilityGroup],benchmark:benchmarkStreetLife,showControls:false})).root;}catch(e){$('status').textContent='생활 소품 배치 실패: '+e.message;console.error(e);}
+}
+
+// The near scene is usable before outward visibility queries start.
+if(loaded&&locationContext.view){
+ const progress=document.createElement('div');progress.id='backgroundProgress';progress.setAttribute('role','status');progress.style.cssText='position:absolute;left:12px;top:12px;z-index:3;padding:6px 9px;border-radius:6px;background:#fffffff0;color:#254650;font-size:12px';host.append(progress);
+ const controller=new AbortController();window.addEventListener('pagehide',()=>controller.abort(),{once:true});
+ const start=async()=>{
+  progress.textContent='멀리 보이는 건물 확인 중…';
+  try{
+   const {expandVisibleBuildings}=await import('./visible-horizon.js?v=horizon1');
+   const initial=locationContext.browserFiles?.['visibility-source.json']?await fetch(locationContext.browserFiles['visibility-source.json'],{signal:controller.signal}).then(r=>r.json()):data;
+   const ownerIds=new Set(data.features.map(f=>Number(f.properties.objectid)));
+   const groundHeight=(x,z)=>(finishedGround||elevation)(x,z,atmosphere.heightAt(x,z));
+   const maxTerrain=Math.max(0,...environmentData.positions.filter((_,i)=>i%3===1))+20;
+   await expandVisibleBuildings({origin:locationContext.origin,view:locationContext.view,heightAt:groundHeight,maxTerrain,terrainRadii:environmentData.radii,initial,terrain:atmosphere.heightSnapshot(),detailOwners:ownerIds,signal:controller.signal,
+    onUpdate(context,stats){horizonEpoch++;const group=atmosphere.updateVisibleBuildings(context);if(group)illustrationShading.install(group);camera.far=Math.max(3000,stats.farthest*1.5+1000);camera.updateProjectionMatrix();host.dataset.background=JSON.stringify(atmosphere.stats);requestRender();},
+    onPause:()=>new Promise((resolve,reject)=>{const button=document.createElement("button");button.type="button";button.textContent="먼 건물 계속 확인";const abort=()=>reject(controller.signal.reason);controller.signal.addEventListener("abort",abort,{once:true});button.onclick=()=>{controller.signal.removeEventListener("abort",abort);button.remove();resolve();};progress.append(button);}),
+    onProgress(state){host.dataset.visibleHorizon=JSON.stringify(state);progress.hidden=state.state==='complete'||state.state==='cancelled';progress.textContent=state.state==='incomplete'?'먼 건물 일부를 불러오지 못했습니다.':state.state==='paused'?'추가 조회를 잠시 멈췄습니다. ':state.state==='source-boundary'?'지도 자료가 제공되는 구역까지 확인했습니다.':`먼 건물 ${state.visibleBuildings}동 · 주변 확인 중…`;}
+   });
+  }catch(error){if(controller.signal.aborted)return;progress.hidden=false;progress.textContent='먼 건물 일부를 불러오지 못했습니다. '+error.message;const retry=document.createElement('button');retry.type='button';retry.textContent='다시 확인';retry.onclick=()=>{retry.remove();start();};progress.append(retry);console.error('Distant building lookup incomplete',error);}
+ };
+ start();
 }

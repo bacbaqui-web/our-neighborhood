@@ -51,18 +51,20 @@ export function queryBuildingPage(params,{signal,timeout=25000}={}){
   addEventListener('message',receive);signal?.addEventListener('abort',abort,{once:true});
   frame.onload=()=>frame.contentWindow.postMessage({type:'vworld-query',token,params},'*');
   frame.onerror=()=>fail('건물 조회 화면을 열지 못했습니다. 페이지를 새로고침해 주세요.');
-  frame.src=new URL('./vworld-frame.html',import.meta.url);document.body.append(frame);
+  frame.src=new URL('./vworld-frame.html?v=horizon1',import.meta.url);document.body.append(frame);
  });
 }
-export async function loadBuildings(point,{signal}={}){
- const bbox=buildingBounds(point);
+export async function loadBuildings(point,{signal}={}){return loadBuildingsInBounds(buildingBounds(point),{signal});}
+export async function loadBuildingsInBounds(bbox,{signal,minFloors=1}={}){
+ if(!Number.isInteger(minFloors)||minFloors<1||minFloors>200)throw Error("건물 높이 조건이 올바르지 않습니다.");
+ if(!Array.isArray(bbox)||bbox.length!==4||!bbox.every(Number.isFinite)||!(124<bbox[0]&&bbox[0]<bbox[2]&&bbox[2]<132&&33<bbox[1]&&bbox[1]<bbox[3]&&bbox[3]<39.5)||bbox[2]-bbox[0]>.02||bbox[3]-bbox[1]>.02)throw Error('건물 조회 구역이 올바르지 않습니다.');
  if(['localhost','127.0.0.1'].includes(location.hostname)){
-  const response=await fetch('/api/buildings?'+new URLSearchParams({bbox:bbox.join(',')}),{signal});
+  const response=await fetch('/api/buildings?'+new URLSearchParams({bbox:bbox.join(','),minFloors}),{signal});
   const data=await response.json();if(!response.ok)throw Error(data.message||'건물 자료를 받지 못했습니다.');return data;
  }
  const response=await fetch(new URL('./vworld-config.json',import.meta.url),{signal,cache:'no-cache'});
  if(!response.ok)throw Error('건물 조회 설정을 불러오지 못했습니다. 페이지를 새로고침해 주세요.');
  const config=await response.json();
  if(typeof config.key!=='string'||!config.key||new URL(config.domain).origin!==location.origin)throw Error('이 사이트의 건물 조회 인증키가 설정되지 않았습니다.');
- return collectBuildings(page=>queryBuildingPage({key:config.key,domain:config.domain,geomFilter:'BOX('+bbox.join(',')+')',page},{signal}),{signal});
+ return collectBuildings(page=>queryBuildingPage({key:config.key,domain:config.domain,geomFilter:'BOX('+bbox.join(',')+')',...(minFloors>1?{attrFilter:'gro_flo_co:>=:'+minFloors}:{}),page},{signal}),{signal});
 }

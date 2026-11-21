@@ -5,6 +5,7 @@ addEventListener('message',event=>{
  const send=result=>parent.postMessage({type:'vworld-result',token,...result},event.origin);
  const url=new URL('https://api.vworld.kr/req/data');
  for(const key of ['key','domain','geomFilter','page'])url.searchParams.set(key,params[key]);
+ if(params.attrFilter)url.searchParams.set('attrFilter',params.attrFilter);
  for(const [key,value] of Object.entries({service:'data',version:'2.0',request:'GetFeature',data:'LT_C_SPBD',crs:'EPSG:4326',format:'json',size:1000,callback:'vworldCallback'}))url.searchParams.set(key,value);
  window.vworldCallback=payload=>send({payload});
  const script=document.createElement('script');script.src=url.href;script.referrerPolicy='origin';

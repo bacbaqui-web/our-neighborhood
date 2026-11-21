@@ -13,7 +13,7 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
  items=[]
  for f in collection['features']:
   g=transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])).buffer(0)
-  if g.is_empty or not g.intersects(region):continue
+  if g.is_empty:continue
   items.append((g,int(f['properties']['objectid']),max(1,float(f['properties'].get('gro_flo_co') or 1))*3))
  visible=set();geometries=[v[0] for v in items]
  if items:
@@ -22,7 +22,7 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
   tops=[height(g.centroid.x,g.centroid.y)+h for g,owner,h in items]
   # A bounded set of facade-targeted rays also catches narrow distant buildings.
   angles={j*math.tau/360 for j in range(360)}
-  candidates=sorted((i for i,g in enumerate(geometries) if g.distance(p)>radius),key=lambda i:geometries[i].distance(p))[:512]
+  candidates=sorted((i for i,g in enumerate(geometries) if g.distance(p)>radius),key=lambda i:geometries[i].distance(p))
   for i in candidates:
    q=geometries[i].representative_point();angles.add(math.atan2(q.y-p.y,q.x-p.x)%math.tau)
   for angle in sorted(angles):
@@ -42,7 +42,6 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
   # off the query centre, so a radius-only exclusion leaves a second empty ring.
   if owner in detailed_ids:continue
   for poly in parts(g.simplify(.15,preserve_topology=True)):
-   if len(buildings)>=256:break
    if poly.area>=3:buildings.append({'owner':owner,'height':height,'rings':rings(poly)})
  surfaces=[]
  for road in roads:

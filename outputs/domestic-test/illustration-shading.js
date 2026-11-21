@@ -12,7 +12,10 @@ export function createIllustrationShading(){
    installed.add(material);const before=material.onBeforeCompile,cacheKey=material.customProgramCacheKey();
    const billboard=object.userData.isVegetationBillboard||object.userData.isPedestrianBillboard;
    material.onBeforeCompile=(shader,renderer)=>{
-    before.call(material,shader,renderer);Object.assign(shader.uniforms,uniforms);
+    before.call(material,shader,renderer);
+    // A cloned material may retain an already wrapped shader hook.
+    if(shader.uniforms.inkBrightness)return;
+    Object.assign(shader.uniforms,uniforms);
     shader.fragmentShader='uniform float inkBrightness, inkDensity, inkBands, inkMonochrome, inkDayClarity;\nuniform vec3 inkBaseTint;\n'+shader.fragmentShader;
     shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>',`
      ${billboard?'outgoingLight *= inkBrightness;':`

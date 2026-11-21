@@ -31,3 +31,15 @@ cabinSystem.set(1,'line');assert.equal(shader.uniforms.busCabinStrength.value,0)
 cabinSystem.set(1);assert(shader.uniforms.busCabinStrength.value>0);
 cabinSystem.dispose();assert.equal(busBody.material,original);
 console.log('PASS: bus cabin night/day/line transitions, no added window geometry, material cleanup');
+
+// Reinstalling illustration shading on a bus material clone must be idempotent.
+const inkSource=(await readFile(new URL('../outputs/domestic-test/illustration-shading.js',import.meta.url),'utf8')).replace("from 'three'",`from '${three}'`);
+const {createIllustrationShading}=await import('data:text/javascript;base64,'+Buffer.from(inkSource).toString('base64'));
+const ink=createIllustrationShading();ink.install(scene);
+const integrated=createVehicleLighting(scene);integrated.set(1);ink.install(scene);
+const combined={uniforms:{},vertexShader:'#include <begin_vertex>',fragmentShader:'#include <emissivemap_fragment>\n#include <opaque_fragment>'};
+busBody.material.onBeforeCompile(combined);
+assert.equal(combined.fragmentShader.split('uniform float inkBrightness').length-1,1);
+assert.equal(combined.fragmentShader.split('vec3 inkEmission=').length-1,1);
+assert(combined.uniforms.busCabinStrength.value>0);integrated.dispose();
+console.log('PASS: bus cabin and repeated illustration shader installation');

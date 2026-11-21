@@ -1,5 +1,5 @@
-import {prepareShopInteriors} from '../shops/interiors.js?v=shop50v2';
-import {createStorefrontLighting} from '../shops/storefront-lighting.js?v=shop50v2';
+import {prepareShopInteriors} from '../shops/interiors.js?v=shop50v3';
+import {createStorefrontLighting} from '../shops/storefront-lighting.js?v=shop50v3';
 import {prepareBuildingIdentity} from '../building-remakes/identity.js?v=replacements3';
 import {planSizedTree} from '../tree-planting.js';
 import {treeProfile} from '../tree-profiles.js';
@@ -21,7 +21,7 @@ export async function createModel(a,options={}){
  if(a.kind==='part'){const m=await import('../building-parts/parts.js?v=yard22');const p=m.parts.find(p=>p.id===a.key);if(p.category==='gardens')await(await import('../perimeter-garden.js?v=garden21')).preparePerimeterGardens();if(p.category==='courtyards')await(await import('../road-facing-courtyard.js?v=yard22')).prepareCourtyards();return p.make();}
  if(a.kind==='building'){await prepareBuildingIdentity();const m=await import('../building-assets/model.js?v=replacements3');const c=await import('../building-assets/catalog.js');return m.previewModel(c.assetById[a.key]);}
  if(a.kind==='facility'){await prepareBuildingIdentity();return(await import('../facilities/preview.js?v=replacements3')).previewBuilding(a.key,{neighbors:false});}
- if(a.kind==='shop'){await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);shopData??=fetch('../shops/library/catalog.json?v=shop50v2').then(r=>{if(!r.ok)throw Error('상가 목록을 읽지 못했습니다.');return r.json();});const spec=(await shopData).assets.find(s=>s.id===a.key),root=(await import('../shops/storefront-models.js?v=shop50v2')).buildStorefront(spec),rig=createStorefrontLighting(root,spec);root.updateShopTime=(hour,night)=>rig.update(hour,night);root.updateShopTime(12,0);return root;}
+ if(a.kind==='shop'){await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);shopData??=fetch('../shops/library/catalog.json?v=shop50v3').then(r=>{if(!r.ok)throw Error('상가 목록을 읽지 못했습니다.');return r.json();});const spec=(await shopData).assets.find(s=>s.id===a.key),root=(await import('../shops/storefront-models.js?v=shop50v3')).buildStorefront(spec),rig=createStorefrontLighting(root,spec);root.updateShopTime=(hour,night)=>rig.update(hour,night);root.updateShopTime(12,0);return root;}
  if(a.kind==='tree'){
   const m=await import('../hybrid-tree.js?v=151'),{speciesById}=await import('../tree-species.js?v=151');
   const species=speciesById(a.key),height=options.height??treeProfile(a.key).defaultHeightM,season=options.season??'summer';

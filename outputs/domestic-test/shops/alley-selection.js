@@ -1,4 +1,4 @@
-import {stableHash} from './storefront-hours.js?v=shop50v2';
+import {stableHash} from './storefront-hours.js?v=shop50v3';
 // A stable lottery per building/POI: revisiting the same saved neighborhood
 // keeps its shops, while different building IDs select different valid assets.
 export function chooseAlleyPlacement(choices,key){

@@ -13,7 +13,7 @@ export function prepareReferenceExteriors(){
  return ready??=Promise.all(textures.map((t,i)=>new Promise((resolve,reject)=>{
   const image=new Image();image.onload=()=>{t.image=image;t.needsUpdate=true;resolve();};
   image.onerror=()=>{ready=null;reject(Error('가게 간판 그림을 불러오지 못했습니다. 새로고침해 주세요.'));};
-  image.src=new URL('./textures/estate-comic/'+['signs','vertical','main-signs'][i]+'.png',import.meta.url).href;
+  image.src=new URL(['./textures/estate-comic/signs.png','./textures/estate-comic/vertical.png','./textures/estate-comic/main-signs.png'][i],import.meta.url).href;
  })));
 }
 export function buildReferenceExterior(spec){

@@ -1,5 +1,5 @@
 import {environmentProfile} from '../environment-policy.js?v=151';
-import {clockText} from '../shops/storefront-hours.js?v=shop50v2';
+import {clockText} from '../shops/storefront-hours.js?v=shop50v3';
 import {createReferenceReview} from './reference-review.js?v=shoprefs1';
 import {remakeAliases} from './remakes.js?v=replacements3';
 import {loadAssetRegistry} from './registry.js?v=sungshin50-1';
@@ -89,7 +89,7 @@ for(const tab of tabs){
 }
 try{
  entries=(await loadAssetRegistry()).entries;
- for(const [group,options] of [['road',{}],['part',{manifestFile:'shop-references.json?v=shop50v2',exportName:'가게-참고이미지-검토.json',description:'업종별 동네 가게의 외관 예시입니다. 각 가게 아래에서 후보를 승인하거나, 직접 찾은 이미지를 붙여넣어 바꿀 수 있습니다. 추가 가게 50종은 일괄 제작 요청에 따라 만들었으며, 아래에서 참고 사진을 검토하거나 교체할 수 있습니다.',evidenceNote:'편의점·미용실·세탁소·부동산·음식점·카페의 실제 국내 매장 사진입니다. 각 사진의 출처와 모델링에 참고한 부분을 표시했습니다.'}],['building',{manifestFile:'building-references.json?v=replacements3',exportName:'완성건물-참고이미지-검토.json',description:'교체할 건물의 참고 사진을 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.',evidenceNote:'사진을 누르면 크게 볼 수 있습니다. 실제 장소와 참고할 부분, 사진에서 확인하지 못한 부분을 함께 표시했습니다.'}]]){try{referenceReviews.set(group,await createReferenceReview(options));}catch(e){$('error').textContent=(GROUPS[group]||group)+': '+e.message;}}
+ for(const [group,options] of [['road',{}],['part',{manifestFile:'shop-references.json?v=shop50v3',exportName:'가게-참고이미지-검토.json',description:'업종별 동네 가게의 외관 예시입니다. 각 가게 아래에서 후보를 승인하거나, 직접 찾은 이미지를 붙여넣어 바꿀 수 있습니다. 추가 가게 50종은 일괄 제작 요청에 따라 만들었으며, 아래에서 참고 사진을 검토하거나 교체할 수 있습니다.',evidenceNote:'편의점·미용실·세탁소·부동산·음식점·카페의 실제 국내 매장 사진입니다. 각 사진의 출처와 모델링에 참고한 부분을 표시했습니다.'}],['building',{manifestFile:'building-references.json?v=replacements3',exportName:'완성건물-참고이미지-검토.json',description:'교체할 건물의 참고 사진을 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.',evidenceNote:'사진을 누르면 크게 볼 수 있습니다. 실제 장소와 참고할 부분, 사진에서 확인하지 못한 부분을 함께 표시했습니다.'}]]){try{referenceReviews.set(group,await createReferenceReview(options));}catch(e){$('error').textContent=(GROUPS[group]||group)+': '+e.message;}}
  try{await reviews.load();reviewReady=true;}catch(e){$('reviewError').textContent=e.message;}
  const params=new URLSearchParams(location.search);$('search').value=params.get('search')||'';selectGroup(params.get('tab'));
  const hash=decodeURIComponent(location.hash.slice(1));if(hash){const a=entries.find(a=>a.id===(remakeAliases.get(canonicalId(hash))||canonicalId(hash))&&curation.items[a.id]?.state!=='deleted');if(a){selectGroup(assetGroup(a));open(a);}}

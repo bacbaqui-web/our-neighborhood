@@ -1,3 +1,5 @@
+import path from 'node:path';
+import {pathToFileURL,fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const source=JSON.parse(fs.readFileSync('outputs/domestic-test/shops/textures/comic-manifest.json'));
@@ -9,3 +11,12 @@ assert.equal(images.length,source.files.length);assert(images.every(s=>s.endsWit
 globalThis.fetch=async()=>({ok:true,json:async()=>({files:['../outside.webp']})});
 await assert.rejects((await import('../outputs/domestic-test/shops/comic-artwork.js?publication-invalid')).prepareComicShopArtwork(),/목록이 올바르지/);
 console.log('Published WebP atlas manifest loads; unsafe texture paths remain rejected.');
+
+if(process.argv[2]){
+ const folder=path.resolve(process.argv[2],'domestic-test/shops');images=[];
+ const clean=value=>{const url=new URL(value);url.search='';return fileURLToPath(url);};
+ globalThis.Image=class {set src(value){images.push(value);queueMicrotask(()=>fs.existsSync(clean(value))?this.onload():this.onerror());}};
+ globalThis.fetch=async value=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(clean(value)))});
+ await (await import(pathToFileURL(path.join(folder,'interiors.js')).href+'?publication')).prepareShopInteriors();
+ assert(images.length>=20);console.log(`All ${images.length} published interior/sign textures resolve through the actual loaders.`);
+}

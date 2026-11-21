@@ -1,6 +1,6 @@
-import {addInteriorFurniture} from './interior-furniture.js?v=shop50v2';
-import {prepareComicShopArtwork} from './comic-artwork.js?v=shop50v2';
-import {prepareReferenceExteriors} from './reference-exteriors.js?v=shop50v2';
+import {addInteriorFurniture} from './interior-furniture.js?v=shop50v3';
+import {prepareComicShopArtwork} from './comic-artwork.js?v=shop50v3';
+import {prepareReferenceExteriors} from './reference-exteriors.js?v=shop50v3';
 import * as T from 'three';
 
 export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe','alley'];

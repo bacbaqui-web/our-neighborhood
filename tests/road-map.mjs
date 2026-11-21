@@ -5,3 +5,7 @@ const main=road('main',[[-80,0],[80,0]],2),branch=road('branch',[[0,0],[0,60]]),
 const data=roadMapData(source,{origin:[37,127],view:{position:[3,2]}});
 assert.equal(data.roads.length,2);assert.equal(closestMapRoad(data.roads,[40,2],2).editId,'main');assert.equal(closestMapRoad(data.roads,[1,30],2).editId,'branch');assert.equal(closestMapRoad(data.roads,[30,30],2),null);assert.equal(data.roads[1].grade,1);assert.deepEqual(data.position,[3,2]);
 console.log('Road map: separate main/branch selection, bounds and observer marker passed.');
+const {focusedRoads}=await import('../outputs/domestic-test/building-assets/road-map.js');
+const long=road('long',[[-400,40],[400,40]]),outside=road('outside',[[150,-200],[150,200]]);
+assert.deepEqual(focusedRoads([long,outside,far],100).map(r=>r.editId),['long']);
+assert.deepEqual(long.geometry.coordinates,[[-400,40],[400,40]],'Display filtering must retain the full continuous road');

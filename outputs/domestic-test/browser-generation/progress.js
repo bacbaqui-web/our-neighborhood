@@ -1,5 +1,5 @@
-import {generateInBrowser} from './client.js?v=road-first1';
-import {configureRoads} from './road-setup.js?v=road-first1';
+import {generateInBrowser} from './client.js?v=road-first2';
+import {configureRoads} from './road-setup.js?v=road-first2';
 export async function createNeighborhood(point){
  point=await configureRoads(point);
  const dialog=document.createElement('dialog');dialog.className='generation-progress';

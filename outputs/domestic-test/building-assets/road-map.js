@@ -14,6 +14,7 @@ export function closestMapRoad(roads,point,tolerance,grades={}){
  for(const road of roads){const ps=road.geometry.coordinates;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dz=b[1]-a[1],den=dx*dx+dz*dz;if(!den)continue;const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dz)/den)),distance=Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dz);if(distance<=Math.max(tolerance,roadWidth(grades[road.editId]?.grade??roadGrade(road))/2)&&(!best||distance<best.distance))best={road,distance};}}
  return best?.road||null;
 }
+export function focusedRoads(roads,radius){return roads.filter(r=>closestMapRoad([r],[0,0],radius));}
 export function drawRoadMap(svg,data,selectedId,grades,onSelect){
  const W=640,H=440,scale=Math.min(W,H)/(data.radius*2+12),q=([x,z])=>[W/2+x*scale,H/2+z*scale];
  svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
@@ -26,5 +27,5 @@ export function drawRoadMap(svg,data,selectedId,grades,onSelect){
  pin([0,0],'#df2424','선택 기준점');if(Math.hypot(...data.position)>1)pin(data.position,'#006d8c','길 위 관찰점');
  node('text',{x:W-16,y:24,'text-anchor':'end','font-size':14,fill:'#203b45'},'북 ↑');
  svg.onclick=e=>{const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const at=p.matrixTransform(svg.getScreenCTM().inverse()),r=closestMapRoad(data.roads,[(at.x-W/2)/scale,(at.y-H/2)/scale],8/scale,grades);if(r)onSelect(r);};
- svg.dataset.selectedRoad=selectedId;svg.dataset.origin='0,0';
+ svg.dataset.selectedRoad=selectedId;svg.dataset.origin='0,0';svg.dataset.radius=String(data.radius);
 }

@@ -21,6 +21,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image build dependency
+        run: python -m pip install Pillow
       - name: Check loading behavior
         run: |
           node scripts/check-loading.mjs

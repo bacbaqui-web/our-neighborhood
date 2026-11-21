@@ -26,6 +26,12 @@ class AlleyHousing(unittest.TestCase):
   self.assertEqual(p['streetProfile']['era'],'old')
  def test_major_road_is_not_alley(self):
   self.assertIsNone(self.classify(Polygon([(0,10),(10,10),(10,20),(0,20)]),grade=2)['streetProfile'].get('housingType'))
+ def test_known_apartment_is_not_turned_into_two_storey_house(self):
+  roads=[{'properties':{'class':'minor'},'geometry':mapping(LineString([(-80,0),(80,0)]))}];classify_roads(roads,{})
+  f={'properties':{'objectid':4,'gro_flo_co':15,'floorsEstimated':False,'bdtyp_cd':'02001'},'geometry':mapping(rotate(Polygon([(0,7),(10,7),(10,17),(0,17)]),12))}
+  apply_building_rules({'features':[f]},roads,{},local=True)
+  self.assertEqual(f['properties']['gro_flo_co'],15)
+  self.assertIsNone(f['properties']['streetProfile'].get('housingType'))
  def test_manual_design_kept(self):
   p=self.classify(rotate(Polygon([(0,7),(10,7),(10,17),(0,17)]),12),{'floors':4,'styleIndex':3})
   self.assertEqual(p['gro_flo_co'],4);self.assertEqual(p['streetProfile']['styleIndex'],3)

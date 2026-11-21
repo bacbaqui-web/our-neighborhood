@@ -48,6 +48,16 @@ class Handler(SimpleHTTPRequestHandler):
  def do_GET(self):
   path=urlparse(self.path).path
   if path=='/api/asset-reviews':return handle_review(self,'GET')
+  if path=='/api/buildings':
+   if self.headers.get('Host') != f'127.0.0.1:{self.server.server_port}' or self.headers.get('Sec-Fetch-Site') not in (None,'same-origin'):
+    return self.json_response(403,{'message':'이 서버의 우리동네 화면에서 조회해 주세요.'})
+   try:
+    from vworld_buildings import fetch_buildings
+    query=parse_qs(urlparse(self.path).query)
+    bbox=[float(v) for v in query.get('bbox',[''])[0].split(',')]
+    return self.json_response(200,fetch_buildings(bbox,int(query.get("minFloors",["1"])[0])))
+   except (ValueError,TypeError):return self.json_response(400,{'message':'건물 조회 범위가 올바르지 않습니다.'})
+   except RuntimeError as error:return self.json_response(502,{'message':str(error)})
   if path=='/api/map-config':
    settings_path=ROOT.parent/'.local-settings.json'
    settings=json.loads(settings_path.read_text()) if settings_path.exists() else {}

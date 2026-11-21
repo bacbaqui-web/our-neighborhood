@@ -1,10 +1,11 @@
+import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=interiors2';
 import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
 import {FacadeBatch} from '../korean-facades.js?v=151';
 
-// Measurements are explicitly estimated from reviewed street views. No text,
-// logos or photographic textures are embedded in these editable face meshes.
+// Dimensions are estimated. Supported trades use painted interior boxes;
+// existing facade signs, frames and decals retain their own construction.
 const c = v => typeof v === 'string' ? Number('0x' + v.replace('#','')) : v;
 export function buildStorefront(spec, {shell=true, props=true, attachment=false}={}) {
   const approved=createApprovedStorefront(spec,{shell,attachment});if(approved)return approved;
@@ -12,7 +13,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   const signBatch=new FacadeBatch(),windowBatch=new FacadeBatch(),signOut=signBatch.writer(),windowOut=windowBatch.writer();
   const S=(x,y,z,w,h,d,col)=>signOut.box(x,y,z,w,h,d,c(col));
   const G=(x,y,z,w,h,col)=>windowOut.quad(x,y,z,w,h,c(col),false);
-  const plantAnchors=[];
+  const plantAnchors=[],hasInterior=shopInteriorCategories.includes(spec.category)&&(spec.interiorDepth??3) >= .6;
   const W=spec.width,H=spec.height;
   const polygon=(points,col)=>{
     const b=batch.bucket(c(col));
@@ -23,19 +24,30 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
     }
   };
   const horizontalDisc=(x,y,z,r,col)=>polygon(Array.from({length:12},(_,i)=>{const a=-i*Math.PI/6;return[x+Math.cos(a)*r,y,z+Math.sin(a)*r];}),col);
+  const facadeWall=(z,depth)=>{
+    let pieces=[[-W/2,W/2,0,H]];
+    for(const o of hasInterior?(spec.openings||[]):[]){const cut=[o.x-o.w/2,o.x+o.w/2,o.y-o.h/2,o.y+o.h/2],next=[];
+      for(const q of pieces){const l=Math.max(q[0],cut[0]),r=Math.min(q[1],cut[1]),b=Math.max(q[2],cut[2]),t=Math.min(q[3],cut[3]);if(l>=r||b>=t){next.push(q);continue;}if(q[0]<l)next.push([q[0],l,q[2],q[3]]);if(r<q[1])next.push([r,q[1],q[2],q[3]]);if(q[2]<b)next.push([l,r,q[2],b]);if(t<q[3])next.push([l,r,t,q[3]]);}pieces=next;
+    }
+    for(const [l,r,b,t]of pieces)B((l+r)/2,(b+t)/2,z,r-l,t-b,depth,spec.wall);
+  };
   if(shell){
-    B(0,H/2,-.24,W,H,.48,spec.wall);
+    facadeWall(-.24,.48);
     B(0,H+.04,-.03,W+.06,.08,.62,spec.cap||'#b4b1aa');
     // A plinth with shallow reveals; no invented whole upper building.
     B(0,.08,.015,W,.16,.05,spec.base||'#96968e');
   }
-  if(attachment)B(0,H/2,.025,W,H,.04,spec.wall);
+  if(attachment)facadeWall(.025,.04);
   if(spec.pattern){
+    const facadeLine=(x0,y0,x1,y1,z)=>{const horizontal=y0===y1;let spans=[[horizontal?x0:y0,horizontal?x1:y1]];
+      for(const o of hasInterior?(spec.openings||[]):[]){const l=o.x-o.w/2,r=o.x+o.w/2,b=o.y-o.h/2,t=o.y+o.h/2;if(horizontal?(y0<=b||y0>=t):(x0<=l||x0>=r))continue;const lo=horizontal?l:b,hi=horizontal?r:t;spans=spans.flatMap(([a,c])=>hi<=a||lo>=c?[[a,c]]:[[a,Math.max(a,lo)],[Math.min(c,hi),c]].filter(([a,c])=>c>a));}
+      for(const [a,b]of spans)batch.lineBucket(c(spec.joint||'#aaa59c')).push(horizontal?a:x0,horizontal?y0:a,z,horizontal?b:x0,horizontal?y1:b,z);
+    };
     const brick=spec.pattern==='brick',dy=brick?.18:.42,dx=brick?.40:.70;
     out.detail(0,()=>{for(let row=0,y=.15;y<H;y+=dy,row++){
-      batch.lineBucket(c(spec.joint||'#aaa59c')).push(-W/2,y,attachment?.05:.006,W/2,y,attachment?.05:.006);
+      facadeLine(-W/2,y,W/2,y,attachment?.05:.006);
       const rh=Math.min(dy,H-y);
-      for(let x=-W/2+dx/2+(row%2)*dx/2;x<W/2-.01;x+=dx)batch.lineBucket(c(spec.joint||'#aaa59c')).push(x,y,attachment?.051:.007,x,y+rh,attachment?.051:.007);
+      for(let x=-W/2+dx/2+(row%2)*dx/2;x<W/2-.01;x+=dx)facadeLine(x,y,x,y+rh,attachment?.051:.007);
     }});
   }
   for(const p of spec.panels||[])B(p.x,p.y,p.z??.04,p.w,p.h,p.d??.06,p.color);
@@ -50,6 +62,8 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
     B(o.x,bottom-.035,.14,o.w+.12,.07,.30,spec.base||'#aaa99f');
     for(let i=0;i<n;i++){
       const x=left+th+pw/2+i*(pw+th),isDoor=i===o.door,gh=o.h-2*th;
+      // Other categories retain their existing opaque glazing.
+      if(!hasInterior){
       G(x,o.y,z,pw,gh,o.glass||'#465c60');
       if(o.display&&!isDoor){
         // Flat stock silhouettes behind the front frame, without labels or noisy textures.
@@ -60,6 +74,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
           for(let j=0;j<3;j++)B(x-pw*.30+j*pw*.30,yy+.12,z+.025,pw*.14,.19,.035,['#c5d3bd','#d9cbb6','#a7bbb4','#e1ddd0'][(row+j)%4]);
         }
         if(o.display==='counter')B(x,bottom+.38,z+.02,pw-.08,.5,.05,'#917f68');
+      }
       }
       if(o.frost)G(x,bottom+th+gh*o.frost/2,z+.006,pw,gh*o.frost,o.frostColor||'#b4c5bf');
       if(o.lowerColor)Q(x,bottom+th+.28,z+.008,pw,.56,o.lowerColor);
@@ -167,6 +182,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   }
   root.userData={plantAnchors,storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:true,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true};
   root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+  addShopInteriors(root,spec);
   addSignText(root,spec);
   root.userData.textFree=!spec.signText;
   return root;

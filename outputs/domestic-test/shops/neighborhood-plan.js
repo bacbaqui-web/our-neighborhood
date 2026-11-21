@@ -1,5 +1,5 @@
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
-import {stableHash,scheduleFor} from './storefront-hours.js?v=151';
+import {stableHash,scheduleFor} from './storefront-hours.js?v=interiors2';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const normalize=s=>(s||'').replace(/\s/g,'');
@@ -85,8 +85,13 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   if(chosen.arterial&&chosen.groundSamples.at(-1)<chosen.groundSamples[0]){
    for(const k of ['signs','openings','awnings','props','steps','sideSigns','panels'])for(const o of spec[k]||[]){o.x=-(o.x||0);if(o.door!==undefined)o.door=(o.panes||2)-1-o.door;for(const p of o.papers||[])p.x=-p.x;}
   }
+  // Keep the entire room inside the owning polygon, including concave sides.
+  const host=buildings.find(b=>b.seed===chosen.owner),u=[chosen.n[1],-chosen.n[0]];
+  let depth=0;
+  for(let d=.1;d<=3.21;d+=.1){let fits=true;for(let k=0;k<=8;k++){const x=(-.5+k/8)*(spec.width-.16)*chosen.scale[0],pt=[chosen.position[0]+u[0]*x-chosen.n[0]*d,chosen.position[2]+u[1]*x-chosen.n[1]*d];if(!inside(pt,host.points)||(host.holePoints||[]).some(h=>inside(pt,h))){fits=false;break;}}if(!fits)break;depth=d;}
+  spec.interiorDepth=Math.max(0,depth-.08);
   chosen.spec=spec;
-  const hours=scheduleFor({...spec,id:String(place.id)});hours.alwaysOpen=category==='convenience'||(category==='laundry'&&/무인|셀프|워시|365/.test(place.place_name));chosen.hours=hours;
+  const hours=scheduleFor({...spec,id:String(place.id)});hours.alwaysOpen=category==='convenience';chosen.hours=hours;
   b.storefronts??=[];b.storefronts.push(chosen);placements.push(chosen);byOwner.set(b.seed,count+1);
  }
  return {placements,skipped,qa:{sourcePlaces:places.length,placed:placements.length,arterial:placements.filter(p=>p.arterial).length,observed:placements.filter(p=>p.reference==='observed-local-frontage').length,inferred:placements.filter(p=>p.reference!=='observed-local-frontage').length,byCategory:Object.fromEntries(catalog.categories.map(c=>[c.id,placements.filter(p=>p.category===c.id).length])),skips:skipped.reduce((o,p)=>(o[p.reason]=(o[p.reason]||0)+1,o),{})}};

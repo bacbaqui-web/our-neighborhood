@@ -5965,5 +5965,11 @@
     "sourceCommit": "966c8745d10471baad6667c16f42f2fda22b5e15",
     "hostingCommit": "dfacbef7e996eb9cc49e9d47059ee6730788f5bf",
     "proof": "verification/shop-references/public.jpg"
+  },
+  "shopInteriors20261121": {
+    "status": "implemented; local Edge and geometry/hour checks passed; public deployment pending",
+    "scope": "18 general shop parts; recessed rooms with textured cuboid furniture; placed host wall openings; 21–22h lights off, 24h convenience",
+    "report": "work/shop-interiors/plan.txt",
+    "atlas": "outputs/domestic-test/shops/textures/furniture-v2.png"
   }
 }

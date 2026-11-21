@@ -1,8 +1,10 @@
+import {cutBuildingWindows,auditWindowOpenings} from '../window-recess.js?v=recess22';
+import {applyInteriorEmission} from './interiors.js?v=interiors2';
 import {reviseShopSpec} from '../memo-scene.js?v=151';
 import {applySignEmission} from './sign-lighting.js?v=151';
 import * as T from 'three';
-import {buildStorefront} from './storefront-models.js?v=replacements3';
-import {lightingState} from './storefront-hours.js?v=151';
+import {buildStorefront} from './storefront-models.js?v=interiors2';
+import {lightingState} from './storefront-hours.js?v=interiors2';
 
 const tints={convenience:'#eef5e8',laundry:'#e5efff',salon:'#ffe8cb',estate:'#f3ecd9',food:'#ffdfa9',cafe:'#ffd39d',pharmacy:'#f0f6e6',retail:'#eaf5df',bakery:'#ffe0bb',optical:'#edf1e1',telecom:'#eee7f8'};
 export function createNeighborhoodShops(plan,renderer,{elevation}={}){
@@ -70,6 +72,7 @@ export function createNeighborhoodShops(plan,renderer,{elevation}={}){
     if(!m.emissive)continue;if(!baseColors.has(m))baseColors.set(m,m.color.clone());m.color.copy(baseColors.get(m));
     const on=role==='interior'?r.state.interior:r.state.sign,painted=m===o._originalMaterial||style==='color';
     const tint=new T.Color(role==='interior'?tints[r.p.category]:o.userData.storefrontBaseColor);
+    if(applyInteriorEmission(m,{on,night,line:style==='line'&&m===o.material}))continue;
     if(role==='sign')applySignEmission(m,tint,{on:style==='line'&&m===o.material?0:on,night,monochrome:!painted});
     else{
      if(!painted)tint.setScalar((tint.r+tint.g+tint.b)/3);
@@ -85,7 +88,15 @@ export function createNeighborhoodShops(plan,renderer,{elevation}={}){
   for(let i=0;i<pool.length;i++){const slot=pool[i],r=choices[i]?.r;slot.light.intensity=r?18*r.state.interior*night:0;slot.light.castShadow=!!r;if(r){slot.light.position.fromArray(r.source.position);slot.light.target.position.copy(r.target);slot.light.target.updateMatrixWorld();slot.light.color.set(style==='color'?tints[r.p.category]:'#e0e0e0');}}
   if(signature!==next){signature=next;renderer.shadowMap.needsUpdate=true;return true;}return false;
  }
+ function cutShells(roots){
+  const openings=[];
+  for(const {p,spec,root}of records){if(!root.userData.interior)continue;root.updateWorldMatrix(true,true);
+   const origin=new T.Vector3(0,0,0).applyMatrix4(root.matrixWorld),u=new T.Vector3(1,0,0).transformDirection(root.matrixWorld),n=new T.Vector3(0,0,1).transformDirection(root.matrixWorld);
+   for(const o of spec.openings){const center=new T.Vector3(o.x,o.y,0).applyMatrix4(root.matrixWorld),x=o.x*p.scale[0],y=center.y,w=o.w*p.scale[0],h=o.h*p.scale[1];openings.push({owner:p.owner,a:[origin.x,origin.z],u:[u.x,u.z],n:[n.x,n.z],rect:[x-w/2,x+w/2,y-h/2,y+h/2],depth:.55,x:center.x,z:center.z,y,w,h});}
+  }
+  const qa=cutBuildingWindows(roots,openings);Object.assign(qa,auditWindowOpenings(roots,openings));group.userData.interiorOpenings=qa;return qa;
+ }
  function stats(){const phases={open:0,cleanup:0,closed:0};for(const r of records)if(r.state)phases[r.state.phase]++;return {...plan.qa,hour,...phases,activeSpill:activeIds.length,maxSpill:2};}
- function dispose(){group.traverse(o=>{o.geometry?.dispose();o.material?.map?.dispose();o.material?.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});for(const {light} of pool)light.shadow.dispose();}
- return {group,lamps,records,sources,set,update,stats,dispose,get activeIds(){return activeIds;}};
+ function dispose(){group.traverse(o=>{o.geometry?.dispose();if(!o.material?.map?.userData.sharedShopInterior)o.material?.map?.dispose();o.material?.dispose();if(o._originalMaterial&&o._originalMaterial!==o.material)o._originalMaterial.dispose();});for(const {light} of pool)light.shadow.dispose();}
+ return {group,lamps,records,sources,set,update,stats,cutShells,dispose,get activeIds(){return activeIds;}};
 }

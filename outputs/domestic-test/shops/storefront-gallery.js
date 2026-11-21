@@ -1,15 +1,16 @@
+import {prepareShopInteriors} from './interiors.js?v=interiors2';
 import {prepareBuildingIdentity} from '../building-remakes/identity.js?v=replacements3';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {GLTFExporter} from '../vendor/GLTFExporter.js';
-import {buildStorefront} from './storefront-models.js?v=replacements3';
-import {createStorefrontLighting} from './storefront-lighting.js?v=151';
-import {lightingState,scheduleFor,clockText} from './storefront-hours.js?v=151';
+import {buildStorefront} from './storefront-models.js?v=interiors2';
+import {createStorefrontLighting} from './storefront-lighting.js?v=interiors2';
+import {lightingState,scheduleFor,clockText} from './storefront-hours.js?v=interiors2';
 import {environmentProfile,bearingVector} from '../environment-policy.js?v=151';
 import {createIllustrationRenderer} from '../illustration-renderer.js?v=151';
 import {DEFAULT_APPEARANCE} from '../illustration-settings.js?v=151';
 const $=id=>document.getElementById(id);
-try{await prepareBuildingIdentity();}catch(e){$('count').textContent=e.message;throw e;}
+try{await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);}catch(e){$('count').textContent=e.message;throw e;}
 const response=await fetch('./shops/library/catalog.json?v=70');
 if(!response.ok)throw Error('상가 목록을 불러오지 못했습니다');
 const catalog=await response.json(),assets=catalog.assets;

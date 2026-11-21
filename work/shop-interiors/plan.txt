@@ -1,0 +1,5 @@
+2026-11-21 가게 내부 — 사용자 정정 반영
+앞면에 실내 그림을 붙이는 방식은 폐기. 가게 창·문 뒤에 깊이2.2~3.2m의 실제 공간을 만들고 단순 입방체 가구를 배치한다. 가구별 면에 생성한12칸 UV atlas를 입힌다. 의자도 좌판과 등받이 두 상자로 제한. 창·문 영역의 외벽은 실제로 절개. 실제 배치는 건물 윤곽 안에 들어가는 깊이로 줄이고 0.6m 미만이면 기존 유리 유지.
+6업종18개 가게 부품 대상. 외관 참고 승인 기록과 외관은 유지. 내부는 실측이 아닌 업종 예시. 오전 기존 개점시각부터 점등, 고정21~22시 소등. 편의점24시간 유지.
+이미지 생성: built-in image_gen. furniture-v2.png,4열3행. 프롬프트: orthographic flat furniture surface atlas, twelve equal tiles, stocked shelf/fridge/checkout/wood cabinet/mirror/upholstery/garments/laundry cabinet/desk/listing board/stainless cabinet/coffee display, Korean webtoon flat colors, no room scene or perspective, no readable lettering. 폐기된 평면그림은 rejected-flat-atlas-v1.png로 보존하며 공개 배포하지 않는다.
+검사:18종 실제깊이/가구박스/UV/시간경계, 동네배치 조명·host shell 절개와 가림0, 승인건물회귀·로딩·pack. 공개 배포 및 Edge 확인은 후속 기록.

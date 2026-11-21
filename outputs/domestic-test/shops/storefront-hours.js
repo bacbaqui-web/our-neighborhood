@@ -4,10 +4,9 @@ const wrap=n=>((n%DAY)+DAY)%DAY;
 export function stableHash(text){let h=2166136261;for(const c of text){h=Math.imul(h^c.charCodeAt(0),16777619);}return h>>>0;}
 export function clockText(minute){const m=wrap(Math.round(minute));return `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;}
 export function scheduleFor(spec){
-  const seed=stableHash(spec.id),selfService=spec.category==='laundry'&&['laundry-01','laundry-03'].includes(spec.id);
-  const presets={convenience:[0,0],salon:[600,1260],estate:[570,1250],laundry:[540,1260],cafe:[540,1320],food:[660,1320]};
-  const [open,close]=presets[spec.category]||[600,1260];
-  const schedule={alwaysOpen:spec.category==='convenience'||selfService,openMinute:open,closeMinute:wrap(close+((seed%5)-2)*5),cleanupMinutes:10+((seed>>>5)%3)*5,kind:selfService?'무인 세탁소':spec.category==='convenience'?'24시간 편의점':'일반 매장',source:'art-direction defaults'};
+  const seed=stableHash(String(spec.id));
+  const presets={convenience:0,salon:600,estate:570,laundry:540,cafe:540,food:660};
+  const schedule={alwaysOpen:spec.category==='convenience',openMinute:presets[spec.category]??600,closeMinute:1260+(seed%13)*5,cleanupMinutes:0,kind:spec.category==='convenience'?'24시간 편의점':'일반 매장',source:'art-direction defaults'};
   return {...schedule,...spec.hours};
 }
 export function lightingState(spec,hour){

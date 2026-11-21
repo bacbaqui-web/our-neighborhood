@@ -7,9 +7,10 @@ def protect_public_surfaces(package,root):
  from shapely.geometry import Polygon,Point,LineString,shape,mapping
  from shapely.ops import unary_union
  path=Path(root)/'arterial/plan.json'
- if not path.exists():return
- plan=json.loads(path.read_text())
+ plan=json.loads(path.read_text()) if path.exists() else {}
  public=unary_union([Polygon(r['outer'],r.get('holes',[])) for r in plan.get('publicRings',[])])
+ context=json.loads((Path(root)/'road-context.json').read_text())
+ if context.get('junctionExclusion'):public=public.union(shape(context['junctionExclusion']))
  if public.is_empty:return
  data=package['infill']; removed={}
  def footprint(p):
@@ -58,6 +59,7 @@ def align_road_paint(package,root):
  for p in package['infill'].get('siteDetails',{}).get('patches',[]):
   p['geometry']=mapping(shape(p['geometry']).difference(road_area))
  paint=roads.buffer(-.20,join_style=2).boundary
+ if context.get('junctionExclusion'):paint=paint.difference(shape(context['junctionExclusion']))
  access=package['infill'].get('vehicleAccess')
  if access:paint=paint.difference(shape(access).buffer(.2))
  def lines(g):

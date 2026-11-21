@@ -30,7 +30,7 @@ import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './locat
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=shop50v3';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=shop50v3';
 import {loadData} from './load-data.js?v=151';
-import {applyRoadContext} from './road-context.js?v=grounds1';
+import {applyRoadContext} from './road-context.js?v=junction1';
 import {createIllustrationRenderer} from './illustration-renderer.js?v=slope3';
 import {createIllustrationShading} from './illustration-shading.js?v=152';
 import {DEFAULT_APPEARANCE,loadAppearance,saveAppearance} from './illustration-settings.js?v=compact1';

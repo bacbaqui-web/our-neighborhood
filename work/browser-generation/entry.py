@@ -109,6 +109,8 @@ def stage_finish():
  write('manifest.json',{**loc,'version':74,'buildings':len(buildings['features']),'places':len(params.get('places',[])),'generatedAt':datetime.datetime.now().isoformat(),'elevation':elevation_info,'browserGenerated':True,'browserGenerationVersion':11,'ruleset':'street-visible360-v1','roadPriority':loc.get('buildingRoadFit',json.loads((root/'road-reservation.json').read_text())['qa']),'warnings':params.get('warnings',[]),'sources':{'address':'Kakao Maps','buildings':buildings['source'],'roads':'OpenFreeMap / OpenStreetMap','terrain':elevation_info['mode']}})
  import arterial_plan
  arterial_plan.build(root)
+ import junction_generation
+ junction_generation.build(root,roads,terrain)
 
 
 def stage_site_layout():

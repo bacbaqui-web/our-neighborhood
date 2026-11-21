@@ -1,5 +1,6 @@
 import * as T from 'three';
 import {createWeatheredGroundMaterial,setGroundWeatherUV} from './ground-weather29.js?v=29b';
+import {createJunctionParts} from './junction-assets/placement.js';
 import {finishDepth} from './surface-policy.js';
 
 // Finishes are ordinary meshes: daylight/shadows, monochrome styles and GLB
@@ -56,5 +57,6 @@ export function applyRoadContext(root,plan){
   m.receiveShadow=true;m.castShadow=false;wear.add(m);
  }
  wear.userData={...plan.wear?.qa};group.add(wear);
+ if(plan.junctions)group.add(createJunctionParts(plan.junctions));
  group.userData=plan.qa;root.add(group);return group;
 }

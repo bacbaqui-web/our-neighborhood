@@ -24,7 +24,7 @@ async function placesNear(point){
 export async function generateInBrowser(point,onProgress,{signal}={}){
  point=generationPoint(point);
  const existing=(await listScenes()).find(m=>m.streetEndContext?.version===1&&m.sources?.buildings?.startsWith('VWorld /')&&matchingScene(m,point));
- if(existing&&!point.force)return existing;
+ if(existing&&!point.force&&existing.junctions?.version===1)return existing;
  let sceneEdits,sourceRoads,editBuildingCollection;
  if(existing){const saved=await getScene(existing.id),bytes=saved?.files['scene-edits.json'];if(bytes)sceneEdits=JSON.parse(new TextDecoder().decode(bytes));const input=saved?.files['generation-input.json'];if(input){const previous=JSON.parse(new TextDecoder().decode(input));editBuildingCollection=previous.buildingCollection;if(Object.keys(sceneEdits?.roads||{}).length)sourceRoads=previous.sourceRoads;}}
  if(point.sourceRoads){sourceRoads=point.sourceRoads;sceneEdits={...sceneEdits,...point.sceneEdits,buildings:{...sceneEdits?.buildings,...point.sceneEdits?.buildings}};}

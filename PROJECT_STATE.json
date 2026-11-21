@@ -5894,5 +5894,35 @@
     "scope": "12 approved building remakes: original brand textures, facade colors, windows and proportions",
     "verification": "verification/building-identity",
     "notes": "Unseen elevations inferred; illegible tiny photo details simplified. Rejected reference candidates remain pending."
+  },
+  "boundedRoadBuildingPush20261121": {
+    "status": "deployed-and-public-regeneration-verified",
+    "sourceCommit": "82d5800612bc534e9d492034d1da621f253d8fd2",
+    "geometryCommit": "e31e9e7ec2db098ade89195470b0b859a43d20c7",
+    "hostingCommit": "b2bad2afc57ccefa691afc20e48426962a43390d",
+    "hostingRun": 44905011521,
+    "policy": "Only road-intersecting buildings push outward up to fixed neighbors with 5cm clearance. Test the full swept path, never jump or detour. Stop when clear; otherwise trim remaining road overlap from the shifted footprint. Unaffected neighbors remain exactly unchanged.",
+    "tests": [
+      "32 road tests passed, including partial push then trim and thin rear obstacle",
+      "6 scene edit tests passed",
+      "Generation worker asphalt test reproduced document error then passed with OffscreenCanvas",
+      "Required JS checks, generation scope and Python bundle checks passed",
+      "Public hosting build and deployment succeeded"
+    ],
+    "publicRegeneration": {
+      "scene": "61ce65488f210b03",
+      "radius": 50,
+      "mainRoadGrade": 4,
+      "moved": 7,
+      "movedAndTrimmed": 2,
+      "omittedTooSmall": 3,
+      "roadOverlapM2": 0,
+      "sidewalkOverlapM2": 0,
+      "roadTrimM2": 0,
+      "groupPreserved": true
+    },
+    "proof": "verification/scene-edit/public-bounded-road-push.jpg",
+    "deploymentNote": "Run 44904371651 first failed on missing artifact metadata and rerun failed on duplicate artifacts. Fresh run 44905011521 succeeded. No artifacts deleted.",
+    "limitation": "Older scenes use the new geometry after regeneration or road edit."
   }
 }

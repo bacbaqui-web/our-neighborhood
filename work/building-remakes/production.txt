@@ -10,3 +10,5 @@
 기존 asset-encyclopedia 검사는 raw catalog.json만 조사하여 이미 추적 중인 approved-road/barrier-approved-v1.glb가 누락됐다고 실패합니다. 해당 검사와 raw catalog는 이번 변경 전후 동일하며 새 승인 건물은 GLB를 추가하지 않습니다. 관련 reference/registry 검사는 통과했습니다.
 Edge 로컬 백과에서12개 상세 모두 오류0 확인, QA 화면에서12개 낮 정면/뒷면/밤 창문 육안 확인. 증거 verification/building-remakes/day.png, back.png, night.png. night는 재질 야간 그룹을 조명한 QA이며 실제 동네 모든 시각/주소를 확인한 것은 아닙니다.
 외부 후보 사진은 모델링 참고용 원문 링크이며 재배포 이미지 파일을 포함하지 않습니다. 학교 원본은15.35MB로 느릴 수 있습니다.
+
+공개 완료: source c4c545f, source CI44902795500 성공. hosting858809c, Pages44902820521 성공. Edge 공개12종 상세 오류0/삼각형수 일치, 승인12 보존·교체요청0(새 후보11 승인대기), 새 후보11개 모두 이미지 디코딩 확인. public.png/public-references.png/public-models.json 증거.

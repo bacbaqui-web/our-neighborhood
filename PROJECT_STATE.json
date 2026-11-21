@@ -5866,7 +5866,7 @@
   },
   "approvedBuildingRemakes20261121": {
     "date": "2026-11-21",
-    "status": "implemented-verified-ready-for-public",
+    "status": "public-verified",
     "approvedModels": 12,
     "replacementReferences": 11,
     "approval": "work/building-remakes/approval-20261121.json",
@@ -5877,6 +5877,15 @@
       "Unseen sides/rear/roof and unmeasured dimensions are inferred.",
       "Placed shops use exterior attached glazing; standalone complete buildings have cut shells.",
       "Legacy raw catalog coverage test still fails on preexisting approved-road GLB."
+    ],
+    "sourceCommit": "c4c545f5a7ce0241d5c939caf2eaad12aca7ec0f",
+    "sourceRun": 44902795500,
+    "hostingCommit": "858809ccc54f3cb2e6c08a1db8d1ca71fbcd0346",
+    "hostingRun": 44902820521,
+    "publicChecks": [
+      "12 model details opened, no detail errors; triangle counts match local checks",
+      "Original 12 reference approvals preserved; 11 new references pending",
+      "All 11 replacement image instances decoded in public Edge"
     ]
   }
 }

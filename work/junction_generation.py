@@ -98,7 +98,7 @@ def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
    for landing in landing_rows:
     ramps.append(landing)
     out=landing['out'];depth=landing['depth'];c=landing['center'];top=[c[0]+out[0]*(depth/2-.22),c[1]+out[1]*(depth/2-.22)]
-    assets.append({'assetId':'junction:tactile-warning','position':[top[0],height(*top)+.035+.15,top[1]],'heading':math.atan2(-out[1],out[0]),'slope':[height(top[0]+.5,top[1])-height(top[0]-.5,top[1]),height(top[0],top[1]+.5)-height(top[0],top[1]-.5)]})
+    assets.append({'assetId':'junction:tactile-warning','position':[top[0],height(*top)+.035+.15,top[1]],'heading':math.atan2(out[0],out[1]),'slope':[height(top[0]+.5,top[1])-height(top[0]-.5,top[1]),height(top[0],top[1]+.5)-height(top[0],top[1]-.5)]})
  # Paint only approaches; major/minor intersections keep the through road centreline when side arms are grade 1.
  for node in nodes:
   q=node['point'];main=max(node['grades']);minor=any(g==1 for g in node['grades'])
@@ -262,8 +262,9 @@ def build(root,roads=None,terrain=None):
  for r in ramps:
   c=r['center'];n=r['out'];d=r['depth']
   def ry(x,z):
-   distance=(x-c[0])*n[0]+(z-c[1])*n[1]+d/2;f=max(0,min(1,distance/(d-.2)));return asphalt(x,z)+(walk(x,z)-asphalt(x,z))*f
-  ramp_positions=surface_positions(shape(r['footprint']),height,ry)
+   distance=(x-c[0])*n[0]+(z-c[1])*n[1]+d/2;f=max(0,min(1,distance/(d-.4)));return asphalt(x,z)+(walk(x,z)-asphalt(x,z))*f
+  fp=shape(r['footprint']);plateau=local_rect(c,[n[1],-n[0]],n,-2,2,d/2-.4,d/2+.1)
+  ramp_positions=surface_positions(fp.difference(plateau),height,ry)+surface_positions(fp.intersection(plateau),height,ry)
   if not ramp_positions:raise ValueError('Approved crossing ramp produced no surface')
   geometry['ramp']+=ramp_positions
  for seg in plan['curbs']:

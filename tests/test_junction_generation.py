@@ -118,6 +118,16 @@ class Junctions(unittest.TestCase):
    actual=unary_union([Polygon([(values[i+j],values[i+j+2]) for j in (0,3,6)]) for i in range(0,len(values),9)])
    for ramp in plan['ramps']:self.assertLess(shape(ramp['footprint']).difference(actual).area,1e-8)
    self.assertEqual(out['junctions']['qa']['generatedRamps'],4)
+   for ramp,asset in zip(plan['ramps'],out['junctions']['assets']):
+    h=asset['heading'];self.assertAlmostEqual(math.cos(h)*ramp['out'][0]-math.sin(h)*ramp['out'][1],0,places=7)
+    for lx,lz in [(-.6,-.15),(-.6,.15),(.6,-.15),(.6,.15),(0,0)]:
+     x=asset['position'][0]+math.cos(h)*lx+math.sin(h)*lz;z=asset['position'][2]-math.sin(h)*lx+math.cos(h)*lz;ys=[]
+     for i in range(0,len(values),9):
+      a,b,c=[values[i+j:i+j+3] for j in (0,3,6)];poly=Polygon([(v[0],v[2]) for v in (a,b,c)])
+      if poly.area<1e-9 or not poly.buffer(1e-7).covers(Point(x,z)):continue
+      den=(b[2]-c[2])*(a[0]-c[0])+(c[0]-b[0])*(a[2]-c[2]);u=((b[2]-c[2])*(x-c[0])+(c[0]-b[0])*(z-c[2]))/den;v=((c[2]-a[2])*(x-c[0])+(a[0]-c[0])*(z-c[2]))/den;ys.append(u*a[1]+v*b[1]+(1-u-v)*c[1])
+     self.assertTrue(ys);self.assertAlmostEqual(max(ys),asset['position'][1],places=6)
+
  def test_shallow_crossing_is_skipped_whole(self):
   p=plan([road([[-80,0],[80,0]],4),road([[0,0],[70,30]],2)])
   for c in p['crossings']:self.assertLess(shape(c['footprint']).difference(shape(p['zone'])).area,1e-6)

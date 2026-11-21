@@ -48,6 +48,22 @@ def decorate(package):
    for a,c in zip(line.coords,list(line.coords)[1:]):
     seg=LineString([a,c]);u=profile['roadTangent']
     if seg.length>1.6 and abs(((c[0]-a[0])*u[0]+(c[1]-a[1])*u[1])/seg.length)>math.cos(math.radians(5)):runs.append(seg)
+  if not runs:
+   # Inferred parcels can stop short of the road (common land / clipped roads).
+   # Search inward on the road axis, without moving the house or crossing it.
+   u=profile['roadTangent'];front=LineString([profile['frontStart'],profile['frontEnd']]);mid=front.interpolate(.5,normalized=True)
+   q=nearest_points(mid,road)[1];n=(-u[1],u[0])
+   if (mid.x-q.x)*n[0]+(mid.y-q.y)*n[1]<0:n=(-n[0],-n[1])
+   span=max(10,math.hypot(plot.bounds[2]-plot.bounds[0],plot.bounds[3]-plot.bounds[1]))
+   max_depth=max(0,(mid.x-q.x)*n[0]+(mid.y-q.y)*n[1]-.2)
+   for step in range(1,min(120,int(max_depth/.2))+1):
+    center=(q.x+n[0]*step*.2,q.y+n[1]*step*.2)
+    cross=LineString([(center[0]-u[0]*span,center[1]-u[1]*span),(center[0]+u[0]*span,center[1]+u[1]*span)])
+    candidates=[s for s in parts(cross.intersection(safe)) if s.length>1.6]
+    for s in candidates:
+     link=LineString([s.interpolate(.5,normalized=True),nearest_points(s.interpolate(.5,normalized=True),road)[1]])
+     if link.intersection(houses.buffer(.1)).length<.01:runs.append(s)
+    if runs:break
   gate=None
   if runs:
    front=LineString([profile['frontStart'],profile['frontEnd']]);mid=front.interpolate(.5,normalized=True)

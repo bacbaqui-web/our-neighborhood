@@ -63,6 +63,13 @@ class AlleyParcels(unittest.TestCase):
   p=self.package(gap=1.2);alley_housing.decorate(p)
   closures=[g for g in p['infill']['gaps'] if g.get('role')=='private-gap'];self.assertEqual(len(closures),1);self.assertEqual(closures[0]['kind'],'gate')
 
+ def test_setback_parcel_still_gets_road_facing_wall(self):
+  from alley_housing import decorate
+  from shapely.geometry import box
+  p=self.package(tilted=True);p['plots']['buildings'][0]['plot']=mapping(box(-3,4,11.5,21))
+  decorate(p)
+  self.assertTrue(p['infill']['walls'])
+  self.assertTrue(any(g.get('role')=='yard-gate' for g in p['infill']['gaps']))
  def test_garage_approach_is_not_blocked_by_new_front_wall(self):
   from alley_housing import decorate
   from shapely.geometry import shape

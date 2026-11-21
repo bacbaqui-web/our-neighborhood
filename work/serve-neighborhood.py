@@ -3,7 +3,7 @@ Restart this server after replacing corrected-base.glb to refresh its local mirr
 All authored files remain in outputs; this cache is only a serving copy.
 """
 import argparse, hashlib, json, os, struct, re, subprocess, threading, uuid
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 

@@ -6049,5 +6049,44 @@
       "1.5cm ramp road lip",
       "existing catalog browser cache can retain old list for up to cache max-age 600 seconds"
     ]
+  },
+  "sungshinCommercialResearch20261122": {
+    "status": "reference collection and guidelines recorded; generator not changed",
+    "captureCount": 100,
+    "recordedPanoramaIds": 25,
+    "source": "Naver Map roadview, displayed September 2026",
+    "evidence": "verification/sungshin-commercial-20261122/observations.txt",
+    "manifest": "verification/sungshin-commercial-20261122/manifest.json",
+    "guidelines": "docs/project-guidelines.txt — 성신여대 번화가 관찰에 따른 생성 기준",
+    "publication": "Local research images; redistribution terms unverified; no public scene change"
+  },
+  "sungshinCommercialAssets20261122": {
+    "status": "50 photo-based commercial buildings rebuilt, local visual review and related tests passed; publication pending",
+    "requestedCount": 50,
+    "evidence": "verification/sungshin-commercial-20261122",
+    "specification": "work/sungshin-commercial-50/fidelity-specs.txt",
+    "models": "outputs/domestic-test/sungshin-commercial",
+    "referenceMethod": "Observed fronts and visible side faces; unseen geometry and dimensions explicitly inferred",
+    "imagegen": "Reference-guided original comic sign artwork; no roadview photograph used as texture",
+    "duplicateCorrections": "Seven candidate slots are being replaced after same-building and unclear-boundary review",
+    "publicVerified": false,
+    "registeredCount": 50,
+    "textureFiles": 9,
+    "textureBytes": 2047040,
+    "localRendered": 50,
+    "previewFailures": 0,
+    "supervision": "work/sungshin-commercial-50/supervision.txt",
+    "checks": [
+      "50 geometry, UV, required texture loading and passage-ray checks",
+      "loading",
+      "browser generation",
+      "VWorld",
+      "visible horizon",
+      "worker transport",
+      "68 shop interiors and 65 reference facades",
+      "49-file browser bundle current"
+    ],
+    "cleanBuildBytes": 946472805,
+    "cleanBuildBaseline": "033384107a6d18f6a709e25eaac80831acc829e2"
   }
 }

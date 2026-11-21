@@ -1,0 +1,84 @@
+{
+  "generator": "built-in image_gen",
+  "mode": "reference-guided newly illustrated print faces",
+  "photoFacadesUsed": false,
+  "referencePhotos": "verification/sungshin-commercial-20261122",
+  "runtimeFiles": [
+    {
+      "file": "fidelity-corners.webp",
+      "size": [
+        2048,
+        768
+      ],
+      "bytes": 255948
+    },
+    {
+      "file": "fidelity-mid.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 312008
+    },
+    {
+      "file": "fidelity-north.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 415910
+    },
+    {
+      "file": "fidelity-signs-01-09.webp",
+      "size": [
+        1983,
+        793
+      ],
+      "bytes": 130330
+    },
+    {
+      "file": "fidelity-signs.webp",
+      "size": [
+        1448,
+        1086
+      ],
+      "bytes": 287382
+    },
+    {
+      "file": "fidelity-small.webp",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 72784
+    },
+    {
+      "file": "fidelity-south.webp",
+      "size": [
+        1448,
+        1086
+      ],
+      "bytes": 137162
+    },
+    {
+      "file": "menji.webp",
+      "size": [
+        2172,
+        724
+      ],
+      "bytes": 154472
+    },
+    {
+      "file": "posters.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 281044
+    }
+  ],
+  "totalBytes": 2047040,
+  "originals": "work/sungshin-commercial-50/artwork-originals",
+  "sourceNames": "Observed physical signs were redrawn when readable; unreadable names were not inferred from map overlays. Typography is an illustrated reconstruction, not a scan.",
+  "checks": "All generated atlas images visually inspected; actual row boundaries supplied to UV mapping; PNG source artworks remain local and outside published outputs."
+}

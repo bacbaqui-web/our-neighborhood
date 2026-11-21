@@ -1,0 +1,33 @@
+{
+  "size": [
+    1448,
+    1086
+  ],
+  "grid": [
+    2,
+    6
+  ],
+  "cells": [
+    "LOUNGE ZONE",
+    "ZEROSTORE",
+    "FOCUS ZONE",
+    "Oasis",
+    "GUNGSEOCHAE HAIR",
+    "JACKPUB",
+    "DrVoice B1",
+    "Goods",
+    "아",
+    "unused-louver",
+    "DANDY sign",
+    "DANDY awning"
+  ],
+  "references": [
+    "051",
+    "087",
+    "095",
+    "099"
+  ],
+  "method": "image_gen reference-guided new illustration",
+  "source": "/Users/bacbaqui/.codex/generated_images/01a1fed7-ad65-7902-963e-a3d6352b0dc9/exec-e71a81b6-3485-4b83-9ddc-119c70036568.png",
+  "note": "Generated print faces only. Cell 9 louvers unused: actual geometry required."
+}

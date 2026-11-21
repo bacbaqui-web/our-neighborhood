@@ -9,5 +9,5 @@ export function createRegistry(raw){
  return {entries,resolvePlacement(id){const road=this.resolve('road:'+id);return road?.remade?road:this.resolve('representative:'+id);},resolve(id){const a=byId.get(remakeAliases.get(canonicalId(id))||canonicalId(id));if(!a||isDeleted(a.id))return null;return {...a,url:a.file?new URL(a.file,base).href:null};}};
 }
 export function loadAssetRegistry(){
- return pending??=fetch(new URL('catalog.json?v=sungshin50-1',base)).then(r=>{if(!r.ok)throw Error('에셋 백과 목록을 불러오지 못했습니다.');return r.json();}).then(createRegistry).catch(error=>{pending=null;throw new Error('에셋 기준 목록을 확인해 주세요.',{cause:error});});
+ return pending??=fetch(new URL('catalog.json?v=sungshin50-final1',base)).then(r=>{if(!r.ok)throw Error('에셋 백과 목록을 불러오지 못했습니다.');return r.json();}).then(createRegistry).catch(error=>{pending=null;throw new Error('에셋 기준 목록을 확인해 주세요.',{cause:error});});
 }

@@ -1,0 +1,40 @@
+{
+  "grid": [
+    2,
+    8
+  ],
+  "size": [
+    1254,
+    1254
+  ],
+  "rows": [
+    0,
+    157,
+    313,
+    470,
+    627,
+    784,
+    941,
+    1097,
+    1254
+  ],
+  "labels": [
+    "모리",
+    "WINC",
+    "Dark Jelly",
+    "OLIVE YOUNG",
+    "panda badge",
+    "SHUCREAM",
+    "카파도키아케밥",
+    "CHUN-Li MALATANG",
+    "CACii GACHA SHOP",
+    "MENJi",
+    "OLENS",
+    "MitiP",
+    "사격팡",
+    "T world",
+    "TOM N TOMS COFFEE",
+    "A.awesome"
+  ],
+  "source": "/Users/bacbaqui/.codex/generated_images/01a1fed7-ad65-7902-963e-a3d6352b0dc9/exec-d22d2a89-98d6-442b-98d1-22a2c5ae149a.png"
+}

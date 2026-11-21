@@ -1,0 +1,40 @@
+{
+  "grid": [
+    2,
+    8
+  ],
+  "size": [
+    1254,
+    1254
+  ],
+  "rows": [
+    0,
+    162,
+    324,
+    486,
+    645,
+    802,
+    953,
+    1104,
+    1254
+  ],
+  "labels": [
+    "가위스토커",
+    "SAUTE",
+    "우리할매떡볶이",
+    "GREEK BERRY",
+    "마녀주방",
+    "weArvo",
+    "J.story",
+    "라이라이라이",
+    "GS25",
+    "HELLO HAIR",
+    "SKINBAND",
+    "스마일마트",
+    "해드림부동산",
+    "공간네일",
+    "행복한약국",
+    "비밀베이커리"
+  ],
+  "source": "/Users/bacbaqui/.codex/generated_images/01a1fed7-ad65-7902-963e-a3d6352b0dc9/exec-cb7c139f-196e-45ef-a22f-f91a8e6df01e.png"
+}

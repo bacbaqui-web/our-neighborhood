@@ -1,0 +1,25 @@
+{
+  "grid": [
+    2,
+    3
+  ],
+  "size": [
+    2048,
+    768
+  ],
+  "rows": [
+    0,
+    255,
+    510,
+    768
+  ],
+  "source": "/Users/bacbaqui/.codex/generated_images/01a1fed7-ad65-7902-963e-a3d6352b0dc9/exec-f4ed17b1-98e7-411d-a139-6281ad9bffea.png",
+  "labels": [
+    "MEGA COFFEE",
+    "yellow MEGA awning",
+    "쭈꾸미",
+    "오일내",
+    "KFC",
+    "TOP 인형뽑기"
+  ]
+}

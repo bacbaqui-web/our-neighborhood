@@ -1,5 +1,6 @@
-import {buildReferenceExterior} from './reference-exteriors.js?v=exteriors2';
-import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=exteriors2';
+import {addComicShopArtwork} from './comic-artwork.js?v=comicbatch1';
+import {buildReferenceExterior} from './reference-exteriors.js?v=comicbatch1';
+import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=comicbatch1';
 import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
@@ -193,5 +194,6 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   addShopInteriors(root,spec);
   addSignText(root,spec);
   root.userData.textFree=!spec.signText;
+  addComicShopArtwork(root,spec);
   return root;
 }

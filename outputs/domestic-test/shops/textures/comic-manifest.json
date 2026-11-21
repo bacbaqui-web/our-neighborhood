@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": [
+    "comic-convenience/main-signs.png",
+    "comic-convenience/window-posters.png",
+    "comic-food-cafe/cafe-signs.png",
+    "comic-food-cafe/food-signs.png",
+    "comic-food-cafe/window-posters.png",
+    "comic-services/laundry-signs.png",
+    "comic-services/salon-signs.png",
+    "comic-services/window-adverts.png"
+  ]
+}

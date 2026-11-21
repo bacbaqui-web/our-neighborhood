@@ -36,12 +36,12 @@ const fixture=createNeighborhoodShops({placements:[placement],qa:{}},{shadowMap:
 const cut=fixture.cutShells(host);assert.equal(cut.matchedWindows,first.openings.length);assert.equal(cut.blockedPanes,0);
 console.log('Real host wall aperture cut and all furniture positions behind the facade verified.');
 
-const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=exteriors2');
+const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=comicbatch1');
 for(const spec of assets){const root=buildStorefront(spec),room=root.getObjectByName('ShopInteriorRoom');for(const f of room.userData.furniture.filter(f=>f.name==='chair-base'))assert(Math.abs(f.center[1]-f.size[1]/2-root.userData.interior.bottom)<1e-6);const original=root.getObjectByName('ShopInteriorFurniture').material,gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,original,'gray');assert.equal(gray.map,original.map);assert.equal(gray.emissiveMap,original.emissiveMap);const shader={fragmentShader:'#include <opaque_fragment>'};gray.onBeforeCompile(shader);assert(shader.fragmentShader.includes('dot(gl_FragColor.rgb'));applyInteriorEmission(gray,{on:1,night:1});assert.equal(gray.color.r,gray.color.g);}
 console.log('Cuboid chair supports reach the floor and grayscale mode retains furniture textures.');
 
 // Architecture remains geometry; only generated signs and stickers have maps.
-const {referenceExteriors}=await import('../outputs/domestic-test/shops/reference-exteriors.js?v=exteriors2');
+const {referenceExteriors}=await import('../outputs/domestic-test/shops/reference-exteriors.js?v=comicbatch1');
 for(const id of Object.keys(referenceExteriors)){
  const spec=assets.find(s=>s.id===id),root=buildStorefront(spec);root.updateMatrixWorld(true);
  const sign=root.getObjectByName('MainSign');assert(sign.material.map);assert.equal(sign.material.emissiveMap,sign.material.map);
@@ -53,3 +53,18 @@ for(const id of Object.keys(referenceExteriors)){
  assert(!spec.source.placeId,'old exact POI connection must stay removed');
 }
 console.log('Three modeled facades retain geometric walls/frames/doors, comic decal maps and open views into actual rooms.');
+
+const comicProfiles=assets.filter(s=>s.comicProfile),manifest=JSON.parse(fs.readFileSync('outputs/domestic-test/shops/textures/comic-manifest.json'));
+assert.equal(comicProfiles.length,15);assert.equal(new Set(manifest.files).size,manifest.files.length);
+for(const spec of comicProfiles){
+ assert(!spec.source.placeId,spec.id+' retains stale exact POI');assert(spec.previousSource);
+ const root=buildStorefront(spec),group=root.getObjectByName('ComicShopArtwork');assert(group,spec.id);assert.equal(group.children.length,spec.comicArtwork.length);
+ for(const [i,a]of spec.comicArtwork.entries()){
+  assert(manifest.files.includes(a.file));assert(fs.existsSync('outputs/domestic-test/shops/textures/'+a.file));assert(a.rect.length===4&&a.rect.every(x=>Number.isFinite(x)&&x>=0&&x<=1));assert(a.rect[0]<a.rect[2]&&a.rect[1]<a.rect[3]);assert(a.w>0&&a.h>0);
+  const m=group.children[i];assert(m.material.map);assert(m.material.userData.shopExterior);assert([...m.geometry.attributes.uv.array].every(v=>v>=0&&v<=1));
+  if(a.role==='sign')assert.equal(m.material.emissiveMap,m.material.map);else assert.equal(m.material.emissiveMap,null);
+  const gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,m.material,'gray');assert.equal(gray.map,m.material.map);
+ }
+ assert(root.getObjectByName('ShopInteriorFurniture'));
+}
+console.log('15 reference-matched facades: generated artwork paths/UV/materials, grayscale maps and real interiors verified.');

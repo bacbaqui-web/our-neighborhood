@@ -1,4 +1,5 @@
-import {prepareReferenceExteriors} from './reference-exteriors.js?v=exteriors2';
+import {prepareComicShopArtwork} from './comic-artwork.js?v=comicbatch1';
+import {prepareReferenceExteriors} from './reference-exteriors.js?v=comicbatch1';
 import * as T from 'three';
 
 export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe'];
@@ -7,7 +8,7 @@ const atlas=new T.Texture();atlas.colorSpace=T.SRGBColorSpace;atlas.name='ShopFu
 atlas.userData.sharedShopInterior=true;
 let ready;
 export async function prepareShopInteriors(){
- await prepareReferenceExteriors();
+ await Promise.all([prepareReferenceExteriors(),prepareComicShopArtwork()]);
  if(typeof document==='undefined')return Promise.resolve();
  return ready??=new Promise((resolve,reject)=>{
   const image=new Image();image.onload=()=>{atlas.image=image;atlas.needsUpdate=true;resolve();};

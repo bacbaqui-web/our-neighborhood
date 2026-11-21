@@ -1,8 +1,8 @@
 import {environmentProfile} from '../environment-policy.js?v=151';
-import {clockText} from '../shops/storefront-hours.js?v=exteriors2';
+import {clockText} from '../shops/storefront-hours.js?v=comicbatch1';
 import {createReferenceReview} from './reference-review.js?v=shoprefs1';
 import {remakeAliases} from './remakes.js?v=replacements3';
-import {loadAssetRegistry} from './registry.js?v=exteriors3';
+import {loadAssetRegistry} from './registry.js?v=comicbatch1';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';
@@ -12,7 +12,7 @@ import {curation,canonicalId,appliedLabel} from './curation.js?v=review527';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {createReviewStore,LABELS} from './reviews.js?v=review1';
-import {createModel,release} from './models.js?v=exteriors3';
+import {createModel,release} from './models.js?v=comicbatch1';
 const $=id=>document.getElementById(id),cache=new Map();let entries=[],version=0,detailVersion=0,active=null,viewer=null,currentGroup='building',personViewState={angle:0,pitch:0,zoom:1};
 
 const getLineSettings=mountLineOptions($('lineOptions'),settings=>viewer?.setLines?.(settings));

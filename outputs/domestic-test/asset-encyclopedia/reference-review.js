@@ -10,9 +10,9 @@ export async function createReferenceReview({onChange=()=>{},manifestFile='road-
  const summary=el('p','', 'reference-summary');summary.setAttribute('role','status');
  function updateSummary(){const rows=[...records.values()];summary.textContent=`참고 이미지 ${rows.length}개 · 승인 ${rows.filter(canModel).length}개 · 교체 요청 ${rows.filter(r=>r.status==='replace-requested').length}개`;}
  updateSummary();
- const intro=el('section',null,'reference-intro');intro.append(el('h2','모델링 전 참고 이미지 검토'),el('p',description),el('p',evidenceNote),summary);
+ const intro=el('details',null,'reference-intro'),introToggle=el('summary','모델링 전 참고 이미지 검토 · 펼치기');intro.append(introToggle,el('p',description),el('p',evidenceNote),summary);intro.addEventListener('toggle',()=>{introToggle.textContent='모델링 전 참고 이미지 검토 · '+(intro.open?'접기':'펼치기');});
  const note=el('p','승인·교체 요청·붙여넣은 이미지는 이 브라우저에 저장됩니다. 다른 기기와 자동 공유되지 않습니다. 제작자에게 전달할 때 검토 기록을 내려받아 주세요.','hint');intro.append(note);
- if(storageError){const err=el('p',storageError);err.setAttribute('role','alert');intro.append(err);}
+ if(storageError){intro.open=true;const err=el('p',storageError);err.setAttribute('role','alert');intro.append(err);}
  const exportButton=el('button','검토 기록 내려받기');exportButton.type='button';exportButton.disabled=!store;exportButton.onclick=()=>{const data={version:1,exportedAt:new Date().toISOString(),items:[...records.values()]},url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=el('a');a.href=url;a.download=exportName;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};intro.append(exportButton);
  const lightbox=el('dialog',null,'reference-lightbox'),large=el('img'),close=el('button','닫기');close.type='button';close.onclick=()=>lightbox.close();lightbox.setAttribute('aria-label','참고 이미지 크게 보기');lightbox.append(close,large);document.body.append(lightbox);
  function card(asset){

@@ -1,4 +1,4 @@
-import {createReferenceReview} from './reference-review.js?v=foldrefs1';
+import {createReferenceReview} from './reference-review.js?v=foldintro1';
 import {remakeAliases} from './remakes.js?v=approvedbuildings1';
 import {loadAssetRegistry} from './registry.js?v=approvedbuildings1';
 import {createIllustrationRenderer} from '../illustration-renderer.js';

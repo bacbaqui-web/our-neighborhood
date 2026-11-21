@@ -23,22 +23,22 @@ export const approvedRoad = [
   {
     "id": "road:a68",
     "key": "bus",
-    "name": "마포 마을버스 정류장 · 사진 비율 개선",
-    "file": "bus-approved-v2.glb",
-    "triangles": 19929,
-    "materials": 7,
+    "name": "마을버스 정류장 · 공용 디자인",
+    "file": "bus-approved-v4.glb",
+    "triangles": 4402,
+    "materials": 6,
     "size": [
       0.6129999756813049,
       3.1940000066161156,
-      0.11549999937415123
+      0.09449999965727329
     ],
-    "bytes": 1920612,
+    "bytes": 1886040,
     "approvedReferenceId": "paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
     "approvalRevision": 2,
     "approvedAt": "2026-11-21T09:17:37.601Z",
     "support": "ground",
     "surfaceY": null,
-    "referenceNote": "사용자 사진의 마포 11·마포전철역 표기, 이중 기둥 뒤쪽 고정, 상하 안내판·금연 표시 반영. 광고는 중립 안내판으로 단순화. 뒷면 체결 구조와 크기는 추정.",
+    "referenceNote": "승인 사진의 이중 기둥·둥근 프레임·상하 안내판 구조 반영. 다른 지역에서도 사용할 수 있게 한글 문구를 제외하고 버스·금연 그림, 노선도와 숫자만 유지. 뒷면 체결 구조와 크기는 추정.",
     "dimensions": "photo proportions; estimated 3.194m high / 0.613m wide"
   },
   {

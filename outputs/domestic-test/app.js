@@ -12,7 +12,7 @@ let apartmentGrounds=null;
 import {setupCameraNavigation} from './camera-navigation.js?v=compact1';
 import {planApartmentGrounds,chooseApartment} from './apartments/models.js';
 import {planFacilities} from './facilities/placement.js';
-import {gentleMeshHeight} from './gentle-terrain30.js';
+import {gentleTerrainCorrection} from './gentle-terrain30.js?v=ground-clearance1';
 import {routeCorrection,deformTerrain} from './route-elevation.js?v=151';
 import {selectedRadius,withinScope,fullyInScope,scopePlan,scopeUtilities,scopeArterial,cropTerrain} from './scene-budget.js?v=151';
 import {applyGroundCharacter,setGroundCharacter} from './ground-character.js?v=151';
@@ -180,12 +180,12 @@ try{if(locationContext.error)throw locationContext.error;const [g,d,pd,ap,sp,up,
  peoplePlan=scopePlan(pp,scopeOwners,placementRadius);vegetationPlan=scopePlan(vp,scopeOwners,placementRadius);streetlightPlan=scopePlan(sl,scopeOwners,placementRadius);oldRoot=g.scene;applyRoadContext(oldRoot,rc);applyArterialTerrain(oldRoot,arterialPlan);host.dataset.roadContext=JSON.stringify(rc.qa);cropTerrain(oldRoot,detailRadius+70);scene.add(oldRoot);oldRoot.traverse(o=>{if(!o.isMesh)return;if(['ground','road','path'].includes(o.name))ground.push(o);if(o.name.startsWith('buildings')){oldBuildings.push(o);o.visible=false}if(['props','wires','cars','marks'].includes(o.name)){props.push(o);o.userData.detailKind=o.name==='wires'?'wire':o.name==='props'?'poles':o.name==='cars'?'car':'marks';o.visible=false}});indexTerrain();
  if(locationContext.elevation?.mode==='kakao-road-v1'){elevation.routeCorrected=true;host.dataset.routeElevation=JSON.stringify({...locationContext.elevation,enabled:true,baked:true});}
  if(gentleEnabled){
-  const height=gentleMeshHeight(...locationContext.origin),delta=(x,z)=>height(x,z)-elevation(x,z,0);
+  const {height,delta,baked}=gentleTerrainCorrection(locationContext.origin,locationContext.terrainMode,elevation);
   // indexTerrain holds independent vectors: its samples remain fixed during deformation.
   for(const drop of utilityPlan.drops||[])if(drop.end?.length===3)drop.end[1]+=delta(drop.end[0],drop.end[2]);
   rebaseArterialHeights(arterialPlan,delta);
   rebaseMountedLights(streetlightPlan,delta);
-  const warp=deformTerrain(oldRoot,delta);indexTerrain();elevation.routeCorrected=false;
+  const warp=baked?{vertices:0,maxShift:0}:deformTerrain(oldRoot,delta);indexTerrain();elevation.routeCorrected=false;
   const samples=[];for(let x=-detailRadius;x<=detailRadius;x+=10)for(let z=-detailRadius;z<=detailRadius;z+=10)if(Math.hypot(x,z)<=detailRadius)samples.push(height(x,z));
   host.dataset.terrainMode=JSON.stringify({mode:'gentle-terrain30',minHeight:Math.min(...samples),maxHeight:Math.max(...samples),nearGroundRequests:0,warp});
  }else if(locationContext.id==='original'){

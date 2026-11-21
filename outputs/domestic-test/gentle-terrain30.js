@@ -7,3 +7,11 @@ export function gentleMeshHeight(lat,lon){
  const h=gentleHeight(lat,lon);
  return (x,z)=>{const ax=Math.floor(x/5)*5,az=Math.floor(z/5)*5,u=(x-ax)/5,v=(z-az)/5,a=h(ax,az),b=h(ax+5,az),c=h(ax,az+5),d=h(ax+5,az+5);return u+v<=1?a*(1-u-v)+b*u+c*v:d*(u+v-1)+b*(1-v)+c*(1-u);};
 }
+
+// Generated gentle scenes already share one height field. Sampling finished
+// roads/sidewalks to correct them again folds their clearance into the ground.
+export function gentleTerrainCorrection(origin, terrainMode, sourceHeight) {
+ const height=gentleMeshHeight(...origin);
+ const baked=terrainMode==='gentle-terrain30';
+ return {height,baked,delta:baked?()=>0:(x,z)=>height(x,z)-sourceHeight(x,z,0)};
+}

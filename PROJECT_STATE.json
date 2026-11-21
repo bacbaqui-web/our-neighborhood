@@ -5967,9 +5967,13 @@
     "proof": "verification/shop-references/public.jpg"
   },
   "shopInteriors20261121": {
-    "status": "implemented; local Edge and geometry/hour checks passed; public deployment pending",
+    "status": "deployed and public Edge verified; automated geometry/hour and regression checks passed",
     "scope": "18 general shop parts; recessed rooms with textured cuboid furniture; placed host wall openings; 21–22h lights off, 24h convenience",
     "report": "work/shop-interiors/plan.txt",
-    "atlas": "outputs/domestic-test/shops/textures/furniture-v2.png"
+    "atlas": "outputs/domestic-test/shops/textures/furniture-v2.png",
+    "sourceCommit": "315ed5a",
+    "hostingCommit": "3510cb272693bc3f7fb8493371971e11d6540df5",
+    "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=shop%3A&tab=part",
+    "verification": "verification/shop-interiors/public-salon-on.jpg"
   }
 }

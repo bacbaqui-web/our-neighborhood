@@ -2,4 +2,14 @@
 앞면에 실내 그림을 붙이는 방식은 폐기. 가게 창·문 뒤에 깊이2.2~3.2m의 실제 공간을 만들고 단순 입방체 가구를 배치한다. 가구별 면에 생성한12칸 UV atlas를 입힌다. 의자도 좌판과 등받이 두 상자로 제한. 창·문 영역의 외벽은 실제로 절개. 실제 배치는 건물 윤곽 안에 들어가는 깊이로 줄이고 0.6m 미만이면 기존 유리 유지.
 6업종18개 가게 부품 대상. 외관 참고 승인 기록과 외관은 유지. 내부는 실측이 아닌 업종 예시. 오전 기존 개점시각부터 점등, 고정21~22시 소등. 편의점24시간 유지.
 이미지 생성: built-in image_gen. furniture-v2.png,4열3행. 프롬프트: orthographic flat furniture surface atlas, twelve equal tiles, stocked shelf/fridge/checkout/wood cabinet/mirror/upholstery/garments/laundry cabinet/desk/listing board/stainless cabinet/coffee display, Korean webtoon flat colors, no room scene or perspective, no readable lettering. 폐기된 평면그림은 rejected-flat-atlas-v1.png로 보존하며 공개 배포하지 않는다.
-검사:18종 실제깊이/가구박스/UV/시간경계, 동네배치 조명·host shell 절개와 가림0, 승인건물회귀·로딩·pack. 공개 배포 및 Edge 확인은 후속 기록.
+검사:18종 실제깊이/가구박스/UV/시간경계, 동네배치 조명·host shell 절개와 가림0, 승인건물회귀·로딩·pack. 공개 배포 및 Edge 확인은 아래 기록.
+
+2026-11-22 추가 확인
+- 18종의 실내 깊이, 박스 가구, UV, 정확한 소등 경계, 편의점 24시간 점등 자동 검사 통과. 실제 동네 배치의 host 벽 절개 및 창 가림0 검사 통과. 의자 바닥 접촉과 회색 모드 가구 텍스처 유지 검사 통과.
+- 승인 건물 회귀, 로딩, Python 브라우저 번들47개 일치, JS 문법 검사 통과.
+- 독립 코드 검토에서 발견한 회색 모드 텍스처 누락과 의자 바닥 간격 수정.
+- 공개 Edge에서 미용실12:00/20:00 점등,21:30 소등 및 편의점23:00 점등 확인.
+- 런타임 소스315ed5a, 호스팅3510cb2. 최종 공개 app.js?v=interiors3 및 미용실 실내/점등 화면 확인 완료.
+- 실제 생성 동네 전체의 수동 순회는 하지 않았으며, 동네 부착부는 자동 기하 검사로 확인.
+- 소스 CI44916895181와 공개 호스팅44916912306 성공. 이전 소스 실행의 일시적인 Pages artifact 조회 실패는 최신 실행에서 재현되지 않음.
+- 공개 확인 사진: verification/shop-interiors/public-salon-on.jpg

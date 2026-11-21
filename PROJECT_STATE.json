@@ -1,7 +1,7 @@
 {
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
   "state": "canonical-visible360-public",
-  "publicCommit": "85118499d768d76fff82db4446b6c06a52fd1f8b",
+  "publicCommit": "2cbd1945a73411d4192c4b04d3e491c2dcb8fb84",
   "backup": "/Users/bacbaqui/.project-archives/our-neighborhood/20261029",
   "retiredPublicationCopy": "/Users/bacbaqui/.project-archives/our-neighborhood/retired-release-aaf38f6",
   "threads": {
@@ -5152,7 +5152,7 @@
   },
   "peopleUmbrellaVariants": {
     "date": "2026-11-21",
-    "status": "structure-repair-partially-applied",
+    "status": "public-deployed-and-verified",
     "people": 10,
     "seasons": [
       "spring",
@@ -5184,18 +5184,17 @@
     "manifest": "outputs/domestic-test/people/umbrella.json",
     "generation": "work/people-umbrella/generation-progress.json",
     "validation": [
-      "120 PNG sheets visually inspected",
-      "120 RGBA sheets: 1536x1024 dimensions and alpha checked",
-      "960 non-empty frame bounds checked within 4x2 cells",
-      "10 people x 4 seasons x 3 pitches: complete coverage",
-      "PNG SHA256 recorded; original walking assets unchanged",
-      "One sheet regenerated to remove residual background; original preserved"
+      "120 corrected RGBA sheets / 960 directional frames visually reviewed",
+      "Original backups and lower-body pixels unchanged; alpha, dimensions, frame bounds and SHA256 checked",
+      "Runtime PNGs match accepted candidates and manifest hashes",
+      "Season/action loader and actual Three.js camera-tier, body-size and foot-anchor tests passed",
+      "Microsoft Edge headless: encyclopedia 4 seasons x 3 pitches x 8 directions, drag and action switching passed",
+      "Microsoft Edge headless: generated neighborhood, 4 seasons x rain/snow/clear/rain and rapid changes passed; elevated camera screenshot inspected",
+      "Existing seasonal tests, loading check and browser pack --check passed",
+      "Independent code review: fixed preview orientation reset during pending loads; delayed-decode Edge regression reproduced before and passed after fix"
     ],
     "limits": [
-      "Not yet connected to encyclopedia or neighborhood runtime",
-      "Not deployed to public site",
-      "Frame artHeightPixels includes umbrella; human-height calibration required for neighborhood placement",
-      "71 of 120 umbrella sheets corrected locally; 49 still pending repair/review. This is not full visual approval."
+      "Head-to-foot calibration uses visually estimated hidden head tops (approximately +/-20 image pixels); not physical measurement"
     ],
     "structureReview": {
       "date": "2026-11-21",
@@ -5207,16 +5206,44 @@
       "repairAgent": "umbrella_repair",
       "generatedCandidates": 120,
       "candidateSheets": 120,
-      "acceptedCandidates": 71,
-      "sourceReplacements": 71,
-      "method": "User-authorized local pixel editing with manually reviewed shaft anchors; masked restoration and selective paint/alpha cleanup",
-      "finding": "71 sheets independently visually accepted and applied locally. 49 sheets still require repair or final re-review; their original files remain. Full repair is incomplete.",
-      "nextStep": "Repair and independently recheck the 49 pending sheets listed in repair-report.txt. Always use original backup as immutable source.",
+      "acceptedCandidates": 120,
+      "sourceReplacements": 120,
+      "method": "Local image-generation restoration composited only into reviewed damage masks; original style, varied colors and lower-body pixels preserved",
+      "finding": "All 120 sheets / 960 frames accepted after visual review. Remaining 49 repaired, plus 12 previously accepted sheets repaired again.",
+      "nextStep": "Local repair and integration complete.",
       "directPixelEditingAuthorized": true,
-      "pendingSheets": 49,
-      "report": "work/people-umbrella/repair-20261121/repair-report.txt",
-      "validation": "work/people-umbrella/repair-20261121/validation-final.json",
-      "originalBackup": "work/people-umbrella/repair-20261121/originals"
+      "pendingSheets": 0,
+      "report": "work/people-umbrella/repair-20261121/repair-completion-report.txt",
+      "validation": "work/people-umbrella/repair-20261121/validation-resume.json",
+      "originalBackup": "work/people-umbrella/repair-20261121/originals",
+      "replacementsThisPass": 61,
+      "previouslyPendingResolved": 49,
+      "additionalRepairedThisPass": 12
+    },
+    "connection": {
+      "encyclopedia": "Walk/umbrella controls, seasonal rotation preview and matching image downloads",
+      "neighborhood": "Rain/snow use umbrella; clear/cloudy use ordinary walking; season and 0/30/60-degree camera tiers retained",
+      "localPreview": "http://127.0.0.1:8766/domestic-test/asset-encyclopedia/?tab=person",
+      "publicDeployed": true
+    },
+    "publicRelease": {
+      "date": "2026-11-21",
+      "sourceCommit": "2cbd1945a73411d4192c4b04d3e491c2dcb8fb84",
+      "hostingCommit": "c9bb03ada230b9c59677189417f5aced83071012",
+      "run": 44869364840,
+      "status": "success",
+      "browser": "Microsoft Edge headless",
+      "verifiedUmbrellaFiles": 120,
+      "encyclopediaVariants": 120,
+      "encyclopediaDirectionalViews": 96,
+      "townWeatherSeasonChanges": 16,
+      "rapidSwitching": true,
+      "townHighViewMeters": 10,
+      "pageErrors": 0,
+      "evidence": "verification/umbrella-public/",
+      "report": "docs/umbrella-public-release.txt",
+      "packaging": "240 people PNGs converted to lossless WebP for public build; alpha and all RGB pixels with alpha > 0 verified. Fully transparent RGB may differ; source PNGs retained.",
+      "buildMB": 951.9
     }
   },
   "unifiedVersion": {

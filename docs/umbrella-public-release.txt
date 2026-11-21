@@ -1,0 +1,29 @@
+우산 사람 공개 배포·검사 결과 — 2026-11-21
+
+공개 주소: https://magamiscom.ing/neighborhood/
+에셋백과: https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?tab=person
+소스: 2cbd1945a73411d4192c4b04d3e491c2dcb8fb84
+호스팅: c9bb03ada230b9c59677189417f5aced83071012
+배포 실행: https://github.com/bacbaqui-web/magamiscoming/actions/runs/44869364840 (성공)
+
+공개 확인
+- 공개 우산 이미지120개 파일의 SHA256이 검증한 빌드와 모두 일치합니다.
+- Microsoft Edge headless에서 백과10명×4계절×3시점, 선택한 이미지 받기 경로를 확인했습니다.
+- 대표1명은 4계절×3시점×8방향, 마우스 드래그와 걷기/우산 전환을 확인했습니다.
+- 이미지 로딩을500ms 지연해 계절·동작 연속 변경과 로딩 중 높이 변경 후 방향/높이가 유지되는지 확인했습니다.
+- 공개 생성기로 서울 강북구 도봉로188-1 동네를 새로 만들고, 행인7명의 사계절×비/눈/맑음/비 전환을 확인했습니다.
+- 동네에서 빠른 연속 변경 후 마지막 선택이 반영됐고, 10m 높은 카메라에서 우산 행인 표시를 확인했습니다.
+- 위 브라우저 검사에서 페이지 실행 오류는0건입니다. 증거: verification/umbrella-public/.
+
+배포 용량 조정
+사람 PNG240장을 공개 빌드에서만 무손실 WebP로 변환해 전체951.9MB로 줄였습니다.
+투명도와 보이는 모든 RGB 픽셀은 동일합니다. 완전히 투명한 픽셀의 보이지 않는 RGB값만 압축 과정에서 바뀔 수 있습니다.
+원본 PNG는 소스에 보존하며 공개 백과의 이미지 받기는 현재 WebP를 가리킵니다.
+공개 파일 목록의 캐시 버전을 갱신했습니다. 자동차·나무·건물 원본은 이 용량 조정에서 변경하지 않았습니다.
+로컬 공개 빌드 명령: uv run --with pillow==13.0.0 python scripts/build-site.py
+호스팅 작업에서도 Pillow13.0.0을 설치합니다. scripts/optimize-people-site.py가 픽셀 동일성을 검사합니다.
+
+검사
+people-umbrella, pedestrian-umbrella-runtime, check-loading, browser-generation,
+vworld-browser, visible-horizon, visible-horizon-worker 및 pack.py --check 통과.
+GitHub에서도 검사·빌드·배포가 성공했습니다. 공개 이미지 검사는 배포 후 별도로 수행했습니다.

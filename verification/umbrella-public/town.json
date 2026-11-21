@@ -1,0 +1,87 @@
+{
+  "browser": "Microsoft Edge headless",
+  "rows": [
+    {
+      "season": "spring",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 봄 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "spring",
+      "weather": "snow",
+      "stats": "이미지 행인 7명 · 10종 · 봄 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "spring",
+      "weather": "clear",
+      "stats": "이미지 행인 7명 · 10종 · 봄 옷 · 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "spring",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 봄 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "summer",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 여름 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "summer",
+      "weather": "snow",
+      "stats": "이미지 행인 7명 · 10종 · 여름 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "summer",
+      "weather": "clear",
+      "stats": "이미지 행인 7명 · 10종 · 여름 옷 · 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "summer",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 여름 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "autumn",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 가을 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "autumn",
+      "weather": "snow",
+      "stats": "이미지 행인 7명 · 10종 · 가을 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "autumn",
+      "weather": "clear",
+      "stats": "이미지 행인 7명 · 10종 · 가을 옷 · 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "autumn",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 가을 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "winter",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 겨울 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "winter",
+      "weather": "snow",
+      "stats": "이미지 행인 7명 · 10종 · 겨울 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "winter",
+      "weather": "clear",
+      "stats": "이미지 행인 7명 · 10종 · 겨울 옷 · 걷기 · 8방향 · 시점 높이 3단계"
+    },
+    {
+      "season": "winter",
+      "weather": "rain",
+      "stats": "이미지 행인 7명 · 10종 · 겨울 옷 · 우산 쓰고 걷기 · 8방향 · 시점 높이 3단계"
+    }
+  ],
+  "rapidSwitchFinalSelection": true,
+  "pageErrors": []
+}

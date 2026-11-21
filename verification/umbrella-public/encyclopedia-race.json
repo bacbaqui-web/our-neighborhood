@@ -1,0 +1,10 @@
+{
+  "browser": "Microsoft Edge headless",
+  "delayedImageDecodeMs": 500,
+  "rapidSeasonActionAndPendingPitch": {
+    "action": "umbrella",
+    "season": "autumn",
+    "frame": "2",
+    "pitch": "30"
+  }
+}

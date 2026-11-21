@@ -1,11 +1,11 @@
 import {remakeAliases} from './remakes.js?v=authority1';
-import {loadAssetRegistry} from './registry.js?v=publicwebp1';
+import {loadAssetRegistry} from './registry.js?v=review527';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';
 import {treeProfile,treeProfileText} from '../tree-profiles.js';
 import {GROUPS,assetGroup} from './groups.js?v=assembly1';
-import {curation,canonicalId,appliedLabel} from './curation.js';
+import {curation,canonicalId,appliedLabel} from './curation.js?v=review527';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {createReviewStore,LABELS} from './reviews.js?v=review1';

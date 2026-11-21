@@ -1,4 +1,4 @@
-import {curation} from './curation-data.js';
+import {curation} from './curation-data.js?v=review527';
 export {curation};
 export const isDeleted = id => curation.items[id]?.state === 'deleted';
 export const canonicalId = id => curation.items[id]?.canonical || id;

@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "reviewRevision": 510,
+  "reviewRevision": 527,
   "summary": {
     "inventory": 919,
-    "reviewedDiscard": 459,
+    "reviewedDiscard": 476,
     "reviewedRemake": 8,
     "duplicateEntries": 170,
-    "active": 297,
-    "deleted": 444,
+    "active": 280,
+    "deleted": 461,
     "replacement-pending": 8
   },
   "conflicts": [
@@ -4353,27 +4353,27 @@
     },
     "file:domestic-test/cars/avante-cn7-mesh-v89/avante-cn7.glb": {
       "canonical": "file:domestic-test/cars/avante-cn7-mesh-v89/avante-cn7.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "829a639f882f071ee5611aa82cb0474c9f2ee625a42e16819e345d93b04ad40d"
     },
     "file:domestic-test/cars/avante-cn7-mesh-v90/avante-cn7.glb": {
       "canonical": "file:domestic-test/cars/avante-cn7-mesh-v90/avante-cn7.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "bafe878756bd37c61b7a00aa1ded10396d72bc6caf7c0daf4d39e9bb178d5e9d"
     },
     "file:domestic-test/cars/avante-cn7-mesh-v91/avante-cn7.glb": {
       "canonical": "file:domestic-test/cars/avante-cn7-mesh-v91/avante-cn7.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "6601208b3d9129a2a22d7ff770046f3722d34f507b55b312061cefd12c6bcdac"
     },
     "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb": {
       "canonical": "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "369c4bc7511d8261485a1cd33105b5387020cc4638f3d07ebc1c8c5c0bdca889"
     },
     "file:domestic-test/vehicles/avante-cn7/model.glb": {
       "canonical": "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "369c4bc7511d8261485a1cd33105b5387020cc4638f3d07ebc1c8c5c0bdca889"
     },
     "file:domestic-test/representatives/a11.glb": {
@@ -4548,72 +4548,72 @@
     },
     "file:domestic-test/vehicles/bus-blue/model-front-fixed.glb": {
       "canonical": "file:domestic-test/vehicles/bus-blue/model-front-fixed.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "5a885e25e12dbaa9d45a4c9a837c147c35125496929f4cfdb53329bc2f752275"
     },
     "file:domestic-test/vehicles/bus-blue/model-glass.glb": {
       "canonical": "file:domestic-test/vehicles/bus-blue/model-glass.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "a3e6f3a1875b18526f141dc76702b8f375627ae06ac3d11c897562fa3bee29f5"
     },
     "file:domestic-test/vehicles/bus-blue/model.glb": {
       "canonical": "file:domestic-test/vehicles/bus-blue/model.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "188c8b20c849c8b9b10acf0c5df690d8a57be60925c8830086dacd899f2c2c27"
     },
     "file:domestic-test/vehicles/bus-green/model-front-fixed.glb": {
       "canonical": "file:domestic-test/vehicles/bus-green/model-front-fixed.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "09f82c650b03764a235b569774e3100766f68e105fb671b33fcc777de7e0c02e"
     },
     "file:domestic-test/vehicles/bus-green/model-glass.glb": {
       "canonical": "file:domestic-test/vehicles/bus-green/model-glass.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "0c0655ab9380fd796b3d10adbc669d98dc2175f5e7dd6dbfe9b7c5f31d9629a2"
     },
     "file:domestic-test/vehicles/bus-green/model.glb": {
       "canonical": "file:domestic-test/vehicles/bus-green/model.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "157d6447fa5a9c9e0ea5559eaeb0cda9e9695816e18cb3a1ed76b857f4685b27"
     },
     "file:domestic-test/vehicles/bus-red/model-front-fixed.glb": {
       "canonical": "file:domestic-test/vehicles/bus-red/model-front-fixed.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "893fc07113583a6be7e54a648799d66769d6ab26322feece111c7a1593360f75"
     },
     "file:domestic-test/vehicles/bus-red/model-glass.glb": {
       "canonical": "file:domestic-test/vehicles/bus-red/model-glass.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "9027f580d728290c3522c0ec3cdfcb115d8c2c1fba8877af0af62feedc98ed6e"
     },
     "file:domestic-test/vehicles/bus-red/model.glb": {
       "canonical": "file:domestic-test/vehicles/bus-red/model.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "3079eb9e21a0bb7cb6f1aa1beb4aa03186ca2c016b389716a5d0140794bdf8ec"
     },
     "file:domestic-test/vehicles/porter2/model.glb": {
       "canonical": "file:domestic-test/vehicles/porter2/model.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "c20e7e3b598a002af73d84a167a949bc6db9ed2fa9522c402dc7bdc72a41acbd"
     },
     "file:domestic-test/vehicles/ray/model.glb": {
       "canonical": "file:domestic-test/vehicles/ray/model.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "b1a22ca9978862b5e913665f767d615958182dbd64057de2f7a76d46d6c27e4e"
     },
     "file:domestic-test/vehicles/sonata-dn8/model-detail.glb": {
       "canonical": "file:domestic-test/vehicles/sonata-dn8/model-detail.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "ff9272ccc1c74c10d589243fbb041f1b46890c9152a6036189cf1144dafc1c36"
     },
     "file:domestic-test/vehicles/sonata-dn8/model.glb": {
       "canonical": "file:domestic-test/vehicles/sonata-dn8/model-detail.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "ff9272ccc1c74c10d589243fbb041f1b46890c9152a6036189cf1144dafc1c36"
     },
     "file:domestic-test/vehicles/sonata-dn8/model-original.glb": {
       "canonical": "file:domestic-test/vehicles/sonata-dn8/model-original.glb",
-      "state": "active",
+      "state": "deleted",
       "sha256": "d80d7c11d9cf812f7259e99f669cde34fd36cba0c3197ae96f34c228a94c9876"
     }
   }

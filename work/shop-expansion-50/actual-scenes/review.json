@@ -1,4 +1,17 @@
 {
+  "currentConclusion": {
+    "status": "completed-and-publicly-verified",
+    "verifiedSource": "21b3247b9bb93ff4c2882b866ee614546d1c99d6",
+    "hostingRun": 44938119372,
+    "hostingStatus": "success",
+    "realNeighborhoodGeneration": true,
+    "randomPlacementAndPhysicalConnection": true,
+    "reloadStable": true,
+    "originalPreserved": true,
+    "shopSelectionCameraVerified": true,
+    "condition": "Real Yeonnam map data; only one building use changed to mixed in a separate review copy. No forced asset, road, entrance or clearance change.",
+    "remainingEnvironmentLimitation": "Edge HTTP2 connection issue remains; in-app browser successfully completed the same public generation and verification. This is not a remaining blocker for the completed verification."
+  },
   "local": {
     "source": "9a65b85260561d94",
     "copy": "0f15a2ecaefc48ee",
@@ -9,7 +22,8 @@
       }
     },
     "sourceBuildingCount": 17,
-    "firstRoadResidentialCount": 5
+    "firstRoadResidentialCount": 5,
+    "recordScope": "Historical investigation before successful Yeonnam public verification; not the current completion verdict."
   },
   "public": {
     "source": "93a0ec9684018ff4",
@@ -38,7 +52,8 @@
       ],
       "originalDigestVerifiedAfterRegeneration": true,
       "evidence": "verification/shop-expansion-50/public-review-placement.json"
-    }
+    },
+    "recordScope": "Historical investigation before successful Yeonnam public verification; not the current completion verdict."
   },
   "candidateDiagnosis": {
     "owner": 1100784348,
@@ -51,7 +66,8 @@
     "storedFrontEdgeMetres": 0.546,
     "fix": "normalize separators and require road-name token boundary",
     "sourceCommit": "40f6e6d963d800daccf0eab825cb90f09e27b9c1",
-    "hostingRun": 44934517706
+    "hostingRun": 44934517706,
+    "recordScope": "Historical investigation before successful Yeonnam public verification; not the current completion verdict."
   },
   "screening": {
     "script": "work/shop-expansion-50/screen-actual-candidates.mjs",
@@ -71,17 +87,19 @@
       "firstRoad": 1,
       "fitting": 0,
       "alternateFitting": 0
-    }
+    },
+    "recordScope": "Historical investigation before successful Yeonnam public verification; not the current completion verdict."
   },
   "newGeneration": {
     "address": "서울 마포구 동교로46길 21 근처 길 위 선택 지점",
     "timeUTC": "2026-11-21T18:30~18:32Z",
     "sourceRoadsCommit": "c0b4a35",
     "result": "Kakao map and road selection succeeded; VWorld building request failed",
-    "evidence": "verification/shop-expansion-50/public-yeonnam-generation-blocked.png"
+    "evidence": "verification/shop-expansion-50/public-yeonnam-generation-blocked.png",
+    "recordScope": "Historical investigation before successful Yeonnam public verification; not the current completion verdict."
   },
-  "latestSource": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
-  "latestHostingRun": 44935643510,
+  "latestSource": "21b3247b9bb93ff4c2882b866ee614546d1c99d6",
+  "latestHostingRun": 44938119372,
   "networkDiagnosis": {
     "timeUTC": "2026-11-21T18:38Z",
     "browser": "Edge",

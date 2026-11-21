@@ -5675,5 +5675,27 @@
       "verification/scene-edit/public-building.jpg",
       "verification/scene-edit/public-road.jpg"
     ]
+  },
+  "buildingContextPreview20261121": {
+    "status": "deployed-and-publicly-verified",
+    "sourceCommit": "ee03f39",
+    "hostingCommit": "68e7527db198c148fa470355c65d7488ca016529",
+    "deploymentRun": 44877111792,
+    "features": [
+      "입구 선택 지도에 주변 도로·인도·이웃 건물 표시",
+      "실제 윤곽·층수·디자인·입구 면 3D 외형 미리보기",
+      "명시 디자인이 없는 주택의 연식과 사용 에셋 목록 반영"
+    ],
+    "verification": [
+      "실제 윤곽·다중 건물·층수·입구·공유 렌더러 JS 검사 통과",
+      "기존 에셋·편집 검사 및 공개 소스 번들 검사 통과",
+      "로컬 Edge: 층수·디자인 변경, 지도 직접 선택과 목록 선택 확인",
+      "공개 Edge: 주변 지도, 연식·층수·입구 변경 미리보기 확인, 콘솔 오류 없음. 공개 장면 변경은 저장하지 않음"
+    ],
+    "limits": [
+      "주차·부지·상가 입구는 미리보기 제외, 적용 시 주변 공간에 맞춰 생성"
+    ],
+    "proof": "verification/scene-edit/public-context-preview.jpg",
+    "record": "docs/scene-editing.txt"
   }
 }

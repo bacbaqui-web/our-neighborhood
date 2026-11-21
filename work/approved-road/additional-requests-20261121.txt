@@ -1,0 +1,36 @@
+에셋백과 추가 교체 요청 확인 · 2026-11-21
+공개 Edge 사용자 화면에서 각 탭의 눌린 교체 버튼을 확인했습니다.
+모델 교체 요청 24개: 완성 건물 23개, 도로·시설 1개. 그 외 5개 탭은 표시 없음.
+이번 수정 범위: 제한속도 50 / 주차금지 양면 세로 글자. 아래 항목은 파악만 했으며 제작·교체하지 않았습니다.
+
+완성 건물
+- 유리 전면 상가 (건물 교체 모델) — building:shop-glass
+- 타일 외벽 상가 (건물 교체 모델) — building:shop-tile
+- 패널 외벽 상가 (건물 교체 모델) — building:shop-panel
+- 학교 (건물 교체 모델) — building:school
+- 공공청사 (건물 교체 모델) — building:civic
+- 소방서 (건물 교체 모델) — building:fire
+- 아파트 (시설 외관) — facility:apartment
+- 학교 (시설 외관) — facility:school
+- 이마트 (시설 외관) — facility:emart
+- 롯데마트 (시설 외관) — facility:lotte
+- 홈플러스 (시설 외관) — facility:homeplus
+- 코스트코 (시설 외관) — facility:costco
+- 트레이더스 (시설 외관) — facility:traders
+- 경찰서 (시설 외관) — facility:police
+- 소방서 (시설 외관) — facility:fire
+- 우체국 (시설 외관) — facility:post
+- 다이소 (시설 외관) — facility:daiso
+- CU (시설 외관) — facility:cu
+- GS25 (시설 외관) — facility:gs25
+- 세븐일레븐 (시설 외관) — facility:seven
+- 이마트24 (시설 외관) — facility:emart24
+- 메가커피 (시설 외관) — facility:mega
+- 스타벅스 (시설 외관) — facility:starbucks
+
+도로·시설
+- 버스정류장 시간표 기둥 (로드뷰 참고 소품) — road:a68
+
+참고 이미지 교체 요청 1개
+- 제한속도 표지판 — representative:a67
+  기존 참고 이미지의 교체 요청은 유지했습니다. 50 글자 추가는 이번 대화의 명시적 수정 요청에 따라 반영했습니다.

@@ -1,0 +1,188 @@
+{
+  "observedAt": "2026-11-21T10:44:36.082Z",
+  "source": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?tab=person",
+  "groups": [
+    {
+      "group": "완성 건물",
+      "items": [
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:shop-glass",
+          "name": "유리 전면 상가",
+          "status": "remake"
+        },
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:shop-tile",
+          "name": "타일 외벽 상가",
+          "status": "remake"
+        },
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:shop-panel",
+          "name": "패널 외벽 상가",
+          "status": "remake"
+        },
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:school",
+          "name": "학교",
+          "status": "remake"
+        },
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:civic",
+          "name": "공공청사",
+          "status": "remake"
+        },
+        {
+          "collection": "건물 교체 모델",
+          "id": "building:fire",
+          "name": "소방서",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:apartment",
+          "name": "아파트",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:school",
+          "name": "학교",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:emart",
+          "name": "이마트",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:lotte",
+          "name": "롯데마트",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:homeplus",
+          "name": "홈플러스",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:costco",
+          "name": "코스트코",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:traders",
+          "name": "트레이더스",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:police",
+          "name": "경찰서",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:fire",
+          "name": "소방서",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:post",
+          "name": "우체국",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:daiso",
+          "name": "다이소",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:cu",
+          "name": "CU",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:gs25",
+          "name": "GS25",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:seven",
+          "name": "세븐일레븐",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:emart24",
+          "name": "이마트24",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:mega",
+          "name": "메가커피",
+          "status": "remake"
+        },
+        {
+          "collection": "시설 외관",
+          "id": "facility:starbucks",
+          "name": "스타벅스",
+          "status": "remake"
+        }
+      ]
+    },
+    {
+      "group": "건물 부품",
+      "items": []
+    },
+    {
+      "group": "도로·시설",
+      "items": [
+        {
+          "collection": "로드뷰 참고 소품",
+          "id": "road:a68",
+          "name": "버스정류장 시간표 기둥",
+          "status": "remake"
+        }
+      ]
+    },
+    {
+      "group": "나무",
+      "items": []
+    },
+    {
+      "group": "자동차",
+      "items": []
+    },
+    {
+      "group": "소품",
+      "items": []
+    },
+    {
+      "group": "사람",
+      "items": []
+    }
+  ],
+  "referenceReplacementRequests": [
+    {
+      "id": "representative:a67",
+      "name": "제한속도 표지판",
+      "status": "replace-requested"
+    }
+  ],
+  "scope": "추가 요청 파악만 수행. 사용자 체크는 유지. 표지 2개 글자 수정만 제작·배포."
+}

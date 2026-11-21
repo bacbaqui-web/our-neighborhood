@@ -150,21 +150,21 @@
     "id": "representative:a67",
     "key": "speed",
     "name": "원형 제한속도 표지",
-    "file": "speed-approved-v1.glb",
-    "triangles": 976,
+    "file": "speed-approved-v2.glb",
+    "triangles": 1253,
     "materials": 4,
     "size": [
       0.6039999723434448,
       2.6019999694824225,
-      0.11999999731779099
+      0.12069999612867832
     ],
-    "bytes": 97852,
+    "bytes": 124508,
     "approvedReferenceId": "speed-seoul-1",
     "approvalRevision": 1,
     "approvedAt": "2026-11-21T09:16:54.585Z",
     "support": "ground",
     "surfaceY": null,
-    "referenceNote": "지침에 따라 숫자/문구 및 당시 해제 보조판 생략",
+    "referenceNote": "사용자 요청: 제한속도 50 표기. 당시 해제 보조판은 생략",
     "dimensions": "inferred unless specified"
   },
   {
@@ -192,21 +192,21 @@
     "id": "representative:a47",
     "key": "parking",
     "name": "무게추 주차 금지 표지",
-    "file": "parking-approved-v1.glb",
-    "triangles": 7328,
-    "materials": 3,
+    "file": "parking-approved-v2.glb",
+    "triangles": 7660,
+    "materials": 4,
     "size": [
       0.3059999942779541,
       0.9105023741722107,
       0.3059999942779541
     ],
-    "bytes": 706860,
+    "bytes": 739748,
     "approvedReferenceId": "parking-kr-1",
     "approvalRevision": 1,
     "approvedAt": "2026-11-21T09:17:03.126Z",
     "support": "ground",
     "surfaceY": null,
-    "referenceNote": "",
+    "referenceNote": "사용자 요청: 양면 세로 주차금지 표기",
     "dimensions": "inferred unless specified"
   }
 ]

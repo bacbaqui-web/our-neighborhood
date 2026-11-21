@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import * as T from 'three';
+import {previewModel} from '../outputs/domestic-test/building-assets/model.js';
+import {assetById} from '../outputs/domestic-test/building-assets/catalog.js';
+const spec={points:[[0,0],[12,0],[12,5],[6,5],[6,10],[0,10]],seed:24,inkObjectId:1,base:0,top:18,floor:3,levels:6,frontEdge:1,properties:{},holes:false};
+const model=previewModel(assetById['home-0'],[spec]);
+assert.equal(model.userData.preview.floors,6);assert.equal(model.userData.preview.frontEdge,1);
+const marker=model.getObjectByName('preview-entrance-face');assert.deepEqual(Array.from(marker.geometry.attributes.position.array).map(n=>Math.round(n*100)/100),[12,.08,0,12,.08,5]);
+const bounds=new T.Box3().setFromObject(model);assert.ok(bounds.max.y>=18&&bounds.max.y<24);assert.ok(model.children.length>=3);
+model.traverse(o=>{o.geometry?.dispose();for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[])m.dispose();});
+console.log('Actual building preview: shell, six floors, shared detail renderer and selected entrance passed.');

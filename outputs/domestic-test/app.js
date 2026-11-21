@@ -313,6 +313,11 @@ function applyEnvironment(options={}){
  requestRender();
 }
 function updateEnvironmentCamera(){
+ // Keep centimetre-scale surface gaps distinguishable in the overhead view.
+ // Walking retains the 10 cm near plane so nearby walls do not disappear.
+ const eyeAboveGround=camera.position.y-elevation(camera.position.x,camera.position.z);
+ const near=Math.max(.1,Math.min(2,eyeAboveGround/100));
+ if(Math.abs(camera.near-near)>.001){camera.near=near;camera.updateProjectionMatrix();}
  const count=streetlights?.update(camera)??0;shops?.update(camera);const signature=streetlights?.getBillboardSignature()+'|'+(shops?.activeIds||[]).join(',');if(signature!==lastBillboardSources){lastBillboardSources=signature;refreshBillboardLighting();}const dir=new T.Vector3();camera.getWorldDirection(dir);const bearing=(Math.atan2(dir.x,-dir.z)*180/Math.PI+360)%360,names=['북','북동','동','남동','남','남서','서','북서'];
  $('environmentHeading').textContent=`${names[Math.round(bearing/45)%8]} ${Math.round(bearing)}° · ${environmentProfile(hour,weather,solarContext).label}`;
  $('environmentControls').dataset.activeShadowLights=count;

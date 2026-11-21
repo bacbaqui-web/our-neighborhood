@@ -24,3 +24,12 @@ const house={geometry,properties:{objectid:2,building_name:'주택',gro_flo_co:1
 const elevated={geometry,properties:{...station.properties,objectid:3,gro_flo_co:2,floorsEstimated:false}};
 assert.deepEqual(buildingParts([station,house,elevated],[37,127],()=>0).map(b=>b.owner),[2,3]);
 console.log('PASS: underground station excluded; estimated houses and above-ground stations retained');
+const {createAtmosphere}=await import('../outputs/domestic-test/atmosphere.js');
+const {readFileSync}=await import('node:fs');
+const terrain=JSON.parse(readFileSync('outputs/domestic-test/environment/terrain.json'));
+const atmosphere=createAtmosphere(terrain,{latitude:origin[0],longitude:origin[1],date:'2026-06-21',utcOffset:9},100,new Set(),{gentle:true,contextBuildings:false});
+atmosphere.bridgeGround(root);
+assert.equal(root.getObjectByName('ground').material.polygonOffset,true);
+assert(root.getObjectByName('ground').material.polygonOffsetUnits>root.getObjectByName('GroundShadowReceiver').material.polygonOffsetUnits);
+assert(root.getObjectByName('GroundShadowReceiver').material.polygonOffsetUnits>0);
+atmosphere.dispose();console.log('PASS: ground and its shadow stay behind road depth');

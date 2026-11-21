@@ -66,11 +66,11 @@
       "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
     },
     "facility:apartment": {
-      "id": "apartment-kr-v1",
-      "imageUrl": "https://cfnimage.commutil.kr/phpwas/restmb_allidxmake.php?idx=3&nmt=18&pp=002&simg=2024021609054201814b372994c95118332810.jpg",
-      "sourceUrl": "https://www.fntimes.com/html/view.php?ud=202402160846206970b372994c95_18",
-      "sourceName": "한국금융신문 · 상계주공2단지",
-      "koreaEvidence": "서울 노원구 상계주공2단지 실제 전경. 반복 창호·발코니와 계단실 비율을 참고합니다.",
+      "id": "building-reference-apartment-hanshin-20261121",
+      "imageUrl": "https://img1.newsis.com/2026/06/09/NISI20260609_0002156605_web.jpg?rnd=20260609151731",
+      "sourceUrl": "https://www.newsis.com/view/NISX20260609_0003662378",
+      "sourceName": "뉴시스 · 노원구 제공 상계한신1차",
+      "koreaEvidence": "서울 노원구 상계한신1차 실제 전경. 반복 창호·발코니와 계단실 비율, 지상 진입부를 참고합니다.",
       "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
     },
     "facility:emart": {
@@ -146,11 +146,11 @@
       "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
     },
     "facility:gs25": {
-      "id": "gs25-kr-v1",
-      "imageUrl": "https://cfnimage.commutil.kr/phpwas/restmb_allidxmake.php?idx=3&nmt=18&pp=002&simg=2019032808441809739902857eb1a12323473.jpg",
-      "sourceUrl": "https://www.fntimes.com/html/view.php?ud=2019032808393817902857eb1a_18",
-      "sourceName": "한국금융신문 · GS25 외관 디자인",
-      "koreaEvidence": "국내 GS25의 2019년 브랜드 외관 발표 자료. 간판과 유리 전면 참고용이며 촬영 지점은 미확인입니다.",
+      "id": "building-reference-gs25-bucheon-20261121",
+      "imageUrl": "https://img.insight.co.kr/static/2019/03/31/700/18eq2fpyfkngy786f518.jpg",
+      "sourceUrl": "https://www.insight.co.kr/news/219811",
+      "sourceName": "인사이트 · 부천 심곡3동 GS25 외관",
+      "koreaEvidence": "2019년 기사에서 부천 심곡3동으로 소개한 실제 점포 사진. 모서리 점포의 파란 간판과 통유리, 계단·난간 구성을 참고합니다.",
       "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
     },
     "facility:seven": {

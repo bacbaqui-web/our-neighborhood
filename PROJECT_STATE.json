@@ -5767,5 +5767,27 @@
       "Original files retained; current registry replaced"
     ],
     "deployment": "pending"
+  },
+  "continuousRoadSelection20261121": {
+    "status": "public-verified",
+    "sourceCommit": "7277601c5c1219702ea6bc0cf675350b20b89e2d",
+    "hostingCommit": "2833b70dd028281836f75aae00509c636bc122d9",
+    "deploymentRun": "44891265749",
+    "displayRadiusMetres": 100,
+    "sampleVisibleRoads": 26,
+    "previousSampleSegments": 284,
+    "selection": "mutual straight continuation across junctions; side branches separate",
+    "preservation": "known lane/access/layer changes and existing manual correction boundaries retained; hidden source roads remain available to generation",
+    "checks": [
+      "17 road section tests including one-way flow and closed ways",
+      "focused road map, full crossing geometry, branch independence",
+      "6 scene edit and 11 view generation tests",
+      "required deployment checks and site build",
+      "Edge public: 100m viewport, same road selected across junction, grade 2 whole-road preview, branch stays grade 1, cancel",
+      "Edge local: regeneration completed; previous manual grade 2 retained after reload"
+    ],
+    "localScene": "d52fa91caaa507fa",
+    "proof": "verification/scene-edit/public-continuous-road-selection.jpg",
+    "generationProof": "verification/scene-edit/local-continuous-road-generated.jpg"
   }
 }

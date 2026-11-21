@@ -5789,5 +5789,23 @@
     "localScene": "d52fa91caaa507fa",
     "proof": "verification/scene-edit/public-continuous-road-selection.jpg",
     "generationProof": "verification/scene-edit/local-continuous-road-generated.jpg"
+  },
+  "manualRoadGroups20261121": {
+    "status": "implemented-tested-public-verified",
+    "sourceCommit": "f57fb7fef7a5c8196296d7de95dd64fd6196148e",
+    "hostingCommit": "2445a0dd92e89640d2461f3aff14055e10097d03",
+    "deploymentRun": "44897210481",
+    "ciFixCommit": "b97a65caada49d54b11109bf14ff4fecad5e6197",
+    "ciRun": "44897398639",
+    "storage": "sceneEdits.roadGroups: disjoint arrays of stable road editIds; source geometry preserved",
+    "checks": [
+      "Shift additive selection and whole-group toggle",
+      "mixed-grade guidance, batch grade changes, unlink preserving grades",
+      "local 50m scene: group save/regenerate/reopen, grade 2 batch save/regenerate/reopen, unlink save/regenerate/reopen",
+      "public 100m setup: group 12/13, reselect group through member, Shift deselect, batch grade 3 then 2, unlink, cancel",
+      "road selection, road map, scene editor, 24 Python road tests, 6 Python scene edits, required CI checks and build"
+    ],
+    "proof": "verification/scene-edit/public-road-groups.jpg",
+    "limits": "Public verification covers editing UI; full save/regeneration and reload verified locally."
   }
 }

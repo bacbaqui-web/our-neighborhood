@@ -1,8 +1,8 @@
 import {referenceRecord,changeReference,canModel,openReferenceStore,imageFromBlob} from './reference-store.js?v=references1';
 const LABELS={pending:'승인 대기',approved:'승인 완료 · 모델링 가능','replace-requested':'교체 요청 · 다시 찾기 대기'};
 const el=(tag,text,className)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(className)n.className=className;return n;};
-export async function createReferenceReview({onChange=()=>{}}={}){
- const response=await fetch(new URL('./road-references.json?v=references1',import.meta.url));if(!response.ok)throw Error('참고 이미지 목록을 불러오지 못했습니다. 새로고침해 주세요.');
+export async function createReferenceReview({onChange=()=>{},manifestFile='road-references.json?v=references1',exportName='도로시설-참고이미지-검토.json',description='한국에서 쓰는 물건인지 이미지를 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.',evidenceNote='국내 설치 사진과 국내 판매 자료를 구분해 표시했습니다. 판매 사진은 설치 장소가 확인된 사진이 아닙니다.'}={}){
+ const response=await fetch(new URL(manifestFile,import.meta.url));if(!response.ok)throw Error('참고 이미지 목록을 불러오지 못했습니다. 새로고침해 주세요.');
  const manifest=await response.json();if(manifest.version!==1||!manifest.items)throw Error('참고 이미지 목록 형식을 확인해야 합니다.');
  const seeds=manifest.items,records=new Map();let store,storageError='';
  try{store=await openReferenceStore();const saved=await store.load();for(const [id,seed]of Object.entries(seeds))records.set(id,referenceRecord(id,seed,saved.get(id)));}
@@ -10,10 +10,10 @@ export async function createReferenceReview({onChange=()=>{}}={}){
  const summary=el('p','', 'reference-summary');summary.setAttribute('role','status');
  function updateSummary(){const rows=[...records.values()];summary.textContent=`참고 이미지 ${rows.length}개 · 승인 ${rows.filter(canModel).length}개 · 교체 요청 ${rows.filter(r=>r.status==='replace-requested').length}개`;}
  updateSummary();
- const intro=el('section',null,'reference-intro');intro.append(el('h2','모델링 전 참고 이미지 검토'),el('p','한국에서 쓰는 물건인지 이미지를 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.'),el('p','국내 설치 사진과 국내 판매 자료를 구분해 표시했습니다. 판매 사진은 설치 장소가 확인된 사진이 아닙니다.'),summary);
+ const intro=el('section',null,'reference-intro');intro.append(el('h2','모델링 전 참고 이미지 검토'),el('p',description),el('p',evidenceNote),summary);
  const note=el('p','승인·교체 요청·붙여넣은 이미지는 이 브라우저에 저장됩니다. 다른 기기와 자동 공유되지 않습니다. 제작자에게 전달할 때 검토 기록을 내려받아 주세요.','hint');intro.append(note);
  if(storageError){const err=el('p',storageError);err.setAttribute('role','alert');intro.append(err);}
- const exportButton=el('button','검토 기록 내려받기');exportButton.type='button';exportButton.disabled=!store;exportButton.onclick=()=>{const data={version:1,exportedAt:new Date().toISOString(),items:[...records.values()]},url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=el('a');a.href=url;a.download='도로시설-참고이미지-검토.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};intro.append(exportButton);
+ const exportButton=el('button','검토 기록 내려받기');exportButton.type='button';exportButton.disabled=!store;exportButton.onclick=()=>{const data={version:1,exportedAt:new Date().toISOString(),items:[...records.values()]},url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=el('a');a.href=url;a.download=exportName;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};intro.append(exportButton);
  const lightbox=el('dialog',null,'reference-lightbox'),large=el('img'),close=el('button','닫기');close.type='button';close.onclick=()=>lightbox.close();lightbox.setAttribute('aria-label','참고 이미지 크게 보기');lightbox.append(close,large);document.body.append(lightbox);
  function card(asset){
   if(!records.has(asset.id))return null;

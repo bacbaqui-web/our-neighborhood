@@ -1,0 +1,7 @@
+완성 건물 참고 이미지 검토 (2026-11-21)
+
+교체 요청 대상 23개에 국내 건물·매장 외관 사진과 출처, 참고할 부분 및 확인 한계를 등록했습니다.
+목록: outputs/domestic-test/asset-encyclopedia/building-references.json
+도로시설과 같은 검토 화면을 재사용하며 건물과 도로의 집계 및 내보내기는 분리합니다.
+사진은 승인 대기로 시작합니다. 승인·교체 요청은 기존 IndexedDB에 저장하며 사용자 승인 없이 모델링하지 않습니다.
+검사: tests/asset-references.mjs 통과(도로 10개, 건물 23개), pack.py --check 통과. 로컬 승인 저장·재진입 유지·승인 해제·확대 보기 확인.

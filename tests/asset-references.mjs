@@ -23,3 +23,15 @@ assert.equal(Object.keys(manifest.items).length,10);
 for(const [id,seed] of Object.entries(manifest.items)){assert.equal(assetGroup(registry.resolve(id)),'road');assert.equal(referenceRecord(id,seed).status,'pending');}
 assert.throws(()=>validateRecord({...r,revision:-1}));
 console.log('All 10 candidates belong to active road assets and start unapproved.');
+const buildings=JSON.parse(fs.readFileSync(new URL('building-references.json',base)));
+const expected=['building:shop-glass','building:shop-tile','building:shop-panel','building:school','building:civic','building:fire',...['apartment','school','emart','lotte','homeplus','costco','traders','police','fire','post','daiso','cu','gs25','seven','emart24','mega','starbucks'].map(id=>'facility:'+id)];
+assert.deepEqual(Object.keys(buildings.items).sort(),expected.sort());
+for(const [id,seed] of Object.entries(buildings.items)){
+ assert.equal(assetGroup(registry.resolve(id)),'building');
+ const pending=referenceRecord(id,seed);assert.equal(pending.status,'pending');
+ const approved=changeReference(pending,'approve');assert(canModel(approved));
+ assert.equal(referenceRecord(id,{...seed,id:seed.id+'-replacement'},approved).status,'pending');
+ assert.equal(referenceRecord(id,seed,approved).status,'approved');
+ assert(seed.koreaEvidence.length>20);assert(seed.sourceName);assert(seed.usageNote);
+}
+console.log('All 23 requested buildings have sources, start unapproved, preserve matching approvals and reset replaced candidates.');

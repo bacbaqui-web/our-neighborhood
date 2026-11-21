@@ -1,8 +1,8 @@
 import * as T from 'three';
 import {signGlyphs} from './sign-glyphs.js';
 // Flat printed letters follow scene lighting and are embedded in the GLB geometry.
-export function signLetter(b,char,width,height,material,x,y,z,back=false){
- const glyph=signGlyphs[char];if(!glyph)throw Error('Unknown sign letter: '+char);
+export function signLetter(b,char,width,height,material,x,y,z,back=false,glyphs=signGlyphs){
+ const glyph=glyphs[char];if(!glyph)throw Error('Unknown sign letter: '+char);
  const path=new T.ShapePath();
  for(const [op,...p]of glyph.commands){if(op==='M')path.moveTo(...p);else if(op==='L')path.lineTo(...p);else if(op==='Q')path.quadraticCurveTo(...p);else if(op==='C')path.bezierCurveTo(...p);else path.currentPath.closePath();}
  const largest=path.subPaths.reduce((a,p)=>Math.abs(T.ShapeUtils.area(p.getPoints(8)))>Math.abs(T.ShapeUtils.area(a.getPoints(8)))?p:a);

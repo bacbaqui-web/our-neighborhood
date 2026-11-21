@@ -1,3 +1,4 @@
+import {createDetailedBusStop} from './bus-stop.js';
 import * as T from 'three';
 import {signLetter} from './sign-lettering.js';
 import {builder} from '../prop-remakes/mesh-tools.js';
@@ -11,19 +12,7 @@ function disk(b,r,h,i,x,y,z,q=new T.Quaternion(),n=40){b.add(new T.CylinderGeome
 function flat(b,w,d,h,r,i,y){const s=new T.Shape();s.moveTo(-w/2+r,-d/2);s.lineTo(w/2-r,-d/2);s.quadraticCurveTo(w/2,-d/2,w/2,-d/2+r);s.lineTo(w/2,d/2-r);s.quadraticCurveTo(w/2,d/2,w/2-r,d/2);s.lineTo(-w/2+r,d/2);s.quadraticCurveTo(-w/2,d/2,-w/2,d/2-r);s.lineTo(-w/2,-d/2+r);s.quadraticCurveTo(-w/2,-d/2,-w/2+r,-d/2);const g=new T.ExtrudeGeometry(s,{depth:h,bevelEnabled:false,curveSegments:5});g.rotateX(-Math.PI/2);b.add(g,i,[0,y,0]);}
 function tubePath(b,points,r,i){const curve=new T.CatmullRomCurve3(points.map(p=>new T.Vector3(...p)));b.add(new T.TubeGeometry(curve,Math.max(12,points.length*3),r,8,false),i);}
 export function cone(){const b=builder('주황 안전 고깔 · 승인 사진',[orange,white,dark]);flat(b,.4,.4,.024,.025,0,0);disk(b,.168,.012,0,0,.03,0);const pts=[[.036,.158],[.39,.092],[.46,.079],[.57,.059],[.64,.046],[.742,.027]];for(let j=1;j<pts.length;j++){const [y0,r0]=pts[j-1],[y1,r1]=pts[j];b.add(new T.CylinderGeometry(r1,r0,y1-y0,40,1,true),j===2||j===4?1:0,[0,(y0+y1)/2,0]);}ring(b,.024,.004,0,0,.746,0);b.add(new T.CylinderGeometry(.020,.020,.025,32,1,true),0,[0,.733,0]);disk(b,.020,.002,2,0,.719,0);return finish(b,'road:a46',corners(.16,.16));}
-export function bus(){const b=builder('마포 마을버스 정류장 · 사용자 사진',[green,white,0x386d59,0xb8c3b6,silver]);for(const x of[-.045,.045])b.rod([x,0,0],[x,1.92,0],.022,0,12);
- // Outer tubular frame with rounded corners, attached to the double post at its foot.
- const x=.295,lo=1.71,hi=3.18,r=.065;
- for(const side of[-1,1])b.rod([side*x,lo+r,0],[side*x,hi-r,0],.014,0,12);
- for(const y of[lo,hi])b.rod([-x+r,y,0],[x-r,y,0],.014,0,12);
- for(const [cx,cy,start] of [[x-r,hi-r,0],[-x+r,hi-r,Math.PI/2],[-x+r,lo+r,Math.PI],[x-r,lo+r,Math.PI*1.5]]){const ps=[];for(let k=0;k<=8;k++){let a=start+k*Math.PI/16;ps.push([cx+r*Math.cos(a),cy+r*Math.sin(a),0]);}tubePath(b,ps,.014,0);}
- for(const [y,h,mat] of [[2.92,.44,0],[2.43,.49,1],[1.94,.32,1]]){b.panel(.52,h,.018,.014,mat,0,y,0);for(const xx of[-.278,.278])b.box(.035,.018,.022,4,xx,y,0);}
- // Bus silhouette, without lettering or advertising.
- b.panel(.25,.14,.004,.025,1,0,2.98,.012);b.box(.18,.055,.005,2,0,2.999,.016);for(const xx of[-.074,.074]){b.box(.045,.027,.006,2,xx,2.94,.016);disk(b,.018,.008,2,xx,2.90,.015,QX,12);}
- b.box(.45,.085,.004,2,0,2.78,.012);b.box(.43,.065,.004,0,0,2.60,.012);
- function route(y,w,h){b.box(w,h,.018,1,0,y,.022);b.box(w*.16,h,.004,0,-w*.42,y,.034);for(let i=0;i<3;i++){const yy=y-h*.3+i*h*.28;b.box(w*.67,.005,.004,3,w*.05,yy,.035);for(let j=0;j<6;j++)disk(b,.006,.004,2,-w*.24+j*w*.105,yy,.039,QX,8);}}
- route(2.35,.45,.22);route(1.08,.36,.72);b.box(.36,.075,.005,0,0,.79,.036);b.panel(.18,.20,.018,.008,0,0,.58,.025);
- return finish(b,'road:a68',[[-.045,0,0],[.045,0,0]].map(p=>p),{referenceNote:'사용자 제공 마포 마을버스 사진, 문구 생략'});}
+export const bus=createDetailedBusStop;
 export function barrier(){const b=builder('은색 접이식 바리케이드',[silver,red,dark,0x7c8987]);const contacts=[];
  for(let j=0;j<7;j++){const x=-1.5+j*.5;for(const z of[-.08,.08]){b.rod([x,.17,z],[x,1.12,z],.014,0,10);for(const y of[.40,.72,.98])b.box(.032,.13,.032,1,x,y,z);}const ps=[];for(let k=0;k<=12;k++){const a=k*Math.PI/12;ps.push([x,1.12+.08*Math.sin(a),.08*Math.cos(a)]);}tubePath(b,ps,.014,0);
  if(j===0||j===3||j===6){b.box(.06,.025,.40,0,x,.133,0);for(const z of[-.18,.18]){b.rod([x,.13,z],[x,.083,z],.012,0);for(const dx of[-.026,.026])b.box(.009,.046,.045,0,x+dx,.075,z);disk(b,.045,.036,2,x,.045,z,QZ,16);disk(b,.017,.041,0,x,.045,z,QZ,12);contacts.push([x,0,z]);}}}

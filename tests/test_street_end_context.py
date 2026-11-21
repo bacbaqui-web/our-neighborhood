@@ -45,6 +45,10 @@ class ContextTest(unittest.TestCase):
   polys=[Polygon(r['rings'][0],r['rings'][1:]) for r in out['roads']]
   self.assertTrue(all(p.intersection(near.buffer(-.1)).area<.001 for p in polys))
   self.assertTrue(any(p.covers(__import__('shapely').geometry.Point(0,67)) for p in polys))
+ def test_snapped_observer_boundary_has_no_empty_ring(self):
+  f=feature(8,[(48,20),(58,20),(58,30),(48,30),(48,20)])
+  out=build_context(collection([f]),[],[LAT,LON],50,{'position':[20,0],'eyeHeight':2},collection([]))
+  self.assertEqual([b['owner'] for b in out['buildings']],[8])
  def test_empty(self):
   out=build_context(collection([]),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([]))
   self.assertEqual(out['buildings'],[]);self.assertEqual(out['roads'],[])

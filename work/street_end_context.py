@@ -38,8 +38,9 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
  buildings=[]
  for i in sorted(visible,key=lambda i:geometries[i].distance(p)):
   g,owner,height=items[i]
-  # Keep foreground selection unchanged, including objects touching its boundary.
-  if owner in detailed_ids or g.intersects(p.buffer(radius)):continue
+  # Detailed owners are the authority: the snapped observer can be up to 30 m
+  # off the query centre, so a radius-only exclusion leaves a second empty ring.
+  if owner in detailed_ids:continue
   for poly in parts(g.simplify(.15,preserve_topology=True)):
    if len(buildings)>=256:break
    if poly.area>=3:buildings.append({'owner':owner,'height':height,'rings':rings(poly)})

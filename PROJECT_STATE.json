@@ -5490,7 +5490,7 @@
     }
   },
   "viewerUi20261121": {
-    "status": "local-verified-public-pending",
+    "status": "public-verified",
     "scope": "compact header; search and saved scenes; close to map; PNG only; bottom minimap/walk/environment; compact appearance defaults",
     "defaults": {
       "outerWidth": 2,
@@ -5513,8 +5513,16 @@
       "PNG2400x1866 saved",
       "settings dialog",
       "close opens map",
-      "narrow-screen controls do not overlap"
+      "narrow-screen controls do not overlap",
+      "Public Edge scene ready, new defaults read from live environment controls",
+      "Public index/app/ui/saved-scene-options match source commit byte for byte",
+      "Source and hosting Actions succeeded"
     ],
-    "public": false
+    "public": true,
+    "sourceCommit": "8f71a9f3bc716a8c50b3ffa938962113bf040bcd",
+    "hostingCommit": "24ac5ee214bba19e28ff0ceba12f0f97cae8f49c",
+    "hostingRun": 44857050990,
+    "publicScene": "61ce65488f210b03",
+    "evidence": "verification/viewer-ui/public.png"
   }
 }

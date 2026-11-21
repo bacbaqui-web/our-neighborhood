@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "08ec72f19ff7b343a360a9cf3c2276606a8329ea",
+  "hostingRun": 44929033949,
+  "hostingResult": "success",
+  "subsequentHostingRun": 44929145489,
+  "subsequentHostingResult": "success",
+  "publicURL": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=sungshin&tab=building",
+  "cards": 50,
+  "rendered": 50,
+  "previewFailures": 0,
+  "identicalLocalThumbnailCount": 50,
+  "differentThumbnailIDs": [],
+  "detailScreenshots": [
+    "public-34-terrace.png",
+    "public-43-detail.png",
+    "public-44-detail.png"
+  ],
+  "limitations": "Unseen backs, roofs, some upper floors and dimensions remain inferred, not surveyed."
+}

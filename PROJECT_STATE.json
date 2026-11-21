@@ -6061,15 +6061,15 @@
     "publication": "Local research images; redistribution terms unverified; no public scene change"
   },
   "sungshinCommercialAssets20261122": {
-    "status": "50 photo-based commercial buildings rebuilt, local visual review and related tests passed; publication pending",
+    "status": "50 photo-based commercial buildings rebuilt, tested, published and verified in public browser",
     "requestedCount": 50,
     "evidence": "verification/sungshin-commercial-20261122",
     "specification": "work/sungshin-commercial-50/fidelity-specs.txt",
     "models": "outputs/domestic-test/sungshin-commercial",
     "referenceMethod": "Observed fronts and visible side faces; unseen geometry and dimensions explicitly inferred",
     "imagegen": "Reference-guided original comic sign artwork; no roadview photograph used as texture",
-    "duplicateCorrections": "Seven candidate slots are being replaced after same-building and unclear-boundary review",
-    "publicVerified": false,
+    "duplicateCorrections": "Seven candidate slots replaced after same-building and unclear-boundary review",
+    "publicVerified": true,
     "registeredCount": 50,
     "textureFiles": 9,
     "textureBytes": 2047040,
@@ -6087,7 +6087,10 @@
       "49-file browser bundle current"
     ],
     "cleanBuildBytes": 946472805,
-    "cleanBuildBaseline": "033384107a6d18f6a709e25eaac80831acc829e2"
+    "cleanBuildBaseline": "033384107a6d18f6a709e25eaac80831acc829e2",
+    "sourceCommit": "08ec72f19ff7b343a360a9cf3c2276606a8329ea",
+    "publicationReceipt": "work/sungshin-commercial-50/public-verification.json",
+    "publicRendered": 50
   },
   "grade1Street20261122": {
     "status": "implemented-tested-deployed-public-verified",

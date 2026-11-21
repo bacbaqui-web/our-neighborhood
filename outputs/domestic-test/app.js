@@ -1,7 +1,7 @@
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
 import {readPalette,readEdits,chooseBuildingAsset,assetById} from './building-assets/catalog.js?v=scene-edit1';
 import {applyAssetToSpec,assetColors} from './building-assets/model.js';
-import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=scene-edit1';
+import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=scene-edit2';
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=grounds1';
 import {installWindowInspection} from './window-inspection.js?v=recess22';
@@ -23,7 +23,7 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=scene-edit1';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=scene-edit2';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=151';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=151';
 import {loadData} from './load-data.js?v=151';

@@ -44,6 +44,10 @@ class ViewTests(unittest.TestCase):
   r={'surfaces':{'sidewalk':mapping(Point().buffer(0)),'pedestrian':mapping(Point().buffer(0)),'shared':mapping(box(-3,-10,3,10).union(box(45,-10,50,10)))}}
   p=snap_to_road(r,view(),roads=[{'streetType':'shared','geometry':mapping(LineString([(47,-10),(47,10)]))}])
   self.assertLess(p.distance(Point(0,0)),1)
+ def test_narrow_nearby_sidewalk_not_rejected_for_wide_distant_sidewalk(self):
+  r={'surfaces':{k:mapping(box(1,-10,2.5,10).union(box(45,-10,49,10)) if k=='sidewalk' else Point().buffer(0)) for k in ('sidewalk','pedestrian','shared')}}
+  p=snap_to_road(r,view())
+  self.assertAlmostEqual(p.x,1.65)
  def test_building_inside_rejected(self):
   with self.assertRaises(ValueError):select_view({'features':[feature(box(-2,-2,2,2))]},[LAT,LON],50,view())
  def test_roads_clipped_at_occluder(self):

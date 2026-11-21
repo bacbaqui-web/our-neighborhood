@@ -5697,5 +5697,33 @@
     ],
     "proof": "verification/scene-edit/public-context-preview.jpg",
     "record": "docs/scene-editing.txt"
+  },
+  "roadSegmentMap20261121": {
+    "status": "deployed-and-publicly-verified",
+    "sourceCommit": "8b845e9",
+    "hostingCommit": "9ffc150724e996e5776fac4abecc9d1c27270fa4",
+    "deploymentRun": 44882395043,
+    "features": [
+      "처음 선택한 기준점 3D·미니맵·도로 지도 표시, 보정된 관찰점 구분",
+      "도로 수정 버튼과 지도·목록에서 원본 구간 선택 및 강조",
+      "주도로와 분기 골목 1~4차 별도 설정·여러 대기 변경 적용",
+      "가까운 통행 면을 먼 중심선·인도 후보 때문에 거부하던 거리 오류 수정"
+    ],
+    "verification": [
+      "Python 시야11개·도로건물6개 시험 통과",
+      "JS 도로지도·편집·건물미리보기 및 pack 검사 통과",
+      "로컬 Edge 2→1→2차 재생성·저장·재열기, 다른 골목1차 유지 확인",
+      "공개 Edge 버튼·기준점·지도 직접 선택·2차 변경 대기 표시 확인. 공개 기존 장면은 저장하지 않음"
+    ],
+    "limits": [
+      "도로는 원본 자료 구간 단위이며 임의로 구간을 나누는 기능은 미포함",
+      "실제 건물과 도로 중심 통행 공간 충돌은 여전히 저장하지 않고 오류 표시"
+    ],
+    "deploymentRecovery": "업로드 파일 조회 지연 재현 후 호스팅에 최대60초 조회 대기 추가, 후속 배포 성공. 공개 첫 로딩 에셋503은 새로고침 후 정상 로딩 확인.",
+    "proof": [
+      "verification/scene-edit/local-road-map.jpg",
+      "verification/scene-edit/public-road-map.jpg"
+    ],
+    "record": "docs/scene-editing.txt"
   }
 }

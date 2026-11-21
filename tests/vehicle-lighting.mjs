@@ -18,3 +18,16 @@ system.set(1);system.set(1);assert.equal(a.children.length,2);a.visible=false;sy
 scene.remove(b,c);system.set(1);assert.equal(system.stats().vehicles,1);assert.equal(system.update(camera),0);assert.equal(b.children.length,1);
 car(2);system.set(1);assert.equal(system.stats().vehicles,2);assert.equal(system.update(camera),2);
 system.dispose();assert.equal(scene.children.filter(o=>o.isSpotLight).length,0);console.log('PASS: day/night, rear/front, rotated/sloped vehicles, bounded lights, hidden/removed/new vehicles, cleanup');
+// Bus cabin uses the existing textured body, without adding window geometry.
+const bus=car();bus.userData.vehicleFamily='city-bus';bus.userData.dimensions=[2,3.2,5];
+const busBody=bus.children[0],original=busBody.material;original.map=new T.Texture();
+const cabinSystem=createVehicleLighting(scene);cabinSystem.set(1);
+assert.equal(cabinSystem.stats().litBusCabins,1);
+const shader={uniforms:{},vertexShader:'#include <begin_vertex>',fragmentShader:'#include <emissivemap_fragment>'};
+busBody.material.onBeforeCompile(shader);assert(shader.uniforms.busCabinStrength.value>0);
+assert.equal(bus.children[1].children.filter(o=>o.isMesh).length,4);
+cabinSystem.set(0);assert.equal(shader.uniforms.busCabinStrength.value,0);assert.equal(cabinSystem.stats().litBusCabins,0);
+cabinSystem.set(1,'line');assert.equal(shader.uniforms.busCabinStrength.value,0);
+cabinSystem.set(1);assert(shader.uniforms.busCabinStrength.value>0);
+cabinSystem.dispose();assert.equal(busBody.material,original);
+console.log('PASS: bus cabin night/day/line transitions, no added window geometry, material cleanup');

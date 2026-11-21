@@ -23,6 +23,39 @@ function glowTexture(){
  }
  const texture=new T.DataTexture(data,size,size);texture.magFilter=texture.minFilter=T.LinearFilter;texture.needsUpdate=true;return texture;
 }
+// Illuminate only the glass islands in the registered bus UV atlas. The
+// original texture still supplies frames, reflections and interior detail.
+function attachBusCabin(body,root){
+ const entries=[],uniform={value:0};
+ for(const mesh of body){
+  const original=mesh._originalMaterial||mesh.material;
+  if(Array.isArray(original)||!original.map||!original.isMeshStandardMaterial)continue;
+  const material=original.clone(),hook=original.onBeforeCompile,key=original.customProgramCacheKey.bind(original);
+  material.onBeforeCompile=shader=>{
+   hook.call(material,shader);shader.uniforms.busCabinStrength=uniform;
+   shader.uniforms.busCabinLocal={value:new T.Matrix4().copy(root.matrixWorld).invert().multiply(mesh.matrixWorld)};
+   shader.vertexShader='uniform mat4 busCabinLocal; varying float busCabinHeight;\n'+shader.vertexShader;
+   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nbusCabinHeight=(busCabinLocal*vec4(position,1.0)).y/3.2;');
+   shader.fragmentShader='uniform float busCabinStrength; varying float busCabinHeight;\n'+shader.fragmentShader;
+   shader.fragmentShader=shader.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
+#ifdef USE_MAP
+ vec2 busUV=vMapUv*1254.0;
+ float busSide=(step(294.0,busUV.x)*step(busUV.x,415.0)+step(630.0,busUV.x)*step(busUV.x,752.0))*step(373.0,busUV.y)*step(busUV.y,1240.0);
+ float busFront=step(1015.0,busUV.x)*step(busUV.x,1168.0)*step(729.0,busUV.y)*step(busUV.y,987.0);
+ float busRear=step(1030.0,busUV.x)*step(busUV.x,1090.0)*step(1015.0,busUV.y)*step(busUV.y,1222.0);
+ vec3 busTex=texture2D(map,vMapUv).rgb;
+ float busLuma=dot(busTex,vec3(.2126,.7152,.0722));
+ float busGlass=smoothstep(.025,.065,busLuma)*(1.0-smoothstep(.25,.4,busLuma));
+ busGlass*=step(busTex.r*1.02,busTex.b)*step(busTex.b,busTex.r*2.1)*step(busTex.r*.98,busTex.g);
+ totalEmissiveRadiance+=vec3(1.0,.88,.64)*busGlass*min(1.0,busSide+busRear+busFront*.08)*busCabinStrength*(.18+busLuma*3.0)*(.35+.65*smoothstep(.4,.82,busCabinHeight));
+#endif`);
+  };
+  material.customProgramCacheKey=()=>key()+'-bus-cabin-v1';
+  const displayed=mesh.material;mesh.material=material;if(mesh._originalMaterial===original)mesh._originalMaterial=material;
+  entries.push({mesh,original,displayed,material});
+ }
+ return {set(value){uniform.value=value*.75;},dispose(){for(const {mesh,original,displayed,material}of entries){if(mesh.material===material)mesh.material=displayed;if(mesh._originalMaterial===material)mesh._originalMaterial=original;material.dispose();}},count:entries.length};
+}
 const visibleInScene=o=>{for(let p=o;p;p=p.parent)if(!p.visible)return false;return true;};
 export function createVehicleLighting(scene,onShadowChange=()=>{}){
  const rigs=new Map(),geometries=new Map(),frontMaterial=new T.MeshBasicMaterial({color:0xfff1cc,toneMapped:false,side:T.FrontSide}),rearMaterial=new T.MeshBasicMaterial({color:0xff1810,toneMapped:false,side:T.FrontSide});
@@ -70,16 +103,17 @@ export function createVehicleLighting(scene,onShadowChange=()=>{}){
   }
   root.add(group);group.visible=strength>.01;
   const origin=anchors.length?anchors.reduce((a,b)=>a.add(b),new T.Vector3()).multiplyScalar(1/anchors.length):null;
-  rigs.set(root,{group,origin,anchors,halos});
+  const cabin=root.userData.vehicleFamily==='city-bus'?attachBusCabin(body,root):null;
+  rigs.set(root,{group,origin,anchors,halos,cabin});
  }
  function sync(){
   const found=new Set();scene.traverse(o=>{if(o.userData.memoVehicle&&o.userData.dimensions)found.add(o);});
-  for(const [root,rig]of rigs)if(!found.has(root)){root.remove(rig.group);for(const {halo}of rig.halos)halo.material.dispose();rigs.delete(root);}
+  for(const [root,rig]of rigs)if(!found.has(root)){root.remove(rig.group);rig.cabin?.dispose();for(const {halo}of rig.halos)halo.material.dispose();rigs.delete(root);}
   for(const root of found)if(!rigs.has(root))attach(root);
  }
  function set(night,style='color'){
   strength=style==='line'?0:T.MathUtils.clamp(night,0,1);sync();
-  for(const {group}of rigs.values())group.visible=strength>.01;
+  for(const {group,cabin}of rigs.values()){group.visible=strength>.01;cabin?.set(strength);}
   frontMaterial.color.setRGB(1,.93,.76).multiplyScalar(.45+strength*.55);
   rearMaterial.color.setRGB(1,.025,.012).multiplyScalar(.35+strength*.65);
   if(strength<=.01)for(const light of pool)light.intensity=0;
@@ -108,5 +142,5 @@ export function createVehicleLighting(scene,onShadowChange=()=>{}){
   if(changed)onShadowChange();
   return pool.filter(l=>l.intensity>0).length;
  }
- return {set,update,stats:()=>({vehicles:rigs.size,lamps:[...rigs.values()].reduce((n,r)=>n+r.group.children.filter(o=>o.isMesh).length,0),litVehicles:[...rigs.values()].filter(r=>visibleInScene(r.group)).length,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group,halos}]of rigs){root.remove(group);for(const {halo}of halos)halo.material.dispose();}rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}for(const geometry of geometries.values())geometry.dispose();geometries.clear();glowMap.dispose();frontMaterial.dispose();rearMaterial.dispose();}};
+ return {set,update,stats:()=>({vehicles:rigs.size,lamps:[...rigs.values()].reduce((n,r)=>n+r.group.children.filter(o=>o.isMesh).length,0),litVehicles:[...rigs.values()].filter(r=>visibleInScene(r.group)).length,night:strength,litBusCabins:strength>.01?[...rigs.values()].filter(r=>r.cabin?.count&&visibleInScene(r.group)).length:0,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group,halos,cabin}]of rigs){root.remove(group);cabin?.dispose();for(const {halo}of halos)halo.material.dispose();}rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}for(const geometry of geometries.values())geometry.dispose();geometries.clear();glowMap.dispose();frontMaterial.dispose();rearMaterial.dispose();}};
 }

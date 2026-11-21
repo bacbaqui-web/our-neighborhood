@@ -38,7 +38,8 @@ def classify_roads(roads,edits,origin=None):
    p['sceneGrade']=grade
   else:
    r['sidewalkEachSide']=0;p.pop('sceneGrade',None)
- return roads
+ from road_geometry import pair_and_taper
+ return pair_and_taper(roads)
 
 def apply_building_rules(collection,roads,edits,origin=None,local=False):
  from road_priority import scales

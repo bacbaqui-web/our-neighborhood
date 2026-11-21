@@ -5,6 +5,7 @@ import numpy as np
 import shapely as S
 from shapely.geometry import shape,mapping,LineString,Polygon,box
 from shapely.ops import unary_union,transform
+from road_geometry import pavement as road_pavement,median_spaces
 MAJOR={'primary','secondary','trunk','tertiary'}
 def street_type(props):
  # Access restrictions override road class; width alone never means no vehicles.
@@ -110,12 +111,14 @@ def reserve(root,location,roads,buildings):
    # Bus stop widening and the existing main-road furniture band remain protected.
    if hasbus and kind!='tertiary':sidewalk+=2.4
   width=max(1.6,width);r['width']=width;r['streetType']=usage
-  pavement=line.buffer(width/2,cap_style=2,join_style=2).intersection(extent)
+  pavement=road_pavement(r).intersection(extent)
   paths.append(pavement);byType[usage].append(pavement)
   if sidewalk:
-   majorPaths.append(pavement);public.append(line.buffer(width/2+sidewalk,cap_style=2,join_style=2).intersection(extent))
+   majorPaths.append(pavement);public.append(road_pavement(r,sidewalk,outer=True).intersection(extent))
   if usage=='shared':servicePaths.append(line.buffer(width/2+.8,cap_style=2,join_style=2).intersection(extent))
   entries.append({'serviceEachSide':.8 if usage=='shared' else 0,'routeType':usage if usage!='sidewalk' else 'pedestrian','class':kind,'streetType':usage,'vehicleAccess':usage in {'carriageway','shared'},'width':width,'sidewalkEachSide':sidewalk,'source':'road-class-inferred'})
+ median=median_spaces(roads).intersection(extent)
+ paths.append(median);majorPaths.append(median);public.append(median);byType['carriageway'].append(median)
  allRoad=unary_union(paths);majorRoad=unary_union(majorPaths);majorPublic=unary_union(public)
  # Junctions belong to vehicle routes; sidewalk bands stop at side-road mouths.
  carriageway=unary_union(byType['carriageway']);shared=unary_union(byType['shared']).difference(carriageway)

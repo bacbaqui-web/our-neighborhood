@@ -20,6 +20,21 @@ class Junctions(unittest.TestCase):
     self.assertEqual(p['qa']['markOutsideRoadM2'],0)
     self.assertTrue(shape(p['road']).covers(Point(0,0)))
     if a==b==1:self.assertEqual(p['crossings'],[])
+ def test_width_transition_and_grade_based_corners(self):
+  from scene_edits import classify_roads
+  from road_geometry import pavement
+  rs=[road([[-60,0],[0,0]],3),road([[0,0],[60,0]],4)]
+  classify_roads(rs,{})
+  classify_roads(rs,{rs[0]['editId']:{'grade':3},rs[1]['editId']:{'grade':4}})
+  r=unary_union([pavement(x) for x in rs]);public=unary_union([pavement(x,x['sidewalkEachSide'],True) for x in rs])
+  p=plan_junctions(rs,r,public.difference(r),lambda x,z:0)
+  self.assertEqual([n['kind'] for n in p['junctions']],['width-transition'])
+  self.assertEqual(p['crossings'],[])
+  self.assertTrue(shape(p['road']).covers(LineString([[-40,0],[40,0]])))
+  self.assertLess(shape(p['marks']['white']).difference(shape(p['road'])).area,1e-7)
+  small=plan([road([[-50,0],[50,0]],1),road([[0,0],[0,50]],1)])
+  large=plan([road([[-50,0],[50,0]],4),road([[0,0],[0,50]],4)])
+  self.assertLess(small['junctions'][0]['cornerRadius'],large['junctions'][0]['cornerRadius'])
  def test_busway_is_not_a_shared_alley(self):
   rs=[road([[-50,0],[50,0]],4),road([[0,0],[0,50]],1)]
   rs[1]['properties'].update({'class':'busway','access':'no','foot':'no'})

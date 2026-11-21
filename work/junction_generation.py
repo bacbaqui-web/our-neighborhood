@@ -6,6 +6,7 @@ from pathlib import Path
 import shapely as S
 from shapely.geometry import Point,LineString,Polygon,shape,mapping,box
 from shapely.ops import unary_union
+from road_geometry import width_at
 
 def parts(g,kind):
  if g.geom_type==kind:return [g] if not g.is_empty else []
@@ -30,7 +31,8 @@ def junction_nodes(roads):
     ps=list(e.coords);ps=ps[::-1] if reverse else ps;q=ps[0];k=tuple(round(v,5) for v in q);l=LineString(ps);s=l.interpolate(min(4,l.length));dx,dz=s.x-q[0],s.y-q[1];L=math.hypot(dx,dz)
     if L:adj.setdefault(k,[]).append({'road':r,'line':l,'u':[dx/L,dz/L],'length':l.length})
   for q,arms in adj.items():
-   if len(arms)>=3:nodes.append({'point':list(q),'arms':arms,'grades':sorted(set(grade(a['road']) for a in arms))})
+   transition=len(arms)==2 and any(a['road'].get('endTapers') for a in arms) and abs(arms[0]['road']['width']-arms[1]['road']['width'])>.1
+   if len(arms)>=3 or transition:nodes.append({'point':list(q),'arms':arms,'grades':sorted(set(grade(a['road']) for a in arms)),'kind':'width-transition' if transition else 'junction'})
  return nodes
 
 def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
@@ -44,13 +46,20 @@ def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
   skipped += [{'point':n['point'],'reason':'existing transit access preserved; needs specific review'} for n,z in zip(nodes,zones) if z.intersects(protected)]
   nodes=[n for n,z in kept];zones=[z for n,z in kept]
  zone=unary_union(zones).intersection(public)
- rounded=road.buffer(.8,quad_segs=6).buffer(-.8,quad_segs=6).intersection(public)
- road=road.difference(zone).union(rounded.intersection(zone));sidewalk=public.difference(road)
+ for node,mask in zip(nodes,zones):
+  sines=[abs(a['u'][0]*b['u'][1]-a['u'][1]*b['u'][0]) for i,a in enumerate(node['arms']) for b in node['arms'][i+1:]]
+  angle=min((s for s in sines if s>.05),default=1)
+  radius=min(2.4,max(.45,min(a['road']['width'] for a in node['arms'])*.12))*(.65+.35*angle)
+  node['cornerRadius']=round(radius,3);mask=mask.intersection(public)
+  rounded=road.buffer(radius,quad_segs=6).buffer(-radius,quad_segs=6).intersection(public)
+  road=road.difference(mask).union(rounded.intersection(mask))
+ sidewalk=public.difference(road)
  def mark(g,kind):
   clipped=g.intersection(road).intersection(zone)
   if not clipped.is_empty:marks[kind].append(clipped)
  occupied=Polygon()
  for ji,node in enumerate(nodes):
+  if node['kind']=='width-transition':continue
   q=node['point']
   for ai,arm in enumerate(node['arms']):
    u=arm['u'];n=[-u[1],u[0]];r=arm['road'];half=r['width']/2
@@ -94,18 +103,22 @@ def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
   for a in node['arms']:
    r=a['road'];g=grade(r)
    if g<2:continue
-   u=a['u'];n=[-u[1],u[0]];half=r['width']/2;start=0 if minor and g==main else max(x['road']['width']/2 for x in node['arms'])+2
+   u=a['u'];n=[-u[1],u[0]];half=r['width']/2;start=0 if node['kind']=='width-transition' or minor and g==main else max(x['road']['width']/2 for x in node['arms'])+2
    end=min(a['length'],node['radius']+2)
    line=LineString([[q[0]+u[0]*start,q[1]+u[1]*start],[q[0]+u[0]*end,q[1]+u[1]*end]])
    if str(r.get('properties',{}).get('oneway','')).lower() not in ('yes','1','true','-1'):mark(line.buffer(.06,cap_style=2),'yellow')
    if g>=3:
     lanes={3:2,4:3}[g]
-    for j in range(1,lanes):
-     for sign in [-1,1]:
-      offset=half*j/lanes*sign
-      t=start
-      while t<end:
-       mark(local_rect(q,u,n,t,min(t+1.5,end),offset-.06,offset+.06).difference(occupied),'white');t+=3
+    fractions=[-0.5+j/lanes for j in range(1,lanes)] if r.get('carriagewayPair') else [j/(2*lanes)*sign for j in range(1,lanes) for sign in [-1,1]]
+    source_line=shape(r['geometry'])
+    for fraction in fractions:
+     t=start
+     while t<end:
+      points=[]
+      for distance in (t,min(t+1.5,end)):
+       center=Point(q[0]+u[0]*distance,q[1]+u[1]*distance);offset=width_at(r,source_line.project(center),source_line)*fraction
+       points.append([center.x+n[0]*offset,center.y+n[1]*offset])
+      mark(LineString(points).buffer(.06,cap_style=2).difference(occupied),'white');t+=3
  rampmask=unary_union([shape(r['footprint']) for r in ramps])
  # Curb along the shared boundary only, segmented on the terrain, with crossing openings removed.
  boundary=sidewalk.boundary.intersection(road.buffer(.015)).intersection(zone).difference(rampmask.buffer(.08))
@@ -116,7 +129,7 @@ def plan_junctions(roads,road,sidewalk,height,protected=None,barriers=None):
     p=[a[k]+(b[k]-a[k])*i/steps for k in (0,1)];s=[a[k]+(b[k]-a[k])*(i+1)/steps for k in (0,1)]
     if math.dist(p,s)>.02:curbs.append({'a':p,'b':s})
  mark_shapes={k:(unary_union(v).difference(occupied) if k=='yellow' else unary_union(v)) for k,v in marks.items()}
- result={'version':1,'junctions':[{'point':n['point'],'grades':n['grades'],'arms':len(n['arms']),'radius':n['radius']} for n in nodes],'zone':mapping(zone),'road':mapping(road),'sidewalk':mapping(sidewalk),'crossings':crossings,'ramps':ramps,'curbs':curbs,'assets':assets,'marks':{k:mapping(v) for k,v in mark_shapes.items()},'skipped':skipped}
+ result={'version':1,'junctions':[{'point':n['point'],'grades':n['grades'],'arms':len(n['arms']),'radius':n['radius'],'cornerRadius':n['cornerRadius'],'kind':n['kind']} for n in nodes],'zone':mapping(zone),'road':mapping(road),'sidewalk':mapping(sidewalk),'crossings':crossings,'ramps':ramps,'curbs':curbs,'assets':assets,'marks':{k:mapping(v) for k,v in mark_shapes.items()},'skipped':skipped}
  result['qa']={'junctions':len(nodes),'crossings':len(crossings),'curbSegments':len(curbs),'tactileParts':len(assets),'roadSidewalkOverlapM2':round(road.intersection(sidewalk).area,8),'markOutsideRoadM2':round(sum(g.difference(road).area for g in mark_shapes.values()),8),'gradePairs':sorted(set('-'.join(map(str,n['grades'])) for n in nodes)),'inferred':True}
  return result
 

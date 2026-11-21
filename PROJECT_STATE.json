@@ -5996,5 +5996,39 @@
     "proposalCount": 50,
     "report": "work/shop-expansion/report.txt",
     "publicProposal": "https://magamiscom.ing/neighborhood/domestic-test/shops/alley-shop-candidates-50.txt"
+  },
+  "alleyHousing20261122": {
+    "sourceCommit": "fc07fb2",
+    "status": "deployed; public regeneration and rendered scene verified",
+    "rules": [
+      "tilted red-brick two-storey with roadside wall/gate and yard tree",
+      "parallel rectangle piloti",
+      "parallel non-rectangle old villa",
+      "private narrow gap gate; full single-car space shutter"
+    ],
+    "tests": {
+      "alleyHousing": 11,
+      "sceneEdits": 6,
+      "roads": 32,
+      "fixtureTypes": [
+        1,
+        1,
+        2
+      ]
+    },
+    "evidence": "docs/alley-housing.txt",
+    "hostingCommit": "d93cdcb1c0b94e06ed0eca569ad404fc608fe1f3",
+    "hostingRun": 44923758823,
+    "limits": "Small parcels report missing room instead of blocking roads or essential access. Existing saved scenes require regeneration.",
+    "publicGeneration": {
+      "id": "d88519e7828f02ab",
+      "radius": 50,
+      "milliseconds": 80941,
+      "detached": 4,
+      "walls": 15,
+      "gates": 4,
+      "issues": []
+    },
+    "publicScreenshot": "verification/alley-housing/public.jpg"
   }
 }

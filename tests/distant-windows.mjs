@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import * as T from 'three';
+import {createStreetEndContext} from '../outputs/domestic-test/street-end-context.js';
+import {createIllustrationShading} from '../outputs/domestic-test/illustration-shading.js';
+import {distantWindowLayout} from '../outputs/domestic-test/distant-windows.js';
+import {createSurface} from '../outputs/domestic-test/site-layout27-geometry.js';
+const night={value:0},chance={value:0};
+const context=createStreetEndContext({buildings:[{owner:4,height:12,rings:[[[0,0],[12,0],[12,8],[0,8]]]}],roads:[]},new Set(),()=>0,{night,windowChance:chance});
+const m=context.group.getObjectByName('StreetEndBuildings'),uv=m.geometry.getAttribute('facadeUv'),p=m.geometry.getAttribute('position');
+assert.equal(uv.count,p.count);assert.equal(m.geometry.getAttribute('facadeFrame').count,p.count);
+assert.equal(context.stats.triangles,10);assert.equal(context.stats.drawCalls,1);assert.equal(context.stats.windowGeometry,0);
+for(let i=0;i<uv.count;i++){assert(Number.isFinite(uv.getX(i)));if(uv.getZ(i)>0)assert(Math.abs(uv.getY(i)-p.getY(i)/3)<1e-6);}
+assert.equal(distantWindowLayout(1,4).halfWidth,0,'narrow slivers do not get a window');
+assert.equal(m.material.userData.distantWindows.farWindowNight,night);
+createIllustrationShading().install(context.group);
+const shader={uniforms:{},vertexShader:T.ShaderLib.standard.vertexShader,fragmentShader:T.ShaderLib.standard.fragmentShader};m.material.onBeforeCompile(shader);
+assert(shader.fragmentShader.includes('windowPane'));assert(shader.fragmentShader.includes('inkBrightness'));
+assert.equal(shader.uniforms.farWindowChance,chance);night.value=1;chance.value=.6;assert.equal(shader.uniforms.farWindowNight.value,1);
+const floor=createSurface({type:'Polygon',coordinates:[[[0,0],[5,0],[5,5],[0,5],[0,0]]]},new T.MeshStandardMaterial(),()=>0,.02)[0];
+assert(floor.material.polygonOffset);assert(floor.material.polygonOffsetUnits<0);assert(floor.material.depthTest);assert(floor.material.depthWrite);
+context.dispose();floor.geometry.dispose();floor.material.dispose();
+console.log('PASS: zero additional window geometry, metre-scale rows, roof masking, day/night and illustration hooks, raised floor depth');

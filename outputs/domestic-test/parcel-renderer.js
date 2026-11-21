@@ -1,3 +1,4 @@
+import {finishDepth} from './surface-policy.js';
 import {inYard} from './neighborhood-rules.js?v=151';
 import {FacadeBatch} from './korean-facades.js?v=151';
 import * as T from 'three';
@@ -23,7 +24,7 @@ export function renderParcels(data,elevation,profiles=[],plan,roadInfo=null){
   }
   for(const t of tris)tri(...t);if(!v.length)return;
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(v,3));g.computeVertexNormals();
-  const m=new T.Mesh(g,new T.MeshStandardMaterial({color,roughness:1,side:T.DoubleSide}));m.name='yard-access-surface';m.userData.surfaceOverlay=true;if(mark)m.userData.detailKind='roadmark';group.add(m);
+  const m=new T.Mesh(g,new T.MeshStandardMaterial({color,roughness:1,side:T.DoubleSide,...finishDepth(layer*.25)}));m.name='yard-access-surface';m.userData.surfaceOverlay=true;if(mark)m.userData.detailKind='roadmark';group.add(m);
  }
 
  for(const yard of data.yards){const p=programMap.get(yard.owner),color=p?.levels>=4?0x858882:p?.type==='rear'?0x939486:[0x9c9e94,0x979a91,0xa3a399][Math.abs(yard.owner)%3];floor(yard.triangles,color);}

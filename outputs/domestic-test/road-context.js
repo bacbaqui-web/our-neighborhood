@@ -42,6 +42,7 @@ export function applyRoadContext(root,plan){
    color:blocks?0xffffff:kind==='asphalt'&&plan.roadPriority?0x30343a:({concrete:0xb0aea1,pavers:0x919487,sidewalk:0xa9ada5,platform:0xb2b5aa,arterial:0x5f6970})[kind]??0x626a70,roughness:1,side:T.DoubleSide
   }));
   // Road base stays in the outline/depth pass, hiding buried plinth edges.
+  if(!asphalt)Object.assign(m.material,finishDepth(.25));
   m.name='road';m.userData={roadClass:kind,canPark:kind==='asphalt'};
   m.receiveShadow=true;group.add(m);
  }

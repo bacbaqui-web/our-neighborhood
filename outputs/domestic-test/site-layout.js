@@ -1,4 +1,4 @@
-import {prepareRulesLayout,renderRulesLayout,installRulesTour} from './site-layout27.js?v=building-edit1';
+import {prepareRulesLayout,renderRulesLayout,installRulesTour} from './site-layout27.js?v=grounds1';
 import {roadVehicle} from './memo-scene.js?v=151';
 import * as T from 'three';
 import {createInfill} from './site-layout-models/infill-models.js?v=view3c';

@@ -19,7 +19,7 @@ import {batchFixedWood} from './site-layout-models/wood-batches.js';
 import {gardenPlant} from './apartments/garden/garden-vegetation.js';
 import {createHybridTrees,loadCanopyTexture} from './hybrid-tree.js';
 import {makeLivingAsset} from './apartments/garden/living-models.js';
-import {polygons,contains,shapeOf,distanceTo,snapshotHeight,subtractRectangle,drapeGeometry,createSurface} from './site-layout27-geometry.js';
+import {polygons,contains,shapeOf,distanceTo,snapshotHeight,subtractRectangle,drapeGeometry,createSurface} from './site-layout27-geometry.js?v=grounds1';
 const mat=c=>new T.MeshStandardMaterial({color:c,roughness:1,side:T.DoubleSide});
 const eligible=b=>!b.facility&&!b.apartment&&!b.arterialKiosk&&!b.arterialFacades?.length&&!b.storefronts?.length;
 const pointOf=p=>p.point||p.origin||p.center||(p.a&&p.b?[(p.a[0]+p.b[0])/2,(p.a[1]+p.b[1])/2]:null);

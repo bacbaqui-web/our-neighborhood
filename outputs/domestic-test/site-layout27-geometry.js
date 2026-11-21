@@ -1,3 +1,4 @@
+import {finishDepth} from './surface-policy.js';
 import * as T from 'three';
 export const polygons=g=>!g?[]:g.type==='Polygon'?(g.coordinates[0]?.length?[g.coordinates]:[]):g.type==='MultiPolygon'?g.coordinates:(g.geometries||[]).flatMap(polygons);
 export const inRing=(p,r)=>{let yes=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
@@ -38,4 +39,4 @@ export function drapeGeometry(source,height,maxEdge=2){
  for(let i=0;i<g.attributes.position.count;i+=3)split(vertex(i),vertex(i+1),vertex(i+2));
  const next=new T.BufferGeometry();for(let i=0;i<attrs.length;i++){const [key,a]=attrs[i];next.setAttribute(key,new T.BufferAttribute(new a.array.constructor(out[i]),a.itemSize,a.normalized));}next.computeVertexNormals();next.computeBoundingSphere();if(g!==source)g.dispose();return next;
 }
-export function createSurface(geometry,material,height,offset=0){const out=[];for(const rings of polygons(geometry)){const flat=new T.ShapeGeometry(shapeOf(rings));flat.rotateX(-Math.PI/2);flat.translate(0,offset,0);const g=drapeGeometry(flat,height);flat.dispose();const p=g.attributes.position;g.setAttribute('uv',new T.Float32BufferAttribute(Array.from({length:p.count},(_,i)=>[p.getX(i),p.getZ(i)]).flat(),2));const mesh=new T.Mesh(g,material);mesh.receiveShadow=true;mesh.userData.surfaceOverlay=true;mesh.userData.surfaceOccluder=true;mesh.userData.noInk=true;out.push(mesh);}return out;}
+export function createSurface(geometry,material,height,offset=0){if(!material.polygonOffset)Object.assign(material,finishDepth(.25));const out=[];for(const rings of polygons(geometry)){const flat=new T.ShapeGeometry(shapeOf(rings));flat.rotateX(-Math.PI/2);flat.translate(0,offset,0);const g=drapeGeometry(flat,height);flat.dispose();const p=g.attributes.position;g.setAttribute('uv',new T.Float32BufferAttribute(Array.from({length:p.count},(_,i)=>[p.getX(i),p.getZ(i)]).flat(),2));const mesh=new T.Mesh(g,material);mesh.receiveShadow=true;mesh.userData.surfaceOverlay=true;mesh.userData.surfaceOccluder=true;mesh.userData.noInk=true;out.push(mesh);}return out;}

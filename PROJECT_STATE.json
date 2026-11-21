@@ -6163,8 +6163,8 @@
   "shopExpansion50": {
     "date": "2026-11-22",
     "status": "deployed and verified: six pasted references, 50 modules, real public copied-neighborhood random placement and reload stability",
-    "sourceCommit": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
-    "hostingRun": 44935643510,
+    "sourceCommit": "21b3247b9bb93ff4c2882b866ee614546d1c99d6",
+    "hostingRun": 44938119372,
     "shopIds": "shop:alley-01..50 (separate from Sungshin 50 whole buildings)",
     "approvedPastedModels": 6,
     "chairTypes": 6,
@@ -6172,7 +6172,6 @@
     "report": "work/shop-expansion-50/report.txt",
     "evidence": "verification/shop-expansion-50/",
     "remaining": [
-      "Fixed minimum 8m shop-focus camera can enter opposite building on narrow streets; inspection used manual zoom/rotation.",
       "Edge direct VWorld connection failed with ERR_HTTP2_SERVER_REFUSED_STREAM; same public generation succeeded in in-app browser.",
       "All 50 models checked as assets and by tests; representative real placement verified, not all 50 separately in real streets."
     ],
@@ -6181,6 +6180,8 @@
     "actualRandomAsset": "alley-35",
     "actualRandomOwner": 1100884774,
     "originalPreserved": true,
-    "reloadStable": true
+    "reloadStable": true,
+    "shopFocusVerified": true,
+    "shopFocusEvidence": "verification/shop-expansion-50/public-focus-after.png"
   }
 }

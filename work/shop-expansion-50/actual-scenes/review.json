@@ -155,7 +155,24 @@
     }
   },
   "remaining": [
-    "Shop focus uses fixed minimum 8m distance and may put camera inside opposite building on narrow streets; visual inspection used manual zoom/rotation.",
     "Edge API connection failed while in-app browser and local HTTP succeeded; underlying Edge connection cause not changed."
-  ]
+  ],
+  "shopFocus": {
+    "sourceCommit": "21b3247b9bb93ff4c2882b866ee614546d1c99d6",
+    "hostingRun": 44938119372,
+    "publicSelectionVerified": true,
+    "scene": "d5482f6a3dbc4ec0",
+    "selectedPlaces": [
+      "27468834",
+      "inferred-alley-1100884774",
+      "27468834"
+    ],
+    "manualCameraAdjustment": false,
+    "evidence": "verification/shop-expansion-50/public-focus-after.png",
+    "position": [
+      4.407667124808853,
+      2.840998327341045,
+      -0.661738870816494
+    ]
+  }
 }

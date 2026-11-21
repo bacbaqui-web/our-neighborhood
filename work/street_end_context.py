@@ -12,6 +12,8 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
  detailed_ids={int(f['properties']['objectid']) for f in detailed['features']}
  items=[]
  for f in collection['features']:
+  props=f['properties']
+  if (props.get('floorsEstimated') or props.get('gro_flo_co') in (0,'0')) and (props.get('building_name') or props.get('buld_nm','')).endswith('역') and any(word in props.get('buld_nm_dc','') for word in ('호선','지하철')):continue
   g=transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])).buffer(0)
   if g.is_empty:continue
   items.append((g,int(f['properties']['objectid']),max(1,float(f['properties'].get('gro_flo_co') or 1))*3))

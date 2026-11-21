@@ -9,7 +9,10 @@ function distanceToRing(ring,p){let best=Infinity;for(let i=0;i<ring.length;i++)
 function rayDistance(ring,p,a){const dx=Math.cos(a),dz=Math.sin(a);let best=Infinity;for(let i=0;i<ring.length;i++){const v=ring[i],w=ring[(i+1)%ring.length],sx=w[0]-v[0],sz=w[1]-v[1],den=dx*sz-dz*sx;if(Math.abs(den)<1e-10)continue;const vx=v[0]-p[0],vz=v[1]-p[1],t=(vx*sz-vz*sx)/den,u=(vx*dz-vz*dx)/den;if(t>0&&u>=0&&u<=1)best=Math.min(best,t);}return best;}
 export function buildingParts(features,origin,heightAt){
  const [sx,sy]=mapScale(origin),[lat,lon]=origin,out=[];
- for(const f of features){const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;
+ for(const f of features){const p=f.properties||{};
+  // Underground stations with no above-ground floors are not rooftop buildings.
+  if((p.floorsEstimated||Number(p.gro_flo_co)===0)&&/역$/.test(p.building_name||p.buld_nm||'')&&/호선|지하철/.test(p.buld_nm_dc||''))continue;
+  const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;
   polygons.forEach((poly,part)=>{const rings=poly.map(r=>r.slice(0,-1).map(([x,y])=>[(x-lon)*sx,(lat-y)*sy]));if(rings[0]?.length<3)return;const owner=Number(f.properties.objectid),height=Math.max(1,Number(f.properties.gro_flo_co)||1)*3;
    const base=Math.max(...rings.flat().map(p=>heightAt(...p)));
    out.push({owner,key:owner+':'+part,rings,height,base,top:base+height});});

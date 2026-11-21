@@ -24,7 +24,7 @@ export async function expandVisibleBuildings({origin,view,heightAt,maxTerrain=0,
  let tile,activeMs=0;
  try{
   await call("init",{origin,view,terrain,maxTerrain,eyeY:heightAt(...view.position)+(view.eyeHeight||2)});
-  if(initial)await update(initial,false);onProgress({...stats});
+  if(initial)await update(initial);onProgress({...stats});
   while((tile=frontier.next())){
    signal.throwIfAborted();await visibleTab(signal);await yieldBackground(signal);
    const minFloors=await call("tile",tile);if(minFloors===null){stats.skipped++;continue;}

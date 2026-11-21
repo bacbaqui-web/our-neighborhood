@@ -1,0 +1,11 @@
+{
+  "source": "7a0323ee8edf655c9a34fafd2a704ae93f2e0e2c",
+  "parent": "effd35178d50420843c51f1024750b0c48980087",
+  "hosting": "5109c56868b0f6ad6cd97b3b51e455e49fd8883f",
+  "deploymentRun": 44940921979,
+  "conclusion": "success",
+  "publicSourceMatched": true,
+  "sha256": "04492a3d97435f5ce870316956da784058784b324e3f8f14f0500da08f55d85e",
+  "reviewCopy": "87956683bb5545f2",
+  "copyOf": "a39660354274004c"
+}

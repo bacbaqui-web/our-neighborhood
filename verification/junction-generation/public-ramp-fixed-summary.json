@@ -1,0 +1,34 @@
+{
+  "scene": "87956683bb5545f2",
+  "generatedAt": "2026-11-22T04:37:25.016000",
+  "source": "7a0323e",
+  "generationMilliseconds": 362772,
+  "rawBuildings": 805,
+  "fitAdjusted": 105,
+  "fitExcluded": 1,
+  "excludedIds": [
+    1100785894
+  ],
+  "visible": 45,
+  "viewInput": 96,
+  "viewOccluded": 51,
+  "junctionQA": {
+    "junctions": 5,
+    "crossings": 2,
+    "curbSegments": 662,
+    "tactileParts": 4,
+    "roadSidewalkOverlapM2": 0,
+    "markOutsideRoadM2": 0,
+    "gradePairs": [
+      "1-2",
+      "1-3",
+      "2-3"
+    ],
+    "inferred": true,
+    "plannedRamps": 4,
+    "generatedRamps": 4,
+    "generatedTactileParts": 4,
+    "activePatchAreaM2": 2657.566
+  },
+  "physicalRoadChangesFromPreviousInspection": 0
+}

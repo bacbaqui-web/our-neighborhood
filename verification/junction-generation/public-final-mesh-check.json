@@ -1,0 +1,36 @@
+{
+  "scene": "87956683bb5545f2",
+  "generatedAt": "2026-11-22T04:12:37.640000",
+  "junctionQA": {
+    "junctions": 5,
+    "crossings": 2,
+    "curbSegments": 662,
+    "tactileParts": 4,
+    "roadSidewalkOverlapM2": 0.0,
+    "markOutsideRoadM2": 0.0,
+    "gradePairs": [
+      "1-2",
+      "1-3",
+      "2-3"
+    ],
+    "inferred": true,
+    "activePatchAreaM2": 2657.566
+  },
+  "edgeSegments": 43,
+  "edgeLengthM": 105.83269374970646,
+  "maxEdgeHeightDifferenceM": 2.220446049250313e-16,
+  "interiorSharedVertices": 209,
+  "maxInteriorHeightDifferenceM": 6.661338147750939e-16,
+  "paint": {
+    "white": {
+      "verticesChecked": 783,
+      "minLiftM": 0.007999999999999563,
+      "maxLiftM": 0.008000000000000007
+    },
+    "yellow": {
+      "verticesChecked": 600,
+      "minLiftM": 0.007999999999999896,
+      "maxLiftM": 0.008000000000000007
+    }
+  }
+}

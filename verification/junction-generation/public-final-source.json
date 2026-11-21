@@ -1,0 +1,19 @@
+{
+  "source": "73aee99b82302161f2cfee3f16369a717dc1b3db",
+  "parent": "21b3247b9bb93ff4c2882b866ee614546d1c99d6",
+  "hosting": "a3be25838232c6e2e1ee1954f7972f37fa0da9f0",
+  "deploymentRun": 44938716091,
+  "conclusion": "success",
+  "publicSourceMatched": true,
+  "sha256": "0f8c94e8f8b974a031fb6465e64480bf59b5b04fc5cfa24485a8f9812600a5c6",
+  "reviewCopy": "87956683bb5545f2",
+  "copyOf": "a39660354274004c",
+  "regenerationAction": {
+    "groupedContinuousGrade3Roads": [
+      "1f565d529f9f294a",
+      "55eb27a439f074c7"
+    ],
+    "physicalGradesChanged": false,
+    "preserved": "road 18 inferred grade 1; road 19 existing manual grade 2; all other manual building edits"
+  }
+}

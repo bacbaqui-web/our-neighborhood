@@ -1,0 +1,62 @@
+{
+  "implementationCommit": "0d2ccb4a94484160f1cabd4a3003d798195dda2d",
+  "fixCommit": "c1dd689886c51b97eba6bc25ef85f495b68da018",
+  "fixFiles": [
+    "work/junction_generation.py",
+    "tests/test_junction_generation.py",
+    "outputs/domestic-test/browser-generation/sources.json"
+  ],
+  "method": "canonical source files; GitHub atomic tree based on current origin/main, force=false; all other paths inherited",
+  "hostingCommit": "7afced5aaecb2fcbb1109f96854d6f1b4c08b340",
+  "run": 44931361203,
+  "localMainSync": "58b2c2561c7ba9db33208f2e949e0b612100f763; three-way preserved staged and working changes",
+  "verification": "8 Python regression tests passed; first hosting build passed, Pages artifact lookup failed, rerun requested",
+  "fixParent": "0d2ccb4a94484160f1cabd4a3003d798195dda2d",
+  "successfulHostingRun": 44932233620,
+  "publicSource": "verification/junction-generation/public-source.json",
+  "newPublicGeneration": "Saved real source regenerated publicly; VWorld fresh/distant lookup remains failed",
+  "widthFix": {
+    "source": "c0b4a35cea389aaed0d133064f12bebad7a0a087",
+    "parent": "40f6e6d963d800daccf0eab825cb90f09e27b9c1",
+    "files": [
+      "outputs/domestic-test/browser-generation/sources.json",
+      "tests/test_junction_generation.py",
+      "tests/test_road_geometry.py",
+      "work/browser-generation/pack.py",
+      "work/junction_generation.py",
+      "work/road_geometry.py",
+      "work/road_priority.py",
+      "work/scene_edits.py"
+    ],
+    "deploymentRun": 44935463161,
+    "hosting": "20202e0f6fde6d3b82cf570c8178ab90cc5ed426",
+    "deploymentConclusion": "success",
+    "publicHashEvidence": "verification/junction-generation/public-width-source.json",
+    "tests": {
+      "roadPython": 40,
+      "junctionPython": 9,
+      "gradeCombinations": 10,
+      "GLB": 12,
+      "rotatedOpenings": 8,
+      "renderer": "passed",
+      "browserGeneration": "passed",
+      "bundle": "51 files; current"
+    },
+    "localMainAtCheck": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee",
+    "remoteMainAtCheck": "a14cd464e77a8f8ffd0ccde9519123b2c8183dee"
+  },
+  "latestImplementation": {
+    "source": "7a0323ee8edf655c9a34fafd2a704ae93f2e0e2c",
+    "parent": "effd35178d50420843c51f1024750b0c48980087",
+    "deploymentRun": 44940921979,
+    "hosting": "5109c56868b0f6ad6cd97b3b51e455e49fd8883f",
+    "conclusion": "success",
+    "sourceEvidence": "public-ramp-fixed-source.json",
+    "checks": {
+      "junctionPython": 11,
+      "browserBundleFiles": 51,
+      "tactileNativeMaxBottomGapM": 2.084e-05
+    },
+    "publicGeneration": "completed; actual saved-source full regeneration and eye-height screenshots verified; see completion.json"
+  }
+}

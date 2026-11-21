@@ -1,0 +1,49 @@
+{
+  "transitions": [
+    {
+      "point": [
+        17.49951,
+        74.13703
+      ],
+      "grades": [
+        3,
+        4
+      ],
+      "arms": 2,
+      "radius": 20.975,
+      "cornerRadius": 0.543,
+      "kind": "width-transition"
+    },
+    {
+      "point": [
+        -19.91139,
+        -4.6142
+      ],
+      "grades": [
+        3,
+        4
+      ],
+      "arms": 2,
+      "radius": 20.975,
+      "cornerRadius": 0.557,
+      "kind": "width-transition"
+    }
+  ],
+  "qa": {
+    "junctions": 108,
+    "crossings": 2,
+    "curbSegments": 7003,
+    "tactileParts": 4,
+    "roadSidewalkOverlapM2": 0.0,
+    "markOutsideRoadM2": 0.0,
+    "gradePairs": [
+      "1",
+      "1-2",
+      "1-3",
+      "1-4",
+      "3-4"
+    ],
+    "inferred": true
+  },
+  "scope": "actual unfiltered source-road geometry, flat validation surface; not a rendered generated scene"
+}

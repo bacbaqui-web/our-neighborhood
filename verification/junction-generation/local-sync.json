@@ -1,0 +1,14 @@
+{
+  "old": "0d2ccb4a94484160f1cabd4a3003d798195dda2d",
+  "new": "58b2c2561c7ba9db33208f2e949e0b612100f763",
+  "paths": [
+    "outputs/domestic-test/app.js",
+    "outputs/domestic-test/browser-generation/sources.json",
+    "outputs/domestic-test/index.html",
+    "outputs/domestic-test/vehicle-lighting.js",
+    "tests/test_junction_generation.py",
+    "work/junction_generation.py"
+  ],
+  "backup": "/var/folders/5t/g2pjz0k10cd_95_c1wg284m80000gn/T/junction-main-sync-nrbjfdzl",
+  "method": "three-way merge each changed working and index file; preserve unrelated edits; no reset"
+}

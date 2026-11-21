@@ -1,0 +1,32 @@
+자동 생성 교차로 독립 중간 검토 / 2026-11-22
+상태: 실제 도봉로 저장 장면에 production stage를 재적용한 결과까지 확인. 새 전체 생성/공개 화면은 대기. 최종 보고서 아님.
+
+직접 본 증거
+- verification/junction-generation/local-dobong-top.png
+- outputs/generated-neighborhoods/b7dc0f9a4e682301/data/junction-plan.json
+- 같은 경로 junction-validation.json, roads-source.json, arterial/plan.json
+- 생성 코드 work/junction_generation.py와 테스트 tests/test_junction_generation.py
+
+P1 구현 오류 후보: 확인된 버스전용차로 표시 소실
+- 실제 arterial plan은 lanes6, busLanes=true. 공개 전 로컬 top 캡처 상단/하단에는 파란 전용차로선이 있으나 중앙 새 패치에서는 사라지고 일반 흰 점선으로 바뀜.
+- 새 build가 arterial의 모든 decal을 zone으로 자르고, 새 planner는 white/yellow만 생성함.
+- 작은 골목 접속 때문에 본선 교통 구성이 바뀌는 모습. 기존 지침의 실제 정보 우선/전용차로 분리 규칙에 어긋날 가능성이 높음.
+- root에 전달. 수정/재검사 대기.
+
+P1 분류 검토: 버스전용 연결로를 일반 1차골목으로 취급
+- roads-source #4: class=busway, access=no, foot=no, oneway=1, width4.0.
+- 저장 장면 재적용 스크립트는 폭<7이라는 이유로 grade1을 부여하고, junction_nodes는 motor_vehicle=no만 제외.
+- 위 후보가 교차로 수/grades에 포함될 경우 일반 1-4 검증 결과로 보고하면 부정확함.
+- 전용 연결로와 일반 보차공유 골목을 분리하거나 확인된 교통시설 구간은 기존 구조를 보존해야 함.
+- root에 전달. 수정/재검사 대기.
+
+수정 확인된 초기 구현 문제
+- 사선 crossing 거리와 고정 패치 반경 불일치로 일부 횡단부만 남는 문제: 전체 footprint 승인과 경계2m 여유 조건 추가 확인.
+- ramp와 보도 feather 높이 함수 불일치: 동일 asphalt/walk 보간 함수 사용 확인.
+- 뒤 단계 기둥·가로등·나무 재침범: crossing 제외와 utilities index remap 구현 확인. 실제 횡단부가 있는 장면에서 시각 검사는 아직 필요.
+- 교통시설 보호 후 부분 clipping 문제: plan 단계에서 protected node를 제외하는 방식으로 수정 확인.
+
+검증 한계
+- 도봉로 장면은 기존 visible360 건물/GLB/시야선택 해시 불변을 기록한 재적용 사례. 새로운 전체 생성 성공과 같지 않음.
+- 이 결과 횡단보도0/점자부품0이라 실제 자동 배치된 턱낮춤·점자부품 접지 품질은 아직 검증할 수 없음.
+- 위쪽 캡처만으로 눈높이 단차, 그림자와 실제 면 중첩, 모든 부품의 통행 가능 여부를 확정하지 않음.

@@ -6037,7 +6037,11 @@
     "assets": 12,
     "parts": 9,
     "assemblies": 3,
-    "automaticPlacement": false,
+    "automaticPlacement": {
+      "enabled": true,
+      "scope": "rigid tactile warning parts and parameterized curb/ramp/road markings; example assembly GLBs are not stretched onto maps",
+      "generatorRecord": "junctionGeneration20261122"
+    },
     "sourceCommit": "2148067738579dae0798cd59c003780daeb90321",
     "deploymentRun": "https://github.com/bacbaqui-web/magamiscoming/actions/runs/44926416928",
     "evidence": "verification/junction-assets/public-verification.txt",
@@ -6183,5 +6187,122 @@
     "reloadStable": true,
     "shopFocusVerified": true,
     "shopFocusEvidence": "verification/shop-expansion-50/public-focus-after.png"
+  },
+  "junctionGeneration20261122": {
+    "source": "7a0323ee8edf655c9a34fafd2a704ae93f2e0e2c",
+    "parent": "effd35178d50420843c51f1024750b0c48980087",
+    "hosting": "5109c56868b0f6ad6cd97b3b51e455e49fd8883f",
+    "deploymentRun": 44940921979,
+    "conclusion": "success",
+    "publicSourceMatched": true,
+    "sha256": "04492a3d97435f5ce870316956da784058784b324e3f8f14f0500da08f55d85e",
+    "reviewCopy": "87956683bb5545f2",
+    "copyOf": "a39660354274004c",
+    "status": "implemented-tested-deployed-public-generated-and-visually-verified",
+    "publicURL": "https://magamiscom.ing/neighborhood/",
+    "sceneURL": "https://magamiscom.ing/neighborhood/domestic-test/?location=87956683bb5545f2",
+    "sceneStorage": "review copy in this browser; original preserved",
+    "generation": {
+      "scene": "87956683bb5545f2",
+      "generatedAt": "2026-11-22T04:37:25.016000",
+      "source": "7a0323e",
+      "generationMilliseconds": 362772,
+      "rawBuildings": 805,
+      "fitAdjusted": 105,
+      "fitExcluded": 1,
+      "excludedIds": [
+        1100785894
+      ],
+      "visible": 45,
+      "viewInput": 96,
+      "viewOccluded": 51,
+      "junctionQA": {
+        "junctions": 5,
+        "crossings": 2,
+        "curbSegments": 662,
+        "tactileParts": 4,
+        "roadSidewalkOverlapM2": 0,
+        "markOutsideRoadM2": 0,
+        "gradePairs": [
+          "1-2",
+          "1-3",
+          "2-3"
+        ],
+        "inferred": true,
+        "plannedRamps": 4,
+        "generatedRamps": 4,
+        "generatedTactileParts": 4,
+        "activePatchAreaM2": 2657.566
+      },
+      "physicalRoadChangesFromPreviousInspection": 0
+    },
+    "geometry": {
+      "scene": "87956683bb5545f2",
+      "generatedAt": "2026-11-22T04:37:25.016000",
+      "junctionQA": {
+        "junctions": 5,
+        "crossings": 2,
+        "curbSegments": 662,
+        "tactileParts": 4,
+        "roadSidewalkOverlapM2": 0.0,
+        "markOutsideRoadM2": 0.0,
+        "gradePairs": [
+          "1-2",
+          "1-3",
+          "2-3"
+        ],
+        "inferred": true,
+        "plannedRamps": 4,
+        "generatedRamps": 4,
+        "generatedTactileParts": 4,
+        "activePatchAreaM2": 2657.566
+      },
+      "edgeSegments": 43,
+      "edgeLengthM": 105.83269374970646,
+      "maxEdgeHeightDifferenceM": 2.220446049250313e-16,
+      "interiorSharedVertices": 209,
+      "maxInteriorHeightDifferenceM": 6.661338147750939e-16,
+      "paint": {
+        "white": {
+          "verticesChecked": 783,
+          "minLiftM": 0.007999999999999563,
+          "maxLiftM": 0.008000000000000007
+        },
+        "yellow": {
+          "verticesChecked": 600,
+          "minLiftM": 0.007999999999999896,
+          "maxLiftM": 0.008000000000000007
+        }
+      }
+    },
+    "tactileMaxBottomGapM": 2.0839438417651068e-05,
+    "scope": "rigid tactile warning assets; parameterized curb, ramp and road markings; no stretched example junction GLBs",
+    "checks": {
+      "roadPython": 40,
+      "junctionPython": 11,
+      "syntheticGradeCombinations": 10,
+      "GLB": 12,
+      "rotatedOpenings": 8,
+      "renderer": "passed",
+      "browserGeneration": "passed",
+      "bundleFiles": 51
+    },
+    "screenshots": [
+      "public-ramp-fixed-top.jpg",
+      "public-ramp-fixed-eye-left.jpg",
+      "public-ramp-fixed-eye-right.jpg",
+      "public-ramp-fixed-sidewalk-walk.jpg"
+    ],
+    "independentReport": "work/junction-generation-review/report.txt",
+    "rootReview": "work/junction-generation-review/root-review.txt",
+    "guidelines": "docs/project-guidelines.txt",
+    "limits": [
+      "VWorld new address/distant building lookup failed; saved real source regenerated through full pipeline",
+      "Public scene raw805 retained804 excluded1; visible45; separate local raw825 retained825 case is different",
+      "Some existing building fitting can move a small building about30m; not fixed by junction work",
+      "Sidewalk geometric width checked; not all inferred model volumes and obstructions measured",
+      "Not every real grade combination, slope, complex elevated junction or night view verified"
+    ],
+    "canonicalSyncAtRuntimeCompletion": "7a0323ee8edf655c9a34fafd2a704ae93f2e0e2c = origin/main"
   }
 }

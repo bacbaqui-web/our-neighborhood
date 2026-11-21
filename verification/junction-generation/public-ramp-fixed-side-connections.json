@@ -1,0 +1,481 @@
+{
+  "dataDirectory": "/tmp/junction-public-ramp-final/data/",
+  "scope": "sidewalk geometry only; not clear width after all rendered obstacles",
+  "pairs": [
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.4,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.22229050826196264
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.22227807326649512
+        }
+      ],
+      "differenceM": 1.2434995467519583e-05
+    },
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.4,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.2371727968275032
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.23718459852693383
+        }
+      ],
+      "differenceM": 1.1801699430630253e-05
+    },
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.55,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.2255470928192855
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.2255346578238179
+        }
+      ],
+      "differenceM": 1.243499546760285e-05
+    },
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.55,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.24041426032652846
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.24042606202595904
+        }
+      ],
+      "differenceM": 1.1801699430574741e-05
+    },
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.7,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.22878054771465864
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.22876782758676328
+        }
+      ],
+      "differenceM": 1.2720127895354816e-05
+    },
+    {
+      "ramp": 0,
+      "alongFromCenter": 0.7,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.24365572382555362
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.2436675255249842
+        }
+      ],
+      "differenceM": 1.1801699430574741e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.4,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.03236393933283856
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.03237579478313128
+        }
+      ],
+      "differenceM": 1.1855450292724834e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.4,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.018135691854348376
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.01812336190882056
+        }
+      ],
+      "differenceM": 1.232994552781419e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.55,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.029073355970985877
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.029084996800518424
+        }
+      ],
+      "differenceM": 1.1640829532547081e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.55,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.01485644494280484
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.014844114997277029
+        }
+      ],
+      "differenceM": 1.232994552781072e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.7,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.02575487709829859
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.02576651792783112
+        }
+      ],
+      "differenceM": 1.1640829532529734e-05
+    },
+    {
+      "ramp": 1,
+      "alongFromCenter": 0.7,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.01157719803126133
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.011564868085733518
+        }
+      ],
+      "differenceM": 1.2329945527812455e-05
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.4,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.17428890544468725
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.174298614915471
+        }
+      ],
+      "differenceM": 9.709470783741958e-06
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.4,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.16264724997495517
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.1626375405041714
+        }
+      ],
+      "differenceM": 9.709470783769714e-06
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.55,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.17102939273138187
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.1710391022021656
+        }
+      ],
+      "differenceM": 9.709470783714202e-06
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.55,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.15938773726164973
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.15937802779086596
+        }
+      ],
+      "differenceM": 9.709470783769714e-06
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.7,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.16776988001807644
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.1677795894888602
+        }
+      ],
+      "differenceM": 9.709470783769714e-06
+    },
+    {
+      "ramp": 2,
+      "alongFromCenter": 0.7,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.1561282245483443
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.15611851507756058
+        }
+      ],
+      "differenceM": 9.709470783714202e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.4,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.3634853296904862
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.36347639245416463
+        }
+      ],
+      "differenceM": 8.937236321560071e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.4,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.37373450024526217
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.3737424846580297
+        }
+      ],
+      "differenceM": 7.98441276755879e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.55,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.36665382279040454
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.366644885554083
+        }
+      ],
+      "differenceM": 8.937236321560071e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.55,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.3768346449417144
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.376842629354482
+        }
+      ],
+      "differenceM": 7.98441276755879e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.7,
+      "side": -1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.36978671567192534
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.369778154720209
+        }
+      ],
+      "differenceM": 8.560951716363174e-06
+    },
+    {
+      "ramp": 3,
+      "alongFromCenter": 0.7,
+      "side": 1,
+      "inside": [
+        {
+          "kind": "ramp",
+          "height": 0.3799347896381666
+        }
+      ],
+      "outside": [
+        {
+          "kind": "sidewalk",
+          "height": 0.37994277405093424
+        }
+      ],
+      "differenceM": 7.984412767614302e-06
+    }
+  ],
+  "maxDifferenceM": 1.2720127895354816e-05,
+  "sections": [
+    {
+      "ramp": 0,
+      "side": -1,
+      "sidewalkSurfaceSectionM": 1.499999999999998
+    },
+    {
+      "ramp": 0,
+      "side": 1,
+      "sidewalkSurfaceSectionM": 2.7499987812172892
+    },
+    {
+      "ramp": 1,
+      "side": -1,
+      "sidewalkSurfaceSectionM": 1.5
+    },
+    {
+      "ramp": 1,
+      "side": 1,
+      "sidewalkSurfaceSectionM": 1.5000000000000002
+    },
+    {
+      "ramp": 2,
+      "side": -1,
+      "sidewalkSurfaceSectionM": 1.4999999999999996
+    },
+    {
+      "ramp": 2,
+      "side": 1,
+      "sidewalkSurfaceSectionM": 1.4999999999999996
+    },
+    {
+      "ramp": 3,
+      "side": -1,
+      "sidewalkSurfaceSectionM": 2.7499964022418713
+    },
+    {
+      "ramp": 3,
+      "side": 1,
+      "sidewalkSurfaceSectionM": 1.4999999999999996
+    }
+  ]
+}

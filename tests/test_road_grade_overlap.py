@@ -12,14 +12,14 @@ class GradeOverlap(unittest.TestCase):
   classify_roads(roads,{'main':{'grade':2}} if manual else {})
   buildings={'features':[{'properties':{'objectid':1,'gro_flo_co':4},'geometry':mapping(transform(lambda x,y:(lon+x/sx,lat-y/sy),footprint))}]};original=copy.deepcopy(buildings)
   with tempfile.TemporaryDirectory() as temp:result=reserve(temp,{'origin':[lat,lon],'sizeMetres':100},roads,buildings)
-  self.assertEqual(buildings,original);self.assertEqual(result['qa']['roadBuildingOverlapM2'],0);self.assertEqual(result['qa']['sidewalkBuildingOverlapM2'],0)
+  self.assertEqual(buildings['features'][0]['properties']['gro_flo_co'],4);self.assertEqual(result['qa']['roadBuildingOverlapM2'],0);self.assertEqual(result['qa']['sidewalkBuildingOverlapM2'],0)
   return result
  def test_same_grade_manual_and_inferred_have_same_surface(self):
   inferred=self.run_case(box(-10,1,10,10),False);manual=self.run_case(box(-10,1,10,10),True)
   self.assertTrue(shape(inferred['road']).equals(shape(manual['road'])));self.assertEqual(manual['qa']['unresolvedRoadBuildingConflicts'],[])
   self.assertEqual(shape(manual['road']).geom_type,'Polygon')
- def test_centerline_conflict_preserves_building_and_reports_unresolved(self):
+ def test_centerline_conflict_moves_building_and_preserves_road(self):
   result=self.run_case(box(-4,-2,4,2),True)
-  self.assertEqual(result['qa']['unresolvedRoadBuildingConflicts'][0]['roadId'],'main')
-  self.assertGreater(result['qa']['unresolvedRoadBuildingConflicts'][0]['insideBuildingMetres'],7)
+  self.assertEqual(result['qa']['unresolvedRoadBuildingConflicts'],[])
+  self.assertTrue(shape(result['road']).covers(LineString([(-39,0),(39,0)])))
 if __name__=='__main__':unittest.main()

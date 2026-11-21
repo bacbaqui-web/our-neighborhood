@@ -16,6 +16,45 @@ def street_type(props):
  return 'shared'
 def scales(lat):
  a=math.radians(lat);return 111412.84*math.cos(a)-93.5*math.cos(3*a)+.118*math.cos(5*a),111132.92-559.82*math.cos(2*a)+1.175*math.cos(4*a)-.0023*math.cos(6*a)
+def fit_buildings(buildings,protected,roads,origin):
+ """Keep confirmed public space fixed; move nearby, then trim if crowded."""
+ from shapely.affinity import translate
+ from shapely.ops import nearest_points
+ from shapely.strtree import STRtree
+ from scene_edits import align_profile
+ lat,lon=origin;sx,sy=scales(lat)
+ polygons=[S.make_valid(transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry']))) for f in buildings['features']]
+ tree=STRtree(polygons);lines=unary_union([shape(r['geometry']) for r in roads]);placed=[];out=[];changes=[];omitted=[]
+ for index,(f,local) in enumerate(zip(buildings['features'],polygons)):
+  if local.intersection(protected).area<1e-6:out.append(f);continue
+  owner=f['properties']['objectid'];near=[polygons[int(j)] for j in tree.query(local.buffer(35)) if int(j)!=index]
+  obstacles=unary_union(near+placed).buffer(.05);c=local.centroid;q=nearest_points(c,lines)[1];vx,vz=c.x-q.x,c.y-q.y
+  preferred=math.atan2(vz,vx);angles=[preferred]+[i*math.tau/16 for i in range(16)]
+  angles.sort(key=lambda a:-math.cos(a-preferred));fitted=None;offset=[0,0];method='trimmed'
+  for distance in range(1,31):
+   for angle in angles:
+    dx,dz=distance*math.cos(angle),distance*math.sin(angle)
+    if math.hypot(vx,vz)>.1 and dx*vx+dz*vz<-.01:continue
+    candidate=translate(local,dx,dz)
+    if candidate.intersection(protected).area<1e-7 and candidate.intersection(obstacles).area<1e-7:
+     fitted=candidate;offset=[dx,dz];method='moved';break
+   if fitted is not None:break
+  if fitted is None:
+   parts=[g for g in S.get_parts(local.difference(protected.buffer(.001))) if g.geom_type=='Polygon' and g.area>=6]
+   if parts:fitted=max(parts,key=lambda g:g.area)
+  if fitted is None:
+   omitted.append(owner);continue
+  if fitted.geom_type!='Polygon':fitted=max((g for g in S.get_parts(fitted) if g.geom_type=='Polygon'),key=lambda g:g.area)
+  profile=f['properties'].get('streetProfile')
+  if profile:
+   profile={**profile,'frontStart':[profile['frontStart'][0]+offset[0],profile['frontStart'][1]+offset[1]],'frontEnd':[profile['frontEnd'][0]+offset[0],profile['frontEnd'][1]+offset[1]]}
+   profile=align_profile(profile,fitted);ring=list(fitted.exterior.coords);profile.update(frontStart=list(ring[profile['frontEdge']]),frontEnd=list(ring[profile['frontEdge']+1]));f['properties']['streetProfile']=profile
+  info={'method':method,'offset':offset,'beforeM2':round(local.area,2),'afterM2':round(fitted.area,2)}
+  f['properties']['roadFit']=info;changes.append({'id':owner,**info})
+  f['geometry']=mapping(transform(lambda x,y:(lon+x/sx,lat-y/sy),fitted));out.append(f);placed.append(fitted)
+ buildings['features']=out
+ return changes,omitted
+
 def reserve(root,location,roads,buildings):
  root=Path(root);lat,lon=location['origin'];sx,sy=scales(lat);radius=location['sizeMetres']/2;extent=box(-radius-4,-radius-4,radius+4,radius+4)
  major=[r for r in roads if r['properties'].get('class') in MAJOR]
@@ -54,23 +93,15 @@ def reserve(root,location,roads,buildings):
  protected=allRoad.union(majorPublic).buffer(.4,join_style=2)
  original=copy.deepcopy(buildings);out=[];changed=[];omitted=[]
  if any(r.get('grade') for r in roads):
-  # Inferred widths never cut a known building. Fit the public surface instead.
+  changed,omitted=fit_buildings(buildings,protected,roads,[lat,lon])
   built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']])
-  clearance=built.buffer(.15,join_style=2)
-  # Grade edits change classification, not the mapped centreline. Both inferred
-  # and manual widths fit around known footprints. Flag genuine source conflicts
-  # separately instead of rejecting every grade edit within 1.5m of a facade.
-  conflicts=[]
-  interior=built.buffer(-.05)
-  for r in roads:
-   length=shape(r['geometry']).intersection(interior).length
-   if length>.2:conflicts.append({'roadId':r.get('editId'),'insideBuildingMetres':round(length,2)})
-  overlap=allRoad.intersection(clearance).area
-  surfaces={k:g.difference(clearance) for k,g in surfaces.items()}
-  allRoad=allRoad.difference(clearance);majorRoad=majorRoad.difference(clearance);majorPublic=majorPublic.difference(clearance)
-  result={'version':4,'surfaces':{k:mapping(v) for k,v in surfaces.items()},'road':mapping(allRoad),'majorRoad':mapping(majorRoad),'majorPublic':mapping(majorPublic),'protected':mapping(protected.difference(clearance)),'entries':entries,'qa':{'adjustedBuildings':0,'omittedBuildings':0,'roadBuildingOverlapM2':round(built.intersection(allRoad).area,7),'sidewalkBuildingOverlapM2':round(built.intersection(majorPublic).area,7),'inferredSurfaceTrimmedM2':round(overlap,2),'unresolvedRoadBuildingConflicts':conflicts,'changes':[],'omittedIds':[]},'classification':'street-grades-v1; inferred widths fitted around preserved building footprints'}
-  for name,value in [('buildings-source.geojson',original),('buildings.geojson',buildings),('road-reservation.json',result),('roads-source.json',{'roads':roads,'source':'OpenFreeMap / OpenStreetMap'})]:(root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
+  if built.intersection(protected).area>1e-5:raise ValueError('확정한 도로 밖으로 건물을 배치하지 못했습니다.')
+  result={'version':5,'surfaces':{k:mapping(v) for k,v in surfaces.items()},'road':mapping(allRoad),'majorRoad':mapping(majorRoad),'majorPublic':mapping(majorPublic),'protected':mapping(protected),'entries':entries,'qa':{'adjustedBuildings':len(changed),'omittedBuildings':len(omitted),'roadBuildingOverlapM2':round(built.intersection(allRoad).area,7),'sidewalkBuildingOverlapM2':round(built.intersection(majorPublic).area,7),'inferredSurfaceTrimmedM2':0,'unresolvedRoadBuildingConflicts':[],'changes':changed,'omittedIds':omitted},'classification':'confirmed-road-first; buildings moved or fitted outside carriageways and sidewalks'}
+  source_path=root/'buildings-source.geojson'
+  if not source_path.exists():source_path.write_text(json.dumps(original,ensure_ascii=False,separators=(',',':')))
+  for name,value in [('buildings.geojson',buildings),('road-reservation.json',result),('roads-source.json',{'roads':roads,'source':'OpenFreeMap / OpenStreetMap'})]:(root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
   return result
+
  for f in buildings['features']:
   local=transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry']))
   cut=S.make_valid(local).difference(protected)

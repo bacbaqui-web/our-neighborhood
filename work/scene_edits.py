@@ -115,3 +115,22 @@ def prepare_editable_roads(roads,edits,origin=None,preserve=False):
   classify_roads(roads,{},origin)
  validate_road_groups(roads,edits.get('roadGroups',[]))
  return roads
+
+def remap_building_edits(edits,before,after,origin):
+ """Keep the user's selected wall through translation or footprint trimming."""
+ import copy
+ result=copy.deepcopy(edits);sx,sy=__import__('road_priority').scales(origin[0])
+ old={str(f['properties']['objectid']):f for f in before.get('features',[])}
+ new={str(f['properties']['objectid']):f for f in after.get('features',[])}
+ for owner,edit in result.items():
+  if 'frontEdge' not in edit or owner not in old or owner not in new:continue
+  def polygon(f):
+   p=transform(lambda x,y:((x-origin[1])*sx,(origin[0]-y)*sy),shape(f['geometry']))
+   return p if p.geom_type=='Polygon' else max(p.geoms,key=lambda g:g.area)
+  a,b=polygon(old[owner]),polygon(new[owner]);ring=list(a.exterior.coords);i=edit['frontEdge']
+  if type(i) is not int or i<0 or i>=len(ring)-1:continue # normal validation reports malformed input
+  old_offset=old[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);new_offset=new[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);dx,dz=new_offset[0]-old_offset[0],new_offset[1]-old_offset[1]
+  start=Point(ring[i][0]+dx,ring[i][1]+dz);end=Point(ring[i+1][0]+dx,ring[i+1][1]+dz);target=list(b.exterior.coords)
+  choices=[j for j in range(len(target)-1) if LineString(target[j:j+2]).length>2.4]
+  if choices:edit['frontEdge']=min(choices,key=lambda j:min(start.distance(Point(target[j]))+end.distance(Point(target[j+1])),end.distance(Point(target[j]))+start.distance(Point(target[j+1]))))
+ return result

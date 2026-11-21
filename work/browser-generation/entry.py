@@ -14,7 +14,8 @@ params=json.loads(PARAMETERS)
 import re
 if params.get('sceneId') and not re.fullmatch('[a-f0-9]{16}',params['sceneId']):raise ValueError('저장된 동네 식별자가 올바르지 않습니다.')
 input_snapshot=json.loads(PARAMETERS)
-source.fetch_building_collection=lambda bbox: params['buildingCollection']
+input_snapshot.pop('editBuildingCollection',None)
+source.fetch_building_collection=lambda bbox: params.get('sourceBuildingCollection') or params['buildingCollection']
 source.kakao=lambda path,params2: {'documents':params.get('stations' if path=='category' else 'exits',[]),'meta':{'is_end':True}}
 from view_generation import validate_view,select_view,select_roads,snap_to_road
 view=validate_view(params.get('view') or {})
@@ -46,13 +47,22 @@ def stage_base():
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  all_roads=params.get('sourceRoads') or source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
  from scene_edits import classify_roads,apply_building_rules,validate_road_groups
- edits=params.get('sceneEdits') or {'roads':{},'buildings':{}}
+ edits=json.loads(json.dumps(params.get('sceneEdits') or {'roads':{},'buildings':{}}))
+ from scene_edits import remap_building_edits
+ building_edits=remap_building_edits(edits.get('buildings',{}),params.get('editBuildingCollection') or params.get('buildingCollection',{}),all_buildings,loc['origin'])
  classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
  validate_road_groups(all_roads,edits.get('roadGroups',[]))
- apply_building_rules(all_buildings,all_roads,edits.get('buildings',{}),loc['origin'])
+ apply_building_rules(all_buildings,all_roads,building_edits,loc['origin'])
+ from road_priority import reserve
+ original_buildings=json.loads(json.dumps(all_buildings))
+ initial_reservation=reserve(root,source_loc,all_roads,all_buildings)
+ building_edits=remap_building_edits(building_edits,original_buildings,all_buildings,loc['origin'])
+ apply_building_rules(all_buildings,all_roads,building_edits,loc['origin'])
+ edits['buildings']=building_edits
+ loc['buildingRoadFit']=initial_reservation['qa']
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  write('scene-edits.json',edits)
- write('generation-input.json',{**input_snapshot,'sceneId':key,'sourceRoads':all_roads})
+ write('generation-input.json',{**input_snapshot,'sceneId':key,'sourceRoads':all_roads,'sceneEdits':edits,'sourceBuildingCollection':input_snapshot.get('sourceBuildingCollection') or input_snapshot['buildingCollection'],'buildingCollection':all_buildings})
  from shapely.geometry import box,shape,mapping
  road_limit=box(-radius-35,-radius-35,radius+35,radius+35)
  roads=[]
@@ -75,11 +85,10 @@ def stage_base():
  write('base-qa.json',source.write_glb(root,terrain,roads,buildings,source_loc))
  write('buildings.geojson',buildings)
  final_road=json.loads((root/'road-reservation.json').read_text())
- conflicts=loc.get('roadSourceConflicts',[])+final_road['qa'].get('unresolvedRoadBuildingConflicts',[])
- loc['roadSourceConflicts']=list({c['roadId']:c for c in conflicts}.values())
- loc['roadReviewRequired']=bool(loc['roadSourceConflicts'])
- if loc['roadSourceConflicts']:
-  loc['roadWarning']='일부 도로 중심선과 건물 자료가 겹칩니다. 건물을 보존해 포장을 조정했으며, 해당 구간의 도로 연결은 확인이 필요합니다.'
+ loc['roadSourceConflicts']=[]
+ loc['roadReviewRequired']=False
+ if loc['buildingRoadFit']['omittedBuildings']:
+  loc['roadWarning']='확정한 도로 밖에 배치할 공간이 없는 건물 '+str(loc['buildingRoadFit']['omittedBuildings'])+'동은 생성에서 제외했습니다.'
  write('location.json',loc)
  from street_end_context import build_context
  for road in roads:
@@ -97,7 +106,7 @@ def stage_base():
 def stage_scripts(names):
  for name in names.split(','):runpy.run_path('/outputs/domestic-test/generation/'+name+'.py',run_name='__main__')
 def stage_finish():
- write('manifest.json',{**loc,'version':74,'buildings':len(buildings['features']),'places':len(params.get('places',[])),'generatedAt':datetime.datetime.now().isoformat(),'elevation':elevation_info,'browserGenerated':True,'browserGenerationVersion':11,'ruleset':'street-visible360-v1','roadPriority':json.loads((root/'road-reservation.json').read_text())['qa'],'warnings':params.get('warnings',[]),'sources':{'address':'Kakao Maps','buildings':buildings['source'],'roads':'OpenFreeMap / OpenStreetMap','terrain':elevation_info['mode']}})
+ write('manifest.json',{**loc,'version':74,'buildings':len(buildings['features']),'places':len(params.get('places',[])),'generatedAt':datetime.datetime.now().isoformat(),'elevation':elevation_info,'browserGenerated':True,'browserGenerationVersion':11,'ruleset':'street-visible360-v1','roadPriority':loc.get('buildingRoadFit',json.loads((root/'road-reservation.json').read_text())['qa']),'warnings':params.get('warnings',[]),'sources':{'address':'Kakao Maps','buildings':buildings['source'],'roads':'OpenFreeMap / OpenStreetMap','terrain':elevation_info['mode']}})
  import arterial_plan
  arterial_plan.build(root)
 

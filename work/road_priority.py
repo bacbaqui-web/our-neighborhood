@@ -57,13 +57,18 @@ def reserve(root,location,roads,buildings):
   # Inferred widths never cut a known building. Fit the public surface instead.
   built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']])
   clearance=built.buffer(.15,join_style=2)
+  # Grade edits change classification, not the mapped centreline. Both inferred
+  # and manual widths fit around known footprints. Flag genuine source conflicts
+  # separately instead of rejecting every grade edit within 1.5m of a facade.
+  conflicts=[]
+  interior=built.buffer(-.05)
   for r in roads:
-   if r.get('gradeSource')=='user' and shape(r['geometry']).buffer(min(float(r['width'])/2,1.5)).intersection(built).area>.2:
-    raise ValueError('선택한 도로가 실제 건물과 겹칩니다. 도로 위치를 확인하거나 이전 등급을 유지해 주세요.')
+   length=shape(r['geometry']).intersection(interior).length
+   if length>.2:conflicts.append({'roadId':r.get('editId'),'insideBuildingMetres':round(length,2)})
   overlap=allRoad.intersection(clearance).area
   surfaces={k:g.difference(clearance) for k,g in surfaces.items()}
   allRoad=allRoad.difference(clearance);majorRoad=majorRoad.difference(clearance);majorPublic=majorPublic.difference(clearance)
-  result={'version':4,'surfaces':{k:mapping(v) for k,v in surfaces.items()},'road':mapping(allRoad),'majorRoad':mapping(majorRoad),'majorPublic':mapping(majorPublic),'protected':mapping(protected.difference(clearance)),'entries':entries,'qa':{'adjustedBuildings':0,'omittedBuildings':0,'roadBuildingOverlapM2':round(built.intersection(allRoad).area,7),'sidewalkBuildingOverlapM2':round(built.intersection(majorPublic).area,7),'inferredSurfaceTrimmedM2':round(overlap,2),'changes':[],'omittedIds':[]},'classification':'street-grades-v1; inferred widths fitted around preserved building footprints'}
+  result={'version':4,'surfaces':{k:mapping(v) for k,v in surfaces.items()},'road':mapping(allRoad),'majorRoad':mapping(majorRoad),'majorPublic':mapping(majorPublic),'protected':mapping(protected.difference(clearance)),'entries':entries,'qa':{'adjustedBuildings':0,'omittedBuildings':0,'roadBuildingOverlapM2':round(built.intersection(allRoad).area,7),'sidewalkBuildingOverlapM2':round(built.intersection(majorPublic).area,7),'inferredSurfaceTrimmedM2':round(overlap,2),'unresolvedRoadBuildingConflicts':conflicts,'changes':[],'omittedIds':[]},'classification':'street-grades-v1; inferred widths fitted around preserved building footprints'}
   for name,value in [('buildings-source.geojson',original),('buildings.geojson',buildings),('road-reservation.json',result),('roads-source.json',{'roads':roads,'source':'OpenFreeMap / OpenStreetMap'})]:(root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
   return result
  for f in buildings['features']:

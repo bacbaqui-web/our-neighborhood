@@ -66,6 +66,7 @@ def stage_base():
  if view:
   from road_priority import reserve
   reservation=reserve(root,source_loc,roads,buildings)
+  loc['roadSourceConflicts']=reservation['qa'].get('unresolvedRoadBuildingConflicts',[])
   snap_to_road(reservation,view,roads=roads)
   buildings,view_qa=select_view(buildings,loc['origin'],radius,view,terrain)
   loc['viewQA']=view_qa;write('location.json',loc);write('view-selection.json',view_qa)
@@ -74,6 +75,12 @@ def stage_base():
  write('base-qa.json',source.write_glb(root,terrain,roads,buildings,source_loc))
  write('buildings.geojson',buildings)
  final_road=json.loads((root/'road-reservation.json').read_text())
+ conflicts=loc.get('roadSourceConflicts',[])+final_road['qa'].get('unresolvedRoadBuildingConflicts',[])
+ loc['roadSourceConflicts']=list({c['roadId']:c for c in conflicts}.values())
+ loc['roadReviewRequired']=bool(loc['roadSourceConflicts'])
+ if loc['roadSourceConflicts']:
+  loc['roadWarning']='일부 도로 중심선과 건물 자료가 겹칩니다. 건물을 보존해 포장을 조정했으며, 해당 구간의 도로 연결은 확인이 필요합니다.'
+ write('location.json',loc)
  from street_end_context import build_context
  for road in roads:
   all_roads[road['_contextIndex']]['width']=road['width']

@@ -6142,5 +6142,22 @@
       "FPS improvement not measured",
       "Current KEPCO internal design standard not directly verified"
     ]
+  },
+  "sungshinInteriorLettering20261122": {
+    "source": "664546996a49f9a1c258cae91a7d4990ca73c388",
+    "sourceRun": 44933333765,
+    "hostingCommit": "72102709e3852d23b58158d5c3b577c1f7f807ca",
+    "hostingRun": 44933514154,
+    "status": "public-verified",
+    "publicRendered": 50,
+    "rooms": 94,
+    "furnishedRooms": 93,
+    "retainedVacantRooms": 1,
+    "furnitureBoxes": 994,
+    "letteringDesigns": 65,
+    "checkedEntrances": 61,
+    "blockedEntranceRays": 0,
+    "limitations": "Interior layouts are inferred by trade; sign names are adapted and typefaces/icons simplified, preserving observed colors and layout.",
+    "report": "work/sungshin-commercial-50/interior-lettering-public.json"
   }
 }

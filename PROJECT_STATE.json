@@ -1,7 +1,7 @@
 {
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
-  "state": "main27-test-rules-integrated-local-original",
-  "publicCommit": "aaf38f6bcadebfc6ae83a0042935653309ffb11e",
+  "state": "canonical-visible360-public",
+  "publicCommit": "b6636c148fa710fde827096846d0564bea001f2d",
   "backup": "/Users/bacbaqui/.project-archives/our-neighborhood/20261029",
   "retiredPublicationCopy": "/Users/bacbaqui/.project-archives/our-neighborhood/retired-release-aaf38f6",
   "threads": {
@@ -5332,8 +5332,19 @@
     "branch": "main",
     "root": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
     "url": "https://magamiscom.ing/neighborhood/",
-    "status": "deploying",
+    "status": "deployed-generation-verification-blocked",
     "archiveRoot": "/Users/bacbaqui/.project-archives/our-neighborhood",
-    "guidelines": "docs/project-guidelines.txt"
+    "guidelines": "docs/project-guidelines.txt",
+    "sourceCommit": "b6636c148fa710fde827096846d0564bea001f2d",
+    "hostingCommit": "34f3b2099bc34060a6a09d77da5a42dc78b83531",
+    "hostingRun": "44841919625",
+    "verifiedDate": "2026-11-21",
+    "verification": {
+      "deployment": "success",
+      "publicFiles": "Latest viewer, strict visible-only loader, asphalt material and terrain rebasing confirmed over HTTPS",
+      "edge": "Kakao address search, point selection and visible360 generation started successfully",
+      "generation": "Failed at external ESRI building query with browser NetworkError. Independent curl certificate verification also failed (unable to get local issuer certificate). Full generation not verified; TLS bypass not used.",
+      "screenshot": "verification/public-deployment-check.jpg"
+    }
   }
 }

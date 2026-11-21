@@ -2,43 +2,31 @@
 
 한국의 지도·지형 데이터를 바탕으로 건물, 골목, 상가, 사람과 나무를 배치하는 브라우저 3D 배경 도구입니다. 계절·날씨·시간, 선·명암 설정, 골목 걷기와 PNG/GLB 저장을 제공합니다.
 
-- 공개 사이트: https://bacbaqui-web.github.io/our-neighborhood/
-- 기존 주택가: `domestic-test/?location=original`
-- 도봉로 큰길: `domestic-test/?location=f20b139277e4d2a5`
-- 에셋 미리보기: `domestic-test/cars.html`, `domestic-test/tree-library.html`, `domestic-test/storefronts.html`, `domestic-test/people.html`, `alley-library/`
+- 공개 사이트: https://magamiscom.ing/neighborhood/
+- 작업 기준: `/Users/bacbaqui/Desktop/code/13_our_neighborhood`의 `main` 브랜치
+- 작업 지침: [통합 지침](docs/project-guidelines.txt), [현재 상태](PROJECT_STATE.json), [파일 구성](docs/project-layout.txt)
+- 에셋 기준: `outputs/domestic-test/asset-encyclopedia/registry.js`
 
-## 공개판과 로컬 실행
+## 사용 방법
 
-GitHub Pages에는 생성이 완료된 두 동네와 에셋을 배포합니다. 공개판의 주소 검색은 이 두 동네를 검색합니다. **새 주소의 지도 조회와 동네 생성은 Python 서버가 필요한 로컬 기능**입니다. API 키를 브라우저나 저장소에 넣지 않습니다.
+공개 사이트에서 주소나 장소를 검색하고 지도에 사람을 놓습니다. 선택한 위치를 길 위로 맞춘 뒤, 그곳의 눈높이에서 360도로 레이를 쏴 보이는 건물과 소품을 만듭니다. 시야 거리를 조절할 수 있으며, 생성한 동네는 사용하는 브라우저에 저장됩니다. 이전 방식의 저장 지도는 지점을 다시 선택해 생성합니다.
 
-```sh
-python3 work/serve-neighborhood.py
-```
-
-`http://127.0.0.1:8765/domestic-test/`에서 엽니다. 기존 장면 보기에는 Python 표준 라이브러리만 필요합니다.
-
-새 주소를 생성하려면 Python 환경과 Node.js 22 이상을 준비합니다.
-
-```sh
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-# .env.example을 .env로 복사하고 본인의 카카오 REST API 키를 입력합니다.
-NEIGHBORHOOD_PYTHON="$PWD/.venv/bin/python" python3 work/serve-neighborhood.py
-```
-
-`KAKAO_REST_API_KEY` 환경변수 또는 `KAKAO_ENV_FILE`에 지정한 로컬 파일도 사용할 수 있습니다. `.env`, `.local-settings.json`, 작업 캐시와 로그는 Git에 포함하지 않습니다. 데이터 제공 서비스의 응답과 이용 조건에 따라 신규 주소 생성 가능 여부는 달라집니다.
+설치나 이 Mac의 상시 실행 없이 공개 사이트를 사용할 수 있습니다. 처음 실행할 때는 생성에 필요한 파일을 내려받습니다. 지도 자료를 조회하려면 인터넷 연결이 필요합니다.
 
 ## 수정과 배포
 
-`outputs/domestic-test/`가 현재 앱과 데이터, `outputs/alley-library/`가 생활 소품, `outputs/generated-neighborhoods/`가 생성된 지역 데이터입니다. `work/`에는 현행 지역 생성과 아반떼 모델 생성 소스만 보관합니다. 과거 실험·대용량 중복 내보내기는 로컬에 보존합니다.
+`outputs/domestic-test/`와 `outputs/alley-library/`가 실행 코드입니다. 브라우저 생성 시작 파일은 `work/browser-generation/entry.py` 하나입니다. 원본을 수정한 뒤 묶음 파일을 다시 만듭니다.
 
 ```sh
+python3 work/browser-generation/pack.py
+python3 work/browser-generation/pack.py --check
 node scripts/check-loading.mjs
-git add .
 python3 scripts/build-site.py
 ```
 
-`main`에 푸시하면 Actions가 `dist/`를 만들어 Pages에 배포합니다. 빌드에는 Git에 등록한 파일만 포함됩니다. 새 지역을 공개하려면 생성된 `data/` 폴더를 함께 커밋합니다. 새 주소 생성 API는 Pages에 배포되지 않습니다.
+빌드에는 Git에 등록된 파일만 포함됩니다. 관련 검사를 통과한 변경을 `main`에 커밋하고 푸시합니다. 공개 사이트는 `bacbaqui-web/magamiscoming`의 배포 설정에서 검증한 소스 커밋을 지정해 반영합니다. 소스 저장소에 푸시한 것과 공개 사이트 반영은 구분합니다.
+
+이전 백업과 배포 사본은 `/Users/bacbaqui/.project-archives/our-neighborhood/`에 보관합니다. 이 사본은 수정하거나 배포하지 않습니다. `archive` 링크는 이전 자료의 참조를 보존하기 위한 것입니다.
 
 아반떼 미리보기는 단색 재질 10개, 삼각형 1,978개의 편집 가능한 메시입니다. `outputs/domestic-test/cars/avante-cn7-mesh-v91/`의 GLB·Blender 파일과 `work/car-mesh-v91/build-avante.py`를 함께 보관합니다.
 

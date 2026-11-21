@@ -283,3 +283,5 @@ tests/prop-barrier.mjs : 형태·재질·여섯 접점 검사
 2026-11-21 시야 방식 진입 강제: local/original/browser 저장 지도도 currentScene 검사, 이전 반경 지도는 시작 화면 위치선택으로 전환. 목록은360도 시야 지도만 표시. 레이 선택 건물의 주소 중심 재필터 제거, 소품 사전반경에 길 보정 거리 허용. 공개 미배포.
 
 2026-11-21 메인 고정·공개 배포 준비: canonical root + origin/main만 수정/배포 기준. 전체백업20261029, 이전 release 작업사본, archive 실물은 /Users/bacbaqui/.project-archives/our-neighborhood로 이동. archive 링크는 문서 호환 조회용. 통합 지침과 AGENTS에 명시.
+
+2026-11-21 공개 반영 완료: 소스 b6636c1, 호스팅 34f3b20, 배포 실행 44841919625 성공. 공개 파일 최신화와 Edge 지도 검색·지점 선택 확인. 새 동네 생성은 외부 건물 자료 조회 실패로 완료 검증하지 못함. PROJECT_STATE.json 참조.

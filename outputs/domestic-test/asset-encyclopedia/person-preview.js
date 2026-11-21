@@ -3,7 +3,7 @@ import {directionalFrame,elevationTier,projectedHeight,FRAME_LABELS} from '../pe
 const manifests=new Map();
 async function manifest(action){
  if(!['walk','umbrella'].includes(action))throw Error('사람 동작을 확인해 주세요.');
- if(!manifests.has(action))manifests.set(action,fetch(action==='umbrella'?'../people/umbrella.json?v=repair20261121':'../people/seasons.json?v=2').then(async response=>{
+ if(!manifests.has(action))manifests.set(action,fetch(action==='umbrella'?'../people/umbrella.json?v=repair20261121':'../people/seasons.json?v=publicwebp1').then(async response=>{
   if(!response.ok)throw Error('사람 그림 목록을 불러오지 못했습니다.');return response.json();
  }).catch(error=>{manifests.delete(action);throw error;}));
  return manifests.get(action);

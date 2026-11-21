@@ -1,5 +1,5 @@
 import {remakeAliases} from './remakes.js?v=authority1';
-import {loadAssetRegistry} from './registry.js';
+import {loadAssetRegistry} from './registry.js?v=publicwebp1';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';

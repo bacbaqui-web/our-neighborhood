@@ -1,23 +1,28 @@
+import {roadMapData,drawRoadMap,roadGrade} from './road-map.js';
 import * as T from 'three';
 import {categories,assetById,inferCategory,readPalette,readEdits,chooseBuildingAsset} from './catalog.js?v=scene-edit1';
 import {createPreview} from './preview.js?v=context-preview1';
-import {readEditorSource,rebuildEditedScene,nearestRoad} from './scene-edit-store.js';
+import {readEditorSource,rebuildEditedScene,nearestRoad} from './scene-edit-store.js?v=road-map1';
 import {localPolygons,editorContext,previewSpecs,eraStyle} from './preview-data.js';
 import {drawContextMap} from './context-map.js';
 const CAMERA='neighborhood-building-edit-camera-v1';
 export function restoreEditCamera({id,camera,controls,walking}){const raw=sessionStorage.getItem(CAMERA);if(!raw)return;sessionStorage.removeItem(CAMERA);let s;try{s=JSON.parse(raw);}catch{return;}if(s.id!==id||!Array.isArray(s.position)||s.position.length!==3||!s.position.every(Number.isFinite)||!Number.isFinite(s.yaw)||!Number.isFinite(s.pitch))return;if(s.walking)walking.start(s.position[0],s.position[2],s.yaw,s.pitch);else{camera.position.fromArray(s.position);const dir=new T.Vector3(0,0,-1).applyEuler(new T.Euler(s.pitch,s.yaw,0,'YXZ'));controls.target.copy(camera.position).addScaledVector(dir,10);controls.update();}}
 export function installBuildingEditor({canvas,scene,camera,controls,getBuildings,host,id,walking,render,context,load,elevation}){
- const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('./style.css?v=context-preview1',import.meta.url).href;document.head.append(css);
+ const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('./style.css?v=road-map1',import.meta.url).href;document.head.append(css);
+ const originMarker=new T.Group();originMarker.name='generation-origin-marker';
+ const originRing=new T.Mesh(new T.RingGeometry(.55,.85,40),new T.MeshBasicMaterial({color:0xe69a25,side:T.DoubleSide,depthTest:false}));originRing.rotation.x=-Math.PI/2;originRing.position.set(0,elevation(0,0)+.12,0);originRing.renderOrder=1001;originRing.raycast=()=>{};originMarker.add(originRing);
+ const labelCanvas=document.createElement('canvas');labelCanvas.width=256;labelCanvas.height=64;const labelContext=labelCanvas.getContext('2d');labelContext.fillStyle='#843917';labelContext.fillRect(0,0,256,64);labelContext.fillStyle='white';labelContext.font='bold 32px system-ui';labelContext.textAlign='center';labelContext.fillText('선택 기준점',128,44);const labelTexture=new T.CanvasTexture(labelCanvas),originLabel=new T.Sprite(new T.SpriteMaterial({map:labelTexture,depthTest:false}));originLabel.position.set(0,elevation(0,0)+1.3,0);originLabel.scale.set(3.2,.8,1);originLabel.renderOrder=1002;originLabel.raycast=()=>{};originMarker.add(originLabel);scene.add(originMarker);render();
  const dialog=document.createElement('dialog');dialog.className='building-editor';dialog.setAttribute('aria-labelledby','buildingEditTitle');
  dialog.innerHTML=`<form aria-labelledby="buildingEditTitle"><div class="heading"><h2 id="buildingEditTitle">건물 정보 수정</h2><button type="button" data-close>닫기</button></div><p data-address></p><p data-info class="muted"></p>
- <fieldset data-road hidden><legend>도로 등급</legend><label>길 종류<select name="grade" data-grade autofocus><option value="1">1차도로 · 사람과 차가 함께 다니는 길</option><option value="2">2차도로 · 왕복 2차선과 인도</option><option value="3">3차도로 · 왕복 4차선과 인도</option><option value="4">4차도로 · 왕복 6차선 이상과 인도</option></select></label><p>적용하면 이 도로에 접한 건물의 정면·용도·외관과 주변 배치를 자동으로 다시 만듭니다. 직접 지정한 건물 정보는 유지합니다.</p></fieldset>
+ <fieldset data-road hidden><legend>도로 구간과 등급</legend><p>지도에서 길을 누르면 주황색으로 수정 구간이 표시됩니다. 갈라지는 골목은 따로 선택하세요.</p><svg data-road-map role="img" aria-label="생성 기준점과 주변 도로, 선택한 도로 구간"></svg><label for="roadSegment">도로 구간</label><select id="roadSegment" data-segment></select><label>길 종류<select name="grade" data-grade autofocus><option value="1">1차도로 · 사람과 차가 함께 다니는 길</option><option value="2">2차도로 · 왕복 2차선과 인도</option><option value="3">3차도로 · 왕복 4차선과 인도</option><option value="4">4차도로 · 왕복 6차선 이상과 인도</option></select></label><p>적용하면 이 도로에 접한 건물의 정면·용도·외관과 주변 배치를 자동으로 다시 만듭니다. 직접 지정한 건물 정보는 유지합니다.</p></fieldset>
  <fieldset data-building><legend>건물 구성</legend><div class="fields"><label>건물 분류<select name="category" data-category></select></label><label>디자인<select name="asset" data-asset></select></label><label>층수<input name="floors" data-floors type="number" min="1" max="200" step="1" required></label><label>연식<select name="era" data-era><option value="old">오래된 건물</option><option value="middle">중간 연식 건물</option><option value="new">신식 건물</option></select></label><label>용도<select name="use" data-use><option value="residential">주거 중심</option><option value="mixed">1층 상가 · 위층 주거·업무</option></select></label></div>
  <p>주변 도로와 이웃 건물을 보면서 입구 면을 선택하세요. 위쪽은 북쪽입니다.</p><svg data-footprint viewBox="0 0 240 180" role="img" aria-label="주변 도로와 이웃 건물, 선택한 건물의 입구 방향"></svg><p class="map-legend">청록색: 선택한 건물 · 회색: 이웃 건물 · 진회색: 도로 · 화살표: 입구</p><label>입구 방향<select name="frontEdge" data-front></select></label><h3>건물 외형 미리보기</h3><p class="muted" data-preview-info></p><div class="preview" data-preview aria-label="선택한 건물의 외형 미리보기"></div><p class="muted">드래그하면 회전하고 휠로 확대할 수 있습니다. 부지·상가 입구·주차는 적용할 때 주변 공간에 맞춰 계산합니다.</p></fieldset>
  <div class="actions"><button type="submit" data-apply class="primary">수정하고 자동 갱신</button><button type="button" data-reset>이 대상의 자동 설정으로 복원</button></div><p data-status role="status" aria-live="polite"></p></form>`;
  document.body.append(dialog);
  const $=s=>dialog.querySelector(s),form=$('form'),category=$('[data-category]'),model=$('[data-asset]'),status=$('[data-status]');
  for(const c of categories)category.add(new Option(c.name,c.id));
- let selected=null,selectedRoad=null,preview=null,marker=null,wasEnabled=true,palette,source=null,dirty=new Set(),busy=false,saving=false,controller=null,previewTimer=null,mapContext=null;
+ let selected=null,selectedRoad=null,preview=null,marker=null,wasEnabled=true,palette,source=null,dirty=new Set(),busy=false,saving=false,controller=null,previewTimer=null,mapContext=null,roadData=null,roadDraft={};
+ const roadButton=document.getElementById('editRoads');if(roadButton){roadButton.disabled=false;roadButton.onclick=async()=>{try{await sourcePromise;roadData=roadMapData(source,context);const first=roadData.roads.find(r=>roadGrade(r)>0);if(!first)throw Error('수정할 도로 자료가 없습니다.');await open(null,first);}catch(e){document.getElementById('status').textContent=e.message;}};}
  const sourcePromise=readEditorSource(context,load).then(s=>source=s);
  sourcePromise.catch(()=>{});
  function clearMarker(){if(!marker)return;scene.remove(marker);marker.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});marker=null;render();}
@@ -44,6 +49,24 @@ export function installBuildingEditor({canvas,scene,camera,controls,getBuildings
   drawContextMap($('[data-footprint]'),mapContext,edge,i=>{if(busy)return;$('[data-front]').value=String(i);dirty.add('frontEdge');drawFootprint();});
   clearMarker();const a=ps[edge],b=ps[(edge+1)%ps.length];marker=new T.Line(new T.BufferGeometry().setFromPoints([a,b].map(([x,z])=>new T.Vector3(x,elevation(x,z)+.5,z))),new T.LineBasicMaterial({color:0x087e84,depthTest:false}));marker.renderOrder=1000;scene.add(marker);render();updatePreview();
  }
+ function drawRoadSelection(){
+  drawRoadMap($('[data-road-map]'),roadData,selectedRoad.editId,roadDraft,r=>{if(!busy)selectRoad(r);});
+  for(const [i,option] of [...$('[data-segment]').options].entries()){const r=roadData.roads.find(r=>r.editId===option.value),g=roadDraft[r.editId]?.grade??roadGrade(r);option.textContent=`${i+1}. ${r.properties.name||'이름 없는 길'} · ${g?g+'차도로':'보행길'}${roadDraft[r.editId]?' · 변경 대기':''}`;}
+  clearMarker();marker=new T.Group();
+  for(const road of roadData.roads.filter(r=>r.editId===selectedRoad.editId)){
+   const points=road.geometry.coordinates.map(([x,z])=>new T.Vector3(x,elevation(x,z)+.3,z));
+   const line=new T.Line(new T.BufferGeometry().setFromPoints(points),new T.LineBasicMaterial({color:0xe69a25,depthTest:false}));line.renderOrder=1000;marker.add(line);
+  }
+  scene.add(marker);render();
+  const grade=Number($('[data-grade]').value),count=Object.keys(roadDraft).length;
+  $('[data-info]').textContent=`선택한 구간: ${grade}차도로 · ${count}개 구간 변경 대기 · 적용하면 주변 건물도 자동 갱신합니다.`;
+ }
+ function selectRoad(road){
+  selectedRoad=road;$('[data-segment]').value=road.editId;$('[data-grade]').value=String((roadDraft[road.editId]?.grade??source.edits.roads[road.editId]?.grade??roadGrade(road))||1);
+  $('[data-address]').textContent=road.properties.name||'선택한 도로 구간';drawRoadSelection();
+ }
+ $('[data-segment]').onchange=()=>{if(!busy)selectRoad(roadData.roads.find(r=>r.editId===$('[data-segment]').value));};
+ $('[data-grade]').onchange=()=>{const grade=Number($('[data-grade]').value),original=source.edits.roads[selectedRoad.editId]?.grade??roadGrade(selectedRoad);if(grade===original)delete roadDraft[selectedRoad.editId];else roadDraft[selectedRoad.editId]={grade};drawRoadSelection();};
  async function open(mesh,road){
   try{
    await sourcePromise;selected=mesh;selectedRoad=road;dirty.clear();status.textContent='';palette=readPalette();wasEnabled=controls.enabled;controls.enabled=false;
@@ -51,9 +74,9 @@ export function installBuildingEditor({canvas,scene,camera,controls,getBuildings
    $('#buildingEditTitle').textContent=isRoad?'도로 정보 수정':'건물 정보 수정';
    $('[data-address]').textContent=isRoad?(road.properties.name||'선택한 도로 구간'):[mesh.userData.street_name,mesh.userData.house_number].filter(Boolean).join(' ')||'선택한 건물';
    if(isRoad){
-    const grade=source.edits.roads[road.editId]?.grade||road.grade||({'tertiary':2,'primary':3,'secondary':3,'trunk':3}[road.properties.class]||1);$('[data-grade]').value=String(grade);
-    $('[data-info]').textContent=(source.edits.roads[road.editId]?'사용자 지정':'자동 추정')+' · 표시한 도로 구간 전체에 적용합니다.';
-    clearMarker();marker=new T.Line(new T.BufferGeometry().setFromPoints(road.geometry.coordinates.map(([x,z])=>new T.Vector3(x,elevation(x,z)+.25,z))),new T.LineBasicMaterial({color:0x087e84,depthTest:false}));scene.add(marker);
+    roadData=roadMapData(source,context);roadDraft={};
+    const ids=new Set();$('[data-segment]').replaceChildren(...roadData.roads.filter(r=>!ids.has(r.editId)&&ids.add(r.editId)).map((r,i)=>new Option(`${i+1}. ${r.properties.name||'이름 없는 길'} · ${roadGrade(r)?roadGrade(r)+'차도로':'보행길'}`,r.editId)));
+    selectRoad(road);
    }else{
     const p=mesh.userData,profile=p.streetProfile||{},edit=source.edits.buildings[String(p.objectid)]||{},asset=assetById[edit.assetId||(!edit.resetLegacyAsset&&readEdits()[String(p.objectid)])||p.buildingAsset||'home-'+(profile.styleIndex??Math.abs(Number(p.objectid))%6)];
     category.value=asset?.category||inferCategory(p);$('[data-floors]').value=edit.floors??p.gro_flo_co??1;$('[data-era]').value=edit.era||profile.era||'old';$('[data-use]').value=edit.use||profile.use||'residential';
@@ -67,7 +90,7 @@ export function installBuildingEditor({canvas,scene,camera,controls,getBuildings
  async function apply(reset=false){
   if(busy||(!reset&&!form.reportValidity()))return;
   const edits=structuredClone(source.edits);
-  if(selectedRoad){if(reset)delete edits.roads[selectedRoad.editId];else edits.roads[selectedRoad.editId]={grade:Number($('[data-grade]').value)};}
+  if(selectedRoad){if(!reset&&!Object.keys(roadDraft).length){status.textContent='바꿀 도로 등급을 먼저 선택해 주세요.';return;}Object.assign(edits.roads,roadDraft);if(reset)delete edits.roads[selectedRoad.editId];}
   else{
    const owner=String(selected.userData.objectid);
    if(reset)edits.buildings[owner]={resetLegacyAsset:true};

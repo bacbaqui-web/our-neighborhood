@@ -2,7 +2,7 @@ import * as T from 'three';
 
 export function setupCameraNavigation({camera,controls,canvas,host,isWalking,isReady,getMap}){
  const panel=document.createElement('div');panel.className='neighborhood-minimap';
- panel.innerHTML='<canvas width="360" height="360" role="img" aria-label="동네 미니맵. 화살표는 카메라 위치와 보는 방향입니다."></canvas><span>북 ↑ · 현재 위치</span>';
+ panel.innerHTML='<canvas width="360" height="360" role="img" aria-label="동네 미니맵. 주황색 점은 처음 선택한 생성 기준점, 화살표는 현재 위치입니다."></canvas><span>북 ↑ · ● 기준점 · ▲ 현재 위치</span>';
  const map=panel.querySelector('canvas');map.style.cssText='width:100%;height:auto;display:block';panel.querySelector('span').style.cssText='display:block;text-align:center;font-size:11px;color:#254650';host.append(panel);
  const ctx=map.getContext('2d'),base=document.createElement('canvas');base.width=base.height=360;const b=base.getContext('2d');
  const keys=new Set(),direction=new T.Vector3(),right=new T.Vector3();let drag=null,last=0,baked=false,radius=100,lastMap=0;
@@ -29,7 +29,7 @@ export function setupCameraNavigation({camera,controls,canvas,host,isWalking,isR
    for(let i=0;i<(ix?ix.count:p.count);i+=3){b.beginPath();for(let j=0;j<3;j++){direction.fromBufferAttribute(p,ix?ix.getX(i+j):i+j).applyMatrix4(mesh.matrixWorld);const q=point(direction.x,direction.z);j?b.lineTo(...q):b.moveTo(...q);}b.closePath();b.fill();}
   }
   b.fillStyle='#bbc4b7';b.strokeStyle='#667b77';b.lineWidth=1;
-  for(const polygon of data.buildings){b.beginPath();polygon.forEach((v,i)=>{const p=point(...v);i?b.lineTo(...p):b.moveTo(...p);});b.closePath();b.fill();b.stroke();}b.restore();b.strokeStyle='#80958b';b.beginPath();b.arc(180,180,165,0,Math.PI*2);b.stroke();baked=true;
+  for(const polygon of data.buildings){b.beginPath();polygon.forEach((v,i)=>{const p=point(...v);i?b.lineTo(...p):b.moveTo(...p);});b.closePath();b.fill();b.stroke();}b.restore();b.strokeStyle='#80958b';b.beginPath();b.arc(180,180,165,0,Math.PI*2);b.stroke();const origin=point(0,0);b.fillStyle='#b84624';b.strokeStyle='white';b.lineWidth=3;b.beginPath();b.arc(...origin,7,0,Math.PI*2);b.fill();b.stroke();b.fillStyle='#713319';b.font='bold 18px system-ui';b.fillText('기준점',origin[0]+11,origin[1]-9);baked=true;
  }
  function update(now){
   const dt=Math.min((now-(last||now))/1000,.05);last=now;if(!isReady())return;

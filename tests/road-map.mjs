@@ -1,0 +1,7 @@
+import assert from 'node:assert/strict';
+import {closestMapRoad,roadMapData} from '../outputs/domestic-test/building-assets/road-map.js';
+const road=(id,ps,grade=1)=>({editId:id,grade,properties:{},geometry:{type:'LineString',coordinates:ps}});
+const main=road('main',[[-80,0],[80,0]],2),branch=road('branch',[[0,0],[0,60]]),far=road('far',[[500,0],[500,60]]),source={roads:[main,branch],edits:{roads:{}},input:{radius:50,sourceRoads:[main,branch,far],buildingCollection:{features:[]}}};
+const data=roadMapData(source,{origin:[37,127],view:{position:[3,2]}});
+assert.equal(data.roads.length,2);assert.equal(closestMapRoad(data.roads,[40,2],2).editId,'main');assert.equal(closestMapRoad(data.roads,[1,30],2).editId,'branch');assert.equal(closestMapRoad(data.roads,[30,30],2),null);assert.equal(data.roads[1].grade,1);assert.deepEqual(data.position,[3,2]);
+console.log('Road map: separate main/branch selection, bounds and observer marker passed.');

@@ -1,7 +1,7 @@
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
 import {readPalette,readEdits,chooseBuildingAsset,assetById} from './building-assets/catalog.js?v=scene-edit1';
 import {applyAssetToSpec,assetColors} from './building-assets/model.js';
-import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=context-preview1';
+import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=road-map1';
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=grounds1';
 import {installWindowInspection} from './window-inspection.js?v=recess22';
@@ -9,7 +9,7 @@ import {prepareSiteLayout,renderSiteLayout,installSiteLayoutTour,siteUtilityPlan
 let siteLayoutData=null,siteLayout=null,siteLayoutView=null;
 import {createNeighborhoodApartmentGrounds,planApartmentAmenities,installApartmentGroundControls} from './apartments/neighborhood-grounds.js';
 let apartmentGrounds=null;
-import {setupCameraNavigation} from './camera-navigation.js?v=compact1';
+import {setupCameraNavigation} from './camera-navigation.js?v=road-map1';
 import {planApartmentGrounds,chooseApartment} from './apartments/models.js';
 import {planFacilities} from './facilities/placement.js';
 import {gentleTerrainCorrection} from './gentle-terrain30.js?v=ground-clearance1';

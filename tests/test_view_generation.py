@@ -39,6 +39,11 @@ class ViewTests(unittest.TestCase):
   r={'surfaces':{k:mapping(box(8,-20,12,20) if k=='shared' else Point().buffer(0)) for k in ('sidewalk','pedestrian','shared')}}
   p=snap_to_road(r,view(),roads=[{'streetType':'shared','geometry':mapping(LineString([(10,-20),(10,20)]))}])
   self.assertEqual((p.x,p.y),(10,0))
+ def test_nearby_walkable_surface_not_rejected_for_far_centerline(self):
+  from shapely.geometry import LineString
+  r={'surfaces':{'sidewalk':mapping(Point().buffer(0)),'pedestrian':mapping(Point().buffer(0)),'shared':mapping(box(-3,-10,3,10).union(box(45,-10,50,10)))}}
+  p=snap_to_road(r,view(),roads=[{'streetType':'shared','geometry':mapping(LineString([(47,-10),(47,10)]))}])
+  self.assertLess(p.distance(Point(0,0)),1)
  def test_building_inside_rejected(self):
   with self.assertRaises(ValueError):select_view({'features':[feature(box(-2,-2,2,2))]},[LAT,LON],50,view())
  def test_roads_clipped_at_occluder(self):

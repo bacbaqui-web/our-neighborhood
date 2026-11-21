@@ -34,7 +34,10 @@ def snap_to_road(reservation,view,max_distance=30,roads=None):
    if walk.covers(q):candidates.append(q)
  sidewalk=shape(surfaces['sidewalk']).buffer(-.8)
  if not sidewalk.is_empty:candidates.append(nearest_points(origin,sidewalk)[1])
- p=min(candidates,key=origin.distance) if candidates else nearest_points(origin,walk)[1]
+ nearest=nearest_points(origin,walk)[1]
+ # Prefer a nearby centreline/sidewalk, never discard closer safe walking space.
+ candidates=[p for p in candidates if p.distance(origin)<=min(max_distance,nearest.distance(origin)+3)]
+ p=min(candidates,key=origin.distance) if candidates else nearest
  if p.distance(origin)>max_distance:raise ValueError('선택한 곳에서 길이 너무 멉니다. 길 가까운 곳을 선택해 주세요.')
  view['position']=[round(p.x,5),round(p.y,5)]
  view['snappedMetres']=round(p.distance(origin),3)

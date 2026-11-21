@@ -33,10 +33,24 @@ function attachBusCabin(body,root){
   const material=original.clone(),hook=original.onBeforeCompile,key=original.customProgramCacheKey.bind(original);
   material.onBeforeCompile=shader=>{
    hook.call(material,shader);shader.uniforms.busCabinStrength=uniform;
+   shader.uniforms.busWorldToLocal={value:new T.Matrix4().copy(root.matrixWorld).invert()};
    shader.uniforms.busCabinLocal={value:new T.Matrix4().copy(root.matrixWorld).invert().multiply(mesh.matrixWorld)};
-   shader.vertexShader='uniform mat4 busCabinLocal; varying float busCabinHeight;\n'+shader.vertexShader;
-   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nbusCabinHeight=(busCabinLocal*vec4(position,1.0)).y/3.2;');
-   shader.fragmentShader='uniform float busCabinStrength; varying float busCabinHeight;\n'+shader.fragmentShader;
+   shader.vertexShader='uniform mat4 busCabinLocal; varying vec3 busCabinPosition;\n'+shader.vertexShader;
+   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nbusCabinPosition=(busCabinLocal*vec4(position,1.0)).xyz;');
+   shader.fragmentShader=`uniform float busCabinStrength;
+uniform mat4 busWorldToLocal;
+varying vec3 busCabinPosition;
+// Ray-box intersections provide a small interior behind the existing glass,
+// so seats shift with the camera instead of being painted on the window.
+float busBox(vec3 origin,vec3 direction,vec3 center,vec3 halfSize){
+ vec3 inverseDirection=sign(direction)/max(abs(direction),vec3(.0001));
+ vec3 a=(center-halfSize-origin)*inverseDirection,b=(center+halfSize-origin)*inverseDirection;
+ vec3 nearPlane=min(a,b),farPlane=max(a,b);
+ float nearHit=max(nearPlane.x,max(nearPlane.y,nearPlane.z));
+ float farHit=min(farPlane.x,min(farPlane.y,farPlane.z));
+ return farHit>max(nearHit,.015)?max(nearHit,.015):1000.0;
+}
+`+shader.fragmentShader;
    shader.fragmentShader=shader.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
 #ifdef USE_MAP
  vec2 busUV=vMapUv*1254.0;
@@ -47,10 +61,34 @@ function attachBusCabin(body,root){
  float busLuma=dot(busTex,vec3(.2126,.7152,.0722));
  float busGlass=smoothstep(.025,.065,busLuma)*(1.0-smoothstep(.25,.4,busLuma));
  busGlass*=step(busTex.r*1.02,busTex.b)*step(busTex.b,busTex.r*2.1)*step(busTex.r*.98,busTex.g);
- totalEmissiveRadiance+=vec3(1.0,.88,.64)*busGlass*min(1.0,busSide+busRear+busFront*.08)*busCabinStrength*(.18+busLuma*3.0)*(.35+.65*smoothstep(.4,.82,busCabinHeight));
+ float busWindow=busGlass*min(1.0,busSide+busRear+busFront*.08);
+ if(busWindow>.01&&busCabinStrength>.001){
+  vec3 busEye=(busWorldToLocal*vec4(cameraPosition,1.0)).xyz;
+  vec3 busRay=normalize(busCabinPosition-busEye),busOrigin=busCabinPosition+busRay*.035;
+  // The far wall and ceiling stay dim; warm ceiling light does not fill
+  // the entire pane. Seat backs are blue with lighter upholstered tops.
+  vec3 busInterior=mix(vec3(.065,.085,.095),vec3(.29,.27,.21),smoothstep(1.1,2.65,busCabinPosition.y));
+  float busNearest=1000.0;
+  for(int row=0;row<9;row++)for(int side=0;side<2;side++){
+   vec3 seatCenter=vec3(side==0?-.73:.73,1.38,-4.15+float(row)*.83);
+   float back=busBox(busOrigin,busRay,seatCenter,vec3(.32,.48,.075));
+   float cushion=busBox(busOrigin,busRay,seatCenter+vec3(0.0,-.43,.22),vec3(.32,.085,.27));
+   float headrest=busBox(busOrigin,busRay,seatCenter+vec3(0.0,.52,0.0),vec3(.25,.10,.09));
+   float seatHit=min(headrest,min(back,cushion));
+   if(seatHit<busNearest){
+    busNearest=seatHit;vec3 seatPoint=busOrigin+busRay*seatHit;
+    float seatTop=smoothstep(1.60,1.83,seatPoint.y);
+    busInterior=mix(vec3(.025,.075,.105),vec3(.12,.20,.23),seatTop);
+    busInterior*=mix(1.0,.6,clamp(seatHit/3.0,0.0,1.0));
+   }
+  }
+  // Existing reflections remain faintly visible over the cabin silhouette.
+  totalEmissiveRadiance+=busInterior*busWindow*busCabinStrength;
+ }
+
 #endif`);
   };
-  material.customProgramCacheKey=()=>key()+'-bus-cabin-v1';
+  material.customProgramCacheKey=()=>key()+'-bus-cabin-v2';
   const displayed=mesh.material;mesh.material=material;if(mesh._originalMaterial===original)mesh._originalMaterial=material;
   entries.push({mesh,original,displayed,material});
  }

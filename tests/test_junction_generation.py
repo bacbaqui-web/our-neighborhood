@@ -1,7 +1,7 @@
 import sys,unittest,tempfile,math,json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'work'))
-from shapely.geometry import LineString,mapping,shape,Point
+from shapely.geometry import LineString,mapping,shape,Point,Polygon
 from shapely.ops import unary_union
 from junction_generation import plan_junctions,build,surface_positions
 
@@ -20,6 +20,10 @@ class Junctions(unittest.TestCase):
     self.assertEqual(p['qa']['markOutsideRoadM2'],0)
     self.assertTrue(shape(p['road']).covers(Point(0,0)))
     if a==b==1:self.assertEqual(p['crossings'],[])
+ def test_busway_is_not_a_shared_alley(self):
+  rs=[road([[-50,0],[50,0]],4),road([[0,0],[0,50]],1)]
+  rs[1]['properties'].update({'class':'busway','access':'no','foot':'no'})
+  self.assertEqual(plan(rs)['junctions'],[])
  def test_grade_separation(self):
   p=plan([road([[-50,0],[50,0]],4),road([[0,-50],[0,50]],2,1)])
   self.assertEqual(p['junctions'],[])
@@ -41,7 +45,13 @@ class Junctions(unittest.TestCase):
    def write(n,x):(root/n).write_text(json.dumps(x))
    write('location.json',{'origin':[37.6,127]});write('manifest.json',{});write('road-reservation.json',{'surfaces':{'carriageway':mapping(r),'shared':mapping(r.difference(r)),'sidewalk':mapping(p.difference(r))}})
    write('road-context.json',{'positions':{'asphalt':surface_positions(r,terrain.mesh_height,.026),'sidewalk':surface_positions(p.difference(r),terrain.mesh_height,.026)}})
+   (root/'arterial').mkdir();blue=LineString([[-45,.8],[45,.8]]).buffer(.06,cap_style=2)
+   write('arterial/plan.json',{'decals':{'blue':surface_positions(blue,terrain.mesh_height,.04)},'qa':{}})
    build(root,rs,terrain);out=json.loads((root/'road-context.json').read_text());jp=json.loads((root/'junction-plan.json').read_text())
+   preserved=json.loads((root/'arterial/plan.json').read_text())['decals']['blue']
+   restored=unary_union([Polygon([(preserved[i+j],preserved[i+j+2]) for j in (0,3,6)]) for i in range(0,len(preserved),9)])
+   clearance=unary_union([shape(c['footprint']) for c in jp['crossings']])
+   self.assertLess(blue.difference(clearance).difference(restored).area,1e-6)
    self.assertEqual(len(jp['crossings']),4);self.assertEqual(len(out['junctions']['assets']),8)
    for c in jp['crossings']:self.assertLess(shape(c['footprint']).difference(shape(jp['zone'])).area,1e-6)
    values=out['junctions']['geometry']['ramp'];self.assertTrue(all(math.isfinite(v) for v in values))

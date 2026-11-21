@@ -19,7 +19,8 @@ def layer(r):
 def junction_nodes(roads):
  groups={};nodes=[]
  for r in roads:
-  if grade(r)<1 or r.get('properties',{}).get('motor_vehicle')=='no':continue
+  p=r.get('properties',{})
+  if grade(r)<1 or any(p.get(k)=='no' for k in ('motor_vehicle','vehicle','access')) or p.get('class')=='busway':continue
   groups.setdefault(layer(r),[]).append(r)
  for rs in groups.values():
   lines=[shape(r['geometry']) for r in rs];edges=parts(unary_union(lines),'LineString');adj={}
@@ -193,7 +194,10 @@ def build(root,roads=None,terrain=None):
  # Existing wear and large-road overlays relinquish this exact region.
  for k,v in rc.get('wear',{}).get('positions',{}).items():rc['wear']['positions'][k]=cut_positions(v,zone)
  geometry={'white':[],'yellow':[],'curb':[],'ramp':[]}
- for k,g in plan['marks'].items():geometry[k]=surface_positions(shape(g).intersection(zone).difference(rm),height,lambda x,z:asphalt(x,z)+.008)
+ # Confirmed bus-lane boundaries retain their colour and alignment through minor junctions.
+ blue=(arterial or {}).get('decals',{}).get('blue',[])
+ blue_area=unary_union([Polygon([(blue[i+j],blue[i+j+2]) for j in (0,3,6)]) for i in range(0,len(blue),9)])
+ for k,g in plan['marks'].items():geometry[k]=surface_positions(shape(g).intersection(zone).difference(rm).difference(blue_area.buffer(.15)),height,lambda x,z:asphalt(x,z)+.008)
  for r in ramps:
   c=r['center'];n=r['out'];d=r['depth']
   def ry(x,z):
@@ -214,7 +218,12 @@ def build(root,roads=None,terrain=None):
  rc['junctions']={'geometry':geometry,'assets':plan['assets'],'qa':plan['qa'],'parts':{'curb':'junction:curb-straight','ramp':'junction:curb-ramp','white':'junction:crossing-stop','yellow':'junction:edge-corner'},'dimensions':'parameterized from reviewed parts; inferred, not survey dimensions'}
  rc.setdefault('qa',{})['junctions']=plan['qa'];write(path,rc)
  if arterial:
-  for k,values in arterial['decals'].items():arterial['decals'][k]=cut_positions(values,zone)
+  for k,values in arterial['decals'].items():
+   if k=='blue':
+    clear=unary_union([shape(c['footprint']) for c in plan['crossings']])
+    inside=blue_area.intersection(zone).difference(clear)
+    arterial['decals'][k]=cut_positions(values,zone)+surface_positions(inside,height,lambda x,z:asphalt(x,z)+.009)
+   else:arterial['decals'][k]=cut_positions(values,zone)
   for key in ['curbs']:
    arterial[key]=[p for p in arterial.get(key,[]) if not LineString([p['a'],p['b']]).intersects(zone)]
   for key in ['landings','crosswalks','crossings','furniture','vehicles']:

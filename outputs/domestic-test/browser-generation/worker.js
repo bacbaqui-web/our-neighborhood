@@ -1,6 +1,6 @@
 import {createMapCache} from './map-cache.js';
 const mapCache=createMapCache();
-import {prepareScene} from './prepare-scene.js?v=view3c';
+import {prepareScene} from './prepare-scene.js?v=approvedbuildings1';
 const base=new URL('./',import.meta.url);
 // Synchronous network access is restricted to this disposable background Worker.
 self.browserRequest=url=>{

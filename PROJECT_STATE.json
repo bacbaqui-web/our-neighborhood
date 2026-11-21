@@ -5863,5 +5863,20 @@
       "Local build interrupted by iCloud-offloaded dist directory; clean public CI build passed.",
       "Initial public load failed transiently; reload then regeneration completed."
     ]
+  },
+  "approvedBuildingRemakes20261121": {
+    "date": "2026-11-21",
+    "status": "implemented-verified-ready-for-public",
+    "approvedModels": 12,
+    "replacementReferences": 11,
+    "approval": "work/building-remakes/approval-20261121.json",
+    "implementation": "outputs/domestic-test/building-remakes",
+    "verification": "work/building-remakes/production.txt",
+    "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?tab=building",
+    "limitations": [
+      "Unseen sides/rear/roof and unmeasured dimensions are inferred.",
+      "Placed shops use exterior attached glazing; standalone complete buildings have cut shells.",
+      "Legacy raw catalog coverage test still fails on preexisting approved-road GLB."
+    ]
   }
 }

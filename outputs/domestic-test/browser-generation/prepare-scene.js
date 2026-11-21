@@ -11,7 +11,7 @@ function configureViewVisibility(view, qa) {
 }
 function segments(g) {
   const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
-  return polys.flatMap((p) => p.flatMap((r) => r.slice(1).map((b, i) => [r[i], b])));
+  return polys.flatMap((p2) => p2.flatMap((r) => r.slice(1).map((b, i) => [r[i], b])));
 }
 function visibleRay(x, y, z) {
   const { qa } = context, [ox, oz] = qa.position, dx = x - ox, dz = z - oz;
@@ -26,7 +26,7 @@ function visibleRay(x, y, z) {
   }
   return true;
 }
-function visibleObject(x, z, height = 2, radius = 0.5, base = 0, checkStart = true) {
+function visibleObject(x, z, height = 2, radius = 0.5, base2 = 0, checkStart = true) {
   if (!context) return true;
   const { qa, stats } = context, [ox, oz] = qa.position;
   stats.tested++;
@@ -39,26 +39,26 @@ function visibleObject(x, z, height = 2, radius = 0.5, base = 0, checkStart = tr
     stats.hidden++;
     return false;
   }
-  for (const [dx, dz] of [[0, 0], [-radius, 0], [radius, 0], [0, -radius], [0, radius]]) for (const y of [base + 0.2, base + height]) if (visibleRay(x + dx, y, z + dz)) return true;
+  for (const [dx, dz] of [[0, 0], [-radius, 0], [radius, 0], [0, -radius], [0, radius]]) for (const y of [base2 + 0.2, base2 + height]) if (visibleRay(x + dx, y, z + dz)) return true;
   stats.hidden++;
   return false;
 }
-function visibleRecord(p, elevation = () => 0) {
-  if (!context || !p || typeof p !== "object") return true;
-  let points = p.footprint || p.points;
+function visibleRecord(p2, elevation = () => 0) {
+  if (!context || !p2 || typeof p2 !== "object") return true;
+  let points = p2.footprint || p2.points;
   if (points?.type === "Polygon") points = points.coordinates[0];
   if (points && !Array.isArray(points)) points = null;
-  if (p.a && p.b) points = [p.a, p.b];
-  if (!points && p.geometry) {
-    const g = p.geometry;
+  if (p2.a && p2.b) points = [p2.a, p2.b];
+  if (!points && p2.geometry) {
+    const g = p2.geometry;
     points = g.type === "Polygon" ? g.coordinates[0] : g.type === "LineString" ? g.coordinates : null;
   }
-  const point = p.point || (p.root ? [p.root[0], p.root[2]] : null) || (Number.isFinite(p.x) && Number.isFinite(p.z) ? [p.x, p.z] : null);
+  const point = p2.point || (p2.root ? [p2.root[0], p2.root[2]] : null) || (Number.isFinite(p2.x) && Number.isFinite(p2.z) ? [p2.x, p2.z] : null);
   if (!point && !points) return true;
   const pts = points?.filter((v2) => Array.isArray(v2) && v2.length >= 2) || [point];
   if (!pts.length) return true;
-  const x = pts.reduce((n, p2) => n + p2[0], 0) / pts.length, z = pts.reduce((n, p2) => n + p2[1], 0) / pts.length;
-  const radius = Math.max(p.radius || 0.4, ...pts.map((p2) => Math.hypot(p2[0] - x, p2[1] - z)));
+  const x = pts.reduce((n, p3) => n + p3[0], 0) / pts.length, z = pts.reduce((n, p3) => n + p3[1], 0) / pts.length;
+  const radius = Math.max(p2.radius || 0.4, ...pts.map((p3) => Math.hypot(p3[0] - x, p3[1] - z)));
   if (pts.length > 1) {
     const [ox, oz] = context.qa.position;
     const close = pts.slice(1).some((b, i) => {
@@ -70,11 +70,11 @@ function visibleRecord(p, elevation = () => 0) {
       return false;
     }
   }
-  return visibleObject(x, z, p.height || p.h || 2, radius, elevation(x, z), pts.length === 1);
+  return visibleObject(x, z, p2.height || p2.h || 2, radius, elevation(x, z), pts.length === 1);
 }
 
 // outputs/domestic-test/facilities/catalog.js
-var row = (id, name, pattern, wall, accent, glass, nominal) => ({ id, name, pattern, wall, accent, glass, nominal, sourceId: id, reference: "./first-batch-review/#" + id, dimensions: "estimated; fitted to mapped footprint and floor count" });
+var row = (id, name, pattern, wall, accent, glass2, nominal) => ({ id, name, pattern, wall, accent, glass: glass2, nominal, sourceId: id, reference: "./first-batch-review/#" + id, dimensions: "estimated; fitted to mapped footprint and floor count" });
 var facilities = [
   row("apartment", "\uC544\uD30C\uD2B8", "balconies", 13749177, 12102028, 7508621, [24, 24, 12]),
   row("school", "\uD559\uAD50", "school", 10316116, 13349711, 6652541, [32, 12, 12]),
@@ -96,25 +96,25 @@ var facilities = [
 ];
 var facilityById = Object.fromEntries(facilities.map((r) => [r.id, r]));
 var brands = [["traders", /^(?:트레이더스|이마트\s*트레이더스)/], ["emart24", /^이마트24/], ["emart", /^이마트(?!24|에브리데이|\s*트레이더스)/], ["lotte", /^롯데마트/], ["homeplus", /^홈플러스(?!익스프레스)/], ["costco", /^코스트코/], ["daiso", /^다이소/], ["mega", /^메가(?:MGC|엠지씨)?커피/i], ["starbucks", /^스타벅스/], ["cu", /^CU(?:$|\s|[가-힣])|^씨유/i], ["gs25", /^GS25/i], ["seven", /^세븐일레븐/], ["post", /우체국/], ["police", /경찰서|지구대|파출소/], ["fire", /소방서|119안전센터/]];
-function identifyPlace(p) {
-  const name = p.place_name || "";
+function identifyPlace(p2) {
+  const name = p2.place_name || "";
   if (/주차장|ATM|카셰어링|충전소|문화센터|타이어센터|물류|택배|수영장|병설유치원/.test(name)) return null;
-  if (p.category_group_code === "SC4" || /^(?:교육,학문.*학교)/.test(p.category_name || "")) return "school";
+  if (p2.category_group_code === "SC4" || /^(?:교육,학문.*학교)/.test(p2.category_name || "")) return "school";
   return brands.find(([, re]) => re.test(name))?.[0] || null;
 }
-function identifyBuilding(p = {}) {
-  const name = [p.building_name, p.buld_nm_dc].filter(Boolean).join(" ");
-  if (/아파트|아너스빌|래미안|힐스테이트|푸르지오|자이아파트/.test(name) || String(p.bdtyp_cd) === "02001") return "apartment";
+function identifyBuilding(p2 = {}) {
+  const name = [p2.building_name, p2.buld_nm_dc].filter(Boolean).join(" ");
+  if (/아파트|아너스빌|래미안|힐스테이트|푸르지오|자이아파트/.test(name) || String(p2.bdtyp_cd) === "02001") return "apartment";
   if (/초등학교|중학교|고등학교/.test(name) && !/상가|학원/.test(name)) return "school";
   return identifyPlace({ place_name: name });
 }
 
 // outputs/domestic-test/facilities/placement.js
-function inPolygon(p, ring) {
+function inPolygon(p2, ring) {
   let c = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
     const a = ring[i], b = ring[j];
-    if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+    if (a[1] > p2[1] !== b[1] > p2[1] && p2[0] < (b[0] - a[0]) * (p2[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
   }
   return c;
 }
@@ -130,29 +130,29 @@ function planFacilities(buildings, places, { xz }) {
     const id = identifyBuilding(b.properties);
     if (id && facilityById[id].pattern !== "shop") b.facility = { id, sourceId: id, match: "building-record", frontEdge: b.frontEdge };
   }
-  for (const p of places) {
-    const id = identifyPlace(p);
+  for (const p2 of places) {
+    const id = identifyPlace(p2);
     if (!id || facilityById[id].pattern === "shop") continue;
-    const x = Number(p.x), y = Number(p.y);
+    const x = Number(p2.x), y = Number(p2.y);
     if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
-    const pt = xz([x, y]), address = normalizeAddress(p.road_address_name);
+    const pt = xz([x, y]), address = normalizeAddress(p2.road_address_name);
     const matches = buildings.filter((b2) => !b2.holes && inPolygon(pt, b2.points) && (!address || address.endsWith(normalizeAddress(b2.address))));
     if (matches.length !== 1) {
-      skipped.push({ placeId: p.id, id, reason: "ambiguous-or-outside-building" });
+      skipped.push({ placeId: p2.id, id, reason: "ambiguous-or-outside-building" });
       continue;
     }
     const b = matches[0];
-    if (id === "daiso" && !/1\s*[-~]\s*3층/.test(p.road_address_name || "") && identifyBuilding(b.properties) !== "daiso") continue;
+    if (id === "daiso" && !/1\s*[-~]\s*3층/.test(p2.road_address_name || "") && identifyBuilding(b.properties) !== "daiso") continue;
     const record = identifyBuilding(b.properties), publicUse = ["school", "police", "fire"].includes(id);
-    if (record && record !== id || !publicUse && (b.levels > 8 || area(b) < 220 || /지하|B\d|(?:^|\s)[2-9]층/i.test(p.road_address_name || ""))) {
-      skipped.push({ placeId: p.id, id, reason: "tenant-or-incompatible-building" });
+    if (record && record !== id || !publicUse && (b.levels > 8 || area(b) < 220 || /지하|B\d|(?:^|\s)[2-9]층/i.test(p2.road_address_name || ""))) {
+      skipped.push({ placeId: p2.id, id, reason: "tenant-or-incompatible-building" });
       continue;
     }
     if (b.facility && b.facility.id !== id) {
-      skipped.push({ placeId: p.id, id, reason: "conflicting-facility" });
+      skipped.push({ placeId: p2.id, id, reason: "conflicting-facility" });
       continue;
     }
-    b.facility = { id, sourceId: id, match: "contained-poi-and-address", placeId: String(p.id), name: p.place_name, frontEdge: b.frontEdge };
+    b.facility = { id, sourceId: id, match: "contained-poi-and-address", placeId: String(p2.id), name: p2.place_name, frontEdge: b.frontEdge };
   }
   for (const b of buildings) if (b.facility) {
     b.facility.reconstruction = "reference-based type fitted to mapped building; not surveyed replica";
@@ -160,6 +160,286 @@ function planFacilities(buildings, places, { xz }) {
   }
   return { applied, skipped };
 }
+
+// outputs/domestic-test/building-remakes/profiles.js
+var p = (referenceId, wall, texture, nominal) => ({ referenceId, wall, texture, nominal });
+var approvedBuildingProfiles = {
+  "building:shop-tile": p("bangyi-before-kr-v1", 13028285, "small-white-tile", [18, 9.3, 10]),
+  "building:shop-panel": p("starbucks-30-kr-v1", 10125667, null, [20, 18, 13]),
+  "facility:apartment": p("building-reference-apartment-hanshin-20261121", 13687244, null, [25, 42, 12]),
+  "facility:emart": p("emart-1-kr-v1", 13221278, null, [34, 14, 22]),
+  "facility:homeplus": p("homeplus-cheonan-kr-v1", 13357768, "white-granite", [30, 20, 20]),
+  "facility:costco": p("costco-3-kr-v1", 13949393, null, [38, 14, 25]),
+  "facility:traders": p("traders-0-kr-v1", 10793118, null, [32, 16, 24]),
+  "facility:police": p("police-2-kr-v1", 13357768, null, [24, 15, 12]),
+  "facility:gs25": p("building-reference-gs25-bucheon-20261121", 13357253, "vertical-gray-tile", [8.4, 9, 8]),
+  "facility:seven": p("seven-exterior-kr-v1", 9739668, null, [8.6, 7, 8]),
+  "facility:emart24": p("emart24-0-kr-v1", 13025710, null, [10, 7.5, 9]),
+  "facility:starbucks": p("starbucks-0-kr-v1", 9666146, null, [11, 10.8, 9])
+};
+
+// outputs/domestic-test/approved-road/catalog.js?v=signtexture3
+var approvedRoad = [
+  {
+    "id": "road:a46",
+    "key": "cone",
+    "name": "\uC8FC\uD669 \uC548\uC804 \uACE0\uAE54 \xB7 \uC2B9\uC778 \uC0AC\uC9C4",
+    "file": "cone-approved-v1.glb",
+    "triangles": 1356,
+    "materials": 3,
+    "size": [
+      0.4000000059604645,
+      0.7494640946388245,
+      0.4000000059604645
+    ],
+    "bytes": 133572,
+    "approvedReferenceId": "cone-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:35.330Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "road:a68",
+    "key": "bus",
+    "name": "\uB9C8\uC744\uBC84\uC2A4 \uC815\uB958\uC7A5 \xB7 \uACF5\uC6A9 \uB514\uC790\uC778",
+    "file": "bus-approved-v4.glb",
+    "triangles": 4402,
+    "materials": 6,
+    "size": [
+      0.6129999756813049,
+      3.1940000066161156,
+      0.09449999965727329
+    ],
+    "bytes": 1886040,
+    "approvedReferenceId": "paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
+    "approvalRevision": 2,
+    "approvedAt": "2026-11-21T09:17:37.601Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "\uC2B9\uC778 \uC0AC\uC9C4\uC758 \uC774\uC911 \uAE30\uB465\xB7\uB465\uADFC \uD504\uB808\uC784\xB7\uC0C1\uD558 \uC548\uB0B4\uD310 \uAD6C\uC870 \uBC18\uC601. \uB2E4\uB978 \uC9C0\uC5ED\uC5D0\uC11C\uB3C4 \uC0AC\uC6A9\uD560 \uC218 \uC788\uAC8C \uD55C\uAE00 \uBB38\uAD6C\uB97C \uC81C\uC678\uD558\uACE0 \uBC84\uC2A4\xB7\uAE08\uC5F0 \uADF8\uB9BC, \uB178\uC120\uB3C4\uC640 \uC22B\uC790\uB9CC \uC720\uC9C0. \uB4B7\uBA74 \uCCB4\uACB0 \uAD6C\uC870\uC640 \uD06C\uAE30\uB294 \uCD94\uC815.",
+    "dimensions": "photo proportions; estimated 3.194m high / 0.613m wide"
+  },
+  {
+    "id": "road:a72",
+    "key": "barrier",
+    "name": "\uC740\uC0C9 \uC811\uC774\uC2DD \uBC14\uB9AC\uCF00\uC774\uB4DC",
+    "file": "barrier-approved-v1.glb",
+    "triangles": 13964,
+    "materials": 4,
+    "size": [
+      3.061000108718872,
+      1.2139207142591477,
+      0.45000001788139343
+    ],
+    "bytes": 1344728,
+    "approvedReferenceId": "barrier-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:17:44.444Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "road:a75",
+    "key": "manhole",
+    "name": "\uC6D0\uD615 \uC8FC\uBB3C \uB9E8\uD640",
+    "file": "manhole-approved-v1.glb",
+    "triangles": 3968,
+    "materials": 3,
+    "size": [
+      0.6600000262260437,
+      0.05849999934434891,
+      0.6600000262260437
+    ],
+    "bytes": 384164,
+    "approvedReferenceId": "manhole-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:48.922Z",
+    "support": "embedded",
+    "surfaceY": 0.06,
+    "referenceNote": "",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "representative:a74",
+    "key": "grating",
+    "name": "995\xD7395\xD750 \uBC30\uC218\uAD6C",
+    "file": "grating-approved-v1.glb",
+    "triangles": 1020,
+    "materials": 2,
+    "size": [
+      0.9950000047683716,
+      0.050000001117587095,
+      0.39500001072883606
+    ],
+    "bytes": 100304,
+    "approvedReferenceId": "grating-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:47.049Z",
+    "support": "embedded",
+    "surfaceY": 0.05,
+    "referenceNote": "",
+    "dimensions": "approved drawing: 995\xD7395\xD750mm"
+  },
+  {
+    "id": "representative:a134",
+    "key": "hydrant",
+    "name": "\uC9C0\uC0C1\uC2DD \uC591\uAD6C \uC18C\uD654\uC804",
+    "file": "hydrant-approved-v1.glb",
+    "triangles": 2264,
+    "materials": 4,
+    "size": [
+      0.4009999930858612,
+      0.8149999976158142,
+      0.20999999344348907
+    ],
+    "bytes": 221588,
+    "approvedReferenceId": "hydrant-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:52.165Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "\uC9C0\uD558 \uBC30\uAD00 \uC81C\uC678",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "representative:legacy-109",
+    "key": "cable",
+    "name": "2\uAD6C \uC804\uC120 \uBCF4\uD638\uD131",
+    "file": "cable-approved-v1.glb",
+    "triangles": 564,
+    "materials": 3,
+    "size": [
+      0.9980000257492065,
+      0.04500000178813934,
+      0.23999999463558197
+    ],
+    "bytes": 57516,
+    "approvedReferenceId": "cable-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:17:00.750Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "",
+    "dimensions": "approved product: 980\xD7240\xD745mm excluding joining tabs"
+  },
+  {
+    "id": "representative:a67",
+    "key": "speed",
+    "name": "\uC6D0\uD615 \uC81C\uD55C\uC18D\uB3C4 \uD45C\uC9C0",
+    "file": "speed-approved-v3.glb",
+    "triangles": 978,
+    "materials": 5,
+    "size": [
+      0.6039999723434448,
+      2.6019999694824225,
+      0.12449999712407589
+    ],
+    "bytes": 126496,
+    "approvedReferenceId": "speed-seoul-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:54.585Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "\uC0AC\uC6A9\uC790 \uC694\uCCAD: \uC81C\uD55C\uC18D\uB3C4 50 \uD45C\uAE30. \uB2F9\uC2DC \uD574\uC81C \uBCF4\uC870\uD310\uC740 \uC0DD\uB7B5",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "representative:a77",
+    "key": "pole",
+    "name": "\uC804\uC8FC \uD558\uB2E8 \uBCF4\uD638\uB300",
+    "file": "pole-approved-v1.glb",
+    "triangles": 672,
+    "materials": 3,
+    "size": [
+      0.3291597068309784,
+      1.1000000476837162,
+      0.32257986068725586
+    ],
+    "bytes": 67972,
+    "approvedReferenceId": "pole-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:16:56.822Z",
+    "support": "pole-mounted",
+    "surfaceY": null,
+    "referenceNote": "\uC804\uC8FC \uBBF8\uD3EC\uD568, \uB4B7\uBA74 \uACE0\uC815 \uBC34\uB4DC3\uAC1C",
+    "dimensions": "inferred unless specified"
+  },
+  {
+    "id": "representative:a47",
+    "key": "parking",
+    "name": "\uBB34\uAC8C\uCD94 \uC8FC\uCC28 \uAE08\uC9C0 \uD45C\uC9C0",
+    "file": "parking-approved-v3.glb",
+    "triangles": 7332,
+    "materials": 4,
+    "size": [
+      0.3059999942779541,
+      0.9105023741722107,
+      0.3059999942779541
+    ],
+    "bytes": 719232,
+    "approvedReferenceId": "parking-kr-1",
+    "approvalRevision": 1,
+    "approvedAt": "2026-11-21T09:17:03.126Z",
+    "support": "ground",
+    "surfaceY": null,
+    "referenceNote": "\uC0AC\uC6A9\uC790 \uC694\uCCAD: \uC591\uBA74 \uC138\uB85C \uC8FC\uCC28\uAE08\uC9C0 \uD45C\uAE30",
+    "dimensions": "inferred unless specified"
+  }
+];
+
+// outputs/domestic-test/asset-encyclopedia/curation-data.js?v=review527
+var curation = { "version": 1, "reviewRevision": 527, "summary": { "inventory": 919, "reviewedDiscard": 476, "reviewedRemake": 8, "duplicateEntries": 170, "active": 280, "deleted": 461, "replacement-pending": 8 }, "conflicts": [{ "ids": ["road:a75", "representative:a75"], "resolution": "replacement-pending", "canonical": "road:a75" }], "items": { "legacy:1": { "canonical": "legacy:1", "state": "deleted", "sha256": null }, "legacy:2": { "canonical": "legacy:2", "state": "deleted", "sha256": null }, "legacy:3": { "canonical": "legacy:3", "state": "deleted", "sha256": null }, "legacy:4": { "canonical": "legacy:4", "state": "deleted", "sha256": null }, "legacy:5": { "canonical": "legacy:5", "state": "deleted", "sha256": null }, "legacy:6": { "canonical": "legacy:6", "state": "deleted", "sha256": null }, "legacy:7": { "canonical": "legacy:7", "state": "deleted", "sha256": null }, "legacy:8": { "canonical": "legacy:8", "state": "deleted", "sha256": null }, "legacy:9": { "canonical": "legacy:9", "state": "deleted", "sha256": null }, "legacy:10": { "canonical": "legacy:10", "state": "deleted", "sha256": null }, "legacy:11": { "canonical": "legacy:11", "state": "deleted", "sha256": null }, "legacy:12": { "canonical": "legacy:12", "state": "deleted", "sha256": null }, "legacy:13": { "canonical": "legacy:13", "state": "deleted", "sha256": null }, "legacy:14": { "canonical": "legacy:14", "state": "deleted", "sha256": null }, "legacy:15": { "canonical": "legacy:15", "state": "deleted", "sha256": null }, "legacy:16": { "canonical": "legacy:16", "state": "deleted", "sha256": null }, "legacy:17": { "canonical": "legacy:17", "state": "deleted", "sha256": null }, "legacy:18": { "canonical": "legacy:18", "state": "deleted", "sha256": null }, "legacy:19": { "canonical": "legacy:19", "state": "deleted", "sha256": null }, "legacy:20": { "canonical": "legacy:20", "state": "deleted", "sha256": null }, "legacy:21": { "canonical": "legacy:21", "state": "deleted", "sha256": null }, "legacy:22": { "canonical": "legacy:22", "state": "deleted", "sha256": null }, "legacy:23": { "canonical": "legacy:23", "state": "deleted", "sha256": null }, "legacy:24": { "canonical": "legacy:24", "state": "deleted", "sha256": null }, "legacy:25": { "canonical": "legacy:25", "state": "deleted", "sha256": null }, "legacy:26": { "canonical": "legacy:26", "state": "deleted", "sha256": null }, "legacy:27": { "canonical": "legacy:27", "state": "deleted", "sha256": null }, "legacy:28": { "canonical": "legacy:28", "state": "deleted", "sha256": null }, "legacy:29": { "canonical": "legacy:29", "state": "deleted", "sha256": null }, "legacy:30": { "canonical": "legacy:30", "state": "deleted", "sha256": null }, "legacy:31": { "canonical": "legacy:31", "state": "deleted", "sha256": null }, "legacy:32": { "canonical": "legacy:32", "state": "deleted", "sha256": null }, "legacy:33": { "canonical": "legacy:33", "state": "deleted", "sha256": null }, "legacy:34": { "canonical": "legacy:34", "state": "deleted", "sha256": null }, "legacy:35": { "canonical": "legacy:35", "state": "deleted", "sha256": null }, "legacy:36": { "canonical": "legacy:36", "state": "deleted", "sha256": null }, "legacy:37": { "canonical": "legacy:37", "state": "deleted", "sha256": null }, "legacy:38": { "canonical": "legacy:38", "state": "deleted", "sha256": null }, "legacy:39": { "canonical": "legacy:39", "state": "deleted", "sha256": null }, "legacy:40": { "canonical": "legacy:40", "state": "deleted", "sha256": null }, "legacy:41": { "canonical": "legacy:41", "state": "deleted", "sha256": null }, "legacy:42": { "canonical": "legacy:42", "state": "deleted", "sha256": null }, "legacy:43": { "canonical": "legacy:43", "state": "deleted", "sha256": null }, "legacy:44": { "canonical": "legacy:44", "state": "deleted", "sha256": null }, "legacy:45": { "canonical": "legacy:45", "state": "deleted", "sha256": null }, "legacy:46": { "canonical": "legacy:46", "state": "deleted", "sha256": null }, "legacy:47": { "canonical": "legacy:47", "state": "deleted", "sha256": null }, "legacy:48": { "canonical": "legacy:48", "state": "deleted", "sha256": null }, "legacy:49": { "canonical": "legacy:49", "state": "deleted", "sha256": null }, "legacy:50": { "canonical": "legacy:50", "state": "deleted", "sha256": null }, "legacy:51": { "canonical": "legacy:51", "state": "deleted", "sha256": null }, "legacy:52": { "canonical": "legacy:52", "state": "deleted", "sha256": null }, "legacy:53": { "canonical": "legacy:53", "state": "deleted", "sha256": null }, "legacy:54": { "canonical": "legacy:54", "state": "deleted", "sha256": null }, "legacy:55": { "canonical": "legacy:55", "state": "deleted", "sha256": null }, "legacy:56": { "canonical": "legacy:56", "state": "deleted", "sha256": null }, "legacy:57": { "canonical": "legacy:57", "state": "deleted", "sha256": null }, "legacy:58": { "canonical": "legacy:58", "state": "deleted", "sha256": null }, "legacy:59": { "canonical": "legacy:59", "state": "deleted", "sha256": null }, "legacy:60": { "canonical": "legacy:60", "state": "deleted", "sha256": null }, "legacy:61": { "canonical": "legacy:61", "state": "deleted", "sha256": null }, "legacy:62": { "canonical": "legacy:62", "state": "deleted", "sha256": null }, "legacy:63": { "canonical": "legacy:63", "state": "deleted", "sha256": null }, "legacy:64": { "canonical": "legacy:64", "state": "deleted", "sha256": null }, "legacy:65": { "canonical": "legacy:65", "state": "deleted", "sha256": null }, "legacy:66": { "canonical": "legacy:66", "state": "deleted", "sha256": null }, "legacy:67": { "canonical": "legacy:67", "state": "deleted", "sha256": null }, "legacy:68": { "canonical": "legacy:68", "state": "deleted", "sha256": null }, "legacy:69": { "canonical": "legacy:69", "state": "deleted", "sha256": null }, "legacy:70": { "canonical": "legacy:70", "state": "deleted", "sha256": null }, "legacy:71": { "canonical": "legacy:71", "state": "deleted", "sha256": null }, "legacy:72": { "canonical": "legacy:72", "state": "deleted", "sha256": null }, "legacy:73": { "canonical": "legacy:73", "state": "deleted", "sha256": null }, "legacy:74": { "canonical": "legacy:74", "state": "deleted", "sha256": null }, "legacy:75": { "canonical": "legacy:75", "state": "deleted", "sha256": null }, "legacy:76": { "canonical": "legacy:76", "state": "deleted", "sha256": null }, "legacy:77": { "canonical": "legacy:77", "state": "deleted", "sha256": null }, "legacy:78": { "canonical": "legacy:78", "state": "deleted", "sha256": null }, "legacy:79": { "canonical": "legacy:79", "state": "deleted", "sha256": null }, "legacy:80": { "canonical": "legacy:80", "state": "deleted", "sha256": null }, "legacy:81": { "canonical": "legacy:81", "state": "deleted", "sha256": null }, "legacy:82": { "canonical": "legacy:82", "state": "deleted", "sha256": null }, "legacy:83": { "canonical": "legacy:83", "state": "deleted", "sha256": null }, "legacy:84": { "canonical": "legacy:84", "state": "deleted", "sha256": null }, "legacy:85": { "canonical": "legacy:85", "state": "deleted", "sha256": null }, "legacy:86": { "canonical": "legacy:86", "state": "deleted", "sha256": null }, "legacy:87": { "canonical": "legacy:87", "state": "deleted", "sha256": null }, "legacy:88": { "canonical": "legacy:88", "state": "deleted", "sha256": null }, "legacy:89": { "canonical": "legacy:89", "state": "deleted", "sha256": null }, "legacy:90": { "canonical": "legacy:90", "state": "deleted", "sha256": null }, "legacy:91": { "canonical": "legacy:91", "state": "deleted", "sha256": null }, "legacy:92": { "canonical": "legacy:92", "state": "deleted", "sha256": null }, "legacy:93": { "canonical": "legacy:93", "state": "deleted", "sha256": null }, "legacy:94": { "canonical": "legacy:94", "state": "deleted", "sha256": null }, "legacy:95": { "canonical": "legacy:95", "state": "deleted", "sha256": null }, "legacy:96": { "canonical": "legacy:96", "state": "deleted", "sha256": null }, "legacy:97": { "canonical": "legacy:97", "state": "deleted", "sha256": null }, "legacy:98": { "canonical": "legacy:98", "state": "deleted", "sha256": null }, "legacy:99": { "canonical": "legacy:99", "state": "deleted", "sha256": null }, "legacy:100": { "canonical": "legacy:100", "state": "deleted", "sha256": null }, "legacy:101": { "canonical": "legacy:101", "state": "deleted", "sha256": null }, "legacy:102": { "canonical": "legacy:102", "state": "deleted", "sha256": null }, "legacy:103": { "canonical": "legacy:103", "state": "deleted", "sha256": null }, "legacy:104": { "canonical": "legacy:104", "state": "deleted", "sha256": null }, "legacy:105": { "canonical": "legacy:105", "state": "deleted", "sha256": null }, "legacy:106": { "canonical": "legacy:106", "state": "deleted", "sha256": null }, "legacy:107": { "canonical": "legacy:107", "state": "deleted", "sha256": null }, "legacy:108": { "canonical": "legacy:108", "state": "deleted", "sha256": null }, "legacy:109": { "canonical": "legacy:109", "state": "deleted", "sha256": null }, "legacy:110": { "canonical": "legacy:110", "state": "deleted", "sha256": null }, "legacy:111": { "canonical": "legacy:111", "state": "deleted", "sha256": null }, "legacy:112": { "canonical": "legacy:112", "state": "deleted", "sha256": null }, "legacy:113": { "canonical": "legacy:113", "state": "deleted", "sha256": null }, "legacy:114": { "canonical": "legacy:114", "state": "deleted", "sha256": null }, "legacy:115": { "canonical": "legacy:115", "state": "deleted", "sha256": null }, "legacy:116": { "canonical": "legacy:116", "state": "deleted", "sha256": null }, "legacy:117": { "canonical": "legacy:117", "state": "deleted", "sha256": null }, "legacy:118": { "canonical": "legacy:118", "state": "deleted", "sha256": null }, "legacy:119": { "canonical": "legacy:119", "state": "deleted", "sha256": null }, "legacy:120": { "canonical": "legacy:120", "state": "deleted", "sha256": null }, "legacy:121": { "canonical": "legacy:121", "state": "deleted", "sha256": null }, "legacy:122": { "canonical": "legacy:122", "state": "deleted", "sha256": null }, "legacy:123": { "canonical": "legacy:123", "state": "deleted", "sha256": null }, "legacy:124": { "canonical": "legacy:124", "state": "deleted", "sha256": null }, "legacy:125": { "canonical": "legacy:125", "state": "deleted", "sha256": null }, "legacy:126": { "canonical": "legacy:126", "state": "deleted", "sha256": null }, "legacy:127": { "canonical": "legacy:127", "state": "deleted", "sha256": null }, "legacy:128": { "canonical": "legacy:128", "state": "deleted", "sha256": null }, "legacy:129": { "canonical": "legacy:129", "state": "deleted", "sha256": null }, "legacy:130": { "canonical": "legacy:130", "state": "deleted", "sha256": null }, "legacy:131": { "canonical": "legacy:131", "state": "deleted", "sha256": null }, "legacy:132": { "canonical": "legacy:132", "state": "deleted", "sha256": null }, "legacy:133": { "canonical": "legacy:133", "state": "deleted", "sha256": null }, "legacy:134": { "canonical": "legacy:134", "state": "deleted", "sha256": null }, "legacy:135": { "canonical": "legacy:135", "state": "deleted", "sha256": null }, "legacy:136": { "canonical": "legacy:136", "state": "deleted", "sha256": null }, "legacy:137": { "canonical": "legacy:137", "state": "deleted", "sha256": null }, "legacy:138": { "canonical": "legacy:138", "state": "deleted", "sha256": null }, "legacy:139": { "canonical": "legacy:139", "state": "deleted", "sha256": null }, "legacy:140": { "canonical": "legacy:140", "state": "deleted", "sha256": null }, "legacy:141": { "canonical": "legacy:141", "state": "deleted", "sha256": null }, "legacy:142": { "canonical": "legacy:142", "state": "deleted", "sha256": null }, "legacy:143": { "canonical": "legacy:143", "state": "deleted", "sha256": null }, "legacy:144": { "canonical": "legacy:144", "state": "deleted", "sha256": null }, "legacy:145": { "canonical": "legacy:145", "state": "deleted", "sha256": null }, "legacy:146": { "canonical": "legacy:146", "state": "deleted", "sha256": null }, "legacy:147": { "canonical": "legacy:147", "state": "deleted", "sha256": null }, "legacy:148": { "canonical": "legacy:148", "state": "deleted", "sha256": null }, "legacy:149": { "canonical": "legacy:149", "state": "deleted", "sha256": null }, "legacy:150": { "canonical": "legacy:150", "state": "deleted", "sha256": null }, "legacy:151": { "canonical": "legacy:151", "state": "deleted", "sha256": null }, "legacy:152": { "canonical": "legacy:152", "state": "deleted", "sha256": null }, "legacy:153": { "canonical": "legacy:153", "state": "deleted", "sha256": null }, "legacy:154": { "canonical": "legacy:154", "state": "deleted", "sha256": null }, "legacy:155": { "canonical": "legacy:155", "state": "deleted", "sha256": null }, "legacy:156": { "canonical": "legacy:156", "state": "deleted", "sha256": null }, "legacy:157": { "canonical": "legacy:157", "state": "deleted", "sha256": null }, "legacy:158": { "canonical": "legacy:158", "state": "deleted", "sha256": null }, "legacy:159": { "canonical": "legacy:159", "state": "deleted", "sha256": null }, "legacy:160": { "canonical": "legacy:160", "state": "deleted", "sha256": null }, "legacy:161": { "canonical": "legacy:161", "state": "deleted", "sha256": null }, "legacy:162": { "canonical": "legacy:162", "state": "deleted", "sha256": null }, "legacy:163": { "canonical": "legacy:163", "state": "deleted", "sha256": null }, "legacy:164": { "canonical": "legacy:164", "state": "deleted", "sha256": null }, "legacy:165": { "canonical": "legacy:165", "state": "deleted", "sha256": null }, "legacy:166": { "canonical": "legacy:166", "state": "deleted", "sha256": null }, "legacy:167": { "canonical": "legacy:167", "state": "deleted", "sha256": null }, "legacy:168": { "canonical": "legacy:168", "state": "deleted", "sha256": null }, "legacy:169": { "canonical": "legacy:169", "state": "deleted", "sha256": null }, "legacy:170": { "canonical": "legacy:170", "state": "deleted", "sha256": null }, "legacy:171": { "canonical": "legacy:171", "state": "deleted", "sha256": null }, "legacy:172": { "canonical": "legacy:172", "state": "deleted", "sha256": null }, "legacy:173": { "canonical": "legacy:173", "state": "deleted", "sha256": null }, "legacy:174": { "canonical": "legacy:174", "state": "deleted", "sha256": null }, "legacy:175": { "canonical": "legacy:175", "state": "deleted", "sha256": null }, "legacy:176": { "canonical": "legacy:176", "state": "deleted", "sha256": null }, "legacy:177": { "canonical": "legacy:177", "state": "deleted", "sha256": null }, "legacy:178": { "canonical": "legacy:178", "state": "deleted", "sha256": null }, "legacy:179": { "canonical": "legacy:179", "state": "deleted", "sha256": null }, "legacy:180": { "canonical": "legacy:180", "state": "deleted", "sha256": null }, "legacy:181": { "canonical": "legacy:181", "state": "deleted", "sha256": null }, "legacy:182": { "canonical": "legacy:182", "state": "deleted", "sha256": null }, "legacy:183": { "canonical": "legacy:183", "state": "deleted", "sha256": null }, "legacy:184": { "canonical": "legacy:184", "state": "deleted", "sha256": null }, "legacy:185": { "canonical": "legacy:185", "state": "deleted", "sha256": null }, "legacy:186": { "canonical": "legacy:186", "state": "deleted", "sha256": null }, "legacy:187": { "canonical": "legacy:187", "state": "deleted", "sha256": null }, "legacy:188": { "canonical": "legacy:188", "state": "deleted", "sha256": null }, "legacy:189": { "canonical": "legacy:189", "state": "deleted", "sha256": null }, "legacy:190": { "canonical": "legacy:190", "state": "deleted", "sha256": null }, "legacy:191": { "canonical": "legacy:191", "state": "deleted", "sha256": null }, "legacy:192": { "canonical": "legacy:192", "state": "deleted", "sha256": null }, "legacy:193": { "canonical": "legacy:193", "state": "deleted", "sha256": null }, "legacy:194": { "canonical": "legacy:194", "state": "deleted", "sha256": null }, "legacy:195": { "canonical": "legacy:195", "state": "deleted", "sha256": null }, "legacy:196": { "canonical": "legacy:196", "state": "deleted", "sha256": null }, "legacy:197": { "canonical": "legacy:197", "state": "deleted", "sha256": null }, "legacy:198": { "canonical": "legacy:198", "state": "deleted", "sha256": null }, "legacy:199": { "canonical": "legacy:199", "state": "deleted", "sha256": null }, "legacy:200": { "canonical": "legacy:200", "state": "deleted", "sha256": null }, "legacy:201": { "canonical": "legacy:201", "state": "deleted", "sha256": null }, "legacy:202": { "canonical": "legacy:202", "state": "deleted", "sha256": null }, "legacy:203": { "canonical": "legacy:203", "state": "deleted", "sha256": null }, "legacy:204": { "canonical": "legacy:204", "state": "deleted", "sha256": null }, "legacy:205": { "canonical": "legacy:205", "state": "deleted", "sha256": null }, "legacy:206": { "canonical": "legacy:206", "state": "deleted", "sha256": null }, "legacy:207": { "canonical": "legacy:207", "state": "deleted", "sha256": null }, "legacy:208": { "canonical": "legacy:208", "state": "deleted", "sha256": null }, "legacy:209": { "canonical": "legacy:209", "state": "deleted", "sha256": null }, "legacy:210": { "canonical": "legacy:210", "state": "deleted", "sha256": null }, "legacy:211": { "canonical": "legacy:211", "state": "deleted", "sha256": null }, "legacy:212": { "canonical": "legacy:212", "state": "deleted", "sha256": null }, "korean:213": { "canonical": "korean:213", "state": "deleted", "sha256": null }, "korean:214": { "canonical": "korean:214", "state": "deleted", "sha256": null }, "korean:215": { "canonical": "korean:215", "state": "deleted", "sha256": null }, "street:0": { "canonical": "street:0", "state": "deleted", "sha256": null }, "street:1": { "canonical": "street:1", "state": "deleted", "sha256": null }, "street:2": { "canonical": "street:2", "state": "deleted", "sha256": null }, "street:3": { "canonical": "street:3", "state": "deleted", "sha256": null }, "street:4": { "canonical": "street:4", "state": "deleted", "sha256": null }, "street:6": { "canonical": "street:6", "state": "deleted", "sha256": null }, "road:a01": { "canonical": "road:a01", "state": "deleted", "sha256": "f3af9010dfd8dee316058fbb2c2e4df0a6dd4dfcd7d77b71c923d1ec1cde0c87" }, "road:a02": { "canonical": "road:a02", "state": "deleted", "sha256": "e23853e24f21215f379ec6a27bcfcb3f5c67ae795961a42ce618f2a46c70c5cc" }, "road:a03": { "canonical": "road:a03", "state": "deleted", "sha256": "efde8ac3324f6ecfd71e4c6583bbf794bb61309c2e4942a98462df61a4db2814" }, "road:a04": { "canonical": "road:a04", "state": "deleted", "sha256": "44ef29ca0179c5ea49f6d861268491e4201cf8125053c2c00156b593344a3673" }, "road:a05": { "canonical": "road:a05", "state": "deleted", "sha256": "4e9aa4690b2b1042cf96922316c026dd9cc3f75a21818585e4dc92485633c588" }, "road:a06": { "canonical": "road:a06", "state": "deleted", "sha256": "670dea020c957e91940dcf05e297cabecbb2e2f54b591f415486664bd7fdca9e" }, "road:a07": { "canonical": "road:a07", "state": "deleted", "sha256": "12407be34c00acbf06edc42d20af6acd10ca0732587bd3c914a284a2efa3626e" }, "road:a08": { "canonical": "road:a08", "state": "deleted", "sha256": "b11ec56974549bd7b007dfed01109993fce3d9e11583d27414a6661eb0606eb0" }, "road:a09": { "canonical": "road:a09", "state": "deleted", "sha256": "6342743fe1a378679a127c189ceb64de8e00e524b2b648f5b6eeb993a28cf70b" }, "road:a10": { "canonical": "road:a10", "state": "deleted", "sha256": "72e7da15f5f50087e45299f35dc63f9ca93f765f536844e67610f5fe948c7f36" }, "road:a11": { "canonical": "representative:a11", "state": "deleted", "sha256": "2b437c2059aeb8c30477aae59f133fd36391841f193cf35dfab9ba0ca4233090" }, "representative:a11": { "canonical": "representative:a11", "state": "deleted", "sha256": "2b437c2059aeb8c30477aae59f133fd36391841f193cf35dfab9ba0ca4233090" }, "road:a12": { "canonical": "representative:a12", "state": "deleted", "sha256": "5f6129a3e67665c19dfd037d4c99d7208b52c3b6fc9ee79bed03d84f7d1b5fac" }, "representative:a12": { "canonical": "representative:a12", "state": "deleted", "sha256": "5f6129a3e67665c19dfd037d4c99d7208b52c3b6fc9ee79bed03d84f7d1b5fac" }, "road:a13": { "canonical": "representative:a13", "state": "deleted", "sha256": "1a0ee6155ec669927cf526c32575dab688759c26ae6f8ba22c47591e97f3f5c3" }, "representative:a13": { "canonical": "representative:a13", "state": "deleted", "sha256": "1a0ee6155ec669927cf526c32575dab688759c26ae6f8ba22c47591e97f3f5c3" }, "road:a14": { "canonical": "representative:a14", "state": "deleted", "sha256": "c7b731e8244b5c2ba496ac5c0dad1f22ef157d435ca6976d6a3c6b6fe13eb4d0" }, "representative:a14": { "canonical": "representative:a14", "state": "deleted", "sha256": "c7b731e8244b5c2ba496ac5c0dad1f22ef157d435ca6976d6a3c6b6fe13eb4d0" }, "road:a15": { "canonical": "representative:a15", "state": "deleted", "sha256": "3c48e5149a6f1aba585f1aa3f49bb1c1be7cbea01bb698584d1d76ae1d18fbfe" }, "representative:a15": { "canonical": "representative:a15", "state": "deleted", "sha256": "3c48e5149a6f1aba585f1aa3f49bb1c1be7cbea01bb698584d1d76ae1d18fbfe" }, "road:a16": { "canonical": "representative:a16", "state": "deleted", "sha256": "2e01b5b2607011f5929b437903cad71715a61fb6df59e0399aae49f63fe42d94" }, "representative:a16": { "canonical": "representative:a16", "state": "deleted", "sha256": "2e01b5b2607011f5929b437903cad71715a61fb6df59e0399aae49f63fe42d94" }, "road:a17": { "canonical": "representative:a17", "state": "deleted", "sha256": "2ce75c862af227159ff6c30f662e60522206b5fa6627b3b57b0322b224292e52" }, "representative:a17": { "canonical": "representative:a17", "state": "deleted", "sha256": "2ce75c862af227159ff6c30f662e60522206b5fa6627b3b57b0322b224292e52" }, "road:a18": { "canonical": "representative:a18", "state": "deleted", "sha256": "db256938f67094f6a4e586864833ce237939a920cff45ca24329cac54dbf63da" }, "representative:a18": { "canonical": "representative:a18", "state": "deleted", "sha256": "db256938f67094f6a4e586864833ce237939a920cff45ca24329cac54dbf63da" }, "road:a19": { "canonical": "representative:a19", "state": "deleted", "sha256": "0ff043c74dc6484e39ed82ce852f702cd652d63ca5aef5e00881f9c4961351b9" }, "representative:a19": { "canonical": "representative:a19", "state": "deleted", "sha256": "0ff043c74dc6484e39ed82ce852f702cd652d63ca5aef5e00881f9c4961351b9" }, "road:a20": { "canonical": "representative:a20", "state": "deleted", "sha256": "2371192437714d330610717483b3608c3ce82cb16791d8f0b7cd927d87a1716a" }, "representative:a20": { "canonical": "representative:a20", "state": "deleted", "sha256": "2371192437714d330610717483b3608c3ce82cb16791d8f0b7cd927d87a1716a" }, "road:a21": { "canonical": "road:a21", "state": "deleted", "sha256": "1e41570e0959e9634f207a32c0156463e0e6327fcee319933a9169ffb58097f2" }, "road:a22": { "canonical": "representative:a22", "state": "deleted", "sha256": "d5179fdbefd078086b9db00ac87ee4beb7364ab94b4e24216f683d5c520150d1" }, "representative:a22": { "canonical": "representative:a22", "state": "deleted", "sha256": "d5179fdbefd078086b9db00ac87ee4beb7364ab94b4e24216f683d5c520150d1" }, "road:a23": { "canonical": "representative:a23", "state": "deleted", "sha256": "d1b98a6d2e2b72e4abfea41b9121ef6a1ed0c44bf11d50aa5c5fbf31392ffd0d" }, "representative:a23": { "canonical": "representative:a23", "state": "deleted", "sha256": "d1b98a6d2e2b72e4abfea41b9121ef6a1ed0c44bf11d50aa5c5fbf31392ffd0d" }, "road:a24": { "canonical": "representative:a24", "state": "deleted", "sha256": "361627e9c192d8baadd8f7df8089014fa6c806d1eda28002f1f2d01036ddef96" }, "representative:a24": { "canonical": "representative:a24", "state": "deleted", "sha256": "361627e9c192d8baadd8f7df8089014fa6c806d1eda28002f1f2d01036ddef96" }, "road:a25": { "canonical": "representative:a25", "state": "deleted", "sha256": "025d73a7c3427810aeac5ec1c3cc1f350d0ff7e57edd25b7e45e98869c75830b" }, "representative:a25": { "canonical": "representative:a25", "state": "deleted", "sha256": "025d73a7c3427810aeac5ec1c3cc1f350d0ff7e57edd25b7e45e98869c75830b" }, "road:a26": { "canonical": "representative:a26", "state": "deleted", "sha256": "426ea08dfda6bcaf6c0441010c1607d41d16e238860e88dd17a7abd4127141e6" }, "representative:a26": { "canonical": "representative:a26", "state": "deleted", "sha256": "426ea08dfda6bcaf6c0441010c1607d41d16e238860e88dd17a7abd4127141e6" }, "road:a27": { "canonical": "representative:a27", "state": "deleted", "sha256": "197d7d80ba66d1ce3493f844666eeaac45bd4559c4fae7681d05f39bb242f9b9" }, "representative:a27": { "canonical": "representative:a27", "state": "deleted", "sha256": "197d7d80ba66d1ce3493f844666eeaac45bd4559c4fae7681d05f39bb242f9b9" }, "road:a28": { "canonical": "representative:a28", "state": "active", "sha256": "2fa3877ea4f57cc3ce41a2baaacac7772f42b5da3484df92b1aba557620faedc" }, "representative:a28": { "canonical": "representative:a28", "state": "active", "sha256": "2fa3877ea4f57cc3ce41a2baaacac7772f42b5da3484df92b1aba557620faedc" }, "road:a29": { "canonical": "road:a29", "state": "deleted", "sha256": "8d1c54f203092e2edca2fa5c7ed7bb17a625a4e19beb9b3df169e4803d11a23f" }, "road:a30": { "canonical": "representative:a30", "state": "deleted", "sha256": "bca1d6849ea798b784a8472a10db833b733a73fa6c40557cb9a4f15051d28af8" }, "representative:a30": { "canonical": "representative:a30", "state": "deleted", "sha256": "bca1d6849ea798b784a8472a10db833b733a73fa6c40557cb9a4f15051d28af8" }, "road:a31": { "canonical": "representative:a31", "state": "deleted", "sha256": "945a4e3e5ac1d2e1b1f6317f407d8f0f85ec7c46543e4902e035bbec02535b1c" }, "representative:a31": { "canonical": "representative:a31", "state": "deleted", "sha256": "945a4e3e5ac1d2e1b1f6317f407d8f0f85ec7c46543e4902e035bbec02535b1c" }, "road:a32": { "canonical": "representative:a32", "state": "deleted", "sha256": "9f07d80c34d51bde136997de81967664895a69f5f728051f7c16190cdd1ed7a4" }, "representative:a32": { "canonical": "representative:a32", "state": "deleted", "sha256": "9f07d80c34d51bde136997de81967664895a69f5f728051f7c16190cdd1ed7a4" }, "road:a33": { "canonical": "representative:a33", "state": "deleted", "sha256": "bf23fe92e11ec1a8022364c1a170d8420e8571ecc81fae356055f2f80216aff9" }, "representative:a33": { "canonical": "representative:a33", "state": "deleted", "sha256": "bf23fe92e11ec1a8022364c1a170d8420e8571ecc81fae356055f2f80216aff9" }, "road:a34": { "canonical": "representative:a34", "state": "deleted", "sha256": "d238bb3342d819976631aa1c945c6bb936599e3091d86221a64ed5dca3bfff0c" }, "representative:a34": { "canonical": "representative:a34", "state": "deleted", "sha256": "d238bb3342d819976631aa1c945c6bb936599e3091d86221a64ed5dca3bfff0c" }, "road:a35": { "canonical": "representative:a35", "state": "deleted", "sha256": "8f74df50a3c00778fbc6e44d34f84fe7c2d82741baf065d982b7dec1a500b119" }, "representative:a35": { "canonical": "representative:a35", "state": "deleted", "sha256": "8f74df50a3c00778fbc6e44d34f84fe7c2d82741baf065d982b7dec1a500b119" }, "road:a36": { "canonical": "representative:a36", "state": "deleted", "sha256": "7972abf4694951393275a982744a34fba50465066c4fb4f1729ce4ab4ce9d9ca" }, "representative:a36": { "canonical": "representative:a36", "state": "deleted", "sha256": "7972abf4694951393275a982744a34fba50465066c4fb4f1729ce4ab4ce9d9ca" }, "road:a37": { "canonical": "representative:a37", "state": "deleted", "sha256": "ec543bbd49a916e463eb4d724a3e492c37ebd28b935979123eb0109cd597f858" }, "representative:a37": { "canonical": "representative:a37", "state": "deleted", "sha256": "ec543bbd49a916e463eb4d724a3e492c37ebd28b935979123eb0109cd597f858" }, "road:a38": { "canonical": "representative:a38", "state": "deleted", "sha256": "586aef25ef28f0dfbb80ee238cb206dad01fe038216ea9b5039ee99c8654582b" }, "representative:a38": { "canonical": "representative:a38", "state": "deleted", "sha256": "586aef25ef28f0dfbb80ee238cb206dad01fe038216ea9b5039ee99c8654582b" }, "road:a39": { "canonical": "representative:a39", "state": "deleted", "sha256": "53f887865f3bc49eef1be772bf1d2881d1fcc79775f5643cfd5aba0c6d3f58ee" }, "representative:a39": { "canonical": "representative:a39", "state": "deleted", "sha256": "53f887865f3bc49eef1be772bf1d2881d1fcc79775f5643cfd5aba0c6d3f58ee" }, "road:a40": { "canonical": "representative:a40", "state": "deleted", "sha256": "ab6274cee09d3db75960051dc3664b81f3341ef2fdca66cb0d179e2cdfa81b9e" }, "representative:a40": { "canonical": "representative:a40", "state": "deleted", "sha256": "ab6274cee09d3db75960051dc3664b81f3341ef2fdca66cb0d179e2cdfa81b9e" }, "road:a41": { "canonical": "representative:a41", "state": "deleted", "sha256": "317b5b09072db51471811442a07655b9be4915de12ec0a2038ed85b7302d57a4" }, "representative:a41": { "canonical": "representative:a41", "state": "deleted", "sha256": "317b5b09072db51471811442a07655b9be4915de12ec0a2038ed85b7302d57a4" }, "road:a42": { "canonical": "representative:a42", "state": "deleted", "sha256": "6e38b3b8e8558a49b4df0ded832c6f8523599b7021b3500e7a0cc429b9846006" }, "representative:a42": { "canonical": "representative:a42", "state": "deleted", "sha256": "6e38b3b8e8558a49b4df0ded832c6f8523599b7021b3500e7a0cc429b9846006" }, "road:a43": { "canonical": "representative:a43", "state": "deleted", "sha256": "4ca57294bde36aa20ff15d15499f27b5e5c878b4e835605fc9945c5ff32d8248" }, "representative:a43": { "canonical": "representative:a43", "state": "deleted", "sha256": "4ca57294bde36aa20ff15d15499f27b5e5c878b4e835605fc9945c5ff32d8248" }, "road:a44": { "canonical": "representative:a44", "state": "deleted", "sha256": "24f6283fc4cd86c946e19ddfdfa139b0cade0d0661c2bd9de8dd115ca45c3161" }, "representative:a44": { "canonical": "representative:a44", "state": "deleted", "sha256": "24f6283fc4cd86c946e19ddfdfa139b0cade0d0661c2bd9de8dd115ca45c3161" }, "road:a45": { "canonical": "representative:a45", "state": "deleted", "sha256": "c7b17e8f4599c89a5ac53645898062f33ad17862eb7f71c2f20a6e49e6dcaa8b" }, "representative:a45": { "canonical": "representative:a45", "state": "deleted", "sha256": "c7b17e8f4599c89a5ac53645898062f33ad17862eb7f71c2f20a6e49e6dcaa8b" }, "road:a46": { "canonical": "road:a46", "state": "active", "sha256": "4c7946d9db242a44beefe98ec897a2d6aad4873764a940149030d2b762a987c4" }, "road:a47": { "canonical": "representative:a47", "state": "active", "sha256": "73079010624f83dba187fe4aabda2b2f8a982d25d023c5132a2f03e070d5dee1" }, "representative:a47": { "canonical": "representative:a47", "state": "active", "sha256": "73079010624f83dba187fe4aabda2b2f8a982d25d023c5132a2f03e070d5dee1" }, "road:a48": { "canonical": "representative:a48", "state": "deleted", "sha256": "bd90f0bb1030e8d29d577bf24aacc865b0463eab928066f6eb16139ef11c6ae8" }, "representative:a48": { "canonical": "representative:a48", "state": "deleted", "sha256": "bd90f0bb1030e8d29d577bf24aacc865b0463eab928066f6eb16139ef11c6ae8" }, "road:a49": { "canonical": "representative:a49", "state": "active", "sha256": "97693cae01bb244721b089e20115a0805c29a38f14345250d02dff7125732800" }, "representative:a49": { "canonical": "representative:a49", "state": "active", "sha256": "97693cae01bb244721b089e20115a0805c29a38f14345250d02dff7125732800" }, "road:a50": { "canonical": "representative:a50", "state": "active", "sha256": "c543619d013ae832b12ed58c53db1c56172cdc2321d3d6428f7633ff2eaa0ba7" }, "representative:a50": { "canonical": "representative:a50", "state": "active", "sha256": "c543619d013ae832b12ed58c53db1c56172cdc2321d3d6428f7633ff2eaa0ba7" }, "road:a51": { "canonical": "representative:a51", "state": "active", "sha256": "07742cc79e28dde40b14f4c171d35cef649c85b8bd3a8ebd1c8d478f0e69e41f" }, "representative:a51": { "canonical": "representative:a51", "state": "active", "sha256": "07742cc79e28dde40b14f4c171d35cef649c85b8bd3a8ebd1c8d478f0e69e41f" }, "road:a52": { "canonical": "representative:a52", "state": "deleted", "sha256": "8182e12bec811b3491ecbc8dac08e231e51f72602c4b72a71be4221e8966a7a5" }, "representative:a52": { "canonical": "representative:a52", "state": "deleted", "sha256": "8182e12bec811b3491ecbc8dac08e231e51f72602c4b72a71be4221e8966a7a5" }, "road:a53": { "canonical": "representative:a53", "state": "deleted", "sha256": "6610a7d4cb47a7e09337581da0155c33834d501171671763d392f1f02179c967" }, "representative:a53": { "canonical": "representative:a53", "state": "deleted", "sha256": "6610a7d4cb47a7e09337581da0155c33834d501171671763d392f1f02179c967" }, "road:a54": { "canonical": "road:a54", "state": "active", "sha256": "d5ae8eecf52fc58123ab9001902d7bb96456dcde0bebdf9a14f651bd2e478e0a" }, "road:a55": { "canonical": "representative:a55", "state": "deleted", "sha256": "95bd6af8a82a5d6f848a7f2d41c4d395441d94686164d5340ffec5596ff53556" }, "representative:a55": { "canonical": "representative:a55", "state": "deleted", "sha256": "95bd6af8a82a5d6f848a7f2d41c4d395441d94686164d5340ffec5596ff53556" }, "road:a56": { "canonical": "representative:a56", "state": "deleted", "sha256": "7bd41bc36780d4b7e1f18d2af8d9a1d7d692717a07ce26f669e994e71ffa94d1" }, "representative:a56": { "canonical": "representative:a56", "state": "deleted", "sha256": "7bd41bc36780d4b7e1f18d2af8d9a1d7d692717a07ce26f669e994e71ffa94d1" }, "road:a57": { "canonical": "representative:a57", "state": "deleted", "sha256": "af54374aedcde7c48b278b818497b2daff20b06416ddf2e41d3f4df3b66000af" }, "representative:a57": { "canonical": "representative:a57", "state": "deleted", "sha256": "af54374aedcde7c48b278b818497b2daff20b06416ddf2e41d3f4df3b66000af" }, "road:a58": { "canonical": "representative:a58", "state": "active", "sha256": "602c9d4b67c239c48e5991138bbcc8055e87eee1e42c6e47a8d4fb0a6c9a558d" }, "representative:a58": { "canonical": "representative:a58", "state": "active", "sha256": "602c9d4b67c239c48e5991138bbcc8055e87eee1e42c6e47a8d4fb0a6c9a558d" }, "road:a60": { "canonical": "representative:a60", "state": "deleted", "sha256": "d3992e3c90386da15cdd38179ef031f523f5ba1643227a9fc5fb0b5ce5362b0e" }, "representative:a60": { "canonical": "representative:a60", "state": "deleted", "sha256": "d3992e3c90386da15cdd38179ef031f523f5ba1643227a9fc5fb0b5ce5362b0e" }, "road:a61": { "canonical": "representative:a61", "state": "active", "sha256": "1b3195b63e00710ed398f3784b5513faf6b0731dabdf5bc9af82bc56fbc6fb20" }, "representative:a61": { "canonical": "representative:a61", "state": "active", "sha256": "1b3195b63e00710ed398f3784b5513faf6b0731dabdf5bc9af82bc56fbc6fb20" }, "road:a62": { "canonical": "representative:a62", "state": "deleted", "sha256": "21f1c7ccbcad1af1ebaf58b46ea49184eeadd59b8154a790ee25501e55222ac1" }, "representative:a62": { "canonical": "representative:a62", "state": "deleted", "sha256": "21f1c7ccbcad1af1ebaf58b46ea49184eeadd59b8154a790ee25501e55222ac1" }, "road:a63": { "canonical": "representative:a63", "state": "deleted", "sha256": "891833502b2da82cf93a58d891db9db95442f21b94da0e241ca65ee26f067043" }, "representative:a63": { "canonical": "representative:a63", "state": "deleted", "sha256": "891833502b2da82cf93a58d891db9db95442f21b94da0e241ca65ee26f067043" }, "road:a64": { "canonical": "representative:a64", "state": "active", "sha256": "3798bd384bf0642213f8f9a53b1c45df376789e346302ce558324ac36da81c66" }, "representative:a64": { "canonical": "representative:a64", "state": "active", "sha256": "3798bd384bf0642213f8f9a53b1c45df376789e346302ce558324ac36da81c66" }, "road:a65": { "canonical": "representative:a65", "state": "active", "sha256": "8a970f249a2993f8da7a0cac635d0c653d65221ff985b85c32c5136ab5683eac" }, "representative:a65": { "canonical": "representative:a65", "state": "active", "sha256": "8a970f249a2993f8da7a0cac635d0c653d65221ff985b85c32c5136ab5683eac" }, "road:a66": { "canonical": "representative:a66", "state": "active", "sha256": "199f70ec90f42fe4deb61d1e1321a6d07f47501b4082b44ffc16f02bf43f9c1c" }, "representative:a66": { "canonical": "representative:a66", "state": "active", "sha256": "199f70ec90f42fe4deb61d1e1321a6d07f47501b4082b44ffc16f02bf43f9c1c" }, "road:a67": { "canonical": "representative:a67", "state": "active", "sha256": "b9a128735135e8937c61926e3071c1d008f14de5c09a3d397aec6ce444fc2ef7" }, "representative:a67": { "canonical": "representative:a67", "state": "active", "sha256": "b9a128735135e8937c61926e3071c1d008f14de5c09a3d397aec6ce444fc2ef7" }, "road:a68": { "canonical": "road:a68", "state": "replacement-pending", "sha256": "ecfa210a24eb6efce6dbf87fc11685c2bc01c1fc1a6ff5e1dfb1aa63dffe03a7" }, "representative:a68": { "canonical": "road:a68", "state": "replacement-pending", "sha256": "ecfa210a24eb6efce6dbf87fc11685c2bc01c1fc1a6ff5e1dfb1aa63dffe03a7" }, "road:a69": { "canonical": "representative:a69", "state": "deleted", "sha256": "27de3da11de175fa1b3b9497b6bc71d0d9ce27d08cc0d3e166efb63f146c6e72" }, "representative:a69": { "canonical": "representative:a69", "state": "deleted", "sha256": "27de3da11de175fa1b3b9497b6bc71d0d9ce27d08cc0d3e166efb63f146c6e72" }, "road:a70": { "canonical": "representative:a70", "state": "deleted", "sha256": "5c8567a78fa8a473f5377398e268e9d082c5a04dafc3ccf4c0629a6c77fdf1d3" }, "representative:a70": { "canonical": "representative:a70", "state": "deleted", "sha256": "5c8567a78fa8a473f5377398e268e9d082c5a04dafc3ccf4c0629a6c77fdf1d3" }, "road:a71": { "canonical": "representative:a71", "state": "deleted", "sha256": "914b7a92228e7d38740e530661e7928103e9cf8b689932cbd7202c0fd20e4da1" }, "representative:a71": { "canonical": "representative:a71", "state": "deleted", "sha256": "914b7a92228e7d38740e530661e7928103e9cf8b689932cbd7202c0fd20e4da1" }, "road:a72": { "canonical": "road:a72", "state": "replacement-pending", "sha256": "5a31c50e5f5ad005cff59d6ac6306bf651eb7e7fbc9fea736d8f3339c2d40494" }, "representative:a72": { "canonical": "road:a72", "state": "replacement-pending", "sha256": "5a31c50e5f5ad005cff59d6ac6306bf651eb7e7fbc9fea736d8f3339c2d40494" }, "road:a73": { "canonical": "representative:a73", "state": "deleted", "sha256": "83b422cae1c87cda642bac5822352c5eb54d111b881241fccffbb1ab8c861fb2" }, "representative:a73": { "canonical": "representative:a73", "state": "deleted", "sha256": "83b422cae1c87cda642bac5822352c5eb54d111b881241fccffbb1ab8c861fb2" }, "road:a74": { "canonical": "representative:a74", "state": "active", "sha256": "ce38a68f810f7725bd7588d219e63058b4f8506811971baa04c40dd244d05df5" }, "representative:a74": { "canonical": "representative:a74", "state": "active", "sha256": "ce38a68f810f7725bd7588d219e63058b4f8506811971baa04c40dd244d05df5" }, "road:a75": { "canonical": "road:a75", "state": "replacement-pending", "sha256": "0afbfc4abf5e9f466b97b80e8103438f7fc95cd4e43e1fdb2eea5cc7fbd8a8cd" }, "representative:a75": { "canonical": "road:a75", "state": "replacement-pending", "sha256": "0afbfc4abf5e9f466b97b80e8103438f7fc95cd4e43e1fdb2eea5cc7fbd8a8cd" }, "road:a76": { "canonical": "representative:a76", "state": "deleted", "sha256": "c72ef92117ea4b3bb4abb127d942b00b2e772f13e6afe863b8cbcd7d43ba8901" }, "representative:a76": { "canonical": "representative:a76", "state": "deleted", "sha256": "c72ef92117ea4b3bb4abb127d942b00b2e772f13e6afe863b8cbcd7d43ba8901" }, "road:a77": { "canonical": "representative:a77", "state": "active", "sha256": "efb018c3ab778c5fdc658fe76367f2cfe660914879c4f3b9020cad3b5a271209" }, "representative:a77": { "canonical": "representative:a77", "state": "active", "sha256": "efb018c3ab778c5fdc658fe76367f2cfe660914879c4f3b9020cad3b5a271209" }, "road:a78": { "canonical": "representative:a78", "state": "deleted", "sha256": "fba8444e46ec8ea97f187d5cc1306f335dd6a1ddabca456fe9cc55983d7139f5" }, "representative:a78": { "canonical": "representative:a78", "state": "deleted", "sha256": "fba8444e46ec8ea97f187d5cc1306f335dd6a1ddabca456fe9cc55983d7139f5" }, "road:a79": { "canonical": "representative:a79", "state": "deleted", "sha256": "654ef5a8e79ca686a9a9d1e2715a093df0250533f4740b276474dff37f859f84" }, "representative:a79": { "canonical": "representative:a79", "state": "deleted", "sha256": "654ef5a8e79ca686a9a9d1e2715a093df0250533f4740b276474dff37f859f84" }, "road:a80": { "canonical": "road:a80", "state": "deleted", "sha256": "d0e6e95a804a21a7fa7691bef962e39d948dc89e61f202a912c6043de1b7c34f" }, "road:a81": { "canonical": "representative:a81", "state": "active", "sha256": "c66a05030a0b996c6e3b001506bbfd91f482ab35c592d7cd1ca8f966c72f2a1a" }, "representative:a81": { "canonical": "representative:a81", "state": "active", "sha256": "c66a05030a0b996c6e3b001506bbfd91f482ab35c592d7cd1ca8f966c72f2a1a" }, "road:a82": { "canonical": "representative:a82", "state": "deleted", "sha256": "651790029df939868b71320438994c253e8ccf314ff8e426b5a4fbaf76806fe1" }, "representative:a82": { "canonical": "representative:a82", "state": "deleted", "sha256": "651790029df939868b71320438994c253e8ccf314ff8e426b5a4fbaf76806fe1" }, "road:a83": { "canonical": "representative:a83", "state": "deleted", "sha256": "3d0d5544577f7beda93c0a7f7b29ea65648b7a2bd19822552c20b955d8037217" }, "representative:a83": { "canonical": "representative:a83", "state": "deleted", "sha256": "3d0d5544577f7beda93c0a7f7b29ea65648b7a2bd19822552c20b955d8037217" }, "road:a84": { "canonical": "representative:a84", "state": "deleted", "sha256": "c8bb8e474352530ec9ebf698c4874240f2d036ae254dc7df746a32e1347d2b47" }, "representative:a84": { "canonical": "representative:a84", "state": "deleted", "sha256": "c8bb8e474352530ec9ebf698c4874240f2d036ae254dc7df746a32e1347d2b47" }, "road:a85": { "canonical": "representative:a85", "state": "deleted", "sha256": "2bacc9283cd076166ec2d350f62eac6baf91d10ee2b197fa21ba1fdd3519fd5c" }, "representative:a85": { "canonical": "representative:a85", "state": "deleted", "sha256": "2bacc9283cd076166ec2d350f62eac6baf91d10ee2b197fa21ba1fdd3519fd5c" }, "road:a86": { "canonical": "representative:a86", "state": "deleted", "sha256": "72430a3fd7832b7475b363a6b6edbb371591f35a3398630b57aaeb23ef7c579e" }, "representative:a86": { "canonical": "representative:a86", "state": "deleted", "sha256": "72430a3fd7832b7475b363a6b6edbb371591f35a3398630b57aaeb23ef7c579e" }, "road:a87": { "canonical": "representative:a87", "state": "deleted", "sha256": "8ae1eca83106ce81d14adab48b04e98137de14be3bd308f277f58f2db78a4ec1" }, "representative:a87": { "canonical": "representative:a87", "state": "deleted", "sha256": "8ae1eca83106ce81d14adab48b04e98137de14be3bd308f277f58f2db78a4ec1" }, "road:a88": { "canonical": "representative:a88", "state": "active", "sha256": "9f3f41636c8a2162ec52075347c95d336857c1b11329bffa6738881e8a4520a7" }, "representative:a88": { "canonical": "representative:a88", "state": "active", "sha256": "9f3f41636c8a2162ec52075347c95d336857c1b11329bffa6738881e8a4520a7" }, "road:a89": { "canonical": "representative:a89", "state": "deleted", "sha256": "9f70082ea89fe0a95b97e13944acdd41fabbae493b15986cbc6e3ab85ff3799b" }, "representative:a89": { "canonical": "representative:a89", "state": "deleted", "sha256": "9f70082ea89fe0a95b97e13944acdd41fabbae493b15986cbc6e3ab85ff3799b" }, "road:a90": { "canonical": "road:a90", "state": "deleted", "sha256": "3e860390f84c485cd14568105420df10c8709ab1b5dc6f3482d0ed07690bc3d2" }, "road:a92": { "canonical": "road:a92", "state": "deleted", "sha256": "16a7cf69e14af07ce00d8d6b0280d579a83f09751274b2751542a377ff005365" }, "road:a93": { "canonical": "representative:a93", "state": "active", "sha256": "71460f1313c5138792b4316fe281ea8cf78f1190f3031853b6a1a7733f4ac593" }, "representative:a93": { "canonical": "representative:a93", "state": "active", "sha256": "71460f1313c5138792b4316fe281ea8cf78f1190f3031853b6a1a7733f4ac593" }, "road:a94": { "canonical": "representative:a94", "state": "active", "sha256": "9941572f43dc0a46ff676cf4c69660c9192913f0c9fee0336f65f3acde56e457" }, "representative:a94": { "canonical": "representative:a94", "state": "active", "sha256": "9941572f43dc0a46ff676cf4c69660c9192913f0c9fee0336f65f3acde56e457" }, "road:a95": { "canonical": "representative:a95", "state": "active", "sha256": "7a65b2d23729ec08d15b0b08bee2778bf58d519c40d4fb075064df27c5ef84d8" }, "representative:a95": { "canonical": "representative:a95", "state": "active", "sha256": "7a65b2d23729ec08d15b0b08bee2778bf58d519c40d4fb075064df27c5ef84d8" }, "road:a96": { "canonical": "representative:a96", "state": "active", "sha256": "18d1de6db8e11ffdeee265d4662b6791a11ff3a9568f4777f337d0388f1f8b13" }, "representative:a96": { "canonical": "representative:a96", "state": "active", "sha256": "18d1de6db8e11ffdeee265d4662b6791a11ff3a9568f4777f337d0388f1f8b13" }, "road:a97": { "canonical": "road:a97", "state": "active", "sha256": "6dc0c5ff7de9eb5e38d7635d1e8273348241ce71f030fa5e5ba97a83cd314e04" }, "road:a98": { "canonical": "representative:a98", "state": "active", "sha256": "64c1d5d273ea1f56db015c136dbd45ddbf046aaeb921f34636252b36b25f7d2e" }, "representative:a98": { "canonical": "representative:a98", "state": "active", "sha256": "64c1d5d273ea1f56db015c136dbd45ddbf046aaeb921f34636252b36b25f7d2e" }, "road:a99": { "canonical": "representative:a99", "state": "active", "sha256": "9cd57f5ada7836412f9eb0f5b1afa866a0588135ef1f889eb0542e67f9ea762d" }, "representative:a99": { "canonical": "representative:a99", "state": "active", "sha256": "9cd57f5ada7836412f9eb0f5b1afa866a0588135ef1f889eb0542e67f9ea762d" }, "road:a100": { "canonical": "representative:a100", "state": "active", "sha256": "ffccbec38a21ff5f0e283a37a981be4107de472380caeb6cb561cf1ae3c8dc04" }, "representative:a100": { "canonical": "representative:a100", "state": "active", "sha256": "ffccbec38a21ff5f0e283a37a981be4107de472380caeb6cb561cf1ae3c8dc04" }, "road:a101": { "canonical": "representative:a101", "state": "active", "sha256": "8824f89f285a2a0ed866bb927457fd8626150997e07f2dd4258221cf3ab93e7e" }, "representative:a101": { "canonical": "representative:a101", "state": "active", "sha256": "8824f89f285a2a0ed866bb927457fd8626150997e07f2dd4258221cf3ab93e7e" }, "road:a102": { "canonical": "representative:a102", "state": "active", "sha256": "4fd1f4c24675771b6a0895c561bdb20f0f5d6915a7110ebc8b6bb7d24028a0e5" }, "representative:a102": { "canonical": "representative:a102", "state": "active", "sha256": "4fd1f4c24675771b6a0895c561bdb20f0f5d6915a7110ebc8b6bb7d24028a0e5" }, "road:a103": { "canonical": "representative:a103", "state": "active", "sha256": "5c732c447fad2d3e4d8566a27930b6a891b55bf1d78dff7a87e045dbadf3159b" }, "representative:a103": { "canonical": "representative:a103", "state": "active", "sha256": "5c732c447fad2d3e4d8566a27930b6a891b55bf1d78dff7a87e045dbadf3159b" }, "road:a104": { "canonical": "representative:a104", "state": "deleted", "sha256": "8618ce63dc96bdbcd6714109dbd7e7f892a338058756ee8d15f1a1e711fa563a" }, "representative:a104": { "canonical": "representative:a104", "state": "deleted", "sha256": "8618ce63dc96bdbcd6714109dbd7e7f892a338058756ee8d15f1a1e711fa563a" }, "road:a105": { "canonical": "representative:a105", "state": "active", "sha256": "bf51cff6fe99376b215b0b7f76af9dc121d586590785d9e646acacf755ac70f8" }, "representative:a105": { "canonical": "representative:a105", "state": "active", "sha256": "bf51cff6fe99376b215b0b7f76af9dc121d586590785d9e646acacf755ac70f8" }, "road:a106": { "canonical": "representative:a106", "state": "active", "sha256": "708c3e3ebda4c447ec862533e7ef4473082bd559d1b462d0ec7fc1d07c648998" }, "representative:a106": { "canonical": "representative:a106", "state": "active", "sha256": "708c3e3ebda4c447ec862533e7ef4473082bd559d1b462d0ec7fc1d07c648998" }, "road:a107": { "canonical": "representative:a107", "state": "active", "sha256": "bd633aeb1cd2a162100ef7ed203b6bec4138ab2219ab6cbfc560b55040d4e5ed" }, "representative:a107": { "canonical": "representative:a107", "state": "active", "sha256": "bd633aeb1cd2a162100ef7ed203b6bec4138ab2219ab6cbfc560b55040d4e5ed" }, "road:a108": { "canonical": "representative:a108", "state": "deleted", "sha256": "33c67f442e6a919fe871122f81d13dd97da2842824a3e4f0b9c6536f5dca9b5e" }, "representative:a108": { "canonical": "representative:a108", "state": "deleted", "sha256": "33c67f442e6a919fe871122f81d13dd97da2842824a3e4f0b9c6536f5dca9b5e" }, "road:a109": { "canonical": "representative:a109", "state": "deleted", "sha256": "9beabe9beb75cef905e5e9a4029f25ac6262b5e0b0cb9e36d32b90a7d252b7d5" }, "representative:a109": { "canonical": "representative:a109", "state": "deleted", "sha256": "9beabe9beb75cef905e5e9a4029f25ac6262b5e0b0cb9e36d32b90a7d252b7d5" }, "road:a110": { "canonical": "representative:a110", "state": "deleted", "sha256": "e3e021f1f9bb92792cc4f8d81bf2a6ff39295edd268feada895f9a62edf7243f" }, "representative:a110": { "canonical": "representative:a110", "state": "deleted", "sha256": "e3e021f1f9bb92792cc4f8d81bf2a6ff39295edd268feada895f9a62edf7243f" }, "road:a111": { "canonical": "representative:a111", "state": "deleted", "sha256": "f9a2b018d9ac2c99f083d2b21afd93191f1d97df934d5d232ccf3553e6ccad33" }, "representative:a111": { "canonical": "representative:a111", "state": "deleted", "sha256": "f9a2b018d9ac2c99f083d2b21afd93191f1d97df934d5d232ccf3553e6ccad33" }, "road:a112": { "canonical": "representative:a112", "state": "deleted", "sha256": "2e583059751c8ee69944073b452d14c53a59a2c3cad5cc88318361e4691244c1" }, "representative:a112": { "canonical": "representative:a112", "state": "deleted", "sha256": "2e583059751c8ee69944073b452d14c53a59a2c3cad5cc88318361e4691244c1" }, "road:a113": { "canonical": "representative:a113", "state": "deleted", "sha256": "47b233635301683980ae6208721c29a9e82dc89a4406e36e106e2bf0fe6bb5e5" }, "representative:a113": { "canonical": "representative:a113", "state": "deleted", "sha256": "47b233635301683980ae6208721c29a9e82dc89a4406e36e106e2bf0fe6bb5e5" }, "road:a114": { "canonical": "representative:a114", "state": "deleted", "sha256": "1e3b695cf5d763a00329efd20b4eb9f968bbb766e2f492348bf8c95e29179bca" }, "representative:a114": { "canonical": "representative:a114", "state": "deleted", "sha256": "1e3b695cf5d763a00329efd20b4eb9f968bbb766e2f492348bf8c95e29179bca" }, "road:a115": { "canonical": "representative:a115", "state": "deleted", "sha256": "c6cfd890a01e2f10cc54ba149e1a237aa932f82f8e83e48cb0a5b969b6a3084c" }, "representative:a115": { "canonical": "representative:a115", "state": "deleted", "sha256": "c6cfd890a01e2f10cc54ba149e1a237aa932f82f8e83e48cb0a5b969b6a3084c" }, "road:a116": { "canonical": "representative:a116", "state": "deleted", "sha256": "8447ec788e825c3762accf401eda27fb2677f7cd63d51993775a9dee3cd6f823" }, "representative:a116": { "canonical": "representative:a116", "state": "deleted", "sha256": "8447ec788e825c3762accf401eda27fb2677f7cd63d51993775a9dee3cd6f823" }, "road:a117": { "canonical": "road:a117", "state": "deleted", "sha256": "077fd05cd51b3baabcffe553653fabcd7b7bae15cd13a04450319758638a6033" }, "road:a118": { "canonical": "representative:a118", "state": "deleted", "sha256": "258fa313aa13ceb18cfdff7b5f71ddec6c2a68ddf8faac86d531ca92b0b260af" }, "representative:a118": { "canonical": "representative:a118", "state": "deleted", "sha256": "258fa313aa13ceb18cfdff7b5f71ddec6c2a68ddf8faac86d531ca92b0b260af" }, "road:a119": { "canonical": "representative:a119", "state": "deleted", "sha256": "ba628d35ff553e597ff2a5b746051cf3bf395f118022706a44151c728a4bec48" }, "representative:a119": { "canonical": "representative:a119", "state": "deleted", "sha256": "ba628d35ff553e597ff2a5b746051cf3bf395f118022706a44151c728a4bec48" }, "road:a120": { "canonical": "representative:a120", "state": "deleted", "sha256": "d65d5a2c9c75fbea96472395dd3773be1979cee5f9c1847a95a9d9651b6b9b6f" }, "representative:a120": { "canonical": "representative:a120", "state": "deleted", "sha256": "d65d5a2c9c75fbea96472395dd3773be1979cee5f9c1847a95a9d9651b6b9b6f" }, "road:a121": { "canonical": "representative:a121", "state": "active", "sha256": "3daf0266ab7d36fbd50996099b883c48374187f5733a982515c3ca8971167ab7" }, "representative:a121": { "canonical": "representative:a121", "state": "active", "sha256": "3daf0266ab7d36fbd50996099b883c48374187f5733a982515c3ca8971167ab7" }, "road:a122": { "canonical": "representative:a122", "state": "active", "sha256": "e988a3f7c0b2c1596e7d13b5205e123d72df7fbc72c6b49e30b026a191f43730" }, "representative:a122": { "canonical": "representative:a122", "state": "active", "sha256": "e988a3f7c0b2c1596e7d13b5205e123d72df7fbc72c6b49e30b026a191f43730" }, "road:a123": { "canonical": "representative:a123", "state": "active", "sha256": "d623a4d580de2e604d9024e32f273ccdd27a1cd4d5431d3de8e0f6053ec75ac6" }, "representative:a123": { "canonical": "representative:a123", "state": "active", "sha256": "d623a4d580de2e604d9024e32f273ccdd27a1cd4d5431d3de8e0f6053ec75ac6" }, "road:a124": { "canonical": "representative:a124", "state": "deleted", "sha256": "7f320f5539048ff128c4f09b88a7d883aa5e1ba8b2f7988aa1b53cd74b036511" }, "representative:a124": { "canonical": "representative:a124", "state": "deleted", "sha256": "7f320f5539048ff128c4f09b88a7d883aa5e1ba8b2f7988aa1b53cd74b036511" }, "road:a125": { "canonical": "representative:a125", "state": "active", "sha256": "70c52d9d04f652d263ff59c594814b9844632f9539db1ca3589cad1732356015" }, "representative:a125": { "canonical": "representative:a125", "state": "active", "sha256": "70c52d9d04f652d263ff59c594814b9844632f9539db1ca3589cad1732356015" }, "road:a126": { "canonical": "road:a126", "state": "deleted", "sha256": "daccc05e8a3ee34b569e8a4204a69d7f7a02999ae6bd44d712b66c9c9e790050" }, "road:a127": { "canonical": "representative:a127", "state": "deleted", "sha256": "498cc2d2b9a65b09ad25f9754470df523a802453a068f66dcdb14dbc448026d6" }, "representative:a127": { "canonical": "representative:a127", "state": "deleted", "sha256": "498cc2d2b9a65b09ad25f9754470df523a802453a068f66dcdb14dbc448026d6" }, "road:a128": { "canonical": "representative:a128", "state": "deleted", "sha256": "d89440f7e2e701ebefec5cd0919821d12446288362a5ebda9b7a9ab92b07b571" }, "representative:a128": { "canonical": "representative:a128", "state": "deleted", "sha256": "d89440f7e2e701ebefec5cd0919821d12446288362a5ebda9b7a9ab92b07b571" }, "road:a129": { "canonical": "representative:a129", "state": "active", "sha256": "29b64a2ca0b9e6a5b301b64fed30f4ade106ba58456ebc3b9bc8de3483121d52" }, "representative:a129": { "canonical": "representative:a129", "state": "active", "sha256": "29b64a2ca0b9e6a5b301b64fed30f4ade106ba58456ebc3b9bc8de3483121d52" }, "road:a130": { "canonical": "representative:a130", "state": "active", "sha256": "418e572d72e6caf253d0527d87e3e54c9bc179aef2c6b8693697398360b4e592" }, "representative:a130": { "canonical": "representative:a130", "state": "active", "sha256": "418e572d72e6caf253d0527d87e3e54c9bc179aef2c6b8693697398360b4e592" }, "road:a131": { "canonical": "representative:a131", "state": "deleted", "sha256": "45b501a72d82f7facbd676855b9676fcb756b771fa9237880c4f131ece8feb16" }, "representative:a131": { "canonical": "representative:a131", "state": "deleted", "sha256": "45b501a72d82f7facbd676855b9676fcb756b771fa9237880c4f131ece8feb16" }, "road:a132": { "canonical": "representative:a132", "state": "deleted", "sha256": "dbf81f0fcaea9f7242ad5986f8c9201456b85f418c915a1d3703036fab77a0c5" }, "representative:a132": { "canonical": "representative:a132", "state": "deleted", "sha256": "dbf81f0fcaea9f7242ad5986f8c9201456b85f418c915a1d3703036fab77a0c5" }, "road:a133": { "canonical": "road:a133", "state": "replacement-pending", "sha256": "571209bdb17c4a6606a7b3fc3f59220e38dea823dbc7470b6ecd3abe4c45a191" }, "representative:a133": { "canonical": "road:a133", "state": "replacement-pending", "sha256": "571209bdb17c4a6606a7b3fc3f59220e38dea823dbc7470b6ecd3abe4c45a191" }, "road:a134": { "canonical": "representative:a134", "state": "active", "sha256": "403f4a826916293738fea77b7e6e421e30f21d078aaa7cc00838a5bfe63352e2" }, "representative:a134": { "canonical": "representative:a134", "state": "active", "sha256": "403f4a826916293738fea77b7e6e421e30f21d078aaa7cc00838a5bfe63352e2" }, "road:a135": { "canonical": "representative:a135", "state": "deleted", "sha256": "2dda7f295153aa9d548425fc45c99d10f81150d53dd330de2ec41cc559f5c19d" }, "representative:a135": { "canonical": "representative:a135", "state": "deleted", "sha256": "2dda7f295153aa9d548425fc45c99d10f81150d53dd330de2ec41cc559f5c19d" }, "road:a136": { "canonical": "representative:a136", "state": "deleted", "sha256": "570aab1f87ea3f3da0c38d12babf134209b407b2ff3de07a8dded610f3786fc3" }, "representative:a136": { "canonical": "representative:a136", "state": "deleted", "sha256": "570aab1f87ea3f3da0c38d12babf134209b407b2ff3de07a8dded610f3786fc3" }, "road:a137": { "canonical": "representative:a137", "state": "deleted", "sha256": "dc13e3ded5c9378aaf70ca0f8bca0acca1512eb2fd9f0923b33a17400fe2bbb0" }, "representative:a137": { "canonical": "representative:a137", "state": "deleted", "sha256": "dc13e3ded5c9378aaf70ca0f8bca0acca1512eb2fd9f0923b33a17400fe2bbb0" }, "road:a138": { "canonical": "road:a138", "state": "deleted", "sha256": "30eef55f8a3fd4d040669ff9b49717d172c4a9d6d6027c08da2f529d77bccb47" }, "road:a139": { "canonical": "road:a139", "state": "deleted", "sha256": "a9ebdc2702693260ad3301d87d5c6ca6da731dde1365742e040e5f5df413a721" }, "road:a140": { "canonical": "representative:a140", "state": "deleted", "sha256": "5c3378719b7c32b6527dc656a10d49dd7c9d64411a33deebcb88ef8cc0ac20b6" }, "representative:a140": { "canonical": "representative:a140", "state": "deleted", "sha256": "5c3378719b7c32b6527dc656a10d49dd7c9d64411a33deebcb88ef8cc0ac20b6" }, "road:a141": { "canonical": "road:a141", "state": "deleted", "sha256": "b7609255e95f9034c3333f22fb8b517c10f9e7bb9c6b3f1b27ae9b8225f744cb" }, "road:a142": { "canonical": "representative:a142", "state": "deleted", "sha256": "c59a9ccd247bea03bb17c0fc9b033f601a17068d78bcf9765bffed9783486fda" }, "representative:a142": { "canonical": "representative:a142", "state": "deleted", "sha256": "c59a9ccd247bea03bb17c0fc9b033f601a17068d78bcf9765bffed9783486fda" }, "road:a143": { "canonical": "road:a143", "state": "deleted", "sha256": "85cb819ae305fb3eddfb5a5e26de54646346ffef4d9fb3922500fffdc8ca8e18" }, "road:a144": { "canonical": "representative:a144", "state": "deleted", "sha256": "e76c81f70d97c44f18cb227576163e05ab109706422b6f209731db1041dde2ed" }, "representative:a144": { "canonical": "representative:a144", "state": "deleted", "sha256": "e76c81f70d97c44f18cb227576163e05ab109706422b6f209731db1041dde2ed" }, "road:a145": { "canonical": "representative:a145", "state": "deleted", "sha256": "af49c824f0d24d222058f0a5d9a4482ba8f30b49549d174ed8f0ea5e35384268" }, "representative:a145": { "canonical": "representative:a145", "state": "deleted", "sha256": "af49c824f0d24d222058f0a5d9a4482ba8f30b49549d174ed8f0ea5e35384268" }, "road:a146": { "canonical": "representative:a146", "state": "active", "sha256": "2a9e458824f31ece128225c2c2e25b3f6dcde81e2687d72334294cbe760fe87b" }, "representative:a146": { "canonical": "representative:a146", "state": "active", "sha256": "2a9e458824f31ece128225c2c2e25b3f6dcde81e2687d72334294cbe760fe87b" }, "road:a147": { "canonical": "representative:a147", "state": "deleted", "sha256": "9a5d06d73f5cdd322a618e83e93e6a876062cc63f11f3fb825d0d3bbc9173cde" }, "representative:a147": { "canonical": "representative:a147", "state": "deleted", "sha256": "9a5d06d73f5cdd322a618e83e93e6a876062cc63f11f3fb825d0d3bbc9173cde" }, "road:a148": { "canonical": "representative:a148", "state": "deleted", "sha256": "8a87a176d0c371b1b50688a3ec5f7086298f05d0f602d1cb079d0988570a2245" }, "representative:a148": { "canonical": "representative:a148", "state": "deleted", "sha256": "8a87a176d0c371b1b50688a3ec5f7086298f05d0f602d1cb079d0988570a2245" }, "road:a149": { "canonical": "representative:a149", "state": "active", "sha256": "402fdc93028fb24c13e520ca24e5fce22cf2dd6a17e0d00a768b967289948912" }, "representative:a149": { "canonical": "representative:a149", "state": "active", "sha256": "402fdc93028fb24c13e520ca24e5fce22cf2dd6a17e0d00a768b967289948912" }, "road:a150": { "canonical": "representative:a150", "state": "deleted", "sha256": "c42353d1f68850b74143af17b76b60aead006f4d4b4b3878ac0a8851665328e4" }, "representative:a150": { "canonical": "representative:a150", "state": "deleted", "sha256": "c42353d1f68850b74143af17b76b60aead006f4d4b4b3878ac0a8851665328e4" }, "road:a151": { "canonical": "representative:a151", "state": "deleted", "sha256": "0de7d4c3f46aa358b5ba1dbc078ecb9648b0d19d921fb587fea5983236066f0a" }, "representative:a151": { "canonical": "representative:a151", "state": "deleted", "sha256": "0de7d4c3f46aa358b5ba1dbc078ecb9648b0d19d921fb587fea5983236066f0a" }, "road:a152": { "canonical": "representative:a152", "state": "deleted", "sha256": "e099e8f5a9038a0b36f25c5743bdc87204e851b2f1d188a3b9924cc379801a5f" }, "representative:a152": { "canonical": "representative:a152", "state": "deleted", "sha256": "e099e8f5a9038a0b36f25c5743bdc87204e851b2f1d188a3b9924cc379801a5f" }, "road:a153": { "canonical": "representative:a153", "state": "deleted", "sha256": "c51ce8ab57a6aafc82c842b4d6eef5fa3d25133624e0460f20ed5955beed9884" }, "representative:a153": { "canonical": "representative:a153", "state": "deleted", "sha256": "c51ce8ab57a6aafc82c842b4d6eef5fa3d25133624e0460f20ed5955beed9884" }, "road:a154": { "canonical": "representative:a154", "state": "active", "sha256": "29ffcb3551c9150bd34f42286041bef7504be6491a45c5b002634a9d4cdc4c97" }, "representative:a154": { "canonical": "representative:a154", "state": "active", "sha256": "29ffcb3551c9150bd34f42286041bef7504be6491a45c5b002634a9d4cdc4c97" }, "road:a155": { "canonical": "representative:a155", "state": "deleted", "sha256": "11dcd360cbf7c1e99f3e3dc39e23bfa73a780d477a70629171701c2f1d914500" }, "representative:a155": { "canonical": "representative:a155", "state": "deleted", "sha256": "11dcd360cbf7c1e99f3e3dc39e23bfa73a780d477a70629171701c2f1d914500" }, "road:a156": { "canonical": "road:a156", "state": "replacement-pending", "sha256": "19241b0c9e910e11175b66336b9e553c801912eaa3397ec8ff9d1d6bc16feac8" }, "road:a157": { "canonical": "representative:a157", "state": "active", "sha256": "c9287b0b491854f2b1a714cf3caa582ae7a3e9e3e1fe177ab3921ce5d3a7a72d" }, "representative:a157": { "canonical": "representative:a157", "state": "active", "sha256": "c9287b0b491854f2b1a714cf3caa582ae7a3e9e3e1fe177ab3921ce5d3a7a72d" }, "road:a158": { "canonical": "representative:a158", "state": "active", "sha256": "0b18111e907d0aa6ebe2d8cca89314b7c9477bad76c1973350f2441a884921f5" }, "representative:a158": { "canonical": "representative:a158", "state": "active", "sha256": "0b18111e907d0aa6ebe2d8cca89314b7c9477bad76c1973350f2441a884921f5" }, "road:a159": { "canonical": "representative:a159", "state": "deleted", "sha256": "adeec6fa1cd09b278ab585dbd4d25f904c9457b23e1685c8bb0667e0dd36253e" }, "representative:a159": { "canonical": "representative:a159", "state": "deleted", "sha256": "adeec6fa1cd09b278ab585dbd4d25f904c9457b23e1685c8bb0667e0dd36253e" }, "road:a160": { "canonical": "representative:a160", "state": "active", "sha256": "8b521f11fc3c69e408b1876b601c650da36f6f0f52d38d76fee0582a17f9ac76" }, "representative:a160": { "canonical": "representative:a160", "state": "active", "sha256": "8b521f11fc3c69e408b1876b601c650da36f6f0f52d38d76fee0582a17f9ac76" }, "road:a161": { "canonical": "representative:a161", "state": "deleted", "sha256": "c9a5ef3e086b81e8927b5f2f6d33f2f1bf6441243737c99ed80fc51650a70b21" }, "representative:a161": { "canonical": "representative:a161", "state": "deleted", "sha256": "c9a5ef3e086b81e8927b5f2f6d33f2f1bf6441243737c99ed80fc51650a70b21" }, "road:a162": { "canonical": "representative:a162", "state": "deleted", "sha256": "f5585e779fa853fb9b05ee28b7acc828e422e1db27444e5b3d0f9a8c0581fd52" }, "representative:a162": { "canonical": "representative:a162", "state": "deleted", "sha256": "f5585e779fa853fb9b05ee28b7acc828e422e1db27444e5b3d0f9a8c0581fd52" }, "road:a163": { "canonical": "representative:a163", "state": "deleted", "sha256": "da76bd225313561efcfb10d4ec9d0a6f4ed29ff3211ebfcdd40150fdce00ed8f" }, "representative:a163": { "canonical": "representative:a163", "state": "deleted", "sha256": "da76bd225313561efcfb10d4ec9d0a6f4ed29ff3211ebfcdd40150fdce00ed8f" }, "road:a164": { "canonical": "representative:a164", "state": "deleted", "sha256": "b739f46ec0a1f82c377c1be4541c1d86db2127da4a06120017a20373df1f3919" }, "representative:a164": { "canonical": "representative:a164", "state": "deleted", "sha256": "b739f46ec0a1f82c377c1be4541c1d86db2127da4a06120017a20373df1f3919" }, "road:a165": { "canonical": "road:a165", "state": "replacement-pending", "sha256": "1c69652c70be3a4cf527cfc7b3bf18c0547dc60e7d9d474336756ad549e5d2ec" }, "representative:a165": { "canonical": "road:a165", "state": "replacement-pending", "sha256": "1c69652c70be3a4cf527cfc7b3bf18c0547dc60e7d9d474336756ad549e5d2ec" }, "road:a167": { "canonical": "road:a167", "state": "deleted", "sha256": "faf14126a318ba58ad67bae1b17ce891c3cf4363efa5618f4a62855464948e87" }, "road:a168": { "canonical": "road:a168", "state": "replacement-pending", "sha256": "d5e1a65d3f7c68371294b553387c9c81dd43dc5eb41ae7026739bf865c1b61a0" }, "representative:a168": { "canonical": "road:a168", "state": "replacement-pending", "sha256": "d5e1a65d3f7c68371294b553387c9c81dd43dc5eb41ae7026739bf865c1b61a0" }, "road:a169": { "canonical": "representative:a169", "state": "deleted", "sha256": "9946b560f2f88ee7e295930a18273530c6a085624186ddc960d3a065e5b63e70" }, "representative:a169": { "canonical": "representative:a169", "state": "deleted", "sha256": "9946b560f2f88ee7e295930a18273530c6a085624186ddc960d3a065e5b63e70" }, "road:a170": { "canonical": "representative:a170", "state": "deleted", "sha256": "c89e5df2ccf8901ba4c276a11f579bb1e5d6b2431969ed0869aa231d243aed11" }, "representative:a170": { "canonical": "representative:a170", "state": "deleted", "sha256": "c89e5df2ccf8901ba4c276a11f579bb1e5d6b2431969ed0869aa231d243aed11" }, "road:a171": { "canonical": "representative:a171", "state": "deleted", "sha256": "4d4714632a35b23d1448d3ecbb7cb044e16af5d6d333092bced3245e531c024f" }, "representative:a171": { "canonical": "representative:a171", "state": "deleted", "sha256": "4d4714632a35b23d1448d3ecbb7cb044e16af5d6d333092bced3245e531c024f" }, "road:a172": { "canonical": "representative:a172", "state": "deleted", "sha256": "b39850f9b2189f52f3531999376b8cbff2569eb21019a2e69141be575eabb05f" }, "representative:a172": { "canonical": "representative:a172", "state": "deleted", "sha256": "b39850f9b2189f52f3531999376b8cbff2569eb21019a2e69141be575eabb05f" }, "road:a173": { "canonical": "representative:a173", "state": "deleted", "sha256": "041ffbbeba639d87e30a71c1881e004d03c5316595827c7952bbff0ce68a236d" }, "representative:a173": { "canonical": "representative:a173", "state": "deleted", "sha256": "041ffbbeba639d87e30a71c1881e004d03c5316595827c7952bbff0ce68a236d" }, "road:a174": { "canonical": "representative:a174", "state": "deleted", "sha256": "bc99c7e51c8bdde98e6bd18cc743022aace76cf7e2f1a276e763497a1f0c4b1e" }, "representative:a174": { "canonical": "representative:a174", "state": "deleted", "sha256": "bc99c7e51c8bdde98e6bd18cc743022aace76cf7e2f1a276e763497a1f0c4b1e" }, "road:a175": { "canonical": "representative:a175", "state": "deleted", "sha256": "b3d736e745a09cc8bd59223b5e8b6e630325a718ee3bc9075a64bbd42da77097" }, "representative:a175": { "canonical": "representative:a175", "state": "deleted", "sha256": "b3d736e745a09cc8bd59223b5e8b6e630325a718ee3bc9075a64bbd42da77097" }, "road:a176": { "canonical": "representative:a176", "state": "active", "sha256": "029471b58ae977252124433fb2b8ca93622c744e6d984db7bda39866deab52ba" }, "representative:a176": { "canonical": "representative:a176", "state": "active", "sha256": "029471b58ae977252124433fb2b8ca93622c744e6d984db7bda39866deab52ba" }, "road:a178": { "canonical": "representative:a178", "state": "deleted", "sha256": "dd3d827186199affbdcc330b3e232aa3859038416a979525f653c58d5e2c6bfb" }, "representative:a178": { "canonical": "representative:a178", "state": "deleted", "sha256": "dd3d827186199affbdcc330b3e232aa3859038416a979525f653c58d5e2c6bfb" }, "road:a179": { "canonical": "representative:a179", "state": "deleted", "sha256": "9bd7bd16f41b3930d3a30f37ddf54ae92a224030579c082b5947f9e4fae86872" }, "representative:a179": { "canonical": "representative:a179", "state": "deleted", "sha256": "9bd7bd16f41b3930d3a30f37ddf54ae92a224030579c082b5947f9e4fae86872" }, "road:a180": { "canonical": "representative:a180", "state": "deleted", "sha256": "5eae8d5cc7a953ad292e9f241256a1cf200d16787fa4846d3d0c804c00415b30" }, "representative:a180": { "canonical": "representative:a180", "state": "deleted", "sha256": "5eae8d5cc7a953ad292e9f241256a1cf200d16787fa4846d3d0c804c00415b30" }, "road:a181": { "canonical": "road:a181", "state": "replacement-pending", "sha256": "d63b668fee5c7402e2642c367bfccbee8d9f0b363aec0027aa0bbd3d4e4b8f83" }, "road:a182": { "canonical": "representative:a182", "state": "deleted", "sha256": "26cf9594cf7a1502c7b9e3828f39d12671a73b34fad3d18afc49179c15f32c31" }, "representative:a182": { "canonical": "representative:a182", "state": "deleted", "sha256": "26cf9594cf7a1502c7b9e3828f39d12671a73b34fad3d18afc49179c15f32c31" }, "road:a184": { "canonical": "representative:a184", "state": "deleted", "sha256": "b6eedc9b1dd0a8e4502dd6bce2b27272bb676b342e366dd490b37867edbcd0c2" }, "representative:a184": { "canonical": "representative:a184", "state": "deleted", "sha256": "b6eedc9b1dd0a8e4502dd6bce2b27272bb676b342e366dd490b37867edbcd0c2" }, "road:a185": { "canonical": "representative:a185", "state": "deleted", "sha256": "07da430a17180eec3e021f2238182f3a2b51b18a893d0f220fc5c7df128b726d" }, "representative:a185": { "canonical": "representative:a185", "state": "deleted", "sha256": "07da430a17180eec3e021f2238182f3a2b51b18a893d0f220fc5c7df128b726d" }, "road:a186": { "canonical": "representative:a186", "state": "active", "sha256": "8aa27605a95b80a953e67fd08cd2bf5c0161132def17432afc32cd65eb2ba23a" }, "representative:a186": { "canonical": "representative:a186", "state": "active", "sha256": "8aa27605a95b80a953e67fd08cd2bf5c0161132def17432afc32cd65eb2ba23a" }, "road:a187": { "canonical": "representative:a187", "state": "deleted", "sha256": "daa07adf0f5c31e2a900a7b50f407f922d9f56759de49d1389e21a40ef565997" }, "representative:a187": { "canonical": "representative:a187", "state": "deleted", "sha256": "daa07adf0f5c31e2a900a7b50f407f922d9f56759de49d1389e21a40ef565997" }, "road:a188": { "canonical": "representative:a188", "state": "deleted", "sha256": "1e29ffef4d6342112c66d9e7ec7d365207403782ff32bee9bc5d5eec6fe7f58f" }, "representative:a188": { "canonical": "representative:a188", "state": "deleted", "sha256": "1e29ffef4d6342112c66d9e7ec7d365207403782ff32bee9bc5d5eec6fe7f58f" }, "road:a189": { "canonical": "representative:a189", "state": "deleted", "sha256": "8fca131a595aa692a3088dd01202be8606421da840ba46b38386f9e6de6d2a96" }, "representative:a189": { "canonical": "representative:a189", "state": "deleted", "sha256": "8fca131a595aa692a3088dd01202be8606421da840ba46b38386f9e6de6d2a96" }, "road:a190": { "canonical": "representative:a190", "state": "deleted", "sha256": "37e9e8bbe0dabd9d249607ccbe39ff29c885a0ee60b8ad477b82f296329eca77" }, "representative:a190": { "canonical": "representative:a190", "state": "deleted", "sha256": "37e9e8bbe0dabd9d249607ccbe39ff29c885a0ee60b8ad477b82f296329eca77" }, "road:a191": { "canonical": "representative:a191", "state": "deleted", "sha256": "bffa330ec158e70c243d61b2799db57e2b5f6b3d9712572c0f1af124cde1fcbb" }, "representative:a191": { "canonical": "representative:a191", "state": "deleted", "sha256": "bffa330ec158e70c243d61b2799db57e2b5f6b3d9712572c0f1af124cde1fcbb" }, "road:a192": { "canonical": "representative:a192", "state": "deleted", "sha256": "faf0dd23a52bbd82b0089adb30057817600b27e3609c4afc5d6d9ab25004643e" }, "representative:a192": { "canonical": "representative:a192", "state": "deleted", "sha256": "faf0dd23a52bbd82b0089adb30057817600b27e3609c4afc5d6d9ab25004643e" }, "road:a193": { "canonical": "representative:a193", "state": "deleted", "sha256": "648dba33c1833de6765d83a4fefc93accc9e5ebcd336e6b026debb467bdf7b86" }, "representative:a193": { "canonical": "representative:a193", "state": "deleted", "sha256": "648dba33c1833de6765d83a4fefc93accc9e5ebcd336e6b026debb467bdf7b86" }, "road:a194": { "canonical": "representative:a194", "state": "deleted", "sha256": "089aed74d6654e11289cceb0f5d7b84a70c476b77d1e21b07ac52f6b449f6223" }, "representative:a194": { "canonical": "representative:a194", "state": "deleted", "sha256": "089aed74d6654e11289cceb0f5d7b84a70c476b77d1e21b07ac52f6b449f6223" }, "road:a195": { "canonical": "representative:a195", "state": "deleted", "sha256": "0aa0b0746b38959435214bc143f911d6e9fa5520d9e971c210b734b2ab445379" }, "representative:a195": { "canonical": "representative:a195", "state": "deleted", "sha256": "0aa0b0746b38959435214bc143f911d6e9fa5520d9e971c210b734b2ab445379" }, "road:a196": { "canonical": "representative:a196", "state": "deleted", "sha256": "a731a3ed716f89d1a47b12aaa0c62439f473f88cd29ebc41c12acc3155d3df37" }, "representative:a196": { "canonical": "representative:a196", "state": "deleted", "sha256": "a731a3ed716f89d1a47b12aaa0c62439f473f88cd29ebc41c12acc3155d3df37" }, "road:a197": { "canonical": "representative:a197", "state": "deleted", "sha256": "d79af094ee9a9cb77a1b36b151d07cb87cad34e6042a915035f46142547edaa2" }, "representative:a197": { "canonical": "representative:a197", "state": "deleted", "sha256": "d79af094ee9a9cb77a1b36b151d07cb87cad34e6042a915035f46142547edaa2" }, "road:a198": { "canonical": "representative:a198", "state": "active", "sha256": "dd21480278546809847a1fdfb3e9042ccf8665f4ec6f6f51bc072e177bc27184" }, "representative:a198": { "canonical": "representative:a198", "state": "active", "sha256": "dd21480278546809847a1fdfb3e9042ccf8665f4ec6f6f51bc072e177bc27184" }, "road:a199": { "canonical": "road:a199", "state": "deleted", "sha256": "ba24bff1214eb082ea7b7bd4f984a31e6845f8cc8161ed24bace472f032d1813" }, "road:a200": { "canonical": "representative:a200", "state": "active", "sha256": "9eba07927df25e197a94601371ba9cac67705128ec722bfcacf3ee9bc927726f" }, "representative:a200": { "canonical": "representative:a200", "state": "active", "sha256": "9eba07927df25e197a94601371ba9cac67705128ec722bfcacf3ee9bc927726f" }, "representative:a09": { "canonical": "representative:a09", "state": "deleted", "sha256": "0b44c694f6fbd41fc2f0256c52f42c0782c253408b3f37c9164a67bd6a2690ae" }, "representative:a05": { "canonical": "representative:a05", "state": "deleted", "sha256": "dfdb3d46bc11ed9f546c1004b71466d9c487a5215e2098a935d5137b7e81df25" }, "representative:legacy-104": { "canonical": "representative:legacy-104", "state": "deleted", "sha256": "d4a99476e3c362827894701db97998e268dcee5721bc226af66eeff02cbb2e0c" }, "representative:a126": { "canonical": "representative:a126", "state": "active", "sha256": "5267733afc6bc89ef5bbd0691847c375541fd681e1b4a5d84153902ade0e84cf" }, "representative:a06": { "canonical": "representative:a06", "state": "deleted", "sha256": "47aa51d2d923a251f47fa7210edde2acc80d30d5222e4e8d2a7c616c3aa9f9e0" }, "representative:a156": { "canonical": "representative:a156", "state": "active", "sha256": "198b56af55ea83cf7f28fcc6cff6f1751782163345fefafe71c8a59e81f1e8bd" }, "representative:legacy-135": { "canonical": "representative:legacy-135", "state": "deleted", "sha256": "55436abd33a067e24fd8941eb3c7224b0d72a6ffa9a9f35826aca797dabacbc2" }, "representative:a08": { "canonical": "representative:a08", "state": "deleted", "sha256": "23e5f5adf0424d97284c05403f414fd97bdcbe069621d858dddc0f9890db5e31" }, "representative:legacy-107": { "canonical": "representative:legacy-107", "state": "deleted", "sha256": "24eba27b23137de8be6d6a78a1799ded428877c826b2200257871890e04590e3" }, "representative:a46": { "canonical": "representative:a46", "state": "active", "sha256": "af630cb2a7b1c4254ccb301b28033211523c52222f69af7751698765ee3cb2ac" }, "representative:legacy-101": { "canonical": "representative:legacy-101", "state": "deleted", "sha256": "d3319f0df1205a8260f6add4ab3169a2b5c99d5921ff54de7829fa0d074ac442" }, "representative:legacy-57": { "canonical": "representative:legacy-57", "state": "deleted", "sha256": "5db3aaeb51fefd2e5e6329fe71ff63014e39859369a035b3138db2f0b9db641e" }, "representative:legacy-178": { "canonical": "representative:legacy-178", "state": "deleted", "sha256": "f23de0168856f4e98c02abee95661b4ccfd7184be6fb066152b508b3904c2abb" }, "representative:legacy-190": { "canonical": "representative:legacy-190", "state": "deleted", "sha256": "a91f256654d640507bf146638fce13e1a5eb2c9289904fca5f62f6cabb022df1" }, "representative:a177": { "canonical": "representative:a177", "state": "deleted", "sha256": "e8428452d5a5bd59516ded040cc7c0f9164f91c858edbcf1612128e40c390d2c" }, "file:domestic-test/roadview50/a177.glb": { "canonical": "representative:a177", "state": "deleted", "sha256": "e8428452d5a5bd59516ded040cc7c0f9164f91c858edbcf1612128e40c390d2c" }, "representative:a04": { "canonical": "representative:a04", "state": "deleted", "sha256": "dd9d4e8382920ffab8c406d881537723cfc0aae0c01e69a0b6fd788567d00221" }, "representative:a29": { "canonical": "representative:a29", "state": "active", "sha256": "c21f3e3b6adfa136f63a101231a2545900e222d668f528f910ccb7a118934ed3" }, "representative:a21": { "canonical": "representative:a21", "state": "active", "sha256": "1a32add8b4a32ba0f5619e30a971ba22a3c62798bae58a1b2de8d38a268cb72b" }, "representative:a97": { "canonical": "representative:a97", "state": "active", "sha256": "7dfb94e0c6ca6cddb72f33d6689c95de6df07ff69d64aca3715a7db57779d9fb" }, "representative:a80": { "canonical": "representative:a80", "state": "active", "sha256": "1fca353e79dd1f653c2381a86f3456e365d6625f855025f9ac70dcfa70d57dfe" }, "representative:legacy-187": { "canonical": "representative:legacy-187", "state": "active", "sha256": "1f9bd67e3460e800fc908ddf12dcf3d4efc6d85b4180af86680b966619b4a454" }, "representative:legacy-109": { "canonical": "representative:legacy-109", "state": "active", "sha256": "e38ebebb4ae7bcaf65c49dce04e09dbf62208eee5fe42a9aafe6ad2aa2c0ba33" }, "representative:a117": { "canonical": "representative:a117", "state": "deleted", "sha256": "370eb5aba31b3488f49159e8b05db13511c426f22b9c4e68c5a06662c8e95b7f" }, "representative:a03": { "canonical": "representative:a03", "state": "deleted", "sha256": "e716c017b9b5f0448bd29ee79813456d15e978ca5efc3f78b1e27d5cec0d185c" }, "representative:legacy-29": { "canonical": "representative:legacy-29", "state": "active", "sha256": "72761d13206e8168b692ea151fa1e8c6cf533c8b44a7a3fa7486a22c157fde76" }, "representative:legacy-105": { "canonical": "representative:legacy-105", "state": "deleted", "sha256": "464dd9a036e5d8b7df9660d78e34e5813a08f9b80ce6dadbe4f5f02d9a820653" }, "representative:a143": { "canonical": "representative:a143", "state": "deleted", "sha256": "54230b0ec07803f113bc9de0d7a7b2e329f6e12b1889317684ec91861e74a55e" }, "representative:a10": { "canonical": "representative:a10", "state": "deleted", "sha256": "b2ec4c927d6f31b80d4f6c61951d28d49e4d2a004614112e2ead99fb1c2ba60c" }, "representative:legacy-92": { "canonical": "representative:legacy-92", "state": "active", "sha256": "a0b57fb19e97a5c64cdbd7273c3c38bf566797bf34fdbc2e8d4b31185ed3fd0a" }, "representative:a01": { "canonical": "representative:a01", "state": "deleted", "sha256": "08781ded3a798a339e88940a38b777715e23fd85eb7d133451be5579a2c1d859" }, "representative:a07": { "canonical": "representative:a07", "state": "deleted", "sha256": "05b185cae23909f1230aae500097bbdb7d7e706d35faa1408ac767fd0c0cd230" }, "representative:a181": { "canonical": "representative:a181", "state": "deleted", "sha256": "5e95039405ca79eed297d1001e327c56701319373912b4e3588660e7cc34d84e" }, "representative:a199": { "canonical": "representative:a199", "state": "deleted", "sha256": "bc354ddda0e7e68bc660d2de1fb2a75a90c042e7b933ba4813859992427ceb64" }, "representative:a90": { "canonical": "representative:a90", "state": "active", "sha256": "fa99b66dcaa02deb0bfc1f7d402ea379b8a32c1c99de7999f5fce97b1a70638d" }, "representative:legacy-115": { "canonical": "representative:legacy-115", "state": "deleted", "sha256": "70edf50e7baef2c7636b58ddd61ed2ad0de6a8b6f546abbcfb6c6a8def8cfe7b" }, "representative:a167": { "canonical": "representative:a167", "state": "deleted", "sha256": "bb955f15a74199ea9497d486fc9e08a1e5d298b5994433e01d8a67976d6704e9" }, "representative:a139": { "canonical": "representative:a139", "state": "deleted", "sha256": "9eb57603f15cb6bd7f6dcaad4fa430f9c30b88bbb560f7e7afb934bd1edc4488" }, "representative:a92": { "canonical": "representative:a92", "state": "deleted", "sha256": "df645850b4e1d0bac469fa13e1e4b72c8a542941f3b267158ac59e788de92850" }, "representative:a141": { "canonical": "representative:a141", "state": "deleted", "sha256": "23fe4bef6e24ae8d07c9b464ed25130fb66665f870fcdbc80f05e0582825a8d0" }, "representative:legacy-158": { "canonical": "representative:legacy-158", "state": "deleted", "sha256": "a2da16e1a5934c963902263f248facb5738d3f3a6695d9aaeb9713c546920c7b" }, "representative:shop-convenience-01": { "canonical": "representative:shop-convenience-01", "state": "active", "sha256": "bb17f3453e3f1ac03c15eed9fb2d6a9e144fecbc0d15de9645f54a2702e9a81a" }, "representative:legacy-18": { "canonical": "representative:legacy-18", "state": "active", "sha256": "571c8610fcb9be93c10f309412bd8232e452b1ff4150ddcd5277f39acc9f2edf" }, "representative:legacy-20": { "canonical": "representative:legacy-20", "state": "deleted", "sha256": "5b9024f4ec8b38ee9cbc7dd8813ce084b21a9ba8fd2c5d55491096a00f0e087c" }, "representative:a02": { "canonical": "representative:a02", "state": "deleted", "sha256": "949d9a64ac19464606191b771adea9d4cd63798c68bb7c25562a6f36b218e9d9" }, "representative:legacy-171": { "canonical": "representative:legacy-171", "state": "deleted", "sha256": "9ad917805e6f9a381eae9eaf89d3a4714b848f998c4ec901d8f1113580108183" }, "representative:a138": { "canonical": "representative:a138", "state": "deleted", "sha256": "50ddff8fa88e78bc4ebe8114138ddca77c8aaff8263f0d2939b481432f298af3" }, "representative:a54": { "canonical": "representative:a54", "state": "active", "sha256": "3cfa663f32929216c9f3257a5b52bfcba3335d9292d74d3e44937402fc04faf8" }, "representative:simready-bin": { "canonical": "representative:simready-bin", "state": "deleted", "sha256": "9d667eb35555329867aa07211a58f5e62f0883706e956fbe7be68139dd765c4a" }, "representative:legacy-103": { "canonical": "representative:legacy-103", "state": "deleted", "sha256": "1a7d02cd708e3887b839079be270b5fbb8392640a3911777d23541334318bd7e" }, "representative:legacy-108": { "canonical": "representative:legacy-108", "state": "deleted", "sha256": "2d2e8a38fcc9484988e8d4825271813dc769618e86a93b78e43d38615aeda447" }, "vehicle:bus-blue": { "canonical": "vehicle:bus-blue", "state": "active", "sha256": "3c443900a473ff609053dccb39ecb8d852c5128af4147621c1b92aa569db81cc" }, "vehicle:bus-green": { "canonical": "vehicle:bus-green", "state": "active", "sha256": "669c64190f479c319287057622c9b5844e7ef814ff564f189728a3c682143d4b" }, "vehicle:bus-red": { "canonical": "vehicle:bus-red", "state": "active", "sha256": "8d656d2bd482d2f591d6be091bb38c6ada2f6a6b00b68483eb10d43d3af2da63" }, "vehicle:porter2": { "canonical": "vehicle:porter2", "state": "active", "sha256": "257cf871174d592c6412b6ae8ba245fb2491a4e8a1f32964a53c38a00bf1dca2" }, "vehicle:sonata-dn8": { "canonical": "vehicle:sonata-dn8", "state": "active", "sha256": "a78b670eebbcaab3df01289def024bb090593e8f217c867754b312b0a68569aa" }, "vehicle:ray": { "canonical": "vehicle:ray", "state": "active", "sha256": "5dd42751e9ecca4eefbe10bf07cb4a3c48d7ebe28479616e6583e72e3786a0ef" }, "vehicle:carnival-ka4": { "canonical": "vehicle:carnival-ka4", "state": "active", "sha256": "92d6a6c1a28f4df17b6a4fe11f6f59411bbb37809616cf9b8e96466db23530ea" }, "vehicle:grandeur-ig": { "canonical": "vehicle:grandeur-ig", "state": "active", "sha256": "0ffbeec156b20d6466d367f06074b64cccefbbebb6cbf560a1cbe2591bee661f" }, "vehicle:porter2-delivery": { "canonical": "vehicle:porter2-delivery", "state": "active", "sha256": "8f7e6cc03099e70999f54707a371ebd52cda62983e68e8ba77262c1927395808" }, "vehicle:spark-m400": { "canonical": "vehicle:spark-m400", "state": "active", "sha256": "0d80b65f0b0cd781924321ac0db2f9b628c6c12833946894679d11edcbb5d2f7" }, "vehicle:grand-starex-school": { "canonical": "vehicle:grand-starex-school", "state": "active", "sha256": "97b0166fdb67ae7cd32dd022a4b7ffd729773dcb5a278ea8e38760122d5cc635" }, "vehicle:sonata-taxi": { "canonical": "vehicle:sonata-taxi", "state": "active", "sha256": "04fb4f1ae70d3eaed705c6a436740bcff21d2dd07d8e7c561dca8d54908892ed" }, "vehicle:carnival-ka4-black": { "canonical": "vehicle:carnival-ka4-black", "state": "active", "sha256": "1d2def40c2bd01c31e8b05b9b9d7c2b4480f47843ea61b56b2654fe5a4e49b11" }, "vehicle:carnival-ka4-silver": { "canonical": "vehicle:carnival-ka4-silver", "state": "active", "sha256": "f48ea1ad1ac4b96f8efcf72b9f85f81722c1f5730caee2aaaf776b22dc261202" }, "vehicle:grandeur-ig-black": { "canonical": "vehicle:grandeur-ig-black", "state": "active", "sha256": "36ecdaa14be42dd8515f7af105df1d3da9fcc2acf34996f59109dfd6c0a1cdac" }, "vehicle:grandeur-ig-silver": { "canonical": "vehicle:grandeur-ig-silver", "state": "active", "sha256": "423a4f2838f08c9c501faba4edd1c5b52a92e32783de721cd77c07143f879a03" }, "vehicle:porter2-blue": { "canonical": "vehicle:porter2-blue", "state": "active", "sha256": "1dcd411570e16ca2e3a9d24d9d7e6f226d2abe3a348e84e6d657ea079cd75cb4" }, "vehicle:porter2-delivery-blue": { "canonical": "vehicle:porter2-delivery-blue", "state": "active", "sha256": "4b613094f579f63729c4809ce6b0fbfdc121e651f494f6379d50de9806e9e640" }, "vehicle:porter2-delivery-silver": { "canonical": "vehicle:porter2-delivery-silver", "state": "active", "sha256": "b5c776f09c94c7940bece4a5158ed3ced7288264f35d86ac38f333ddf07b7427" }, "vehicle:porter2-silver": { "canonical": "vehicle:porter2-silver", "state": "active", "sha256": "dfaf4a2dd884d9aef812c6d2310962a24393f3f1396401289a57b97257d394d5" }, "vehicle:ray-beige": { "canonical": "vehicle:ray-beige", "state": "active", "sha256": "cd6ba6ee975a968aaaea236d353dd2b39c82aaac74b4649c460c24b278b11c37" }, "vehicle:ray-blue": { "canonical": "vehicle:ray-blue", "state": "active", "sha256": "37d6535fcba8a2265421230a545cfd233d7bdbd6140c442981c1a4ff97d5d1a7" }, "vehicle:ray-gray": { "canonical": "vehicle:ray-gray", "state": "active", "sha256": "46ba2a2b359ba26c027ef349ee8a00e8a3d5724617f5a62bb53edfda793116aa" }, "vehicle:sonata-dn8-black": { "canonical": "vehicle:sonata-dn8-black", "state": "active", "sha256": "af45bf310ad482ec653be2c51d21923256c0ec8f19a62df50e5633f61b33f02f" }, "vehicle:sonata-dn8-navy": { "canonical": "vehicle:sonata-dn8-navy", "state": "active", "sha256": "3e6a990d1952a482b644141f522d99b87f7e4b3a4240f9be27caed63968a35f2" }, "vehicle:sonata-dn8-silver": { "canonical": "vehicle:sonata-dn8-silver", "state": "active", "sha256": "61fef90729d12992cdf60fb1f274c81a85769d28aa88538575db5deca35061a5" }, "vehicle:sonata-personal-silver": { "canonical": "vehicle:sonata-personal-silver", "state": "active", "sha256": "f55ee35f7dae2358fa8f68eff4fde26ed0655871e7338bea47c21f7e8877f537" }, "vehicle:sonata-personal-white": { "canonical": "vehicle:sonata-personal-white", "state": "active", "sha256": "de7a94830279a65425f213ed282df6daa9224fb96694b3cc682c6ebabfdf70dd" }, "vehicle:spark-m400-blue": { "canonical": "vehicle:spark-m400-blue", "state": "active", "sha256": "0c4d1b51c1b479bc0ef85b0422e438c26e44939954ea599ebce0ac7494855947" }, "vehicle:spark-m400-red": { "canonical": "vehicle:spark-m400-red", "state": "active", "sha256": "804e6d5f4b80a7169640f74123d6ea20d23646db146fce5b307a6680dc283ec1" }, "vehicle:spark-m400-silver": { "canonical": "vehicle:spark-m400-silver", "state": "active", "sha256": "64fbd9579b4cfa70cbe9b6628607c3b866f8f24dc4349195ec886d559fe4b09d" }, "part:wall-0": { "canonical": "part:wall-0", "state": "active", "sha256": null }, "part:wall-1": { "canonical": "part:wall-1", "state": "active", "sha256": null }, "part:wall-2": { "canonical": "part:wall-2", "state": "active", "sha256": null }, "part:wall-3": { "canonical": "part:wall-3", "state": "active", "sha256": null }, "part:wall-4": { "canonical": "part:wall-4", "state": "active", "sha256": null }, "part:wall-5": { "canonical": "part:wall-5", "state": "active", "sha256": null }, "part:wall-6": { "canonical": "part:wall-6", "state": "active", "sha256": null }, "part:wall-7": { "canonical": "part:wall-7", "state": "active", "sha256": null }, "part:wall-8": { "canonical": "part:wall-8", "state": "active", "sha256": null }, "part:wall-9": { "canonical": "part:wall-9", "state": "active", "sha256": null }, "part:wall-10": { "canonical": "part:wall-10", "state": "active", "sha256": null }, "part:wall-11": { "canonical": "part:wall-11", "state": "active", "sha256": null }, "part:wall-12": { "canonical": "part:wall-12", "state": "active", "sha256": null }, "part:wall-13": { "canonical": "part:wall-13", "state": "active", "sha256": null }, "part:wall-14": { "canonical": "part:wall-14", "state": "active", "sha256": null }, "part:wall-15": { "canonical": "part:wall-15", "state": "active", "sha256": null }, "part:wall-16": { "canonical": "part:wall-16", "state": "active", "sha256": null }, "part:wall-17": { "canonical": "part:wall-17", "state": "active", "sha256": null }, "part:white-slider": { "canonical": "part:white-slider", "state": "active", "sha256": null }, "part:brown-slider": { "canonical": "part:brown-slider", "state": "active", "sha256": null }, "part:wide-slider": { "canonical": "part:wide-slider", "state": "active", "sha256": null }, "part:veranda": { "canonical": "part:veranda", "state": "active", "sha256": null }, "part:guard": { "canonical": "part:guard", "state": "active", "sha256": null }, "part:basement": { "canonical": "part:basement", "state": "active", "sha256": null }, "part:frosted": { "canonical": "part:frosted", "state": "active", "sha256": null }, "part:stair": { "canonical": "part:stair", "state": "active", "sha256": null }, "part:awning": { "canonical": "part:awning", "state": "active", "sha256": null }, "part:bay": { "canonical": "part:bay", "state": "active", "sha256": null }, "part:basic-window-small": { "canonical": "part:basic-window-small", "state": "active", "sha256": null }, "part:basic-window-room": { "canonical": "part:basic-window-room", "state": "active", "sha256": null }, "part:basic-window-living": { "canonical": "part:basic-window-living", "state": "active", "sha256": null }, "part:basic-window-wide": { "canonical": "part:basic-window-wide", "state": "active", "sha256": null }, "part:basic-window-veranda": { "canonical": "part:basic-window-veranda", "state": "active", "sha256": null }, "part:basic-window-bath": { "canonical": "part:basic-window-bath", "state": "active", "sha256": null }, "part:basic-window-stair": { "canonical": "part:basic-window-stair", "state": "active", "sha256": null }, "part:basic-window-basement": { "canonical": "part:basic-window-basement", "state": "active", "sha256": null }, "part:window-accessory-flat-guard": { "canonical": "part:window-accessory-flat-guard", "state": "active", "sha256": null }, "part:window-accessory-box-guard": { "canonical": "part:window-accessory-box-guard", "state": "active", "sha256": null }, "part:window-accessory-projecting-railing": { "canonical": "part:window-accessory-projecting-railing", "state": "active", "sha256": null }, "part:window-accessory-support-rack": { "canonical": "part:window-accessory-support-rack", "state": "active", "sha256": null }, "part:window-accessory-awning": { "canonical": "part:window-accessory-awning", "state": "active", "sha256": null }, "part:window-accessory-sill": { "canonical": "part:window-accessory-sill", "state": "active", "sha256": null }, "part:window-assembly-recessed-room": { "canonical": "part:window-assembly-recessed-room", "state": "active", "sha256": null }, "part:window-assembly-photo-living": { "canonical": "part:window-assembly-photo-living", "state": "active", "sha256": null }, "part:window-assembly-guarded-small": { "canonical": "part:window-assembly-guarded-small", "state": "active", "sha256": null }, "part:original-steel-door": { "canonical": "part:original-steel-door", "state": "active", "sha256": null }, "part:original-glass-door": { "canonical": "part:original-glass-door", "state": "active", "sha256": null }, "part:lobby-center": { "canonical": "part:lobby-center", "state": "active", "sha256": null }, "part:lobby-side": { "canonical": "part:lobby-side", "state": "active", "sha256": null }, "part:lobby-steps": { "canonical": "part:lobby-steps", "state": "active", "sha256": null }, "part:shop-single": { "canonical": "part:shop-single", "state": "active", "sha256": null }, "part:shop-pair": { "canonical": "part:shop-pair", "state": "active", "sha256": null }, "part:shop-shutter": { "canonical": "part:shop-shutter", "state": "active", "sha256": null }, "part:piloti-0": { "canonical": "part:piloti-0", "state": "active", "sha256": null }, "part:piloti-1": { "canonical": "part:piloti-1", "state": "active", "sha256": null }, "part:piloti-2": { "canonical": "part:piloti-2", "state": "active", "sha256": null }, "part:basement-ramp": { "canonical": "part:basement-ramp", "state": "active", "sha256": null }, "part:brick-wall": { "canonical": "part:brick-wall", "state": "active", "sha256": null }, "part:stone-wall": { "canonical": "part:stone-wall", "state": "active", "sha256": null }, "part:render-wall": { "canonical": "part:render-wall", "state": "active", "sha256": null }, "part:rail-wall": { "canonical": "part:rail-wall", "state": "active", "sha256": null }, "part:gate-solid": { "canonical": "part:gate-solid", "state": "active", "sha256": null }, "part:gate-rail": { "canonical": "part:gate-rail", "state": "active", "sha256": null }, "part:open-gate": { "canonical": "part:open-gate", "state": "active", "sha256": null }, "part:parking-shutter": { "canonical": "part:parking-shutter", "state": "active", "sha256": null }, "part:garden-straight": { "canonical": "part:garden-straight", "state": "active", "sha256": null }, "part:garden-corner-sparse": { "canonical": "part:garden-corner-sparse", "state": "active", "sha256": null }, "part:garden-corner-green": { "canonical": "part:garden-corner-green", "state": "active", "sha256": null }, "part:garden-entrance": { "canonical": "part:garden-entrance", "state": "active", "sha256": null }, "part:garden-building-sparse": { "canonical": "part:garden-building-sparse", "state": "active", "sha256": null }, "part:garden-building-green": { "canonical": "part:garden-building-green", "state": "active", "sha256": null }, "part:courtyard-angled": { "canonical": "part:courtyard-angled", "state": "active", "sha256": null }, "part:courtyard-opposite": { "canonical": "part:courtyard-opposite", "state": "active", "sha256": null }, "part:courtyard-compact": { "canonical": "part:courtyard-compact", "state": "active", "sha256": null }, "part:roof-compact": { "canonical": "part:roof-compact", "state": "active", "sha256": null }, "part:roof-brick": { "canonical": "part:roof-brick", "state": "active", "sha256": null }, "part:roof-shed": { "canonical": "part:roof-shed", "state": "active", "sha256": null }, "part:roof-gable": { "canonical": "part:roof-gable", "state": "active", "sha256": null }, "part:roof-elbow": { "canonical": "part:roof-elbow", "state": "active", "sha256": null }, "part:roof-stepped": { "canonical": "part:roof-stepped", "state": "active", "sha256": null }, "part:roof-lift": { "canonical": "part:roof-lift", "state": "active", "sha256": null }, "part:roof-hatch": { "canonical": "part:roof-hatch", "state": "active", "sha256": null }, "part:aircon": { "canonical": "part:aircon", "state": "deleted", "sha256": null }, "part:side-pipes": { "canonical": "part:side-pipes", "state": "deleted", "sha256": null }, "building:home-0": { "canonical": "building:home-0", "state": "active", "sha256": null }, "building:home-1": { "canonical": "building:home-1", "state": "active", "sha256": null }, "building:home-2": { "canonical": "building:home-2", "state": "active", "sha256": null }, "building:home-3": { "canonical": "building:home-3", "state": "active", "sha256": null }, "building:home-4": { "canonical": "building:home-4", "state": "active", "sha256": null }, "building:home-5": { "canonical": "building:home-5", "state": "active", "sha256": null }, "building:shop-glass": { "canonical": "building:shop-glass", "state": "active", "sha256": null }, "building:shop-tile": { "canonical": "building:shop-tile", "state": "active", "sha256": null }, "building:shop-panel": { "canonical": "building:shop-panel", "state": "active", "sha256": null }, "building:apartment-old": { "canonical": "building:apartment-old", "state": "active", "sha256": null }, "building:apartment-middle": { "canonical": "building:apartment-middle", "state": "active", "sha256": null }, "building:apartment-new": { "canonical": "building:apartment-new", "state": "active", "sha256": null }, "building:school": { "canonical": "building:school", "state": "active", "sha256": null }, "building:civic": { "canonical": "building:civic", "state": "active", "sha256": null }, "building:fire": { "canonical": "building:fire", "state": "active", "sha256": null }, "facility:apartment": { "canonical": "facility:apartment", "state": "active", "sha256": null }, "facility:school": { "canonical": "facility:school", "state": "active", "sha256": null }, "facility:emart": { "canonical": "facility:emart", "state": "active", "sha256": null }, "facility:lotte": { "canonical": "facility:lotte", "state": "active", "sha256": null }, "facility:homeplus": { "canonical": "facility:homeplus", "state": "active", "sha256": null }, "facility:costco": { "canonical": "facility:costco", "state": "active", "sha256": null }, "facility:traders": { "canonical": "facility:traders", "state": "active", "sha256": null }, "facility:police": { "canonical": "facility:police", "state": "active", "sha256": null }, "facility:fire": { "canonical": "facility:fire", "state": "active", "sha256": null }, "facility:post": { "canonical": "facility:post", "state": "active", "sha256": null }, "facility:daiso": { "canonical": "facility:daiso", "state": "active", "sha256": null }, "facility:cu": { "canonical": "facility:cu", "state": "active", "sha256": null }, "facility:gs25": { "canonical": "facility:gs25", "state": "active", "sha256": null }, "facility:seven": { "canonical": "facility:seven", "state": "active", "sha256": null }, "facility:emart24": { "canonical": "facility:emart24", "state": "active", "sha256": null }, "facility:mega": { "canonical": "facility:mega", "state": "active", "sha256": null }, "facility:starbucks": { "canonical": "facility:starbucks", "state": "active", "sha256": null }, "tree:pine": { "canonical": "tree:pine", "state": "active", "sha256": null }, "tree:ginkgo": { "canonical": "tree:ginkgo", "state": "active", "sha256": null }, "tree:maple": { "canonical": "tree:maple", "state": "active", "sha256": null }, "tree:cherry": { "canonical": "tree:cherry", "state": "active", "sha256": null }, "tree:zelkova": { "canonical": "tree:zelkova", "state": "active", "sha256": null }, "tree:fringe": { "canonical": "tree:fringe", "state": "active", "sha256": null }, "tree:magnolia": { "canonical": "tree:magnolia", "state": "active", "sha256": null }, "tree:persimmon": { "canonical": "tree:persimmon", "state": "active", "sha256": null }, "tree:metasequoia": { "canonical": "tree:metasequoia", "state": "active", "sha256": null }, "tree:plane": { "canonical": "tree:plane", "state": "active", "sha256": null }, "person:woman-cardigan": { "canonical": "person:woman-cardigan", "state": "active", "sha256": "ddba4360a9cdf89b9e5a8443ecd533af77dcdd11d84632e6c263a6ba08426817" }, "person:man-jacket": { "canonical": "person:man-jacket", "state": "active", "sha256": "def6fdb112e691426da769cc11ba26e56896b706c99367e682636a032563b685" }, "person:woman-vest": { "canonical": "person:woman-vest", "state": "active", "sha256": "6ea3ac2275edac9bbeab4705fc36ca8921d2192ba89f90ddb286283e9ea37f06" }, "person:man-senior": { "canonical": "person:man-senior", "state": "active", "sha256": "f350cbcece4db81f624bf11168e9914080e3fa04f64fe0ef2021c3c4548c03e1" }, "person:man-backpack": { "canonical": "person:man-backpack", "state": "active", "sha256": "7ccb8a2de4d3929124b5ccc053e779ed950bb3f1ef782cb417de881d4ffa6aab" }, "person:woman-coat": { "canonical": "person:woman-coat", "state": "active", "sha256": "d2ed9d9c337995955b9e546d419ec92b4c4e9d76ee13bf2c80165ab690b0ced0" }, "person:man-sweatshirt": { "canonical": "person:man-sweatshirt", "state": "active", "sha256": "031cdcece82b3090d91eadf795f3928e162a14e94d66955a4771bc5f8c472986" }, "person:woman-skirt": { "canonical": "person:woman-skirt", "state": "active", "sha256": "719681bf5187bab860b1f454ca7d0d3d18f40f17fc64f48b88134ad9fd5660b5" }, "person:woman-sweater": { "canonical": "person:woman-sweater", "state": "active", "sha256": "9b8501b6b98dd042da6d315948e2bdf51e9e40a9089ebb3ed59c3a9f6b9b843c" }, "person:man-shirt": { "canonical": "person:man-shirt", "state": "active", "sha256": "69c88724892f82f78c995f385e08a33e288bfb720a811f3542a2a26e6439672f" }, "plant:persimmon": { "canonical": "plant:persimmon", "state": "deleted", "sha256": "8def4245b1dc974cc8f959c4330d80ca610591d537fe6446490035fc3bb7a0b5" }, "plant:jujube": { "canonical": "plant:jujube", "state": "deleted", "sha256": "0c4f5d622ee3671f40fabc93b375310c025d5aa7ef6ecbf7b91cd66a228712a0" }, "plant:magnolia": { "canonical": "plant:magnolia", "state": "deleted", "sha256": "6e6490cc4841ab02be0fe847164811e835de1cdb7fb0ea89227858b9476b9eb3" }, "plant:maple": { "canonical": "plant:maple", "state": "deleted", "sha256": "0f7a5a88ffe98d17c8495d30e0b2291c8d4d3158c24f3d1e008fb0014d35abff" }, "plant:pine": { "canonical": "plant:pine", "state": "deleted", "sha256": "72f6694cb181ba96f564e6ee520b0323ea85bb5ccd1ac597bfc54680157658de" }, "plant:juniper": { "canonical": "plant:juniper", "state": "deleted", "sha256": "8fc0eb155f60a018724748b8836e7f0de73fe39cd837b1075250c7a53106f293" }, "plant:lilac": { "canonical": "plant:lilac", "state": "deleted", "sha256": "8a6a8e7814a8fbb45dd1d7b6d291510a5fad7619b5bd8880ed1e2abc6cf0c49b" }, "plant:cornelian": { "canonical": "plant:cornelian", "state": "deleted", "sha256": "29a4a945a8490fa9629097db19d6ebf977d40f47e77500ed6eca9be372a2ff0e" }, "plant:crape-myrtle": { "canonical": "plant:crape-myrtle", "state": "deleted", "sha256": "88c55161a1eb8acbfe4d780e3d9af5cf87c2dbec196ff496c0b39eaf7f7b659f" }, "plant:ginkgo": { "canonical": "plant:ginkgo", "state": "deleted", "sha256": "be7deceba88d0b1c195cc79c47b37852d6ade49827276070315d18cdf3b27b33" }, "plant:leafy-herb": { "canonical": "plant:leafy-herb", "state": "deleted", "sha256": "a12ef601d6c6681cc98b5700690b9e0662a29464eed94a49b14753df9fa5edeb" }, "plant:hydrangea": { "canonical": "plant:hydrangea", "state": "deleted", "sha256": "915029fa8d8470a66538d2c05238c6945ee2ad4779de13a4d1f8fdd011beeb3e" }, "plant:pepper": { "canonical": "plant:pepper", "state": "deleted", "sha256": "939a42ea6d2a1221f2cf4944a77aed1896aa6779a8790ea1973039a2c97e8e28" }, "shop:convenience-01": { "canonical": "shop:convenience-01", "state": "active", "sha256": null }, "shop:convenience-02": { "canonical": "shop:convenience-02", "state": "active", "sha256": null }, "shop:convenience-03": { "canonical": "shop:convenience-03", "state": "active", "sha256": null }, "shop:salon-01": { "canonical": "shop:salon-01", "state": "active", "sha256": null }, "shop:salon-02": { "canonical": "shop:salon-02", "state": "active", "sha256": null }, "shop:salon-03": { "canonical": "shop:salon-03", "state": "active", "sha256": null }, "shop:laundry-01": { "canonical": "shop:laundry-01", "state": "active", "sha256": null }, "shop:laundry-02": { "canonical": "shop:laundry-02", "state": "active", "sha256": null }, "shop:laundry-03": { "canonical": "shop:laundry-03", "state": "active", "sha256": null }, "shop:estate-01": { "canonical": "shop:estate-01", "state": "active", "sha256": null }, "shop:estate-02": { "canonical": "shop:estate-02", "state": "active", "sha256": null }, "shop:estate-03": { "canonical": "shop:estate-03", "state": "active", "sha256": null }, "shop:food-01": { "canonical": "shop:food-01", "state": "active", "sha256": null }, "shop:food-02": { "canonical": "shop:food-02", "state": "active", "sha256": null }, "shop:cafe-01": { "canonical": "shop:cafe-01", "state": "active", "sha256": null }, "shop:cafe-02": { "canonical": "shop:cafe-02", "state": "active", "sha256": null }, "shop:cafe-03": { "canonical": "shop:cafe-03", "state": "active", "sha256": null }, "shop:food-03": { "canonical": "shop:food-03", "state": "active", "sha256": null }, "prototype:barrier-v1": { "canonical": "prototype:barrier-v1", "state": "active", "sha256": "b37217fa3025e6651813c5573ca5f7769895f27b8783eb84224e945a447d78fd" }, "prototype:shoe-rack-v1": { "canonical": "prototype:shoe-rack-v1", "state": "active", "sha256": "7b6d6add0740b469ceaa93fe76debe4e858fdb341875f7a0a42551f7be2a1e99" }, "prototype:bus-stop-v1": { "canonical": "prototype:bus-stop-v1", "state": "active", "sha256": "4b42df5c3b201802c3391c2ac810ad1431cd9a109f5286824a60d3de2579a65e" }, "prototype:manhole-v1": { "canonical": "prototype:manhole-v1", "state": "active", "sha256": "3d98f28fbdc33ca167dfb93eaa457696e8ca8cd9bfd352374add3710b25b2675" }, "prototype:security-gate-v1": { "canonical": "prototype:security-gate-v1", "state": "active", "sha256": "696c9960dba177663c2720e7b0ade0f743acc840809c18bf1c14e9e9a6bc9cae" }, "prototype:antenna-v1": { "canonical": "prototype:antenna-v1", "state": "active", "sha256": "dd43b032d16f8ce5e885c354645f8d9c1ccc784a06da44d60827c31633ea7127" }, "prototype:door-lock-v1": { "canonical": "prototype:door-lock-v1", "state": "active", "sha256": "29fb3ae6507f8c524f5602c221bd12981f57d1521ed8e3509f1044509a5f5061" }, "prototype:cart-v1": { "canonical": "prototype:cart-v1", "state": "active", "sha256": "91dd3ef4646817d2ff5e35741df5b4498662d73ef82868bbbd4933da38322b91" }, "prototype:cone-v1": { "canonical": "prototype:cone-v1", "state": "active", "sha256": "7efd28e1a3d1b6b68ca3a6600a760e09c03acb8f176d34f930b84b0462428e1d" }, "prototype:ladder-v1": { "canonical": "prototype:ladder-v1", "state": "active", "sha256": "92a821b60a7a5077268a3b1b604d8cd61f5d5036ac2d386796c24b718f6b597d" }, "prototype:stall-v1": { "canonical": "prototype:stall-v1", "state": "active", "sha256": "510fd1f3a42e14930e074aecd3f517e1593cdd9ee2fbd7c43c636edb6b91ef24" }, "prototype:basins-v1": { "canonical": "prototype:basins-v1", "state": "active", "sha256": "9fa5a00798c6e2cf423eab90b957b307eb2a1b633d50e3f2e62601a438d2cb11" }, "prototype:open-box-v1": { "canonical": "prototype:open-box-v1", "state": "active", "sha256": "cdc6f72dca2849657240f0175dcad0d33c3fceb77bb1a4054409fd52964bcf11" }, "prototype:sink-v1": { "canonical": "prototype:sink-v1", "state": "active", "sha256": "ec6b8e107c969d4393842ad40107a0136ae7a44477529cc4f424e22c2a0b47fd" }, "prototype:dolly-v1": { "canonical": "prototype:dolly-v1", "state": "active", "sha256": "dc1ca087a5b6edf05c5abae3020296b1e8ca0f9920b1f3a535a5f699fd555cba" }, "prototype:drying-rack-v1": { "canonical": "prototype:drying-rack-v1", "state": "active", "sha256": "2293489db2983b9986888b1bdcde79ec50acdadc0ffc148199931672dfd3a10d" }, "prototype:pallet-v1": { "canonical": "prototype:pallet-v1", "state": "active", "sha256": "934cc589c9f96ddf868c5fec246da0986517c8a8adbe264b963de7d174c634d4" }, "prototype:tray-rack-v1": { "canonical": "prototype:tray-rack-v1", "state": "active", "sha256": "cd0222bf413892fae9372458b5e48eba381a64f9f19f8a554eeed3173ae7b512" }, "file:domestic-test/apartments/garden/assets/bench.glb": { "canonical": "file:domestic-test/apartments/garden/assets/bench.glb", "state": "deleted", "sha256": "ccecd80b1c72254a1ed72810a848995d3227261227986c3ac51997dc31432332" }, "file:domestic-test/apartments/garden/assets/bike.glb": { "canonical": "file:domestic-test/apartments/garden/assets/bike.glb", "state": "active", "sha256": "86ab0c1fb87ca70f8729cb4a68fbe64e4b1cd8536cdcf0806af3038b4ac03652" }, "file:domestic-test/apartments/garden/assets/guard.glb": { "canonical": "file:domestic-test/apartments/garden/assets/guard.glb", "state": "active", "sha256": "55f28ad984ee81139aa4b628358fa7f5f8d4aa7e00f828b57747dae95654e33f" }, "file:domestic-test/apartments/garden/assets/pergola.glb": { "canonical": "file:domestic-test/apartments/garden/assets/pergola.glb", "state": "active", "sha256": "e425f61ab67e6167394ab291ba7835310fc5cde6bd8352b0de24af1f0b576ef5" }, "file:domestic-test/apartments/garden/assets/play.glb": { "canonical": "file:domestic-test/apartments/garden/assets/play.glb", "state": "active", "sha256": "887f5553fc5601d7be23476a497e79ea445c6ba347654395f2d3db69a25b9420" }, "file:domestic-test/apartments/garden/assets/ramp.glb": { "canonical": "file:domestic-test/apartments/garden/assets/ramp.glb", "state": "active", "sha256": "922252685b455bc824627e12658fca5a6404774157474b83bb68b162d70a741e" }, "file:domestic-test/apartments/garden/assets/recycling.glb": { "canonical": "file:domestic-test/apartments/garden/assets/recycling.glb", "state": "active", "sha256": "e4fb216f839061d725538e545af94c8082d5131d294a9c076ed9a0343349631f" }, "file:domestic-test/apartments/middle-1.glb": { "canonical": "file:domestic-test/apartments/middle-1.glb", "state": "active", "sha256": "fb3c0640c2f6c5653c0a9c7662ed3fd341da2cc44ab2853022ad362726a3b370" }, "file:domestic-test/apartments/middle-2.glb": { "canonical": "file:domestic-test/apartments/middle-2.glb", "state": "active", "sha256": "25691ef09374ce4f9f389d77cff04ca467ad7eaf3eb3499f94cf964695b7abc7" }, "file:domestic-test/apartments/middle-3.glb": { "canonical": "file:domestic-test/apartments/middle-3.glb", "state": "active", "sha256": "cb61aab7a1dc017e24dc2d7b3ef82fcf0a1b3a50422894e23c4f9fc918425b89" }, "file:domestic-test/apartments/new-1.glb": { "canonical": "file:domestic-test/apartments/new-1.glb", "state": "active", "sha256": "e46eeab819c30072d441f279999126eefeb6d789dc793d297f134b97a9dde7ff" }, "file:domestic-test/apartments/new-2.glb": { "canonical": "file:domestic-test/apartments/new-2.glb", "state": "active", "sha256": "a30e04b5a4cf81b586e947a30dccee9110028767b53a440450b8aa5546d06882" }, "file:domestic-test/apartments/new-3.glb": { "canonical": "file:domestic-test/apartments/new-3.glb", "state": "active", "sha256": "0122c169d990332e3fd5be7f930c5c8addc5f0f7a69bd5a95b447473b1cdaf39" }, "file:domestic-test/apartments/old-1.glb": { "canonical": "file:domestic-test/apartments/old-1.glb", "state": "active", "sha256": "84f3721eeb6386b28442658a17a19128b20823d8962c825c532467655652478b" }, "file:domestic-test/apartments/old-2.glb": { "canonical": "file:domestic-test/apartments/old-2.glb", "state": "active", "sha256": "56e315b1476936e506901ad9928da2f321bb633259b3fde9428c483a60837cfb" }, "file:domestic-test/apartments/old-3.glb": { "canonical": "file:domestic-test/apartments/old-3.glb", "state": "active", "sha256": "671cac8be41ef6bbcc62df110c1995b4bb33091e5c1ba029018335e1a32f8c3a" }, "file:domestic-test/cars/avante-cn7-mesh-v89/avante-cn7.glb": { "canonical": "file:domestic-test/cars/avante-cn7-mesh-v89/avante-cn7.glb", "state": "deleted", "sha256": "829a639f882f071ee5611aa82cb0474c9f2ee625a42e16819e345d93b04ad40d" }, "file:domestic-test/cars/avante-cn7-mesh-v90/avante-cn7.glb": { "canonical": "file:domestic-test/cars/avante-cn7-mesh-v90/avante-cn7.glb", "state": "deleted", "sha256": "bafe878756bd37c61b7a00aa1ded10396d72bc6caf7c0daf4d39e9bb178d5e9d" }, "file:domestic-test/cars/avante-cn7-mesh-v91/avante-cn7.glb": { "canonical": "file:domestic-test/cars/avante-cn7-mesh-v91/avante-cn7.glb", "state": "deleted", "sha256": "6601208b3d9129a2a22d7ff770046f3722d34f507b55b312061cefd12c6bcdac" }, "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb": { "canonical": "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb", "state": "deleted", "sha256": "369c4bc7511d8261485a1cd33105b5387020cc4638f3d07ebc1c8c5c0bdca889" }, "file:domestic-test/vehicles/avante-cn7/model.glb": { "canonical": "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb", "state": "deleted", "sha256": "369c4bc7511d8261485a1cd33105b5387020cc4638f3d07ebc1c8c5c0bdca889" }, "file:domestic-test/representatives/a11.glb": { "canonical": "file:domestic-test/representatives/a11.glb", "state": "deleted", "sha256": "c6609246908418ec22dc65367bc3a2f4ccfca8d8c30e41ab015c455dc7a35968" }, "file:domestic-test/representatives/a114.glb": { "canonical": "file:domestic-test/representatives/a114.glb", "state": "deleted", "sha256": "35efad8877a1032f4f517171ab4fc219858e26bc17345acc6212646aee5af0a2" }, "file:domestic-test/representatives/a115.glb": { "canonical": "file:domestic-test/representatives/a115.glb", "state": "deleted", "sha256": "48316cf65c3a1c4536da1a0651cc8c34a8ea98f456f228424129f59b5c02a6a1" }, "file:domestic-test/representatives/a123.glb": { "canonical": "file:domestic-test/representatives/a123.glb", "state": "deleted", "sha256": "a6724d783d084181829038fa0f56b4ae005ca41fcefe2be73afa71c8937578e1" }, "file:domestic-test/representatives/a128.glb": { "canonical": "file:domestic-test/representatives/a128.glb", "state": "deleted", "sha256": "6c5f1ab15c6276715412168460cfa2101a040e94441350ae4be43ada7e2edd40" }, "file:domestic-test/representatives/a13.glb": { "canonical": "file:domestic-test/representatives/a13.glb", "state": "deleted", "sha256": "f5269462ab39a9fa480069eef7808b4589c263497187ba662697922220760305" }, "file:domestic-test/representatives/a131.glb": { "canonical": "file:domestic-test/representatives/a131.glb", "state": "deleted", "sha256": "18046fe948037db6c5ed96c816ab43db3dc5e5ec67362cc6742784f5360c9223" }, "file:domestic-test/representatives/a150.glb": { "canonical": "file:domestic-test/representatives/a150.glb", "state": "deleted", "sha256": "9cb9133b8a36c2c9ea5f5ae4d2f9fd33a9c44f36d7097ffa3f7c604c6ff6995a" }, "file:domestic-test/representatives/a151.glb": { "canonical": "file:domestic-test/representatives/a151.glb", "state": "deleted", "sha256": "cea1d26c390ebc9dde776851ead79e3af242bd9810d187b76548ec51e1215c37" }, "file:domestic-test/representatives/a152.glb": { "canonical": "file:domestic-test/representatives/a152.glb", "state": "deleted", "sha256": "d39e94dcbf49f34f68cde776de2be86449d2e6fa681dbebd7db8c65fcdea20fd" }, "file:domestic-test/representatives/a153.glb": { "canonical": "file:domestic-test/representatives/a153.glb", "state": "deleted", "sha256": "72c0d29d0670ac8784cf18943dc35f67ede4213b914b6639ba6f783633c992ce" }, "file:domestic-test/representatives/a169.glb": { "canonical": "file:domestic-test/representatives/a169.glb", "state": "deleted", "sha256": "e84fe9e424db25bd7973809951b6bcdd6990f81165eea245c2048f8ed60cb9ee" }, "file:domestic-test/representatives/a171.glb": { "canonical": "file:domestic-test/representatives/a171.glb", "state": "deleted", "sha256": "7528eb887d679c9b5e9bb26efb530533d0a38aad23c76a09559d880887be1f11" }, "file:domestic-test/representatives/a178.glb": { "canonical": "file:domestic-test/representatives/a178.glb", "state": "deleted", "sha256": "4ba043d0d43a86ced4440ba00f84c6fbbd67d081648cf8386d55001213724ce4" }, "file:domestic-test/representatives/a179.glb": { "canonical": "file:domestic-test/representatives/a179.glb", "state": "deleted", "sha256": "44b27361c61d1c5a5f4c8c1e3469e87bef5351d4213718b3b11f033310e5fd28" }, "file:domestic-test/representatives/a180.glb": { "canonical": "file:domestic-test/representatives/a180.glb", "state": "deleted", "sha256": "b036d01877d9acf3fc4b2d8198bebf33d5617bb4cdcf8f106a838431e6cb1613" }, "file:domestic-test/representatives/a182.glb": { "canonical": "file:domestic-test/representatives/a182.glb", "state": "deleted", "sha256": "643c0033470cd7defd2fbc6a39f285daeb6cde4c6dd8ffb1878a93a751999c5e" }, "file:domestic-test/representatives/a184.glb": { "canonical": "file:domestic-test/representatives/a184.glb", "state": "deleted", "sha256": "934b4f3d113014420b29606c872145543f9a7bb43981aef71d060cd49580d9ca" }, "file:domestic-test/representatives/a189.glb": { "canonical": "file:domestic-test/representatives/a189.glb", "state": "deleted", "sha256": "ac24c95e3412ae40eec8dd3fd091bbaebd8f7d222ee8e7212fd066482181a55a" }, "file:domestic-test/representatives/a191.glb": { "canonical": "file:domestic-test/representatives/a191.glb", "state": "deleted", "sha256": "54949c900a10fec18d0abb4df1e64e72bd45cb307a0ecd0679f6095cb974d1e7" }, "file:domestic-test/representatives/a26.glb": { "canonical": "file:domestic-test/representatives/a26.glb", "state": "deleted", "sha256": "60a1843f70da250f2596b0af18b3912a2a14ca8eb90321e0e6279f90a7834cf4" }, "file:domestic-test/representatives/a35.glb": { "canonical": "file:domestic-test/representatives/a35.glb", "state": "deleted", "sha256": "f63035e64ebb7705d5c13d8cd91b7cf8b22ca04fb5e476bac45a2192275595f8" }, "file:domestic-test/representatives/a41.glb": { "canonical": "file:domestic-test/representatives/a41.glb", "state": "deleted", "sha256": "a05a97fb205be4a0c09a1d3e0e7b12efe59665a4e9346372cc2073cd2c17c1b0" }, "file:domestic-test/representatives/a44.glb": { "canonical": "file:domestic-test/representatives/a44.glb", "state": "deleted", "sha256": "20b08ecc10c634b8fbc30542f6d14c87917a7379d3e01938220db640012f2ca6" }, "file:domestic-test/representatives/a70.glb": { "canonical": "file:domestic-test/representatives/a70.glb", "state": "deleted", "sha256": "cb539999d8a3e1e27c0ec672d1cbb31da55d82cfdd6d8dc11186711454fb025a" }, "file:domestic-test/representatives/a72.glb": { "canonical": "file:domestic-test/representatives/a72.glb", "state": "deleted", "sha256": "0d09e376cc36066480aef3ff0e0e4b12431ebbc548727735f33df1ef220ff419" }, "file:domestic-test/representatives/a75.glb": { "canonical": "file:domestic-test/representatives/a75.glb", "state": "deleted", "sha256": "faa4610508c01d298e588b58c791d62191839a5beb559fa297bb5a8e5f15ff74" }, "file:domestic-test/representatives/a78.glb": { "canonical": "file:domestic-test/representatives/a78.glb", "state": "deleted", "sha256": "efebb2f1aa4617f18114e4a0859974ddf78b2dc99f9cdc24ede0edec7a7d9178" }, "file:domestic-test/representatives/a84.glb": { "canonical": "file:domestic-test/representatives/a84.glb", "state": "deleted", "sha256": "b79c0794b8fe755021630bd1c7154f755bcf1a5636486ef3c82553ad76fe15cf" }, "file:domestic-test/representatives/a85.glb": { "canonical": "file:domestic-test/representatives/a85.glb", "state": "deleted", "sha256": "e86aa954d699bf7270ab05caac893958446dc4271447806622bd08d636014fb1" }, "file:domestic-test/representatives/a86.glb": { "canonical": "file:domestic-test/representatives/a86.glb", "state": "deleted", "sha256": "8f6c4f6f70188a0048adc618ce2ffc88d9c72d24bb37a6b261465d4c95b70533" }, "file:domestic-test/simready/bin-1000.glb": { "canonical": "file:domestic-test/simready/bin-1000.glb", "state": "deleted", "sha256": "fe3a06328a48b0a1ea6dd5a784573fbd0ae6f3fe863933b333c4150049914485" }, "file:domestic-test/simready/chair-1000.glb": { "canonical": "file:domestic-test/simready/chair-1000.glb", "state": "active", "sha256": "50b2f5c8780eeb36df000370948c5fc55d9ab230c3059b5914b327888402b08a" }, "file:domestic-test/simready/fridge-1000.glb": { "canonical": "file:domestic-test/simready/fridge-1000.glb", "state": "deleted", "sha256": "ab4744371c632bac93a2b5a077995fcf12e0b53aee78dacc59b1c6a1dfda81be" }, "file:domestic-test/vehicles/bus-blue/model-front-fixed.glb": { "canonical": "file:domestic-test/vehicles/bus-blue/model-front-fixed.glb", "state": "deleted", "sha256": "5a885e25e12dbaa9d45a4c9a837c147c35125496929f4cfdb53329bc2f752275" }, "file:domestic-test/vehicles/bus-blue/model-glass.glb": { "canonical": "file:domestic-test/vehicles/bus-blue/model-glass.glb", "state": "deleted", "sha256": "a3e6f3a1875b18526f141dc76702b8f375627ae06ac3d11c897562fa3bee29f5" }, "file:domestic-test/vehicles/bus-blue/model.glb": { "canonical": "file:domestic-test/vehicles/bus-blue/model.glb", "state": "deleted", "sha256": "188c8b20c849c8b9b10acf0c5df690d8a57be60925c8830086dacd899f2c2c27" }, "file:domestic-test/vehicles/bus-green/model-front-fixed.glb": { "canonical": "file:domestic-test/vehicles/bus-green/model-front-fixed.glb", "state": "deleted", "sha256": "09f82c650b03764a235b569774e3100766f68e105fb671b33fcc777de7e0c02e" }, "file:domestic-test/vehicles/bus-green/model-glass.glb": { "canonical": "file:domestic-test/vehicles/bus-green/model-glass.glb", "state": "deleted", "sha256": "0c0655ab9380fd796b3d10adbc669d98dc2175f5e7dd6dbfe9b7c5f31d9629a2" }, "file:domestic-test/vehicles/bus-green/model.glb": { "canonical": "file:domestic-test/vehicles/bus-green/model.glb", "state": "deleted", "sha256": "157d6447fa5a9c9e0ea5559eaeb0cda9e9695816e18cb3a1ed76b857f4685b27" }, "file:domestic-test/vehicles/bus-red/model-front-fixed.glb": { "canonical": "file:domestic-test/vehicles/bus-red/model-front-fixed.glb", "state": "deleted", "sha256": "893fc07113583a6be7e54a648799d66769d6ab26322feece111c7a1593360f75" }, "file:domestic-test/vehicles/bus-red/model-glass.glb": { "canonical": "file:domestic-test/vehicles/bus-red/model-glass.glb", "state": "deleted", "sha256": "9027f580d728290c3522c0ec3cdfcb115d8c2c1fba8877af0af62feedc98ed6e" }, "file:domestic-test/vehicles/bus-red/model.glb": { "canonical": "file:domestic-test/vehicles/bus-red/model.glb", "state": "deleted", "sha256": "3079eb9e21a0bb7cb6f1aa1beb4aa03186ca2c016b389716a5d0140794bdf8ec" }, "file:domestic-test/vehicles/porter2/model.glb": { "canonical": "file:domestic-test/vehicles/porter2/model.glb", "state": "deleted", "sha256": "c20e7e3b598a002af73d84a167a949bc6db9ed2fa9522c402dc7bdc72a41acbd" }, "file:domestic-test/vehicles/ray/model.glb": { "canonical": "file:domestic-test/vehicles/ray/model.glb", "state": "deleted", "sha256": "b1a22ca9978862b5e913665f767d615958182dbd64057de2f7a76d46d6c27e4e" }, "file:domestic-test/vehicles/sonata-dn8/model-detail.glb": { "canonical": "file:domestic-test/vehicles/sonata-dn8/model-detail.glb", "state": "deleted", "sha256": "ff9272ccc1c74c10d589243fbb041f1b46890c9152a6036189cf1144dafc1c36" }, "file:domestic-test/vehicles/sonata-dn8/model.glb": { "canonical": "file:domestic-test/vehicles/sonata-dn8/model-detail.glb", "state": "deleted", "sha256": "ff9272ccc1c74c10d589243fbb041f1b46890c9152a6036189cf1144dafc1c36" }, "file:domestic-test/vehicles/sonata-dn8/model-original.glb": { "canonical": "file:domestic-test/vehicles/sonata-dn8/model-original.glb", "state": "deleted", "sha256": "d80d7c11d9cf812f7259e99f669cde34fd36cba0c3197ae96f34c228a94c9876" } } };
+
+// outputs/domestic-test/asset-encyclopedia/curation.js
+var isDeleted = (id) => curation.items[id]?.state === "deleted";
+var canonicalId = (id) => curation.items[id]?.canonical || id;
+function modelDeleted(object, legacyId) {
+  const d = object.userData;
+  if (d.memoVehicle) return isDeleted("vehicle:" + d.memoVehicle);
+  if (d.memoAsset) return isDeleted("representative:" + d.memoAsset);
+  if (d.representative) return isDeleted("representative:" + d.representative.id);
+  if (d.roadview50) {
+    const ids = d.roadview50.componentIds || [d.roadview50.assetId];
+    return ids.every((id) => isDeleted("road:" + id));
+  }
+  return isDeleted("legacy:" + legacyId) || isDeleted("korean:" + legacyId);
+}
+
+// outputs/domestic-test/prop-remakes/catalog.js
+var props = [
+  ["barrier", "\uC811\uC774\uC2DD \uBC14\uB9AC\uCF00\uC774\uB4DC", "a72", 1392, "ground"],
+  ["shoe-rack", "\uC2E0\uBC1C \uC815\uB9AC\uB300", "a165", 784, "ground"],
+  ["bus-stop", "\uBC84\uC2A4\uC815\uB958\uC7A5 \uAE30\uB465", "a68", 492, "ground"],
+  ["manhole", "\uB9E8\uD640\uB69C\uAED1", "a75", 1368, "embedded"],
+  ["security-gate", "\uC811\uC774\uC2DD \uBC29\uBC94\uBB38", "a133", 1656, "opening"],
+  ["antenna", "\uC625\uC678 TV \uC548\uD14C\uB098", "a156", 700, "roof"],
+  ["door-lock", "\uB514\uC9C0\uD138 \uB3C4\uC5B4\uB85D", "a168", 1068, "door"],
+  ["cart", "\uCCA0\uB9DD \uC1FC\uD551\uCE74\uD2B8", "a181", 1912, "ground"],
+  ["cone", "\uC548\uC804 \uACE0\uAE54", "a46", 636, "ground"],
+  ["ladder", "\uC54C\uB8E8\uBBF8\uB284 \uC0AC\uB2E4\uB9AC", "a49", 576, "leaning"],
+  ["stall", "\uC811\uC774\uC2DD \uD310\uB9E4\uB300", "a51", 364, "ground"],
+  ["basins", "\uD3EC\uAC20 \uB300\uC57C", "a54", 1728, "ground"],
+  ["open-box", "\uC5F4\uB9B0 \uACE8\uD310\uC9C0\uC0C1\uC790", "a58", 120, "ground"],
+  ["sink", "\uC57C\uC678 \uC2F1\uD06C\uB300", "a81", 992, "ground"],
+  ["dolly", "\uC6B4\uBC18\uB300\uCC28", "a88", 688, "ground"],
+  ["drying-rack", "\uBE68\uB798\uAC74\uC870\uB300", "a93", 1024, "ground"],
+  ["pallet", "\uBAA9\uC7AC \uD314\uB808\uD2B8", "a146", 240, "ground"],
+  ["tray-rack", "\uC81C\uBE75 \uD2B8\uB808\uC774\uB799", "a176", 1332, "ground"]
+].map(([key, name, old, triangles, support]) => ({ key, name, old, triangles, support }));
+
+// outputs/domestic-test/asset-encyclopedia/remakes.js?v=approvedbuildings1
+var approved = new Map(approvedRoad.map((p2) => [p2.id, p2]));
+var replacements = new Map(props.map((p2) => [canonicalId("road:" + p2.old), p2]));
+var remakeAliases = new Map(props.map((p2) => [canonicalId("representative:" + p2.old), canonicalId("road:" + p2.old)]).filter(([a, b]) => a !== b));
+var candidates = new Set(props.map((p2) => "prototype:" + p2.key + "-v1"));
+
+// outputs/domestic-test/asset-encyclopedia/registry.js
+var base = new URL("./", import.meta.url);
 
 // outputs/domestic-test/vendor/three.module.js
 var three_module_exports = {};
@@ -4756,16 +5036,16 @@ var Matrix4 = class _Matrix4 {
     const te = this.elements;
     const w = 1 / (right - left);
     const h = 1 / (top - bottom);
-    const p = 1 / (far - near);
+    const p2 = 1 / (far - near);
     const x = (right + left) * w;
     const y = (top + bottom) * h;
     let z, zInv;
     if (coordinateSystem === WebGLCoordinateSystem) {
-      z = (far + near) * p;
-      zInv = -2 * p;
+      z = (far + near) * p2;
+      zInv = -2 * p2;
     } else if (coordinateSystem === WebGPUCoordinateSystem) {
-      z = near * p;
-      zInv = -1 * p;
+      z = near * p2;
+      zInv = -1 * p2;
     } else {
       throw new Error("THREE.Matrix4.makeOrthographic(): Invalid coordinate system: " + coordinateSystem);
     }
@@ -5526,7 +5806,7 @@ var Object3D = class _Object3D extends EventDispatcher {
     }
     if (isRootObject) {
       const geometries = extractFromCache(meta.geometries);
-      const materials = extractFromCache(meta.materials);
+      const materials2 = extractFromCache(meta.materials);
       const textures2 = extractFromCache(meta.textures);
       const images = extractFromCache(meta.images);
       const shapes = extractFromCache(meta.shapes);
@@ -5534,7 +5814,7 @@ var Object3D = class _Object3D extends EventDispatcher {
       const animations = extractFromCache(meta.animations);
       const nodes = extractFromCache(meta.nodes);
       if (geometries.length > 0) output.geometries = geometries;
-      if (materials.length > 0) output.materials = materials;
+      if (materials2.length > 0) output.materials = materials2;
       if (textures2.length > 0) output.textures = textures2;
       if (images.length > 0) output.images = images;
       if (shapes.length > 0) output.shapes = shapes;
@@ -5733,18 +6013,18 @@ var Triangle = class _Triangle {
   intersectsBox(box) {
     return box.intersectsTriangle(this);
   }
-  closestPointToPoint(p, target) {
+  closestPointToPoint(p2, target) {
     const a = this.a, b = this.b, c = this.c;
     let v2, w;
     _vab.subVectors(b, a);
     _vac.subVectors(c, a);
-    _vap.subVectors(p, a);
+    _vap.subVectors(p2, a);
     const d1 = _vab.dot(_vap);
     const d2 = _vac.dot(_vap);
     if (d1 <= 0 && d2 <= 0) {
       return target.copy(a);
     }
-    _vbp.subVectors(p, b);
+    _vbp.subVectors(p2, b);
     const d3 = _vab.dot(_vbp);
     const d4 = _vac.dot(_vbp);
     if (d3 >= 0 && d4 <= d3) {
@@ -5755,7 +6035,7 @@ var Triangle = class _Triangle {
       v2 = d1 / (d1 - d3);
       return target.copy(a).addScaledVector(_vab, v2);
     }
-    _vcp.subVectors(p, c);
+    _vcp.subVectors(p2, c);
     const d5 = _vab.dot(_vcp);
     const d6 = _vac.dot(_vcp);
     if (d6 >= 0 && d5 <= d6) {
@@ -5933,13 +6213,13 @@ var _colorKeywords = {
 };
 var _hslA = { h: 0, s: 0, l: 0 };
 var _hslB = { h: 0, s: 0, l: 0 };
-function hue2rgb(p, q, t) {
+function hue2rgb(p2, q, t) {
   if (t < 0) t += 1;
   if (t > 1) t -= 1;
-  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 6) return p2 + (q - p2) * 6 * t;
   if (t < 1 / 2) return q;
-  if (t < 2 / 3) return p + (q - p) * 6 * (2 / 3 - t);
-  return p;
+  if (t < 2 / 3) return p2 + (q - p2) * 6 * (2 / 3 - t);
+  return p2;
 }
 var Color = class {
   constructor(r, g, b) {
@@ -5992,11 +6272,11 @@ var Color = class {
     if (s === 0) {
       this.r = this.g = this.b = l;
     } else {
-      const p = l <= 0.5 ? l * (1 + s) : l + s - l * s;
-      const q = 2 * l - p;
-      this.r = hue2rgb(q, p, h + 1 / 3);
-      this.g = hue2rgb(q, p, h);
-      this.b = hue2rgb(q, p, h - 1 / 3);
+      const p2 = l <= 0.5 ? l * (1 + s) : l + s - l * s;
+      const q = 2 * l - p2;
+      this.r = hue2rgb(q, p2, h + 1 / 3);
+      this.g = hue2rgb(q, p2, h);
+      this.b = hue2rgb(q, p2, h - 1 / 3);
     }
     ColorManagement.toWorkingColorSpace(this, colorSpace);
     return this;
@@ -7957,19 +8237,19 @@ function cloneUniforms(src) {
   const dst = {};
   for (const u in src) {
     dst[u] = {};
-    for (const p in src[u]) {
-      const property = src[u][p];
+    for (const p2 in src[u]) {
+      const property = src[u][p2];
       if (property && (property.isColor || property.isMatrix3 || property.isMatrix4 || property.isVector2 || property.isVector3 || property.isVector4 || property.isTexture || property.isQuaternion)) {
         if (property.isRenderTargetTexture) {
           console.warn("UniformsUtils: Textures of render targets cannot be cloned via cloneUniforms() or mergeUniforms().");
-          dst[u][p] = null;
+          dst[u][p2] = null;
         } else {
-          dst[u][p] = property.clone();
+          dst[u][p2] = property.clone();
         }
       } else if (Array.isArray(property)) {
-        dst[u][p] = property.slice();
+        dst[u][p2] = property.slice();
       } else {
-        dst[u][p] = property;
+        dst[u][p2] = property;
       }
     }
   }
@@ -7979,8 +8259,8 @@ function mergeUniforms(uniforms) {
   const merged = {};
   for (let u = 0; u < uniforms.length; u++) {
     const tmp2 = cloneUniforms(uniforms[u]);
-    for (const p in tmp2) {
-      merged[p] = tmp2[p];
+    for (const p2 in tmp2) {
+      merged[p2] = tmp2[p2];
     }
   }
   return merged;
@@ -11459,14 +11739,14 @@ function WebGLMorphtargets(gl, capabilities, textures2) {
     const objectInfluences = object.morphTargetInfluences;
     const morphAttribute = geometry2.morphAttributes.position || geometry2.morphAttributes.normal || geometry2.morphAttributes.color;
     const morphTargetsCount = morphAttribute !== void 0 ? morphAttribute.length : 0;
-    let entry = morphTextures.get(geometry2);
-    if (entry === void 0 || entry.count !== morphTargetsCount) {
+    let entry2 = morphTextures.get(geometry2);
+    if (entry2 === void 0 || entry2.count !== morphTargetsCount) {
       let disposeTexture = function() {
         texture.dispose();
         morphTextures.delete(geometry2);
         geometry2.removeEventListener("dispose", disposeTexture);
       };
-      if (entry !== void 0) entry.texture.dispose();
+      if (entry2 !== void 0) entry2.texture.dispose();
       const hasMorphPosition = geometry2.morphAttributes.position !== void 0;
       const hasMorphNormals = geometry2.morphAttributes.normal !== void 0;
       const hasMorphColors = geometry2.morphAttributes.color !== void 0;
@@ -11518,12 +11798,12 @@ function WebGLMorphtargets(gl, capabilities, textures2) {
           }
         }
       }
-      entry = {
+      entry2 = {
         count: morphTargetsCount,
         texture,
         size: new Vector2(width, height)
       };
-      morphTextures.set(geometry2, entry);
+      morphTextures.set(geometry2, entry2);
       geometry2.addEventListener("dispose", disposeTexture);
     }
     if (object.isInstancedMesh === true && object.morphTexture !== null) {
@@ -11537,8 +11817,8 @@ function WebGLMorphtargets(gl, capabilities, textures2) {
       program.getUniforms().setValue(gl, "morphTargetBaseInfluence", morphBaseInfluence);
       program.getUniforms().setValue(gl, "morphTargetInfluences", objectInfluences);
     }
-    program.getUniforms().setValue(gl, "morphTargetsTexture", entry.texture, textures2);
-    program.getUniforms().setValue(gl, "morphTargetsTextureSize", entry.size);
+    program.getUniforms().setValue(gl, "morphTargetsTexture", entry2.texture, textures2);
+    program.getUniforms().setValue(gl, "morphTargetsTextureSize", entry2.size);
   }
   return {
     update
@@ -13398,8 +13678,8 @@ function WebGLPrograms(renderer, cubemaps, cubeuvmaps, extensions, capabilities,
   }
   function acquireProgram(parameters, cacheKey) {
     let program;
-    for (let p = 0, pl = programs3.length; p < pl; p++) {
-      const preexistingProgram = programs3[p];
+    for (let p2 = 0, pl = programs3.length; p2 < pl; p2++) {
+      const preexistingProgram = programs3[p2];
       if (preexistingProgram.cacheKey === cacheKey) {
         program = preexistingProgram;
         ++program.usedTimes;
@@ -16359,119 +16639,119 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
   this.useMultisampledRTT = useMultisampledRTT;
 }
 function WebGLUtils(gl, extensions) {
-  function convert(p, colorSpace = NoColorSpace) {
+  function convert(p2, colorSpace = NoColorSpace) {
     let extension;
     const transfer = ColorManagement.getTransfer(colorSpace);
-    if (p === UnsignedByteType) return gl.UNSIGNED_BYTE;
-    if (p === UnsignedShort4444Type) return gl.UNSIGNED_SHORT_4_4_4_4;
-    if (p === UnsignedShort5551Type) return gl.UNSIGNED_SHORT_5_5_5_1;
-    if (p === UnsignedInt5999Type) return gl.UNSIGNED_INT_5_9_9_9_REV;
-    if (p === ByteType) return gl.BYTE;
-    if (p === ShortType) return gl.SHORT;
-    if (p === UnsignedShortType) return gl.UNSIGNED_SHORT;
-    if (p === IntType) return gl.INT;
-    if (p === UnsignedIntType) return gl.UNSIGNED_INT;
-    if (p === FloatType) return gl.FLOAT;
-    if (p === HalfFloatType) return gl.HALF_FLOAT;
-    if (p === AlphaFormat) return gl.ALPHA;
-    if (p === RGBFormat) return gl.RGB;
-    if (p === RGBAFormat) return gl.RGBA;
-    if (p === LuminanceFormat) return gl.LUMINANCE;
-    if (p === LuminanceAlphaFormat) return gl.LUMINANCE_ALPHA;
-    if (p === DepthFormat) return gl.DEPTH_COMPONENT;
-    if (p === DepthStencilFormat) return gl.DEPTH_STENCIL;
-    if (p === RedFormat) return gl.RED;
-    if (p === RedIntegerFormat) return gl.RED_INTEGER;
-    if (p === RGFormat) return gl.RG;
-    if (p === RGIntegerFormat) return gl.RG_INTEGER;
-    if (p === RGBAIntegerFormat) return gl.RGBA_INTEGER;
-    if (p === RGB_S3TC_DXT1_Format || p === RGBA_S3TC_DXT1_Format || p === RGBA_S3TC_DXT3_Format || p === RGBA_S3TC_DXT5_Format) {
+    if (p2 === UnsignedByteType) return gl.UNSIGNED_BYTE;
+    if (p2 === UnsignedShort4444Type) return gl.UNSIGNED_SHORT_4_4_4_4;
+    if (p2 === UnsignedShort5551Type) return gl.UNSIGNED_SHORT_5_5_5_1;
+    if (p2 === UnsignedInt5999Type) return gl.UNSIGNED_INT_5_9_9_9_REV;
+    if (p2 === ByteType) return gl.BYTE;
+    if (p2 === ShortType) return gl.SHORT;
+    if (p2 === UnsignedShortType) return gl.UNSIGNED_SHORT;
+    if (p2 === IntType) return gl.INT;
+    if (p2 === UnsignedIntType) return gl.UNSIGNED_INT;
+    if (p2 === FloatType) return gl.FLOAT;
+    if (p2 === HalfFloatType) return gl.HALF_FLOAT;
+    if (p2 === AlphaFormat) return gl.ALPHA;
+    if (p2 === RGBFormat) return gl.RGB;
+    if (p2 === RGBAFormat) return gl.RGBA;
+    if (p2 === LuminanceFormat) return gl.LUMINANCE;
+    if (p2 === LuminanceAlphaFormat) return gl.LUMINANCE_ALPHA;
+    if (p2 === DepthFormat) return gl.DEPTH_COMPONENT;
+    if (p2 === DepthStencilFormat) return gl.DEPTH_STENCIL;
+    if (p2 === RedFormat) return gl.RED;
+    if (p2 === RedIntegerFormat) return gl.RED_INTEGER;
+    if (p2 === RGFormat) return gl.RG;
+    if (p2 === RGIntegerFormat) return gl.RG_INTEGER;
+    if (p2 === RGBAIntegerFormat) return gl.RGBA_INTEGER;
+    if (p2 === RGB_S3TC_DXT1_Format || p2 === RGBA_S3TC_DXT1_Format || p2 === RGBA_S3TC_DXT3_Format || p2 === RGBA_S3TC_DXT5_Format) {
       if (transfer === SRGBTransfer) {
         extension = extensions.get("WEBGL_compressed_texture_s3tc_srgb");
         if (extension !== null) {
-          if (p === RGB_S3TC_DXT1_Format) return extension.COMPRESSED_SRGB_S3TC_DXT1_EXT;
-          if (p === RGBA_S3TC_DXT1_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT;
-          if (p === RGBA_S3TC_DXT3_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT;
-          if (p === RGBA_S3TC_DXT5_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT;
+          if (p2 === RGB_S3TC_DXT1_Format) return extension.COMPRESSED_SRGB_S3TC_DXT1_EXT;
+          if (p2 === RGBA_S3TC_DXT1_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT;
+          if (p2 === RGBA_S3TC_DXT3_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT;
+          if (p2 === RGBA_S3TC_DXT5_Format) return extension.COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT;
         } else {
           return null;
         }
       } else {
         extension = extensions.get("WEBGL_compressed_texture_s3tc");
         if (extension !== null) {
-          if (p === RGB_S3TC_DXT1_Format) return extension.COMPRESSED_RGB_S3TC_DXT1_EXT;
-          if (p === RGBA_S3TC_DXT1_Format) return extension.COMPRESSED_RGBA_S3TC_DXT1_EXT;
-          if (p === RGBA_S3TC_DXT3_Format) return extension.COMPRESSED_RGBA_S3TC_DXT3_EXT;
-          if (p === RGBA_S3TC_DXT5_Format) return extension.COMPRESSED_RGBA_S3TC_DXT5_EXT;
+          if (p2 === RGB_S3TC_DXT1_Format) return extension.COMPRESSED_RGB_S3TC_DXT1_EXT;
+          if (p2 === RGBA_S3TC_DXT1_Format) return extension.COMPRESSED_RGBA_S3TC_DXT1_EXT;
+          if (p2 === RGBA_S3TC_DXT3_Format) return extension.COMPRESSED_RGBA_S3TC_DXT3_EXT;
+          if (p2 === RGBA_S3TC_DXT5_Format) return extension.COMPRESSED_RGBA_S3TC_DXT5_EXT;
         } else {
           return null;
         }
       }
     }
-    if (p === RGB_PVRTC_4BPPV1_Format || p === RGB_PVRTC_2BPPV1_Format || p === RGBA_PVRTC_4BPPV1_Format || p === RGBA_PVRTC_2BPPV1_Format) {
+    if (p2 === RGB_PVRTC_4BPPV1_Format || p2 === RGB_PVRTC_2BPPV1_Format || p2 === RGBA_PVRTC_4BPPV1_Format || p2 === RGBA_PVRTC_2BPPV1_Format) {
       extension = extensions.get("WEBGL_compressed_texture_pvrtc");
       if (extension !== null) {
-        if (p === RGB_PVRTC_4BPPV1_Format) return extension.COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
-        if (p === RGB_PVRTC_2BPPV1_Format) return extension.COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
-        if (p === RGBA_PVRTC_4BPPV1_Format) return extension.COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
-        if (p === RGBA_PVRTC_2BPPV1_Format) return extension.COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
+        if (p2 === RGB_PVRTC_4BPPV1_Format) return extension.COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
+        if (p2 === RGB_PVRTC_2BPPV1_Format) return extension.COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
+        if (p2 === RGBA_PVRTC_4BPPV1_Format) return extension.COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
+        if (p2 === RGBA_PVRTC_2BPPV1_Format) return extension.COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
       } else {
         return null;
       }
     }
-    if (p === RGB_ETC1_Format || p === RGB_ETC2_Format || p === RGBA_ETC2_EAC_Format) {
+    if (p2 === RGB_ETC1_Format || p2 === RGB_ETC2_Format || p2 === RGBA_ETC2_EAC_Format) {
       extension = extensions.get("WEBGL_compressed_texture_etc");
       if (extension !== null) {
-        if (p === RGB_ETC1_Format || p === RGB_ETC2_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ETC2 : extension.COMPRESSED_RGB8_ETC2;
-        if (p === RGBA_ETC2_EAC_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ETC2_EAC : extension.COMPRESSED_RGBA8_ETC2_EAC;
+        if (p2 === RGB_ETC1_Format || p2 === RGB_ETC2_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ETC2 : extension.COMPRESSED_RGB8_ETC2;
+        if (p2 === RGBA_ETC2_EAC_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ETC2_EAC : extension.COMPRESSED_RGBA8_ETC2_EAC;
       } else {
         return null;
       }
     }
-    if (p === RGBA_ASTC_4x4_Format || p === RGBA_ASTC_5x4_Format || p === RGBA_ASTC_5x5_Format || p === RGBA_ASTC_6x5_Format || p === RGBA_ASTC_6x6_Format || p === RGBA_ASTC_8x5_Format || p === RGBA_ASTC_8x6_Format || p === RGBA_ASTC_8x8_Format || p === RGBA_ASTC_10x5_Format || p === RGBA_ASTC_10x6_Format || p === RGBA_ASTC_10x8_Format || p === RGBA_ASTC_10x10_Format || p === RGBA_ASTC_12x10_Format || p === RGBA_ASTC_12x12_Format) {
+    if (p2 === RGBA_ASTC_4x4_Format || p2 === RGBA_ASTC_5x4_Format || p2 === RGBA_ASTC_5x5_Format || p2 === RGBA_ASTC_6x5_Format || p2 === RGBA_ASTC_6x6_Format || p2 === RGBA_ASTC_8x5_Format || p2 === RGBA_ASTC_8x6_Format || p2 === RGBA_ASTC_8x8_Format || p2 === RGBA_ASTC_10x5_Format || p2 === RGBA_ASTC_10x6_Format || p2 === RGBA_ASTC_10x8_Format || p2 === RGBA_ASTC_10x10_Format || p2 === RGBA_ASTC_12x10_Format || p2 === RGBA_ASTC_12x12_Format) {
       extension = extensions.get("WEBGL_compressed_texture_astc");
       if (extension !== null) {
-        if (p === RGBA_ASTC_4x4_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR : extension.COMPRESSED_RGBA_ASTC_4x4_KHR;
-        if (p === RGBA_ASTC_5x4_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR : extension.COMPRESSED_RGBA_ASTC_5x4_KHR;
-        if (p === RGBA_ASTC_5x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR : extension.COMPRESSED_RGBA_ASTC_5x5_KHR;
-        if (p === RGBA_ASTC_6x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR : extension.COMPRESSED_RGBA_ASTC_6x5_KHR;
-        if (p === RGBA_ASTC_6x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR : extension.COMPRESSED_RGBA_ASTC_6x6_KHR;
-        if (p === RGBA_ASTC_8x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR : extension.COMPRESSED_RGBA_ASTC_8x5_KHR;
-        if (p === RGBA_ASTC_8x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR : extension.COMPRESSED_RGBA_ASTC_8x6_KHR;
-        if (p === RGBA_ASTC_8x8_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR : extension.COMPRESSED_RGBA_ASTC_8x8_KHR;
-        if (p === RGBA_ASTC_10x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR : extension.COMPRESSED_RGBA_ASTC_10x5_KHR;
-        if (p === RGBA_ASTC_10x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR : extension.COMPRESSED_RGBA_ASTC_10x6_KHR;
-        if (p === RGBA_ASTC_10x8_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR : extension.COMPRESSED_RGBA_ASTC_10x8_KHR;
-        if (p === RGBA_ASTC_10x10_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR : extension.COMPRESSED_RGBA_ASTC_10x10_KHR;
-        if (p === RGBA_ASTC_12x10_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR : extension.COMPRESSED_RGBA_ASTC_12x10_KHR;
-        if (p === RGBA_ASTC_12x12_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR : extension.COMPRESSED_RGBA_ASTC_12x12_KHR;
+        if (p2 === RGBA_ASTC_4x4_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR : extension.COMPRESSED_RGBA_ASTC_4x4_KHR;
+        if (p2 === RGBA_ASTC_5x4_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR : extension.COMPRESSED_RGBA_ASTC_5x4_KHR;
+        if (p2 === RGBA_ASTC_5x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR : extension.COMPRESSED_RGBA_ASTC_5x5_KHR;
+        if (p2 === RGBA_ASTC_6x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR : extension.COMPRESSED_RGBA_ASTC_6x5_KHR;
+        if (p2 === RGBA_ASTC_6x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR : extension.COMPRESSED_RGBA_ASTC_6x6_KHR;
+        if (p2 === RGBA_ASTC_8x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR : extension.COMPRESSED_RGBA_ASTC_8x5_KHR;
+        if (p2 === RGBA_ASTC_8x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR : extension.COMPRESSED_RGBA_ASTC_8x6_KHR;
+        if (p2 === RGBA_ASTC_8x8_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR : extension.COMPRESSED_RGBA_ASTC_8x8_KHR;
+        if (p2 === RGBA_ASTC_10x5_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR : extension.COMPRESSED_RGBA_ASTC_10x5_KHR;
+        if (p2 === RGBA_ASTC_10x6_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR : extension.COMPRESSED_RGBA_ASTC_10x6_KHR;
+        if (p2 === RGBA_ASTC_10x8_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR : extension.COMPRESSED_RGBA_ASTC_10x8_KHR;
+        if (p2 === RGBA_ASTC_10x10_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR : extension.COMPRESSED_RGBA_ASTC_10x10_KHR;
+        if (p2 === RGBA_ASTC_12x10_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR : extension.COMPRESSED_RGBA_ASTC_12x10_KHR;
+        if (p2 === RGBA_ASTC_12x12_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR : extension.COMPRESSED_RGBA_ASTC_12x12_KHR;
       } else {
         return null;
       }
     }
-    if (p === RGBA_BPTC_Format || p === RGB_BPTC_SIGNED_Format || p === RGB_BPTC_UNSIGNED_Format) {
+    if (p2 === RGBA_BPTC_Format || p2 === RGB_BPTC_SIGNED_Format || p2 === RGB_BPTC_UNSIGNED_Format) {
       extension = extensions.get("EXT_texture_compression_bptc");
       if (extension !== null) {
-        if (p === RGBA_BPTC_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB_ALPHA_BPTC_UNORM_EXT : extension.COMPRESSED_RGBA_BPTC_UNORM_EXT;
-        if (p === RGB_BPTC_SIGNED_Format) return extension.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT;
-        if (p === RGB_BPTC_UNSIGNED_Format) return extension.COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_EXT;
+        if (p2 === RGBA_BPTC_Format) return transfer === SRGBTransfer ? extension.COMPRESSED_SRGB_ALPHA_BPTC_UNORM_EXT : extension.COMPRESSED_RGBA_BPTC_UNORM_EXT;
+        if (p2 === RGB_BPTC_SIGNED_Format) return extension.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT;
+        if (p2 === RGB_BPTC_UNSIGNED_Format) return extension.COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_EXT;
       } else {
         return null;
       }
     }
-    if (p === RED_RGTC1_Format || p === SIGNED_RED_RGTC1_Format || p === RED_GREEN_RGTC2_Format || p === SIGNED_RED_GREEN_RGTC2_Format) {
+    if (p2 === RED_RGTC1_Format || p2 === SIGNED_RED_RGTC1_Format || p2 === RED_GREEN_RGTC2_Format || p2 === SIGNED_RED_GREEN_RGTC2_Format) {
       extension = extensions.get("EXT_texture_compression_rgtc");
       if (extension !== null) {
-        if (p === RGBA_BPTC_Format) return extension.COMPRESSED_RED_RGTC1_EXT;
-        if (p === SIGNED_RED_RGTC1_Format) return extension.COMPRESSED_SIGNED_RED_RGTC1_EXT;
-        if (p === RED_GREEN_RGTC2_Format) return extension.COMPRESSED_RED_GREEN_RGTC2_EXT;
-        if (p === SIGNED_RED_GREEN_RGTC2_Format) return extension.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT;
+        if (p2 === RGBA_BPTC_Format) return extension.COMPRESSED_RED_RGTC1_EXT;
+        if (p2 === SIGNED_RED_RGTC1_Format) return extension.COMPRESSED_SIGNED_RED_RGTC1_EXT;
+        if (p2 === RED_GREEN_RGTC2_Format) return extension.COMPRESSED_RED_GREEN_RGTC2_EXT;
+        if (p2 === SIGNED_RED_GREEN_RGTC2_Format) return extension.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT;
       } else {
         return null;
       }
     }
-    if (p === UnsignedInt248Type) return gl.UNSIGNED_INT_24_8;
-    return gl[p] !== void 0 ? gl[p] : null;
+    if (p2 === UnsignedInt248Type) return gl.UNSIGNED_INT_24_8;
+    return gl[p2] !== void 0 ? gl[p2] : null;
   }
   return { convert };
 }
@@ -17837,7 +18117,7 @@ var WebGLRenderer = class {
     }
     let extensions, capabilities, state, info;
     let properties, textures2, cubemaps, cubeuvmaps, attributes, geometries, objects;
-    let programCache, materials, renderLists, renderStates, clipping, shadowMap;
+    let programCache, materials2, renderLists, renderStates, clipping, shadowMap;
     let background, morphtargets, bufferRenderer, indexedBufferRenderer;
     let utils, bindingStates, uniformsGroups;
     function initGLContext() {
@@ -17861,7 +18141,7 @@ var WebGLRenderer = class {
       morphtargets = new WebGLMorphtargets(_gl, capabilities, textures2);
       clipping = new WebGLClipping(properties);
       programCache = new WebGLPrograms(_this, cubemaps, cubeuvmaps, extensions, capabilities, bindingStates, clipping);
-      materials = new WebGLMaterials(_this, properties);
+      materials2 = new WebGLMaterials(_this, properties);
       renderLists = new WebGLRenderLists();
       renderStates = new WebGLRenderStates(extensions);
       background = new WebGLBackground(_this, cubemaps, cubeuvmaps, state, objects, _alpha, premultipliedAlpha);
@@ -18218,7 +18498,7 @@ var WebGLRenderer = class {
         });
       }
       currentRenderState.setupLights();
-      const materials2 = /* @__PURE__ */ new Set();
+      const materials3 = /* @__PURE__ */ new Set();
       scene.traverse(function(object) {
         if (!(object.isMesh || object.isPoints || object.isLine || object.isSprite)) {
           return;
@@ -18229,30 +18509,30 @@ var WebGLRenderer = class {
             for (let i = 0; i < material.length; i++) {
               const material2 = material[i];
               prepareMaterial(material2, targetScene, object);
-              materials2.add(material2);
+              materials3.add(material2);
             }
           } else {
             prepareMaterial(material, targetScene, object);
-            materials2.add(material);
+            materials3.add(material);
           }
         }
       });
       renderStateStack.pop();
       currentRenderState = null;
-      return materials2;
+      return materials3;
     };
     this.compileAsync = function(scene, camera, targetScene = null) {
-      const materials2 = this.compile(scene, camera, targetScene);
+      const materials3 = this.compile(scene, camera, targetScene);
       return new Promise((resolve) => {
         function checkMaterialsReady() {
-          materials2.forEach(function(material) {
+          materials3.forEach(function(material) {
             const materialProperties = properties.get(material);
             const program = materialProperties.currentProgram;
             if (program.isReady()) {
-              materials2.delete(material);
+              materials3.delete(material);
             }
           });
-          if (materials2.size === 0) {
+          if (materials3.size === 0) {
             resolve(scene);
             return;
           }
@@ -18800,9 +19080,9 @@ var WebGLRenderer = class {
           markUniformsLightsNeedsUpdate(m_uniforms, refreshLights);
         }
         if (fog && material.fog === true) {
-          materials.refreshFogUniforms(m_uniforms, fog);
+          materials2.refreshFogUniforms(m_uniforms, fog);
         }
-        materials.refreshMaterialUniforms(m_uniforms, material, _pixelRatio, _height, currentRenderState.state.transmissionRenderTarget[camera.id]);
+        materials2.refreshMaterialUniforms(m_uniforms, material, _pixelRatio, _height, currentRenderState.state.transmissionRenderTarget[camera.id]);
         WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures2);
       }
       if (material.isShaderMaterial && material.uniformsNeedUpdate === true) {
@@ -21461,8 +21741,8 @@ var Curve = class {
     let current, last = this.getPoint(0);
     let sum = 0;
     cache.push(0);
-    for (let p = 1; p <= divisions; p++) {
-      current = this.getPoint(p / divisions);
+    for (let p2 = 1; p2 <= divisions; p2++) {
+      current = this.getPoint(p2 / divisions);
       sum += current.distanceTo(last);
       cache.push(sum);
       last = current;
@@ -21748,9 +22028,9 @@ var CatmullRomCurve3 = class extends Curve {
     const point = optionalTarget;
     const points = this.points;
     const l = points.length;
-    const p = (l - (this.closed ? 0 : 1)) * t;
-    let intPoint = Math.floor(p);
-    let weight = p - intPoint;
+    const p2 = (l - (this.closed ? 0 : 1)) * t;
+    let intPoint = Math.floor(p2);
+    let weight = p2 - intPoint;
     if (this.closed) {
       intPoint += intPoint > 0 ? 0 : (Math.floor(Math.abs(intPoint) / l) + 1) * l;
     } else if (weight === 0 && intPoint === l - 1) {
@@ -21765,7 +22045,7 @@ var CatmullRomCurve3 = class extends Curve {
       p0 = tmp;
     }
     const p1 = points[intPoint % l];
-    const p2 = points[(intPoint + 1) % l];
+    const p22 = points[(intPoint + 1) % l];
     if (this.closed || intPoint + 2 < l) {
       p3 = points[(intPoint + 2) % l];
     } else {
@@ -21775,18 +22055,18 @@ var CatmullRomCurve3 = class extends Curve {
     if (this.curveType === "centripetal" || this.curveType === "chordal") {
       const pow = this.curveType === "chordal" ? 0.5 : 0.25;
       let dt0 = Math.pow(p0.distanceToSquared(p1), pow);
-      let dt1 = Math.pow(p1.distanceToSquared(p2), pow);
-      let dt2 = Math.pow(p2.distanceToSquared(p3), pow);
+      let dt1 = Math.pow(p1.distanceToSquared(p22), pow);
+      let dt2 = Math.pow(p22.distanceToSquared(p3), pow);
       if (dt1 < 1e-4) dt1 = 1;
       if (dt0 < 1e-4) dt0 = dt1;
       if (dt2 < 1e-4) dt2 = dt1;
-      px.initNonuniformCatmullRom(p0.x, p1.x, p2.x, p3.x, dt0, dt1, dt2);
-      py.initNonuniformCatmullRom(p0.y, p1.y, p2.y, p3.y, dt0, dt1, dt2);
-      pz.initNonuniformCatmullRom(p0.z, p1.z, p2.z, p3.z, dt0, dt1, dt2);
+      px.initNonuniformCatmullRom(p0.x, p1.x, p22.x, p3.x, dt0, dt1, dt2);
+      py.initNonuniformCatmullRom(p0.y, p1.y, p22.y, p3.y, dt0, dt1, dt2);
+      pz.initNonuniformCatmullRom(p0.z, p1.z, p22.z, p3.z, dt0, dt1, dt2);
     } else if (this.curveType === "catmullrom") {
-      px.initCatmullRom(p0.x, p1.x, p2.x, p3.x, this.tension);
-      py.initCatmullRom(p0.y, p1.y, p2.y, p3.y, this.tension);
-      pz.initCatmullRom(p0.z, p1.z, p2.z, p3.z, this.tension);
+      px.initCatmullRom(p0.x, p1.x, p22.x, p3.x, this.tension);
+      py.initCatmullRom(p0.y, p1.y, p22.y, p3.y, this.tension);
+      pz.initCatmullRom(p0.z, p1.z, p22.z, p3.z, this.tension);
     }
     point.set(
       px.calc(weight),
@@ -21839,32 +22119,32 @@ function CatmullRom(t, p0, p1, p2, p3) {
   const t3 = t * t2;
   return (2 * p1 - 2 * p2 + v0 + v1) * t3 + (-3 * p1 + 3 * p2 - 2 * v0 - v1) * t2 + v0 * t + p1;
 }
-function QuadraticBezierP0(t, p) {
+function QuadraticBezierP0(t, p2) {
   const k = 1 - t;
-  return k * k * p;
+  return k * k * p2;
 }
-function QuadraticBezierP1(t, p) {
-  return 2 * (1 - t) * t * p;
+function QuadraticBezierP1(t, p2) {
+  return 2 * (1 - t) * t * p2;
 }
-function QuadraticBezierP2(t, p) {
-  return t * t * p;
+function QuadraticBezierP2(t, p2) {
+  return t * t * p2;
 }
 function QuadraticBezier(t, p0, p1, p2) {
   return QuadraticBezierP0(t, p0) + QuadraticBezierP1(t, p1) + QuadraticBezierP2(t, p2);
 }
-function CubicBezierP0(t, p) {
+function CubicBezierP0(t, p2) {
   const k = 1 - t;
-  return k * k * k * p;
+  return k * k * k * p2;
 }
-function CubicBezierP1(t, p) {
+function CubicBezierP1(t, p2) {
   const k = 1 - t;
-  return 3 * k * k * t * p;
+  return 3 * k * k * t * p2;
 }
-function CubicBezierP2(t, p) {
-  return 3 * (1 - t) * t * t * p;
+function CubicBezierP2(t, p2) {
+  return 3 * (1 - t) * t * t * p2;
 }
-function CubicBezierP3(t, p) {
-  return t * t * t * p;
+function CubicBezierP3(t, p2) {
+  return t * t * t * p2;
 }
 function CubicBezier(t, p0, p1, p2, p3) {
   return CubicBezierP0(t, p0) + CubicBezierP1(t, p1) + CubicBezierP2(t, p2) + CubicBezierP3(t, p3);
@@ -22143,16 +22423,16 @@ var SplineCurve = class extends Curve {
   getPoint(t, optionalTarget = new Vector2()) {
     const point = optionalTarget;
     const points = this.points;
-    const p = (points.length - 1) * t;
-    const intPoint = Math.floor(p);
-    const weight = p - intPoint;
+    const p2 = (points.length - 1) * t;
+    const intPoint = Math.floor(p2);
+    const weight = p2 - intPoint;
     const p0 = points[intPoint === 0 ? intPoint : intPoint - 1];
     const p1 = points[intPoint];
-    const p2 = points[intPoint > points.length - 2 ? points.length - 1 : intPoint + 1];
+    const p22 = points[intPoint > points.length - 2 ? points.length - 1 : intPoint + 1];
     const p3 = points[intPoint > points.length - 3 ? points.length - 1 : intPoint + 2];
     point.set(
-      CatmullRom(weight, p0.x, p1.x, p2.x, p3.x),
-      CatmullRom(weight, p0.y, p1.y, p2.y, p3.y)
+      CatmullRom(weight, p0.x, p1.x, p22.x, p3.x),
+      CatmullRom(weight, p0.y, p1.y, p22.y, p3.y)
     );
     return point;
   }
@@ -22508,11 +22788,11 @@ var LatheGeometry = class _LatheGeometry extends BufferGeometry {
     }
     for (let i = 0; i < segments2; i++) {
       for (let j = 0; j < points.length - 1; j++) {
-        const base = j + i * points.length;
-        const a = base;
-        const b = base + points.length;
-        const c = base + points.length + 1;
-        const d = base + 1;
+        const base2 = j + i * points.length;
+        const a = base2;
+        const b = base2 + points.length;
+        const c = base2 + points.length + 1;
+        const d = base2 + 1;
         indices.push(a, b, d);
         indices.push(c, d, b);
       }
@@ -23274,18 +23554,18 @@ function linkedList(data, start, end, dim, clockwise) {
 function filterPoints(start, end) {
   if (!start) return start;
   if (!end) end = start;
-  let p = start, again;
+  let p2 = start, again;
   do {
     again = false;
-    if (!p.steiner && (equals(p, p.next) || area2(p.prev, p, p.next) === 0)) {
-      removeNode(p);
-      p = end = p.prev;
-      if (p === p.next) break;
+    if (!p2.steiner && (equals(p2, p2.next) || area2(p2.prev, p2, p2.next) === 0)) {
+      removeNode(p2);
+      p2 = end = p2.prev;
+      if (p2 === p2.next) break;
       again = true;
     } else {
-      p = p.next;
+      p2 = p2.next;
     }
-  } while (again || p !== end);
+  } while (again || p2 !== end);
   return end;
 }
 function earcutLinked(ear, triangles, dim, minX, minY, invSize, pass) {
@@ -23323,10 +23603,10 @@ function isEar(ear) {
   if (area2(a, b, c) >= 0) return false;
   const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
   const x0 = ax < bx ? ax < cx ? ax : cx : bx < cx ? bx : cx, y0 = ay < by ? ay < cy ? ay : cy : by < cy ? by : cy, x1 = ax > bx ? ax > cx ? ax : cx : bx > cx ? bx : cx, y1 = ay > by ? ay > cy ? ay : cy : by > cy ? by : cy;
-  let p = c.next;
-  while (p !== a) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area2(p.prev, p, p.next) >= 0) return false;
-    p = p.next;
+  let p2 = c.next;
+  while (p2 !== a) {
+    if (p2.x >= x0 && p2.x <= x1 && p2.y >= y0 && p2.y <= y1 && pointInTriangle(ax, ay, bx, by, cx, cy, p2.x, p2.y) && area2(p2.prev, p2, p2.next) >= 0) return false;
+    p2 = p2.next;
   }
   return true;
 }
@@ -23336,16 +23616,16 @@ function isEarHashed(ear, minX, minY, invSize) {
   const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
   const x0 = ax < bx ? ax < cx ? ax : cx : bx < cx ? bx : cx, y0 = ay < by ? ay < cy ? ay : cy : by < cy ? by : cy, x1 = ax > bx ? ax > cx ? ax : cx : bx > cx ? bx : cx, y1 = ay > by ? ay > cy ? ay : cy : by > cy ? by : cy;
   const minZ = zOrder(x0, y0, minX, minY, invSize), maxZ = zOrder(x1, y1, minX, minY, invSize);
-  let p = ear.prevZ, n = ear.nextZ;
-  while (p && p.z >= minZ && n && n.z <= maxZ) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area2(p.prev, p, p.next) >= 0) return false;
-    p = p.prevZ;
+  let p2 = ear.prevZ, n = ear.nextZ;
+  while (p2 && p2.z >= minZ && n && n.z <= maxZ) {
+    if (p2.x >= x0 && p2.x <= x1 && p2.y >= y0 && p2.y <= y1 && p2 !== a && p2 !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p2.x, p2.y) && area2(p2.prev, p2, p2.next) >= 0) return false;
+    p2 = p2.prevZ;
     if (n.x >= x0 && n.x <= x1 && n.y >= y0 && n.y <= y1 && n !== a && n !== c && pointInTriangle(ax, ay, bx, by, cx, cy, n.x, n.y) && area2(n.prev, n, n.next) >= 0) return false;
     n = n.nextZ;
   }
-  while (p && p.z >= minZ) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area2(p.prev, p, p.next) >= 0) return false;
-    p = p.prevZ;
+  while (p2 && p2.z >= minZ) {
+    if (p2.x >= x0 && p2.x <= x1 && p2.y >= y0 && p2.y <= y1 && p2 !== a && p2 !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p2.x, p2.y) && area2(p2.prev, p2, p2.next) >= 0) return false;
+    p2 = p2.prevZ;
   }
   while (n && n.z <= maxZ) {
     if (n.x >= x0 && n.x <= x1 && n.y >= y0 && n.y <= y1 && n !== a && n !== c && pointInTriangle(ax, ay, bx, by, cx, cy, n.x, n.y) && area2(n.prev, n, n.next) >= 0) return false;
@@ -23354,20 +23634,20 @@ function isEarHashed(ear, minX, minY, invSize) {
   return true;
 }
 function cureLocalIntersections(start, triangles, dim) {
-  let p = start;
+  let p2 = start;
   do {
-    const a = p.prev, b = p.next.next;
-    if (!equals(a, b) && intersects(a, p, p.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
+    const a = p2.prev, b = p2.next.next;
+    if (!equals(a, b) && intersects(a, p2, p2.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
       triangles.push(a.i / dim | 0);
-      triangles.push(p.i / dim | 0);
+      triangles.push(p2.i / dim | 0);
       triangles.push(b.i / dim | 0);
-      removeNode(p);
-      removeNode(p.next);
-      p = start = b;
+      removeNode(p2);
+      removeNode(p2.next);
+      p2 = start = b;
     }
-    p = p.next;
-  } while (p !== start);
-  return filterPoints(p);
+    p2 = p2.next;
+  } while (p2 !== start);
+  return filterPoints(p2);
 }
 function splitEarcut(start, triangles, dim, minX, minY, invSize) {
   let a = start;
@@ -23416,60 +23696,60 @@ function eliminateHole(hole, outerNode) {
   return filterPoints(bridge, bridge.next);
 }
 function findHoleBridge(hole, outerNode) {
-  let p = outerNode, qx = -Infinity, m;
+  let p2 = outerNode, qx = -Infinity, m;
   const hx = hole.x, hy = hole.y;
   do {
-    if (hy <= p.y && hy >= p.next.y && p.next.y !== p.y) {
-      const x = p.x + (hy - p.y) * (p.next.x - p.x) / (p.next.y - p.y);
+    if (hy <= p2.y && hy >= p2.next.y && p2.next.y !== p2.y) {
+      const x = p2.x + (hy - p2.y) * (p2.next.x - p2.x) / (p2.next.y - p2.y);
       if (x <= hx && x > qx) {
         qx = x;
-        m = p.x < p.next.x ? p : p.next;
+        m = p2.x < p2.next.x ? p2 : p2.next;
         if (x === hx) return m;
       }
     }
-    p = p.next;
-  } while (p !== outerNode);
+    p2 = p2.next;
+  } while (p2 !== outerNode);
   if (!m) return null;
   const stop = m, mx = m.x, my = m.y;
   let tanMin = Infinity, tan;
-  p = m;
+  p2 = m;
   do {
-    if (hx >= p.x && p.x >= mx && hx !== p.x && pointInTriangle(hy < my ? hx : qx, hy, mx, my, hy < my ? qx : hx, hy, p.x, p.y)) {
-      tan = Math.abs(hy - p.y) / (hx - p.x);
-      if (locallyInside(p, hole) && (tan < tanMin || tan === tanMin && (p.x > m.x || p.x === m.x && sectorContainsSector(m, p)))) {
-        m = p;
+    if (hx >= p2.x && p2.x >= mx && hx !== p2.x && pointInTriangle(hy < my ? hx : qx, hy, mx, my, hy < my ? qx : hx, hy, p2.x, p2.y)) {
+      tan = Math.abs(hy - p2.y) / (hx - p2.x);
+      if (locallyInside(p2, hole) && (tan < tanMin || tan === tanMin && (p2.x > m.x || p2.x === m.x && sectorContainsSector(m, p2)))) {
+        m = p2;
         tanMin = tan;
       }
     }
-    p = p.next;
-  } while (p !== stop);
+    p2 = p2.next;
+  } while (p2 !== stop);
   return m;
 }
-function sectorContainsSector(m, p) {
-  return area2(m.prev, m, p.prev) < 0 && area2(p.next, m, m.next) < 0;
+function sectorContainsSector(m, p2) {
+  return area2(m.prev, m, p2.prev) < 0 && area2(p2.next, m, m.next) < 0;
 }
 function indexCurve(start, minX, minY, invSize) {
-  let p = start;
+  let p2 = start;
   do {
-    if (p.z === 0) p.z = zOrder(p.x, p.y, minX, minY, invSize);
-    p.prevZ = p.prev;
-    p.nextZ = p.next;
-    p = p.next;
-  } while (p !== start);
-  p.prevZ.nextZ = null;
-  p.prevZ = null;
-  sortLinked(p);
+    if (p2.z === 0) p2.z = zOrder(p2.x, p2.y, minX, minY, invSize);
+    p2.prevZ = p2.prev;
+    p2.nextZ = p2.next;
+    p2 = p2.next;
+  } while (p2 !== start);
+  p2.prevZ.nextZ = null;
+  p2.prevZ = null;
+  sortLinked(p2);
 }
 function sortLinked(list) {
-  let i, p, q, e, tail, numMerges, pSize, qSize, inSize = 1;
+  let i, p2, q, e, tail, numMerges, pSize, qSize, inSize = 1;
   do {
-    p = list;
+    p2 = list;
     list = null;
     tail = null;
     numMerges = 0;
-    while (p) {
+    while (p2) {
       numMerges++;
-      q = p;
+      q = p2;
       pSize = 0;
       for (i = 0; i < inSize; i++) {
         pSize++;
@@ -23478,9 +23758,9 @@ function sortLinked(list) {
       }
       qSize = inSize;
       while (pSize > 0 || qSize > 0 && q) {
-        if (pSize !== 0 && (qSize === 0 || !q || p.z <= q.z)) {
-          e = p;
-          p = p.nextZ;
+        if (pSize !== 0 && (qSize === 0 || !q || p2.z <= q.z)) {
+          e = p2;
+          p2 = p2.nextZ;
           pSize--;
         } else {
           e = q;
@@ -23492,7 +23772,7 @@ function sortLinked(list) {
         e.prevZ = tail;
         tail = e;
       }
-      p = q;
+      p2 = q;
     }
     tail.nextZ = null;
     inSize *= 2;
@@ -23513,11 +23793,11 @@ function zOrder(x, y, minX, minY, invSize) {
   return x | y << 1;
 }
 function getLeftmost(start) {
-  let p = start, leftmost = start;
+  let p2 = start, leftmost = start;
   do {
-    if (p.x < leftmost.x || p.x === leftmost.x && p.y < leftmost.y) leftmost = p;
-    p = p.next;
-  } while (p !== start);
+    if (p2.x < leftmost.x || p2.x === leftmost.x && p2.y < leftmost.y) leftmost = p2;
+    p2 = p2.next;
+  } while (p2 !== start);
   return leftmost;
 }
 function pointInTriangle(ax, ay, bx, by, cx, cy, px2, py2) {
@@ -23529,8 +23809,8 @@ function isValidDiagonal(a, b) {
   (area2(a.prev, a, b.prev) || area2(a, b.prev, b)) || // does not create opposite-facing sectors
   equals(a, b) && area2(a.prev, a, a.next) > 0 && area2(b.prev, b, b.next) > 0);
 }
-function area2(p, q, r) {
-  return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+function area2(p2, q, r) {
+  return (q.y - p2.y) * (r.x - q.x) - (q.x - p2.x) * (r.y - q.y);
 }
 function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
@@ -23547,31 +23827,31 @@ function intersects(p1, q1, p2, q2) {
   if (o4 === 0 && onSegment(p2, q1, q2)) return true;
   return false;
 }
-function onSegment(p, q, r) {
-  return q.x <= Math.max(p.x, r.x) && q.x >= Math.min(p.x, r.x) && q.y <= Math.max(p.y, r.y) && q.y >= Math.min(p.y, r.y);
+function onSegment(p2, q, r) {
+  return q.x <= Math.max(p2.x, r.x) && q.x >= Math.min(p2.x, r.x) && q.y <= Math.max(p2.y, r.y) && q.y >= Math.min(p2.y, r.y);
 }
 function sign(num) {
   return num > 0 ? 1 : num < 0 ? -1 : 0;
 }
 function intersectsPolygon(a, b) {
-  let p = a;
+  let p2 = a;
   do {
-    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) return true;
-    p = p.next;
-  } while (p !== a);
+    if (p2.i !== a.i && p2.next.i !== a.i && p2.i !== b.i && p2.next.i !== b.i && intersects(p2, p2.next, a, b)) return true;
+    p2 = p2.next;
+  } while (p2 !== a);
   return false;
 }
 function locallyInside(a, b) {
   return area2(a.prev, a, a.next) < 0 ? area2(a, b, a.next) >= 0 && area2(a, a.prev, b) >= 0 : area2(a, b, a.prev) < 0 || area2(a, a.next, b) < 0;
 }
 function middleInside(a, b) {
-  let p = a, inside2 = false;
+  let p2 = a, inside2 = false;
   const px2 = (a.x + b.x) / 2, py2 = (a.y + b.y) / 2;
   do {
-    if (p.y > py2 !== p.next.y > py2 && p.next.y !== p.y && px2 < (p.next.x - p.x) * (py2 - p.y) / (p.next.y - p.y) + p.x)
+    if (p2.y > py2 !== p2.next.y > py2 && p2.next.y !== p2.y && px2 < (p2.next.x - p2.x) * (py2 - p2.y) / (p2.next.y - p2.y) + p2.x)
       inside2 = !inside2;
-    p = p.next;
-  } while (p !== a);
+    p2 = p2.next;
+  } while (p2 !== a);
   return inside2;
 }
 function splitPolygon(a, b) {
@@ -23587,23 +23867,23 @@ function splitPolygon(a, b) {
   return b2;
 }
 function insertNode(i, x, y, last) {
-  const p = new Node(i, x, y);
+  const p2 = new Node(i, x, y);
   if (!last) {
-    p.prev = p;
-    p.next = p;
+    p2.prev = p2;
+    p2.next = p2;
   } else {
-    p.next = last.next;
-    p.prev = last;
-    last.next.prev = p;
-    last.next = p;
+    p2.next = last.next;
+    p2.prev = last;
+    last.next.prev = p2;
+    last.next = p2;
   }
-  return p;
+  return p2;
 }
-function removeNode(p) {
-  p.next.prev = p.prev;
-  p.prev.next = p.next;
-  if (p.prevZ) p.prevZ.nextZ = p.nextZ;
-  if (p.nextZ) p.nextZ.prevZ = p.prevZ;
+function removeNode(p2) {
+  p2.next.prev = p2.prev;
+  p2.prev.next = p2.next;
+  if (p2.prevZ) p2.prevZ.nextZ = p2.nextZ;
+  if (p2.nextZ) p2.nextZ.prevZ = p2.prevZ;
 }
 function Node(i, x, y) {
   this.i = i;
@@ -23629,8 +23909,8 @@ var ShapeUtils = class _ShapeUtils {
   static area(contour) {
     const n = contour.length;
     let a = 0;
-    for (let p = n - 1, q = 0; q < n; p = q++) {
-      a += contour[p].x * contour[q].y - contour[q].x * contour[p].y;
+    for (let p2 = n - 1, q = 0; q < n; p2 = q++) {
+      a += contour[p2].x * contour[q].y - contour[q].x * contour[p2].y;
     }
     return a * 0.5;
   }
@@ -24553,7 +24833,7 @@ var TorusGeometry = class _TorusGeometry extends BufferGeometry {
   }
 };
 var TorusKnotGeometry = class _TorusKnotGeometry extends BufferGeometry {
-  constructor(radius = 1, tube2 = 0.4, tubularSegments = 64, radialSegments = 8, p = 2, q = 3) {
+  constructor(radius = 1, tube2 = 0.4, tubularSegments = 64, radialSegments = 8, p2 = 2, q = 3) {
     super();
     this.type = "TorusKnotGeometry";
     this.parameters = {
@@ -24561,7 +24841,7 @@ var TorusKnotGeometry = class _TorusKnotGeometry extends BufferGeometry {
       tube: tube2,
       tubularSegments,
       radialSegments,
-      p,
+      p: p2,
       q
     };
     tubularSegments = Math.floor(tubularSegments);
@@ -24578,9 +24858,9 @@ var TorusKnotGeometry = class _TorusKnotGeometry extends BufferGeometry {
     const T = new Vector3();
     const N = new Vector3();
     for (let i = 0; i <= tubularSegments; ++i) {
-      const u = i / tubularSegments * p * Math.PI * 2;
-      calculatePositionOnCurve(u, p, q, radius, P1);
-      calculatePositionOnCurve(u + 0.01, p, q, radius, P2);
+      const u = i / tubularSegments * p2 * Math.PI * 2;
+      calculatePositionOnCurve(u, p2, q, radius, P1);
+      calculatePositionOnCurve(u + 0.01, p2, q, radius, P2);
       T.subVectors(P2, P1);
       N.addVectors(P2, P1);
       B.crossVectors(T, N);
@@ -24615,10 +24895,10 @@ var TorusKnotGeometry = class _TorusKnotGeometry extends BufferGeometry {
     this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
     this.setAttribute("normal", new Float32BufferAttribute(normals, 3));
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
-    function calculatePositionOnCurve(u, p2, q2, radius2, position) {
+    function calculatePositionOnCurve(u, p3, q2, radius2, position) {
       const cu = Math.cos(u);
       const su = Math.sin(u);
-      const quOverP = q2 / p2 * u;
+      const quOverP = q2 / p3 * u;
       const cs = Math.cos(quOverP);
       position.x = radius2 * (2 + cs) * 0.5 * cu;
       position.y = radius2 * (2 + cs) * su * 0.5;
@@ -25725,10 +26005,10 @@ var CubicInterpolant = class extends Interpolant {
     this._offsetNext = iNext * stride;
   }
   interpolate_(i1, t0, t, t1) {
-    const result = this.resultBuffer, values = this.sampleValues, stride = this.valueSize, o1 = i1 * stride, o0 = o1 - stride, oP = this._offsetPrev, oN = this._offsetNext, wP = this._weightPrev, wN = this._weightNext, p = (t - t0) / (t1 - t0), pp = p * p, ppp = pp * p;
-    const sP = -wP * ppp + 2 * wP * pp - wP * p;
-    const s0 = (1 + wP) * ppp + (-1.5 - 2 * wP) * pp + (-0.5 + wP) * p + 1;
-    const s1 = (-1 - wN) * ppp + (1.5 + wN) * pp + 0.5 * p;
+    const result = this.resultBuffer, values = this.sampleValues, stride = this.valueSize, o1 = i1 * stride, o0 = o1 - stride, oP = this._offsetPrev, oN = this._offsetNext, wP = this._weightPrev, wN = this._weightNext, p2 = (t - t0) / (t1 - t0), pp = p2 * p2, ppp = pp * p2;
+    const sP = -wP * ppp + 2 * wP * pp - wP * p2;
+    const s0 = (1 + wP) * ppp + (-1.5 - 2 * wP) * pp + (-0.5 + wP) * p2 + 1;
+    const s1 = (-1 - wN) * ppp + (1.5 + wN) * pp + 0.5 * p2;
     const sN = wN * ppp - wN * pp;
     for (let i = 0; i !== stride; ++i) {
       result[i] = sP * values[oP + i] + s0 * values[o0 + i] + s1 * values[o1 + i] + sN * values[oN + i];
@@ -27775,8 +28055,8 @@ var ObjectLoader = class extends Loader {
       if (onLoad !== void 0) onLoad(object);
     });
     const textures2 = this.parseTextures(json.textures, images);
-    const materials = this.parseMaterials(json.materials, textures2);
-    const object = this.parseObject(json.object, geometries, materials, textures2, animations);
+    const materials2 = this.parseMaterials(json.materials, textures2);
+    const object = this.parseObject(json.object, geometries, materials2, textures2, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
@@ -27798,8 +28078,8 @@ var ObjectLoader = class extends Loader {
     const geometries = this.parseGeometries(json.geometries, shapes);
     const images = await this.parseImagesAsync(json.images);
     const textures2 = this.parseTextures(json.textures, images);
-    const materials = this.parseMaterials(json.materials, textures2);
-    const object = this.parseObject(json.object, geometries, materials, textures2, animations);
+    const materials2 = this.parseMaterials(json.materials, textures2);
+    const object = this.parseObject(json.object, geometries, materials2, textures2, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
@@ -27858,7 +28138,7 @@ var ObjectLoader = class extends Loader {
   }
   parseMaterials(json, textures2) {
     const cache = {};
-    const materials = {};
+    const materials2 = {};
     if (json !== void 0) {
       const loader = new MaterialLoader();
       loader.setTextures(textures2);
@@ -27867,10 +28147,10 @@ var ObjectLoader = class extends Loader {
         if (cache[data.uuid] === void 0) {
           cache[data.uuid] = loader.parse(data);
         }
-        materials[data.uuid] = cache[data.uuid];
+        materials2[data.uuid] = cache[data.uuid];
       }
     }
-    return materials;
+    return materials2;
   }
   parseAnimations(json) {
     const animations = {};
@@ -28052,7 +28332,7 @@ var ObjectLoader = class extends Loader {
     }
     return textures2;
   }
-  parseObject(data, geometries, materials, textures2, animations) {
+  parseObject(data, geometries, materials2, textures2, animations) {
     let object;
     function getGeometry(name) {
       if (geometries[name] === void 0) {
@@ -28066,17 +28346,17 @@ var ObjectLoader = class extends Loader {
         const array = [];
         for (let i = 0, l = name.length; i < l; i++) {
           const uuid = name[i];
-          if (materials[uuid] === void 0) {
+          if (materials2[uuid] === void 0) {
             console.warn("THREE.ObjectLoader: Undefined material", uuid);
           }
-          array.push(materials[uuid]);
+          array.push(materials2[uuid]);
         }
         return array;
       }
-      if (materials[name] === void 0) {
+      if (materials2[name] === void 0) {
         console.warn("THREE.ObjectLoader: Undefined material", name);
       }
-      return materials[name];
+      return materials2[name];
     }
     function getTexture(uuid) {
       if (textures2[uuid] === void 0) {
@@ -28265,7 +28545,7 @@ var ObjectLoader = class extends Loader {
     if (data.children !== void 0) {
       const children = data.children;
       for (let i = 0; i < children.length; i++) {
-        object.add(this.parseObject(children[i], geometries, materials, textures2, animations));
+        object.add(this.parseObject(children[i], geometries, materials2, textures2, animations));
       }
     }
     if (data.animations !== void 0) {
@@ -31599,8 +31879,8 @@ var ShapePath = class {
     function isPointInsidePolygon(inPt, inPolygon2) {
       const polyLen = inPolygon2.length;
       let inside2 = false;
-      for (let p = polyLen - 1, q = 0; q < polyLen; p = q++) {
-        let edgeLowPt = inPolygon2[p];
+      for (let p2 = polyLen - 1, q = 0; q < polyLen; p2 = q++) {
+        let edgeLowPt = inPolygon2[p2];
         let edgeHighPt = inPolygon2[q];
         let edgeDx = edgeHighPt.x - edgeLowPt.x;
         let edgeDy = edgeHighPt.y - edgeLowPt.y;
@@ -31608,7 +31888,7 @@ var ShapePath = class {
           if (edgeDy < 0) {
             edgeLowPt = inPolygon2[q];
             edgeDx = -edgeDx;
-            edgeHighPt = inPolygon2[p];
+            edgeHighPt = inPolygon2[p2];
             edgeDy = -edgeDy;
           }
           if (inPt.y < edgeLowPt.y || inPt.y > edgeHighPt.y) continue;
@@ -32815,13 +33095,13 @@ var GLTFMeshGpuInstancing = class {
       const instancedMeshes = [];
       for (const mesh of meshes) {
         const m = new Matrix4();
-        const p = new Vector3();
+        const p2 = new Vector3();
         const q = new Quaternion();
         const s = new Vector3(1, 1, 1);
         const instancedMesh = new InstancedMesh(mesh.geometry, mesh.material, count3);
         for (let i = 0; i < count3; i++) {
           if (attributes.TRANSLATION) {
-            p.fromBufferAttribute(attributes.TRANSLATION, i);
+            p2.fromBufferAttribute(attributes.TRANSLATION, i);
           }
           if (attributes.ROTATION) {
             q.fromBufferAttribute(attributes.ROTATION, i);
@@ -32829,7 +33109,7 @@ var GLTFMeshGpuInstancing = class {
           if (attributes.SCALE) {
             s.fromBufferAttribute(attributes.SCALE, i);
           }
-          instancedMesh.setMatrixAt(i, m.compose(p, q, s));
+          instancedMesh.setMatrixAt(i, m.compose(p2, q, s));
         }
         for (const attributeName in attributes) {
           if (attributeName === "_COLOR_0") {
@@ -32987,15 +33267,15 @@ var GLTFCubicSplineInterpolant = class extends Interpolant {
     const stride2 = stride * 2;
     const stride3 = stride * 3;
     const td = t1 - t0;
-    const p = (t - t0) / td;
-    const pp = p * p;
-    const ppp = pp * p;
+    const p2 = (t - t0) / td;
+    const pp = p2 * p2;
+    const ppp = pp * p2;
     const offset1 = i1 * stride3;
     const offset0 = offset1 - stride3;
     const s2 = -2 * ppp + 3 * pp;
     const s3 = ppp - pp;
     const s0 = 1 - s2;
-    const s1 = s3 - pp + p;
+    const s1 = s3 - pp + p2;
     for (let i = 0; i !== stride; i++) {
       const p0 = values[offset0 + i + stride];
       const m0 = values[offset0 + i + stride2] * td;
@@ -33934,14 +34214,14 @@ var GLTFParser = class {
     }
     pending.push(parser.loadGeometries(primitives));
     return Promise.all(pending).then(function(results) {
-      const materials = results.slice(0, results.length - 1);
+      const materials2 = results.slice(0, results.length - 1);
       const geometries = results[results.length - 1];
       const meshes = [];
       for (let i = 0, il = geometries.length; i < il; i++) {
         const geometry2 = geometries[i];
         const primitive = primitives[i];
         let mesh;
-        const material = materials[i];
+        const material = materials2[i];
         if (primitive.mode === WEBGL_CONSTANTS.TRIANGLES || primitive.mode === WEBGL_CONSTANTS.TRIANGLE_STRIP || primitive.mode === WEBGL_CONSTANTS.TRIANGLE_FAN || primitive.mode === void 0) {
           mesh = meshDef.isSkinnedMesh === true ? new SkinnedMesh(geometry2, material) : new Mesh(geometry2, material);
           if (mesh.isSkinnedMesh === true) {
@@ -34440,7 +34720,7 @@ function addPrimitiveAttributes(geometry2, primitiveDef, parser) {
 }
 
 // outputs/domestic-test/memo-scene.js?v=151
-var props = /* @__PURE__ */ new Map();
+var props2 = /* @__PURE__ */ new Map();
 var vehicles = /* @__PURE__ */ new Map();
 var records = [];
 var removed = /* @__PURE__ */ new Set([181, 202, 204, 205]);
@@ -34462,8 +34742,8 @@ function memoTemplate(id) {
     const g = v2.clone(true);
     return g;
   }
-  const p = props.get("legacy-" + id);
-  if (p) return p.clone(true);
+  const p2 = props2.get("legacy-" + id);
+  if (p2) return p2.clone(true);
   if (removed.has(id)) {
     const g = new Group();
     g.userData.memoRetired = true;
@@ -34494,15 +34774,15 @@ function installGenerationBounds(bounds3) {
 
 // outputs/domestic-test/frontage.js
 function planFrontages(specs, roadInfo) {
-  const inside2 = (x, z, p) => {
+  const inside2 = (x, z, p2) => {
     let c = false;
-    for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
-      const a = p[i], b = p[j];
+    for (let i = 0, j = p2.length - 1; i < p2.length; j = i++) {
+      const a = p2[i], b = p2[j];
       if (a[1] > z !== b[1] > z && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
     }
     return c;
   };
-  const boxes = specs.map((s) => ({ s, minX: Math.min(...s.points.map((p) => p[0])), maxX: Math.max(...s.points.map((p) => p[0])), minZ: Math.min(...s.points.map((p) => p[1])), maxZ: Math.max(...s.points.map((p) => p[1])) }));
+  const boxes = specs.map((s) => ({ s, minX: Math.min(...s.points.map((p2) => p2[0])), maxX: Math.max(...s.points.map((p2) => p2[0])), minZ: Math.min(...s.points.map((p2) => p2[1])), maxZ: Math.max(...s.points.map((p2) => p2[1])) }));
   const occupied = (x, z) => boxes.some((b) => x >= b.minX && x <= b.maxX && z >= b.minZ && z <= b.maxZ && inside2(x, z, b.s.points));
   for (const s of specs) {
     let area3 = 0;
@@ -34531,8 +34811,8 @@ function planFrontages(specs, roadInfo) {
       if (coverage < 3) return;
       const mean = depths.reduce((n, d) => n + d, 0) / coverage, score = L * coverage / 5 / (1 + mean * 0.1);
       if (best && score <= best.score) return;
-      const style = Math.abs(s.seed) % 6, bays = Math.max(1, Math.floor((L - 0.5) / (style === 4 ? 1.9 : style === 3 ? 3.6 : style === 0 ? 3.2 : 2.7))), spacing = (L - 0.5) / bays, entry = L / 2;
-      best = { edge: i, a, b, L, ux, uz, nx, nz, angle: Math.atan2(nx, nz), depths, coverage, mean, score, entry, bays, spacing, owner: s.seed };
+      const style = Math.abs(s.seed) % 6, bays = Math.max(1, Math.floor((L - 0.5) / (style === 4 ? 1.9 : style === 3 ? 3.6 : style === 0 ? 3.2 : 2.7))), spacing = (L - 0.5) / bays, entry2 = L / 2;
+      best = { edge: i, a, b, L, ux, uz, nx, nz, angle: Math.atan2(nx, nz), depths, coverage, mean, score, entry: entry2, bays, spacing, owner: s.seed };
     });
     s.frontage = best;
     if (best) s.frontEdge = best.edge;
@@ -34555,7 +34835,7 @@ function classifyYards(data, specs, elevation) {
   const by = new Map(specs.map((s) => [s.seed, s]));
   return data.yards.map((y) => {
     const s = by.get(y.owner), f = s?.frontage;
-    const hs = y.rings.flatMap((r) => r.outer.filter((_, i) => i % 5 === 0).map((p) => elevation(...p))), slope = hs.length ? Math.max(...hs) - Math.min(...hs) : 0;
+    const hs = y.rings.flatMap((r) => r.outer.filter((_, i) => i % 5 === 0).map((p2) => elevation(...p2))), slope = hs.length ? Math.max(...hs) - Math.min(...hs) : 0;
     const seed = Math.abs(y.owner), block = (Math.floor(y.x / 35) * 7 + Math.floor(y.z / 35) * 13 + 1e4) % 5;
     let type = y.area < 16 ? "narrow" : !f ? "rear" : s.levels >= 4 && y.area > 70 && f.mean > 2.5 ? "parking" : s.levels >= 4 ? "service" : slope / Math.sqrt(y.area) > 0.23 && seed % 3 === 1 ? "slope" : block === 0 ? "workshop" : seed % 3 === 0 ? "laundry" : "garden";
     return { ...y, type, label: programs[type].name, wall: programs[type].wall, floor: programs[type].floor, levels: s?.levels || 1, slope, angle: f?.angle || 0, frontage: f || null };
@@ -34568,9 +34848,9 @@ function windowOpening(out, records2, building, edge, a, u, n, x, y, w, h, color
   const pad = 9e-3, depth = WINDOW_RECESS, rect = [x - w / 2 - pad, x + w / 2 + pad, y - h / 2 - pad, y + h / 2 + pad];
   const record = { owner: building.seed, inkObjectId: building.inkObjectId, edge, a, u, n, rect, depth, x: a[0] + u[0] * x, z: a[1] + u[1] * x, y, w, h };
   records2.push(record);
-  const p = (xx, yy, zz) => [a[0] + u[0] * xx + n[0] * zz, yy, a[1] + u[1] * xx + n[1] * zz];
-  const corners = [p(rect[0], rect[2], 0.012), p(rect[1], rect[2], 0.012), p(rect[1], rect[3], 0.012), p(rect[0], rect[3], 0.012)];
-  const back = [p(rect[0], rect[2], -depth - 0.035), p(rect[1], rect[2], -depth - 0.035), p(rect[1], rect[3], -depth - 0.035), p(rect[0], rect[3], -depth - 0.035)];
+  const p2 = (xx, yy, zz) => [a[0] + u[0] * xx + n[0] * zz, yy, a[1] + u[1] * xx + n[1] * zz];
+  const corners = [p2(rect[0], rect[2], 0.012), p2(rect[1], rect[2], 0.012), p2(rect[1], rect[3], 0.012), p2(rect[0], rect[3], 0.012)];
+  const back = [p2(rect[0], rect[2], -depth - 0.035), p2(rect[1], rect[2], -depth - 0.035), p2(rect[1], rect[3], -depth - 0.035), p2(rect[0], rect[3], -depth - 0.035)];
   for (let i = 0; i < 4; i++) out.reveal(corners[i], corners[(i + 1) % 4], back[(i + 1) % 4], back[i], color);
   return rect;
 }
@@ -34616,9 +34896,9 @@ function cutBuildingWindows(roots, openings) {
         offsets.push([name, attr, size]);
         size += attr.itemSize;
       }
-      const p = geo.attributes.position, normal = geo.attributes.normal, worldNormal = new Matrix3().getNormalMatrix(mesh.matrixWorld), v2 = new Vector3(), nv = new Vector3(), out = attrs.map(() => []), groups = [];
+      const p2 = geo.attributes.position, normal = geo.attributes.normal, worldNormal = new Matrix3().getNormalMatrix(mesh.matrixWorld), v2 = new Vector3(), nv = new Vector3(), out = attrs.map(() => []), groups = [];
       let count3 = 0, changed = 0;
-      for (let i = 0; i < p.count; i += 3) {
+      for (let i = 0; i < p2.count; i += 3) {
         let polys = [Array.from({ length: 3 }, (_, j) => offsets.flatMap(([, attr]) => Array.from({ length: attr.itemSize }, (_2, k) => attr.array[(i + j) * attr.itemSize + k])))];
         const world = polys[0].map((q) => v2.set(q[0], q[1], q[2]).applyMatrix4(mesh.matrixWorld).toArray());
         nv.set(normal.getX(i), normal.getY(i), normal.getZ(i)).applyMatrix3(worldNormal).normalize();
@@ -34667,7 +34947,7 @@ function cutBuildingWindows(roots, openings) {
         mesh.geometry = result;
         qa.cutMeshes++;
         qa.cutWallTriangles += changed;
-        qa.addedTriangles += (count3 - p.count) / 3;
+        qa.addedTriangles += (count3 - p2.count) / 3;
         original.dispose();
       }
       if (geo !== original) geo.dispose();
@@ -34739,15 +35019,15 @@ function getFacadeTexture(id) {
   if (textures.has(id)) return textures.get(id);
   const r = facadeTextureCatalog.find((r2) => r2.id === id);
   if (!r) throw Error("Unknown facade texture: " + id);
-  const bytes = new Uint8Array(resolution * resolution * 4), base = rgb(r.base), joint = rgb(r.joint), seed = facadeTextureCatalog.indexOf(r) + 1;
+  const bytes = new Uint8Array(resolution * resolution * 4), base2 = rgb(r.base), joint = rgb(r.joint), seed = facadeTextureCatalog.indexOf(r) + 1;
   for (let py2 = 0; py2 < resolution; py2++) for (let px2 = 0; px2 < resolution; px2++) {
     const X = (px2 + 0.5) / resolution * r.width, Y = (py2 + 0.5) / resolution * r.height;
-    let paint = base, tone = 0, isJoint = false;
+    let paint2 = base2, tone = 0, isJoint = false;
     if (r.bond !== "render") {
       const cw = r.width / r.cols, rh = r.height / r.rows, row2 = Math.floor(Y / rh), shift = r.bond === "running" ? row2 % 2 * cw / 2 : 0, sx = X + shift, col = mod(Math.floor(sx / cw), r.cols), xx = mod(sx, cw), yy = mod(Y, rh);
       const edge = Math.min(xx, cw - xx, yy, rh - yy);
       isJoint = edge < r.gap / 2;
-      paint = isJoint ? joint : base;
+      paint2 = isJoint ? joint : base2;
       tone = isJoint ? 0 : (hash(col, row2, seed) - 0.5) * r.variation;
       if (!isJoint && edge < r.gap / 2 + 3e-3) tone -= 3;
       if (r.bond === "concrete") for (const hx of [cw * 0.23, cw * 0.77]) for (const hy of [rh * 0.23, rh * 0.77]) {
@@ -34763,7 +35043,7 @@ function getFacadeTexture(id) {
     }
     const mottling = r.bond === "render" || r.bond === "concrete" ? Math.sin(2 * Math.PI * px2 / resolution) * Math.cos(4 * Math.PI * py2 / resolution) * 1.8 : 0;
     const at = (py2 * resolution + px2) * 4;
-    for (let c = 0; c < 3; c++) bytes[at + c] = Math.max(0, Math.min(255, Math.round(paint[c] + tone + noise + mottling)));
+    for (let c = 0; c < 3; c++) bytes[at + c] = Math.max(0, Math.min(255, Math.round(paint2[c] + tone + noise + mottling)));
     bytes[at + 3] = 255;
   }
   const texture = new DataTexture(bytes, resolution, resolution, RGBAFormat);
@@ -34883,9 +35163,9 @@ var FacadeBatch = class {
     const P = (x, y, z) => [origin[0] + ux * x + nx * z, origin[1] + y, origin[2] + uz * x + nz * z];
     const box = (x, y, z, w, h, d, color, edge = false, surface = false, textureId = null) => {
       if (Math.min(w, h, d) <= 0) return;
-      const p = unitBox.attributes.position, n = unitBox.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
-      for (let i = 0; i < p.count; i++) {
-        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p.getX(i) * w, Y = y + p.getY(i) * h, Z = z + p.getZ(i) * d;
+      const p2 = unitBox.attributes.position, n = unitBox.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
+      for (let i = 0; i < p2.count; i++) {
+        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p2.getX(i) * w, Y = y + p2.getY(i) * h, Z = z + p2.getZ(i) * d;
         b.p.push(...P(X, Y, Z));
         b.inkIds.push(this.inkObjectId ?? 0);
         b.n.push(ux * n.getX(i) + nx * n.getZ(i), n.getY(i), uz * n.getX(i) + nz * n.getZ(i));
@@ -34967,9 +35247,9 @@ var FacadeBatch = class {
       m.userData = { facadeTextureId: b.textureId, detailKind: b.color === dark ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
       group.add(m);
     }
-    for (const { color, p, maxLOD } of this.lines.values()) {
+    for (const { color, p: p2, maxLOD } of this.lines.values()) {
       const g = new BufferGeometry();
-      g.setAttribute("position", new Float32BufferAttribute(p, 3));
+      g.setAttribute("position", new Float32BufferAttribute(p2, 3));
       const c = new Color(color).multiplyScalar(0.47), m = new LineSegments(g, new LineBasicMaterial({ color: c }));
       m.userData.faceLineColor = c.getHex();
       m.userData.lodMaxLevel = maxLOD;
@@ -34987,26 +35267,26 @@ function emitWindow(out, id, w, h, variation = 0, frame = white, lightSeed = nul
   const cross2 = id === "stair" ? h * 0.12 : veranda ? -h * 0.24 : null;
   const glassRects = cross2 === null ? [[-ih / 2, ih / 2]] : [[-ih / 2, cross2 - m / 2], [cross2 + m / 2, ih / 2]];
   for (let j = 0; j < cols; j++) {
-    const x = -iw / 2 + pw / 2 + j * (pw + m), glass = id === "frosted" ? 11519165 : [7969178, 9019290, 6785164][((j + variation) % 3 + 3) % 3];
+    const x = -iw / 2 + pw / 2 + j * (pw + m), glass2 = id === "frosted" ? 11519165 : [7969178, 9019290, 6785164][((j + variation) % 3 + 3) % 3];
     const curtain = !["frosted", "basement", "stair"].includes(id) && (variation + j) % 4 === 0;
     const cw = curtain ? pw * 0.35 : 0;
     for (const [lo, hi] of glassRects) {
-      const paintGlass = () => Q(x + cw / 2, (lo + hi) / 2, glassZ, pw - cw, hi - lo, glass, false);
+      const paintGlass = () => Q(x + cw / 2, (lo + hi) / 2, glassZ, pw - cw, hi - lo, glass2, false);
       if (lightSeed === null) paintGlass();
       else out.lit(windowLightBand(lightSeed), paintGlass);
       if (curtain) Q(x - (pw - cw) / 2, (lo + hi) / 2, glassZ, cw, hi - lo, variation % 2 ? 12041393 : 13158069, false);
     }
     if (cross2 !== null) B(x, cross2, z + 0.025, pw, m, frameDepth, frame, false);
   }
-  for (const side of [-1, 1]) B(side * (w - f) / 2, 0, z + 0.025, f, ih, frameDepth, frame, true);
-  for (const side of [-1, 1]) B(0, side * (h - f) / 2, z + 0.025, w, f, frameDepth, frame, true);
+  for (const side2 of [-1, 1]) B(side2 * (w - f) / 2, 0, z + 0.025, f, ih, frameDepth, frame, true);
+  for (const side2 of [-1, 1]) B(0, side2 * (h - f) / 2, z + 0.025, w, f, frameDepth, frame, true);
   for (let j = 1; j < cols; j++) B(-iw / 2 + j * pw + (j - 0.5) * m, 0, z + 0.025, m, ih, frameDepth, frame, false);
   if (cols > 1 && id !== "basement") out.detail(0, () => B(-iw / 2 + pw + m / 2, -0.03, z + 0.068, 0.024, 0.13, 0.026, dark, false));
   const sillDepth = options.recess != null ? options.recess + 0.14 : isBay ? z + 0.08 : 0.17, sillZ = options.recess != null ? 0.07 - sillDepth / 2 : isBay ? sillDepth / 2 : z - 5e-3;
   if (options.sill !== false) B(0, -h / 2 - 0.035, sillZ, w + 0.1, 0.07, sillDepth, sill, true);
   if (isBay) {
     const depth = z - 5e-3;
-    for (const side of [-1, 1]) B(side * (w - f) / 2, 0, depth / 2, f, ih, depth, frame, false);
+    for (const side2 of [-1, 1]) B(side2 * (w - f) / 2, 0, depth / 2, f, ih, depth, frame, false);
     B(0, (h - f) / 2, depth / 2, w, f, depth, frame, false);
   }
   if (isGuard && options.accessories !== false) {
@@ -35044,9 +35324,402 @@ function emitAircon(out, x, y, variant = 0) {
     B(xx, y - 0.32, 0.25, 0.045, 0.055, 0.53, metal, false);
     R([xx, y - 0.31, 0.47], [xx, y - 0.05, 0.055], 0.02, metal);
   }
-  const side = variant % 2 ? -1 : 1;
-  R([x + side * 0.42, y - 0.12, 0.2], [x + side * 0.6, y - 0.12, 0.12], 0.025, 13089184);
-  R([x + side * 0.6, y - 0.12, 0.12], [x + side * 0.6, y - 0.72, 0.12], 0.025, 13089184);
+  const side2 = variant % 2 ? -1 : 1;
+  R([x + side2 * 0.42, y - 0.12, 0.2], [x + side2 * 0.6, y - 0.12, 0.12], 0.025, 13089184);
+  R([x + side2 * 0.6, y - 0.12, 0.12], [x + side2 * 0.6, y - 0.72, 0.12], 0.025, 13089184);
+}
+
+// outputs/domestic-test/building-remakes/civic-residential.js
+function emitApprovedCivicFace(c) {
+  const { id, L, H, levels, fh, front, ground: ground2, window: W, box: B, surface: S } = c;
+  if (id === "building:shop-tile") {
+    const cols = Math.max(1, Math.floor(L / 3.1)), bay = (L - 0.5) / cols;
+    for (let r = 1; r < levels; r++) for (let j = 0; j < cols; j++) W(0.25 + bay * (j + 0.5), r * fh + fh * 0.55, Math.min(1.9, bay - 0.35), Math.min(1.18, fh * 0.46), "brown-slider", 7300440);
+    if (front) {
+      for (let j = 0; j < cols; j++) {
+        const x = 0.25 + bay * (j + 0.5), h = Math.min(2.45, fh - 0.7);
+        W(x, ground2 + h / 2 + 0.06, bay - 0.25, h, "wide-slider", 6582637);
+        B(x, ground2 + h + 0.35, 0.1, bay - 0.14, 0.5, 0.15, [6642767, 10194033, 7361610][j % 3]);
+        if (j % 2 === 0) {
+          B(x, ground2 + h + 0.07, 0.23, bay - 0.1, 0.08, 0.46, 7701366);
+          B(x, ground2 + h - 0.03, 0.43, bay - 0.1, 0.16, 0.04, 7701366);
+        }
+      }
+    } else for (let j = 0; j < cols; j++) W(0.25 + bay * (j + 0.5), ground2 + fh * 0.57, Math.min(1.3, bay - 0.4), Math.min(1.1, fh * 0.4));
+    for (let r = 1; r < levels; r++) B(L / 2, r * fh, 0.035, L - 0.06, 0.09, 0.07, 10398367);
+    return true;
+  }
+  if (id === "building:shop-panel") {
+    if (front) {
+      const split = L * 0.46;
+      S((split + L) / 2, H * 0.51, L - split, H * 0.82, 3952210, 0.018);
+      const n = Math.max(2, Math.floor(L / 1.8)), bw = (L - 0.5) / n;
+      for (let r = 1; r < levels; r++) for (let j = 0; j < n; j++) {
+        const x = 0.25 + bw * (j + 0.5);
+        W(x, r * fh + fh * 0.5, bw * (x < split ? 0.46 : 0.68), Math.min(fh * 0.72, 2.25), "stair", 4742757);
+      }
+      for (let x = 0.12; x < split - 0.08; x += 0.22) B(x, H * 0.52, 0.035, 0.025, H * 0.88, 0.045, 8350291);
+      const nGround = Math.max(2, Math.floor(L / 3.4)), gw = (L - 0.6) / nGround;
+      for (let j = 0; j < nGround; j++) W(0.3 + gw * (j + 0.5), ground2 + 1.35, gw - 0.25, 2.5, "wide-slider", 4870993);
+      B(L / 2, Math.min(fh - 0.12, 2.9), 0.16, L - 0.08, 0.22, 0.32, 8416082);
+    } else {
+      const n = Math.max(1, Math.floor(L / 2.7)), pw = (L - 0.6) / n;
+      for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) W(0.3 + pw * (j + 0.5), r * fh + fh * 0.54, Math.min(1.1, pw - 0.3), Math.min(fh * 0.63, 1.9), "stair", 4939104);
+      for (let x = 0.6; x < L; x += 1.2) B(x, H / 2, 0.025, 0.025, H - 0.15, 0.035, 8615782);
+    }
+    return true;
+  }
+  if (id === "facility:apartment") {
+    const n = Math.max(1, Math.floor(L / (front ? 3.3 : 3.7))), pw = (L - 0.5) / n;
+    for (let j = 0; j < n; j++) {
+      const x = 0.25 + pw * (j + 0.5), core = n > 3 && j % 5 === 2;
+      if (core) S(x, H / 2, pw * 0.83, H - 0.1, 10664112, 0.015);
+      for (let r = 0; r < levels; r++) {
+        if (front && r === 0 && j === Math.floor(n / 2)) continue;
+        const w = core ? Math.min(0.8, pw * 0.45) : Math.min(2.65, pw - 0.22), h = core ? fh * 0.48 : Math.min(1.95, fh * 0.68), y = r * fh + fh * 0.56;
+        W(x, y, w, h, core ? "stair" : "veranda", 13096396);
+        if (!core) {
+          B(x, y - h / 2 - 0.1, 0.1, w + 0.14, 0.12, 0.24, 13818062);
+          if (r > 0) {
+            B(x, y - h / 2 + 0.5, 0.23, w, 0.035, 0.035, 7439229);
+            for (let k = 0; k <= 5; k++) B(x - w / 2 + k * w / 5, y - h / 2 + 0.26, 0.23, 0.022, 0.48, 0.022, 7439229);
+          }
+        }
+      }
+      if (!core && j < n - 1) B(0.25 + pw * (j + 1), H / 2, 0.055, 0.18, H, 0.11, 14410198);
+    }
+    if (front) {
+      const x = 0.25 + pw * (Math.floor(n / 2) + 0.5), w = Math.min(2.3, pw - 0.3);
+      W(x, ground2 + 1.25, w, 2.4, "wide-slider", 7901578);
+      B(x, ground2 + 2.55, 0.22, w + 0.3, 0.12, 0.44, 8363666);
+    }
+    return true;
+  }
+  if (id === "facility:police") {
+    const n = Math.max(2, Math.floor(L / 2.35)), pw = (L - 0.5) / n;
+    if (front) {
+      for (let r = 1; r < levels; r++) S(L / 2, r * fh + fh * 0.22, L - 0.5, fh * 0.46, 12154959, 0.016);
+    }
+    for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) {
+      if (front && r === 0 && Math.abs(j - (n - 1) / 2) < 1.2) continue;
+      W(0.25 + pw * (j + 0.5), r * fh + fh * 0.64, Math.min(1.6, pw - 0.24), Math.min(fh * 0.46, 1.65), "wide-slider", 12765629);
+    }
+    if (front) {
+      for (let j = 0; j <= n; j++) B(0.25 + pw * j, H * 0.52, 0.115, 0.16, H * 0.91, 0.23, 13358026);
+      const w = Math.min(3.6, L * 0.36);
+      W(L / 2, ground2 + 1.3, w, 2.45, "wide-slider", 9280918);
+      B(L / 2, ground2 + 2.8, 0.23, Math.min(L - 0.1, w + 1.2), 0.25, 0.46, 13949135);
+      B(L / 2, H - 0.23, 0.08, L, 0.46, 0.16, 14081748);
+    }
+    return true;
+  }
+  return false;
+}
+
+// outputs/domestic-test/building-remakes/retail.js
+function emitApprovedRetailFace(ctx) {
+  const { id, L, H, front, box, window: win, surface } = ctx;
+  if (!["facility:emart", "facility:homeplus", "facility:costco", "facility:traders"].includes(id)) return false;
+  if (L < 2 || H < 2) return true;
+  const band = (y, h, c, z = 0.07, d = 0.12) => box(L / 2, y, z, L, h, d, c);
+  const pier = (x, y, w, h, c, z = 0.12, d = 0.24) => box(x, y, z, w, h, d, c);
+  const panes = (a, b, bottom, top, spacing, frame = 13028811) => {
+    if (top - bottom < 0.4 || b - a < 0.5) return;
+    const n = Math.max(1, Math.ceil((b - a) / spacing)), step = (b - a) / n;
+    for (let i = 0; i < n; i++) win(a + step * (i + 0.5), (bottom + top) / 2, step - 0.11, top - bottom, "white-slider", frame);
+  };
+  const canopy = (a, b, y, c) => {
+    box((a + b) / 2, y, 0.23, b - a, 0.18, 0.46, c);
+    box((a + b) / 2, y - 0.11, 0.39, b - a, 0.06, 0.1, 6448992);
+    for (let x = a + 0.22; x < b - 0.1; x += Math.max(1.6, (b - a) / 5)) box(x, y - 0.24, 0.18, 0.075, 0.28, 0.36, 7830903);
+  };
+  const service = () => {
+    const dh = Math.min(3.3, H * 0.38), dw = Math.min(3.1, L * 0.24), x = L * 0.54;
+    surface(x, dh / 2 + 0.08, dw, dh, 6910320, 0.022);
+    for (let y = 0.22; y < dh; y += 0.24) box(x, y, 0.065, dw, 0.027, 0.045, 10265503);
+    pier(x - dw / 2 - 0.08, dh / 2, 0.15, dh + 0.15, 13027519);
+    pier(x + dw / 2 + 0.08, dh / 2, 0.15, dh + 0.15, 13027519);
+    box(x, dh + 0.08, 0.13, dw + 0.32, 0.16, 0.26, 12567227);
+    if (L > 8) {
+      win(L * 0.18, 1.12, Math.min(1.1, L * 0.1), 2.1, "white-slider", 7831160);
+      const vx = L * 0.82, vy = H * 0.58, vw = Math.min(1.8, L * 0.14), vh = Math.min(0.9, H * 0.12);
+      surface(vx, vy, vw, vh, 4279112, 0.025);
+      for (let y = vy - vh / 2 + 0.08; y < vy + vh / 2; y += 0.13) box(vx, y, 0.09, vw, 0.055, 0.12, 9871e3);
+    }
+  };
+  if (id === "facility:emart") {
+    const a = L * 0.15, b = L * 0.85, base2 = Math.min(3.05, H * 0.26), glassTop = H * 0.57;
+    surface(L / 2, H * 0.7, L, H * 0.6, 10455156);
+    for (let x = 0.15; x < L; x += 0.26) box(x, H * 0.72, 0.045, 0.035, H * 0.52, 0.035, 12625291);
+    for (const y of [0.62, 0.73, 0.84, 0.95]) band(H * y, 0.1, 14734786);
+    if (front) {
+      panes(a, b, 0.12, base2 - 0.22, 2.05, 13357511);
+      panes(a, b, base2 + 0.5, glassTop, 2.45, 11780543);
+      canopy(a - 0.12, b + 0.12, base2 + 0.18, 14015185);
+      const pw = Math.min(0.6, L * 0.045);
+      for (const x of [a - pw / 2, b + pw / 2]) pier(x, base2 / 2, pw, base2, 12828336, 0.2, 0.4);
+      for (const x of [L * 0.075, L * 0.925]) pier(x, H / 2, Math.min(L * 0.075, 1.5), H, 10783605, 0.13, 0.26);
+      for (const y of [0.24, 0.57, 0.96]) band(H * y, 0.16, 14076342, 0.17, 0.3);
+      for (let x = a; x <= b + 0.01; x += (b - a) / 5) pier(x, H * 0.969, 0.15, H * 0.06, 13027259, 0.17, 0.3);
+    } else service();
+  } else if (id === "facility:homeplus") {
+    surface(L / 2, H / 2, L, H, 12961469);
+    for (let y = 0.7; y < H; y += 0.82) band(y, 0.025, 10198678, 0.028, 0.025);
+    for (let x = 1.5; x < L; x += 2.2) pier(x, H / 2, 0.025, H, 10922656, 0.03, 0.03);
+    if (front) {
+      const a = L * 0.24, b = L * 0.91, doorTop = Math.min(2.55, H * 0.23), top = H * 0.76;
+      panes(a, b, 0.1, doorTop, 2, 8953495);
+      panes(a, b, doorTop + 0.4, top, 1.7, 12108216);
+      canopy(a - 0.1, b + 0.1, doorTop + 0.2, 10363702);
+      for (const x of [a - 0.13, b + 0.13]) pier(x, (top + 0.1) / 2, 0.22, top + 0.1, 14013640, 0.16, 0.32);
+      box((a + b) / 2, top + 0.16, 0.15, b - a + 0.48, 0.24, 0.3, 14079691);
+      pier(L * 0.86, doorTop / 2, 0.12, doorTop, 10889531, 0.21, 0.4);
+    } else service();
+    band(H - 0.12, 0.15, 7896693, 0.1, 0.2);
+  } else if (id === "facility:costco") {
+    surface(L / 2, H / 2, L, H, 14737621);
+    band(H * 0.85, 0.22, 12995669, 0.035, 0.045);
+    band(0.4, 0.55, 11909295, 0.055, 0.09);
+    for (let x = 2.6; x < L; x += 3.2) pier(x, H / 2, 0.026, H, 12567482, 0.03, 0.03);
+    if (front) {
+      const top = H * 0.78, lower = Math.min(2.8, H * 0.24), w = Math.min(3, L * 0.13);
+      for (const x of [L * 0.2, L * 0.78]) {
+        panes(x - w / 2, x + w / 2, lower + 0.25, top, 1.15, 11385269);
+        for (const px2 of [x - w / 2 - 0.07, x + w / 2 + 0.07]) pier(px2, (top + lower + 0.25) / 2, 0.12, top - lower - 0.05, 12699325, 0.1, 0.2);
+      }
+      panes(L * 0.35, L * 0.65, 0.12, lower, 1.7, 9148821);
+      canopy(L * 0.33, L * 0.67, lower + 0.15, 12370619);
+      for (const x of [L * 0.33, L * 0.67]) pier(x, lower / 2, 0.22, lower, 13685449, 0.18, 0.36);
+    } else service();
+    band(H - 0.1, 0.12, 13027775, 0.08, 0.16);
+  } else {
+    surface(L / 2, H / 2, L, H, 11977149);
+    band(H * 0.93, H * 0.1, 10341943, 0.09, 0.18);
+    for (const y of [0.32, 0.55, 0.77]) band(H * y, 0.045, 8753036, 0.03, 0.035);
+    if (front) {
+      const a = L * 0.1, b = L * 0.39, bottom = Math.min(2.8, H * 0.22), top = H * 0.85;
+      surface(L * 0.46, H / 2, L * 0.12, H, 9094208, 0.025);
+      panes(a, b, bottom + 0.24, top, 1.8, 8560273);
+      panes(a, b, 0.12, bottom - 0.1, 1.7, 8954002);
+      canopy(a - 0.1, b + 0.15, bottom + 0.04, 10078523);
+      for (const x of [a - 0.08, b + 0.08]) pier(x, (top + bottom) / 2, 0.12, top - bottom, 8165772, 0.14, 0.28);
+      for (let y = bottom + 1.7; y < top; y += 1.65) box((a + b) / 2, y, 0.14, b - a, 0.07, 0.14, 10137505);
+      const ga = L * 0.58, gb = L * 0.85;
+      panes(ga, gb, H * 0.26, H * 0.66, 2.1, 7308672);
+      for (let y = H * 0.28; y < H * 0.66; y += 0.65) box((ga + gb) / 2, y, 0.12, gb - ga, 0.055, 0.1, 9675418);
+      canopy(ga, gb, H * 0.22, 5798555);
+      panes(ga, gb, 0.1, H * 0.19, 2.2, 8821392);
+    } else service();
+  }
+  return true;
+}
+
+// outputs/domestic-test/building-remakes/storefronts.js
+var PALE = 13947593;
+var DARK = 3422518;
+var SILVER = 10462881;
+var SUPPORTED = /* @__PURE__ */ new Set(["facility:gs25", "facility:seven", "facility:emart24", "facility:starbucks"]);
+function upperHost(c, shopTop) {
+  const { L, H, fh, window: W, box: B, id } = c;
+  const glassHost = id === "facility:emart24" || id === "facility:starbucks";
+  for (let bottom = shopTop + 0.26; bottom + 1.15 < H - 0.28; bottom += fh) {
+    const h = Math.min(glassHost ? fh - 0.55 : 1.65, H - 0.32 - bottom), n = Math.max(1, Math.floor((L - 0.6) / (glassHost ? 2.2 : 2.8))), step = (L - 0.6) / n;
+    for (let i = 0; i < n; i++) {
+      const x = 0.3 + step * (i + 0.5), w = Math.min(step - 0.24, glassHost ? 2.8 : 2.05);
+      if (w > 0.45) W(x, bottom + h / 2, w, h, "white-slider", glassHost ? DARK : PALE);
+    }
+    if (glassHost) B(L / 2, bottom - 0.13, 0.07, L - 0.08, 0.12, 0.14, DARK);
+  }
+}
+function glass(c, a, b, bottom, top, frame = DARK) {
+  if (b - a < 0.35 || top - bottom < 0.5) return;
+  c.window((a + b) / 2, (bottom + top) / 2, b - a, top - bottom, "white-slider", frame);
+}
+function entry(c, x, w, top, frame, canopy) {
+  const bottom = 0.1;
+  glass(c, x - w / 2, x + w / 2, bottom, top, frame);
+  c.entryOpening?.({ x, y: (bottom + top) / 2, w, h: top - bottom, panes: 1, door: 0, frameWidth: 0 });
+  for (const sign2 of [-1, 1]) c.box(x + sign2 * 0.1, 1.12, 0.12, 0.025, 0.48, 0.035, SILVER);
+  c.box(x, 0.055, 0.15, w + 0.1, 0.07, 0.3, 9210755);
+  if (canopy) {
+    c.box(x, top + 0.1, 0.245, w + 0.38, 0.09, 0.49, frame);
+    c.box(x, top + 0.045, 0.42, w + 0.38, 0.04, 0.045, SILVER);
+  }
+}
+function side(c, top) {
+  const { L, id, box: B } = c;
+  const corner = id === "facility:gs25" || id === "facility:starbucks";
+  const span = corner ? Math.min(L - 0.3, Math.max(1.1, L * 0.62)) : Math.min(L - 0.4, 2.8);
+  if (span > 0.5) {
+    glass(c, 0.18, 0.18 + span, 0.3, top - 0.8, id === "facility:starbucks" ? SILVER : DARK);
+    B(0.18 + span / 2, top - 0.38, 0.09, span + 0.18, 0.56, 0.18, id === "facility:gs25" ? DARK : id === "facility:starbucks" ? 8676167 : 6448994);
+    if (id === "facility:starbucks") for (let x = 0.22; x < span + 0.15; x += 0.15) B(x, top - 0.38, 0.205, 0.035, 0.56, 0.1, 10978144);
+  }
+  if (L > 4.3) {
+    glass(c, L - 0.95, L - 0.3, 0.55, 2.25, DARK);
+    B(L - 0.63, 1.05, 0.1, 0.03, 0.22, 0.04, SILVER);
+  }
+}
+function emitApprovedStorefrontFace(c) {
+  if (!SUPPORTED.has(c.id)) return false;
+  const { id, L, H, fh, front, box: B, surface: S } = c;
+  if (L < 1.15 || H < 1.7) return true;
+  const top = Math.min(H - 0.12, Math.max(2.7, Math.min(fh, 3.7))), fasciaH = id === "facility:starbucks" ? 0.85 : 0.62;
+  upperHost(c, top);
+  if (!front) {
+    side(c, top);
+    return true;
+  }
+  const glassTop = top - fasciaH - 0.14;
+  if (id === "facility:gs25") {
+    B(L / 2, top - fasciaH / 2, 0.14, L - 0.06, fasciaH, 0.28, DARK);
+    for (const x of [L * 0.17, L * 0.83]) {
+      B(x, top - 0.22, 0.295, L * 0.23, 0.075, 0.045, 6471637);
+      B(x + (x < L / 2 ? -1 : 1) * L * 0.115, top - 0.32, 0.295, 0.075, 0.27, 0.045, 6471637);
+    }
+    const doorW = Math.min(1.45, L * 0.23), doorX = L * 0.53;
+    glass(c, 0.18, doorX - doorW / 2 - 0.12, 0.22, glassTop, SILVER);
+    entry(c, doorX, doorW, glassTop, SILVER, false);
+    glass(c, doorX + doorW / 2 + 0.12, L - 0.18, 0.22, glassTop, SILVER);
+    B(0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK);
+    B(L - 0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK);
+    B(L / 2, glassTop + 0.06, 0.16, L - 0.08, 0.1, 0.32, 2370347);
+  } else if (id === "facility:seven") {
+    B(L / 2, top - 0.31, 0.13, L - 0.06, 0.62, 0.26, 5725788);
+    const stripeW = L * 0.22;
+    for (const x of [stripeW / 2 + 0.1, L - stripeW / 2 - 0.1]) for (const [k, col] of [[0, 15234357], [1, 1341781], [2, 13975857]]) B(x, top - 0.12 - k * 0.13, 0.29, stripeW, 0.095, 0.08, col);
+    B(L / 2, glassTop + 0.08, 0.245, L - 0.06, 0.06, 0.49, 2255183);
+    B(L / 2, glassTop, 0.445, L - 0.06, 0.17, 0.045, 1467214);
+    const dw = Math.min(1.55, L * 0.3), dx = L * 0.5, pier = Math.min(0.38, L * 0.055);
+    S(dx, glassTop / 2, dw + 0.52, glassTop, 10718056);
+    for (let x = dx - dw / 2 - 0.22; x < dx + dw / 2 + 0.24; x += 0.14) {
+      if (x < dx - dw / 2 - 0.04 || x > dx + dw / 2 + 0.04) B(x, glassTop / 2, 0.042, 0.025, glassTop, 0.028, 8877399);
+      else B(x, glassTop - 0.1, 0.042, 0.025, 0.2, 0.028, 8877399);
+    }
+    entry(c, dx, dw, glassTop - 0.3, DARK, false);
+    glass(c, 0.2, dx - dw / 2 - 0.42, 0.2, glassTop - 0.1, DARK);
+    glass(c, dx + dw / 2 + 0.42, L - 0.2, 0.2, glassTop - 0.1, DARK);
+    for (const x of [dx - dw / 2 - 0.34, dx + dw / 2 + 0.34]) {
+      B(x, glassTop / 2, 0.09, pier, glassTop, 0.18, 5528408);
+      B(x, glassTop - 0.45, 0.22, 0.11, 0.15, 0.1, DARK);
+    }
+  } else if (id === "facility:emart24") {
+    B(L / 2, top - 0.31, 0.16, L - 0.06, 0.62, 0.32, 16231722);
+    for (const x of [L * 0.16, L * 0.84]) B(x, top - 0.3, 0.345, L * 0.25, 0.18, 0.05, 15430717);
+    const dx = L * 0.62, dw = Math.min(1.65, L * 0.25);
+    entry(c, dx, dw, Math.min(glassTop - 0.22, 2.35), DARK, true);
+    const doorTop = Math.min(glassTop - 0.22, 2.35);
+    if (glassTop - doorTop > 0.45) glass(c, dx - dw / 2, dx + dw / 2, doorTop + 0.17, glassTop, DARK);
+    glass(c, 0.17, dx - dw / 2 - 0.17, 0.14, glassTop, DARK);
+    glass(c, dx + dw / 2 + 0.17, L - 0.17, 0.14, glassTop, DARK);
+    for (const x of [0.08, dx - dw / 2 - 0.09, dx + dw / 2 + 0.09, L - 0.08]) B(x, glassTop / 2, 0.085, 0.1, glassTop, 0.17, DARK);
+  } else {
+    B(L / 2, top - 0.43, 0.13, L - 0.04, 0.86, 0.26, 7953218);
+    for (let x = 0.09; x < L - 0.05; x += 0.15) B(x, top - 0.43, 0.235, 0.035, 0.82, 0.14, 10781280);
+    B(L / 2, top - 0.88, 0.13, L - 0.04, 0.09, 0.3, DARK);
+    const dx = L * 0.65, dw = Math.min(1.65, L * 0.25);
+    glass(c, 0.15, dx - dw / 2 - 0.12, 0.1, glassTop, SILVER);
+    entry(c, dx, dw, Math.min(2.4, glassTop), SILVER, true);
+    if (glassTop > 2.85) glass(c, dx - dw / 2, dx + dw / 2, 2.58, glassTop, SILVER);
+    glass(c, dx + dw / 2 + 0.12, L - 0.15, 0.1, glassTop, SILVER);
+    B(0.075, glassTop / 2, 0.07, 0.1, glassTop, 0.14, SILVER);
+    B(L - 0.075, glassTop / 2, 0.07, 0.1, glassTop, 0.14, SILVER);
+  }
+  return true;
+}
+
+// outputs/domestic-test/building-remakes/models.js?v=approvedbuildings1
+function approvedBuildingId(b) {
+  const id = b.assetChoice ? "building:" + b.assetChoice : "facility:" + b.facility?.id;
+  return approvedBuildingProfiles[id] ? id : null;
+}
+function clipped(rect, cuts) {
+  let pieces = [rect];
+  for (const [l, r, b, t] of cuts) pieces = pieces.flatMap(([a, c, d, e]) => {
+    if (c <= l || a >= r || e <= b || d >= t) return [[a, c, d, e]];
+    const left = Math.max(a, l), right = Math.min(c, r);
+    return [[a, left, d, e], [right, c, d, e], [left, right, d, Math.max(d, b)], [left, right, Math.min(e, t), e]].filter((q) => q[1] - q[0] > 1e-3 && q[3] - q[2] > 1e-3);
+  });
+  return pieces;
+}
+function roofCoreFits(points, holes, cx, cz, w, d) {
+  const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([x, z]) => [cx + x * w / 2, cz + z * d / 2]);
+  if (!corners.every((p2) => inPolygon(p2, points) && !holes.some((h) => inPolygon(p2, h)))) return false;
+  const cross2 = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+  const intersects3 = (a, b, c, d2) => Math.max(a[0], b[0]) >= Math.min(c[0], d2[0]) && Math.max(c[0], d2[0]) >= Math.min(a[0], b[0]) && Math.max(a[1], b[1]) >= Math.min(c[1], d2[1]) && Math.max(c[1], d2[1]) >= Math.min(a[1], b[1]) && cross2(a, b, c) * cross2(a, b, d2) <= 0 && cross2(c, d2, a) * cross2(c, d2, b) <= 0;
+  for (const ring of [points, ...holes]) for (let i = 0; i < ring.length; i++) {
+    const a = ring[i], b = ring[(i + 1) % ring.length];
+    if (Math.abs(a[0] - cx) < w / 2 && Math.abs(a[1] - cz) < d / 2) return false;
+    if (corners.some((c, j) => intersects3(a, b, c, corners[(j + 1) % 4]))) return false;
+  }
+  return true;
+}
+function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
+  const id = approvedBuildingId(b);
+  if (!id) return null;
+  const profile = approvedBuildingProfiles[id], { points, base: base2, top } = b, H = top - base2, levels = Math.max(1, Math.round(b.levels)), fh = H / levels;
+  if (!Number.isFinite(H) || H <= 0 || !points?.length) throw Error("\uC2B9\uC778 \uAC74\uBB3C\uC758 \uD06C\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const sign2 = Math.sign(points.reduce((s, a, i) => {
+    const c = points[(i + 1) % points.length];
+    return s + a[0] * c[1] - c[0] * a[1];
+  }, 0)) || 1;
+  let windows = 0;
+  const features = [];
+  for (let edge = 0; edge < points.length; edge++) {
+    const a = points[edge], c = points[(edge + 1) % points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
+    if (L < 0.6) continue;
+    const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2;
+    if ([0.2, 0.5, 0.8].every((t) => buildings.some((o) => o !== b && inPolygon([a[0] + ux * L * t + nx * 0.15, a[1] + uz * L * t + nz * 0.15], o.points)))) continue;
+    const out = batch.writer([a[0], base2, a[1]], ux, uz, nx, nz), cuts = [], panels = [], front = edge === (b.facility.frontEdge ?? b.frontEdge ?? 0), ground2 = Math.max(0, elevation(a[0] + ux * L / 2, a[1] + uz * L / 2) - base2);
+    const box = (x, y, z, w, h, d, color) => {
+      if ([x, y, z, w, h, d].some((v2) => !Number.isFinite(v2))) throw Error("\uC2B9\uC778 \uAC74\uBB3C \uBD80\uD488 \uC88C\uD45C \uC624\uB958");
+      if (w > 5e-3 && h > 5e-3 && d > 5e-3) out.box(x, y, z, w, h, d, color);
+    };
+    const surface = (x, y, w, h, color, z = 0.014) => {
+      if (w > 0 && h > 0) panels.push({ rect: [Math.max(0.015, x - w / 2), Math.min(L - 0.015, x + w / 2), Math.max(ground2, y - h / 2), Math.min(H, y + h / 2)], color, z });
+    };
+    const window2 = (x, y, w, h, kind = "white-slider", frame = 12962755) => {
+      const lo = Math.max(0.12, x - w / 2), hi = Math.min(L - 0.12, x + w / 2), bottom = Math.max(ground2 + 0.035, y - h / 2), ceiling = Math.min(H - 0.18, y + h / 2);
+      w = hi - lo;
+      h = ceiling - bottom;
+      if (w < 0.3 || h < 0.35) return;
+      x = (lo + hi) / 2;
+      y = (bottom + ceiling) / 2;
+      if (cuts.some(([l, r, bt, t]) => Math.min(hi, r) - Math.max(lo, l) > 0.01 && Math.min(ceiling, t) - Math.max(bottom, bt) > 0.01)) return;
+      if (options.windowOpenings) {
+        const rect = windowOpening(out, options.windowOpenings, b, edge, a, [ux, uz], [nx, nz], x, base2 + y, w, h, profile.wall);
+        cuts.push([rect[0], rect[1], rect[2] - base2, rect[3] - base2]);
+      } else cuts.push([lo, hi, bottom, ceiling]);
+      emitWindow(out.at(x, y, 0), kind, w, h, windows % 7, frame, b.seed * 997 + edge * 131 + windows, { ...options.windowOpenings ? { recess: WINDOW_RECESS } : {}, accessories: false });
+      windows++;
+    };
+    const ctx = { id, L, H, levels, fh, front, edge, ground: ground2, out, window: window2, surface, box };
+    if (!emitApprovedCivicFace(ctx) && !emitApprovedRetailFace(ctx) && !emitApprovedStorefrontFace(ctx)) throw Error("\uC2B9\uC778\uB41C \uAC74\uBB3C \uC0DD\uC131\uAE30\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4: " + id);
+    const wallCuts = [...cuts, ...panels.map((p2) => p2.rect)];
+    if (profile.texture) emitFacadeTexture(batch, out, { width: L, bottom: ground2, top: H, id: profile.texture, cuts: wallCuts });
+    else for (const [l, r, bt, t] of clipped([0.015, L - 0.015, ground2, H], wallCuts)) out.quad((l + r) / 2, (bt + t) / 2, 0.01, r - l, t - bt, profile.wall, true);
+    for (const panel of panels) for (const [l, r, bt, t] of clipped(panel.rect, cuts)) out.quad((l + r) / 2, (bt + t) / 2, panel.z, r - l, t - bt, panel.color, true);
+    box(L / 2, H + 0.25, -0.1, L, 0.5, 0.2, profile.wall);
+    box(L / 2, H + 0.52, -0.1, L + 0.02, 0.055, 0.25, 9214097);
+    if (L > 3) {
+      const x = front ? L - 0.17 : 0.17;
+      out.rod([x, ground2 + 0.12, 0.075], [x, H - 0.06, 0.075], 0.045, 8490630, 6);
+      for (let y = ground2 + 0.45; y < H; y += 2.1) box(x, y, 0.06, 0.14, 0.065, 0.15, 7635578);
+    }
+    features.push({ edge, front, openings: cuts.length });
+  }
+  const minX = Math.min(...points.map((p2) => p2[0])), maxX = Math.max(...points.map((p2) => p2[0])), minZ = Math.min(...points.map((p2) => p2[1])), maxZ = Math.max(...points.map((p2) => p2[1]));
+  const cw = Math.min(3, (maxX - minX) * 0.23), cd = Math.min(2.6, (maxZ - minZ) * 0.25), cx = (minX + maxX) / 2, cz = (minZ + maxZ) / 2;
+  if (cw > 0.8 && cd > 0.8 && roofCoreFits(points, b.holePoints || [], cx, cz, cw, cd)) {
+    const roof = batch.writer([cx, base2, cz]);
+    roof.box(0, H + 0.95, 0, cw, 1.9, cd, profile.wall);
+    roof.box(0, H + 1.93, 0, cw + 0.12, 0.08, cd + 0.12, 8753029);
+    roof.box(0, H + 0.85, cd / 2 + 0.015, 0.75, 1.65, 0.03, 6386028);
+    roof.box(0.25, H + 0.9, cd / 2 + 0.05, 0.035, 0.16, 0.045, 13554890);
+    for (let y = H + 0.5; y < H + 1.4; y += 0.15) roof.box(-cw * 0.3, y, cd / 2 + 0.035, 0.35, 0.035, 0.07, 6451050);
+  }
+  b.approvedRemake = { id, referenceId: profile.referenceId, features };
+  return { windows, sourceId: profile.referenceId, remade: true };
 }
 
 // outputs/domestic-test/korean-facades.js
@@ -35069,9 +35742,9 @@ var eras = [{ id: "old", name: "\uAD6C\uCD95", wall: 13289140, accent: 9214859, 
 var apartmentCatalog = eras.flatMap((e) => ["\uAE34 \uB3D9", "\uAEBE\uC778 \uB3D9", "\uD0C0\uC6CC\uC640 \uD63C\uD569"].map((shape, i) => ({ ...e, id: `${e.id}-${i + 1}`, era: e.id, variant: i, name: `${e.name} \xB7 ${shape}`, source: "../apartment-research/", nominalLevels: [5, 12, 15, 15, 18, 22, 20, 25, 30][eras.indexOf(e) * 3 + i] })));
 var hash2 = (s) => Array.from(String(s)).reduce((h, c) => Math.imul(h, 31) + c.charCodeAt(0) >>> 0, 7);
 function chooseApartment(b) {
-  const p = b.properties || {}, name = p.building_name || p.buld_nm_dc || b.address || String(b.seed), key = name.replace(/\s*\d+동.*$/, "");
-  const raw = String(p.useAprDay || p.use_apr_day || p.approval_date || ""), year = Number(raw.slice(0, 4));
-  let era = p.apartment_era, source = "\uC124\uC815";
+  const p2 = b.properties || {}, name = p2.building_name || p2.buld_nm_dc || b.address || String(b.seed), key = name.replace(/\s*\d+동.*$/, "");
+  const raw = String(p2.useAprDay || p2.use_apr_day || p2.approval_date || ""), year = Number(raw.slice(0, 4));
+  let era = p2.apartment_era, source = "\uC124\uC815";
   if (!eras.some((e) => e.id === era)) {
     if (year >= 1900 && year <= 2100) {
       era = year < 1995 ? "old" : year < 2010 ? "middle" : "new";
@@ -35081,14 +35754,14 @@ function chooseApartment(b) {
       source = "\uC720\uD615 \uCD94\uC815 \xB7 \uC900\uACF5 \uC5F0\uB3C4 \uC5C6\uC74C";
     }
   }
-  let variant = p.apartment_variant;
+  let variant = p2.apartment_variant;
   if (!Number.isInteger(variant) || variant < 0 || variant > 2) variant = b.points.length > 6 ? 1 : b.levels >= 22 ? 2 : hash2(key) % 3;
   return { ...apartmentCatalog.find((a) => a.era === era && a.variant === variant), selection: source, complexKey: key };
 }
 function edges(b) {
-  const ps = b.points, sign2 = Math.sign(ps.reduce((v2, p, i) => {
+  const ps = b.points, sign2 = Math.sign(ps.reduce((v2, p2, i) => {
     const q = ps[(i + 1) % ps.length];
-    return v2 + p[0] * q[1] - q[0] * p[1];
+    return v2 + p2[0] * q[1] - q[0] * p2[1];
   }, 0)) || 1;
   return ps.map((a, i) => {
     const c = ps[(i + 1) % ps.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]), ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L;
@@ -35245,11 +35918,13 @@ function emitApartment(batch, b) {
   return { windows };
 }
 
-// outputs/domestic-test/facilities/models.js?v=building-edit1
+// outputs/domestic-test/facilities/models.js?v=approvedbuildings1
 function emitFacility(batch, b, buildings, elevation, options = {}) {
+  const approved2 = emitApprovedBuilding(batch, b, buildings, elevation, options);
+  if (approved2) return approved2;
   const recessed = !!options.windowOpenings;
   if (b.facility.id === "apartment") return emitApartment(batch, b);
-  const f = facilityById[b.facility.id], { points, base, top } = b, H = top - base, levels = Math.max(1, b.levels), fh = H / levels;
+  const f = facilityById[b.facility.id], { points, base: base2, top } = b, H = top - base2, levels = Math.max(1, b.levels), fh = H / levels;
   const signed2 = points.reduce((v2, a, i) => {
     const c = points[(i + 1) % points.length];
     return v2 + a[0] * c[1] - c[0] * a[1];
@@ -35260,18 +35935,18 @@ function emitFacility(batch, b, buildings, elevation, options = {}) {
     if (L < 1) continue;
     const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2;
     if ([0.2, 0.5, 0.8].every((t) => buildings.some((other) => other !== b && inPolygon([a[0] + ux * L * t + nx * 0.14, a[1] + uz * L * t + nz * 0.14], other.points)))) continue;
-    const panels = [], cuts = [], out = batch.writer([a[0], base, a[1]], ux, uz, nx, nz), rawQ = (x, y, w, h, col, z = 0.025) => {
+    const panels = [], cuts = [], out = batch.writer([a[0], base2, a[1]], ux, uz, nx, nz), rawQ = (x, y, w, h, col, z = 0.025) => {
       if (w > 0 && h > 0) out.quad(x, y, z, w, h, col, true);
     }, rawB = (x, y, w, h, col, z = 0.035, d = 0.025) => out.box(x, y, z, w, h, d, col);
     const Q = (...args) => recessed ? panels.push(["quad", args]) : rawQ(...args), B = (...args) => recessed ? panels.push(["box", args]) : rawB(...args);
-    const front = edge === (b.facility.frontEdge ?? b.frontEdge), ground2 = Math.max(0.05, elevation(a[0] + ux * L / 2, a[1] + uz * L / 2) - base), usable = H - ground2;
+    const front = edge === (b.facility.frontEdge ?? b.frontEdge), ground2 = Math.max(0.05, elevation(a[0] + ux * L / 2, a[1] + uz * L / 2) - base2), usable = H - ground2;
     Q(L / 2, H / 2, L - 0.02, H - 0.02, f.wall, 0.012);
     const frame = (x, y, w, h, col = f.glass, z = 0.045) => {
       if (w < 0.3 || h < 0.3) return;
       if (recessed) {
         const reveal = batch.writer([0, 0, 0]);
-        const rect = windowOpening(reveal, options.windowOpenings, b, edge, a, [ux, uz], [nx, nz], x, base + y, w, h, f.wall);
-        cuts.push([rect[0], rect[1], rect[2] - base, rect[3] - base]);
+        const rect = windowOpening(reveal, options.windowOpenings, b, edge, a, [ux, uz], [nx, nz], x, base2 + y, w, h, f.wall);
+        cuts.push([rect[0], rect[1], rect[2] - base2, rect[3] - base2]);
         emitWindow(out.at(x, y, 0), "white-slider", w, h, 0, 12040105, b.seed + edge, { recess: WINDOW_RECESS, sill: false, accessories: false });
       } else {
         Q(x, y, w, h, 12040105, z - 0.013);
@@ -35416,12 +36091,12 @@ function addSignText(root, spec) {
 function addFacilityLabels(root, buildings) {
   if (typeof document === "undefined") return;
   for (const b of buildings) {
-    if (!b.facility || b.facility.id === "apartment" || b.assetChoice) continue;
+    if (!b.facility || b.facility.id === "apartment" || b.assetChoice || b.approvedRemake) continue;
     const f = facilityById[b.facility.id], i = b.facility.frontEdge ?? b.frontEdge ?? 0, a = b.points[i], c = b.points[(i + 1) % b.points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
     if (L < 3) continue;
-    const sign2 = Math.sign(b.points.reduce((v2, p, j) => {
+    const sign2 = Math.sign(b.points.reduce((v2, p2, j) => {
       const q = b.points[(j + 1) % b.points.length];
-      return v2 + p[0] * q[1] - q[0] * p[1];
+      return v2 + p2[0] * q[1] - q[0] * p2[1];
     }, 0)) || 1, nx = (c[1] - a[1]) / L * sign2, nz = -(c[0] - a[0]) / L * sign2;
     const label = new Group();
     label.position.set((a[0] + c[0]) / 2, b.top - Math.min(1.1, (b.top - b.base) * 0.1), (a[1] + c[1]) / 2);
@@ -35444,7 +36119,7 @@ function routePipe(start, end, obstacles, L, bottom, top) {
   }
   const unique = (a, lo, hi) => [...new Set(a.filter((v2) => v2 >= lo - 1e-7 && v2 <= hi + 1e-7).map((v2) => +v2.toFixed(5)))].sort((a2, b) => a2 - b);
   const X = unique(xs, 0.18, L - 0.18), Y = unique(ys, bottom, top), nx = X.length, points = Y.flatMap((y) => X.map((x) => [x, y]));
-  const nearest = (p) => points.findIndex((q) => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1e-4), s = nearest(start), t = nearest(end);
+  const nearest = (p2) => points.findIndex((q) => Math.hypot(q[0] - p2[0], q[1] - p2[1]) < 1e-4), s = nearest(start), t = nearest(end);
   if (s < 0 || t < 0) return null;
   const distance = new Float64Array(points.length).fill(Infinity), previous = new Int32Array(points.length).fill(-1), closed = /* @__PURE__ */ new Set(), open = /* @__PURE__ */ new Set([s]);
   distance[s] = 0;
@@ -35477,11 +36152,11 @@ function routePipe(start, end, obstacles, L, bottom, top) {
     if (i === s) break;
   }
   path.reverse();
-  return path.filter((p, i) => !i || i === path.length - 1 || Math.abs((p[0] - path[i - 1][0]) * (path[i + 1][1] - p[1]) - (p[1] - path[i - 1][1]) * (path[i + 1][0] - p[0])) > 1e-8);
+  return path.filter((p2, i) => !i || i === path.length - 1 || Math.abs((p2[0] - path[i - 1][0]) * (path[i + 1][1] - p2[1]) - (p2[1] - path[i - 1][1]) * (path[i + 1][0] - p2[0])) > 1e-8);
 }
 function planGasNetwork(faces, building) {
-  const seed = Math.abs(building.seed), candidates = faces.filter((f) => f.L > 1.8 && f.clear).sort((a, b) => (a.isFront ? 0 : 1) - (b.isFront ? 0 : 1) || b.L - a.L);
-  for (const f of candidates) {
+  const seed = Math.abs(building.seed), candidates2 = faces.filter((f) => f.L > 1.8 && f.clear).sort((a, b) => (a.isFront ? 0 : 1) - (b.isFront ? 0 : 1) || b.L - a.L);
+  for (const f of candidates2) {
     const maxCount = Math.min(4, Math.max(1, building.levels - 1));
     for (let count3 = maxCount; count3 >= 1; count3--) for (const fraction of [0.22, 0.78, 0.5, 0.36, 0.64]) {
       const width = count3 * 0.46, start = Math.max(0.55, Math.min(f.L - width - 0.55, f.L * fraction - width / 2));
@@ -35490,13 +36165,13 @@ function planGasNetwork(faces, building) {
       const bodies = centers.map((u) => [u - 0.18, u + 0.18, my - 0.22, my + 0.23]);
       if (bodies.some((r) => f.openings.some((o) => r[1] > o[0] - 0.08 && r[0] < o[1] + 0.08 && r[3] > o[2] - 0.08 && r[2] < o[3] + 0.08))) continue;
       const feedX = start + width + 0.24, feed = [[feedX, g - 0.08], [feedX, header], [centers[0] - 0.24, header]];
-      if (feed.slice(1).some((p, i) => f.openings.some((r) => intersects2(feed[i], p, r)))) continue;
+      if (feed.slice(1).some((p2, i) => f.openings.some((r) => intersects2(feed[i], p2, r)))) continue;
       const meters = [];
       let failed = false;
       for (let i = 0; i < count3; i++) {
         const u = centers[i], portY = my + 0.2, top = building.top - 0.25, depth = 0.11 + i * 0.045;
         const inlet = [[u - 0.23, header], [u - 0.23, portY + 0.18], [u - 0.085, portY + 0.18], [u - 0.085, portY]];
-        if (inlet.slice(1).some((p, k) => f.openings.some((r) => intersects2(inlet[k], p, r)))) {
+        if (inlet.slice(1).some((p2, k) => f.openings.some((r) => intersects2(inlet[k], p2, r)))) {
           failed = true;
           break;
         }
@@ -35515,9 +36190,9 @@ function planGasNetwork(faces, building) {
       if (failed) continue;
       const routes = [feed, ...meters.flatMap((m) => [m.inlet, m.outlet])];
       if (f.facadeClear && routes.some((path) => path.slice(1).some((q, i) => {
-        const p = path[i], steps = Math.max(1, Math.ceil(Math.hypot(q[0] - p[0], q[1] - p[1]) / 0.18));
+        const p2 = path[i], steps = Math.max(1, Math.ceil(Math.hypot(q[0] - p2[0], q[1] - p2[1]) / 0.18));
         for (let k = 0; k <= steps; k++) {
-          const u = p[0] + (q[0] - p[0]) * k / steps;
+          const u = p2[0] + (q[0] - p2[0]) * k / steps;
           for (const du of [-0.04, 0, 0.04]) for (const depth of [0.06, 0.16, 0.3]) if (!f.facadeClear(u + du, depth)) return true;
         }
         return false;
@@ -35548,7 +36223,7 @@ function emitGasNetwork(batch, plan, proxy) {
       for (const q of points.slice(1, -1)) B(q[0], q[1], q[2], r * 2.5, r * 2.5, r * 2.5, color);
     });
   }
-  pipe(plan.feed.map((p) => [...p, 0.11]), 0.029);
+  pipe(plan.feed.map((p2) => [...p2, 0.11]), 0.029);
   const supply = plan.feed[0];
   B(supply[0], plan.ground + 0.48, 0.14, 0.085, 0.14, 0.08, 7830898);
   B(supply[0] + 0.045, plan.ground + 0.48, 0.19, 0.14, 0.025, 0.035, 9129785);
@@ -35558,10 +36233,10 @@ function emitGasNetwork(batch, plan, proxy) {
     B(m.u, m.y + 0.067, 0.298, 0.18, 0.047, 9e-3, 11911087);
     B(m.u, m.y - 0.1, 0.287, 0.12, 0.045, 0.01, 8752256);
     proxy(m.u, m.y, 0.19, 0.36, 0.43, 0.24);
-    const inlet = m.inlet.map((p) => [...p, 0.11]);
+    const inlet = m.inlet.map((p2) => [...p2, 0.11]);
     inlet.push([m.u - 0.085, m.y + 0.2, 0.18]);
     pipe(inlet);
-    const outlet = [[m.u + 0.085, m.y + 0.2, 0.18], ...m.outlet.map((p) => [...p, m.depth])];
+    const outlet = [[m.u + 0.085, m.y + 0.2, 0.18], ...m.outlet.map((p2) => [...p2, m.depth])];
     const end = outlet[outlet.length - 1];
     outlet.push([end[0], end[1], 5e-3]);
     pipe(outlet, 0.019);
@@ -35575,10 +36250,10 @@ function emitGasNetwork(batch, plan, proxy) {
 // outputs/domestic-test/terrain-fit.js?v=151
 function fittedRibbon(points, width, bottom, top, maxStep = 0.5) {
   const clean = [];
-  for (const p of points) {
-    if (!Array.isArray(p) || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) throw new Error("fittedRibbon: non-finite path coordinate");
+  for (const p2 of points) {
+    if (!Array.isArray(p2) || !Number.isFinite(p2[0]) || !Number.isFinite(p2[1])) throw new Error("fittedRibbon: non-finite path coordinate");
     const last = clean.at(-1);
-    if (!last || Math.hypot(p[0] - last[0], p[1] - last[1]) > 1e-6) clean.push(p);
+    if (!last || Math.hypot(p2[0] - last[0], p2[1] - last[1]) > 1e-6) clean.push(p2);
   }
   if (clean.length < 2) throw new Error("fittedRibbon: path needs two distinct points");
   points = clean;
@@ -35589,15 +36264,15 @@ function fittedRibbon(points, width, bottom, top, maxStep = 0.5) {
   }
   ps.push([...points.at(-1)]);
   const closed = ps.length > 3 && Math.hypot(ps[0][0] - ps.at(-1)[0], ps[0][1] - ps.at(-1)[1]) < 1e-6;
-  const sections = ps.map((p, i) => {
+  const sections = ps.map((p2, i) => {
     const dir = (a, b) => {
       const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
       return [dz / l, -dx / l];
     };
-    const before = closed && i === 0 ? dir(ps.at(-2), p) : dir(ps[Math.max(0, i - 1)], ps[Math.max(1, i)]), after = closed && i === ps.length - 1 ? dir(p, ps[1]) : dir(ps[Math.min(i, ps.length - 2)], ps[Math.min(i + 1, ps.length - 1)]);
+    const before = closed && i === 0 ? dir(ps.at(-2), p2) : dir(ps[Math.max(0, i - 1)], ps[Math.max(1, i)]), after = closed && i === ps.length - 1 ? dir(p2, ps[1]) : dir(ps[Math.min(i, ps.length - 2)], ps[Math.min(i + 1, ps.length - 1)]);
     const nx = before[0] + after[0], nz = before[1] + after[1], len = Math.hypot(nx, nz) || 1, ux = nx / len, uz = nz / len;
     const half = width / 2 / Math.max(0.65, ux * after[0] + uz * after[1]);
-    const left = [p[0] + ux * half, p[1] + uz * half], right = [p[0] - ux * half, p[1] - uz * half];
+    const left = [p2[0] + ux * half, p2[1] + uz * half], right = [p2[0] - ux * half, p2[1] - uz * half];
     return [left, right].map((q) => [[q[0], bottom(...q), q[1]], [q[0], top(...q), q[1]]]);
   });
   const positions = [], quad = (a, b, c, d) => positions.push(...a, ...b, ...c, ...a, ...c, ...d);
@@ -35633,10 +36308,10 @@ function stitchBoundaryRuns(input, tolerance = 0.04) {
   }
   for (const rows3 of groups.values()) {
     const nodes = [], edges2 = [], seen = /* @__PURE__ */ new Set();
-    const node = (p) => {
-      let n = nodes.find((n2) => Math.hypot(n2.p[0] - p[0], n2.p[1] - p[1]) <= tolerance);
+    const node = (p2) => {
+      let n = nodes.find((n2) => Math.hypot(n2.p[0] - p2[0], n2.p[1] - p2[1]) <= tolerance);
       if (!n) {
-        n = { p: [...p], edges: [], id: nodes.length };
+        n = { p: [...p2], edges: [], id: nodes.length };
         nodes.push(n);
       }
       return n;
@@ -35683,7 +36358,7 @@ function addBoundaryRibbon(batch, points, width, bottom, top, color, { ink = fal
   for (let i = 0; i < g.attributes.position.count; i++) b.inkIds.push(batch.inkObjectId ?? 0);
   if (ink) {
     const line = batch.lineBucket(color), sections2 = g.userData.sections;
-    for (let i = 1; i < sections2.length; i++) for (const side of [0, 1]) line.push(...sections2[i - 1][side][1], ...sections2[i][side][1]);
+    for (let i = 1; i < sections2.length; i++) for (const side2 of [0, 1]) line.push(...sections2[i - 1][side2][1], ...sections2[i][side2][1]);
     if (!g.userData.closed) for (const section of [sections2[0], sections2.at(-1)]) line.push(...section[0][1], ...section[1][1]);
   }
   const sections = g.userData.sections;
@@ -35704,9 +36379,9 @@ function addFittedDrain(batch, input, surface, isRoad = null) {
   const world = (u, v2) => [d.x + ux * u - uz * v2, d.z + uz * u + ux * v2];
   const strip = (u0, v0, u1, v1, width, lo, hi, color, ink = false) => addBoundaryRibbon(batch, [world(u0, v0), world(u1, v1)], width, (x, z) => surface(x, z) + lo, (x, z) => surface(x, z) + hi, color, { ink, step: 0.08 });
   strip(-0.35, 0, 0.35, 0, 0.26, -0.032, 9e-3, 3160885);
-  for (const side of [-1, 1]) {
-    strip(-0.35, side * 0.119, 0.35, side * 0.119, 0.022, 4e-3, 0.018, 6186589, true);
-    strip(side * 0.339, -0.108, side * 0.339, 0.108, 0.022, 4e-3, 0.018, 6186589);
+  for (const side2 of [-1, 1]) {
+    strip(-0.35, side2 * 0.119, 0.35, side2 * 0.119, 0.022, 4e-3, 0.018, 6186589, true);
+    strip(side2 * 0.339, -0.108, side2 * 0.339, 0.108, 0.022, 4e-3, 0.018, 6186589);
   }
   for (let j = 0; j < 10; j++) {
     const u = -0.3 + j * 0.0667;
@@ -35721,15 +36396,15 @@ function addFittedDrain(batch, input, surface, isRoad = null) {
 // outputs/domestic-test/support-geometry.js?v=151
 function fitSupportBase(geometry2, surface, embed = 0.035) {
   geometry2.computeBoundingBox();
-  const bottom = geometry2.boundingBox.min.y, p = geometry2.attributes.position, contacts = [];
-  const indices = geometry2.userData.supportIndices ?? Array.from({ length: p.count }, (_, i) => i).filter((i) => p.getY(i) <= bottom + 1e-4);
+  const bottom = geometry2.boundingBox.min.y, p2 = geometry2.attributes.position, contacts = [];
+  const indices = geometry2.userData.supportIndices ?? Array.from({ length: p2.count }, (_, i) => i).filter((i) => p2.getY(i) <= bottom + 1e-4);
   geometry2.userData.supportIndices = indices;
   for (const i of indices) {
-    const x = p.getX(i), z = p.getZ(i), y = surface(x, z) - embed;
-    p.setY(i, y);
+    const x = p2.getX(i), z = p2.getZ(i), y = surface(x, z) - embed;
+    p2.setY(i, y);
     contacts.push([x, y, z]);
   }
-  p.needsUpdate = true;
+  p2.needsUpdate = true;
   geometry2.computeVertexNormals();
   geometry2.computeBoundingBox();
   geometry2.computeBoundingSphere();
@@ -35761,17 +36436,17 @@ function rooftopRandom(seed, salt = 0) {
 }
 var rooftopDoorX = (kind, w) => kind === "elbow" ? -w * 0.21 : kind === "lift" ? -w * 0.25 : 0;
 var dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
-function polygonArea(p) {
-  return Math.abs(p.reduce((a, v2, i) => {
-    const w = p[(i + 1) % p.length];
+function polygonArea(p2) {
+  return Math.abs(p2.reduce((a, v2, i) => {
+    const w = p2[(i + 1) % p2.length];
     return a + v2[0] * w[1] - w[0] * v2[1];
   }, 0)) / 2;
 }
-function pointInside(p, poly) {
+function pointInside(p2, poly) {
   let inside2 = false;
   for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
     const a = poly[i], b = poly[j];
-    if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) inside2 = !inside2;
+    if (a[1] > p2[1] !== b[1] > p2[1] && p2[0] < (b[0] - a[0]) * (p2[1] - a[1]) / (b[1] - a[1]) + a[0]) inside2 = !inside2;
   }
   return inside2;
 }
@@ -35786,10 +36461,10 @@ function edgesCross(a, b) {
   return false;
 }
 function polygonsOverlap(a, b) {
-  return edgesCross(a, b) || a.some((p) => pointInside(p, b)) || b.some((p) => pointInside(p, a));
+  return edgesCross(a, b) || a.some((p2) => pointInside(p2, b)) || b.some((p2) => pointInside(p2, a));
 }
 function roofContains(poly, building) {
-  if (!poly.every((p) => pointInside(p, building.points)) || edgesCross(poly, building.points)) return false;
+  if (!poly.every((p2) => pointInside(p2, building.points)) || edgesCross(poly, building.points)) return false;
   return !(building.holePoints || []).some((hole) => polygonsOverlap(poly, hole));
 }
 function roofRectangle(x, z, w, d, angle, front = 0) {
@@ -35797,7 +36472,7 @@ function roofRectangle(x, z, w, d, angle, front = 0) {
   return [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2 + front], [-w / 2, d / 2 + front]].map(([u, v2]) => [x + c * u - s * v2, z + s * u + c * v2]);
 }
 function bounds(points) {
-  return { x0: Math.min(...points.map((p) => p[0])), x1: Math.max(...points.map((p) => p[0])), z0: Math.min(...points.map((p) => p[1])), z1: Math.max(...points.map((p) => p[1])) };
+  return { x0: Math.min(...points.map((p2) => p2[0])), x1: Math.max(...points.map((p2) => p2[0])), z0: Math.min(...points.map((p2) => p2[1])), z1: Math.max(...points.map((p2) => p2[1])) };
 }
 function bboxOverlaps(a, b) {
   return a.x0 < b.x1 && a.x1 > b.x0 && a.z0 < b.z1 && a.z1 > b.z0;
@@ -35807,26 +36482,26 @@ function planRooftops(buildings) {
   for (const [buildingIndex, building] of [...buildings.entries()].sort((a, b) => a[1].seed - b[1].seed || a[0] - b[0])) {
     const { points, seed, levels, top } = building, area3 = polygonArea(points);
     if (levels < 2 || area3 < 16 || building.holes && !building.holePoints?.length) continue;
-    const longest = points.reduce((k, p, i) => dist(p, points[(i + 1) % points.length]) > dist(points[k], points[(k + 1) % points.length]) ? i : k, 0);
+    const longest = points.reduce((k, p2, i) => dist(p2, points[(i + 1) % points.length]) > dist(points[k], points[(k + 1) % points.length]) ? i : k, 0);
     const edge = Number.isInteger(building.frontEdge) ? building.frontEdge : longest;
     const a = points[edge], b = points[(edge + 1) % points.length], length = dist(a, b);
     if (length < 0.01) continue;
-    const signed2 = points.reduce((v2, p, i) => {
+    const signed2 = points.reduce((v2, p2, i) => {
       const q = points[(i + 1) % points.length];
-      return v2 + p[0] * q[1] - q[0] * p[1];
+      return v2 + p2[0] * q[1] - q[0] * p2[1];
     }, 0), sign2 = signed2 >= 0 ? 1 : -1;
     const ux = (b[0] - a[0]) / length, uz = (b[1] - a[1]) / length, ix = -uz * sign2, iz = ux * sign2;
-    const projected = points.map((p) => [(p[0] - a[0]) * ux + (p[1] - a[1]) * uz, (p[0] - a[0]) * ix + (p[1] - a[1]) * iz]), bb = bounds(projected);
-    const entry = building.frontage?.entry ?? length / 2;
-    const mode = rooftopRandom(seed, 2), hintU = mode < 0.65 ? entry : mode < 0.83 ? bb.x0 + (bb.x1 - bb.x0) * 0.24 : bb.x0 + (bb.x1 - bb.x0) * 0.76;
+    const projected = points.map((p2) => [(p2[0] - a[0]) * ux + (p2[1] - a[1]) * uz, (p2[0] - a[0]) * ix + (p2[1] - a[1]) * iz]), bb = bounds(projected);
+    const entry2 = building.frontage?.entry ?? length / 2;
+    const mode = rooftopRandom(seed, 2), hintU = mode < 0.65 ? entry2 : mode < 0.83 ? bb.x0 + (bb.x1 - bb.x0) * 0.24 : bb.x0 + (bb.x1 - bb.x0) * 0.76;
     const hintV = mode < 0.65 ? Math.min(5, (bb.z1 - bb.z0) * 0.3) : bb.z1 * 0.68;
     const hint = [a[0] + ux * hintU + ix * hintV, a[1] + uz * hintU + iz * hintV];
     const allowed = area3 < 40 ? ["compact", "hatch"] : levels <= 3 ? ["compact", "brick", "shed", "gable", "elbow"] : levels < 5 ? ["compact", "brick", "shed", "gable", "elbow", "stepped"] : ["brick", "shed", "elbow", "stepped", "lift", "lift"];
-    const neighborhood = plans.filter((p) => dist([p.x, p.z], hint) < 42);
-    const designScore = (id) => rooftopRandom(seed, 5 + rooftopCatalog.findIndex((r) => r.id === id) * 13) - (id === "lift" ? 0.15 : 0) + neighborhood.reduce((score, p) => score + (p.kind === id ? (1 - dist([p.x, p.z], hint) / 42) * 0.85 : 0), 0);
+    const neighborhood = plans.filter((p2) => dist([p2.x, p2.z], hint) < 42);
+    const designScore = (id) => rooftopRandom(seed, 5 + rooftopCatalog.findIndex((r) => r.id === id) * 13) - (id === "lift" ? 0.15 : 0) + neighborhood.reduce((score, p2) => score + (p2.kind === id ? (1 - dist([p2.x, p2.z], hint) / 42) * 0.85 : 0), 0);
     const ranked = [...new Set(allowed)].sort((a2, b2) => designScore(a2) - designScore(b2));
     const choices = [.../* @__PURE__ */ new Set([...ranked, "compact", ...area3 < 65 ? ["hatch"] : []])];
-    const nearbyPlans = plans.filter((p) => Math.abs(p.top - top) < 5 && bboxOverlaps(bounds(p.envelope), bounds(points)));
+    const nearbyPlans = plans.filter((p2) => Math.abs(p2.top - top) < 5 && bboxOverlaps(bounds(p2.envelope), bounds(points)));
     const blockers = indexed.filter((q) => q.b !== building && q.b.top > top + 0.1 && q.b.base < top + 4.8 && bboxOverlaps(q.bounds, bounds(points)));
     let best = null;
     for (const id of choices) {
@@ -35844,7 +36519,7 @@ function planRooftops(buildings) {
           const doorX = rooftopDoorX(id, w), landing = roofRectangle(x + Math.cos(angle) * doorX + nx * (d / 2 + 0.78), z + Math.sin(angle) * doorX + nz * (d / 2 + 0.78), 1.3, 1.4, angle);
           if (!roofContains(landing, building)) continue;
           if (blockers.some((q) => polygonsOverlap(envelope, q.b.points) || polygonsOverlap(landing, q.b.points))) continue;
-          if (nearbyPlans.some((p) => polygonsOverlap(envelope, p.envelope) || polygonsOverlap(landing, p.envelope) || polygonsOverlap(envelope, p.doorLanding))) continue;
+          if (nearbyPlans.some((p2) => polygonsOverlap(envelope, p2.envelope) || polygonsOverlap(landing, p2.envelope) || polygonsOverlap(envelope, p2.doorLanding))) continue;
           let open = 0;
           for (const t of [2, 3, 4]) if (pointInside([x + nx * (d / 2 + t), z + nz * (d / 2 + t)], points)) open++;
           const preferredTurn = Math.floor(rooftopRandom(seed, 9) * 4), score = dist([x, z], hint) - open * 0.25 + (turn === preferredTurn ? -0.2 : 0);
@@ -35888,10 +36563,10 @@ function emitRooftop(batch, plan, style) {
   const W = (xx, y, zz, ww, hh, dd, color = wall, edge = true) => B(xx, y, zz, ww, hh, dd, color, edge, false, textureId);
   const slab = [11909296, 11188145, 12763316][variation % 3], metal2 = [6716792, 7831169, 7172971][variation % 3], door = [5205346, 6714744, 8157035, 6318966][variation % 4];
   function face(vertices, color, textured = false) {
-    const p = vertices.map(([xx, y, zz]) => new Vector3(x + c * xx - s * zz, top + 0.025 + y, z + s * xx + c * zz)), n = p[1].clone().sub(p[0]).cross(p[2].clone().sub(p[0])).normalize();
+    const p2 = vertices.map(([xx, y, zz]) => new Vector3(x + c * xx - s * zz, top + 0.025 + y, z + s * xx + c * zz)), n = p2[1].clone().sub(p2[0]).cross(p2[2].clone().sub(p2[0])).normalize();
     const bucket = batch.bucket(textured ? 16777215 : color, false, textured ? textureId : null);
-    for (let i = 1; i < p.length - 1; i++) for (const index of [0, i, i + 1]) {
-      const v2 = p[index];
+    for (let i = 1; i < p2.length - 1; i++) for (const index of [0, i, i + 1]) {
+      const v2 = p2[index];
       bucket.p.push(v2.x, v2.y, v2.z);
       bucket.n.push(n.x, n.y, n.z);
       bucket.inkIds.push(batch.inkObjectId ?? 0);
@@ -35918,8 +36593,8 @@ function emitRooftop(batch, plan, style) {
   if (kind === "compact" || kind === "brick") {
     flat(0, 0, w, d, h);
     if (kind === "brick") {
-      for (const side of [-1, 1]) W(side * (w / 2 - 0.065), h + 0.29, 0, 0.13, 0.28, d);
-      for (const side of [-1, 1]) W(0, h + 0.29, side * (d / 2 - 0.065), w - 0.26, 0.28, 0.13);
+      for (const side2 of [-1, 1]) W(side2 * (w / 2 - 0.065), h + 0.29, 0, 0.13, 0.28, d);
+      for (const side2 of [-1, 1]) W(0, h + 0.29, side2 * (d / 2 - 0.065), w - 0.26, 0.28, 0.13);
     }
   } else if (kind === "shed" || kind === "hatch") {
     W(0, h / 2, 0, w, h, d);
@@ -35937,12 +36612,12 @@ function emitRooftop(batch, plan, style) {
     face([[-w / 2, h, d / 2], [w / 2, h, d / 2], [0, h + rise, d / 2]], wall, true);
     face([[w / 2, h, -d / 2], [-w / 2, h, -d / 2], [0, h + rise, -d / 2]], wall, true);
     const ww = w / 2 + 0.16, dd = d / 2 + 0.16;
-    for (const side of [-1, 1]) {
-      const roof = [[-side * ww, h + 0.09, dd], [0, h + rise + 0.14, dd], [0, h + rise + 0.14, -dd], [-side * ww, h + 0.09, -dd]];
-      if (side < 0) roof.reverse();
+    for (const side2 of [-1, 1]) {
+      const roof = [[-side2 * ww, h + 0.09, dd], [0, h + rise + 0.14, dd], [0, h + rise + 0.14, -dd], [-side2 * ww, h + 0.09, -dd]];
+      if (side2 < 0) roof.reverse();
       face(roof, metal2);
-      R([-side * ww, h + 0.09, dd], [-side * ww, h + 0.09, -dd], 0.045, metal2);
-      R([-side * ww, h + 0.09, dd], [0, h + rise + 0.14, dd], 0.035, slab);
+      R([-side2 * ww, h + 0.09, dd], [-side2 * ww, h + 0.09, -dd], 0.045, metal2);
+      R([-side2 * ww, h + 0.09, dd], [0, h + rise + 0.14, dd], 0.035, slab);
     }
     R([0, h + rise + 0.14, -dd], [0, h + rise + 0.14, dd], 0.045, slab);
   } else if (kind === "elbow") {
@@ -35963,7 +36638,7 @@ function emitRooftop(batch, plan, style) {
   }
   const doorX = rooftopDoorX(kind, w), doorHeight = kind === "hatch" ? 0.93 : 1.93, doorWidth = kind === "hatch" ? 0.9 : 0.86, doorZ = d / 2 + 0.036;
   B(doorX, doorHeight / 2 + 0.07, doorZ, doorWidth, doorHeight, 0.07, door, true);
-  for (const side of [-1, 1]) B(doorX + side * (doorWidth / 2 + 0.025), doorHeight / 2 + 0.07, doorZ + 7e-3, 0.045, doorHeight + 0.1, 0.085, slab, false);
+  for (const side2 of [-1, 1]) B(doorX + side2 * (doorWidth / 2 + 0.025), doorHeight / 2 + 0.07, doorZ + 7e-3, 0.045, doorHeight + 0.1, 0.085, slab, false);
   B(doorX, doorHeight + 0.1, doorZ + 7e-3, doorWidth, 0.055, 0.085, slab, false);
   B(doorX, 0.045, d / 2 + 0.17, doorWidth + 0.16, 0.09, 0.34, slab, true);
   out.detail(0, () => B(doorX + doorWidth * 0.32, doorHeight * 0.5, doorZ + 0.065, 0.024, 0.19, 0.035, 13094083, false));
@@ -36029,9 +36704,9 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       return group2;
     };
   }
-  const rooftopPlans = planRooftops(buildings), roofsByBuilding = new Map(rooftopPlans.map((p) => [p.buildingIndex, p]));
+  const rooftopPlans = planRooftops(buildings), roofsByBuilding = new Map(rooftopPlans.map((p2) => [p2.buildingIndex, p2]));
   const households = new Map((architecture.households || []).map((h) => [h.owner, h]));
-  const styleCounts = Array(6).fill(0), boxes = buildings.map((b) => ({ b, minX: Math.min(...b.points.map((p) => p[0])), maxX: Math.max(...b.points.map((p) => p[0])), minZ: Math.min(...b.points.map((p) => p[1])), maxZ: Math.max(...b.points.map((p) => p[1])) }));
+  const styleCounts = Array(6).fill(0), boxes = buildings.map((b) => ({ b, minX: Math.min(...b.points.map((p2) => p2[0])), maxX: Math.max(...b.points.map((p2) => p2[0])), minZ: Math.min(...b.points.map((p2) => p2[1])), maxZ: Math.max(...b.points.map((p2) => p2[1])) }));
   const inside2 = (x, z, poly) => {
     let c = false;
     for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
@@ -36054,7 +36729,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       continue;
     }
     const gasFaces = [];
-    const { points, top, base, floor, levels, seed, holes } = b, style = facadeStyles[b.styleIndex ?? Math.abs(seed) % 6], covers = architecture.structures.filter((s) => s.owner === seed && s.roofKind !== "none"), annexes = architecture.structures.filter((s) => s.owner === seed && ["shed", "workshop"].includes(s.type));
+    const { points, top, base: base2, floor, levels, seed, holes } = b, style = facadeStyles[b.styleIndex ?? Math.abs(seed) % 6], covers = architecture.structures.filter((s) => s.owner === seed && s.roofKind !== "none"), annexes = architecture.structures.filter((s) => s.owner === seed && ["shed", "workshop"].includes(s.type));
     styleCounts[Math.abs(seed) % 6]++;
     let signed2 = 0;
     for (let i = 0; i < points.length; i++) {
@@ -36062,7 +36737,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       signed2 += a[0] * c[1] - c[0] * a[1];
     }
     const sign2 = signed2 >= 0 ? 1 : -1;
-    const front = Number.isInteger(b.frontEdge) ? b.frontEdge : points.reduce((k, p, i) => Math.hypot(points[(i + 1) % points.length][0] - p[0], points[(i + 1) % points.length][1] - p[1]) > Math.hypot(points[(k + 1) % points.length][0] - points[k][0], points[(k + 1) % points.length][1] - points[k][1]) ? i : k, 0);
+    const front = Number.isInteger(b.frontEdge) ? b.frontEdge : points.reduce((k, p2, i) => Math.hypot(points[(i + 1) % points.length][0] - p2[0], points[(i + 1) % points.length][1] - p2[1]) > Math.hypot(points[(k + 1) % points.length][0] - points[k][0], points[(k + 1) % points.length][1] - points[k][1]) ? i : k, 0);
     for (let i = 0; i < points.length; i++) {
       const a = points[i], c = points[(i + 1) % points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
       if (L < 0.35) continue;
@@ -36085,7 +36760,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         const bays2 = Math.max(1, Math.floor((L - 0.6) / 3.35)), space2 = (L - 0.6) / bays2;
         for (let f = 0; f < levels; f++) for (let j = 0; j < bays2; j++) {
           const u = 0.3 + space2 * (j + 0.5), fy = top - (levels - f) * floor + floor * 0.57, w = Math.min(1.85, space2 - 0.35), h = 1.3;
-          if (!facadeClear(u, 0.4) || (b.storefronts || []).some((p) => p.edge === i && u >= p.lo && u <= p.hi && f === 0)) continue;
+          if (!facadeClear(u, 0.4) || (b.storefronts || []).some((p2) => p2.edge === i && u >= p2.lo && u <= p2.hi && f === 0)) continue;
           const band = windowLightBand(seed * 997 + i * 131 + f * 31 + j);
           Q(u, fy, 0.035, w, h, style.frame, false);
           out.lit(band, () => Q(u, fy, 0.045, w - 0.1, h - 0.1, 7969178, false));
@@ -36094,14 +36769,14 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         }
         continue;
       }
-      const arterialFace = (b.arterialFacades || []).find((p) => p.edge === i);
-      const shops = (b.storefronts || []).filter((p) => p.edge === i);
-      const shopOpening = (p) => [p.lo - 0.12, p.hi + 0.12, p.groundMin - 0.05, p.position[1] + p.height + 0.12];
+      const arterialFace = (b.arterialFacades || []).find((p2) => p2.edge === i);
+      const shops = (b.storefronts || []).filter((p2) => p2.edge === i);
+      const shopOpening = (p2) => [p2.lo - 0.12, p2.hi + 0.12, p2.groundMin - 0.05, p2.position[1] + p2.height + 0.12];
       const shopRects = shops.map(shopOpening);
       if (b.groundOpening && i === b.frontEdge) shopRects.push([b.groundOpening[0] - 0.02, b.groundOpening[0] + b.groundOpening[1] + 0.02, b.groundOpeningBase - 0.02, b.groundOpeningBase + 2.81]);
       const shopHits = (lo, hi, bottom2, ceil) => shopRects.some((r) => hi > r[0] && lo < r[1] && ceil > r[2] && bottom2 < r[3]);
       const windowCuts = [], openings = shopRects.slice();
-      const isFront = i === front, entry = isFront ? b.frontage?.entry ?? L / 2 : null;
+      const isFront = i === front, entry2 = isFront ? b.frontage?.entry ?? L / 2 : null;
       const bays = Math.max(1, Math.floor((L - 0.6) / 3.35)), space = (L - 0.6) / bays;
       for (let f = 0; f < levels; f++) {
         const commercialGround = groundAt(L / 2), commercialFloor = (top - commercialGround) / levels;
@@ -36163,7 +36838,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         for (let k = 0; k < bays; k++) {
           const u = 0.3 + space * (k + 0.5);
           if (!facadeClear(u, 0.55)) continue;
-          const isStair = isFront && Math.abs(u - entry) < space * 0.48;
+          const isStair = isFront && Math.abs(u - entry2) < space * 0.48;
           if (f === 0 && isStair) continue;
           const wet = !isStair && bays > 2 && k === (Math.abs(seed) + i) % bays, veranda = !isStair && !wet && isFront && levels >= 3 && k % 3 === 0;
           let id = isStair ? "stair" : wet ? "frosted" : veranda ? "veranda" : style.frame === 5655619 ? "brown-slider" : space > 3.7 ? "wide-slider" : "white-slider";
@@ -36181,7 +36856,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           const wx = a[0] + ux * u, wz = a[1] + uz * u, ground2 = groundAt(u);
           if (shopHits(u - w / 2 - 0.16, u + w / 2 + 0.16, y - h / 2 - 0.16, y + h / 2 + 0.16)) continue;
           if (y - h / 2 < ground2 + 0.16 || y + h / 2 > top - 0.1) continue;
-          if (f === 0 && annexes.some((s) => inside2(wx + nx * 0.25, wz + nz * 0.25, s.footprint) && y - h / 2 < Math.max(...s.footprint.map((p) => elevation(...p))) + (s.roofHeight ?? 2.7) + 0.2)) continue;
+          if (f === 0 && annexes.some((s) => inside2(wx + nx * 0.25, wz + nz * 0.25, s.footprint) && y - h / 2 < Math.max(...s.footprint.map((p2) => elevation(...p2))) + (s.roofHeight ?? 2.7) + 0.2)) continue;
           if (id === "awning" && (sheltered(u) || levels >= 4)) id = "guard";
           if (id === "bay" && !facadeClear(u, 0.65)) id = "white-slider";
           if (recessed) windowCuts.push(windowOpening(out, windowOpenings, b, i, a, [ux, uz], [nx, nz], u, y, w, h, style.wall));
@@ -36213,8 +36888,8 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           if (isFront && f <= 1 && !wet) spots.push({ owner: seed, id, style: style.name, x: wx, z: wz, y, nx, nz, ux, uz, w, h, ground: ground2 });
         }
       }
-      if (b.hasEntry !== false && !b.openGround && !arterialFace && isFront && L > 2.4 && facadeClear(entry) && !shopHits(entry - 1, entry + 1, groundAt(entry), groundAt(entry) + 2.6)) {
-        const w = 1.34, h = 2.12, u = Math.max(0.85, Math.min(L - 0.85, entry)), world = (du, v2) => [a[0] + ux * (u + du) + nx * v2, a[1] + uz * (u + du) + nz * v2], g = footprintHeights((du, dv) => world(du, 0.26 + dv), w + 0.28, 0.45, elevation).high;
+      if (b.hasEntry !== false && !b.openGround && !arterialFace && isFront && L > 2.4 && facadeClear(entry2) && !shopHits(entry2 - 1, entry2 + 1, groundAt(entry2), groundAt(entry2) + 2.6)) {
+        const w = 1.34, h = 2.12, u = Math.max(0.85, Math.min(L - 0.85, entry2)), world = (du, v2) => [a[0] + ux * (u + du) + nx * v2, a[1] + uz * (u + du) + nz * v2], g = footprintHeights((du, dv) => world(du, 0.26 + dv), w + 0.28, 0.45, elevation).high;
         B(u, g + h / 2 + 0.1, 0.06, w + 0.16, h + 0.18, 0.15, 10198931, true);
         B(u, g + h / 2 + 0.1, 0.16, w, h, 0.065, levels > 2 ? 7699569 : 4282445, true);
         if (levels > 2) {
@@ -36237,7 +36912,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
                 bucket.inkIds.push(batch.inkObjectId ?? 0);
                 bucket.n.push(...normal.toArray());
               }
-              for (const side of [-1, 1]) R([u + side * ww / 2, ry(za), za], [u + side * ww / 2, ry(zb), zb], 0.013, 7436653);
+              for (const side2 of [-1, 1]) R([u + side2 * ww / 2, ry(za), za], [u + side2 * ww / 2, ry(zb), zb], 0.013, 7436653);
             }
             R([u - ww / 2, ry(depth), depth], [u + ww / 2, ry(depth), depth], 0.016, 7436653);
           } else B(u, g + 2.38, depth / 2, ww, 0.065, depth, household?.wallStyle === "dark-brick" ? 7829369 : 10198930, true);
@@ -36253,9 +36928,9 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         proxy(u, g + 1.2, 0.15, w + 0.2, 2.4, 0.31);
         counts.doors++;
       }
-      const bottom = Math.max(base + 0.1, Math.min(groundAt(0.15), groundAt(L - 0.15)) + 0.1), rise = top - bottom;
+      const bottom = Math.max(base2 + 0.1, Math.min(groundAt(0.15), groundAt(L - 0.15)) + 0.1), rise = top - bottom;
       if (!arterialFace && rise > 0 && options.wallTextures !== false) {
-        const wallBottom = Math.max(base, Math.min(groundAt(0.15), groundAt(L - 0.15))), cuts = [...shopRects, ...windowCuts], floorTop = (b.groundOpeningBase ?? base) + 3;
+        const wallBottom = Math.max(base2, Math.min(groundAt(0.15), groundAt(L - 0.15))), cuts = [...shopRects, ...windowCuts], floorTop = (b.groundOpeningBase ?? base2) + 3;
         if (b.groundWallTexture) {
           emitFacadeTexture(batch, out, { width: L, bottom: wallBottom, top: Math.min(floorTop, top), id: b.groundWallTexture, cuts });
           if (top > floorTop) emitFacadeTexture(batch, out, { width: L, bottom: floorTop, top, id: b.wallTexture || style.textureId, cuts });
@@ -36273,7 +36948,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         }
       }
       if (!b.sideServices && !arterialFace && L > 3 && facadeClear(0.22, 0.3) && !shopHits(0.12, 0.45, groundAt(0.22), top)) {
-        const x = 0.22, g = b.openGround ? base : groundAt(x), pipe = 11843239;
+        const x = 0.22, g = b.openGround ? base2 : groundAt(x), pipe = 11843239;
         R([x, top + 0.2, 0.18], [x, top - 0.35, 0.18], 0.044, pipe);
         R([x, top - 0.35, 0.18], [x + 0.1, top - 0.55, 0.1], 0.044, pipe);
         R([x + 0.1, top - 0.55, 0.1], [x + 0.1, g + 0.18, 0.1], 0.044, pipe);
@@ -36308,7 +36983,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
     for (const v2 of o.geometry.attributes.position.array) if (!Number.isFinite(v2)) finite = false;
   });
   if (!finite) throw Error("\uC678\uAD00 \uBA54\uC26C \uC88C\uD45C \uC624\uB958");
-  group.userData = { windowOpenings, recessQA, gasNetworks, rooftopPlans: rooftopPlans.filter((p) => !buildings[p.buildingIndex]?.facility).filter((p) => !options.owners || options.owners.has(buildings[p.buildingIndex]?.seed)), rooftopTypes: rooftopCatalog.map((r) => ({ id: r.id, name: r.name, count: rooftopPlans.filter((p) => p.kind === r.id).length })), nightWindowSources, windowBands, meshValidation: { triangles, finite }, ...counts, styles: facadeStyles.map((s, i) => ({ name: s.name, count: styleCounts[i] })), windowTypes: windowCatalog.map((t) => ({ id: t.id, name: t.name, count: windowTypes[t.id] || 0 })), facadeSpots: spots, placementProxies, procedural: true, version: 41 };
+  group.userData = { windowOpenings, recessQA, gasNetworks, rooftopPlans: rooftopPlans.filter((p2) => !buildings[p2.buildingIndex]?.facility).filter((p2) => !options.owners || options.owners.has(buildings[p2.buildingIndex]?.seed)), rooftopTypes: rooftopCatalog.map((r) => ({ id: r.id, name: r.name, count: rooftopPlans.filter((p2) => p2.kind === r.id).length })), nightWindowSources, windowBands, meshValidation: { triangles, finite }, ...counts, styles: facadeStyles.map((s, i) => ({ name: s.name, count: styleCounts[i] })), windowTypes: windowCatalog.map((t) => ({ id: t.id, name: t.name, count: windowTypes[t.id] || 0 })), facadeSpots: spots, placementProxies, procedural: true, version: 41 };
   return group;
 }
 
@@ -36350,49 +37025,49 @@ function livingRejection({ id, role, lift, area: area3, zone, footprintArea, dep
 }
 function rankPocketAssets(ids, owner, x, z, placements) {
   const rotation = Math.abs(Number(owner) || 0) % ids.length, rotated = ids.slice(rotation).concat(ids.slice(0, rotation));
-  const score = (id) => placements.reduce((sum, p) => sum + (p.id === id && Math.hypot(p.x - x, p.z - z) < 18 ? p.owner === owner ? 6 : 1 : 0), 0);
+  const score = (id) => placements.reduce((sum, p2) => sum + (p2.id === id && Math.hypot(p2.x - x, p2.z - z) < 18 ? p2.owner === owner ? 6 : 1 : 0), 0);
   return rotated.sort((a, b) => score(a) - score(b));
 }
 
 // outputs/domestic-test/courtyard-rules.js?v=151
 function repairCourtyardBoundaries(plan, parcels, attached, specs = [], roadInfo = () => false) {
   const dist2 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
-  const inside2 = (p, ring) => {
+  const inside2 = (p2, ring) => {
     let c = false;
     for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
       const a = ring[i], b = ring[j];
-      if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+      if (a[1] > p2[1] !== b[1] > p2[1] && p2[0] < (b[0] - a[0]) * (p2[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
     }
     return c;
   };
-  const near = (p, a, b) => {
-    const dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / (dx * dx + dz * dz || 1)));
-    return dist2(p, [a[0] + t * dx, a[1] + t * dz]);
+  const near = (p2, a, b) => {
+    const dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((p2[0] - a[0]) * dx + (p2[1] - a[1]) * dz) / (dx * dx + dz * dz || 1)));
+    return dist2(p2, [a[0] + t * dx, a[1] + t * dz]);
   };
   const walls = plan.wallRuns.filter((r) => r.points.length > 1), segments2 = walls.flatMap((r) => r.points.slice(1).map((b, i) => ({ a: r.points[i], b, owner: r.owner }))).concat((plan.connections || []).map((r) => ({ ...r })));
   const access = parcels.yards.flatMap((y) => (y.entrance || []).slice(1).map((b, i) => ({ a: y.entrance[i], b })));
   const reservations = [...(attached.drives || []).map((d) => d.polygon), ...(attached.structures || []).flatMap((s) => [s.footprint, s.entryApron].filter(Boolean))];
   const endpoints = [];
   for (const r of walls) for (const end of [0, r.points.length - 1]) {
-    const p = r.points[end], q = r.points[end === 0 ? 1 : end - 1], L = dist2(p, q);
+    const p2 = r.points[end], q = r.points[end === 0 ? 1 : end - 1], L = dist2(p2, q);
     if (L < 0.02 || dist2(r.points[0], r.points.at(-1)) < 0.05) continue;
-    if (segments2.some((s) => s.owner === r.owner && near(p, s.a, s.b) < 0.06 && dist2(p, s.a) > 0.1 && dist2(p, s.b) > 0.1)) continue;
-    endpoints.push({ p, r, out: [(p[0] - q[0]) / L, (p[1] - q[1]) / L] });
+    if (segments2.some((s) => s.owner === r.owner && near(p2, s.a, s.b) < 0.06 && dist2(p2, s.a) > 0.1 && dist2(p2, s.b) > 0.1)) continue;
+    endpoints.push({ p: p2, r, out: [(p2[0] - q[0]) / L, (p2[1] - q[1]) / L] });
   }
   const bridges = [], used = /* @__PURE__ */ new Set(), rejected = { access: 0, ground: 0, building: 0 };
   function clear(a, b, owner) {
     const L = dist2(a, b), n = Math.ceil(L / 0.12);
     for (let j = 0; j <= n; j++) {
-      const p = [a[0] + (b[0] - a[0]) * j / n, a[1] + (b[1] - a[1]) * j / n];
-      if (access.some((s) => near(p, s.a, s.b) < 1.02) || plan.gates.some((g) => Math.hypot(p[0] - g.x, p[1] - g.z) < g.width / 2 + 0.45) || reservations.some((r) => inside2(p, r))) {
+      const p2 = [a[0] + (b[0] - a[0]) * j / n, a[1] + (b[1] - a[1]) * j / n];
+      if (access.some((s) => near(p2, s.a, s.b) < 1.02) || plan.gates.some((g) => Math.hypot(p2[0] - g.x, p2[1] - g.z) < g.width / 2 + 0.45) || reservations.some((r) => inside2(p2, r))) {
         rejected.access++;
         return false;
       }
-      if (roadInfo(...p)) {
+      if (roadInfo(...p2)) {
         rejected.ground++;
         return false;
       }
-      if (specs.some((s) => inside2(p, s.points))) {
+      if (specs.some((s) => inside2(p2, s.points))) {
         rejected.building++;
         return false;
       }
@@ -36424,12 +37099,12 @@ function repairCourtyardBoundaries(plan, parcels, attached, specs = [], roadInfo
     used.add(i);
     used.add(j);
   }
-  const removedPiers = [], piers = plan.piers.filter((p) => {
-    const q = [p.x, p.z], connected = segments2.some((s) => near(q, s.a, s.b) < (p.width || 0.34) / 2 + 0.16) || plan.gates.some((g) => dist2(q, [g.x, g.z]) < g.width / 2 + 0.6);
-    if (!connected) removedPiers.push(p);
+  const removedPiers = [], piers = plan.piers.filter((p2) => {
+    const q = [p2.x, p2.z], connected = segments2.some((s) => near(q, s.a, s.b) < (p2.width || 0.34) / 2 + 0.16) || plan.gates.some((g) => dist2(q, [g.x, g.z]) < g.width / 2 + 0.6);
+    if (!connected) removedPiers.push(p2);
     return connected;
   });
-  return { ...plan, wallRuns: [...walls, ...bridges], piers, qa: { ...plan.qa, courtyardRepair: { version: 136, bridges: bridges.map((r) => ({ owner: r.owner, a: r.points[0], b: r.points[1], length: r.length, height: r.height })), removedPiers: removedPiers.map((p) => ({ owner: p.owner, x: p.x, z: p.z })), rejected, rule: "Only aligned gaps <=2.6m; preserve 2.04m walking corridors, gates, driveways and building footprints; remove unsupported ornamental piers" } } };
+  return { ...plan, wallRuns: [...walls, ...bridges], piers, qa: { ...plan.qa, courtyardRepair: { version: 136, bridges: bridges.map((r) => ({ owner: r.owner, a: r.points[0], b: r.points[1], length: r.length, height: r.height })), removedPiers: removedPiers.map((p2) => ({ owner: p2.owner, x: p2.x, z: p2.z })), rejected, rule: "Only aligned gaps <=2.6m; preserve 2.04m walking corridors, gates, driveways and building footprints; remove unsupported ornamental piers" } } };
 }
 
 // outputs/domestic-test/roadview50-loader.js?v=151
@@ -36567,9 +37242,9 @@ function makeWorkshopPreview() {
   box(0, 0.75, 0, 1.3, 0.06, 0.65, 9204309);
   for (const x of [-0.56, 0.56]) for (const z of [-0.25, 0.25]) box(x, 0.36, z, 0.055, 0.72, 0.055, 5860970);
   for (const [id, x, z, scale] of [["a187", -0.36, 0.06, 0.75], ["a188", 0.32, -0.08, 0.85], ["a194", 0.08, 0.18, 0.55]]) {
-    const entry = templates.get(id);
-    if (!entry) return null;
-    const o = entry.model.clone(true);
+    const entry2 = templates.get(id);
+    if (!entry2) return null;
+    const o = entry2.model.clone(true);
     o.scale.setScalar(scale);
     if (id === "a194") o.rotation.x = -Math.PI / 2;
     o.updateMatrixWorld(true);
@@ -36584,26 +37259,26 @@ var replacementBudgets = { "1": 9212, "2": 7896, "3": 2068, "4": 2536, "5": 708,
 var workshopPreview;
 function getRoadview50Template(legacyId, legacy) {
   if (legacy.userData.memoAsset || legacy.userData.memoVehicle) return legacy;
-  const assetId = ROADVIEW50_MAP[legacyId], entry = legacyId === 189 ? workshopPreview ||= makeWorkshopPreview() : templates.get(assetId);
-  if (!enabled || !entry) return legacy;
+  const assetId = ROADVIEW50_MAP[legacyId], entry2 = legacyId === 189 ? workshopPreview ||= makeWorkshopPreview() : templates.get(assetId);
+  if (!enabled || !entry2) return legacy;
   const originalTriangles = countTriangles(legacy);
-  if (entry.triangles > (replacementBudgets[legacyId] ?? 1e3)) return legacy;
-  const oldBox = new Box3().setFromObject(legacy), oldSize = oldBox.getSize(new Vector3()), newSize = entry.box.getSize(new Vector3());
+  if (entry2.triangles > (replacementBudgets[legacyId] ?? 1e3)) return legacy;
+  const oldBox = new Box3().setFromObject(legacy), oldSize = oldBox.getSize(new Vector3()), newSize = entry2.box.getSize(new Vector3());
   const scale = legacyId === 178 ? 1 : Math.min(oldSize.x / newSize.x, oldSize.y / newSize.y, oldSize.z / newSize.z, 1.3);
   if (!Number.isFinite(scale) || scale < 0.25) return legacy;
-  const obj = entry.model.clone(true), oldCenter = oldBox.getCenter(new Vector3()), newCenter = entry.box.getCenter(new Vector3());
+  const obj = entry2.model.clone(true), oldCenter = oldBox.getCenter(new Vector3()), newCenter = entry2.box.getCenter(new Vector3());
   obj.scale.setScalar(scale);
-  obj.position.set(oldCenter.x - newCenter.x * scale, oldBox.min.y - entry.box.min.y * scale, oldCenter.z - newCenter.z * scale);
+  obj.position.set(oldCenter.x - newCenter.x * scale, oldBox.min.y - entry2.box.min.y * scale, oldCenter.z - newCenter.z * scale);
   const wrapper = new Group();
-  wrapper.name = entry.name;
+  wrapper.name = entry2.name;
   wrapper.add(obj);
-  wrapper.userData.roadview50 = { assetId, componentIds: entry.componentIds || [assetId], legacyId, name: entry.name, originalTriangles, triangles: entry.triangles, fitScale: scale, placement: legacyId === 178 ? "Full-size courtyard furniture; placement collision/access checks reapplied; not surveyed" : "Semantic replacement inside prior collision envelope; not surveyed position" };
+  wrapper.userData.roadview50 = { assetId, componentIds: entry2.componentIds || [assetId], legacyId, name: entry2.name, originalTriangles, triangles: entry2.triangles, fitScale: scale, placement: legacyId === 178 ? "Full-size courtyard furniture; placement collision/access checks reapplied; not surveyed" : "Semantic replacement inside prior collision envelope; not surveyed position" };
   wrapper.updateMatrixWorld(true);
   return wrapper;
 }
 function roadview50Summary(placements, policy = null) {
-  const applied = placements.filter((p) => p.roadview50).map((p) => ({ ...p.roadview50, position: [p.x, p.y, p.z], x: p.x, y: p.y, z: p.z, oldId: p.roadview50.legacyId, newId: p.roadview50.assetId, oldTriangles: p.roadview50.originalTriangles, newTriangles: p.roadview50.triangles, angle: p.angle, owner: p.owner, role: p.role, rule: p.ruleAudit || null }));
-  return { policy, enabled, templatesLoaded: templates.size, available: catalog.length, templateMappings: ROADVIEW50_MAP, failures: [...failures], placements: applied, placedInstances: applied.length, placedTypes: [...new Set(applied.map((p) => p.assetId))], originalTriangles: applied.reduce((n, p) => n + p.originalTriangles, 0), placedTriangles: applied.reduce((n, p) => n + p.triangles, 0), comparison: "Triangles refer to replaced mesh models before legacy vegetation extraction and line rendering; use renderer statistics for whole-scene workload." };
+  const applied = placements.filter((p2) => p2.roadview50).map((p2) => ({ ...p2.roadview50, position: [p2.x, p2.y, p2.z], x: p2.x, y: p2.y, z: p2.z, oldId: p2.roadview50.legacyId, newId: p2.roadview50.assetId, oldTriangles: p2.roadview50.originalTriangles, newTriangles: p2.roadview50.triangles, angle: p2.angle, owner: p2.owner, role: p2.role, rule: p2.ruleAudit || null }));
+  return { policy, enabled, templatesLoaded: templates.size, available: catalog.length, templateMappings: ROADVIEW50_MAP, failures: [...failures], placements: applied, placedInstances: applied.length, placedTypes: [...new Set(applied.map((p2) => p2.assetId))], originalTriangles: applied.reduce((n, p2) => n + p2.originalTriangles, 0), placedTriangles: applied.reduce((n, p2) => n + p2.triangles, 0), comparison: "Triangles refer to replaced mesh models before legacy vegetation extraction and line rendering; use renderer statistics for whole-scene workload." };
 }
 
 // outputs/domestic-test/refine-assets.js?v=151
@@ -36612,7 +37287,7 @@ var v = (a) => new Vector3(...a);
 var tris = (g) => (g.index?.count ?? g.attributes.position.count) / 3;
 function bounds2(ps) {
   const b = new Box3();
-  for (const p of ps) b.expandByPoint(v(p));
+  for (const p2 of ps) b.expandByPoint(v(p2));
   return { b, c: b.getCenter(new Vector3()).toArray(), s: b.getSize(new Vector3()).toArray() };
 }
 function signed(ts) {
@@ -36627,7 +37302,7 @@ function bevelBox(lo, hi, r) {
   let ts = [];
   const add = (q) => {
     for (let i = 1; i < q.length - 1; i++) ts.push([q[0], q[i], q[i + 1]]);
-  }, p = (sign2, shrink) => sign2.map((s, k) => s > 0 ? hi[k] - shrink[k] : lo[k] + shrink[k]);
+  }, p2 = (sign2, shrink) => sign2.map((s, k) => s > 0 ? hi[k] - shrink[k] : lo[k] + shrink[k]);
   for (let ax = 0; ax < 3; ax++) for (const sign2 of [-1, 1]) {
     const others = [0, 1, 2].filter((k) => k !== ax), q = [];
     for (const [u, w] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
@@ -36637,7 +37312,7 @@ function bevelBox(lo, hi, r) {
       s[others[1]] = w;
       const sh = [r, r, r];
       sh[ax] = 0;
-      q.push(p(s, sh));
+      q.push(p2(s, sh));
     }
     if (v(q[1]).sub(v(q[0])).cross(v(q[2]).sub(v(q[0]))).getComponent(ax) * sign2 < 0) q.reverse();
     add(q);
@@ -36653,7 +37328,7 @@ function bevelBox(lo, hi, r) {
         s[c] = sc;
         const sh = [r, r, r];
         sh[face] = 0;
-        q.push(p(s, sh));
+        q.push(p2(s, sh));
       }
       const normal = v(q[1]).sub(v(q[0])).cross(v(q[2]).sub(v(q[0])));
       if (normal.getComponent(b) * sb + normal.getComponent(c) * sc < 0) q.reverse();
@@ -36664,7 +37339,7 @@ function bevelBox(lo, hi, r) {
     const s = [sx, sy, sz], q = [0, 1, 2].map((ax) => {
       const sh = [r, r, r];
       sh[ax] = 0;
-      return p(s, sh);
+      return p2(s, sh);
     });
     if (v(q[1]).sub(v(q[0])).cross(v(q[2]).sub(v(q[0]))).dot(v(s)) < 0) q.reverse();
     add(q);
@@ -36689,10 +37364,10 @@ function splitGeometry(g) {
     raw.dispose();
     raw = clean;
   }
-  const p = raw.attributes.position, cs = [], lookup = /* @__PURE__ */ new Map(), verts = [], vid = [], parents = [];
+  const p2 = raw.attributes.position, cs = [], lookup = /* @__PURE__ */ new Map(), verts = [], vid = [], parents = [];
   const root = (i) => parents[i] === i ? i : parents[i] = root(parents[i]);
-  for (let i = 0; i < p.count; i++) {
-    const pos = [p.getX(i), p.getY(i), p.getZ(i)], key = pos.map((x) => Math.round(x / EPS)).join(",");
+  for (let i = 0; i < p2.count; i++) {
+    const pos = [p2.getX(i), p2.getY(i), p2.getZ(i)], key = pos.map((x) => Math.round(x / EPS)).join(",");
     let k = lookup.get(key);
     if (k === void 0) {
       k = verts.length;
@@ -36729,17 +37404,17 @@ function latheCandidate(c) {
   if (c.ps.length < 12 || c.inds.length / 3 < 20) return null;
   for (let axis = 0; axis < 3; axis++) {
     const ab = [0, 1, 2].filter((k) => k !== axis), levels = /* @__PURE__ */ new Map();
-    for (const p of c.ps) {
-      const key = Math.round(p[axis] / EPS);
+    for (const p2 of c.ps) {
+      const key = Math.round(p2[axis] / EPS);
       if (!levels.has(key)) levels.set(key, []);
-      levels.get(key).push(p);
+      levels.get(key).push(p2);
     }
     if (levels.size < 2 || levels.size > 12) continue;
     const groups = [...levels.values()].sort((a, b) => a[0][axis] - b[0][axis]);
     let rings = [], bad = false, cx = c.c[ab[0]], cz = c.c[ab[1]], phase = 0;
     for (const ps of groups) {
-      const ds = ps.map((p) => Math.hypot(p[ab[0]] - cx, p[ab[1]] - cz)), r = Math.max(...ds), edge = ps.filter((p, i) => ds[i] > r * 0.5);
-      if (edge.length < 6 || edge.length > 48 || r < EPS || edge.some((p) => Math.abs(Math.hypot(p[ab[0]] - cx, p[ab[1]] - cz) - r) > r * 5e-4)) {
+      const ds = ps.map((p2) => Math.hypot(p2[ab[0]] - cx, p2[ab[1]] - cz)), r = Math.max(...ds), edge = ps.filter((p2, i) => ds[i] > r * 0.5);
+      if (edge.length < 6 || edge.length > 48 || r < EPS || edge.some((p2) => Math.abs(Math.hypot(p2[ab[0]] - cx, p2[ab[1]] - cz) - r) > r * 5e-4)) {
         bad = true;
         break;
       }
@@ -36756,11 +37431,11 @@ function latheCandidate(c) {
     const old = c.inds.length / 3, n = Math.min(40, Math.floor((old + 4) / (2 * rings.length))), oldN = Math.max(...rings.map((r) => r.n));
     if (n <= oldN) continue;
     const rr = rings.map((r) => Array.from({ length: n }, (_, i) => {
-      const p = [0, 0, 0], ang = phase + i * 2 * Math.PI / n;
-      p[axis] = r.y;
-      p[ab[0]] = cx + r.r * Math.cos(ang);
-      p[ab[1]] = cz + r.r * Math.sin(ang);
-      return p;
+      const p2 = [0, 0, 0], ang = phase + i * 2 * Math.PI / n;
+      p2[axis] = r.y;
+      p2[ab[0]] = cx + r.r * Math.cos(ang);
+      p2[ab[1]] = cz + r.r * Math.sin(ang);
+      return p2;
     })), ts = [];
     for (let j = 0; j < rr.length - 1; j++) for (let i = 0; i < n; i++) {
       let k = (i + 1) % n;
@@ -36772,9 +37447,9 @@ function latheCandidate(c) {
   return null;
 }
 function smoothedNormals(g) {
-  const p = g.attributes.position, adj = /* @__PURE__ */ new Map(), fn = [], key = (i) => [p.getX(i), p.getY(i), p.getZ(i)].map((x) => Math.round(x / EPS)).join(",");
-  for (let i = 0; i < p.count; i += 3) {
-    const a = new Vector3().fromBufferAttribute(p, i), b = new Vector3().fromBufferAttribute(p, i + 1), c = new Vector3().fromBufferAttribute(p, i + 2), n = b.sub(a).cross(c.sub(a));
+  const p2 = g.attributes.position, adj = /* @__PURE__ */ new Map(), fn = [], key = (i) => [p2.getX(i), p2.getY(i), p2.getZ(i)].map((x) => Math.round(x / EPS)).join(",");
+  for (let i = 0; i < p2.count; i += 3) {
+    const a = new Vector3().fromBufferAttribute(p2, i), b = new Vector3().fromBufferAttribute(p2, i + 1), c = new Vector3().fromBufferAttribute(p2, i + 2), n = b.sub(a).cross(c.sub(a));
     fn.push(n);
     for (let k = 0; k < 3; k++) {
       const h = key(i + k);
@@ -36782,14 +37457,14 @@ function smoothedNormals(g) {
       adj.get(h).push(n);
     }
   }
-  const out = new Float32Array(p.count * 3);
+  const out = new Float32Array(p2.count * 3);
   let changed = 0;
   const old = g.attributes.normal;
-  for (let i = 0; i < p.count; i++) {
-    const base = fn[Math.floor(i / 3)].clone().normalize(), sum = new Vector3();
-    for (const n of adj.get(key(i))) if (base.dot(n.clone().normalize()) > 0.5) sum.add(n);
+  for (let i = 0; i < p2.count; i++) {
+    const base2 = fn[Math.floor(i / 3)].clone().normalize(), sum = new Vector3();
+    for (const n of adj.get(key(i))) if (base2.dot(n.clone().normalize()) > 0.5) sum.add(n);
     sum.normalize();
-    if (sum.lengthSq() < 0.1) sum.copy(base);
+    if (sum.lengthSq() < 0.1) sum.copy(base2);
     if (old && sum.distanceToSquared(new Vector3().fromBufferAttribute(old, i)) > 1e-6) changed++;
     sum.toArray(out, i * 3);
   }
@@ -36800,14 +37475,14 @@ function tube(points, r, segments2 = 6) {
   const ps = points.map(v), path = new CurvePath();
   let last = ps[0];
   for (let i = 1; i < ps.length - 1; i++) {
-    const a = ps[i - 1], b = ps[i], c = ps[i + 1], d = Math.min(a.distanceTo(b), b.distanceTo(c)) * 0.22, entry = b.clone().add(a.clone().sub(b).normalize().multiplyScalar(d)), exit = b.clone().add(c.clone().sub(b).normalize().multiplyScalar(d));
-    path.add(new LineCurve3(last, entry));
-    path.add(new QuadraticBezierCurve3(entry, b, exit));
+    const a = ps[i - 1], b = ps[i], c = ps[i + 1], d = Math.min(a.distanceTo(b), b.distanceTo(c)) * 0.22, entry2 = b.clone().add(a.clone().sub(b).normalize().multiplyScalar(d)), exit = b.clone().add(c.clone().sub(b).normalize().multiplyScalar(d));
+    path.add(new LineCurve3(last, entry2));
+    path.add(new QuadraticBezierCurve3(entry2, b, exit));
     last = exit;
   }
   path.add(new LineCurve3(last, ps.at(-1)));
-  const g = new TubeGeometry(path, segments2, r, 5, false), raw = g.toNonIndexed(), p = raw.attributes.position, ts = [];
-  for (let i = 0; i < p.count; i += 3) ts.push([0, 1, 2].map((k) => [p.getX(i + k), p.getY(i + k), p.getZ(i + k)]));
+  const g = new TubeGeometry(path, segments2, r, 5, false), raw = g.toNonIndexed(), p2 = raw.attributes.position, ts = [];
+  for (let i = 0; i < p2.count; i += 3) ts.push([0, 1, 2].map((k) => [p2.getX(i + k), p2.getY(i + k), p2.getZ(i + k)]));
   const pos = g.attributes.position;
   for (const [start, first] of [[0, true], [segments2 * 6, false]]) {
     const rr = Array.from({ length: 5 }, (_, k) => [pos.getX(start + k), pos.getY(start + k), pos.getZ(start + k)]);
@@ -36828,9 +37503,9 @@ function repairParts(cs, a) {
     notes.push(note);
   }, shift = (parts, dy, note) => {
     if (!parts.length) return;
-    for (const c of parts) c.replacement = c.positions.reduce((ts, p, i) => {
+    for (const c of parts) c.replacement = c.positions.reduce((ts, p2, i) => {
       if (i % 3 === 0) ts.push([]);
-      ts.at(-1).push([p[0], p[1] + dy, p[2]]);
+      ts.at(-1).push([p2[0], p2[1] + dy, p2[2]]);
       return ts;
     }, []);
     notes.push(note);
@@ -36845,11 +37520,11 @@ function repairParts(cs, a) {
   if (a.id === "a142") replace(cs.filter((c) => range(c, 0.47, 0.55)), tube([[-0.085, 0.456, -0.131], [-0.085, 0.528, -0.131], [0.085, 0.528, -0.131], [0.085, 0.456, -0.131]], 0.011), "\uB5A0 \uC788\uB358 \uACF5\uAD6C\uD568 \uC190\uC7A1\uC774\uB97C \uB69C\uAED1\uC5D0 \uACE0\uC815");
   if (a.id === "a191") replace(cs.filter((c) => range(c, 0.509, 0.61)), tube([[-0.22, 0.496, -0.026], [-0.22, 0.59, -0.026], [-0.025, 0.59, -0.026], [-0.025, 0.496, -0.026]], 0.016), "\uB5A0 \uC788\uB358 \uC6A9\uC811\uAE30 \uC190\uC7A1\uC774\uB97C \uBCF8\uCCB4\uC5D0 \uACE0\uC815");
   if (a.id === "a185") {
-    for (const side of [-1, 1]) replace(cs.filter((c) => range(c, 0.56, 0.6) && c.c[0] * side > 0.27), tube([[side * 0.247, 0.58, -0.09], [side * 0.35, 0.58, -0.09], [side * 0.35, 0.58, 0.07], [side * 0.247, 0.58, 0.07]], 0.017), "\uC721\uC218\uC1A5 \uC606 \uC190\uC7A1\uC774\uB97C \uBAB8\uD1B5 \uACE1\uBA74\uC5D0 \uC5F0\uACB0");
+    for (const side2 of [-1, 1]) replace(cs.filter((c) => range(c, 0.56, 0.6) && c.c[0] * side2 > 0.27), tube([[side2 * 0.247, 0.58, -0.09], [side2 * 0.35, 0.58, -0.09], [side2 * 0.35, 0.58, 0.07], [side2 * 0.247, 0.58, 0.07]], 0.017), "\uC721\uC218\uC1A5 \uC606 \uC190\uC7A1\uC774\uB97C \uBAB8\uD1B5 \uACE1\uBA74\uC5D0 \uC5F0\uACB0");
     replace(cs.filter((c) => range(c, 0.809, 0.89)), tube([[-0.07, 0.802, -0.01], [-0.07, 0.865, -0.01], [0.07, 0.865, -0.01], [0.07, 0.802, -0.01]], 0.014), "\uC1A5 \uB69C\uAED1 \uC190\uC7A1\uC774 \uC5F0\uACB0");
   }
   if (a.id === "a200") {
-    for (const side of [-1, 1]) replace(cs.filter((c) => range(c, 0.347, 0.373) && c.c[0] * side > 0.18), tube([[side * 0.16, 0.36, -0.093], [side * 0.234, 0.36, -0.093], [side * 0.234, 0.36, -3e-3], [side * 0.16, 0.36, -3e-3]], 0.013), "\uBCF4\uC628\uD1B5 \uC606 \uC190\uC7A1\uC774 \uC5F0\uACB0");
+    for (const side2 of [-1, 1]) replace(cs.filter((c) => range(c, 0.347, 0.373) && c.c[0] * side2 > 0.18), tube([[side2 * 0.16, 0.36, -0.093], [side2 * 0.234, 0.36, -0.093], [side2 * 0.234, 0.36, -3e-3], [side2 * 0.16, 0.36, -3e-3]], 0.013), "\uBCF4\uC628\uD1B5 \uC606 \uC190\uC7A1\uC774 \uC5F0\uACB0");
     replace(cs.filter((c) => range(c, 0.079, 0.145) && c.b.min.z > 0.12), tube([[0, 0.13, 0.126], [0, 0.13, 0.222], [0, 0.08, 0.222]], 0.014, 4), "\uC218\uB3C4\uAF2D\uC9C0 \uAEBE\uC784\uC744 \uACE1\uAD00\uC73C\uB85C \uC5F0\uACB0");
     shift(cs.filter((c) => range(c, 0.539, 0.571)), -0.011, "\uBCF4\uC628\uD1B5 \uB69C\uAED1 \uD2C8 \uC81C\uAC70");
     shift(cs.filter((c) => range(c, 0.576, 0.624)), -0.019, "\uB69C\uAED1 \uC190\uC7A1\uC774 \uC811\uC810 \uC218\uC815");
@@ -36916,7 +37591,7 @@ function refineGroup(group, asset, { preserveGeometry = false } = {}) {
         continue;
       }
       if (c.color === false) continue;
-      const isBox = c.ps.length === 8 && c.ps.every((p) => p.every((x, k) => Math.min(Math.abs(x - c.b.min.getComponent(k)), Math.abs(x - c.b.max.getComponent(k))) < EPS * 4));
+      const isBox = c.ps.length === 8 && c.ps.every((p2) => p2.every((x, k) => Math.min(Math.abs(x - c.b.min.getComponent(k)), Math.abs(x - c.b.max.getComponent(k))) < EPS * 4));
       if (isBox && Math.min(...c.s) > 8e-3 && Math.max(...c.s) / Math.min(...c.s) < 18) {
         c.bevel = { ts: bevelBox(c.b.min.toArray(), c.b.max.toArray(), Math.min(...c.s) * 0.09), score: c.s[0] * c.s[1] + c.s[1] * c.s[2] + c.s[0] * c.s[2] };
       }
@@ -36938,9 +37613,9 @@ function refineGroup(group, asset, { preserveGeometry = false } = {}) {
       for (const [name, a] of Object.entries(raw.attributes)) arrays[name] = [];
       for (const c of cs) {
         if (c.replacement) {
-          for (const t of c.replacement) for (const p of t) for (const [name, a] of Object.entries(raw.attributes)) {
+          for (const t of c.replacement) for (const p2 of t) for (const [name, a] of Object.entries(raw.attributes)) {
             const arr = arrays[name];
-            if (name === "position") arr.push(...p);
+            if (name === "position") arr.push(...p2);
             else if (name === "normal") arr.push(0, 1, 0);
             else if (name === "color") {
               if (c.color) arr.push(...c.color);
@@ -36948,7 +37623,7 @@ function refineGroup(group, asset, { preserveGeometry = false } = {}) {
                 let best = c.inds[0], dist2 = Infinity;
                 const pa = raw.attributes.position;
                 for (const i of c.inds) {
-                  const d = (pa.getX(i) - p[0]) ** 2 + (pa.getY(i) - p[1]) ** 2 + (pa.getZ(i) - p[2]) ** 2;
+                  const d = (pa.getX(i) - p2[0]) ** 2 + (pa.getY(i) - p2[1]) ** 2 + (pa.getZ(i) - p2[2]) ** 2;
                   if (d < dist2) {
                     dist2 = d;
                     best = i;
@@ -37016,12 +37691,29 @@ var count2 = (g) => {
   });
   return n;
 };
+function representativeDeleted(object, legacyId) {
+  const d = object.userData;
+  if (!enabled2 || d.memoAsset || d.memoVehicle || d.representative) return modelDeleted(object, legacyId);
+  const source = typeof legacyId === "number" ? "legacy-" + legacyId : legacyId, semantic = manifest.mapping[source], info = d.roadview50;
+  const target = semantic && semantic !== source ? semantic : info?.componentIds?.length > 1 ? source : manifest.mapping[info?.assetId] || info?.assetId || source;
+  return templates2.has(target) ? isDeleted("representative:" + target) : modelDeleted(object, legacyId);
+}
 function applyRepresentative(object, legacyId) {
+  if (representativeDeleted(object, legacyId)) {
+    object.clear();
+    object.userData.reviewDeleted = true;
+    return true;
+  }
   if (!enabled2 || object.userData.representative || object.userData.memoAsset || object.userData.memoVehicle) return;
   const source = typeof legacyId === "number" ? "legacy-" + legacyId : legacyId, semantic = manifest.mapping[source], info = object.userData.roadview50;
   let target = semantic && semantic !== source ? semantic : info?.componentIds?.length > 1 ? source : manifest.mapping[info?.assetId] || info?.assetId || source;
   if (manifest.retired?.includes(source) || manifest.retired?.includes(info?.assetId) || manifest.retired?.includes(target)) {
     object.clear();
+    return true;
+  }
+  if (templates2.has(target) && isDeleted("representative:" + target)) {
+    object.clear();
+    object.userData.reviewDeleted = true;
     return true;
   }
   const asset = manifest.assets[target] || { id: target, name: object.name };
@@ -37104,9 +37796,9 @@ function evaluatePlacement(rule, c) {
 
 // outputs/domestic-test/ground-contact.js?v=151
 function contactPoints(geometry2, matrix = new Matrix4()) {
-  const points = [], seen = /* @__PURE__ */ new Set(), p = geometry2.attributes.position, v2 = new Vector3();
-  for (let i = 0; i < p.count; i++) {
-    v2.fromBufferAttribute(p, i).applyMatrix4(matrix);
+  const points = [], seen = /* @__PURE__ */ new Set(), p2 = geometry2.attributes.position, v2 = new Vector3();
+  for (let i = 0; i < p2.count; i++) {
+    v2.fromBufferAttribute(p2, i).applyMatrix4(matrix);
     const key = v2.toArray().map((n) => Math.round(n * 1e5)).join(",");
     if (!seen.has(key)) {
       seen.add(key);
@@ -37118,8 +37810,8 @@ function contactPoints(geometry2, matrix = new Matrix4()) {
 function lowestContact(root, points, surface) {
   root.updateMatrix();
   let gap = Infinity, point;
-  for (const p of points) {
-    const v2 = p.clone().applyMatrix4(root.matrix), d = v2.y - surface(v2.x, v2.z);
+  for (const p2 of points) {
+    const v2 = p2.clone().applyMatrix4(root.matrix), d = v2.y - surface(v2.x, v2.z);
     if (d < gap) {
       gap = d;
       point = v2;
@@ -37130,9 +37822,9 @@ function lowestContact(root, points, surface) {
 function solve(matrix, rhs) {
   const a = matrix.map((r, i) => [...r, rhs[i]]);
   for (let j = 0; j < 3; j++) {
-    let p = j;
-    for (let i = j + 1; i < 3; i++) if (Math.abs(a[i][j]) > Math.abs(a[p][j])) p = i;
-    [a[j], a[p]] = [a[p], a[j]];
+    let p2 = j;
+    for (let i = j + 1; i < 3; i++) if (Math.abs(a[i][j]) > Math.abs(a[p2][j])) p2 = i;
+    [a[j], a[p2]] = [a[p2], a[j]];
     const d = a[j][j];
     for (let k = j; k < 4; k++) a[j][k] /= d;
     for (let i = 0; i < 3; i++) if (i !== j) {
@@ -37172,11 +37864,11 @@ function libraryWheelContacts(root) {
   const inverse = root.matrixWorld.clone().invert(), wheels = [];
   root.traverse((m) => {
     if (!m.isMesh) return;
-    const g = m.geometry, p = g.parameters || {}, rubber = m.userData.detailKind === "rubber" || m.userData.part === "dark";
+    const g = m.geometry, p2 = g.parameters || {}, rubber = m.userData.detailKind === "rubber" || m.userData.part === "dark";
     const matrix = inverse.clone().multiply(m.matrixWorld), torus = g.type === "TorusGeometry";
     g.computeBoundingBox();
     const size = g.boundingBox.getSize(new Vector3()), dims = size.toArray(), axisIndex = dims.indexOf(Math.min(...dims)), axis = new Vector3(axisIndex === 0 ? 1 : 0, axisIndex === 1 ? 1 : 0, axisIndex === 2 ? 1 : 0).transformDirection(matrix);
-    if (m.userData.groundContactWheel || rubber && Math.abs(axis.y) < 0.35 && (torus && p.radius >= 0.085 && p.tube >= 0.025 || g.type === "CylinderGeometry" && p.radiusTop >= 0.12)) {
+    if (m.userData.groundContactWheel || rubber && Math.abs(axis.y) < 0.35 && (torus && p2.radius >= 0.085 && p2.tube >= 0.025 || g.type === "CylinderGeometry" && p2.radiusTop >= 0.12)) {
       const points = contactPoints(g, matrix);
       if (Math.min(...points.map((v2) => v2.y)) < 0.12) wheels.push({ mesh: m, points });
     }
@@ -37185,33 +37877,33 @@ function libraryWheelContacts(root) {
 }
 function seatGroundAsset(root, surface, { wheels = true, suspension = false } = {}) {
   if (root.userData.wheelContactPoints) {
-    let contacts2 = root.userData.wheelContactPoints.map((ps) => ps.map((p) => new Vector3(...p))), qa2 = fitContactPose(root, contacts2, surface);
+    let contacts2 = root.userData.wheelContactPoints.map((ps) => ps.map((p2) => new Vector3(...p2))), qa2 = fitContactPose(root, contacts2, surface);
     if (suspension && contacts2.length === 4 && qa2.maxGap > 0.025 && qa2.maxGap <= 0.12) {
       root.updateMatrixWorld(true);
       const inverse2 = root.matrixWorld.clone().invert();
       const travel = qa2.contacts.map((h) => new Vector3(0, -Math.max(0, h.gap), 0).applyMatrix4(inverse2).sub(new Vector3().applyMatrix4(inverse2)));
-      const centers = contacts2.map((ps) => ps.reduce((a, p) => a.add(p), new Vector3()).multiplyScalar(1 / ps.length));
+      const centers = contacts2.map((ps) => ps.reduce((a, p2) => a.add(p2), new Vector3()).multiplyScalar(1 / ps.length));
       root.traverse((m) => {
         if (!m.isMesh) return;
         m.geometry = m.geometry.clone();
-        const matrix = inverse2.clone().multiply(m.matrixWorld), back = matrix.clone().invert(), p = m.geometry.attributes.position;
-        for (let i = 0; i < p.count; i++) {
-          const v2 = new Vector3().fromBufferAttribute(p, i).applyMatrix4(matrix);
+        const matrix = inverse2.clone().multiply(m.matrixWorld), back = matrix.clone().invert(), p2 = m.geometry.attributes.position;
+        for (let i = 0; i < p2.count; i++) {
+          const v2 = new Vector3().fromBufferAttribute(p2, i).applyMatrix4(matrix);
           let k = 0;
           for (let j = 1; j < 4; j++) if (Math.hypot(v2.x - centers[j].x, v2.z - centers[j].z) < Math.hypot(v2.x - centers[k].x, v2.z - centers[k].z)) k = j;
           const d = Math.hypot(v2.x - centers[k].x, v2.z - centers[k].z), blend = Math.max(0, Math.min(1, (0.32 - (v2.y - centers[k].y)) / 0.1));
           if (d < 0.25 && blend > 0) {
             v2.addScaledVector(travel[k], blend).applyMatrix4(back);
-            p.setXYZ(i, v2.x, v2.y, v2.z);
+            p2.setXYZ(i, v2.x, v2.y, v2.z);
           }
         }
-        p.needsUpdate = true;
+        p2.needsUpdate = true;
         m.geometry.computeVertexNormals();
         m.geometry.computeBoundingSphere();
         m.geometry.computeBoundingBox();
       });
-      contacts2 = contacts2.map((ps, k) => ps.map((p) => p.clone().add(travel[k])));
-      root.userData.wheelContactPoints = contacts2.map((ps) => ps.map((p) => p.toArray()));
+      contacts2 = contacts2.map((ps, k) => ps.map((p2) => p2.clone().add(travel[k])));
+      root.userData.wheelContactPoints = contacts2.map((ps) => ps.map((p2) => p2.toArray()));
       qa2 = contactReport(root, contacts2, surface);
       qa2.suspension = true;
     }
@@ -37243,27 +37935,27 @@ function seatGroundAsset(root, surface, { wheels = true, suspension = false } = 
   root.traverse((m) => {
     if (!m.isMesh) return;
     const matrix = inverse.clone().multiply(m.matrixWorld), points = contactPoints(m.geometry, matrix);
-    const min = Math.min(...points.map((p) => p.y));
+    const min = Math.min(...points.map((p2) => p2.y));
     bottom = Math.min(bottom, min);
     parts.push({ m, matrix, points, min });
   });
-  const feet = parts.filter((p) => p.min <= bottom + 0.055), contacts = feet.map((p) => p.points.filter((v2) => v2.y <= bottom + 0.06));
+  const feet = parts.filter((p2) => p2.min <= bottom + 0.055), contacts = feet.map((p2) => p2.points.filter((v2) => v2.y <= bottom + 0.06));
   if (!contacts.length) return null;
   root.position.y -= Math.min(...contacts.map((c) => lowestContact(root, c, surface).gap));
   root.updateMatrixWorld(true);
   const top = bottom + 0.24;
   for (const { m, matrix, min } of feet) {
     m.geometry = m.geometry.clone();
-    const p = m.geometry.attributes.position, back = matrix.clone().invert(), v2 = new Vector3();
-    for (let i = 0; i < p.count; i++) {
-      v2.fromBufferAttribute(p, i).applyMatrix4(matrix);
+    const p2 = m.geometry.attributes.position, back = matrix.clone().invert(), v2 = new Vector3();
+    for (let i = 0; i < p2.count; i++) {
+      v2.fromBufferAttribute(p2, i).applyMatrix4(matrix);
       if (v2.y > top) continue;
       const foot = new Vector3(v2.x, min, v2.z).applyMatrix4(root.matrix), delta = surface(foot.x, foot.z) - foot.y;
       v2.y += delta / root.scale.y * Math.max(0, (top - v2.y) / (top - min));
       v2.applyMatrix4(back);
-      p.setXYZ(i, v2.x, v2.y, v2.z);
+      p2.setXYZ(i, v2.x, v2.y, v2.z);
     }
-    p.needsUpdate = true;
+    p2.needsUpdate = true;
     m.geometry.computeVertexNormals();
     m.geometry.computeBoundingBox();
     m.geometry.computeBoundingSphere();
@@ -37282,15 +37974,15 @@ function seatGroundAsset(root, surface, { wheels = true, suspension = false } = 
 // outputs/domestic-test/arterial.js?v=151
 function inArterial(plan, x, z, pad = 0) {
   if (!plan) return false;
-  const inside2 = (p, r) => {
+  const inside2 = (p2, r) => {
     let c = false;
     for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
       const a = r[i], b = r[j];
-      if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+      if (a[1] > p2[1] !== b[1] > p2[1] && p2[0] < (b[0] - a[0]) * (p2[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
     }
     return c;
   };
-  return [[x, z], [x - pad, z - pad], [x + pad, z + pad], [x - pad, z + pad], [x + pad, z - pad]].some((p) => plan.publicRings.some((r) => inside2(p, r.outer) && !r.holes.some((h) => inside2(p, h))));
+  return [[x, z], [x - pad, z - pad], [x + pad, z + pad], [x - pad, z + pad], [x + pad, z - pad]].some((p2) => plan.publicRings.some((r) => inside2(p2, r.outer) && !r.holes.some((h) => inside2(p2, h))));
 }
 
 // outputs/domestic-test/contact-shadows.js?v=151
@@ -37300,9 +37992,9 @@ function createContactSurfaceSampler(roots, fallback) {
     root.updateWorldMatrix(true, true);
     root.traverse((o) => {
       if (!o.isMesh || !o.visible || o.userData.detailKind === "roadmark" || !(o.name.startsWith("alley-batch-ground") || ["house-shaped-yard", "yard-access-surface"].includes(o.name))) return;
-      const p = o.geometry.attributes.position, index = o.geometry.index, n = index?.count ?? p.count;
+      const p2 = o.geometry.attributes.position, index = o.geometry.index, n = index?.count ?? p2.count;
       for (let i = 0; i < n; i += 3) {
-        const points = [0, 1, 2].map((k) => v2.fromBufferAttribute(p, index ? index.getX(i + k) : i + k).applyMatrix4(o.matrixWorld).toArray()), [a, b, c] = points, den = (b[2] - c[2]) * (a[0] - c[0]) + (c[0] - b[0]) * (a[2] - c[2]);
+        const points = [0, 1, 2].map((k) => v2.fromBufferAttribute(p2, index ? index.getX(i + k) : i + k).applyMatrix4(o.matrixWorld).toArray()), [a, b, c] = points, den = (b[2] - c[2]) * (a[0] - c[0]) + (c[0] - b[0]) * (a[2] - c[2]);
         if (Math.abs(den) < 1e-9) continue;
         const triangle = { a, b, c, den };
         for (let x = Math.floor(Math.min(a[0], b[0], c[0]) / 3); x <= Math.floor(Math.max(a[0], b[0], c[0]) / 3); x++) for (let z = Math.floor(Math.min(a[2], b[2], c[2]) / 3); z <= Math.floor(Math.max(a[2], b[2], c[2]) / 3); z++) {
@@ -37406,14 +38098,14 @@ function scheduleFor(spec) {
 }
 
 // outputs/domestic-test/shops/neighborhood-plan.js?v=151
-function shopLocal(p, x, z) {
-  const dx = x - p.position[0], dz = z - p.position[2];
-  return [dx * p.n[1] - dz * p.n[0], dx * p.n[0] + dz * p.n[1]];
+function shopLocal(p2, x, z) {
+  const dx = x - p2.position[0], dz = z - p2.position[2];
+  return [dx * p2.n[1] - dz * p2.n[0], dx * p2.n[0] + dz * p2.n[1]];
 }
 function inShopApproach(plans, x, z, pad = 0) {
-  return plans.some((p) => {
-    const [u, v2] = shopLocal(p, x, z);
-    return Math.abs(u) < p.width / 2 + 0.25 + pad && v2 > -0.1 - pad && v2 < p.accessDepth + pad;
+  return plans.some((p2) => {
+    const [u, v2] = shopLocal(p2, x, z);
+    return Math.abs(u) < p2.width / 2 + 0.25 + pad && v2 > -0.1 - pad && v2 < p2.accessDepth + pad;
   });
 }
 
@@ -37432,13 +38124,13 @@ function extractVegetation(root) {
   for (const obj of assets) {
     const id = obj.userData.vegetationAssetId;
     if (!trees.has(id) && !plants.has(id)) continue;
-    const candidates = [];
+    const candidates2 = [];
     obj.traverse((o) => {
-      if (o.isMesh && (o.userData.part === "leaf" || o.userData.part === "green" && (id === 197 || !["CylinderGeometry", "TubeGeometry"].includes(o.userData.representativeOriginalGeometryType || o.geometry.type)) || trees.has(id) && o.userData.part === "wood" || ["red", "yellow"].includes(o.userData.part) && (o.userData.representativeOriginalGeometryType || o.geometry.type) === "SphereGeometry" && new Box3().setFromObject(o).getSize(new Vector3()).length() < 0.7)) candidates.push({ object: o, box: new Box3().setFromObject(o) });
+      if (o.isMesh && (o.userData.part === "leaf" || o.userData.part === "green" && (id === 197 || !["CylinderGeometry", "TubeGeometry"].includes(o.userData.representativeOriginalGeometryType || o.geometry.type)) || trees.has(id) && o.userData.part === "wood" || ["red", "yellow"].includes(o.userData.part) && (o.userData.representativeOriginalGeometryType || o.geometry.type) === "SphereGeometry" && new Box3().setFromObject(o).getSize(new Vector3()).length() < 0.7)) candidates2.push({ object: o, box: new Box3().setFromObject(o) });
     });
-    if (!candidates.length) continue;
+    if (!candidates2.length) continue;
     const clusters = [];
-    for (const c of candidates) {
+    for (const c of candidates2) {
       const touching = [];
       for (let i = 0; i < clusters.length; i++) if (clusters[i].box.clone().expandByScalar(obj.userData.roadview50?.assetId?.startsWith("a") ? 8e-3 : 0.13).intersectsBox(c.box)) touching.push(i);
       const cluster = { box: c.box.clone(), objects: [c.object] };
@@ -37479,7 +38171,7 @@ function extractVegetation(root) {
       for (const o of c.objects) o.removeFromParent();
     }
   }
-  root.userData.foliageExtraction = { method: "tree-hybrid-atlas", registeredPlantTypes: [...plants], registeredTreeTypes: [...trees], groups: records2.length, byLegacyId: Object.fromEntries([...new Set(records2.map((p) => p.legacyId))].map((id) => [id, records2.filter((p) => p.legacyId === id).length])) };
+  root.userData.foliageExtraction = { method: "tree-hybrid-atlas", registeredPlantTypes: [...plants], registeredTreeTypes: [...trees], groups: records2.length, byLegacyId: Object.fromEntries([...new Set(records2.map((p2) => p2.legacyId))].map((id) => [id, records2.filter((p2) => p2.legacyId === id).length])) };
   return records2;
 }
 
@@ -37488,20 +38180,20 @@ function partMaxLOD(object) {
   if (object.isLineSegments && object.parent?.isMesh) return partMaxLOD(object.parent);
   if (Number.isInteger(object.userData.lodMaxLevel)) return object.userData.lodMaxLevel;
   if (!object.isMesh) return 2;
-  const g = object.geometry, p = g.parameters || {}, part = object.userData.part || object.name?.split("-")[0];
+  const g = object.geometry, p2 = g.parameters || {}, part = object.userData.part || object.name?.split("-")[0];
   if (["green", "leaf", "soil", "glass"].includes(part)) return 2;
   if (g.type === "CylinderGeometry") {
-    const r = Math.max(p.radiusTop ?? 1, p.radiusBottom ?? 1);
+    const r = Math.max(p2.radiusTop ?? 1, p2.radiusBottom ?? 1);
     if (r < 75e-4) return 0;
     if (r < 0.015) return 1;
   }
   if (g.type === "TubeGeometry") {
-    if (p.radius < 9e-3) return 0;
-    if (p.radius < 0.017) return 1;
+    if (p2.radius < 9e-3) return 0;
+    if (p2.radius < 0.017) return 1;
   }
   if (g.type === "TorusGeometry") {
-    if (p.tube < 8e-3) return 0;
-    if (p.tube < 0.012) return 1;
+    if (p2.tube < 8e-3) return 0;
+    if (p2.tube < 0.012) return 1;
   }
   g.computeBoundingBox();
   const b = g.boundingBox, s = object.scale;
@@ -37554,16 +38246,16 @@ function populateStreetLife({ specs, walls, roadInfo, elevation, template, place
   function put(s, u, id, lift, role, extra = 0) {
     const b = template(id).b;
     if (Math.abs(u) + Math.max(Math.abs(b.min.x), Math.abs(b.max.x)) + 0.1 > s.L / 2) return false;
-    const gap = ["wall-meter", "wall-riser"].includes(role) ? 0.035 : s.gap + extra, v2 = -b.min.z + gap, p = at(s, u, v2), angle = Math.atan2(s.nx, s.nz);
+    const gap = ["wall-meter", "wall-riser"].includes(role) ? 0.035 : s.gap + extra, v2 = -b.min.z + gap, p2 = at(s, u, v2), angle = Math.atan2(s.nx, s.nz);
     const old = placements.length;
-    if (!place(id, p.x, p.z, angle, lift, s.owner, role)) return false;
-    Object.assign(placements[old], { support: { kind: s.kind, x: s.x, z: s.z, nx: s.nx, nz: s.nz, length: s.L, gap, edge: s.edge }, streetDistance: roadDistance(p.x, p.z, s.nx, s.nz) });
+    if (!place(id, p2.x, p2.z, angle, lift, s.owner, role)) return false;
+    Object.assign(placements[old], { support: { kind: s.kind, x: s.x, z: s.z, nx: s.nx, nz: s.nz, length: s.L, gap, edge: s.edge }, streetDistance: roadDistance(p2.x, p2.z, s.nx, s.nz) });
     return placements[old];
   }
   function record(kind, s, start, reason) {
     if (placements.length === start) return;
-    const items = placements.slice(start), x = items.reduce((a, p) => a + p.x, 0) / items.length, z = items.reduce((a, p) => a + p.z, 0) / items.length;
-    groups.push({ kind, owner: s.owner, x, z, nx: s.nx, nz: s.nz, ids: items.map((p) => p.id), count: items.length, reason });
+    const items = placements.slice(start), x = items.reduce((a, p2) => a + p2.x, 0) / items.length, z = items.reduce((a, p2) => a + p2.z, 0) / items.length;
+    groups.push({ kind, owner: s.owner, x, z, nx: s.nx, nz: s.nz, ids: items.map((p2) => p2.id), count: items.length, reason });
   }
   const serviced = /* @__PURE__ */ new Set();
   for (const s of supports.filter((s2) => s2.kind === "facade")) {
@@ -37610,12 +38302,12 @@ function populateStreetLife({ specs, walls, roadInfo, elevation, template, place
   }
   const pickups = [];
   for (const s of supports.filter((s2) => s2.roadDistance < 2.4).sort((a, b) => a.roadDistance - b.roadDistance)) {
-    if (pickups.some((p) => Math.hypot(p.x - s.x, p.z - s.z) < 11)) continue;
+    if (pickups.some((p2) => Math.hypot(p2.x - s.x, p2.z - s.z) < 11)) continue;
     const start = placements.length, seed = Math.abs(s.owner);
     const us = s.L > 3 ? [s.L / 2 - 0.55, -s.L / 2 + 0.55, 0] : [0];
     for (const u of us) {
       const b = template(seed % 3 ? 45 : 41).b, q = at(s, u, -b.min.z + s.gap);
-      if (pickups.some((p) => Math.hypot(p.x - q.x, p.z - q.z) < 11)) continue;
+      if (pickups.some((p2) => Math.hypot(p2.x - q.x, p2.z - q.z) < 11)) continue;
       const approachStart = at(s, u, -b.min.z + s.gap + b.max.z + 0.12), rd = roadDistance(approachStart.x, approachStart.z, s.nx, s.nz, 3);
       if (!Number.isFinite(rd)) continue;
       const approach = [[-0.24, 0], [0.24, 0], [0.24, rd + 0.1], [-0.24, rd + 0.1]].map(([uu, vv]) => [approachStart.x + s.ux * uu + s.nx * vv, approachStart.z + s.uz * uu + s.nz * vv]);
@@ -37637,7 +38329,7 @@ function populateStreetLife({ specs, walls, roadInfo, elevation, template, place
     if (parked.has(s.owner)) continue;
     const start = placements.length;
     for (const u of [-s.L * 0.27, s.L * 0.27, 0]) {
-      const id = Math.abs(s.owner) % 2 ? 211 : 212, b = template(id).b, v2 = -b.min.z + 0.3, p = at(s, u, v2), depth = b.max.z - b.min.z;
+      const id = Math.abs(s.owner) % 2 ? 211 : 212, b = template(id).b, v2 = -b.min.z + 0.3, p2 = at(s, u, v2), depth = b.max.z - b.min.z;
       const front = v2 + b.max.z + 0.15, d = roadDistance(at(s, u, front).x, at(s, u, front).z, s.nx, s.nz, 6);
       if (!Number.isFinite(d)) continue;
       const a = at(s, u, front), end = at(s, u, front + d + 0.15), half = 1.8, fp = [[-half, 0], [half, 0], [half, d + 0.15], [-half, d + 0.15]].map(([uu, vv]) => [a.x + s.ux * uu + s.nx * vv, a.z + s.uz * uu + s.nz * vv]);
@@ -37687,9 +38379,9 @@ function createKoreanVehicle(id) {
   }
   function panel(points, k = "glass", name) {
     const g = new BufferGeometry();
-    const p = [];
-    for (let i = 1; i < points.length - 1; i++) p.push(...points[0], ...points[i], ...points[i + 1]);
-    g.setAttribute("position", new Float32BufferAttribute(p, 3));
+    const p2 = [];
+    for (let i = 1; i < points.length - 1; i++) p2.push(...points[0], ...points[i], ...points[i + 1]);
+    g.setAttribute("position", new Float32BufferAttribute(p2, 3));
     g.computeVertexNormals();
     return mesh(g, k, name);
   }
@@ -37702,19 +38394,19 @@ function createKoreanVehicle(id) {
   }
   function profile(points, width, k = "body", name) {
     if (name === "cab-shell" || name === "bus-shell") {
-      const shape = new Shape(points.map((p2) => new Vector2(...p2)));
+      const shape = new Shape(points.map((p3) => new Vector2(...p3)));
       const geo = new ExtrudeGeometry(shape, { depth: width - 0.08, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.025, bevelSegments: 1, steps: 1, curveSegments: 1 });
       geo.translate(0, 0, -width / 2 + 0.04);
       return mesh(geo, k, name);
     }
-    const ps = points.map((p2) => new Vector2(...p2)), faces = ShapeUtils.triangulateShape(ps, []), out = [];
-    const p = (i, s) => [points[i][0], points[i][1], s * width / 2];
+    const ps = points.map((p3) => new Vector2(...p3)), faces = ShapeUtils.triangulateShape(ps, []), out = [];
+    const p2 = (i, s) => [points[i][0], points[i][1], s * width / 2];
     for (const f of faces) {
-      out.push(...p(f[2], -1), ...p(f[1], -1), ...p(f[0], -1), ...p(f[0], 1), ...p(f[1], 1), ...p(f[2], 1));
+      out.push(...p2(f[2], -1), ...p2(f[1], -1), ...p2(f[0], -1), ...p2(f[0], 1), ...p2(f[1], 1), ...p2(f[2], 1));
     }
     for (let i = 0; i < points.length; i++) {
       const j = (i + 1) % points.length;
-      out.push(...p(i, -1), ...p(j, -1), ...p(j, 1), ...p(i, -1), ...p(j, 1), ...p(i, 1));
+      out.push(...p2(i, -1), ...p2(j, -1), ...p2(j, 1), ...p2(i, -1), ...p2(j, 1), ...p2(i, 1));
     }
     const g = new BufferGeometry();
     g.setAttribute("position", new Float32BufferAttribute(out, 3));
@@ -37870,13 +38562,13 @@ function createResidentVehicle(id) {
   g.name = id === 173 ? "\uACE8\uBAA9 \uC8FC\uCC28\uC6A9 \uC18C\uD615 SUV" : id === 211 ? "\uACE8\uBAA9 \uC8FC\uCC28\uC6A9 \uD574\uCE58\uBC31" : "\uACE8\uBAA9 \uC8FC\uCC28\uC6A9 \uC18C\uD615 \uC138\uB2E8";
   g.userData = { source: "Quaternius Realistic Car Pack, CC0", sourceModel: data.source, triangles: data.triangles };
   const material = (color, kind) => new MeshStandardMaterial({ color, roughness: kind === "glass" ? 0.32 : 0.8 });
-  for (const p of data.parts) {
+  for (const p2 of data.parts) {
     const geo = new BufferGeometry();
-    geo.setAttribute("position", new Float32BufferAttribute(p.positions, 3));
+    geo.setAttribute("position", new Float32BufferAttribute(p2.positions, 3));
     geo.computeVertexNormals();
-    const m = new Mesh(geo, material(p.color, p.name === "Windows" ? "glass" : "car"));
-    m.name = "car-" + p.name;
-    m.userData.detailKind = p.name === "Windows" ? "glass" : "car";
+    const m = new Mesh(geo, material(p2.color, p2.name === "Windows" ? "glass" : "car"));
+    m.name = "car-" + p2.name;
+    m.userData.detailKind = p2.name === "Windows" ? "glass" : "car";
     g.add(m);
   }
   for (const [i, w] of data.wheels.entries()) {
@@ -38005,7 +38697,7 @@ function createNeighborhoodAsset(id) {
     return mesh(new TorusGeometry(r, t, 3, r > 0.15 ? 10 : 8), k, x, y, z);
   }
   function pipe(ps, r = 0.025, k = "metal") {
-    return mesh(new TubeGeometry(new CatmullRomCurve3(ps.map((p) => new Vector3(...p))), Math.max(4, (ps.length - 1) * 3), r, 4, false), k);
+    return mesh(new TubeGeometry(new CatmullRomCurve3(ps.map((p2) => new Vector3(...p2))), Math.max(4, (ps.length - 1) * 3), r, 4, false), k);
   }
   function leaves(x, y, z, s = 0.3, n = 6) {
     for (let i = 0; i < n; i++) {
@@ -38610,7 +39302,7 @@ function createMoreAsset(id) {
     return mesh(new TorusGeometry(r, t, 3, r > 0.15 ? 10 : 6), k, x, y, z);
   }
   function pipe(points, r = 0.025, k = "metal") {
-    return mesh(new TubeGeometry(new CatmullRomCurve3(points.map((p) => new Vector3(...p))), Math.max(4, (points.length - 1) * 2), r, 4, false), k);
+    return mesh(new TubeGeometry(new CatmullRomCurve3(points.map((p2) => new Vector3(...p2))), Math.max(4, (points.length - 1) * 2), r, 4, false), k);
   }
   function brickwall(curved = false) {
     for (let j = 0; j < 6; j++) for (let i = 0; i < 7; i++) {
@@ -38653,7 +39345,7 @@ function createMoreAsset(id) {
       rod([x, 0.33, -0.045], [x, 0.33, 0.045], 0.025);
     }
     const a = [-0.5, 0.33, 0], b = [-0.1, 0.3, 0], c = [-0.2, 0.85, 0], d = [0.35, 0.85, 0], e = [0.5, 0.33, 0];
-    for (const [p, q] of [[a, b], [b, c], [a, c], [c, d], [d, b], [d, e]]) rod(p, q, 0.025, "blue");
+    for (const [p2, q] of [[a, b], [b, c], [a, c], [c, d], [d, b], [d, e]]) rod(p2, q, 0.025, "blue");
     ball(-0.21, 0.91, 0, 0.14, 0.035, 0.08, "dark");
     rod([0.35, 0.85, 0], [0.35, 1.02, 0], 0.02);
     pipe([[0.35, 1.02, -0.23], [0.4, 1.04, -0.17], [0.35, 1.02, 0.17], [0.35, 1.02, 0.23]], 0.018);
@@ -39000,7 +39692,7 @@ function createMoreAsset(id) {
       }
       if (v2 === 1) {
         box(0, 0.6, 0, 0.23, 0.23, 0.12, "metal");
-        for (const p of [[[-0.6, 0, 0], [-0.6, 0.6, 0], [0, 0.6, 0]], [[0.6, 1.2, 0], [0.6, 0.6, 0], [0, 0.6, 0]], [[0, 0.6, 0], [0, 0, 0]]]) pipe(p, 0.022);
+        for (const p2 of [[[-0.6, 0, 0], [-0.6, 0.6, 0], [0, 0.6, 0]], [[0.6, 1.2, 0], [0.6, 0.6, 0], [0, 0.6, 0]], [[0, 0.6, 0], [0, 0, 0]]]) pipe(p2, 0.022);
       }
       if (v2 === 2) {
         box(0, 0.9, 0, 0.4, 0.5, 0.2, "white");
@@ -39466,9 +40158,9 @@ function createMoreAsset(id) {
         for (const z of [-0.3, 0, 0.3]) pipe([[-0.9, 1.75, z], [0, 1.67, z], [0.9, 1.75, z]], 8e-3, "cap");
       }
       if (v2 === 4) {
-        for (let i = 0; i < 10; i++) for (const side of [-1, 1]) {
-          let m = cyl(-0.9 + i * 0.2, 0.25, side * 0.19, 0.12, 0.45, "dark");
-          m.rotation.x = Math.PI / 2 + side * 0.3;
+        for (let i = 0; i < 10; i++) for (const side2 of [-1, 1]) {
+          let m = cyl(-0.9 + i * 0.2, 0.25, side2 * 0.19, 0.12, 0.45, "dark");
+          m.rotation.x = Math.PI / 2 + side2 * 0.3;
         }
         for (let i = 0; i < 10; i++) {
           let m = cyl(-0.9 + i * 0.2, 0.33, 0, 0.13, 0.2, "cap");
@@ -39575,7 +40267,7 @@ function createAsset(id) {
     return mesh(new TorusGeometry(r, t, 3, r > 0.15 ? 10 : 6), k, x, y, z);
   }
   function pipe(points, r = 0.025, k = "metal") {
-    return mesh(new TubeGeometry(new CatmullRomCurve3(points.map((p) => new Vector3(...p))), Math.max(4, (points.length - 1) * 2), r, 4, false), k);
+    return mesh(new TubeGeometry(new CatmullRomCurve3(points.map((p2) => new Vector3(...p2))), Math.max(4, (points.length - 1) * 2), r, 4, false), k);
   }
   function brickwall(curved = false) {
     for (let j = 0; j < 6; j++) for (let i = 0; i < 7; i++) {
@@ -39618,7 +40310,7 @@ function createAsset(id) {
       rod([x, 0.33, -0.045], [x, 0.33, 0.045], 0.025);
     }
     const a = [-0.5, 0.33, 0], b = [-0.1, 0.3, 0], c = [-0.2, 0.85, 0], d = [0.35, 0.85, 0], e = [0.5, 0.33, 0];
-    for (const [p, q] of [[a, b], [b, c], [a, c], [c, d], [d, b], [d, e]]) rod(p, q, 0.025, "blue");
+    for (const [p2, q] of [[a, b], [b, c], [a, c], [c, d], [d, b], [d, e]]) rod(p2, q, 0.025, "blue");
     ball(-0.21, 0.91, 0, 0.14, 0.035, 0.08, "dark");
     rod([0.35, 0.85, 0], [0.35, 1.02, 0], 0.02);
     pipe([[0.35, 1.02, -0.23], [0.4, 1.04, -0.17], [0.35, 1.02, 0.17], [0.35, 1.02, 0.23]], 0.018);
@@ -39858,10 +40550,10 @@ function createAsset(id) {
       for (let j = 0; j < (id === 41 ? 1 : 3); j++) {
         const x = (j - 1) * 0.32;
         const g = new SphereGeometry(1, 8, 5);
-        const p = g.attributes.position;
-        for (let i = 0; i < p.count; i++) {
-          let y = p.getY(i), s = 1 + 0.06 * Math.sin(i * 3.1);
-          p.setXYZ(i, p.getX(i) * 0.25 * s, (y + 1) * 0.27, p.getZ(i) * 0.22 * s);
+        const p2 = g.attributes.position;
+        for (let i = 0; i < p2.count; i++) {
+          let y = p2.getY(i), s = 1 + 0.06 * Math.sin(i * 3.1);
+          p2.setXYZ(i, p2.getX(i) * 0.25 * s, (y + 1) * 0.27, p2.getZ(i) * 0.22 * s);
         }
         g.computeVertexNormals();
         mesh(g, id === 41 ? "white" : "dark", x, 0, 0);
@@ -39927,11 +40619,11 @@ function renderAttachedStructures(plan, elevation) {
   const group = new Group();
   group.name = "facade-attached-architecture";
   const colliders = [], records2 = [], groundContacts = [], assetPlacements = [], supportQA = { posts: 0, plinths: 0, wheelStops: 0, groundStrips: 0 };
-  const materials = /* @__PURE__ */ new Map();
+  const materials2 = /* @__PURE__ */ new Map();
   function material(c, overlay = false) {
     const key = c + ":" + overlay;
-    if (!materials.has(key)) materials.set(key, new MeshStandardMaterial({ color: c, roughness: 0.88, side: DoubleSide }));
-    return materials.get(key);
+    if (!materials2.has(key)) materials2.set(key, new MeshStandardMaterial({ color: c, roughness: 0.88, side: DoubleSide }));
+    return materials2.get(key);
   }
   const C = { steel: 5794668, post: 10988193, wall: 12170917, trim: 14275518, glass: 5467762, wood: 9468246, concrete: 11251370, dark: 4081994 };
   for (const s of plan.structures) {
@@ -39942,9 +40634,9 @@ function renderAttachedStructures(plan, elevation) {
       g.add(m);
       return m;
     }, box = function(u, y, v2, ww, hh, dd, color, name = "structure-part") {
-      const p = P(u, v2), geo = new BoxGeometry(ww, hh, dd, name === "shed-grounded-plinth" ? Math.ceil(ww / 0.25) : 1, 1, name === "shed-grounded-plinth" ? Math.ceil(dd / 0.25) : 1);
+      const p2 = P(u, v2), geo = new BoxGeometry(ww, hh, dd, name === "shed-grounded-plinth" ? Math.ceil(ww / 0.25) : 1, 1, name === "shed-grounded-plinth" ? Math.ceil(dd / 0.25) : 1);
       geo.rotateY(angle);
-      geo.translate(p[0], y, p[1]);
+      geo.translate(p2[0], y, p2[1]);
       return mesh(geo, color, name);
     }, rod = function(a, b, r, color = "steel") {
       const aa = P(a[0], a[2]), bb = P(b[0], b[2]), v1 = new Vector3(aa[0], a[1], aa[1]), v2 = new Vector3(bb[0], b[1], bb[1]), delta = v2.clone().sub(v1), geo = new CylinderGeometry(r, r, delta.length(), 8);
@@ -39952,9 +40644,9 @@ function renderAttachedStructures(plan, elevation) {
       geo.translate(...v1.add(v2).multiplyScalar(0.5).toArray());
       return mesh(geo, color);
     }, quad = function(ps, col, name) {
-      let v2 = ps.map((p) => {
-        const q = P(p[0], p[2]);
-        return [q[0], p[1], q[1]];
+      let v2 = ps.map((p2) => {
+        const q = P(p2[0], p2[2]);
+        return [q[0], p2[1], q[1]];
       });
       const a = new Vector3(...v2[1]).sub(new Vector3(...v2[0])), b = new Vector3(...v2[2]).sub(new Vector3(...v2[0]));
       const order = a.cross(b).y < 0 ? [0, 2, 1, 0, 3, 2] : [0, 1, 2, 0, 2, 3];
@@ -39962,9 +40654,9 @@ function renderAttachedStructures(plan, elevation) {
       geo.setAttribute("position", new Float32BufferAttribute(order.flatMap((i) => v2[i]), 3));
       geo.computeVertexNormals();
       return mesh(geo, col, name);
-    }, solid = function(u, v2, ww, dd, base, top, role) {
+    }, solid = function(u, v2, ww, dd, base2, top, role) {
       const fp = [[-ww / 2, -dd / 2], [ww / 2, -dd / 2], [ww / 2, dd / 2], [-ww / 2, dd / 2]].map(([x, z]) => P(u + x, v2 + z));
-      colliders.push({ fp, base, top, owner: s.owner, structure: s.id, role });
+      colliders.push({ fp, base: base2, top, owner: s.owner, structure: s.id, role });
     }, groundBox = function(u, v2, ww, dd, top, color, name) {
       const bounds3 = footprintHeights((a, b) => P(u + a, v2 + b), ww, dd, pavedSurface), bottom = bounds3.low - 0.04;
       const m = box(u, (bottom + top) / 2, v2, ww, top - bottom, dd, color, name);
@@ -39979,9 +40671,9 @@ function renderAttachedStructures(plan, elevation) {
       if (retiredLegacy(id)) return null;
       const a = createAsset(id);
       a.userData.vegetationAssetId = id;
-      const b = new Box3().setFromObject(a), p = P(u, v2);
+      const b = new Box3().setFromObject(a), p2 = P(u, v2);
       a.userData.localBounds = b;
-      a.position.set(p[0], Y(u, v2) - b.min.y * scale + 0.06 + lift, p[1]);
+      a.position.set(p2[0], Y(u, v2) - b.min.y * scale + 0.06 + lift, p2[1]);
       a.rotation.y = angle + (a.userData.memoVehicle ? Math.PI / 2 : 0);
       a.scale.multiplyScalar(scale);
       if (!lift) {
@@ -40033,11 +40725,11 @@ function renderAttachedStructures(plan, elevation) {
         rod([x, roofAt(0, x) - 0.05, 0.02], [x, roofAt(d, x) - 0.065, d - 0.09], 0.022, "steel");
       }
       if (d > 1.6 && !["shed", "workshop"].includes(s.type)) for (const x of [0.12, w - 0.12]) {
-        const z = d - 0.12, base = pavedSurface(...P(x, z)), top = roofAt(z, x), footTop = footprintHeights((a, b) => P(x + a, z + b), 0.15, 0.15, pavedSurface).high + 0.07;
+        const z = d - 0.12, base2 = pavedSurface(...P(x, z)), top = roofAt(z, x), footTop = footprintHeights((a, b) => P(x + a, z + b), 0.15, 0.15, pavedSurface).high + 0.07;
         groundBox(x, z, 0.075, 0.075, top, "post", "canopy-grounded-post");
         groundBox(x, z, 0.15, 0.15, footTop, "concrete", "canopy-footing");
         supportQA.posts++;
-        solid(x, z, 0.18, 0.18, base, top, "post");
+        solid(x, z, 0.18, 0.18, base2, top, "post");
       }
       if (d > 1.6) {
         box(w / 2, roofAt(d, 0) + 0.025, d - 0.065, w, 0.065, 0.09, "trim");
@@ -40070,9 +40762,9 @@ function renderAttachedStructures(plan, elevation) {
         const id = seed % 7 === 0 && w >= 5.8 && d >= 3.3 ? 173 : seed % 2 ? 211 : 212, car = asset(id, x, z), size = car.userData.localBounds.getSize(new Vector3()), [carWidth, carHeight, carLength] = car.userData.dimensions || [Math.min(size.x, size.z), size.y, Math.max(size.x, size.z)];
         solid(x, z, carLength + 0.12, carWidth + 0.12, Y(x, z), Y(x, z) + carHeight + 0.15, "parked-car");
         const halfL = carLength / 2 + 0.24, halfW = carWidth / 2 + 0.2;
-        for (const side of [-1, 1]) groundStrip(x - halfL, z + side * halfW, x + halfL, z + side * halfW, 0.05, "trim", "parking-paint");
-        for (const side of [-1, 1]) {
-          const center = z + side * carWidth * 0.36;
+        for (const side2 of [-1, 1]) groundStrip(x - halfL, z + side2 * halfW, x + halfL, z + side2 * halfW, 0.05, "trim", "parking-paint");
+        for (const side2 of [-1, 1]) {
+          const center = z + side2 * carWidth * 0.36;
           mesh(fittedRibbon([P(x - carLength * 0.34, center - 0.2), P(x - carLength * 0.34, center + 0.2)], 0.12, (xx, zz) => pavedSurface(xx, zz) - 0.015, (xx, zz) => pavedSurface(xx, zz) + 0.1, 0.12), "dark", "grounded-wheel-stop");
           supportQA.wheelStops++;
         }
@@ -40117,16 +40809,16 @@ function classifyYards2(data, specs, elevation) {
   const by = new Map(specs.map((s) => [s.seed, s]));
   return data.yards.map((y) => {
     const s = by.get(y.owner), f = s?.frontage;
-    const hs = y.rings.flatMap((r) => r.outer.filter((_, i) => i % 5 === 0).map((p) => elevation(...p))), slope = hs.length ? Math.max(...hs) - Math.min(...hs) : 0;
+    const hs = y.rings.flatMap((r) => r.outer.filter((_, i) => i % 5 === 0).map((p2) => elevation(...p2))), slope = hs.length ? Math.max(...hs) - Math.min(...hs) : 0;
     const seed = Math.abs(y.owner), block = (Math.floor(y.x / 35) * 7 + Math.floor(y.z / 35) * 13 + 1e4) % 5;
     let type = y.area < 16 ? "narrow" : !f ? "rear" : s.levels >= 4 && y.area > 70 && f.mean > 2.5 ? "parking" : s.levels >= 4 ? "service" : slope / Math.sqrt(y.area) > 0.23 && seed % 3 === 1 ? "slope" : block === 0 ? "workshop" : seed % 3 === 0 ? "laundry" : "garden";
     return { ...y, type, label: programs2[type].name, wall: programs2[type].wall, floor: programs2[type].floor, levels: s?.levels || 1, slope, angle: f?.angle || 0, frontage: f || null };
   });
 }
-function insideRing(x, z, p) {
+function insideRing(x, z, p2) {
   let c = false;
-  for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
-    const a = p[i], b = p[j];
+  for (let i = 0, j = p2.length - 1; i < p2.length; j = i++) {
+    const a = p2[i], b = p2[j];
     if (a[1] > z !== b[1] > z && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
   }
   return c;
@@ -40137,7 +40829,7 @@ function inYard(y, x, z) {
 function yardCandidates(y) {
   const list = [];
   for (const r of y.rings) {
-    const xs = r.outer.map((p) => p[0]), zs = r.outer.map((p) => p[1]);
+    const xs = r.outer.map((p2) => p2[0]), zs = r.outer.map((p2) => p2[1]);
     for (let x = Math.min(...xs) + 1; x < Math.max(...xs) - 0.5; x += 1.8) for (let z = Math.min(...zs) + 1; z < Math.max(...zs) - 0.5; z += 1.8) {
       if (!inYard(y, x, z)) continue;
       let clearance = Infinity;
@@ -40173,7 +40865,12 @@ function edgeCandidates(y) {
       total += L;
     }
   }
-  return out.filter((p, i) => !out.slice(0, i).some((q) => Math.hypot(p.x - q.x, p.z - q.z) < 1.45));
+  return out.filter((p2, i) => !out.slice(0, i).some((q) => Math.hypot(p2.x - q.x, p2.z - q.z) < 1.45));
+}
+
+// outputs/domestic-test/surface-policy.js
+function finishDepth2(layer = 1) {
+  return { polygonOffset: true, polygonOffsetFactor: -layer, polygonOffsetUnits: -layer };
 }
 
 // outputs/domestic-test/korean-facades.js?v=151
@@ -40223,9 +40920,9 @@ var FacadeBatch4 = class {
     const P = (x, y, z) => [origin[0] + ux * x + nx * z, origin[1] + y, origin[2] + uz * x + nz * z];
     const box = (x, y, z, w, h, d, color, edge = false, surface = false, textureId = null) => {
       if (Math.min(w, h, d) <= 0) return;
-      const p = unitBox4.attributes.position, n = unitBox4.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
-      for (let i = 0; i < p.count; i++) {
-        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p.getX(i) * w, Y = y + p.getY(i) * h, Z = z + p.getZ(i) * d;
+      const p2 = unitBox4.attributes.position, n = unitBox4.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
+      for (let i = 0; i < p2.count; i++) {
+        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p2.getX(i) * w, Y = y + p2.getY(i) * h, Z = z + p2.getZ(i) * d;
         b.p.push(...P(X, Y, Z));
         b.inkIds.push(this.inkObjectId ?? 0);
         b.n.push(ux * n.getX(i) + nx * n.getZ(i), n.getY(i), uz * n.getX(i) + nz * n.getZ(i));
@@ -40307,9 +41004,9 @@ var FacadeBatch4 = class {
       m.userData = { facadeTextureId: b.textureId, detailKind: b.color === dark2 ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
       group.add(m);
     }
-    for (const { color, p, maxLOD } of this.lines.values()) {
+    for (const { color, p: p2, maxLOD } of this.lines.values()) {
       const g = new BufferGeometry();
-      g.setAttribute("position", new Float32BufferAttribute(p, 3));
+      g.setAttribute("position", new Float32BufferAttribute(p2, 3));
       const c = new Color(color).multiplyScalar(0.47), m = new LineSegments(g, new LineBasicMaterial({ color: c }));
       m.userData.faceLineColor = c.getHex();
       m.userData.lodMaxLevel = maxLOD;
@@ -40319,9 +41016,9 @@ var FacadeBatch4 = class {
   }
 };
 
-// outputs/domestic-test/parcel-renderer.js?v=151
+// outputs/domestic-test/parcel-renderer.js?v=grounds1
 function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
-  const group = new Group(), batch = new FacadeBatch4(), segments2 = [], colliders = [], views = [], programMap = new Map(profiles.map((p) => [p.owner, p]));
+  const group = new Group(), batch = new FacadeBatch4(), segments2 = [], colliders = [], views = [], programMap = new Map(profiles.map((p2) => [p2.owner, p2]));
   const C = { brick: 8411463, dark: 6507587, joint: 11182224, stone: 8489088, stoneJoint: 5594711, render: 11053985, base: 7831413, cap: 11711399, green: 4944224, iron: 3623490, silver: 9674388 };
   const styleNames = { "brick-vent": "\uAD6C\uBA4D \uC7A5\uC2DD \uC801\uBCBD\uB3CC \uB2F4\uACFC \uB300\uBB38", "dark-brick": "\uB2E8\uCC28 \uBCBD\uB3CC \uB2F4\uACFC \uC544\uCE58 \uB300\uBB38", "stone-gate": "\uC11D\uC7AC \uB2F4\uACFC \uBC15\uACF5\uC9C0\uBD95 \uB300\uBB38", "rendered": "\uD68C\uC0C9 \uBBF8\uC7A5 \uB2F4\uACFC \uCCA0\uBB38", "green-fence": "\uAE30\uB2E8 \uC704 \uB179\uC0C9 \uCCA0\uB9DD \uC6B8\uD0C0\uB9AC", "brick-rail": "\uBCBD\uB3CC \uAE30\uB2E8\uACFC \uCCA0\uC81C \uB2F4", "villa-curb": "\uAC1C\uBC29\uD615 \uBE4C\uB77C \uC8FC\uCC28 \uC9C4\uC785\uBD80" };
   function floor(tris2, color, lift = 0.065, layer = 1) {
@@ -40338,21 +41035,21 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
         tri(ab, bc, ca, level + 1);
         return;
       }
-      for (const [p, h] of [[a, ha], [b, hb], [c, hc]]) v2.push(p[0], h + lift, p[1]);
+      for (const [p2, h] of [[a, ha], [b, hb], [c, hc]]) v2.push(p2[0], h + lift, p2[1]);
     }
     for (const t of tris2) tri(...t);
     if (!v2.length) return;
     const g = new BufferGeometry();
     g.setAttribute("position", new Float32BufferAttribute(v2, 3));
     g.computeVertexNormals();
-    const m = new Mesh(g, new MeshStandardMaterial({ color, roughness: 1, side: DoubleSide }));
+    const m = new Mesh(g, new MeshStandardMaterial({ color, roughness: 1, side: DoubleSide, ...finishDepth2(layer * 0.25) }));
     m.name = "yard-access-surface";
     m.userData.surfaceOverlay = true;
     if (mark) m.userData.detailKind = "roadmark";
     group.add(m);
   }
   for (const yard of data.yards) {
-    const p = programMap.get(yard.owner), color = p?.levels >= 4 ? 8751234 : p?.type === "rear" ? 9671814 : [10264212, 9935505, 10724249][Math.abs(yard.owner) % 3];
+    const p2 = programMap.get(yard.owner), color = p2?.levels >= 4 ? 8751234 : p2?.type === "rear" ? 9671814 : [10264212, 9935505, 10724249][Math.abs(yard.owner) % 3];
     floor(yard.triangles, color);
   }
   floor(plan.apronTriangles, 10067347, 0.083, 3);
@@ -40365,7 +41062,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
       if (L < 0.01) continue;
       const nx = -(b[1] - a[1]) / L * 0.53, nz = (b[0] - a[0]) / L * 0.53, N = Math.ceil(L / 0.65);
       for (let j = 0; j < N; j++) {
-        const p = a.map((v2, k) => v2 + (b[k] - v2) * j / N), q = a.map((v2, k) => v2 + (b[k] - v2) * (j + 1) / N), cs = [[p[0] + nx, p[1] + nz], [q[0] + nx, q[1] + nz], [q[0] - nx, q[1] - nz], [p[0] - nx, p[1] - nz]];
+        const p2 = a.map((v2, k) => v2 + (b[k] - v2) * j / N), q = a.map((v2, k) => v2 + (b[k] - v2) * (j + 1) / N), cs = [[p2[0] + nx, p2[1] + nz], [q[0] + nx, q[1] + nz], [q[0] - nx, q[1] - nz], [p2[0] - nx, p2[1] - nz]];
         if (cs.every((c) => inYard(y, ...c))) ts.push([cs[0], cs[1], cs[2]], [cs[0], cs[2], cs[3]]);
       }
     }
@@ -40379,7 +41076,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
   function masonry(out, L, ga, gb, ta, tb, width, kind, offset) {
     const Q = out.quad, brick = ["brick-vent", "dark-brick", "brick-rail"].includes(kind), rh = brick ? 0.13 : 0.19, cw = brick ? 0.32 : 0.56, col = brick ? C.joint : C.stoneJoint;
     const low = (x) => ga + (gb - ga) * x / L + 0.14, high = (x) => ta + (tb - ta) * x / L - 0.02;
-    for (const side of [-1, 1]) for (let y = Math.ceil(Math.min(low(0), low(L)) / rh) * rh; y < Math.max(ta, tb); y += rh) {
+    for (const side2 of [-1, 1]) for (let y = Math.ceil(Math.min(low(0), low(L)) / rh) * rh; y < Math.max(ta, tb); y += rh) {
       let a = 0, b = L;
       for (const [v0, v1] of [[y - low(0), y - low(L)], [high(0) - y, high(L) - y]]) {
         if (v0 < 0 && v1 < 0) {
@@ -40389,11 +41086,11 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
         if (v0 < 0) a = Math.max(a, L * -v0 / (v1 - v0));
         if (v1 < 0) b = Math.min(b, L * v0 / (v0 - v1));
       }
-      if (b > a + 0.01) Q((a + b) / 2, y, side * (width / 2 + 2e-3), b - a, 6e-3, col);
+      if (b > a + 0.01) Q((a + b) / 2, y, side2 * (width / 2 + 2e-3), b - a, 6e-3, col);
       const row2 = Math.round(y / rh), stagger = Math.abs(row2) % 2 * cw / 2, first = Math.ceil((offset - stagger + 0.012) / cw) * cw + stagger - offset;
       for (let x = first; x < L - 6e-3; x += cw) {
         const lo = Math.max(y + 4e-3, low(x)), hi = Math.min(y + rh - 4e-3, high(x));
-        if (hi > lo) Q(x, (lo + hi) / 2, side * (width / 2 + 3e-3), 7e-3, hi - lo, col);
+        if (hi > lo) Q(x, (lo + hi) / 2, side2 * (width / 2 + 3e-3), 7e-3, hi - lo, col);
       }
     }
   }
@@ -40473,19 +41170,19 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
     }
   }
   for (const r of stitched.runs) wallRun(r);
-  function collider(fp, base, top, owner, role) {
-    colliders.push({ fp, base, top, owner, role });
+  function collider(fp, base2, top, owner, role) {
+    colliders.push({ fp, base: base2, top, owner, role });
   }
-  for (const p of plan.piers) {
-    const out = batch.writer([p.x, elevation(p.x, p.z), p.z], p.ux, p.uz, -p.uz, p.ux), B = out.box, col = tint(p.style === "stone-gate" ? C.stone : p.style === "rendered" ? C.render : p.style === "dark-brick" ? C.dark : C.brick, p.tint ?? 1), pw = p.width ?? 0.34, foot = Math.min(...[-1, 1].flatMap((a) => [-1, 1].map((b) => elevation(p.x + p.ux * a * pw / 2 - p.uz * b * pw / 2, p.z + p.uz * a * pw / 2 + p.ux * b * pw / 2)))) - elevation(p.x, p.z) - 0.06;
-    B(0, (p.height + foot) / 2, 0, pw, p.height - foot, pw, col, true);
-    B(0, p.height + 0.03, 0, pw + 0.045, 0.06, pw + 0.045, C.cap, true);
-    for (let y = 0.2; y < p.height; y += 0.17) for (const s of [-1, 1]) out.quad(0, y, s * ((p.width ?? 0.34) / 2 + 2e-3), p.width ?? 0.34, 9e-3, C.joint);
-    collider(p.footprint, elevation(p.x, p.z), elevation(p.x, p.z) + p.height + 0.08, p.owner, "wall-pier");
+  for (const p2 of plan.piers) {
+    const out = batch.writer([p2.x, elevation(p2.x, p2.z), p2.z], p2.ux, p2.uz, -p2.uz, p2.ux), B = out.box, col = tint(p2.style === "stone-gate" ? C.stone : p2.style === "rendered" ? C.render : p2.style === "dark-brick" ? C.dark : C.brick, p2.tint ?? 1), pw = p2.width ?? 0.34, foot = Math.min(...[-1, 1].flatMap((a) => [-1, 1].map((b) => elevation(p2.x + p2.ux * a * pw / 2 - p2.uz * b * pw / 2, p2.z + p2.uz * a * pw / 2 + p2.ux * b * pw / 2)))) - elevation(p2.x, p2.z) - 0.06;
+    B(0, (p2.height + foot) / 2, 0, pw, p2.height - foot, pw, col, true);
+    B(0, p2.height + 0.03, 0, pw + 0.045, 0.06, pw + 0.045, C.cap, true);
+    for (let y = 0.2; y < p2.height; y += 0.17) for (const s of [-1, 1]) out.quad(0, y, s * ((p2.width ?? 0.34) / 2 + 2e-3), p2.width ?? 0.34, 9e-3, C.joint);
+    collider(p2.footprint, elevation(p2.x, p2.z), elevation(p2.x, p2.z) + p2.height + 0.08, p2.owner, "wall-pier");
   }
   function prism(local, poly, depth, color, origin, ux, uz, nx, nz) {
     const vertices = [];
-    for (const z of [-depth / 2, depth / 2]) for (const p of poly) vertices.push([origin[0] + ux * p[0] + nx * z, origin[1] + p[1], origin[2] + uz * p[0] + nz * z]);
+    for (const z of [-depth / 2, depth / 2]) for (const p2 of poly) vertices.push([origin[0] + ux * p2[0] + nx * z, origin[1] + p2[1], origin[2] + uz * p2[0] + nz * z]);
     const faces = [];
     for (let i = 1; i < poly.length - 1; i++) {
       faces.push(0, i, i + 1, poly.length, poly.length + i + 1, poly.length + i);
@@ -40511,14 +41208,14 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
   }
   const gateSurface = createContactSurfaceSampler(group.children, elevation);
   for (const gate of plan.gates) {
-    const { x, z, ux, uz, nx, nz, width, style, owner } = gate, base = Math.max(...gate.pieces.map((p) => elevation(x + ux * p.u, z + uz * p.u))), out = batch.writer([x, base, z], ux, uz, nx, nz), B = out.box, R = out.rod, col = style === "stone-gate" ? C.stone : style === "rendered" ? C.render : style === "dark-brick" ? C.dark : C.brick, iron = style === "rendered" ? 4612949 : C.iron, h = 2.1;
-    for (const p of gate.pieces) {
-      const world = (u2, v2) => [x + ux * u2 + nx * v2, z + uz * u2 + nz * v2], bottom = footprintHeights((a, b) => world(p.u + a, b), 0.34, 0.3, gateSurface).low - base - 0.04;
+    const { x, z, ux, uz, nx, nz, width, style, owner } = gate, base2 = Math.max(...gate.pieces.map((p2) => elevation(x + ux * p2.u, z + uz * p2.u))), out = batch.writer([x, base2, z], ux, uz, nx, nz), B = out.box, R = out.rod, col = style === "stone-gate" ? C.stone : style === "rendered" ? C.render : style === "dark-brick" ? C.dark : C.brick, iron = style === "rendered" ? 4612949 : C.iron, h = 2.1;
+    for (const p2 of gate.pieces) {
+      const world = (u2, v2) => [x + ux * u2 + nx * v2, z + uz * u2 + nz * v2], bottom = footprintHeights((a, b) => world(p2.u + a, b), 0.34, 0.3, gateSurface).low - base2 - 0.04;
       boundaryFit.gateSupports++;
-      B(p.u, (bottom + h) / 2, 0, 0.34, h - bottom, 0.3, col, true);
-      B(p.u, h + 0.07, 0, 0.42, 0.14, 0.37, C.cap, true);
-      for (let y = 0.14; y < h - 0.04; y += style === "stone-gate" ? 0.17 : 0.13) for (const side of [-1, 1]) out.quad(p.u, y, side * 0.152, 0.34, 9e-3, C.joint);
-      const u = p.side * (width / 2 - 0.025), top = base + 1.78;
+      B(p2.u, (bottom + h) / 2, 0, 0.34, h - bottom, 0.3, col, true);
+      B(p2.u, h + 0.07, 0, 0.42, 0.14, 0.37, C.cap, true);
+      for (let y = 0.14; y < h - 0.04; y += style === "stone-gate" ? 0.17 : 0.13) for (const side2 of [-1, 1]) out.quad(p2.u, y, side2 * 0.152, 0.34, 9e-3, C.joint);
+      const u = p2.side * (width / 2 - 0.025), top = base2 + 1.78;
       addBoundaryRibbon(batch, [world(u, 0.04), world(u, 0.92)], 0.055, (xx, zz) => gateSurface(xx, zz) + 0.025, () => top, iron, { ink: true, step: 0.12 });
       for (let j = 0; j < 6; j++) {
         const level = (xx, zz) => {
@@ -40528,22 +41225,22 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
         addBoundaryRibbon(batch, [world(u, 0.11), world(u, 0.85)], 0.071, (xx, zz) => level(xx, zz) - 0.025, (xx, zz) => level(xx, zz) + 0.025, 5465172, { step: 0.12 });
       }
       for (const v2 of [0.08, 0.88]) {
-        const low = gateSurface(...world(u, v2)) - base + 0.02;
+        const low = gateSurface(...world(u, v2)) - base2 + 0.02;
         B(u, (low + 1.8) / 2, v2, 0.072, 1.8 - low, 0.036, C.silver, false);
       }
-      B(u - p.side * 0.05, 0.92, 0.8, 0.032, 0.19, 0.03, 11776928, false);
+      B(u - p2.side * 0.05, 0.92, 0.8, 0.032, 0.19, 0.03, 11776928, false);
       boundaryFit.gateLeaves++;
-      collider(p.post, base + bottom, base + h + 0.14, owner, "gate-pier");
-      collider(p.leaf, Math.min(...p.leaf.map((q) => gateSurface(...q))), base + 1.82, owner, "open-gate-leaf");
+      collider(p2.post, base2 + bottom, base2 + h + 0.14, owner, "gate-pier");
+      collider(p2.leaf, Math.min(...p2.leaf.map((q) => gateSurface(...q))), base2 + 1.82, owner, "open-gate-leaf");
     }
     if (style === "dark-brick" || style === "brick-vent") {
       const rad = width / 2 + 0.02;
       for (let j = 0; j < 12; j++) {
         const a = j * Math.PI / 12, b = (j + 1) * Math.PI / 12, poly = [[Math.cos(a) * rad, 2.08 + Math.sin(a) * 0.36], [Math.cos(b) * rad, 2.08 + Math.sin(b) * 0.36], [Math.cos(b) * (rad + 0.2), 2.08 + Math.sin(b) * 0.54], [Math.cos(a) * (rad + 0.2), 2.08 + Math.sin(a) * 0.54]];
-        prism(out, poly, 0.32, col, [x, base, z], ux, uz, nx, nz);
+        prism(out, poly, 0.32, col, [x, base2, z], ux, uz, nx, nz);
       }
     } else if (style === "stone-gate") {
-      for (const side of [-1, 1]) prism(out, [[0, 2.55], [side * (width / 2 + 0.34), 2.2], [side * (width / 2 + 0.34), 2.32], [0, 2.7]], 0.42, C.cap, [x, base, z], ux, uz, nx, nz);
+      for (const side2 of [-1, 1]) prism(out, [[0, 2.55], [side2 * (width / 2 + 0.34), 2.2], [side2 * (width / 2 + 0.34), 2.32], [0, 2.7]], 0.42, C.cap, [x, base2, z], ux, uz, nx, nz);
     } else B(0, 2.19, 0, width + 0.65, 0.16, 0.4, C.cap, true);
     const left = -width / 2 - 0.17;
     B(left, 1.4, -0.175, 0.17, 0.25, 0.052, 6450533, true);
@@ -40556,7 +41253,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
       addBoundaryRibbon(batch, [world(-0.27), world(-0.09)], width / 16 * 0.4, (xx, zz) => gateSurface(xx, zz) + 2e-3, (xx, zz) => gateSurface(xx, zz) + 0.012, 5660246, { step: 0.06 });
       boundaryFit.thresholdSlots++;
     }
-    views.push({ x, z, y: base, ux, uz, nx, nz, owner, style, label: styleNames[style] });
+    views.push({ x, z, y: base2, ux, uz, nx, nz, owner, style, label: styleNames[style] });
   }
   const surface = createContactSurfaceSampler(group.children.filter((o) => o.userData.detailKind !== "roadmark"), elevation);
   for (const d of plan.drains) boundaryFit.drains.push(addFittedDrain(batch, d, surface, roadInfo));
@@ -40579,11 +41276,11 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   const root = new Group();
   root.name = "street-yard-alley-library";
   const cache = /* @__PURE__ */ new Map(), placed = [], footprints = [], lots = [], report = { boundaryDiagnostics: {}, compounds: [], placements: [], rejected: 0, rule: "Atomic connected boundaries and gate openings first; owner-reserved yards and entrance corridors; role-based household anchors second" };
-  const polys = specs.map((s) => ({ ...s, minX: Math.min(...s.points.map((p) => p[0])), maxX: Math.max(...s.points.map((p) => p[0])), minZ: Math.min(...s.points.map((p) => p[1])), maxZ: Math.max(...s.points.map((p) => p[1])) }));
-  function inside2(x, z, p) {
+  const polys = specs.map((s) => ({ ...s, minX: Math.min(...s.points.map((p2) => p2[0])), maxX: Math.max(...s.points.map((p2) => p2[0])), minZ: Math.min(...s.points.map((p2) => p2[1])), maxZ: Math.max(...s.points.map((p2) => p2[1])) }));
+  function inside2(x, z, p2) {
     let c = false;
-    for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
-      let a = p[i], b = p[j];
+    for (let i = 0, j = p2.length - 1; i < p2.length; j = i++) {
+      let a = p2[i], b = p2[j];
       if (a[1] > z !== b[1] > z && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
     }
     return c;
@@ -40611,12 +41308,12 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     });
   }
   function segments2(a, b, c, d) {
-    const cross2 = (p, q, r) => (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
+    const cross2 = (p2, q, r) => (q[0] - p2[0]) * (r[1] - p2[1]) - (q[1] - p2[1]) * (r[0] - p2[0]);
     return cross2(a, b, c) * cross2(a, b, d) < -1e-10 && cross2(c, d, a) * cross2(c, d, b) < -1e-10;
   }
-  function footprintHits(p) {
-    const xs = p.map((q) => q[0]), zs = p.map((q) => q[1]), loX = Math.min(...xs), hiX = Math.max(...xs), loZ = Math.min(...zs), hiZ = Math.max(...zs);
-    return polys.some((s) => !(s.maxX < loX || s.minX > hiX || s.maxZ < loZ || s.minZ > hiZ) && (p.some((q) => inside2(q[0], q[1], s.points)) || s.points.some((q) => inside2(q[0], q[1], p)) || p.some((a, i) => s.points.some((c, j) => segments2(a, p[(i + 1) % p.length], c, s.points[(j + 1) % s.points.length])))));
+  function footprintHits(p2) {
+    const xs = p2.map((q) => q[0]), zs = p2.map((q) => q[1]), loX = Math.min(...xs), hiX = Math.max(...xs), loZ = Math.min(...zs), hiZ = Math.max(...zs);
+    return polys.some((s) => !(s.maxX < loX || s.minX > hiX || s.maxZ < loZ || s.minZ > hiZ) && (p2.some((q) => inside2(q[0], q[1], s.points)) || s.points.some((q) => inside2(q[0], q[1], p2)) || p2.some((a, i) => s.points.some((c, j) => segments2(a, p2[(i + 1) % p2.length], c, s.points[(j + 1) % s.points.length])))));
   }
   const cells = new Map(options.staticCache ? [...options.staticCache.obstacleCells].map(([k, v2]) => [k, v2.slice()]) : []);
   function keys(b) {
@@ -40647,8 +41344,8 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     group.updateMatrixWorld(true);
     group.traverse((m) => {
       if (!m.isMesh || !m.visible || m.userData.noPlacementCollision) return;
-      const p = m.geometry.attributes.position, ix = m.geometry.index, n = ix ? ix.count : p.count;
-      for (let i = 0; i < n; i += 3) indexTriangle([0, 1, 2].map((j) => new Vector3().fromBufferAttribute(p, ix ? ix.getX(i + j) : i + j).applyMatrix4(m.matrixWorld)));
+      const p2 = m.geometry.attributes.position, ix = m.geometry.index, n = ix ? ix.count : p2.count;
+      for (let i = 0; i < n; i += 3) indexTriangle([0, 1, 2].map((j) => new Vector3().fromBufferAttribute(p2, ix ? ix.getX(i + j) : i + j).applyMatrix4(m.matrixWorld)));
     });
   }
   const entries = polys.filter((s) => s.frontage).map((s) => {
@@ -40656,12 +41353,12 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     return { x: f.a[0] + f.ux * f.entry, z: f.a[1] + f.uz * f.entry, nx: f.nx, nz: f.nz, depth: f.mean + 0.7, owner: s.seed };
   });
   function overlapPolys(a, b) {
-    return a.some((p) => inside2(...p, b)) || b.some((p) => inside2(...p, a)) || a.some((p, i) => b.some((q, j) => segments2(p, a[(i + 1) % a.length], q, b[(j + 1) % b.length])));
+    return a.some((p2) => inside2(...p2, b)) || b.some((p2) => inside2(...p2, a)) || a.some((p2, i) => b.some((q, j) => segments2(p2, a[(i + 1) % a.length], q, b[(j + 1) % b.length])));
   }
   const accessShapes = parcelData.yards.flatMap((y) => (y.entrance || []).slice(1).map((b, i) => {
     const a = y.entrance[i], L = Math.hypot(b[0] - a[0], b[1] - a[1]), ux = (b[0] - a[0]) / (L || 1), uz = (b[1] - a[1]) / (L || 1), r = 0.9;
     const fp = [[-r, -r], [L + r, -r], [L + r, r], [-r, r]].map(([x, z]) => [a[0] + ux * x - uz * z, a[1] + uz * x + ux * z]);
-    return { fp, minX: Math.min(...fp.map((p) => p[0])), maxX: Math.max(...fp.map((p) => p[0])), minZ: Math.min(...fp.map((p) => p[1])), maxZ: Math.max(...fp.map((p) => p[1])) };
+    return { fp, minX: Math.min(...fp.map((p2) => p2[0])), maxX: Math.max(...fp.map((p2) => p2[0])), minZ: Math.min(...fp.map((p2) => p2[1])), maxZ: Math.max(...fp.map((p2) => p2[1])) };
   }));
   function structuralShape(seg) {
     const { a, b, width } = seg, L = Math.hypot(b[0] - a[0], b[1] - a[1]), ux = L ? (b[0] - a[0]) / L : Math.cos(seg.angle || 0), uz = L ? (b[1] - a[1]) / L : -Math.sin(seg.angle || 0), r = width / 2 + 0.035, cx = (a[0] + b[0]) / 2, cz = (a[1] + b[1]) / 2, half = L ? L / 2 + 0.035 : r;
@@ -40693,7 +41390,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   report.attachedAssetPlacements = architecture.assetPlacements;
   report.attachedSupportFit = architecture.group.userData.supportFit;
   report.attachedValidation = attachedPlan.qa;
-  report.households = attachedPlan.households.map((h) => ({ ...h, frontage: polys.find((p) => p.seed === h.owner)?.frontage }));
+  report.households = attachedPlan.households.map((h) => ({ ...h, frontage: polys.find((p2) => p2.seed === h.owner)?.frontage }));
   const parcel = options.staticCache?.parcel || renderParcels({ ...parcelData, segments: attachedPlan.wallSegments }, elevation, yards, streetscapePlan, roadInfo);
   if (!options.staticCache) root.add(parcel.group);
   report.openBoundaries = parcel.segments.filter((s) => s.kind !== "low-curb");
@@ -40744,7 +41441,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   const driveReservations = [...attachedPlan.drives.map((a) => a.polygon), ...attachedPlan.structures.filter((a) => a.entryApron).map((a) => a.entryApron)];
   const reservationCells = /* @__PURE__ */ new Map();
   for (const fp of [...structuralReservations, ...driveReservations]) {
-    const xs = fp.map((p) => p[0]), zs = fp.map((p) => p[1]), b = { fp, minX: Math.min(...xs), maxX: Math.max(...xs), minZ: Math.min(...zs), maxZ: Math.max(...zs) };
+    const xs = fp.map((p2) => p2[0]), zs = fp.map((p2) => p2[1]), b = { fp, minX: Math.min(...xs), maxX: Math.max(...xs), minZ: Math.min(...zs), maxZ: Math.max(...zs) };
     for (let x = Math.floor(b.minX / 8); x <= Math.floor(b.maxX / 8); x++) for (let z = Math.floor(b.minZ / 8); z <= Math.floor(b.maxZ / 8); z++) {
       const key = x + "," + z;
       if (!reservationCells.has(key)) reservationCells.set(key, []);
@@ -40762,7 +41459,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   }
   const coverByOwner = new Map(attachedPlan.houses.map((a) => [a.owner, a]));
   report.rule = attachedPlan.rule + "; wall-supported equipment and bikes, road-accessible spaced pickup pockets, driveway-validated parking before yard decoration";
-  report.parcels = yards.map(({ triangles, anchors, ...p }) => p);
+  report.parcels = yards.map(({ triangles, anchors, ...p2 }) => p2);
   report.parcelValidation = parcelData.qa;
   function template(id) {
     if (!cache.has(id)) {
@@ -40802,10 +41499,11 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     if (id >= 201 && id <= 205 || [15, 76, 77, 78, 79, 80, 162].includes(id)) return false;
     if (role.startsWith("courtyard-") && template(id).triangles > 1e3) return policyReject("courtyard-triangle-budget");
     const { m, b: local } = template(id), info = m.userData.roadview50, rule = info ? getPlacementRule(info) : getLegacyPlacementRule(id), policyKey = info?.assetId || "legacy-" + id;
+    if (representativeDeleted(m, id)) return policyReject("asset-deleted");
     const yard = yards.find((y2) => y2.owner === owner && inYard(y2, x, z)) || yards.find((y2) => y2.owner === owner);
     const wall = nearestPolicyWall(x, z, owner);
-    const entry = entries.find((e) => e.owner === owner);
-    const context2 = { zone: yard?.type || "unknown", role, area: yard?.area || 0, lift, scale: info?.fitScale || 1, count: policyCounts.get(owner + ":" + policyKey) || 0, wallGap: wall ? Math.max(0, wall.distance - (local.max.z - local.min.z) / 2) : Infinity, entryDistance: entry ? Math.hypot(x - entry.x, z - entry.z) : Infinity };
+    const entry2 = entries.find((e) => e.owner === owner);
+    const context2 = { zone: yard?.type || "unknown", role, area: yard?.area || 0, lift, scale: info?.fitScale || 1, count: policyCounts.get(owner + ":" + policyKey) || 0, wallGap: wall ? Math.max(0, wall.distance - (local.max.z - local.min.z) / 2) : Infinity, entryDistance: entry2 ? Math.hypot(x - entry2.x, z - entry2.z) : Infinity };
     if (rule) {
       const reason = evaluatePlacement(rule, context2);
       if (reason) return policyReject(reason);
@@ -40817,8 +41515,8 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     const y = elevation(x, z) - local.min.y + 0.03 + lift;
     const mat = new Matrix4().compose(new Vector3(x, y, z), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), angle), new Vector3(1, 1, 1));
     const pad = Math.max(["wall-meter", "wall-riser"].includes(role) ? 0.02 : 0.08, rule?.clearance || 0), box = local.clone().applyMatrix4(mat), padded = box.clone().expandByScalar(0.08), fp = [[local.min.x - pad, local.min.z - pad], [local.max.x + pad, local.min.z - pad], [local.max.x + pad, local.max.z + pad], [local.min.x - pad, local.max.z + pad]].map(([xx, zz]) => [x + xx * Math.cos(angle) + zz * Math.sin(angle), z - xx * Math.sin(angle) + zz * Math.cos(angle)]);
-    if (elevation.detailRadius && fp.some((p) => Math.hypot(...p) > elevation.detailRadius)) return policyReject("outside-detail-circle");
-    if (policyApproaches.some((a) => overlapPolys(fp, a)) || report.placements.some((p) => p.driveway && overlapPolys(fp, p.driveway)) || reservedHit(fp, padded) || footprintHits(fp) || lots.some((l) => l.owner !== owner && overlapPolys(fp, l.yard)) || placed.some((b) => b.intersectsBox(padded) && overlapPolys(fp, b.fp))) {
+    if (elevation.detailRadius && fp.some((p2) => Math.hypot(...p2) > elevation.detailRadius)) return policyReject("outside-detail-circle");
+    if (policyApproaches.some((a) => overlapPolys(fp, a)) || report.placements.some((p2) => p2.driveway && overlapPolys(fp, p2.driveway)) || reservedHit(fp, padded) || footprintHits(fp) || lots.some((l) => l.owner !== owner && overlapPolys(fp, l.yard)) || placed.some((b) => b.intersectsBox(padded) && overlapPolys(fp, b.fp))) {
       report.rejected++;
       return;
     }
@@ -40933,10 +41631,10 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   }
   function canAccess(fp, walking = false) {
     const b = new Box3();
-    for (const p of fp) b.expandByPoint(new Vector3(p[0], elevation(...p), p[1]));
+    for (const p2 of fp) b.expandByPoint(new Vector3(p2[0], elevation(...p2), p2[1]));
     return !footprintHits(fp) && !reservedHit(fp, b) && !placed.some((q) => !(walking && q.parcelWall && q.max.y - q.min.y < 0.45) && overlapPolys(fp, q.fp));
   }
-  report.streetLife = populateStreetLife({ specs: polys.filter((p) => eligible(p.seed)), walls: parcel.segments, roadInfo, elevation, template, place: tryPlace, placements: report.placements, canAccess });
+  report.streetLife = populateStreetLife({ specs: polys.filter((p2) => eligible(p2.seed)), walls: parcel.segments, roadInfo, elevation, template, place: tryPlace, placements: report.placements, canAccess });
   for (const s of architecture.records.filter((s2) => s2.car)) {
     const x = s.origin[0] + s.ux * s.car.x + s.nx * s.car.z, z = s.origin[1] + s.uz * s.car.x + s.nz * s.car.z;
     report.streetLife.groups.push({ kind: "parking", owner: s.owner, x, z, nx: s.nx, nz: s.nz, ids: [Math.abs(s.owner) % 7 === 0 ? 173 : Math.abs(s.owner) % 2 ? 211 : 212], count: 1, reason: s.reason + " \xB7 \uCC28\uB7C9 \uC9C4\uC785\uBD80\uC640 \uD604\uAD00 \uB3D9\uC120 \uD655\uBCF4", covered: s.roofKind !== "none" });
@@ -40963,10 +41661,10 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     if ((ownerCounts.get(key) || 0) >= assetLimit(id)) return false;
     const cs = Math.cos(a.angle), sn = Math.sin(a.angle), x = a.x + dx * cs + dz * sn, z = a.z - dx * sn + dz * cs, b = template(id).b;
     const fp = [[b.min.x - 0.12, b.min.z - 0.12], [b.max.x + 0.12, b.min.z - 0.12], [b.max.x + 0.12, b.max.z + 0.12], [b.min.x - 0.12, b.max.z + 0.12]].map(([xx, zz]) => [x + xx * cs + zz * sn, z - xx * sn + zz * cs]);
-    if (!fp.every((p) => inYard(y, ...p))) return false;
+    if (!fp.every((p2) => inYard(y, ...p2))) return false;
     for (let i = 0; i < 4; i++) {
-      const p = fp[i], q = fp[(i + 1) % 4];
-      for (let t = 0.25; t < 1; t += 0.25) if (!inYard(y, p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t)) return false;
+      const p2 = fp[i], q = fp[(i + 1) % 4];
+      for (let t = 0.25; t < 1; t += 0.25) if (!inYard(y, p2[0] + (q[0] - p2[0]) * t, p2[1] + (q[1] - p2[1]) * t)) return false;
     }
     const ok = tryPlace(id, x, z, a.angle, lift, y.owner, role);
     if (ok) ownerCounts.set(key, (ownerCounts.get(key) || 0) + 1);
@@ -40978,14 +41676,14 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
   const pocketYards = yards.filter((y) => y.area >= 24 && y.area < 350 && y.type !== "parking").sort((a, b) => Number(repairedOwners.has(b.owner)) - Number(repairedOwners.has(a.owner)) || Math.hypot(a.x, a.z) - Math.hypot(b.x, b.z));
   for (const y of pocketYards.filter((y2) => eligible(y2.owner))) {
     if (report.courtyardPockets.length >= 40) break;
-    if (report.courtyardPockets.some((p) => p.owner === y.owner)) continue;
-    const occupied = report.placements.filter((p) => p.owner === y.owner && p.lift < 0.8);
+    if (report.courtyardPockets.some((p2) => p2.owner === y.owner)) continue;
+    const occupied = report.placements.filter((p2) => p2.owner === y.owner && p2.lift < 0.8);
     if (occupied.length >= 6) continue;
-    const entry = entries.find((e) => e.owner === y.owner), spots = edgeCandidates(y).filter((a) => nearestPolicyWall(a.x, a.z, y.owner).distance < 1.25);
-    spots.sort((a, b) => entry ? Math.hypot(a.x - entry.x, a.z - entry.z) - Math.hypot(b.x - entry.x, b.z - entry.z) : 0);
+    const entry2 = entries.find((e) => e.owner === y.owner), spots = edgeCandidates(y).filter((a) => nearestPolicyWall(a.x, a.z, y.owner).distance < 1.25);
+    spots.sort((a, b) => entry2 ? Math.hypot(a.x - entry2.x, a.z - entry2.z) - Math.hypot(b.x - entry2.x, b.z - entry2.z) : 0);
     for (const a of spots) {
-      if (occupied.some((p) => Math.hypot(p.x - a.x, p.z - a.z) < 2.3)) continue;
-      const nearEntry = entry && Math.hypot(a.x - entry.x, a.z - entry.z) < 4.5, ids = nearEntry ? [160, 186] : y.type === "garden" ? [129, 156] : ["laundry", "rear"].includes(y.type) ? [157, 188, 156, 129] : [129, 188, 156, 157];
+      if (occupied.some((p2) => Math.hypot(p2.x - a.x, p2.z - a.z) < 2.3)) continue;
+      const nearEntry = entry2 && Math.hypot(a.x - entry2.x, a.z - entry2.z) < 4.5, ids = nearEntry ? [160, 186] : y.type === "garden" ? [129, 156] : ["laundry", "rear"].includes(y.type) ? [157, 188, 156, 129] : [129, 188, 156, 157];
       let first = null, chosen = a;
       for (const id of rankPocketAssets(ids, y.owner, a.x, a.z, report.placements)) {
         const wall = nearestPolicyWall(a.x, a.z, y.owner), local = template(id).b, d = (local.max.z - local.min.z) / 2 + 0.28, at = wall.point ? { x: wall.point[0] + Math.sin(wall.angle) * d, z: wall.point[1] + Math.cos(wall.angle) * d, angle: wall.angle } : a;
@@ -41003,15 +41701,15 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
           break;
         }
       }
-      report.courtyardPockets.push({ owner: y.owner, label: nearEntry ? "\uD604\uAD00 \uC606 \uC218\uB0A9 \uACF5\uAC04" : first.id === 129 ? "\uB9C8\uB2F9 \uAC00\uC7A5\uC790\uB9AC \uC7A5\uB3C5" : first.id === 156 ? "\uBCBD \uC606 \uBE68\uB798 \uAC74\uC870 \uACF5\uAC04" : "\uBCBD \uC606 \uC138\uD0C1\xB7\uAE09\uC218 \uACF5\uAC04", members: members.map((p) => ({ id: p.id, name: p.name, x: p.x, y: p.y, z: p.z, angle: p.angle, height: p.height, footprint: p.footprint, groundFit: p.groundFit, triangles: template(p.id).triangles })) });
+      report.courtyardPockets.push({ owner: y.owner, label: nearEntry ? "\uD604\uAD00 \uC606 \uC218\uB0A9 \uACF5\uAC04" : first.id === 129 ? "\uB9C8\uB2F9 \uAC00\uC7A5\uC790\uB9AC \uC7A5\uB3C5" : first.id === 156 ? "\uBCBD \uC606 \uBE68\uB798 \uAC74\uC870 \uACF5\uAC04" : "\uBCBD \uC606 \uC138\uD0C1\xB7\uAE09\uC218 \uACF5\uAC04", members: members.map((p2) => ({ id: p2.id, name: p2.name, x: p2.x, y: p2.y, z: p2.z, angle: p2.angle, height: p2.height, footprint: p2.footprint, groundFit: p2.groundFit, triangles: template(p2.id).triangles })) });
       break;
     }
   }
   for (const y of yards.filter((y2) => eligible(y2.owner)).sort((a, b) => Math.hypot(a.x, a.z) - Math.hypot(b.x, b.z))) {
-    const p = programs2[y.type], start = report.placements.length, seed = Math.abs(y.owner), interior = yardCandidates(y), edges2 = edgeCandidates(y), covered = coverByOwner.get(y.owner)?.structureArea || 0, budget = Math.min(16, Math.max(4, Math.round((y.area - covered) / 18)));
+    const p2 = programs2[y.type], start = report.placements.length, seed = Math.abs(y.owner), interior = yardCandidates(y), edges2 = edgeCandidates(y), covered = coverByOwner.get(y.owner)?.structureArea || 0, budget = Math.min(16, Math.max(4, Math.round((y.area - covered) / 18)));
     report.neighborhood.programs[y.label] = (report.neighborhood.programs[y.label] || 0) + 1;
     const spots = [];
-    const recipes = p.clusters;
+    const recipes = p2.clusters;
     if (["garden", "rear"].includes(y.type) && y.area >= 32) {
       for (const a of interior) {
         if (a.clearance < 1.8) continue;
@@ -41023,7 +41721,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
       }
     }
     for (let main = 0; main < (covered ? Number(y.area - covered > 100) : 1); main++) {
-      const ids = main === 0 ? p.primary : [...p.primary.slice((seed + main) % p.primary.length), ...p.primary.slice(0, (seed + main) % p.primary.length)];
+      const ids = main === 0 ? p2.primary : [...p2.primary.slice((seed + main) % p2.primary.length), ...p2.primary.slice(0, (seed + main) % p2.primary.length)];
       let placedMain = false;
       for (const id of ids.filter((id2) => ![181, 182].includes(id2))) {
         let chosen = null;
@@ -41063,7 +41761,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     }
     for (let i = 0; i < edges2.length && report.placements.length - start < Math.min(budget, 8); i++) {
       if (["parking", "service", "narrow"].includes(y.type)) break;
-      const a = edges2[i], ids = [p.edge[(seed + Math.floor(i / 4)) % p.edge.length], p.edge[(seed + Math.floor(i / 4) + 3) % p.edge.length], ...[151, 198, 152, 116, 117, 197].slice(seed % 3)];
+      const a = edges2[i], ids = [p2.edge[(seed + Math.floor(i / 4)) % p2.edge.length], p2.edge[(seed + Math.floor(i / 4) + 3) % p2.edge.length], ...[151, 198, 152, 116, 117, 197].slice(seed % 3)];
       for (const id of ids) if (fit(y, id, a, 0, 0, 0, "edge-" + y.type)) {
         if (i % 2 === 0) {
           fit(y, [116, 117, 163, 29][seed % 4], a, 1, 0.4, 0, "edge-companion");
@@ -41075,15 +41773,15 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     if (report.placements.length > start) report.neighborhood.occupiedYards++;
     else report.neighborhood.emptyYards.push(y.owner);
   }
-  report.neighborhood.newAssetTypes = [...new Set(report.placements.filter((p) => p.id > 150).map((p) => p.id))];
+  report.neighborhood.newAssetTypes = [...new Set(report.placements.filter((p2) => p2.id > 150).map((p2) => p2.id))];
   report.architecture = { ...attachedPlan.qa };
   report.openSpace = { coveredArea: parcelData.qa.yardArea, parcelCount: parcelData.yards.length, rectangularFlowerbedModules: 0, props: report.placements.length - before };
   report.walkObstacles = placed.filter((b) => !b.parcelWall && b.max.y - elevation((b.min.x + b.max.x) / 2, (b.min.z + b.max.z) / 2) > 0.35 && b.min.y < elevation((b.min.x + b.max.x) / 2, (b.min.z + b.max.z) / 2) + 0.65).flatMap((b) => b.fp.map((a, i) => ({ a, b: b.fp[(i + 1) % b.fp.length], width: 0.03 })));
   report.cameraBlockers = placed.filter((b) => b.max.y - b.min.y > 0.4).map((b) => [b.min.toArray(), b.max.toArray(), b.role, b.owner]);
   report.count = report.placements.length;
   report.boundaryCount = report.compounds.length;
-  report.standaloneWallAssets = report.placements.filter((p) => [1, 2, 3, 4, 5, 6, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60].includes(p.id)).length;
-  report.types = [...new Set(report.placements.map((p) => p.id))];
+  report.standaloneWallAssets = report.placements.filter((p2) => [1, 2, 3, 4, 5, 6, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60].includes(p2.id)).length;
+  report.types = [...new Set(report.placements.map((p2) => p2.id))];
   report.footprintOverlap = 0;
   for (const fp of footprints) if (footprintHits(fp)) report.footprintOverlap++;
   const representativeObjects = [];
@@ -41192,8 +41890,9 @@ function createUtilityNetwork(plan, elevation) {
     g.translate(x, y, z);
     add(g, color, "wire");
   }
-  for (const p of plan.poles) {
-    const { x, z, nx, nz, ux, uz, id, poleHeight: H, radius: r } = p, y = elevation(x, z), angle = -Math.atan2(nz, nx), at = (u, v2, h) => [x + nx * u + ux * v2, y + h, z + nz * u + uz * v2];
+  for (const p2 of plan.poles) {
+    if (!visibleObject(p2.x, p2.z, p2.poleHeight, 1, elevation(p2.x, p2.z))) continue;
+    const { x, z, nx, nz, ux, uz, id, poleHeight: H, radius: r } = p2, y = elevation(x, z), angle = -Math.atan2(nz, nx), at = (u, v2, h) => [x + nx * u + ux * v2, y + h, z + nz * u + uz * v2];
     const footGeo = new CylinderGeometry(r - (r - 0.09) * 0.3 / H, r, 0.3, 12);
     footGeo.translate(x, y + 0.15, z);
     const foot = new Mesh(footGeo, new MeshStandardMaterial({ color: colors.pole, roughness: 0.88 }));
@@ -41231,14 +41930,14 @@ function createUtilityNetwork(plan, elevation) {
     }
     box(...at(-0.15, 0, 1.8), 0.02, 0.28, 0.14, angle, colors.label, "mortar");
     if (id % 3 !== 1) ring(...at(-0.24, 0.1, 6.05), 0.23, 0.024, angle, colors.dark);
-    if (p.kind === "distribution" && id % 3 === 0) {
+    if (p2.kind === "distribution" && id % 3 === 0) {
       const q = at(-0.43, 0, 5.05);
       cylinder(...q, 0.235, 0.235, 0.73, colors.box, "metal");
       cylinder(q[0], q[1] + 0.4, q[2], 0.265, 0.265, 0.07, colors.metal, "metal");
       for (const v2 of [-0.12, 0.12]) cylinder(q[0] + ux * v2, q[1] + 0.5, q[2] + uz * v2, 0.045, 0.05, 0.14, colors.ceramic, "metal", 8);
       rod(at(-0.12, 0, 4.6), at(-0.7, 0, 4.6), 0.04, colors.metal);
     }
-    if (p.lamp) {
+    if (p2.lamp) {
       rod(at(0, 0, 5.4), at(-0.75, 0, 5.8), 0.045, colors.metal);
       rod(at(-0.75, 0, 5.8), at(-1.25, 0, 5.8), 0.045, colors.metal);
       box(...at(-1.25, 0, 5.72), 0.55, 0.12, 0.25, angle, colors.dark);
@@ -41249,13 +41948,16 @@ function createUtilityNetwork(plan, elevation) {
     proxies.push([[-r, -r], [r, -r], [-r, r], [r, r]].flatMap(([dx, dz]) => [[x + dx, y, z + dz], [x + dx, y + H, z + dz]]));
   }
   for (const e of plan.spans) {
-    const a = plan.poles[e.a], b = plan.poles[e.b], ay = elevation(a.x, a.z), by = elevation(b.x, b.z);
+    const a = plan.poles[e.a], b = plan.poles[e.b];
+    if (!visibleObject((a.x + b.x) / 2, (a.z + b.z) / 2, Math.max(a.poleHeight, b.poleHeight), Math.hypot(a.x - b.x, a.z - b.z) / 2, elevation((a.x + b.x) / 2, (a.z + b.z) / 2), false)) continue;
+    const ay = elevation(a.x, a.z), by = elevation(b.x, b.z);
     for (const off of [-0.18, -0.55, -0.92]) cable([a.x + a.nx * off, ay + a.poleHeight - 0.59, a.z + a.nz * off], [b.x + b.nx * off, by + b.poleHeight - 0.59, b.z + b.nz * off], 0.012, Math.min(0.55, e.length * 0.016));
     for (const off of [-0.04, 0.04]) cable([a.x - a.nx * 0.16 + a.ux * off, ay + 6.5, a.z - a.nz * 0.16 + a.uz * off], [b.x - b.nx * 0.16 + b.ux * off, by + 6.5, b.z - b.nz * 0.16 + b.uz * off], 0.021, Math.min(0.55, e.length * 0.016));
   }
   for (const d of plan.drops) {
-    const p = plan.poles[d.pole];
-    cable([p.x - p.nx * 0.16, elevation(p.x, p.z) + 6.35, p.z - p.nz * 0.16], d.end, 0.011, 0.16);
+    const p2 = plan.poles[d.pole];
+    if (!visibleObject((p2.x + d.end[0]) / 2, (p2.z + d.end[2]) / 2, 7, Math.hypot(p2.x - d.end[0], p2.z - d.end[2]) / 2, elevation(p2.x, p2.z), false)) continue;
+    cable([p2.x - p2.nx * 0.16, elevation(p2.x, p2.z) + 6.35, p2.z - p2.nz * 0.16], d.end, 0.011, 0.16);
   }
   for (const { color, kind, gs } of buckets.values()) {
     const m = new Mesh(mergeGeometries(gs, false), new MeshStandardMaterial({ color, roughness: 0.88 }));
@@ -41283,9 +41985,127 @@ function createUtilityNetwork(plan, elevation) {
   return group;
 }
 
-// outputs/domestic-test/surface-policy.js
-function finishDepth2(layer = 1) {
-  return { polygonOffset: true, polygonOffsetFactor: -layer, polygonOffsetUnits: -layer };
+// outputs/domestic-test/ground-weather29.js?v=29b
+var maps = /* @__PURE__ */ new Map();
+var materials = /* @__PURE__ */ new Set();
+var TILE = 12;
+var SIZE = 1024;
+var rng = (seed) => () => {
+  seed = Math.imul(seed, 1664525) + 1013904223 >>> 0;
+  return seed / 4294967296;
+};
+function paint(kind) {
+  const c = document.createElement("canvas");
+  c.width = c.height = SIZE;
+  const ctx = c.getContext("2d"), r = rng(kind === "concrete" ? 2901 : 2902), cement = kind === "concrete";
+  const base2 = cement ? [183, 183, 173] : [76, 80, 80], image = ctx.createImageData(SIZE, SIZE), tau = Math.PI * 2;
+  for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) {
+    const i = (y * SIZE + x) * 4, cloud = Math.sin(tau * (x / SIZE + y / SIZE * 2)) * 0.34 + Math.cos(tau * (x / SIZE * 3 - y / SIZE)) * 0.24 + Math.sin(tau * (x / SIZE * 7 + y / SIZE * 4)) * 0.15;
+    const noise = (r() - 0.5) * (cement ? 17 : 23) + cloud * (cement ? 15 : 9) + (r() < 0.04 ? (r() - 0.5) * 38 : 0);
+    for (let k = 0; k < 3; k++) image.data[i + k] = base2[k] + noise;
+    image.data[i + 3] = 255;
+  }
+  ctx.putImageData(image, 0, 0);
+  const wrap2 = (draw) => {
+    for (const dx of [-SIZE, 0, SIZE]) for (const dy of [-SIZE, 0, SIZE]) {
+      ctx.save();
+      ctx.translate(dx, dy);
+      draw();
+      ctx.restore();
+    }
+  };
+  for (let i = 0; i < (cement ? 22 : 18); i++) {
+    const x = r() * SIZE, y = r() * SIZE, a = 24 + r() * 100, b = 18 + r() * 65, angle = r() * tau, alpha = 0.06 + r() * 0.12;
+    wrap2(() => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.scale(a, b);
+      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+      g.addColorStop(0, cement ? `rgba(81,75,55,${alpha})` : `rgba(23,28,27,${alpha * 1.5})`);
+      g.addColorStop(1, "rgba(45,47,39,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(-1, -1, 2, 2);
+      ctx.restore();
+    });
+  }
+  for (let i = 0; i < (cement ? 8 : 5); i++) {
+    const x = r() * SIZE, y = r() * SIZE, R = 10 + r() * (cement ? 20 : 27), points = Array.from({ length: 13 }, (_, j) => {
+      const a = j / 13 * tau, rad = R * (0.65 + r() * 0.5);
+      return [x + Math.cos(a) * rad, y + Math.sin(a) * rad * 0.6];
+    });
+    const stones = Array.from({ length: 75 }, () => ({ x: x + (r() - 0.5) * R * 2, y: y + (r() - 0.5) * R * 1.3, s: 0.5 + r() * 2.3, c: r() }));
+    wrap2(() => {
+      ctx.save();
+      ctx.beginPath();
+      points.forEach(([x2, y2], j) => j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2));
+      ctx.closePath();
+      ctx.fillStyle = cement ? "rgba(117,119,110,.25)" : "rgba(43,48,47,.34)";
+      ctx.fill();
+      ctx.clip();
+      for (const s of stones) {
+        ctx.fillStyle = s.c > 0.48 ? "rgba(220,219,206,.32)" : "rgba(65,68,62,.30)";
+        ctx.fillRect(s.x, s.y, s.s, s.s * 0.7);
+      }
+      ctx.restore();
+    });
+  }
+  function crack(x, y, angle, length, width, branch = true) {
+    const points = [[x, y]], count3 = Math.max(5, Math.ceil(length / 11));
+    let a = angle;
+    for (let i = 0; i < count3; i++) {
+      a += (r() - 0.5) * 0.78;
+      x += Math.cos(a) * length / count3;
+      y += Math.sin(a) * length / count3;
+      points.push([x, y]);
+    }
+    wrap2(() => {
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      for (const [w, col] of [[width + 2.1, cement ? "rgba(91,86,68,.10)" : "rgba(21,25,24,.12)"], [width, cement ? "rgba(67,69,59,.51)" : "rgba(25,29,28,.66)"], [width * 0.3, "rgba(29,33,29,.27)"]]) {
+        ctx.strokeStyle = col;
+        ctx.lineWidth = w;
+        ctx.beginPath();
+        points.forEach(([x2, y2], j) => j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2));
+        ctx.stroke();
+      }
+    });
+    if (branch) {
+      for (const t of [0.35, 0.7]) {
+        const p2 = points[Math.floor(count3 * t)];
+        crack(p2[0], p2[1], angle + (r() > 0.5 ? 1 : -1) * (0.6 + r() * 0.8), length * (0.2 + r() * 0.22), width * 0.5, false);
+      }
+    }
+  }
+  for (let i = 0; i < (cement ? 15 : 10); i++) {
+    const x = r() * SIZE, y = r() * SIZE, angle = r() * tau, length = 65 + r() * 145;
+    crack(x, y, angle, length, 0.75 + r() * 0.75);
+    if (i % 3 === 0) crack(x, y, angle + 2.4, length * 0.7, 0.75);
+  }
+  const map = new CanvasTexture(c);
+  map.colorSpace = SRGBColorSpace;
+  map.wrapS = map.wrapT = RepeatWrapping;
+  map.anisotropy = 8;
+  map.name = "GroundWeather29-" + kind;
+  return map;
+}
+function groundWeatherEnabled() {
+  return new URLSearchParams(globalThis.location?.search || "").get("groundWear") !== "old";
+}
+function createWeatheredGroundMaterial(kind = "concrete") {
+  if (!maps.has(kind)) maps.set(kind, paint(kind));
+  const enabled3 = groundWeatherEnabled(), material = new MeshStandardMaterial({ color: enabled3 ? 16777215 : kind === "concrete" ? 13092795 : 5265499, map: enabled3 ? maps.get(kind) : null, roughness: 1, side: DoubleSide });
+  material.userData.groundWeather29 = { kind, tileMetres: TILE };
+  materials.add(material);
+  return material;
+}
+function setGroundWeatherUV(geometry2) {
+  const p2 = geometry2.attributes.position, uv = new Float32Array(p2.count * 2);
+  for (let i = 0; i < p2.count; i++) {
+    uv[i * 2] = p2.getX(i) / TILE;
+    uv[i * 2 + 1] = p2.getZ(i) / TILE;
+  }
+  geometry2.setAttribute("uv", new BufferAttribute(uv, 2));
 }
 
 // outputs/domestic-test/road-context.js
@@ -41355,12 +42175,15 @@ function applyRoadContext(root, plan) {
       for (let i = 0; i < positions.length; i += 3) uv.push(positions[i] / 0.8, positions[i + 2] / 0.8);
       g.setAttribute("uv", new Float32BufferAttribute(uv, 2));
     }
-    const m = new Mesh(g, new MeshStandardMaterial({
+    const asphalt = kind === "asphalt" || kind === "arterial";
+    if (asphalt) setGroundWeatherUV(g);
+    const m = new Mesh(g, asphalt ? createWeatheredGroundMaterial("asphalt") : new MeshStandardMaterial({
       map: blocks ? sidewalkBlocks() : null,
       color: blocks ? 16777215 : kind === "asphalt" && plan.roadPriority ? 3159098 : { concrete: 11579041, pavers: 9540743, sidewalk: 11120037, platform: 11711914, arterial: 6252912 }[kind] ?? 6449776,
       roughness: 1,
       side: DoubleSide
     }));
+    if (!asphalt) Object.assign(m.material, finishDepth2(0.25));
     m.name = "road";
     m.userData = { roadClass: kind, canPark: kind === "asphalt" };
     m.receiveShadow = true;
@@ -41388,46 +42211,46 @@ function applyRoadContext(root, plan) {
 // outputs/domestic-test/shops/neighborhood-plan.js
 var clamp2 = (x, a, b) => Math.max(a, Math.min(b, x));
 var normalize2 = (s) => (s || "").replace(/\s/g, "");
-function inside(p, ring) {
+function inside(p2, ring) {
   let c = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
     const a = ring[i], b = ring[j];
-    if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+    if (a[1] > p2[1] !== b[1] > p2[1] && p2[0] < (b[0] - a[0]) * (p2[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
   }
   return c;
 }
-function categoryFor(p) {
-  const c = p.category_name || "";
-  if (p.category_group_code === "PM9" || c.includes("\uC57D\uAD6D")) return "pharmacy";
+function categoryFor(p2) {
+  const c = p2.category_name || "";
+  if (p2.category_group_code === "PM9" || c.includes("\uC57D\uAD6D")) return "pharmacy";
   if (/안경/.test(c)) return "optical";
   if (/이동통신|휴대폰|통신기기/.test(c)) return "telecom";
   if (/화장품|올리브영|생활용품/.test(c)) return "retail";
   if (/제과|베이커리/.test(c)) return "bakery";
   if (/슈퍼마켓/.test(c)) return "convenience";
-  if (p.category_group_code === "CS2") return "convenience";
+  if (p2.category_group_code === "CS2") return "convenience";
   if (c.includes("\uBBF8\uC6A9\uC2E4")) return "salon";
   if (c.includes("\uC138\uD0C1\uC18C")) return "laundry";
   if (c.includes("\uBD80\uB3D9\uC0B0\uC911\uAC1C")) return "estate";
-  if (p.category_group_code === "CE7") return "cafe";
-  if (p.category_group_code === "FD6" && !/카페|술집|제과|떡,한과/.test(c)) return "food";
+  if (p2.category_group_code === "CE7") return "cafe";
+  if (p2.category_group_code === "FD6" && !/카페|술집|제과|떡,한과/.test(c)) return "food";
   return null;
 }
-function shopLocal2(p, x, z) {
-  const dx = x - p.position[0], dz = z - p.position[2];
-  return [dx * p.n[1] - dz * p.n[0], dx * p.n[0] + dz * p.n[1]];
+function shopLocal2(p2, x, z) {
+  const dx = x - p2.position[0], dz = z - p2.position[2];
+  return [dx * p2.n[1] - dz * p2.n[0], dx * p2.n[0] + dz * p2.n[1]];
 }
 function inShopApproach2(plans, x, z, pad = 0) {
-  return plans.some((p) => {
-    const [u, v2] = shopLocal2(p, x, z);
-    return Math.abs(u) < p.width / 2 + 0.25 + pad && v2 > -0.1 - pad && v2 < p.accessDepth + pad;
+  return plans.some((p2) => {
+    const [u, v2] = shopLocal2(p2, x, z);
+    return Math.abs(u) < p2.width / 2 + 0.25 + pad && v2 > -0.1 - pad && v2 < p2.accessDepth + pad;
   });
 }
 function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roadInfo, arterial }) {
   catalog3 = withFacilityShops(catalog3);
   buildings = buildings.filter((b) => !b.facility);
   const placements = [], skipped = [], byOwner = /* @__PURE__ */ new Map(), seen = /* @__PURE__ */ new Set();
-  const candidates = places.map((place) => ({ place, category: referenceShop(place)?.category || categoryFor(place), exact: catalog3.assets.find((s) => s.source?.placeId && String(s.source.placeId) === String(place.id)) || referenceShop(place) })).sort((a, b) => Number(!!b.exact) - Number(!!a.exact) || String(a.place.id).localeCompare(String(b.place.id)));
-  for (const { place, category, exact } of candidates) {
+  const candidates2 = places.map((place) => ({ place, category: referenceShop(place)?.category || categoryFor(place), exact: catalog3.assets.find((s) => s.source?.placeId && String(s.source.placeId) === String(place.id)) || referenceShop(place) })).sort((a, b) => Number(!!b.exact) - Number(!!a.exact) || String(a.place.id).localeCompare(String(b.place.id)));
+  for (const { place, category, exact } of candidates2) {
     const skip = (reason) => skipped.push({ id: place.id, name: place.place_name, reason });
     if (!category) {
       skip("unsupported-category");
@@ -41444,7 +42267,7 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
     }
     const b = containing[0] || matches[0], count3 = byOwner.get(b.seed) || 0;
     const frontEdges = (arterial?.shopFrontages || []).filter((f) => f.owner === b.seed);
-    const frontPeers = candidates.filter((c) => c.category && normalize2(c.place.road_address_name).endsWith(normalize2(b.address))).length;
+    const frontPeers = candidates2.filter((c) => c.category && normalize2(c.place.road_address_name).endsWith(normalize2(b.address))).length;
     if (count3 >= (frontEdges.length ? 6 : 2)) {
       skip("multiple-units-need-review");
       continue;
@@ -41477,7 +42300,7 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
         const slots = onArterial ? Array.from({ length: Math.max(1, Math.floor((L - 0.45) / (width + 0.28))) }, (_, i) => width / 2 + 0.35 + i * (width + 0.28)) : [];
         for (const center of [...slots, target, L / 2, width / 2 + 0.35, L - width / 2 - 0.35]) {
           const lo = center - width / 2, hi = center + width / 2;
-          if (placements.some((p) => p.owner === b.seed && p.edge === edge && hi + 0.25 > p.lo && lo - 0.25 < p.hi)) continue;
+          if (placements.some((p2) => p2.owner === b.seed && p2.edge === edge && hi + 0.25 > p2.lo && lo - 0.25 < p2.hi)) continue;
           const origin = [a[0] + u[0] * center + n[0] * 0.025, a[1] + u[1] * center + n[1] * 0.025], depths = [], heights = [];
           let blocked = false;
           for (let k = 0; k <= 8; k++) {
@@ -41512,8 +42335,8 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
       skip("no-clear-fitting-frontage");
       continue;
     }
-    const base = catalog3.assets.find((s) => s.id === chosen.assetId), spec = structuredClone(base);
-    spec.props = (spec.props || []).filter((p) => (p.z || 0.55) + (["freezer", "cafeTable"].includes(p.type) ? 0.8 : 0.35) < chosen.clearance - 0.15);
+    const base2 = catalog3.assets.find((s) => s.id === chosen.assetId), spec = structuredClone(base2);
+    spec.props = (spec.props || []).filter((p2) => (p2.z || 0.55) + (["freezer", "cafeTable"].includes(p2.type) ? 0.8 : 0.35) < chosen.clearance - 0.15);
     spec.steps = (spec.steps || []).filter((s) => s.z + s.d / 2 < chosen.clearance - 0.1);
     if (spec.referenceOnly && chosen.clearance < 0.55) spec.awnings = [];
     for (const a of spec.awnings || []) a.depth = Math.min(a.depth, Math.max(0.3, chosen.clearance - 0.24));
@@ -41524,7 +42347,7 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
       for (const k of ["signs", "openings", "awnings", "props", "steps", "sideSigns", "panels"]) for (const o of spec[k] || []) {
         o.x = -(o.x || 0);
         if (o.door !== void 0) o.door = (o.panes || 2) - 1 - o.door;
-        for (const p of o.papers || []) p.x = -p.x;
+        for (const p2 of o.papers || []) p2.x = -p2.x;
       }
     }
     chosen.spec = spec;
@@ -41536,10 +42359,10 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
     placements.push(chosen);
     byOwner.set(b.seed, count3 + 1);
   }
-  return { placements, skipped, qa: { sourcePlaces: places.length, placed: placements.length, arterial: placements.filter((p) => p.arterial).length, observed: placements.filter((p) => p.reference === "observed-local-frontage").length, inferred: placements.filter((p) => p.reference !== "observed-local-frontage").length, byCategory: Object.fromEntries(catalog3.categories.map((c) => [c.id, placements.filter((p) => p.category === c.id).length])), skips: skipped.reduce((o, p) => (o[p.reason] = (o[p.reason] || 0) + 1, o), {}) } };
+  return { placements, skipped, qa: { sourcePlaces: places.length, placed: placements.length, arterial: placements.filter((p2) => p2.arterial).length, observed: placements.filter((p2) => p2.reference === "observed-local-frontage").length, inferred: placements.filter((p2) => p2.reference !== "observed-local-frontage").length, byCategory: Object.fromEntries(catalog3.categories.map((c) => [c.id, placements.filter((p2) => p2.category === c.id).length])), skips: skipped.reduce((o, p2) => (o[p2.reason] = (o[p2.reason] || 0) + 1, o), {}) } };
 }
 function reserveShopApproaches(plan, attached, streetscape) {
-  const hit = (points) => points?.some((p) => inShopApproach2(plan.placements, ...p, 0.15));
+  const hit = (points) => points?.some((p2) => inShopApproach2(plan.placements, ...p2, 0.15));
   const segmentHit = (s) => hit([s.a, s.b, [(s.a[0] + s.b[0]) / 2, (s.a[1] + s.b[1]) / 2]]);
   const architecture = { ...attached, structures: attached.structures.filter((s) => !hit(s.footprint)), wallSegments: attached.wallSegments.filter((s) => !segmentHit(s)) };
   const context2 = { ...streetscape, wallRuns: streetscape.wallRuns.flatMap((w) => {
@@ -41550,14 +42373,14 @@ function reserveShopApproaches(plan, attached, streetscape) {
       if (!segmentHit({ a, b })) runs.push({ ...w, points: [a, b] });
     }
     return runs;
-  }), piers: streetscape.piers.filter((p) => !inShopApproach2(plan.placements, p.x, p.z, 0.35)), gates: streetscape.gates.filter((g) => !inShopApproach2(plan.placements, g.x, g.z, g.width / 2) && !hit(g.pieces?.flatMap((p) => [...p.post, ...p.leaf]))) };
+  }), piers: streetscape.piers.filter((p2) => !inShopApproach2(plan.placements, p2.x, p2.z, 0.35)), gates: streetscape.gates.filter((g) => !inShopApproach2(plan.placements, g.x, g.z, g.width / 2) && !hit(g.pieces?.flatMap((p2) => [...p2.post, ...p2.leaf]))) };
   return { architecture, context: context2 };
 }
 
 // work/browser-generation/prepare-scene.js
 async function prepareScene(FS, root, mode, terrainText, bounds3) {
   installGenerationBounds(bounds3);
-  const read = (p) => JSON.parse(FS.readFile(root + "/" + p, { encoding: "utf8" })), location2 = read("location.json");
+  const read = (p2) => JSON.parse(FS.readFile(root + "/" + p2, { encoding: "utf8" })), location2 = read("location.json");
   configureViewVisibility(location2.view, location2.viewQA);
   const binary = FS.readFile(root + "/corrected-base.glb");
   const oldRoot = (await new GLTFLoader().parseAsync(binary.buffer.slice(binary.byteOffset, binary.byteOffset + binary.byteLength), "")).scene;
@@ -41570,7 +42393,7 @@ async function prepareScene(FS, root, mode, terrainText, bounds3) {
   const terrain = new Function("T", "oldRoot", "ground", terrainSource + ";indexTerrain();return {xz,elevation,roadInfo};")(three_module_exports, oldRoot, ground2);
   const { xz, elevation, roadInfo } = terrain, data = read("buildings.geojson"), specs = [];
   for (const f of data.features) for (const rings of f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates) {
-    const pr = f.properties, points = rings[0].slice(0, -1).map(xz), cx = points.reduce((n, p) => n + p[0], 0) / points.length, cz = points.reduce((n, p) => n + p[1], 0) / points.length;
+    const pr = f.properties, points = rings[0].slice(0, -1).map(xz), cx = points.reduce((n, p2) => n + p2[0], 0) / points.length, cz = points.reduce((n, p2) => n + p2[1], 0) / points.length;
     specs.push({ properties: pr, inkObjectId: specs.length + 1, points, base: Math.min(...points.map((v2) => elevation(...v2)), elevation(cx, cz)) - 0.1, top: elevation(cx, cz) + Math.max(1, pr.gro_flo_co) * 3, floor: 3, levels: Math.max(1, pr.gro_flo_co), seed: Number(pr.objectid), address: `${pr.street_name} ${pr.house_number}`, basementLevels: pr.und_flo_co, holes: rings.length > 1, holePoints: rings.slice(1).map((r) => r.slice(0, -1).map(xz)) });
   }
   elevation.detailRadius = location2.sizeMetres / 2;

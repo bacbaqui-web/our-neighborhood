@@ -1,3 +1,4 @@
+import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=approvedbuildings1';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
 import {FacadeBatch} from '../korean-facades.js?v=151';
@@ -6,6 +7,7 @@ import {FacadeBatch} from '../korean-facades.js?v=151';
 // logos or photographic textures are embedded in these editable face meshes.
 const c = v => typeof v === 'string' ? Number('0x' + v.replace('#','')) : v;
 export function buildStorefront(spec, {shell=true, props=true, attachment=false}={}) {
+  const approved=createApprovedStorefront(spec,{shell,attachment});if(approved)return approved;
   const batch=new FacadeBatch(), out=batch.writer(), B=(x,y,z,w,h,d,col)=>out.box(x,y,z,w,h,d,c(col)), Q=(x,y,z,w,h,col)=>out.quad(x,y,z,w,h,c(col),false), R=(a,b,r,col)=>out.rod(a,b,r,c(col),r>.08?8:4);
   const signBatch=new FacadeBatch(),windowBatch=new FacadeBatch(),signOut=signBatch.writer(),windowOut=windowBatch.writer();
   const S=(x,y,z,w,h,d,col)=>signOut.box(x,y,z,w,h,d,c(col));

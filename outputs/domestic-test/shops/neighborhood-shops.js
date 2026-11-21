@@ -1,7 +1,7 @@
 import {reviseShopSpec} from '../memo-scene.js?v=151';
 import {applySignEmission} from './sign-lighting.js?v=151';
 import * as T from 'three';
-import {buildStorefront} from './storefront-models.js?v=151';
+import {buildStorefront} from './storefront-models.js?v=approvedbuildings1';
 import {lightingState} from './storefront-hours.js?v=151';
 
 const tints={convenience:'#eef5e8',laundry:'#e5efff',salon:'#ffe8cb',estate:'#f3ecd9',food:'#ffdfa9',cafe:'#ffd39d',pharmacy:'#f0f6e6',retail:'#eaf5df',bakery:'#ffe0bb',optical:'#edf1e1',telecom:'#eee7f8'};
@@ -15,6 +15,7 @@ export function createNeighborhoodShops(plan,renderer,{elevation}={}){
   const apronDepth=Math.max(.42,...groundProps.map(q=>(q.z||.55)+(q.type==='freezer'?.39:q.type==='rack'?.26:q.type==='ac'?.25:.24)*(q.scale||1)+.14));
   if(groundProps.length){spec.steps=[];for(const q of groundProps)q.y=(q.y||0)+floorY;}
   const root=buildStorefront(spec,{shell:false,attachment:true});
+  if(root.userData.approvedOpenings)spec.openings=root.userData.approvedOpenings;
   root.name='Shop-'+p.placeId;root.position.fromArray(p.position);root.rotation.y=p.angle;root.scale.fromArray(p.scale);
   root.userData={...root.userData,placeId:p.placeId,name:p.name,address:p.address,reference:p.reference,referenceAsset:p.assetId,match:p.match,hours:p.hours};
   root.traverse(o=>{if(o.isMesh){o.userData.storefrontPlaceId=p.placeId;if(o.userData.storefrontLightRole){o.userData.storefrontBaseColor=o.material.color.getHex();o.userData.storefrontLightKey=p.placeId+':'+o.userData.storefrontLightRole+':'+o.material.color.getHexString();} }});

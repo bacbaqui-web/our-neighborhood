@@ -1,3 +1,4 @@
+import {emitApprovedBuilding} from '../building-remakes/models.js?v=approvedbuildings1';
 import {WINDOW_RECESS,windowOpening} from '../window-recess.js?v=recess22';
 import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitApartment} from '../apartments/models.js';
@@ -6,6 +7,7 @@ import {facilityById} from './catalog.js';
 import {inPolygon} from './placement.js';
 // Thin wall-bound geometry keeps every footprint and pedestrian route intact.
 export function emitFacility(batch,b,buildings,elevation,options={}){
+ const approved=emitApprovedBuilding(batch,b,buildings,elevation,options);if(approved)return approved;
  const recessed=!!options.windowOpenings;
  if(b.facility.id==='apartment')return emitApartment(batch,b);
  const f=facilityById[b.facility.id],{points,base,top}=b,H=top-base,levels=Math.max(1,b.levels),fh=H/levels;
@@ -81,7 +83,7 @@ export function addSignText(root,spec){
 }
 export function addFacilityLabels(root,buildings){
  if(typeof document==='undefined')return;
- for(const b of buildings){if(!b.facility||b.facility.id==='apartment'||b.assetChoice)continue;
+ for(const b of buildings){if(!b.facility||b.facility.id==='apartment'||b.assetChoice||b.approvedRemake)continue;
   const f=facilityById[b.facility.id],i=b.facility.frontEdge??b.frontEdge??0,a=b.points[i],c=b.points[(i+1)%b.points.length],L=Math.hypot(c[0]-a[0],c[1]-a[1]);if(L<3)continue;
   const sign=Math.sign(b.points.reduce((v,p,j)=>{const q=b.points[(j+1)%b.points.length];return v+p[0]*q[1]-q[0]*p[1]},0))||1,nx=(c[1]-a[1])/L*sign,nz=-(c[0]-a[0])/L*sign;
   const label=new T.Group();label.position.set((a[0]+c[0])/2,b.top-Math.min(1.1,(b.top-b.base)*.1),(a[1]+c[1])/2);label.rotation.y=Math.atan2(nx,nz);

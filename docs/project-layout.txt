@@ -303,3 +303,5 @@ docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
 상단 검색·저장 목록 통합, X 지도 복귀, PNG·에셋 백과·설정. 하단 미니맵·높이·위치 선택과 계절·시간. 상세 범위 입력·GLB·비교 메뉴 제거. 내부 신규 조회 한도 100m와 visible360/원경 생성은 유지. 선 기본값 외부 2px/50%/110%/1cm, 내부 2px/21도/90%/150%. 소스 8f71a9f, 공개 run 44857050990 성공. Edge 확인 및 증거 verification/viewer-ui/public.png. 기존 Codex 연결 작업은 별도 미커밋 상태로 보존.
 
 2026-11-21 도로·건물 편집: building-assets/editor.js와 scene-edit-store.js → browser-generation/entry.py → work/scene_edits.py. 도로 등급 변경과 주변 자동 재생성, 건물 디자인·연식·층수·용도·입구 면. 검사 범위와 제한은 docs/scene-editing.txt 및 PROJECT_STATE.json.
+
+2026-11-21 승인 완성건물12종: outputs/domestic-test/building-remakes가 승인 사진별 외벽·실창·옥상과 점포4종을 생성합니다. 기존 지도 윤곽·층수·입구면 유지. 교체 요청11개는 building-references.json의 새 후보로 승인 대기. 근거/제작/검사는 work/building-remakes와 tests/approved-buildings.mjs, 공개 상태는 PROJECT_STATE.json.

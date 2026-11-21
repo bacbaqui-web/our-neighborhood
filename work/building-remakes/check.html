@@ -1,0 +1,17 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>승인 건물 검사</title><script type="importmap">{"imports":{"three":"../../outputs/domestic-test/vendor/three.module.js"}}</script>
+<style>body{font:15px system-ui;background:#e5eae2;margin:15px}button{padding:10px;margin:4px}main{display:grid;grid-template-columns:repeat(4,1fr)}figure{margin:4px}img{width:100%}figcaption{text-align:center}</style>
+<button id="day">낮·정면</button><button id="back">낮·뒷면</button><button id="night">밤·정면</button><p id="state">준비 중</p><main></main>
+<script type="module">
+import * as T from 'three';
+import {previewBuilding} from '../../outputs/domestic-test/facilities/preview.js?v=approvedbuildings1';
+import {previewModel} from '../../outputs/domestic-test/building-assets/model.js?v=approvedbuildings1';
+import {assetById} from '../../outputs/domestic-test/building-assets/catalog.js';
+import {approvedBuildingProfiles} from '../../outputs/domestic-test/building-remakes/profiles.js';
+import {createIllustrationRenderer} from '../../outputs/domestic-test/illustration-renderer.js';
+import {CATALOG_LINES} from '../../outputs/domestic-test/asset-encyclopedia/line-options.js';
+const r=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});r.setSize(400,330);r.setPixelRatio(1);const scene=new T.Scene(),hemi=new T.HemisphereLight(0xffffff,0x8b9b86,2.4),sun=new T.DirectionalLight(0xffffff,2.4);sun.position.set(-5,12,10);scene.add(hemi,sun);const camera=new T.PerspectiveCamera(36,400/330,.01,10000);
+function show(night=false,back=false){document.querySelector('main').replaceChildren();scene.background=new T.Color(night?'#29343c':'#e5eae2');hemi.intensity=night?.55:2.4;sun.intensity=night?.3:2.4;
+for(const id of Object.keys(approvedBuildingProfiles)){const[k,v]=id.split(':'),m=k==='building'?previewModel(assetById[v]):previewBuilding(v,{neighbors:false});scene.add(m);m.updateMatrixWorld(true);const box=new T.Box3().setFromObject(m),s=box.getSize(new T.Vector3()),c=box.getCenter(new T.Vector3()),d=Math.max(s.y,s.x/camera.aspect,s.z)*2.1;camera.position.copy(c).add(new T.Vector3(back?-.8:.8,.55,back?-1:1).normalize().multiplyScalar(d));camera.lookAt(c);m.traverse(o=>{const mat=o.material;if(mat?.userData.nightWindowBand!==undefined){mat.emissive.set('#ffd18b');mat.emissiveIntensity=night&&mat.userData.nightWindowBand%3!==0?.9:0;}});const ink=createIllustrationRenderer(r);ink.render(scene,camera,()=>r.render(scene,camera),CATALOG_LINES);const fig=document.createElement('figure'),img=new Image();img.src=r.domElement.toDataURL();img.alt=id;const caption=document.createElement('figcaption');caption.textContent=id;fig.append(img,caption);document.querySelector('main').append(fig);scene.remove(m);ink.dispose();m.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});}
+document.querySelector('#state').textContent='12종 렌더 완료 · '+(night?'밤':back?'뒷면':'정면');}
+document.querySelector('#day').onclick=()=>show();document.querySelector('#back').onclick=()=>show(false,true);document.querySelector('#night').onclick=()=>show(true);show();
+</script></html>

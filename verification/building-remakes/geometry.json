@@ -1,0 +1,62 @@
+[
+  {
+    "id": "building:shop-tile",
+    "triangles": 6070,
+    "windows": 48
+  },
+  {
+    "id": "building:shop-panel",
+    "triangles": 21344,
+    "windows": 150
+  },
+  {
+    "id": "facility:apartment",
+    "triangles": 71454,
+    "windows": 266
+  },
+  {
+    "id": "facility:emart",
+    "triangles": 9964,
+    "windows": 25
+  },
+  {
+    "id": "facility:homeplus",
+    "triangles": 6582,
+    "windows": 26
+  },
+  {
+    "id": "facility:costco",
+    "triangles": 4044,
+    "windows": 16
+  },
+  {
+    "id": "facility:traders",
+    "triangles": 4742,
+    "windows": 24
+  },
+  {
+    "id": "facility:police",
+    "triangles": 18634,
+    "windows": 149
+  },
+  {
+    "id": "facility:gs25",
+    "triangles": 3512,
+    "windows": 25
+  },
+  {
+    "id": "facility:seven",
+    "triangles": 2868,
+    "windows": 17
+  },
+  {
+    "id": "facility:emart24",
+    "triangles": 4874,
+    "windows": 37
+  },
+  {
+    "id": "facility:starbucks",
+    "triangles": 8700,
+    "windows": 51
+  }
+]

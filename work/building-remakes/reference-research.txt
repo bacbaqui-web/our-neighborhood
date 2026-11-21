@@ -1,0 +1,157 @@
+건물 참고 이미지 교체 조사 / 2026-11-21
+범위: 거절 11개 에셋, 서로 다른 사진 9종. 기존 승인 12개 항목을 변경하지 않음. 새 ID로 검토 대기.
+모든 사진은 외부 원본 URL 연결이며 재호스팅/텍스처 삽입 없음. 임시 다운로드는 /tmp/buildref에서 시각 확인용.
+후보 선택은 승인과 별개. 사용자 승인 전 모델링하지 않음.
+제외: 교동초 사진은 교문·수목에 가림, 메가 공식 인테리어 이미지는 렌더링이라 제외, 롯데마트 송파점 원본은 Referer 없는 요청 403, CU 2024 뉴스 사진은 기존 올림픽광장점과 같은 건물이라 제외.
+
+building:shop-glass
+럭스틸 · 성내동 근린생활시설
+이미지: https://luxteel.com/projects/case-707/images/6911/thumbnail
+출처: https://luxteel.com/projects/case-707
+서울 강동구 성내동 실제 시공 사진. 층별 유리 커튼월과 수직 창살, 1층 진입부가 보입니다. 나무가 정면 일부를 가리며 촬영일은 미확인입니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+building:school, facility:school
+서울역사편찬원 · 서울노량진초등학교
+이미지: https://history.seoul.go.kr/common/getImg.do?key=bbsctt&name=201702/163004100713531.jpg
+출처: https://history.seoul.go.kr/archive/bbsctt/view.do?bbscttSn=2301031409&key=2211220005
+서울 동작구 서울노량진초등학교 실제 전경. 4층 교사동의 반복 창, 중앙 현관과 운동장 쪽 전체 정면을 참고합니다. 사진 ID 2016SA0142, 2021년 게시 자료이며 정확한 촬영일과 현재 외관은 별도 확인이 필요합니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+building:civic
+금천구청 · 가산동주민센터
+이미지: https://geumcheon.go.kr/site/portal/images/contents/cts654_img06.jpg
+출처: https://geumcheon.go.kr/portal/contents.do?key=654
+서울 금천구 가산로 129의 주민센터 공식 시설 사진. 석재 외벽, 둥근 모서리 창과 1층 출입부를 참고합니다. 전선·수목이 일부를 가리며 맨 위 구조물이 잘려 있습니다. 페이지 수정일은 2024년 10월 28일이며 촬영일은 미확인입니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+building:fire, facility:fire
+밀양소방서 · 산동119안전센터
+이미지: https://www.gnfire.go.kr/editor/cheditor/attach/20200715160853_pwotspww.jpg
+출처: https://www.gnfire.go.kr/miryang/cm/cntnts/cntntsView.do?cntntsId=302&mi=697
+경남 밀양시 산동119안전센터 공식 청사 전경. 낮은 2층 사무동, 연속 차고문과 넓은 출동 앞마당이 보입니다. 촬영일은 미확인이며 이미지 경로는 2020년 등록 자료입니다.
+밀양소방서 페이지에 공공누리 제1유형(출처표시)으로 안내된 사진입니다. 원본 외부 링크로 제공하며 출처를 함께 표시합니다.
+
+facility:lotte
+뉴데일리 · 롯데마트 제공 서울양평점
+이미지: https://image.newdaily.co.kr/site/data/img/2017/06/26/2017062610033_0.jpg
+출처: https://biz.newdaily.co.kr/svc/article_print.html?no=2017062610033
+서울 영등포구 롯데마트 서울양평점의 2017년 기사 외관 사진. 대형 벽면, 둥근 유리 입구동과 측면 주차층 개구부를 참고합니다. 현재 간판과 주변 환경은 달라졌을 수 있습니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:post
+홍주일보 · 결성우체국 신청사
+이미지: https://m.hjn24.com/news/photo/202401/121198_126821_2118.jpg
+출처: https://m.hjn24.com/news/articleView.html?idxno=121198
+충남 홍성군 결성우체국의 2024년 1월 신청사 기사 사진. 낮은 박공지붕, 중앙 유리문과 둥근 차양, 우체통을 참고합니다. 좌측 건물 끝과 후면은 사진 밖입니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:daiso
+문화경제 · 김금영 기자, 다이소 신사가로수길점
+이미지: https://cdn.cnbizm.com/news/photo/202609/315881_222863_301.jpg
+출처: https://www.cnbizm.com/news/articleView.html?idxno=315881
+서울 강남구 다이소 신사가로수길점 실제 정면 사진. 2026년 9월 기사 자료로 회색 외벽, 큰 유리면, 빨간 차양과 출입구를 참고합니다. 수목이 좌측 유리면 일부를 가립니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:cu
+브릿지경제 · 유승호 기자, 송파구 CU
+이미지: https://stqnq5ux4599.edge.naverncp.com/data2/content/image/2019/08/18/.cache/512/201908180527848.jpg
+출처: https://www.viva100.com/article/201908184182597?site_preference=normal
+서울 송파구에 2019년 6월 출점한 실제 CU 점포의 8월 기사 사진. 1층 상가의 간판 띠, 유리문과 외부 테이블 구성을 참고합니다. 기사상 지역 특화형 점포로 연두색 간판은 일반 CU와 다르며, 파라솔이 정면 일부를 가립니다. 정확한 지점명은 기사에서 확인하지 못했습니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:mega
+뉴스1 · 메가MGC커피 제공 매장 전경
+이미지: https://t1.daumcdn.net/news/202609/01/NEWS1/20260901064654220wyce.jpg
+출처: https://v.daum.net/v/20260901064651985
+2026년 9월 국내 매장 확대 기사에 회사가 제공한 실제 외관 사진. 상부 노란 간판, 곡면 유리 전면과 가운데 출입문이 모두 보입니다. 정확한 지점명과 촬영일은 기사에서 확인하지 못했으며 건물 상층·후면은 사진 밖입니다.
+외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+
+Referer 없는 HTTP 및 이미지 디코딩 확인:
+[
+  [
+    [
+      "building:shop-glass"
+    ],
+    200,
+    64622,
+    0,
+    "/private/tmp/buildref/verify-glass-seongnae.jpg\n  pixelWidth: 389\n  pixelHeight: 584"
+  ],
+  [
+    [
+      "building:school",
+      "facility:school"
+    ],
+    200,
+    15354288,
+    0,
+    "/private/tmp/buildref/verify-school-noryangjin.jpg\n  pixelWidth: 5570\n  pixelHeight: 3713"
+  ],
+  [
+    [
+      "building:civic"
+    ],
+    200,
+    145111,
+    0,
+    "/private/tmp/buildref/verify-civic-gasan.jpg\n  pixelWidth: 936\n  pixelHeight: 553"
+  ],
+  [
+    [
+      "building:fire",
+      "facility:fire"
+    ],
+    200,
+    110077,
+    0,
+    "/private/tmp/buildref/verify-fire-sandong.jpg\n  pixelWidth: 600\n  pixelHeight: 362"
+  ],
+  [
+    [
+      "facility:lotte"
+    ],
+    200,
+    222610,
+    0,
+    "/private/tmp/buildref/verify-lotte-yangpyeong.jpg\n  pixelWidth: 580\n  pixelHeight: 379"
+  ],
+  [
+    [
+      "facility:post"
+    ],
+    200,
+    221144,
+    0,
+    "/private/tmp/buildref/verify-post-gyeolseong.jpg\n  pixelWidth: 960\n  pixelHeight: 640"
+  ],
+  [
+    [
+      "facility:daiso"
+    ],
+    200,
+    211070,
+    0,
+    "/private/tmp/buildref/verify-daiso-sinsa.jpg\n  pixelWidth: 750\n  pixelHeight: 1000"
+  ],
+  [
+    [
+      "facility:cu"
+    ],
+    200,
+    124612,
+    0,
+    "/private/tmp/buildref/verify-cu-songpa.jpg\n  pixelWidth: 679\n  pixelHeight: 334"
+  ],
+  [
+    [
+      "facility:mega"
+    ],
+    200,
+    183513,
+    0,
+    "/private/tmp/buildref/verify-mega-storefront.jpg\n  pixelWidth: 560\n  pixelHeight: 336"
+  ]
+]
+시각 확인: 9종 모두 view_image로 실제 외관을 확인했습니다. 학교는 큰 원본을 임시 축소해 정면을 확인했습니다.

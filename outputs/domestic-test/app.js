@@ -1,6 +1,6 @@
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
 import {readPalette,readEdits,chooseBuildingAsset,assetById} from './building-assets/catalog.js?v=scene-edit1';
-import {applyAssetToSpec,assetColors} from './building-assets/model.js';
+import {applyAssetToSpec,assetColors} from './building-assets/model.js?v=approvedbuildings1';
 import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=road-fit1';
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=grounds1';
@@ -23,9 +23,9 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=road-fit1';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=approvedbuildings1';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=151';
-import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=151';
+import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=approvedbuildings1';
 import {loadData} from './load-data.js?v=151';
 import {applyRoadContext} from './road-context.js?v=grounds1';
 import {createIllustrationRenderer} from './illustration-renderer.js?v=slope3';
@@ -54,7 +54,7 @@ import {planFrontages} from './frontage.js?v=151';
 import {setupWalk} from './walk.js?v=compact1';
 import {decorateAlleys} from './alley-placement.js?v=grounds1';
 import {createStreet} from './street.js?v=ribbon2';
-import {createDetails} from './details.js?v=building-edit1';
+import {createDetails} from './details.js?v=approvedbuildings1';
 import * as T from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

@@ -1,0 +1,12 @@
+2026-11-21 승인 완성건물12종 제작
+근거: 공개 Edge에서 내려받은 approval-20261121.json의 approvedReferenceId와 profiles.js를 일치시켰습니다. 교체 요청11건은 다른 후보 사진으로 변경하고 새 ID로 승인 대기 처리합니다.
+상가 타일: 작은 밝은 타일 줄눈, 갈색 창틀과 반복 창, 1층 점포 띠·차양. 신길동 패널상가: 목색 패널, 정면 비대칭 검은 수직 유리부와 실제 입체 핀.
+상계한신1차: 반복 발코니 창·슬래브, 낮은 난간·계단실 세로 띠. 서대문경찰서: 주황 스팬드럴·밝은 수직 기둥·정면 포치. 마트와 점포는 별도 production 기록 참조.
+사진에 없는 뒤·옆·옥상과 치수는 제작 추정입니다. 지도에서는 원래 footprint와 층수·선택 입구면을 유지하며 백과에서 이 한계를 표시합니다. 로고·문자·사진 텍스처는 넣지 않았습니다.
+공통 품질: 기존 1차도로 주택과 같은 emitWindow의 입체 틀/분할창, 완성건물 shell 실창 절단과 14cm 매입, 외벽 마감, 안쪽 파라펫·물받이 캡·배수관 고정쇠·옥상 관리문. 중정/오목 윤곽을 가로지르는 옥상 코어는 생성하지 않습니다.
+실제 점포4종은 host 벽 앞 부착형으로 새 외관을 적용합니다. shell 관통이 아닌 벽 바깥 유리이며, 새 출입문 metadata로 경사지 계단과 문 앞 조명을 맞춥니다.
+검사: approved-buildings(승인12 일치·유한 좌표·창 가림0·중정/오목 옥상·4점포 실제 배치/문 앞 받침 일치·회전/좁은 윤곽), building-preview-model, facility-placement, building-assets, asset-references 통과.
+공개 CI에 해당하는 loading/browser-generation/vworld/visible-horizon/worker/street-end-context/scene-budget/circular-background/full-detail/test_generation_scope, pack --check 통과.
+기존 asset-encyclopedia 검사는 raw catalog.json만 조사하여 이미 추적 중인 approved-road/barrier-approved-v1.glb가 누락됐다고 실패합니다. 해당 검사와 raw catalog는 이번 변경 전후 동일하며 새 승인 건물은 GLB를 추가하지 않습니다. 관련 reference/registry 검사는 통과했습니다.
+Edge 로컬 백과에서12개 상세 모두 오류0 확인, QA 화면에서12개 낮 정면/뒷면/밤 창문 육안 확인. 증거 verification/building-remakes/day.png, back.png, night.png. night는 재질 야간 그룹을 조명한 QA이며 실제 동네 모든 시각/주소를 확인한 것은 아닙니다.
+외부 후보 사진은 모델링 참고용 원문 링크이며 재배포 이미지 파일을 포함하지 않습니다. 학교 원본은15.35MB로 느릴 수 있습니다.

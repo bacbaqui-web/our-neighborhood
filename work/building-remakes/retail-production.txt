@@ -1,0 +1,41 @@
+판매시설 제작 카드 — 2026-11-21
+대상: outputs/domestic-test/building-remakes/retail.js. 기존 4종 ID 형상 교체.
+지도 윤곽·높이 유지. x=0..L, y=0..H 지면 기준, z 외향. 최대 돌출 0.46m.
+공통 window()로 실제 개구부와 창틀 생성. 차양 브래킷은 벽에 연결. 배경 벽·옥상은 통합 모듈 담당.
+관찰과 추정: 아래 관찰은 승인 사진에서 확인. 지도 크기에 맞춘 간격·개수·높이, 측후면 셔터·작업문·환기구, 창 구분과 차양 브래킷 세부는 추정. 실제 점포의 완전한 복원이 아님.
+추천 배경: 이마트 0x9f8874 미세 세로 리브; 홈플러스 0xc5c6bd 큰 패널; 코스트코 0xe0e0d5 평활 패널; 트레이더스 0xb6c1bd 수평 패널. 무광 단색. 사진 텍스처·문자·로고 없음.
+
+facility:emart
+승인 ID: emart-1-kr-v1
+출처: 뉴데일리 · 이마트 연수점
+https://biz.newdaily.co.kr/svc/article_print.html?no=2023033000106
+정확한 승인 이미지: https://image.newdaily.co.kr/site/data/img/2023/03/30/2023033000106_0.jpg
+관찰: 연수점 갈색 세로 리브, 밝은 수평 띠, 중앙 넓은 유리층, 기둥 입구 차양. 둥근 정면은 지도 윤곽 보존을 위해 얕은 입면으로 단순화.
+사용 조건: 외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:homeplus
+승인 ID: homeplus-cheonan-kr-v1
+출처: 대전일보 · 홈플러스 천안점
+https://v.daum.net/v/20260415161510323
+정확한 승인 이미지: https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202604/15/daejonilbo/20260415161512119ydxu.jpg
+관찰: 천안점 밝은 회색 패널 줄눈, 큰 세로 유리창, 붉은 차양, 밝은 창 둘레.
+사용 조건: 외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:costco
+승인 ID: costco-3-kr-v1
+출처: 정림건축 · 코스트코 양재점
+https://junglim.com/costco-yangjae/
+정확한 승인 이미지: https://junglim.com/wp-content/uploads/2025/11/2002_COSTCO-Yangjae_slide_01.jpg
+관찰: 양재점 흰 창고 벽, 상부 가는 붉은 띠, 떨어진 두 세로 창 구간.
+사용 조건: 외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+facility:traders
+승인 ID: traders-0-kr-v1
+출처: 이데일리 · 트레이더스 월계점
+https://www.edaily.co.kr/news/read?newsId=01315286622394128
+정확한 승인 이미지: https://image.edaily.co.kr/images/Photo/files/NP/S/2019/02/PS19022500103.jpg
+관찰: 월계점 연두 상부 띠와 세로 벽, 높은 모서리 유리층, 회색 수평 패널, 파란 차양.
+사용 조건: 외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다.
+
+node --check 통과. 공유 FacadeBatch 사용. 실제 삼각형·재질 수는 통합 화면에서 계측 필요.
+실제 화면, 밤 조명, 외곽선, 공개 반영은 통합 담당 확인 대상이며 본 카드 작성 시 미완료.

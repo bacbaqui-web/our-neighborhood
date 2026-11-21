@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "items": {
+    "building:shop-glass": {
+      "id": "glass-kr-v1",
+      "imageUrl": "https://cdn.imweb.me/thumbnail/20240130/0dd592708bf6d.jpg",
+      "sourceUrl": "https://www.designgung.com/Bangidong_outside",
+      "sourceName": "디자인궁 · 방이동 상가 리모델링",
+      "koreaEvidence": "서울 송파구 방이동 실제 시공 후 사진. 유리 계단실, 층별 창과 1층 점포 출입구를 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "building:shop-tile": {
+      "id": "bangyi-before-kr-v1",
+      "imageUrl": "https://cdn.imweb.me/thumbnail/20240130/0fe639a1b72e5.jpg",
+      "sourceUrl": "https://www.designgung.com/Bangidong_outside",
+      "sourceName": "디자인궁 · 방이동 상가 시공 전",
+      "koreaEvidence": "서울 송파구 방이동 실제 시공 전 사진. 작은 외벽 마감 패턴과 반복 창, 점포층 구성을 참고합니다. 정확한 마감 재료는 사진만으로 확정하지 않았습니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "building:shop-panel": {
+      "id": "starbucks-30-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-721/images/7159/thumbnail",
+      "sourceUrl": "https://luxteel.com/projects/case-721",
+      "sourceName": "럭스틸 · 신길동 근린생활시설",
+      "koreaEvidence": "서울 영등포구 신길동 실제 시공 사진. 목무늬·부식동 금속 패널, 창 배치, 건물 전체 비율을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "building:school": {
+      "id": "starbucks-73-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-623/images/5786/thumbnail",
+      "sourceUrl": "https://luxteel.com/projects/case-623",
+      "sourceName": "럭스틸 · 동아여자중학교",
+      "koreaEvidence": "광주 남구 실제 학교 시공 사진. 긴 교사동, 반복 창호와 계단실 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:school": {
+      "id": "starbucks-73-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-623/images/5786/thumbnail",
+      "sourceUrl": "https://luxteel.com/projects/case-623",
+      "sourceName": "럭스틸 · 동아여자중학교",
+      "koreaEvidence": "광주 남구 실제 학교 시공 사진. 긴 교사동, 반복 창호와 계단실 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "building:civic": {
+      "id": "starbucks-69-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-629/images/5898/thumbnail",
+      "sourceUrl": "https://luxteel.com/projects/case-629",
+      "sourceName": "럭스틸 · 고대면행정복지센터",
+      "koreaEvidence": "충남 당진 실제 행정복지센터 시공 사진. 공공청사 출입구와 유리면·벽돌면 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "building:fire": {
+      "id": "fire-1-kr-v1",
+      "imageUrl": "https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/201706/02/seouleconomy/20170602172140619laos.jpg",
+      "sourceUrl": "https://v.daum.net/v/n0vISbUIeB",
+      "sourceName": "서울경제 · 고덕119안전센터",
+      "koreaEvidence": "서울 강동구 실제 119안전센터 사진. 소방서 전체 규모보다 동네 안전센터의 차고·출입구·상층부 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:fire": {
+      "id": "fire-1-kr-v1",
+      "imageUrl": "https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/201706/02/seouleconomy/20170602172140619laos.jpg",
+      "sourceUrl": "https://v.daum.net/v/n0vISbUIeB",
+      "sourceName": "서울경제 · 고덕119안전센터",
+      "koreaEvidence": "서울 강동구 실제 119안전센터 사진. 소방서 전체 규모보다 동네 안전센터의 차고·출입구·상층부 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:apartment": {
+      "id": "building-reference-apartment-hanshin-20261121",
+      "imageUrl": "https://img1.newsis.com/2026/06/09/NISI20260609_0002156605_web.jpg?rnd=20260609151731",
+      "sourceUrl": "https://www.newsis.com/view/NISX20260609_0003662378",
+      "sourceName": "뉴시스 · 노원구 제공 상계한신1차",
+      "koreaEvidence": "서울 노원구 상계한신1차 실제 전경. 반복 창호·발코니와 계단실 비율, 지상 진입부를 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:emart": {
+      "id": "emart-1-kr-v1",
+      "imageUrl": "https://image.newdaily.co.kr/site/data/img/2023/03/30/2023033000106_0.jpg",
+      "sourceUrl": "https://biz.newdaily.co.kr/svc/article_print.html?no=2023033000106",
+      "sourceName": "뉴데일리 · 이마트 연수점",
+      "koreaEvidence": "인천 연수구 이마트 연수점의 2023년 리뉴얼 전경. 타운몰 정면과 주출입구 사진이며 건물 전체 측면은 추가 확인이 필요합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:lotte": {
+      "id": "lotte-seoul-kr-v1",
+      "imageUrl": "https://www.theseoulguide.com/wp-content/uploads/2013/09/lotte_mart_at_seoul_station.jpg",
+      "sourceUrl": "https://www.theseoulguide.com/lotte-mart-at-seoul-station/",
+      "sourceName": "The Seoul Guide · 롯데마트 서울역점",
+      "koreaEvidence": "서울역점 실제 외관 사진. 대형 간판과 보행 진입부를 참고합니다. 2013년 게시 자료로 현재 외관과 다를 수 있습니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:homeplus": {
+      "id": "homeplus-cheonan-kr-v1",
+      "imageUrl": "https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202604/15/daejonilbo/20260415161512119ydxu.jpg",
+      "sourceUrl": "https://v.daum.net/v/20260415161510323",
+      "sourceName": "대전일보 · 홈플러스 천안점",
+      "koreaEvidence": "충남 천안점의 2026년 4월 실제 외관 사진. 큰 패널 벽면과 세로 유리창을 참고합니다. 사진 당시 영업 중단 점포이며 건물 형태 참고용입니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:costco": {
+      "id": "costco-3-kr-v1",
+      "imageUrl": "https://junglim.com/wp-content/uploads/2025/11/2002_COSTCO-Yangjae_slide_01.jpg",
+      "sourceUrl": "https://junglim.com/costco-yangjae/",
+      "sourceName": "정림건축 · 코스트코 양재점",
+      "koreaEvidence": "서울 서초구 양재점 준공 사진. 창고형 건물 비율, 외벽 띠와 입구 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:traders": {
+      "id": "traders-0-kr-v1",
+      "imageUrl": "https://image.edaily.co.kr/images/Photo/files/NP/S/2019/02/PS19022500103.jpg",
+      "sourceUrl": "https://www.edaily.co.kr/news/read?newsId=01315286622394128",
+      "sourceName": "이데일리 · 트레이더스 월계점",
+      "koreaEvidence": "서울 노원구 월계점 2019년 개점 자료의 외관. 녹색 외벽 구분과 높은 매장층, 진입부를 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:police": {
+      "id": "police-2-kr-v1",
+      "imageUrl": "https://img4.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202609/28/ned/20260928074719643dfqw.jpg",
+      "sourceUrl": "https://v.daum.net/v/20260928074718141",
+      "sourceName": "헤럴드경제 · 서대문경찰서 제공",
+      "koreaEvidence": "서울 서대문경찰서 구청사 실제 전경. 수직 창 배열과 중앙 현관을 참고합니다. 현재 청사 재현용은 아닙니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:post": {
+      "id": "starbucks-35-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-713/images/7054/thumbnail",
+      "sourceUrl": "https://luxteel.com/projects/case-713",
+      "sourceName": "럭스틸 · 진해덕산동우체국",
+      "koreaEvidence": "경남 창원 진해덕산동우체국 실제 시공 사진. 작은 우체국의 박공지붕과 고객 출입부를 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:daiso": {
+      "id": "daiso-0-kr-v1",
+      "imageUrl": "https://ceoscoredaily.com/photos/2023/03/20/2023032016524849399_l.jpg",
+      "sourceUrl": "https://ceoscoredaily.com/page/view/2023032017314726820",
+      "sourceName": "CEO스코어데일리 · 다이소 명동역점",
+      "koreaEvidence": "서울 중구 명동역점 실제 외관. 유리 전면과 간판 구성을 참고합니다. 12층 특수 매장이므로 일반형에 높이를 그대로 적용하지 않습니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:cu": {
+      "id": "cu-3-kr-v1",
+      "imageUrl": "https://img.seoul.co.kr/img/upload/2012/08/01/SSI_20120801181751_V.jpg",
+      "sourceUrl": "https://www.seoul.co.kr/news/seoulPrintNew.php?id=20120802018015",
+      "sourceName": "서울신문 · BGF리테일 제공",
+      "koreaEvidence": "서울 송파구 올림픽광장점 실제 외관. 2012년 초기 CU 사례이며 통유리와 출입문, 간판 비율 참고용입니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:gs25": {
+      "id": "building-reference-gs25-bucheon-20261121",
+      "imageUrl": "https://img.insight.co.kr/static/2019/03/31/700/18eq2fpyfkngy786f518.jpg",
+      "sourceUrl": "https://www.insight.co.kr/news/219811",
+      "sourceName": "인사이트 · 부천 심곡3동 GS25 외관",
+      "koreaEvidence": "2019년 기사에서 부천 심곡3동으로 소개한 실제 점포 사진. 모서리 점포의 파란 간판과 통유리, 계단·난간 구성을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:seven": {
+      "id": "seven-exterior-kr-v1",
+      "imageUrl": "https://img1.newsis.com/2019/07/16/NISI20190716_0000362852_web.jpg",
+      "sourceUrl": "https://www.newsis.com/view/NISX20190716_0000711817",
+      "sourceName": "뉴시스 · 세븐일레븐 외관 디자인",
+      "koreaEvidence": "국내 세븐일레븐의 2019년 외관 발표 사진. 회색 외벽과 세 줄 간판을 참고합니다. 인물이 출입부 일부를 가리며 촬영 지점은 미확인입니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:emart24": {
+      "id": "emart24-0-kr-v1",
+      "imageUrl": "https://images.shinsegaegroupnewsroom.com/wp-content/uploads/2025/12/1204_GO%ED%98%84%EC%9E%A5_%EC%9D%B4%EB%A7%88%ED%8A%B824%EB%A7%88%EA%B3%A1%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EC%A0%90_05.png",
+      "sourceUrl": "https://www.shinsegaegroupnewsroom.com/emart24-magok-premium-store/",
+      "sourceName": "신세계그룹 뉴스룸 · 마곡프리미엄점",
+      "koreaEvidence": "서울 강서구 마곡프리미엄점 실제 외관. 2025년 새 매장 간판과 유리 전면, 출입구 차양을 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:mega": {
+      "id": "mega-8-kr-v1",
+      "imageUrl": "https://www.folzen.com/upload/portfolio/portfolio_1262_0_1709709321.jpg",
+      "sourceUrl": "https://www.folzen.com/page/portfolio_view.php?page=2&seq=441",
+      "sourceName": "폴젠코리아 · 구로 유통단지 메가커피",
+      "koreaEvidence": "서울 구로 유통단지 실제 창호 시공 사진. 노란 프레임과 접이식 유리문을 참고합니다. 건물 전체와 상부 간판은 이 사진에 나오지 않습니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    },
+    "facility:starbucks": {
+      "id": "starbucks-0-kr-v1",
+      "imageUrl": "https://luxteel.com/projects/case-349/images/2851/original",
+      "sourceUrl": "https://luxteel.com/projects/case-349",
+      "sourceName": "럭스틸 · 스타벅스 고대역점",
+      "koreaEvidence": "서울 성북구 고대역점 실제 시공 사진. 모서리 점포의 유리 전면, 출입문과 목무늬 금속 간판 띠를 참고합니다.",
+      "usageNote": "외부 원본을 연결한 형태 참고용입니다. 사진의 재배포·텍스처 사용 허가는 확인하지 않았습니다."
+    }
+  }
+}

@@ -52,7 +52,7 @@ for(const s of designs){
     const pos=o.geometry.attributes.position;
     assert(pos?.count&&pos.array.every(Number.isFinite)&&o.matrixWorld.elements.every(Number.isFinite),s.id+' '+o.name);
     triangles+=(o.geometry.index?.count??pos.count)/3;
-    if(o.material.map){
+    if(o.material.map&&!o.userData.shopInterior){
       usedFiles.add(o.material.map.name);prints++;assert.equal(o.geometry.type,'PlaneGeometry',o.name);
       assert(o.geometry.attributes.uv.array.every(v=>v>=0&&v<=1));
     }

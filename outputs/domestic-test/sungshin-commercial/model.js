@@ -1,6 +1,8 @@
 import * as T from 'three';
 import {designs} from './designs.js';
 import {buildSurveyExterior} from './survey-models.js';
+import {prepareCommercialInteriors,addCommercialInteriors} from './interiors.js';
+import {createSignLettering} from './sign-lettering.js';
 
 const SUFFIX='fidelity2';
 const printCache=new Map();
@@ -29,6 +31,7 @@ function artwork(file){
 export async function loadCommercialBuilding(key){
   const s=designs.find(item=>item.id===key);
   if(!s)throw Error('성신여대 상가를 찾을 수 없습니다.');
+  await prepareCommercialInteriors();
   const loaded=await Promise.all(Object.entries(artworkFor(s.number)).map(async([name,file])=>[name,await artwork(file)]));
   return buildCommercial(s,Object.fromEntries(loaded));
 }
@@ -44,12 +47,28 @@ export function buildCommercial(s,maps={}){
   }
   const box=(p,name,x,y,z,w,h,d,color)=>mesh(p,name,new T.BoxGeometry(w,h,d),mat(color),x,y,z);
   function decal(p,name,x,y,z,width,height,texture,cell,columns,rows,bounds=null){
+    const sourceKey=Object.entries(maps).find(([,map])=>map===texture)?.[0];
+    const lettering=name==='PandaBadge'?null:createSignLettering(sourceKey+':'+cell,width,height);
     const geometry=new T.PlaneGeometry(width,height),uv=geometry.attributes.uv;
     const row=Math.floor(cell/columns),top=bounds?bounds[row]/bounds.at(-1):row/rows;
     const bottom=bounds?bounds[row+1]/bounds.at(-1):(row+1)/rows;
-    for(let i=0;i<uv.count;i++)uv.setXY(i,(cell%columns+.018+uv.getX(i)*.964)/columns,1-bottom+(bottom-top)*(.018+uv.getY(i)*.964));
-    const material=new T.MeshStandardMaterial({map:texture??null,roughness:.95,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4});
+    if(!lettering)for(let i=0;i<uv.count;i++)uv.setXY(i,(cell%columns+.018+uv.getX(i)*.964)/columns,1-bottom+(bottom-top)*(.018+uv.getY(i)*.964));
+    const material=new T.MeshStandardMaterial({map:lettering??texture??null,roughness:.95,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4});
     const m=mesh(p,name,geometry,material,x,y,z);m.castShadow=false;return m;
   }
-  return buildSurveyExterior(s,{root,mesh,box,mat,decal,maps});
+  const result=buildSurveyExterior(s,{root,mesh,box,mat,decal,maps});
+  addCommercialInteriors(result,s);
+  result.disposePreview=()=>{
+    const geometries=new Set(),ownedMaterials=new Set(),letteringTextures=new Set();
+    result.traverse(object=>{
+      if(object.geometry)geometries.add(object.geometry);
+      for(const material of Array.isArray(object.material)?object.material:object.material?[object.material]:[]){
+        ownedMaterials.add(material);
+        if(material.map?.userData.sungshinLettering)letteringTextures.add(material.map);
+      }
+    });
+    geometries.forEach(g=>g.dispose());ownedMaterials.forEach(m=>m.dispose());
+    letteringTextures.forEach(t=>t.dispose());
+  };
+  return result;
 }

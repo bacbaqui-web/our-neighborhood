@@ -14,6 +14,8 @@ const worker=fs.readFileSync(path.join(dir,'worker.js'),'utf8');
 assert(worker.includes("'scikit-image'"));
 assert(worker.includes("'scipy'"));
 assert(!worker.includes('/api/'));
+assert(!worker.includes('vworldApiKey'));
+assert(sources['/work/browser-entry.py'].includes("params['buildingCollection']"));
 const bounds=JSON.parse(fs.readFileSync(path.join(dir,'vehicle-bounds.json')));
 assert.equal(Object.keys(bounds).length,31);
 assert(Object.values(bounds).every(x=>x.size.length===3&&x.size.every(n=>Number.isFinite(n)&&n>0)));

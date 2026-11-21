@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {buildingBounds,readBuildingPage,collectBuildings,BUILDING_SOURCE} from '../outputs/domestic-test/browser-generation/vworld.js';
+const feature=(id,floor='3')=>({type:'Feature',id:'LT_C_SPBD.'+id,geometry:{type:'Polygon',coordinates:[[[127,37],[127.001,37],[127.001,37.001],[127,37]]]},properties:{gro_flo_co:floor,rd_nm:'길',buld_no:'10'}});
+const page=(features,total=1)=>({response:{status:'OK',page:{total:String(total)},result:{featureCollection:{features}}}});
+assert.throws(()=>buildingBounds({center:[NaN,127],radius:100}));
+const bounds=buildingBounds({center:[37.62,127.02],radius:100});assert(bounds[0]<127.02&&bounds[2]>127.02);
+const result=readBuildingPage(page([feature(1),feature(2,'')]));
+assert.equal(result.features[0].properties.gro_flo_co,3);assert.equal(result.features[1].properties.floorsEstimated,true);
+assert.throws(()=>readBuildingPage(page([{...feature(1),geometry:{type:'Point',coordinates:[127,37]}}])));
+assert.throws(()=>readBuildingPage(page([feature(1)],7)));
+assert.throws(()=>readBuildingPage({response:{status:'ERROR',error:{code:'EXPIRED_KEY'}}}),/인증키/);
+let calls=0;const all=await collectBuildings(n=>{calls++;return page(n===1?[feature(1)]:[feature(1),feature(2)],2);});
+assert.equal(calls,2);assert.equal(all.features.length,2);assert.equal(all.source,BUILDING_SOURCE);
+await assert.rejects(collectBuildings(n=>n===1?page([feature(1)],2):{response:{status:'NOT_FOUND'}}),/일부/);
+const controller=new AbortController();controller.abort();await assert.rejects(collectBuildings(()=>{throw Error('should not request');},{signal:controller.signal}),{name:'AbortError'});
+console.log('VWorld browser: bounds, geometry, floors, pagination, deduplication, errors and cancellation passed.');

@@ -104,3 +104,6 @@ dist/
 
 !/outputs/index.html
 !/work/asset-review/applied-revision-510.json
+
+# Generated domain-bound browser key; injected during deployment.
+/outputs/domestic-test/browser-generation/vworld-config.json

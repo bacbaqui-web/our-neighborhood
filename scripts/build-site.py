@@ -1,5 +1,5 @@
 """Build the published viewer from tracked, reviewed application files only."""
-import json, shutil, struct, subprocess
+import json, shutil, struct, subprocess, os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +38,15 @@ for name in filter(None, files):
     destination.write_bytes(data)
     count += 1
     total += len(data)
+
+# This domain-bound web API key is intentionally sent to browsers, like Kakao JS.
+# Read only this field; never copy the private settings file or REST credentials.
+settings_path=ROOT/'.local-settings.json'
+settings=json.loads(settings_path.read_text()) if settings_path.exists() else {}
+web_key=os.environ.get('VWORLD_WEB_KEY') or settings.get('vworldApiKey')
+if not web_key:
+    raise SystemExit('Set VWORLD_WEB_KEY before publishing the site.')
+(OUT/'domestic-test/browser-generation/vworld-config.json').write_text(json.dumps({'key':web_key,'domain':'https://magamiscom.ing/neighborhood/'}))
 
 locations = []
 for path in sorted((OUT / 'generated-neighborhoods').glob('*/data/manifest.json')):

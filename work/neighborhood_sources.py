@@ -33,16 +33,13 @@ def geocode(query):
  return {'address':d['address_name'],'query':query,'origin':[lat,lon],'roadAddress':d.get('road_address'),'sizeMetres':300}
 def scales(lat):
  a=math.radians(lat);return 111412.84*math.cos(a)-93.5*math.cos(3*a)+.118*math.cos(5*a),111132.92-559.82*math.cos(2*a)+1.175*math.cos(4*a)-.0023*math.cos(6*a)
+def fetch_building_collection(bbox):
+ from vworld_buildings import fetch_buildings
+ return fetch_buildings(bbox)
 def acquire_buildings(root,location):
  lat,lon=location['origin'];sx,sy=scales(lat);r=location.get('sizeMetres',300)/2
- bbox=[lon-r/sx,lat-r/sy,lon+r/sx,lat+r/sy];features=[];offset=0
- while True:
-  d=getjson('https://portal.esrikr.com/arcgis/rest/services/MOIS_KR_Buildings_v2/FeatureServer/0/query',{'f':'geojson','where':'1=1','geometry':','.join(map(str,bbox)),'geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'*','outSR':4326,'returnGeometry':'true','resultOffset':offset,'resultRecordCount':1000,'orderByFields':'objectid'})
-  if 'error' in d:raise RuntimeError('국내 건물 서비스 조회에 실패했습니다.')
-  batch=d.get('features',[]);features.extend(batch)
-  if not d.get('exceededTransferLimit') and len(batch)<1000:break
-  if not batch or len(features)>5000:raise RuntimeError('건물 조회 범위가 너무 큽니다.')
-  offset=len(features)
+ bbox=[lon-r/sx,lat-r/sy,lon+r/sx,lat+r/sy]
+ d=fetch_building_collection(bbox);features=d['features'];building_source=d['source']
  if not features:raise ValueError('이 주소 주변에는 조회 가능한 국내 건물 데이터가 없습니다.')
  clean=[]
  for f in features:
@@ -53,7 +50,7 @@ def acquire_buildings(root,location):
   f['geometry']=mapping(parts[0] if len(parts)==1 else S.MultiPolygon(parts))
   p=f['properties'];p['gro_flo_co']=max(1,int(p.get('gro_flo_co') or 1));p['und_flo_co']=max(0,int(p.get('und_flo_co') or 0));p['street_name']=p.get('street_name') or '';p['house_number']=str(p.get('house_number') or '')
   clean.append(f)
- d={'type':'FeatureCollection','features':clean,'source':'MOIS / Esri Korea','origin':location['origin']}
+ d={'type':'FeatureCollection','features':clean,'source':building_source,'origin':location['origin']}
  (root/'buildings.geojson').write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')))
  return d
 class Terrain:

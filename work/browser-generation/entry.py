@@ -2,7 +2,7 @@ import sys,os,json,runpy,io,urllib.request,hashlib,datetime
 from pathlib import Path
 sys.path[:0]=['/work','/outputs/domestic-test/generation']
 from js import browserRequest
-# All requests occur inside a dedicated Worker. No credentials or local server.
+# Requests occur inside a dedicated Worker; building credentials stay on the server.
 def request(url,headers=None):
  return bytes(browserRequest(str(url)).to_py())
 def urlopen(url,*args,**kwargs):
@@ -11,6 +11,7 @@ import neighborhood_sources as source
 source.request=request
 urllib.request.urlopen=urlopen
 params=json.loads(PARAMETERS)
+source.fetch_building_collection=lambda bbox: params['buildingCollection']
 source.kakao=lambda path,params2: {'documents':params.get('stations' if path=='category' else 'exits',[]),'meta':{'is_end':True}}
 from view_generation import validate_view,select_view,select_roads,snap_to_road
 view=validate_view(params.get('view') or {})
@@ -18,7 +19,7 @@ radius=params['radius'];lat,lon=params['center']
 if radius not in (range(50,501,50) if params.get('structureLab') else range(50,301,50)) or not(33<lat<39.5 and 124<lon<132): raise ValueError('국내 위치와 50~300m 범위를 선택해 주세요.')
 from gentle_terrain import GentleTerrain,select_buildings,VERSION,elevation_info as terrain_info
 elevation_info=terrain_info()
-key=hashlib.sha256(('street-visible360-v1:'+json.dumps(view,sort_keys=True)+':'+VERSION+':'+str(radius)+':'+','.join(f'{n:.6f}' for n in [lat,lon])).encode()).hexdigest()[:16]
+key=hashlib.sha256(('vworld-street-visible360-v1:'+json.dumps(view,sort_keys=True)+':'+VERSION+':'+str(radius)+':'+','.join(f'{n:.6f}' for n in [lat,lon])).encode()).hexdigest()[:16]
 final=Path('/outputs/generated-neighborhoods')/key;root=final/'data';root.mkdir(parents=True,exist_ok=True)
 for name in ['generation','people','vegetation','environment','shops']:(root/name).mkdir(exist_ok=True)
 for name in ['alley-v62','environment-v32','vegetation-v31']:(final/name).mkdir(exist_ok=True)
@@ -54,7 +55,7 @@ def stage_base():
 def stage_scripts(names):
  for name in names.split(','):runpy.run_path('/outputs/domestic-test/generation/'+name+'.py',run_name='__main__')
 def stage_finish():
- write('manifest.json',{**loc,'version':74,'buildings':len(buildings['features']),'places':len(params.get('places',[])),'generatedAt':datetime.datetime.now().isoformat(),'elevation':elevation_info,'browserGenerated':True,'browserGenerationVersion':11,'ruleset':'street-visible360-v1','roadPriority':json.loads((root/'road-reservation.json').read_text())['qa'],'warnings':params.get('warnings',[]),'sources':{'address':'Kakao Maps','buildings':'MOIS / Esri Korea','roads':'OpenFreeMap / OpenStreetMap','terrain':elevation_info['mode']}})
+ write('manifest.json',{**loc,'version':74,'buildings':len(buildings['features']),'places':len(params.get('places',[])),'generatedAt':datetime.datetime.now().isoformat(),'elevation':elevation_info,'browserGenerated':True,'browserGenerationVersion':11,'ruleset':'street-visible360-v1','roadPriority':json.loads((root/'road-reservation.json').read_text())['qa'],'warnings':params.get('warnings',[]),'sources':{'address':'Kakao Maps','buildings':buildings['source'],'roads':'OpenFreeMap / OpenStreetMap','terrain':elevation_info['mode']}})
  import arterial_plan
  arterial_plan.build(root)
 

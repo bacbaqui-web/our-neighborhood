@@ -25,6 +25,7 @@ jobs:
         run: |
           node scripts/check-loading.mjs
           node tests/browser-generation.mjs
+          node tests/vworld-browser.mjs
       - name: Check scene budget
         run: |
           node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs
@@ -33,6 +34,8 @@ jobs:
           python3 -m unittest discover -s tests -p test_generation_scope.py
       - uses: actions/configure-pages@v5
       - name: Build reviewed public assets
+        env:
+          VWORLD_WEB_KEY: ${{ secrets.VWORLD_WEB_KEY }}
         run: python3 scripts/build-site.py
       - uses: actions/upload-pages-artifact@v3
         with:

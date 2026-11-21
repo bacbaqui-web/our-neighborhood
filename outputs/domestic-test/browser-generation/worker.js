@@ -4,7 +4,7 @@ import {prepareScene} from './prepare-scene.js?v=view3c';
 const base=new URL('./',import.meta.url);
 // Synchronous network access is restricted to this disposable background Worker.
 self.browserRequest=url=>{
- const allowed=['https://portal.esrikr.com/','https://tiles.openfreemap.org/','https://s3.amazonaws.com/elevation-tiles-prod/'];
+ const allowed=['https://tiles.openfreemap.org/','https://s3.amazonaws.com/elevation-tiles-prod/'];
  if(!allowed.some(prefix=>url.startsWith(prefix)))throw Error('허용되지 않은 지도 자료 주소입니다.');
  if(mapCache.memory.has(url))return mapCache.memory.get(url);
  const xhr=new XMLHttpRequest();xhr.open('GET',url,false);xhr.responseType='arraybuffer';xhr.timeout=60000;xhr.send();

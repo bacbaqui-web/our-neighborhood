@@ -29,19 +29,54 @@ def fit_buildings(buildings,protected,roads,origin):
   if local.intersection(protected).area<1e-6:out.append(f);continue
   owner=f['properties']['objectid'];near=[polygons[int(j)] for j in tree.query(local.buffer(35)) if int(j)!=index]
   obstacles=unary_union(near+placed).buffer(.05);c=local.centroid;q=nearest_points(c,lines)[1];vx,vz=c.x-q.x,c.y-q.y
-  preferred=math.atan2(vz,vx);angles=[preferred]+[i*math.tau/16 for i in range(16)]
-  angles.sort(key=lambda a:-math.cos(a-preferred));fitted=None;offset=[0,0];method='trimmed'
-  for distance in range(1,31):
-   for angle in angles:
-    dx,dz=distance*math.cos(angle),distance*math.sin(angle)
-    if math.hypot(vx,vz)>.1 and dx*vx+dz*vz<-.01:continue
-    candidate=translate(local,dx,dz)
-    if candidate.intersection(protected).area<1e-7 and candidate.intersection(obstacles).area<1e-7:
-     fitted=candidate;offset=[dx,dz];method='moved';break
-   if fitted is not None:break
-  if fitted is None:
-   parts=[g for g in S.get_parts(local.difference(protected.buffer(.001))) if g.geom_type=='Polygon' and g.area>=6]
-   if parts:fitted=max(parts,key=lambda g:g.area)
+  # Push only away from this road. Never search sideways or jump over a neighbor.
+  length=math.hypot(vx,vz)
+  if length<.001:
+   line=min(S.get_parts(lines),key=lambda g:g.distance(c));at=line.project(c)
+   a=line.interpolate(max(0,at-.1));b=line.interpolate(min(line.length,at+.1))
+   vx,vz=-(b.y-a.y),b.x-a.x;length=math.hypot(vx,vz)
+  ux,uz=(vx/length,vz/length) if length else (0,1)
+  def shifted(distance):return translate(local,ux*distance,uz*distance)
+  def swept(distance):
+   # Full swept footprint, including the path between the two positions.
+   dx,dz=ux*distance,uz*distance;parts=[local,shifted(distance)]
+   for part in S.get_parts(local):
+    if part.geom_type!='Polygon':continue
+    for ring in [part.exterior,*part.interiors]:
+     coords=list(ring.coords)
+     for a,b in zip(coords,coords[1:]):
+      quad=Polygon([a,b,(b[0]+dx,b[1]+dz),(a[0]+dx,a[1]+dz)])
+      if quad.area>1e-10:parts.append(quad)
+   return unary_union(parts)
+  # Original neighbors remain fixed obstacles, even if another road affects them.
+  # If already touching/overlapping, do not push farther into them.
+  limit=30.
+  if local.intersection(obstacles).area>1e-7:limit=0.
+  elif swept(limit).intersection(obstacles).area>1e-7:
+   low,high=0.,limit
+   for _ in range(22):
+    mid=(low+high)/2
+    if swept(mid).intersection(obstacles).area>1e-7:high=mid
+    else:low=mid
+   limit=max(0.,low-.0001)
+  # Stop as soon as the building clears the road; otherwise use the available gap.
+  distance=limit;last=0.
+  for step in range(1,math.ceil(limit/.25)+1):
+   trial=min(limit,step*.25)
+   if shifted(trial).intersection(protected).area<1e-7:
+    low,high=last,trial
+    for _ in range(20):
+     mid=(low+high)/2
+     if shifted(mid).intersection(protected).area<1e-7:high=mid
+     else:low=mid
+    distance=high;break
+   last=trial
+  offset=[ux*distance,uz*distance];candidate=shifted(distance)
+  fitted=candidate;method='moved'
+  if candidate.intersection(protected).area>1e-7:
+   parts=[g for g in S.get_parts(candidate.difference(protected.buffer(.001))) if g.geom_type=='Polygon' and g.area>=6]
+   fitted=max(parts,key=lambda g:g.area) if parts else None
+   method='moved-and-trimmed' if distance>.001 else 'trimmed'
   if fitted is None:
    omitted.append(owner);continue
   if fitted.geom_type!='Polygon':fitted=max((g for g in S.get_parts(fitted) if g.geom_type=='Polygon'),key=lambda g:g.area)

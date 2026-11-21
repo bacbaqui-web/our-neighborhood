@@ -35,6 +35,21 @@ class RoadFirstBuildings(unittest.TestCase):
  def test_centerline_under_building_does_not_cut_the_road(self):
   result,buildings,fitted,_=self.run_case([box(-4,-2,4,2)],4)
   self.assertEqual(len(buildings['features']),1);self.assertEqual(result['qa']['roadBuildingOverlapM2'],0)
+ def test_push_until_rear_building_then_trim_without_moving_rear(self):
+  result,buildings,fitted,original=self.run_case([box(-5,1,5,11),box(-6,13,6,20)])
+  target=buildings['features'][0];rear=buildings['features'][1]
+  self.assertEqual(rear['geometry'],original['features'][1]['geometry'])
+  self.assertAlmostEqual(target['properties']['roadFit']['offset'][0],0,places=5)
+  self.assertAlmostEqual(target['properties']['roadFit']['offset'][1],1.95,places=3)
+  self.assertLess(fitted[0].area,100)
+  self.assertGreater(fitted[0].bounds[3],12.9)
+  self.assertLess(fitted[0].bounds[3],13)
+  self.assertEqual(target['properties']['roadFit']['method'],'moved-and-trimmed')
+ def test_cannot_jump_over_thin_rear_building_to_open_space(self):
+  _,buildings,fitted,original=self.run_case([box(-5,1,5,11),box(-6,12,6,12.2)])
+  self.assertEqual(buildings['features'][1]['geometry'],original['features'][1]['geometry'])
+  self.assertLess(fitted[0].bounds[3],12)
+  self.assertAlmostEqual(buildings['features'][0]['properties']['roadFit']['offset'][0],0,places=5)
  def test_manual_wall_roundtrip_after_move_and_ring_reordering(self):
   from scene_edits import remap_building_edits
   from shapely.geometry import Polygon

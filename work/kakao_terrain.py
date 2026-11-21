@@ -65,6 +65,10 @@ class LocalFlatTerrain(Terrain):
   t=np.clip((distance-self.flat['flatRadius'])/(self.flat['blendRadius']-self.flat['flatRadius']),0,1)
   return self.level+(raw-self.level)*float(t*t*(3-2*t))
 def load_terrain(root,location):
+ saved=Path(root)/'location.json'
+ if saved.exists() and json.loads(saved.read_text()).get('terrainMode')=='gentle-terrain30':
+  from gentle_terrain import GentleTerrain
+  return GentleTerrain(*location['origin'])
  correction=Path(root)/'terrain-correction.json'
  if correction.exists():return LocalFlatTerrain(*location['origin'],json.loads(correction.read_text()))
  path=Path(root)/'kakao-elevation.json'

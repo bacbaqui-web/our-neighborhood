@@ -1,8 +1,9 @@
 import * as T from 'three';
+import {defaultFacadeTextures,getFacadeTexture} from './facade-textures.js?v=masonry19';
 import {windowLightBand} from './environment-policy.js?v=151';
 import {finishDepth} from './surface-policy.js?v=151';
 
-// All parts are solid-color geometry, so exported faces remain editable.
+// Frames and equipment are geometry; wall finishes use repeating color textures.
 export const facadeStyles = [
  {name:'적벽돌 다세대',wall:0x895e50,joint:0xb59b86,frame:0xd4d7cf,roof:0x667c69,pattern:'brick'},
  {name:'짙은 벽돌 주택',wall:0x635149,joint:0x95887b,frame:0x564c43,roof:0x738471,pattern:'brick'},
@@ -11,6 +12,7 @@ export const facadeStyles = [
  {name:'크림 타일 주택',wall:0xcbbfa6,joint:0xa79983,frame:0xccd1c7,roof:0x718671,pattern:'tile'},
  {name:'미장 단독주택',wall:0xc2bfb0,joint:0xaaa696,frame:0x6c7069,roof:0x697c67,pattern:'render'},
 ];
+facadeStyles.forEach((style,i)=>{style.textureId=defaultFacadeTextures[i];});
 export const windowCatalog = [
  {id:'white-slider',name:'백색 PVC 두짝 미닫이창',width:1.9,height:1.35},
  {id:'brown-slider',name:'갈색 알루미늄 샷시',width:1.8,height:1.35},
@@ -29,28 +31,30 @@ const white=0xe0e2d9, metal=0x777e77, dark=0x343e3a, sill=0xb8b8a8;
 export class FacadeBatch {
  constructor(minimumLOD=0){this.minimumLOD=minimumLOD;this.parts=new Map();this.lines=new Map();this.count=0;this.maxLOD=2;}
  atLOD(level,fn){if(level<this.minimumLOD)return;const previous=this.maxLOD;this.maxLOD=Math.min(previous,level);try{return fn();}finally{this.maxLOD=previous;}}
- bucket(color,surface=false){const windowBand=this.windowBand??-1,key=color+':'+surface+':'+this.maxLOD+':'+windowBand;if(!this.parts.has(key))this.parts.set(key,{color,surface,maxLOD:this.maxLOD,windowBand,p:[],n:[],inkIds:[]});return this.parts.get(key)}
+ bucket(color,surface=false,textureId=null){const windowBand=this.windowBand??-1,key=color+':'+surface+':'+this.maxLOD+':'+windowBand+':'+(textureId||'');if(!this.parts.has(key))this.parts.set(key,{color,surface,maxLOD:this.maxLOD,windowBand,textureId,p:[],n:[],uv:[],inkIds:[]});return this.parts.get(key)}
  lineBucket(color){const key=color+':'+this.maxLOD;if(!this.lines.has(key))this.lines.set(key,{color,maxLOD:this.maxLOD,p:[]});return this.lines.get(key).p;}
  writer(origin=[0,0,0],ux=1,uz=0,nx=0,nz=1){
   const P=(x,y,z)=>[origin[0]+ux*x+nx*z,origin[1]+y,origin[2]+uz*x+nz*z];
-  const box=(x,y,z,w,h,d,color,edge=false,surface=false)=>{if(Math.min(w,h,d)<=0)return;const b=this.bucket(color,surface),p=unitBox.attributes.position,n=unitBox.attributes.normal;
-   for(let i=0;i<p.count;i++){b.p.push(...P(x+p.getX(i)*w,y+p.getY(i)*h,z+p.getZ(i)*d));b.inkIds.push(this.inkObjectId??0);b.n.push(ux*n.getX(i)+nx*n.getZ(i),n.getY(i),uz*n.getX(i)+nz*n.getZ(i));}
+  const box=(x,y,z,w,h,d,color,edge=false,surface=false,textureId=null)=>{if(Math.min(w,h,d)<=0)return;const p=unitBox.attributes.position,n=unitBox.attributes.normal,meters=textureId?getFacadeTexture(textureId).userData.meters:null;
+   for(let i=0;i<p.count;i++){const textured=textureId&&Math.abs(n.getY(i))<.5,b=this.bucket(textured?0xffffff:color,surface,textured?textureId:null),X=x+p.getX(i)*w,Y=y+p.getY(i)*h,Z=z+p.getZ(i)*d;b.p.push(...P(X,Y,Z));b.inkIds.push(this.inkObjectId??0);b.n.push(ux*n.getX(i)+nx*n.getZ(i),n.getY(i),uz*n.getX(i)+nz*n.getZ(i));if(textured)b.uv.push((X*n.getZ(i)-Z*n.getX(i))/meters[0],Y/meters[1]);}
    if(edge){const a=this.lineBucket(color);for(let i=0;i<edgePoints.length;i+=3)a.push(...P(x+edgePoints[i]*w,y+edgePoints[i+1]*h,z+edgePoints[i+2]*d));}this.count++;
   };
   const quad=(x,y,z,w,h,color,surface=true)=>{const b=this.bucket(color,surface);for(const [u,v] of [[-1,-1],[1,-1],[1,1],[-1,-1],[1,1],[-1,1]]){b.p.push(...P(x+u*w/2,y+v*h/2,z));b.inkIds.push(this.inkObjectId??0);b.n.push(nx,0,nz)};};
+  const textureQuad=(x,y,z,w,h,id,uv)=>{const b=this.bucket(0xffffff,true,id);for(const [u,v] of [[0,0],[1,0],[1,1],[0,0],[1,1],[0,1]]){b.p.push(...P(x+(u-.5)*w,y+(v-.5)*h,z));b.n.push(nx,0,nz);b.uv.push(u?uv[2]:uv[0],v?uv[3]:uv[1]);b.inkIds.push(this.inkObjectId??0);}};
   const rod=(a,b,r,color,segments=6)=>{const A=new T.Vector3(...P(...a)),B=new T.Vector3(...P(...b)),dir=B.clone().sub(A),len=dir.length();if(len<1e-6)return;dir.divideScalar(len);const u=new T.Vector3(0,1,0);if(Math.abs(dir.y)>.99)u.set(1,0,0);u.cross(dir).normalize();const v=dir.clone().cross(u);const out=this.bucket(color);for(let i=0;i<segments;i++){const ns=[i,i+1].map(j=>u.clone().multiplyScalar(Math.cos(j*2*Math.PI/segments)).addScaledVector(v,Math.sin(j*2*Math.PI/segments)));const q=[A.clone().addScaledVector(ns[0],r),A.clone().addScaledVector(ns[1],r),B.clone().addScaledVector(ns[1],r),B.clone().addScaledVector(ns[0],r)];for(const k of [0,1,2,0,2,3]){out.p.push(...q[k].toArray());out.inkIds.push(this.inkObjectId??0);out.n.push(...ns[k===0||k===3?0:1].toArray())}}};
-  return{box,quad,rod,lit:(band,fn)=>{const old=this.windowBand;this.windowBand=band;try{fn();}finally{this.windowBand=old;}},detail:(level,fn)=>this.atLOD(level,fn),at:(x,y,z)=>this.writer(P(x,y,z),ux,uz,nx,nz)};
+  const reveal=(a,b,c,d,color)=>{const bucket=this.bucket(color,false),normal=new T.Vector3(...b).sub(new T.Vector3(...a)).cross(new T.Vector3(...c).sub(new T.Vector3(...a))).normalize();for(const q of [a,b,c,a,c,d]){bucket.p.push(...q);bucket.n.push(...normal.toArray());bucket.inkIds.push(this.inkObjectId??0);}};
+  return{box,quad,rod,textureQuad,reveal,lit:(band,fn)=>{const old=this.windowBand;this.windowBand=band;try{fn();}finally{this.windowBand=old;}},detail:(level,fn)=>this.atLOD(level,fn),at:(x,y,z)=>this.writer(P(x,y,z),ux,uz,nx,nz)};
  }
- finish(name='KoreanFacadeDetails'){const group=new T.Group();group.name=name;for(const b of this.parts.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));if(b.inkIds.length===b.p.length/3&&b.inkIds.some(id=>id>0))g.setAttribute('inkObjectId',new T.Float32BufferAttribute(b.inkIds,1));const m=new T.Mesh(g,new T.MeshStandardMaterial({color:b.color,roughness:.9,side:T.DoubleSide,...(b.surface?finishDepth():{})}));if(b.windowBand>=0)m.material.userData.nightWindowBand=b.windowBand;m.name='korean-facade-'+(b.surface?'surface':'parts')+'-'+b.color.toString(16);m.userData={detailKind:b.color===dark?'metal':'facade',noPlacementCollision:b.surface,surfaceOverlay:b.surface,lodMaxLevel:b.maxLOD};group.add(m)}for(const {color,p,maxLOD} of this.lines.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(p,3));const c=new T.Color(color).multiplyScalar(.47),m=new T.LineSegments(g,new T.LineBasicMaterial({color:c}));m.userData.faceLineColor=c.getHex();m.userData.lodMaxLevel=maxLOD;group.add(m)}return group;}
+ finish(name='KoreanFacadeDetails'){const group=new T.Group();group.name=name;for(const b of this.parts.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));if(b.textureId)g.setAttribute('uv',new T.Float32BufferAttribute(b.uv,2));if(b.inkIds.length===b.p.length/3&&b.inkIds.some(id=>id>0))g.setAttribute('inkObjectId',new T.Float32BufferAttribute(b.inkIds,1));const m=new T.Mesh(g,new T.MeshStandardMaterial({color:b.color,roughness:.9,side:T.DoubleSide,...(b.textureId?{map:getFacadeTexture(b.textureId)}:{}),...(b.surface?finishDepth():{})}));if(b.windowBand>=0)m.material.userData.nightWindowBand=b.windowBand;m.name='korean-facade-'+(b.surface?'surface':'parts')+'-'+b.color.toString(16);m.userData={facadeTextureId:b.textureId,detailKind:b.color===dark?'metal':'facade',noPlacementCollision:b.surface,surfaceOverlay:b.surface,lodMaxLevel:b.maxLOD};group.add(m)}for(const {color,p,maxLOD} of this.lines.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(p,3));const c=new T.Color(color).multiplyScalar(.47),m=new T.LineSegments(g,new T.LineBasicMaterial({color:c}));m.userData.faceLineColor=c.getHex();m.userData.lodMaxLevel=maxLOD;group.add(m)}return group;}
 }
 
 // A single frame and non-overlapping panes: no stacked sash rings or coplanar
 // decorative lines. Glass and curtains tile one depth plane behind the frame.
-export function emitWindow(out,id,w,h,variation=0,frame=white,lightSeed=null){
- const {box:B,quad:Q,rod:R}=out,isGuard=id==='guard'||id==='basement',isBay=id==='bay',veranda=id==='veranda';
- const z=isBay?.30:.085,f=id==='frosted'?.042:.055,m=.042,frameDepth=.060;
+export function emitWindow(out,id,w,h,variation=0,frame=white,lightSeed=null,options={}){
+ const {box:B,quad:Q,rod:R}=out,isGuard=id==='guard'||id==='basement',isBay=id==='bay'&&options.recess==null,veranda=id==='veranda';
+ const z=options.recess!=null?-options.recess-.025:isBay?.30:.085,f=id==='frosted'?.042:.055,m=.042,frameDepth=.060;
  frame=id==='brown-slider'?0x574d43:frame;
- const cols=id==='frosted'?1:veranda?4:id==='wide-slider'||isBay?3:2;
+ const cols=id==='frosted'?1:veranda?4:id==='wide-slider'||id==='bay'?3:2;
  const iw=w-2*f,ih=h-2*f,pw=(iw-(cols-1)*m)/cols,glassZ=z+.018;
  const cross=id==='stair'?h*.12:veranda?-h*.24:null;
  const glassRects=cross===null?[[-ih/2,ih/2]]:[[-ih/2,cross-m/2],[cross+m/2,ih/2]];
@@ -73,14 +77,14 @@ export function emitWindow(out,id,w,h,variation=0,frame=white,lightSeed=null){
  for(const side of [-1,1])B(0,side*(h-f)/2,z+.025,w,f,frameDepth,frame,true);
  for(let j=1;j<cols;j++)B(-iw/2+j*pw+(j-.5)*m,0,z+.025,m,ih,frameDepth,frame,false);
  if(cols>1&&id!=='basement')out.detail(0,()=>B(-iw/2+pw+m/2,-.03,z+.068,.024,.13,.026,dark,false));
- const sillDepth=isBay?z+.08:.17,sillZ=isBay?sillDepth/2:z-.005;
- B(0,-h/2-.035,sillZ,w+.10,.07,sillDepth,sill,true);
+ const sillDepth=options.recess!=null?options.recess+.14:isBay?z+.08:.17,sillZ=options.recess!=null?.07-sillDepth/2:isBay?sillDepth/2:z-.005;
+ if(options.sill!==false)B(0,-h/2-.035,sillZ,w+.10,.07,sillDepth,sill,true);
  if(isBay){
   const depth=z-.005;
   for(const side of [-1,1])B(side*(w-f)/2,0,depth/2,f,ih,depth,frame,false);
   B(0,(h-f)/2,depth/2,w,f,depth,frame,false);
  }
- if(isGuard){
+ if(isGuard&&options.accessories!==false){
   const depth=id==='basement'?.26:.30,rail=.025;
   for(const x of [-w/2+rail/2,w/2-rail/2]){
    B(x,0,depth,rail,h-2*rail,rail,dark,false);
@@ -92,7 +96,7 @@ export function emitWindow(out,id,w,h,variation=0,frame=white,lightSeed=null){
   for(let i=1;i<n;i++)out.detail(i%2?2:1,()=>B(-w/2+i*w/n,0,depth,.020,h-2*rail,.025,dark,false));
   if(id==='guard')B(0,-h*.19,depth-.026,w-2*rail,rail,.022,dark,false);
  }
- if(id==='awning'){
+ if(id==='awning'&&options.accessories!==false){
   B(0,h/2+.14,.27,w+.22,.045,.60,0x7f9b91,true);
   for(const x of [-w*.4,w*.4])R([x,h/2-.20,.06],[x,h/2+.11,.50],.013,metal);
  }

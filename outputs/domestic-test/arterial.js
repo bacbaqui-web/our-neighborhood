@@ -1,3 +1,4 @@
+import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import {roadVehicle,recordMemoScene} from './memo-scene.js?v=151';
 import * as T from 'three';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
@@ -67,7 +68,7 @@ export function createArterial(plan,elevation){
   f.strip(run,.035,(x,z)=>support(x,z,.035)+1.001,(x,z)=>support(x,z,.035)+1.009,0xc2af69,1);
   f.finish();for(let i=1;i<run.length;i++)obstacles.push({a:run[i-1],b:run[i],width:.13});
  }
- for(const s of plan.platforms){
+ for(const s of plan.platforms){if(!visibleObject(s.position[0],s.position[2],4,Math.max(2,(s.length||14)/2),s.position[1],false))continue;
   const a=unit('central-bus-platform-'+s.id,s.position,s.heading),side=s.side,L=s.length;
   const {height:floor,world}=supportFrame(s.position,s.heading,support,.19),roof=roofPlane(floor,2.4,12.3,2.74);
   const strip=(x,z0,z1,w,lo,hi,color,level=2)=>a.strip([[x,z0],[x,z1]],w,lo,hi,color,level);
@@ -112,7 +113,7 @@ export function createArterial(plan,elevation){
   fitQA.platforms.push({id:s.id,grade:floor(0,L/2)-floor(0,-L/2),roof:'plane',posts:[-5.7,-1.9,1.9,5.7].map(z=>({at:world(side*.91,z),bottom:floor(side*.91,z)+s.position[1],top:roof(side*.91,z)+s.position[1]}))});
   obstacles.push({a:world(side*1.12,-L/2+2),b:world(side*1.12,L/2-2),width:.1});
  }
- for(const e of plan.exits){
+ for(const e of plan.exits){if(!visibleObject(e.position[0],e.position[2],4,Math.max(e.width||2,e.length||8)/2,e.position[1],false))continue;
   const W=e.width,L=e.length,position=[...e.position];
   if(!Number.isFinite(e.entryHeight)){const f=supportFrame(position,e.heading,support,.145);position[1]+=f.height(0,-L/2);}
   const a=unit('subway-entrance-'+e.id,position,e.heading);
@@ -149,7 +150,7 @@ export function createArterial(plan,elevation){
   [-2.8,2.8].forEach((z,j)=>{const [x,zz]=world(0,z);mounts.set(`transit-light-${e.id}-${j}`,[x,position[1]+roof(0,z)-.06,zz]);});
   fitQA.exits.push({id:e.id,threshold:position[1],frontToBack:floor(0,L/2)-floor(0,-L/2),roof:'plane',posts:[-L/2,-L/6,L/6,L/2].map(z=>({at:world(W/2-.07,z),bottom:floor(W/2-.07,z)+position[1],top:roof(W/2-.07,z)+position[1]}))});
  }
- for(const p of plan.furniture){
+ for(const p of plan.furniture){if(!visibleObject(p.position[0],p.position[2],4,p.kind==='bicycle-rack'?4:2,p.position[1],false))continue;
   const a=unit(p.kind,p.position,p.heading);
   const lift=p.kind==='drain'?.035:p.kind==='kiosk'?0:.145;
   let {height:floor,world}=supportFrame(p.position,p.heading,support,lift);
@@ -231,7 +232,7 @@ export function createArterial(plan,elevation){
    ps.needsUpdate=true;o.geometry.computeVertexNormals();o.geometry.computeBoundingSphere();
   });
  }
- let vehicleIndex=0,busIndex=0;for(const p of plan.vehicles){
+ let vehicleIndex=0,busIndex=0;for(const p of plan.vehicles){if(!visibleObject(p.position[0],p.position[2],3.5,p.kind==='bus'?6:3,p.position[1],false))continue;
  const fresh=roadVehicle(p.kind==='bus',p.kind==='bus'?busIndex++:vehicleIndex++);if(fresh){fresh.position.fromArray(p.position);fresh.rotation.y=p.heading;group.add(fresh);const surface=(x,z)=>support(x,z,.015);seatGroundAsset(fresh,surface);if(fresh.userData.groundFit.maxGap>.025){const base=fresh.position.clone();let best={position:fresh.position.clone(),quaternion:fresh.quaternion.clone(),qa:fresh.userData.groundFit};for(const delta of [-.5,.5,-1,1,-1.5,1.5]){fresh.position.copy(base).add(new T.Vector3(Math.sin(p.heading)*delta,0,Math.cos(p.heading)*delta));fresh.rotation.set(0,p.heading,0);seatGroundAsset(fresh,surface);if(fresh.userData.groundFit.maxGap<best.qa.maxGap)best={position:fresh.position.clone(),quaternion:fresh.quaternion.clone(),qa:fresh.userData.groundFit};}fresh.position.copy(best.position);fresh.quaternion.copy(best.quaternion);fresh.userData.groundFit=best.qa;}recordMemoScene(fresh);block(p.footprint,.06);continue;}
   const a=unit(p.kind==='bus'?'low-floor-city-bus':'arterial-car',p.position,p.heading),bus=p.kind==='bus';
   if(bus){
@@ -267,7 +268,7 @@ export function createArterial(plan,elevation){
   }
   a.fit((x,z)=>support(x,z,.035));a.finish();block(p.footprint,.06);
  }
- for(const p of plan.crossings){const a=unit('crosswalk-signal',p.position,Math.atan2(plan.alignment.u[0],plan.alignment.u[1])),side=p.side;
+ for(const p of plan.crossings){if(!visibleObject(p.position[0],p.position[2],4,1,p.position[1],false))continue;const a=unit('crosswalk-signal',p.position,Math.atan2(plan.alignment.u[0],plan.alignment.u[1])),side=p.side;
   a.rod([0,0,0],[0,5.5,0],.09,C.metal,2,.055);a.rod([0,5.48,0],[-side*5.6,5.48,0],.065,C.metal,2,.045);
   a.box(-side*4,5.3,0,1.40,.38,.25,C.rubber,1);
   for(let i=0;i<4;i++){const x=-side*4-.49+i*.33;a.glow(x,5.3,side*.137,.18,.18,.025,i===0?0xc86a50:0x37433e,1);a.box(x,5.49,side*.11,.27,.035,.24,C.rubber,0);}

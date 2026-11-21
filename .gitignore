@@ -55,8 +55,52 @@ dist/
 # Required generation source: keep it alongside the browser bundle.
 !/work/browser-generation/
 !/work/kakao_terrain.py
+!/work/gentle_terrain.py
 !/work/road_priority.py
 !/work/generation_scope.py
 !/work/arterial-v76/
 /work/arterial-v76/*
 !/work/arterial-v76/seoul-stops-20260902.json
+
+# Local structure lab source; generated presets can be rebuilt.
+!/work/structure-lab/
+/work/structure-lab/source-cache/
+/work/structure-lab/data/
+/work/structure-lab/__pycache__/
+
+# Reproducible local house-plot experiment source.
+!/work/house-plots-test/
+/work/house-plots-test/__pycache__/
+
+# Shared parcel generation entry
+!/work/site_layout.py
+
+# Building, parking and landscape law research; no runtime changes.
+!/work/legal-layout-study/
+/work/legal-layout-study/__pycache__/
+
+# Asset review workflow and reproducible Gaussian lighting experiment.
+!/work/asset_review.py
+!/work/asset-review/
+/work/asset-review/*
+!/work/asset-review/decisions.json
+!/work/splat-lighting/
+
+!/work/asset-review/applied-revision-404.json
+
+!/work/asset-review/applied-revision-452.json
+
+!/work/asset-review/applied-revision-509.json
+
+# Seasonal pedestrian artwork source records
+!/work/people-seasons/
+
+# Prop prototype production source
+!work/prop-remakes/
+!work/prop-remakes/**
+
+# Canonical visible-area generation source
+!/work/view_generation.py
+
+!/outputs/index.html
+!/work/asset-review/applied-revision-510.json

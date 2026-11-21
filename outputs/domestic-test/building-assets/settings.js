@@ -1,0 +1,10 @@
+import {categories,assets,readPalette,savePalette,resetPalette,defaultPalette} from './catalog.js';
+import {createPreview} from './preview.js';
+const $=s=>document.querySelector(s),status=$('#status'),preview=createPreview($('#preview'));let groups,category=categories[0].id,previewId=null;
+try{groups=structuredClone(readPalette().groups);}catch(e){groups=defaultPalette();status.textContent=e.message;}
+function show(asset){preview.show(asset);previewId=asset.id;$('#previewName').textContent=asset.name;}
+function render(){const c=categories.find(c=>c.id===category);$('#categoryTitle').textContent=c.name;for(const b of $('#categories').children)b.setAttribute('aria-current',String(b.dataset.id===category));$('#models').replaceChildren();for(const a of assets.filter(a=>a.category===category)){const row=document.createElement('div');row.className='model';const input=document.createElement('input');input.type='checkbox';input.id='asset-'+a.id;input.checked=groups[category].includes(a.id);input.onchange=()=>{groups[category]=input.checked?[...new Set([...groups[category],a.id])]:groups[category].filter(id=>id!==a.id);status.textContent='저장하지 않은 변경이 있습니다.';};const label=document.createElement('label');label.htmlFor=input.id;label.textContent=a.name;const b=document.createElement('button');b.textContent='미리보기';b.setAttribute('aria-label',a.name+' 미리보기');b.onclick=()=>show(a);row.append(input,label,b);$('#models').append(row);}show(assets.find(a=>a.category===category));}
+for(const c of categories){const b=document.createElement('button');b.textContent=c.name;b.dataset.id=c.id;b.onclick=()=>{category=c.id;render();};$('#categories').append(b);}
+$('#save').onclick=()=>{try{savePalette(groups);status.textContent='저장했습니다. 동네를 새로고침하면 반영됩니다.';}catch(e){status.textContent=e.message;}};
+$('#reset').onclick=()=>{try{resetPalette();groups=defaultPalette();render();status.textContent='기존 자동 배치로 복원했습니다. 직접 바꾼 집은 유지됩니다.';}catch(e){status.textContent='설정을 지우지 못했습니다. 브라우저 저장 공간을 확인해 주세요.';}};
+render();

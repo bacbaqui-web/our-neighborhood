@@ -1,3 +1,4 @@
+import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
 import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
@@ -11,7 +12,7 @@ export function createUtilityNetwork(plan,elevation){
  function rod(A,B,r,color,kind='metal'){const d=new T.Vector3(...B).sub(new T.Vector3(...A)),g=new T.CylinderGeometry(r,r,d.length(),6);g.applyQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),d.normalize()));g.translate((A[0]+B[0])/2,(A[1]+B[1])/2,(A[2]+B[2])/2);add(g,color,kind);}
  function cable(A,B,r,sag){const pts=[];for(let k=0;k<=20;k++){const t=k/20;pts.push(new T.Vector3(A[0]*(1-t)+B[0]*t,A[1]*(1-t)+B[1]*t-Math.sin(Math.PI*t)*sag,A[2]*(1-t)+B[2]*t));}const g=new T.TubeGeometry(new T.CatmullRomCurve3(pts),24,r,5,false);add(g,colors.dark,'wire');}
  function ring(x,y,z,r,t,angle,color){const g=new T.TorusGeometry(r,t,6,24);g.rotateY(angle);g.translate(x,y,z);add(g,color,'wire');}
- for(const p of plan.poles){const {x,z,nx,nz,ux,uz,id,poleHeight:H,radius:r}=p,y=elevation(x,z),angle=-Math.atan2(nz,nx),at=(u,v,h)=>[x+nx*u+ux*v,y+h,z+nz*u+uz*v];
+ for(const p of plan.poles){if(!visibleObject(p.x,p.z,p.poleHeight,1,elevation(p.x,p.z)))continue;const {x,z,nx,nz,ux,uz,id,poleHeight:H,radius:r}=p,y=elevation(x,z),angle=-Math.atan2(nz,nx),at=(u,v,h)=>[x+nx*u+ux*v,y+h,z+nz*u+uz*v];
   // Separate the adaptive lower shaft from the rigid upper pole and wires.
   const footGeo=new T.CylinderGeometry(r-(r-.09)*.30/H,r,.30,12);footGeo.translate(x,y+.15,z);
   const foot=new T.Mesh(footGeo,new T.MeshStandardMaterial({color:colors.pole,roughness:.88}));foot.name='utility-grounded-foot';foot.userData.detailKind='poles';group.add(foot);feet.push(foot);
@@ -28,15 +29,16 @@ export function createUtilityNetwork(plan,elevation){
   box(...at(-.15,0,1.8),.02,.28,.14,angle,colors.label,'mortar');
   if(id%3!==1)ring(...at(-.24,.1,6.05),.23,.024,angle,colors.dark);
   if(p.kind==='distribution'&&id%3===0){const q=at(-.43,0,5.05);cylinder(...q,.235,.235,.73,colors.box,'metal');cylinder(q[0],q[1]+.40,q[2],.265,.265,.07,colors.metal,'metal');for(const v of [-.12,.12])cylinder(q[0]+ux*v,q[1]+.5,q[2]+uz*v,.045,.05,.14,colors.ceramic,'metal',8);rod(at(-.12,0,4.6),at(-.7,0,4.6),.04,colors.metal);}
+  if(p.lamp){rod(at(0,0,5.4),at(-.75,0,5.8),.045,colors.metal);rod(at(-.75,0,5.8),at(-1.25,0,5.8),.045,colors.metal);box(...at(-1.25,0,5.72),.55,.12,.25,angle,colors.dark);box(...at(-1.25,0,5.65),.45,.025,.19,angle,0xe8dcc0);}
   // Pole shaft is a walking obstacle, with a tight footprint rather than a road-sized AABB.
   const fp=Array.from({length:12},(_,i)=>[x+Math.cos(i*Math.PI/6)*(r+.05),z+Math.sin(i*Math.PI/6)*(r+.05)]);colliders.push(...fp.map((a,i)=>({a,b:fp[(i+1)%fp.length],width:.025})));
   proxies.push([[-r,-r],[r,-r],[-r,r],[r,r]].flatMap(([dx,dz])=>[[x+dx,y,z+dz],[x+dx,y+H,z+dz]]));
  }
- for(const e of plan.spans){const a=plan.poles[e.a],b=plan.poles[e.b],ay=elevation(a.x,a.z),by=elevation(b.x,b.z);
+ for(const e of plan.spans){const a=plan.poles[e.a],b=plan.poles[e.b];if(!visibleObject((a.x+b.x)/2,(a.z+b.z)/2,Math.max(a.poleHeight,b.poleHeight),Math.hypot(a.x-b.x,a.z-b.z)/2,elevation((a.x+b.x)/2,(a.z+b.z)/2),false))continue;const ay=elevation(a.x,a.z),by=elevation(b.x,b.z);
   for(const off of [-.18,-.55,-.92])cable([a.x+a.nx*off,ay+a.poleHeight-.59,a.z+a.nz*off],[b.x+b.nx*off,by+b.poleHeight-.59,b.z+b.nz*off],.012,Math.min(.55,e.length*.016));
   for(const off of [-.04,.04])cable([a.x-a.nx*.16+a.ux*off,ay+6.5,a.z-a.nz*.16+a.uz*off],[b.x-b.nx*.16+b.ux*off,by+6.5,b.z-b.nz*.16+b.uz*off],.021,Math.min(.55,e.length*.016));
  }
- for(const d of plan.drops){const p=plan.poles[d.pole];cable([p.x-p.nx*.16,elevation(p.x,p.z)+6.35,p.z-p.nz*.16],d.end,.011,.16);}
+ for(const d of plan.drops){const p=plan.poles[d.pole];if(!visibleObject((p.x+d.end[0])/2,(p.z+d.end[2])/2,7,Math.hypot(p.x-d.end[0],p.z-d.end[2])/2,elevation(p.x,p.z),false))continue;cable([p.x-p.nx*.16,elevation(p.x,p.z)+6.35,p.z-p.nz*.16],d.end,.011,.16);}
  for(const {color,kind,gs} of buckets.values()){const m=new T.Mesh(mergeGeometries(gs,false),new T.MeshStandardMaterial({color,roughness:.88}));m.name='utility-'+kind;m.userData.detailKind=kind;group.add(m);gs.forEach(g=>g.dispose());}
  for(const [color,gs] of lines){const c=new T.Color(color).multiplyScalar(.48),m=new T.LineSegments(mergeGeometries(gs,false),new T.LineBasicMaterial({color:c}));m.userData.faceLineColor=c.getHex();group.add(m);gs.forEach(g=>g.dispose());}
  group.userData={...plan.qa,walkObstacles:colliders,placementProxies:proxies};

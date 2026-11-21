@@ -1,15 +1,17 @@
 import * as T from 'three';
-import {FacadeBatch,facadeStyles} from './korean-facades.js?v=151';
+import {FacadeBatch,facadeStyles} from './korean-facades.js?v=masonry19';
+import {getFacadeTexture,wallTextureFor} from './facade-textures.js?v=masonry19';
 import {rooftopCatalog,rooftopDoorX} from './rooftop-plan.js?v=151';
 export {rooftopCatalog};
 // Roof mass and door stay in every LOD; only small fittings disappear at distance.
 export function emitRooftop(batch,plan,style){
  const {x,z,top,w,d,h,angle,kind,variation}=plan,c=Math.cos(angle),s=Math.sin(angle);
  const out=batch.writer([x,top+.025,z],c,s,-s,c),B=out.box,R=out.rod;
- const wall=kind==='brick'&&style.pattern!=='brick'&&variation%2===0?0xb1a394:style.wall;
+ const wall=style.wall,textureId=wallTextureFor(style),meters=getFacadeTexture(textureId).userData.meters;
+ const W=(xx,y,zz,ww,hh,dd,color=wall,edge=true)=>B(xx,y,zz,ww,hh,dd,color,edge,false,textureId);
  const slab=[0xb5b8b0,0xaab7b1,0xc2c0b4][variation%3],metal=[0x667d78,0x777e81,0x6d736b][variation%3],door=[0x4f6d62,0x667578,0x7c776b,0x606b76][variation%4];
- function face(vertices,color){const p=vertices.map(([xx,y,zz])=>new T.Vector3(x+c*xx-s*zz,top+.025+y,z+s*xx+c*zz)),n=p[1].clone().sub(p[0]).cross(p[2].clone().sub(p[0])).normalize();const bucket=batch.bucket(color);for(let i=1;i<p.length-1;i++)for(const v of [p[0],p[i],p[i+1]]){bucket.p.push(v.x,v.y,v.z);bucket.n.push(n.x,n.y,n.z);bucket.inkIds.push(batch.inkObjectId??0);}}
- function flat(xx,zz,ww,dd,hh,color=wall){B(xx,hh/2,zz,ww,hh,dd,color,true);B(xx,hh+.075,zz,ww+.24,.15,dd+.24,slab,true);}
+ function face(vertices,color,textured=false){const p=vertices.map(([xx,y,zz])=>new T.Vector3(x+c*xx-s*zz,top+.025+y,z+s*xx+c*zz)),n=p[1].clone().sub(p[0]).cross(p[2].clone().sub(p[0])).normalize();const bucket=batch.bucket(textured?0xffffff:color,false,textured?textureId:null);for(let i=1;i<p.length-1;i++)for(const index of [0,i,i+1]){const v=p[index];bucket.p.push(v.x,v.y,v.z);bucket.n.push(n.x,n.y,n.z);bucket.inkIds.push(batch.inkObjectId??0);if(textured){const q=vertices[index];const localNX=c*n.x+s*n.z,localNZ=-s*n.x+c*n.z;bucket.uv.push((q[0]*localNZ-q[2]*localNX)/meters[0],q[1]/meters[1]);}}}
+ function flat(xx,zz,ww,dd,hh,color=wall){W(xx,hh/2,zz,ww,hh,dd,color);B(xx,hh+.075,zz,ww+.24,.15,dd+.24,slab,true);}
  function slopingCap(ww,dd,yAt,color){
   const corners=[[-ww/2,dd/2],[ww/2,dd/2],[ww/2,-dd/2],[-ww/2,-dd/2]],upper=corners.map(([xx,zz])=>[xx,yAt(zz),zz]),lower=upper.map(([xx,yy,zz])=>[xx,yy-.12,zz]);
   face(upper,color);face([...lower].reverse(),color);for(let i=0;i<4;i++){const j=(i+1)%4;face([lower[i],lower[j],upper[j],upper[i]],color);}
@@ -18,22 +20,21 @@ export function emitRooftop(batch,plan,style){
   flat(0,0,w,d,h);
   if(kind==='brick'){
    // Low coping around the access-room roof, with a single clean cap line.
-   for(const side of [-1,1])B(side*(w/2-.065),h+.29,0,.13,.28,d,wall,true);
-   for(const side of [-1,1])B(0,h+.29,side*(d/2-.065),w-.26,.28,.13,wall,true);
-   out.detail(1,()=>{for(let y=.45;y<h-.15;y+=.45)B(0,y,d/2+.009,w,.009,.012,style.joint,false);});
+   for(const side of [-1,1])W(side*(w/2-.065),h+.29,0,.13,.28,d);
+   for(const side of [-1,1])W(0,h+.29,side*(d/2-.065),w-.26,.28,.13);
   }
  }else if(kind==='shed'||kind==='hatch'){
-  B(0,h/2,0,w,h,d,kind==='hatch'?slab:wall,true);
+  W(0,h/2,0,w,h,d);
   const rise=kind==='hatch'?.46:.50;
-  face([[-w/2,h,d/2],[-w/2,h+rise,-d/2],[-w/2,h,-d/2]],wall);
-  face([[w/2,h,-d/2],[w/2,h+rise,-d/2],[w/2,h,d/2]],wall);
-  B(0,h+rise/2,-d/2+.025,w,rise,.05,wall,false);
+  face([[-w/2,h,d/2],[-w/2,h+rise,-d/2],[-w/2,h,-d/2]],wall,true);
+  face([[w/2,h,-d/2],[w/2,h+rise,-d/2],[w/2,h,d/2]],wall,true);
+  W(0,h+rise/2,-d/2+.025,w,rise,.05,wall,false);
   slopingCap(w+.28,d+.28,zz=>h+.14+rise*(d/2-zz)/d,metal);
   out.detail(1,()=>{for(const xx of [-w*.30,0,w*.30])R([xx,h+.16,d/2+.14],[xx,h+.16+rise,-d/2-.14],.015,slab,4);});
  }else if(kind==='gable'){
-  B(0,h/2,0,w,h,d,wall,true);const rise=.62;
-  face([[-w/2,h,d/2],[w/2,h,d/2],[0,h+rise,d/2]],wall);
-  face([[w/2,h,-d/2],[-w/2,h,-d/2],[0,h+rise,-d/2]],wall);
+  W(0,h/2,0,w,h,d);const rise=.62;
+  face([[-w/2,h,d/2],[w/2,h,d/2],[0,h+rise,d/2]],wall,true);
+  face([[w/2,h,-d/2],[-w/2,h,-d/2],[0,h+rise,-d/2]],wall,true);
   const ww=w/2+.16,dd=d/2+.16;
   for(const side of [-1,1]){
    const roof=[[-side*ww,h+.09,dd],[0,h+rise+.14,dd],[0,h+rise+.14,-dd],[-side*ww,h+.09,-dd]];
@@ -44,7 +45,7 @@ export function emitRooftop(batch,plan,style){
   R([0,h+rise+.14,-dd],[0,h+rise+.14,dd],.045,slab);
  }else if(kind==='elbow'){
   // Two touching volumes form an L; roof caps stop at the shared seam.
-  B(0,h/2,-d*.265,w,h,d*.47,wall,true);B(-w*.21,h/2,d*.235,w*.58,h,d*.53,wall,true);
+  W(0,h/2,-d*.265,w,h,d*.47);W(-w*.21,h/2,d*.235,w*.58,h,d*.53);
   B(0,h+.075,-d*.265-.06,w+.24,.15,d*.47+.12,slab,true);
   B(-w*.21,h+.075,d*.235+.06,w*.58+.24,.15,d*.53+.12,slab,true);
  }else if(kind==='stepped'){
@@ -73,4 +74,4 @@ export function emitRooftop(batch,plan,style){
   out.detail(1,()=>{R([w*.27,yy,-d*.25],[w*.27,yy+.48,-d*.25],.07,metal);B(w*.27,yy+.50,-d*.25,.22,.055,.22,metal,false);});
  }
 }
-export function createRooftopAsset(id){const r=rooftopCatalog.find(r=>r.id===id);if(!r)throw Error('Unknown rooftop: '+id);const batch=new FacadeBatch();batch.inkObjectId=new T.Object3D().id;const i=rooftopCatalog.indexOf(r);const plan={...r,kind:id,x:0,z:0,top:0,angle:0,variation:i*7};emitRooftop(batch,plan,facadeStyles[i%6]);const group=batch.finish(r.name);group.userData={...r,units:'meters',procedural:true};return group;}
+export function createRooftopAsset(id,options={}){const r=rooftopCatalog.find(r=>r.id===id);if(!r)throw Error('Unknown rooftop: '+id);const batch=new FacadeBatch();batch.inkObjectId=new T.Object3D().id;const i=rooftopCatalog.indexOf(r);const plan={...r,kind:id,x:0,z:0,top:0,angle:0,variation:i*7};emitRooftop(batch,plan,{...facadeStyles[options.styleIndex??i%6],...(options.wallTexture?{wallTexture:options.wallTexture}:{})});const group=batch.finish(r.name);group.userData={...r,units:'meters',procedural:true};return group;}

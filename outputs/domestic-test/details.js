@@ -1,14 +1,33 @@
-import {emitFacility,addFacilityLabels} from './facilities/models.js';
+import {WINDOW_RECESS,windowOpening,cutBuildingWindows,auditWindowOpenings} from './window-recess.js?v=recess22';
+import {emitFacadeTexture} from './facade-textures.js?v=masonry19';
+import {emitFacility,addFacilityLabels} from './facilities/models.js?v=building-edit1';
 import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=151';
 import * as T from 'three';
 import {addBoundaryRibbon} from './boundary-geometry.js?v=151';
 import {footprintHeights} from './support-geometry.js?v=151';
 import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=151';
-import {emitRooftop} from './rooftops.js?v=151';
+import {emitRooftop} from './rooftops.js?v=masonry19';
 import {windowLightBand} from './environment-policy.js?v=151';
-import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=151';
+import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=recess22';
 export function createDetails(buildings,elevation,architecture={structures:[]},options={}){
+ const recessed=!!options.shells&&options.recessedWindows!==false,windowOpenings=[];
  const gasNetworks=[],nightWindowSources=[],windowBands=Array(16).fill(0),batch=new FacadeBatch(options.minimumLOD||0),spots=[],placementProxies=[],windowTypes={},counts={windows:0,skippedNarrowWindows:0,doors:0,roofs:0,aircons:0,downpipes:0,guardWindows:0,doorCanopies:0,shelteredDoors:0};
+ // Opt-in ownership for ground-floor replacement. Ordinary callers are unchanged.
+ const lineOwners=new Map();
+ if(options.trackGroundOwners){
+  const bucket=batch.bucket.bind(batch),lineBucket=batch.lineBucket.bind(batch),finish=batch.finish.bind(batch);
+  batch.bucket=(...args)=>{const original=bucket(...args);if(!batch.groundUtility)return original;const key='ground-utility:'+args.join(':')+':'+batch.maxLOD;if(!batch.parts.has(key))batch.parts.set(key,{...original,p:[],n:[],inkIds:[],groundUtility:true});return batch.parts.get(key);};
+  batch.lineBucket=color=>{let positions;
+   if(batch.groundUtility){const key='ground-utility:'+color+':'+batch.maxLOD;if(!batch.lines.has(key))batch.lines.set(key,{color,maxLOD:batch.maxLOD,p:[],groundUtility:true});positions=batch.lines.get(key).p;}else positions=lineBucket(color);
+   if(!lineOwners.has(positions))lineOwners.set(positions,[]);
+   return {push(...values){positions.push(...values);for(let i=0;i<values.length;i+=3)lineOwners.get(positions).push(batch.inkObjectId??0);}};
+  };
+  batch.finish=(...args)=>{const group=finish(...args),meshes=group.children.filter(o=>o.isMesh),lines=group.children.filter(o=>o.isLineSegments);let i=0;
+   for(const part of batch.parts.values())meshes[i++].userData.groundUtility=!!part.groundUtility;i=0;
+   for(const part of batch.lines.values()){lines[i].geometry.setAttribute('inkObjectId',new T.Float32BufferAttribute(lineOwners.get(part.p)||[],1));lines[i++].userData.groundUtility=!!part.groundUtility;}
+   return group;
+  };
+ }
  const rooftopPlans=planRooftops(buildings),roofsByBuilding=new Map(rooftopPlans.map(p=>[p.buildingIndex,p]));
  const households=new Map((architecture.households||[]).map(h=>[h.owner,h]));
  const styleCounts=Array(6).fill(0),boxes=buildings.map(b=>({b,minX:Math.min(...b.points.map(p=>p[0])),maxX:Math.max(...b.points.map(p=>p[0])),minZ:Math.min(...b.points.map(p=>p[1])),maxZ:Math.max(...b.points.map(p=>p[1]))}));
@@ -18,9 +37,9 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
  for(const [buildingIndex,b] of buildings.entries()){
   if(b.arterialKiosk||(options.owners&&!options.owners.has(b.seed)))continue;
   batch.inkObjectId=b.inkObjectId;
-  if(b.facility){counts.windows+=emitFacility(batch,b,buildings,elevation).windows;continue;}
+  if(b.facility){counts.windows+=emitFacility(batch,b,buildings,elevation,recessed?{windowOpenings}:{}).windows;continue;}
   const gasFaces=[];
-  const {points,top,base,floor,levels,seed,holes}=b,style=facadeStyles[Math.abs(seed)%6],covers=architecture.structures.filter(s=>s.owner===seed&&s.roofKind!=='none'),annexes=architecture.structures.filter(s=>s.owner===seed&&['shed','workshop'].includes(s.type));styleCounts[Math.abs(seed)%6]++;
+  const {points,top,base,floor,levels,seed,holes}=b,style=facadeStyles[b.styleIndex??Math.abs(seed)%6],covers=architecture.structures.filter(s=>s.owner===seed&&s.roofKind!=='none'),annexes=architecture.structures.filter(s=>s.owner===seed&&['shed','workshop'].includes(s.type));styleCounts[Math.abs(seed)%6]++;
   let signed=0;for(let i=0;i<points.length;i++){const a=points[i],c=points[(i+1)%points.length];signed+=a[0]*c[1]-c[0]*a[1]}const sign=signed>=0?1:-1;
   const front=Number.isInteger(b.frontEdge)?b.frontEdge:points.reduce((k,p,i)=>Math.hypot(points[(i+1)%points.length][0]-p[0],points[(i+1)%points.length][1]-p[1])>Math.hypot(points[(k+1)%points.length][0]-points[k][0],points[(k+1)%points.length][1]-points[k][1])?i:k,0);
   for(let i=0;i<points.length;i++){
@@ -30,7 +49,7 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
    const sheltered=u=>covers.some(s=>inside(a[0]+ux*u+nx*.38,a[1]+uz*u+nz*.38,s.footprint));
    const groundAt=u=>elevation(a[0]+ux*u+nx*.3,a[1]+uz*u+nz*.3);
    const facadeClear=(u,depth=.8)=>!occupied(a[0]+ux*u+nx*depth,a[1]+uz*u+nz*depth,seed);
-   B(L/2,top+.29,0,L,.58,.18,style.wall,true);B(L/2,top+.61,0,L+.025,.065,.28,0xc0beb0,false);
+   if(!b.continuousParapet){B(L/2,top+.29,0,L,.58,.18,style.wall,true);B(L/2,top+.61,0,L+.025,.065,.28,0xc0beb0,false);}
    const exposed=[.2,.5,.8].some(t=>facadeClear(L*t));if(!exposed)continue;
    // Distant facades keep the color, window rhythm and night lights, without
    // generating sash solids, mortar, equipment or tiny frame components.
@@ -49,9 +68,9 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
    const arterialFace=(b.arterialFacades||[]).find(p=>p.edge===i);
    const shops=(b.storefronts||[]).filter(p=>p.edge===i);
    const shopOpening=p=>[p.lo-.12,p.hi+.12,p.groundMin-.05,p.position[1]+p.height+.12];
-   const shopRects=shops.map(shopOpening);
+   const shopRects=shops.map(shopOpening);if(b.groundOpening&&i===b.frontEdge)shopRects.push([b.groundOpening[0]-.02,b.groundOpening[0]+b.groundOpening[1]+.02,b.groundOpeningBase-.02,b.groundOpeningBase+2.81]);
    const shopHits=(lo,hi,bottom,ceil)=>shopRects.some(r=>hi>r[0]&&lo<r[1]&&ceil>r[2]&&bottom<r[3]);
-   const openings=shopRects.slice();const isFront=i===front,entry=isFront?(b.frontage?.entry??L/2):null;
+   const windowCuts=[],openings=shopRects.slice();const isFront=i===front,entry=isFront?(b.frontage?.entry??L/2):null;
    // Long horizontal sashes, smaller wet-room windows, and a distinct stair column.
    const bays=Math.max(1,Math.floor((L-.6)/3.35)),space=(L-.6)/bays;
    for(let f=0;f<levels;f++){
@@ -63,13 +82,14 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
       const x=.075+(k+.5)*span,w=span-.16,h=Math.max(1.4,fy+commercialFloor-.65-g);
       if(shopHits(x-w/2,x+w/2,g,fy+3))continue;
       B(x,g+.12,.08,w,.24,.12,0x758582,false);
+      if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],x,g+.25+h/2,w,h,style.wall));
       const panes=Math.max(2,Math.round(w/1.2)),pw=w/panes;
       for(let j=0;j<panes;j++){
-       const xx=x-w/2+(j+.5)*pw;out.lit(windowLightBand(seed+i*31+k),()=>Q(xx,g+.25+h/2,.12,pw-.05,h,0x64878b,false));
-       B(xx-pw/2,g+.25+h/2,.15,.04,h,.06,0x3e5357,false);
-       if(j===1)B(xx+pw*.3,g+1.20,.19,.025,.44,.035,0xaabbb5,false);
+       const xx=x-w/2+(j+.5)*pw;out.lit(windowLightBand(seed+i*31+k),()=>Q(xx,g+.25+h/2,recessed?-.147:.12,pw-.05,h,0x64878b,false));
+       B(xx-pw/2,g+.25+h/2,recessed?-.115:.15,.04,h,.06,0x3e5357,false);
+       if(j===1)B(xx+pw*.3,g+1.20,recessed?-.075:.19,.025,.44,.035,0xaabbb5,false);
       }
-      B(x+w/2,g+.25+h/2,.15,.04,h,.06,0x3e5357,false);
+      B(x+w/2,g+.25+h/2,recessed?-.115:.15,.04,h,.06,0x3e5357,false);
       B(x,fy+commercialFloor-.19,.15,w,.35,.22,k%2?0xa3816e:0xc3cbc3,false);B(x,fy+commercialFloor-.38,.19,w,.055,.24,k%2?0x8c4740:0x637d6b,false);
       out.detail(1,()=>{B(x,g+.028,.34,w,.055,.55,0x9ca79f,false);for(const xx of [x-w*.4,x+w*.4])B(xx,fy+commercialFloor-.47,.23,.16,.06,.12,0xd4dacb,false);});
       openings.push([x-w/2,x+w/2,g,fy+commercialFloor]);counts.windows+=panes;windowBands[windowLightBand(seed+i*31+k)]+=panes;
@@ -84,11 +104,11 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
      const count=Math.max(1,Math.ceil(ww/1.35)),bay=ww/count;
      for(let k=0;k<count;k++){
       const x=start+(k+.5)*bay,h=glassHeight,w=bay-.052,y=glassBottom+h/2;
-      out.lit(windowLightBand(seed*997+i*131+f*31+k),()=>Q(x,y,.090,w,h,[0x597b87,0x658b96,0x71939a][(k+f)%3],false));
+      if(recessed){windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],x,y,w,h,style.wall));emitWindow(out.at(x,y,0),'white-slider',w,h,k,0x485e64,seed*997+i*131+f*31+k,{recess:WINDOW_RECESS,sill:false,accessories:false});}else out.lit(windowLightBand(seed*997+i*131+f*31+k),()=>Q(x,y,.090,w,h,[0x597b87,0x658b96,0x71939a][(k+f)%3],false));
       counts.windows++;windowBands[windowLightBand(seed*997+i*131+f*31+k)]++;windowTypes['commercial-glass']=(windowTypes['commercial-glass']||0)+1;
       B(start+k*bay,glassBottom+h/2,.11,.044,h,.055,0x485e64,false);
-      if(ribbon)out.detail(1,()=>B(x,glassBottom+.43,.12,w,.035,.035,0x485e64,false));
-      if(!ribbon&&f<4&&(k+f)%7===0)Q(x,glassBottom+.32,.13,w*.9,.48,[0xc0c7bd,0x527c8e,0x9e665d][f%3],false);
+      if(ribbon)out.detail(1,()=>B(x,glassBottom+.43,recessed?-.105:.12,w,.035,.035,0x485e64,false));
+      if(!ribbon&&f<4&&(k+f)%7===0)Q(x,glassBottom+.32,recessed?-.10:.13,w*.9,.48,[0xc0c7bd,0x527c8e,0x9e665d][f%3],false);
      }
      B(end,glassBottom+glassHeight/2,.11,.044,glassHeight,.055,0x485e64,false);
      for(const yy of [glassBottom-.025,glassBottom+glassHeight+.025])B(center,yy,.11,ww,.05,.055,0x485e64,false);
@@ -101,7 +121,7 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
      if(f===0&&isStair)continue;
      const wet=!isStair&&bays>2&&k===((Math.abs(seed)+i)%bays),veranda=!isStair&&!wet&&isFront&&levels>=3&&k%3===0;
      let id=isStair?'stair':wet?'frosted':veranda?'veranda':style.frame===0x564c43?'brown-slider':space>3.7?'wide-slider':'white-slider';
-     if(f===0&&!wet&&!isStair)id=(seed+k)%3===0?'awning':'guard';else if(!wet&&!isStair&&!veranda&&f>0&&levels>2&&(seed+i+k)%9===0)id='bay';
+     if(f===0&&b.modernGround)id=wet?'frosted':'white-slider';else if(f===0&&!wet&&!isStair)id=(seed+k)%3===0?'awning':'guard';else if(!wet&&!isStair&&!veranda&&f>0&&levels>2&&(seed+i+k)%9===0)id='bay';
      let w=isStair?.78:wet?.82:veranda?Math.min(3.35,space*.88):Math.min(id==='bay'?2.65:space>3.7?2.65:2.05,space*.79),h=isStair?1.85:wet?.62:veranda?1.85:id==='bay'?1.6:1.35;
      // Short footprint steps are wall returns, not another full window bay.
      // Keep both jambs on the owning wall, with enough room for the frame.
@@ -115,18 +135,19 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
      if(f===0&&annexes.some(s=>inside(wx+nx*.25,wz+nz*.25,s.footprint)&&y-h/2<Math.max(...s.footprint.map(p=>elevation(...p)))+(s.roofHeight??2.7)+.2))continue;
      if(id==='awning'&&(sheltered(u)||levels>=4))id='guard';
      if(id==='bay'&&!facadeClear(u,.65))id='white-slider';
-     openings.push([u-w/2-.13,u+w/2+.13,y-h/2-.17,y+h/2+.16]);emitWindow(out.at(u,y,0),id,w,h,Math.abs(seed)+k+f,style.frame,seed*997+i*131+f*31+k);windowBands[windowLightBand(seed*997+i*131+f*31+k)]++;proxy(u,y,id==='bay'?.28:.23,w+.18,h+.18,id==='awning'?.8:id==='bay'?.6:.48);counts.windows++;windowTypes[id]=(windowTypes[id]||0)+1;if(id==='guard')counts.guardWindows++;
+     if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],u,y,w,h,style.wall));
+     openings.push([u-w/2-.13,u+w/2+.13,y-h/2-.17,y+h/2+.16]);emitWindow(out.at(u,y,0),id,w,h,Math.abs(seed)+k+f,style.frame,seed*997+i*131+f*31+k,recessed?{recess:WINDOW_RECESS}:{});windowBands[windowLightBand(seed*997+i*131+f*31+k)]++;proxy(u,y,id==='bay'?.28:.23,w+.18,h+.18,id==='awning'?.8:id==='bay'?.6:.48);counts.windows++;windowTypes[id]=(windowTypes[id]||0)+1;if(id==='guard')counts.guardWindows++;
      if(f===1&&!wet&&!isStair&&(seed+k+i)%3===0&&facadeClear(u,.75)&&!shopHits(u-.85,u+.85,fy-.4,fy+.8)){
       emitAircon(out,u,fy+.40,seed+k);proxy(u,fy+.2,.30,1.45,1.2,.6);counts.aircons++;openings.push([u-.85,u+.85,fy-.4,fy+.75]);
      }
      if(f===0&&b.basementLevels>0&&!wet&&!isStair&&y-h/2-ground>1.0&&(seed+k)%2===0){
-      const bh=.64,bw=Math.min(1.48,w),by=ground+.43;emitWindow(out.at(u,by,0),'basement',bw,bh,seed,style.frame,seed*991+i*137+k);windowBands[windowLightBand(seed*991+i*137+k)]++;openings.push([u-bw/2-.14,u+bw/2+.14,ground+.03,by+bh/2+.15]);proxy(u,by,.2,bw+.18,bh+.18,.4);counts.windows++;counts.guardWindows++;windowTypes.basement=(windowTypes.basement||0)+1;
+      const bh=.64,bw=Math.min(1.48,w),by=ground+.43;if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],u,by,bw,bh,style.wall));emitWindow(out.at(u,by,0),'basement',bw,bh,seed,style.frame,seed*991+i*137+k,recessed?{recess:WINDOW_RECESS}:{});windowBands[windowLightBand(seed*991+i*137+k)]++;openings.push([u-bw/2-.14,u+bw/2+.14,ground+.03,by+bh/2+.15]);proxy(u,by,.2,bw+.18,bh+.18,.4);counts.windows++;counts.guardWindows++;windowTypes.basement=(windowTypes.basement||0)+1;
      }
      if(y-ground<4.5)nightWindowSources.push({position:[wx+nx*(id==='bay'?.46:.20),y,wz+nz*(id==='bay'?.46:.20)],normal:[nx,nz],band:windowLightBand(seed*997+i*131+f*31+k),heightAboveGround:y-ground});
      if(isFront&&f<=1&&!wet)spots.push({owner:seed,id,style:style.name,x:wx,z:wz,y,nx,nz,ux,uz,w,h,ground});
     }
    }
-   if(!arterialFace&&isFront&&L>2.4&&facadeClear(entry)&&!shopHits(entry-1,entry+1,groundAt(entry),groundAt(entry)+2.6)){
+   if(b.hasEntry!==false&&!b.openGround&&!arterialFace&&isFront&&L>2.4&&facadeClear(entry)&&!shopHits(entry-1,entry+1,groundAt(entry),groundAt(entry)+2.6)){
     const w=1.34,h=2.12,u=Math.max(.85,Math.min(L-.85,entry)),world=(du,v)=>[a[0]+ux*(u+du)+nx*v,a[1]+uz*(u+du)+nz*v],g=footprintHeights((du,dv)=>world(du,.26+dv),w+.28,.45,elevation).high;
     B(u,g+h/2+.1,.06,w+.16,h+.18,.15,0x9b9f93,true);B(u,g+h/2+.1,.16,w,h,.065,levels>2?0x757c71:0x41584d,true);
     if(levels>2){B(u,g+1.48,.202,w-.18,1.05,.025,0x5c7976,false);B(u,g+1.05,.23,.035,1.98,.032,0xb1b7ac,false);}else for(let j=0;j<5;j++)B(u,g+.32+j*.34,.205,w-.18,.23,.024,0x334a42,false);
@@ -151,7 +172,12 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
    }
    // Surface-only joints are omitted from physical collision indexing.
    const bottom=Math.max(base+.10,Math.min(groundAt(.15),groundAt(L-.15))+.10),rise=top-bottom;
-   if(!arterialFace&&style.pattern!=='render'&&rise>0){
+   if(!arterialFace&&rise>0&&options.wallTextures!==false){
+    const wallBottom=Math.max(base,Math.min(groundAt(.15),groundAt(L-.15))),cuts=[...shopRects,...windowCuts],floorTop=(b.groundOpeningBase??base)+3;
+    if(b.groundWallTexture){emitFacadeTexture(batch,out,{width:L,bottom:wallBottom,top:Math.min(floorTop,top),id:b.groundWallTexture,cuts});if(top>floorTop)emitFacadeTexture(batch,out,{width:L,bottom:floorTop,top,id:b.wallTexture||style.textureId,cuts});}
+    else emitFacadeTexture(batch,out,{width:L,bottom:wallBottom,top,id:b.wallTexture||style.textureId,cuts});
+   }
+   if(options.wallTextures===false&&!arterialFace&&style.pattern!=='render'&&rise>0){
     const rh=style.pattern==='brick'?.17:style.pattern==='tile'?.26:.48,cw=style.pattern==='brick'?.39:style.pattern==='tile'?.52:.95,thick=style.pattern==='brick'?.008:.009;
     for(let row=0,y=bottom;y<top;row++,y+=rh){
      for(const [lo,hi] of segments(.04,L-.04,openings.filter(r=>y>r[2]&&y<r[3]).map(r=>[r[0],r[1]])))batch.atLOD(style.pattern==='brick'&&row%3?0:1,()=>Q((lo+hi)/2,y,.014,hi-lo,thick,style.joint));
@@ -162,18 +188,20 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
     }
    }
    // One rainwater pipe per exposed facade. Thin clamps and an offset at the eaves.
-   if(!arterialFace&&L>3&&facadeClear(.22,.3)&&!shopHits(.12,.45,groundAt(.22),top)){
-    const x=.22,g=groundAt(x),pipe=0xb4b6a7;R([x,top+.2,.18],[x,top-.35,.18],.044,pipe);R([x,top-.35,.18],[x+.10,top-.55,.10],.044,pipe);R([x+.10,top-.55,.10],[x+.10,g+.18,.10],.044,pipe);R([x+.10,g+.18,.10],[x+.10,g+.07,.27],.044,pipe);
+   if(!b.sideServices&&!arterialFace&&L>3&&facadeClear(.22,.3)&&!shopHits(.12,.45,groundAt(.22),top)){
+    const x=.22,g=b.openGround?base:groundAt(x),pipe=0xb4b6a7;R([x,top+.2,.18],[x,top-.35,.18],.044,pipe);R([x,top-.35,.18],[x+.10,top-.55,.10],.044,pipe);R([x+.10,top-.55,.10],[x+.10,g+.18,.10],.044,pipe);R([x+.10,g+.18,.10],[x+.10,g+.07,.27],.044,pipe);
     batch.atLOD(1,()=>{for(let y=g+.65;y<top;y+=2.6)B(x+.10,y,.08,.13,.055,.14,0x777d73,false);});proxy(x+.08,(g+top)/2,.15,.23,top-g,.28);counts.downpipes++;
    }
-   if(!arterialFace)gasFaces.push({edge:i,a,L,ux,uz,nx,nz,isFront,clear:facadeClear(L/2,.35),openings,groundAt,proxy,facadeClear});
+   if(!b.sideServices&&!b.openGround&&!arterialFace)gasFaces.push({edge:i,a,L,ux,uz,nx,nz,isFront,clear:facadeClear(L/2,.35),openings,groundAt,proxy,facadeClear});
    // The continuous, corner-joined foundation is generated once by street.js.
    // Do not overlay a second row of flat blocks on a sloping wall base.
   }
   const gas=planGasNetwork(gasFaces,b);if(gas){const face=gasFaces.find(f=>f.edge===gas.face);gasNetworks.push(emitGasNetwork(batch,gas,face.proxy));}
   // The waterproof finish is painted on the building shell cap; no duplicate roof plane.
   const rooftop=roofsByBuilding.get(buildingIndex);
-  if(rooftop){emitRooftop(batch,rooftop,style);counts.roofs++;}
+  if(rooftop){emitRooftop(batch,rooftop,{...style,wallTexture:b.wallTexture||style.textureId});counts.roofs++;}
  }
- const group=batch.finish();addFacilityLabels(group,buildings.filter(b=>!options.owners||options.owners.has(b.seed)));let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!buildings[p.buildingIndex]?.facility).filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
+ const recessQA=recessed?cutBuildingWindows(options.shells,windowOpenings):null;
+ if(recessQA&&options.auditWindows)Object.assign(recessQA,auditWindowOpenings(options.shells,windowOpenings));
+ const group=batch.finish();addFacilityLabels(group,buildings.filter(b=>!options.owners||options.owners.has(b.seed)));let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={windowOpenings,recessQA,gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!buildings[p.buildingIndex]?.facility).filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
 }

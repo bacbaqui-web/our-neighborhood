@@ -43,6 +43,15 @@ export function connectedRuns(segments,tolerance=.15){
 // A single stitched ribbon: neighbouring spans reuse identical cross sections.
 // It can be a kerb, rail, or retaining wall, with independently shaped top/base.
 export function fittedRibbon(points,width,bottom,top,maxStep=.5){
+ // Polygon clipping can leave consecutive copies of the same corner.
+ // Remove zero-length spans before normalizing directions (otherwise 0 / 0).
+ const clean=[];
+ for(const p of points){
+  if(!Array.isArray(p)||!Number.isFinite(p[0])||!Number.isFinite(p[1]))throw new Error('fittedRibbon: non-finite path coordinate');
+  const last=clean.at(-1);if(!last||Math.hypot(p[0]-last[0],p[1]-last[1])>1e-6)clean.push(p);
+ }
+ if(clean.length<2)throw new Error('fittedRibbon: path needs two distinct points');
+ points=clean;
  const ps=[];
  for(let i=0;i<points.length-1;i++){
   const a=points[i],b=points[i+1],count=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/maxStep));
@@ -82,4 +91,29 @@ export function roofPlane(height,width,length,clearance){
  let origin=-Infinity;
  for(let z=-length/2;z<=length/2+.001;z+=length/12)for(const x of [-width/2,0,width/2])origin=Math.max(origin,height(x,z)-sx*x-sz*z+clearance);
  return (x,z)=>origin+sx*x+sz*z;
+}
+
+// Keep saved transit geometry in the same height frame as the displayed road.
+// Call before the original terrain sampler is replaced by the deformed terrain.
+export function rebaseArterialHeights(plan,delta){
+ if(!plan)return;
+ const flat=rows=>{for(let i=0;i<rows.length;i+=3)rows[i+1]+=delta(rows[i],rows[i+2]);};
+ for(const rows of Object.values(plan.decals||{}))flat(rows);
+ for(const landing of plan.landings||[])flat(landing.triangles);
+ for(const key of ['platforms','exits','furniture','vehicles','crossings','crosswalks']){
+  for(const item of plan[key]||[]){
+   const p=item.position;if(!p)continue;
+   const dy=delta(p[0],p[2]);p[1]+=dy;
+   if(Number.isFinite(item.entryHeight))item.entryHeight+=dy;
+  }
+ }
+ const grid=plan.supportTerrain;
+ if(grid)grid.heights=grid.heights.map((y,i)=>y+delta(grid.origin[0]+(i%grid.size)*grid.step,grid.origin[1]+Math.floor(i/grid.size)*grid.step));
+}
+
+export function rebaseMountedLights(plan,delta){
+ for(const light of plan?.lights||[]){
+  // Freestanding poles are resampled when built. Mounted lights retain offsets.
+  if(light.type==='wall'||light.type==='transit')light.root[1]+=delta(light.root[0],light.root[2]);
+ }
 }

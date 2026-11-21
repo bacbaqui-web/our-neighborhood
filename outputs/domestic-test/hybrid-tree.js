@@ -1,3 +1,4 @@
+import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
 import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from './tree-species.js?v=151';
 import {createCanopyLayers} from './canopy-layers.js?v=151';
@@ -14,9 +15,12 @@ export async function loadCanopyTexture(id=null){
 }
 export async function loadSpeciesTextures(){return new Map(await Promise.all(TREE_SPECIES.map(async s=>[s.id,await loadCanopyTexture(s.id)])));}
 // One atlas batch per species: shared geometry/material within each species.
-export function createHybridTrees(plans,texture){
+export function createHybridTrees(plans,texture,overrides=new Map()){
+ plans=plans.filter(p=>visibleRecord(p,()=>p.root[1]));
  if(!(texture instanceof Map))return createHybridTreeBatch(plans,texture);
- const ids=[...new Set(plans.map(p=>p.species))],batches=ids.map(id=>createHybridTreeBatch(plans.filter(p=>p.species===id),texture.get(id)));
+ const ordinary=plans.filter(p=>!overrides.has(p.id));
+ const ids=[...new Set(ordinary.map(p=>p.species))],batches=ids.map(id=>createHybridTreeBatch(ordinary.filter(p=>p.species===id),texture.get(id)));
+ for(const plan of plans)if(overrides.has(plan.id))batches.push(createHybridTreeBatch([plan],overrides.get(plan.id)));
  const group=new T.Group();group.name='KoreanSpeciesCanopies';batches.forEach(b=>group.add(b.group));
  group.userData={prototypeTrees:plans.length,clusters:batches.reduce((n,b)=>n+b.leaves.length,0),rootAnchored:true,canopyPlans:batches.flatMap(b=>b.group.userData.canopyPlans)};
  const sunShadows={batches:batches.flatMap(b=>b.sunShadows.batches),stats:{},set(profile,on){batches.forEach(b=>b.sunShadows.set(profile,on));Object.assign(this.stats,{casters:batches.reduce((n,b)=>n+b.sunShadows.stats.casters,0),batches:this.batches.length});}};

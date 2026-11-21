@@ -15,6 +15,13 @@ count = total = 0
 for name in filter(None, files):
     source = ROOT / name
     relative = Path(name).relative_to('outputs')
+    # Old generated districts remain in the source archive. Publish their small
+    # manifests so old links can offer regeneration through the single entry.
+    if relative.parts[0]=='generated-neighborhoods' and relative.name!='manifest.json':
+        continue
+    # Reference photos and superseded comparison exports are not app assets.
+    if len(relative.parts)>1 and relative.parts[1] in {'apartment-research','first-batch-review'} and source.suffix!='.html':
+        continue
     # The allowlisted browser source bundle is packaged separately. Raw development scripts stay local.
     if 'generation' in relative.parts or source.suffix == '.py':
         continue

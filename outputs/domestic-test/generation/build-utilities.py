@@ -14,9 +14,29 @@ entrances=unary_union([LineString(y['entrance']).buffer(.9) for y in parcel['yar
 wall=unary_union([LineString(r['points']).buffer(.145) for r in street['wallRuns'] if r['style']!='villa-curb']+[LineString([r['a'],r['b']]).buffer(.145) for r in street['connections']]+[Polygon(p['footprint']) for p in street['piers']]+[Polygon(p[k]) for g in street['gates'] for p in g['pieces'] for k in ['post','leaf']])
 architecture=unary_union([Polygon(s['footprint']) for s in arch['structures']]);limit=box(*rules['localBounds'])
 forbidden=site.built.buffer(cfg['buildingClearance']).union(architecture.buffer(.25)).union(entrances.buffer(cfg['entranceClearance'])).union(wall.buffer(.11))
+surfaceFile=ROOT/'road-context.json'
+surfacePlan=json.loads(surfaceFile.read_text()) if surfaceFile.exists() else {}
+from shapely.geometry import shape
+service=None
+if surfacePlan.get('routePolicy') and surfacePlan.get('surfaces'):
+ surfaces={k:shape(v) for k,v in surfacePlan['surfaces'].items()}
+ service=surfaces['concrete'].union(surfaces['sidewalk'])
+ # Clipped surfaces may include line remnants; only area has a road boundary.
+ road=unary_union([surfaces[k] for k in ('asphalt','arterial','pavers') if k in surfaces]).buffer(0)
+def boundary_pair(pt,ux,uz):
+ # Opposite neighboring building fronts define an inferred boundary, not a legal lot line.
+ nearby=sorted((g.distance(pt),owner,g) for owner,g in site.buildings.items())[:6]
+ for i,(da,oa,a) in enumerate(nearby):
+  if da>12:continue
+  pa=nearest_points(pt,a)[1];ta=(pa.x-pt.x)*ux+(pa.y-pt.y)*uz
+  for db,ob,b in nearby[i+1:]:
+   pb=nearest_points(pt,b)[1];tb=(pb.x-pt.x)*ux+(pb.y-pt.y)*uz
+   if db<=12 and ta*tb<0 and abs(da-db)<1.0:return [oa,ob]
+ return None
 S.prepare(forbidden);S.prepare(road)
 # Follow the continuous boundaries of actual road polygons. Normal probes decide which side is public road.
-polygons=[road] if road.geom_type=='Polygon' else list(road.geoms);candidates=[]
+edgeRoad=site.road if service is not None else road
+polygons=[edgeRoad] if edgeRoad.geom_type=='Polygon' else list(edgeRoad.geoms);candidates=[]
 for polygon in polygons:
  for ring in [polygon.exterior,*polygon.interiors]:
   line=LineString(ring.coords)
@@ -24,12 +44,15 @@ for polygon in polygons:
    q=line.interpolate(float(t));qa=line.interpolate(max(0,float(t)-.8));qb=line.interpolate(min(line.length,float(t)+.8));L=qa.distance(qb)
    if L<.2:continue
    ux,uz=(qb.x-qa.x)/L,(qb.y-qa.y)/L;nx,nz=-uz,ux
-   if road.covers(Point(q.x+nx*.25,q.y+nz*.25)):nx,nz=-nx,-nz
-   if not road.covers(Point(q.x-nx*.55,q.y-nz*.55)):continue
-   for offset in cfg['edgeOffsets']:
+   if edgeRoad.covers(Point(q.x+nx*.25,q.y+nz*.25)):nx,nz=-nx,-nz
+   if not edgeRoad.covers(Point(q.x-nx*.55,q.y-nz*.55)):continue
+   for offset in ([-.36,-.5,-.7] if service is not None else cfg['edgeOffsets']):
     x,z=q.x+nx*offset,q.y+nz*offset;pt=Point(x,z);fp=pt.buffer(cfg['radius']+.08)
     if not limit.covers(fp) or fp.intersects(forbidden) or fp.intersects(road):continue
-    if road.boundary.distance(pt)>1:continue
+    if service is not None and not service.covers(fp):continue
+    pair=boundary_pair(pt,ux,uz)
+    if not pair:continue
+    if road.boundary.distance(pt)>4:continue
     if abs(site.height(x,z)-site.height(q.x-nx*.5,q.y-nz*.5))>.45:continue
     # Keep poles out of the actual corner, but favor stable long facade edges nearby.
     bend=0
@@ -42,11 +65,11 @@ for polygon in polygons:
     for d in np.arange(.5,14,.5):
      if not road.covers(Point(q.x-nx*d,q.y-nz*d)):break
      width=float(d)
-    candidates.append({'x':x,'z':z,'edge':[q.x,q.y],'ux':ux,'uz':uz,'nx':nx,'nz':nz,'width':width,'score':offset*3+site.built.distance(pt)*.05+bend*10,'height':site.height(x,z)});break
+    candidates.append({'x':x,'z':z,'edge':[q.x,q.y],'ux':ux,'uz':uz,'nx':nx,'nz':nz,'width':width,'boundaryOwners':pair,'score':abs(offset)*3+site.built.distance(pt)*.05+bend*10,'height':site.height(x,z)});break
 print('valid edge candidates',len(candidates),flush=True)
 # A sparse network: prefer continuing the same side of a street, with no shortcut through a block.
 wireForbidden=site.built.buffer(cfg['wireBuildingClearance']).union(architecture.buffer(.18));S.prepare(wireForbidden)
-nearRoad=road.buffer(1.4);S.prepare(nearRoad)
+nearRoad=site.road.buffer(1.4);S.prepare(nearRoad)
 def span(a,b):
  length=math.hypot(a['x']-b['x'],a['z']-b['z'])
  if length<cfg['minSpacing'] or length>cfg['maxSpan']:return None
@@ -114,6 +137,6 @@ for pole in poles:
   if y-site.height(end.x,end.y)<3.7:continue
   opts.append((dist,owner,end,y))
  for dist,owner,end,y in sorted(opts,key=lambda v:v[0])[:2]:drops.append({'pole':pole['id'],'owner':owner,'end':[end.x,y,end.y]})
-body=unary_union([Point(p['x'],p['z']).buffer(cfg['radius']) for p in poles]);legacy=REPORT/'placement-report.json';old_count=sum(p.get('pole',False) for p in json.load(open(legacy)).get('props_placements',[])) if legacy.exists() else None;qa={'oldImportedPoleGroups':old_count,'validCandidates':len(candidates),'poles':len(poles),'isolatedSelectionsOmitted':len(selected)-len(poles),'networkComponents':len(poles)-len(edges),'spans':len(edges),'houseDrops':len(drops),'wireFootprintClearanceChecked':True,'types':{k:sum(p['kind']==k for p in poles) for k in ['alley','distribution']},'roadBodyOverlapArea':body.intersection(road).area,'buildingBodyOverlapArea':body.intersection(site.built).area,'entranceBodyOverlapArea':body.intersection(entrances).area,'structureBodyOverlapArea':body.intersection(architecture).area,'wallBodyOverlapArea':body.intersection(wall).area,'minimumPoleDistance':min((math.hypot(a['x']-b['x'],a['z']-b['z']) for i,a in enumerate(poles) for b in poles[:i]),default=0),'minimumWireGroundClearance':min((e['minimumClearance'] for e in edges),default=0)}
+body=unary_union([Point(p['x'],p['z']).buffer(cfg['radius']) for p in poles]);legacy=REPORT/'placement-report.json';old_count=sum(p.get('pole',False) for p in json.load(open(legacy)).get('props_placements',[])) if legacy.exists() else None;qa={'boundaryRule':'opposite-neighbor-fronts; inferred','boundaryMatchedPoles':sum(bool(p.get('boundaryOwners')) for p in poles),'serviceStripOverlapArea':0 if service is None else body.difference(service).area,'oldImportedPoleGroups':old_count,'validCandidates':len(candidates),'poles':len(poles),'isolatedSelectionsOmitted':len(selected)-len(poles),'networkComponents':len(poles)-len(edges),'spans':len(edges),'houseDrops':len(drops),'wireFootprintClearanceChecked':True,'types':{k:sum(p['kind']==k for p in poles) for k in ['alley','distribution']},'roadBodyOverlapArea':body.intersection(road).area,'buildingBodyOverlapArea':body.intersection(site.built).area,'entranceBodyOverlapArea':body.intersection(entrances).area,'structureBodyOverlapArea':body.intersection(architecture).area,'wallBodyOverlapArea':body.intersection(wall).area,'minimumPoleDistance':min((math.hypot(a['x']-b['x'],a['z']-b['z']) for i,a in enumerate(poles) for b in poles[:i]),default=0),'minimumWireGroundClearance':min((e['minimumClearance'] for e in edges),default=0)}
 assert all(qa[k]<1e-8 for k in ['roadBodyOverlapArea','buildingBodyOverlapArea','entranceBodyOverlapArea','structureBodyOverlapArea','wallBodyOverlapArea'])
 out={'version':23,'source':rules['status'],'rules':cfg,'poles':poles,'spans':edges,'drops':drops,'qa':qa};(ROOT/'utilities.json').write_text(json.dumps(out,ensure_ascii=False,separators=(',',':')));(REPORT/'utility-validation-v23.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2));print(qa,flush=True)

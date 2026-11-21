@@ -62,7 +62,7 @@
       <section id="environmentControls">
         <h2>하늘 · 시간 · 골목 조명</h2>
         <div class="environment-row">
-          <select id="season" aria-label="계절" title="나무의 계절"><option value="spring">봄</option><option value="summer" selected>여름</option><option value="autumn">가을</option><option value="winter">겨울</option></select>
+          <select id="season" aria-label="계절" title="나무와 사람 옷의 계절"><option value="spring">봄</option><option value="summer" selected>여름</option><option value="autumn">가을</option><option value="winter">겨울</option></select>
           <select id="weather" aria-label="날씨"><option value="clear">맑음</option><option value="cloudy">흐림</option><option value="rain">비</option><option value="snow">눈</option></select>
           <select id="timeOfDay" aria-label="시간" title="한국 표준시 · 한 시간 단위"><option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option><option value="3">03:00</option><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12" selected>12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option></select>
         </div>
@@ -81,13 +81,13 @@
       <summary>데이터 · 생성 정보</summary>
       <p>행정안전부 주소기반 데이터 · 한국에스리 제공<br>데이터 기준 2026.07 / 서비스 갱신 2026.08</p>
       <p id="detailStats">디테일 생성 중…</p>
-      <p id="streetStats"></p><p id="yardStats"></p><p id="vegetationStats"></p><p id="peopleStats"></p>
+      <p id="streetStats"></p><p id="yardStats"></p><p id="vegetationStats"></p><p id="peopleStats" role="status"></p>
       <p id="billboardStats">사람·나무는 조명 거리와 건물·담장 가림을 반영합니다. 그림자는 발과 밑동에 고정됩니다.</p>
-      <p>주변 22km의 실제 표고로 산 능선을 만듭니다. 원경 건물과 보안등 위치는 가상 구성입니다. 시간과 날씨는 장면 연출용으로 선택하며 실제 시각·날씨를 자동으로 따라가지 않습니다. 비·눈은 내리는 표현이며 쌓임은 재현하지 않습니다.</p>
-      <p><a href="./vehicles.html" target="_blank">차량 에셋 목록</a> · <a href="./tree-library.html" target="_blank">한국 나무 10종 · 에셋 목록</a> · <a href="./tree-growth.html" target="_blank">나무 모양 조정</a></p>
+      <p>주변 22km의 실제 표고로 산 능선을 만듭니다. 선택한 구역 밖의 건물은 생략합니다. 가까운 지면은 완만한 임의 높낮이로 만들며, 보안등 위치는 가상 구성입니다. 시간과 날씨는 장면 연출용으로 선택하며 실제 시각·날씨를 자동으로 따라가지 않습니다. 비·눈은 내리는 표현이며 쌓임은 재현하지 않습니다.</p>
+      <p><a href="./asset-encyclopedia/?tab=car" target="_blank">차량 에셋 목록</a> · <a href="./asset-encyclopedia/?tab=tree" target="_blank">한국 나무 10종 · 에셋 목록</a> · <a href="./asset-encyclopedia/?tab=tree" target="_blank">나무 에셋 보기</a></p>
       <p>상가는 카카오 장소의 주소·좌표를 건물에 대응시킵니다. 직접 확인한 전면 외에는 업종별 참고 디자인입니다. 영업 중 간판·실내등이 켜지고, 업종별 21~22시 무렵 간판부터 꺼집니다. 편의점은 24시간 점등합니다. 영업시간은 실제 조회값이 아닌 연출용 기본값입니다.</p>
-      <p><a href="./storefronts.html" target="_blank">업종별 상가 · 6업종 18종 비교</a></p>
-      <p><a href="./rooftops.html" target="_blank">옥상 출입실 8종 크게 보기</a></p><p id="timeModelNote"></p><p id="appearanceStats">선의 두께는 화면 픽셀 기준입니다. PNG에는 현재 선·명암·안티앨리어싱이 반영됩니다. GLB에는 모델과 표현 설정을 저장하며, 화면 후처리 선은 별도 렌더러가 필요합니다.</p>
+      <p><a href="./asset-encyclopedia/?tab=building" target="_blank">업종별 상가 · 6업종 18종 비교</a></p>
+      <p><a href="./asset-encyclopedia/?tab=building" target="_blank">옥상 출입실 8종 크게 보기</a></p><p id="timeModelNote"></p><p id="appearanceStats">선의 두께는 화면 픽셀 기준입니다. PNG에는 현재 선·명암·안티앨리어싱이 반영됩니다. GLB에는 모델과 표현 설정을 저장하며, 화면 후처리 선은 별도 렌더러가 필요합니다.</p>
       <p><a href="https://gml.noaa.gov/grad/solcalc/solareqns.PDF" target="_blank" rel="noreferrer">태양 위치 계산: NOAA ↗</a></p>
       <p>건물 높이는 등록 지상층수 × 3m로 추정합니다. 창문·출입구·옥상·지붕은 가상 외관이며 실제 외관이나 실내를 복원하지 않았습니다.</p>
       <p>새 지역의 도로는 OpenFreeMap / OpenStreetMap, 지형은 Terrain Tiles에서 조회합니다. 도로 폭·포장·필지·소품은 추정이며 실제 세부 현장을 복원하지 않습니다. 기존 솔매로 동네는 보존됩니다.</p>
@@ -121,6 +121,6 @@
     </section>
   </div>
 </dialog>
-<script type="module" src="./app.js?v=apartment-gardens-154"></script>
+<script type="module" src="./app.js?v=visible-only12"></script>
 </body>
 </html>

@@ -146,7 +146,7 @@ export function createIllustrationRenderer(renderer){
    if(settings.lines&&(settings.outerWidth>0||settings.innerWidth>0)&&(metadataKey===null||metadataKey!==lastMetadataKey)){
     scene.traverseVisible(o=>{
      if(o.isMesh){const mats=Array.isArray(o.material)?o.material:[o.material];
-      if(mats.some(m=>m.transparent||m.isShaderMaterial)||o.userData.surfaceOverlay){hidden.push(o);o.visible=false;return;}
+      if(mats.some(m=>m.transparent||m.isShaderMaterial)||(o.userData.surfaceOverlay&&!o.userData.surfaceOccluder)){hidden.push(o);o.visible=false;return;}
       replaced.push([o,o.material]);const next=mats.map(m=>metadataMaterial(o,m));o.material=Array.isArray(o.material)?next:next[0];
      }else if(o.isSprite||o.isPoints||o.isLine){hidden.push(o);o.visible=false;}
     });

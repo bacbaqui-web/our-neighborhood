@@ -19,6 +19,7 @@ export function createBuildingShellGeometry(shape, base, top, wall, roof) {
   if (isRoof) roofVertices++;
  }
  geometry.setAttribute('color', new T.BufferAttribute(colors, 3));
+ geometry.userData.windowShell = true;
  geometry.userData.surfacePolicy = 'single-roof-cap';
  geometry.userData.roofTriangles = roofVertices / 3;
  return geometry;

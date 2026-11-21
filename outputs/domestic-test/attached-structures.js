@@ -1,3 +1,4 @@
+import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import {retiredLegacy} from './memo-scene.js?v=151';
 import * as T from 'three';
 import {fittedRibbon} from './terrain-fit.js?v=151';
@@ -11,7 +12,7 @@ export function renderAttachedStructures(plan,elevation){
  const group=new T.Group();group.name='facade-attached-architecture';const colliders=[],records=[],groundContacts=[],assetPlacements=[],supportQA={posts:0,plinths:0,wheelStops:0,groundStrips:0};
  const materials=new Map();function material(c,overlay=false){const key=c+':'+overlay;if(!materials.has(key))materials.set(key,new T.MeshStandardMaterial({color:c,roughness:.88,side:T.DoubleSide}));return materials.get(key)}
  const C={steel:0x586b6c,post:0xa7aaa1,wall:0xb9b6a5,trim:0xd9d3be,glass:0x536e72,wood:0x907956,concrete:0xabaeaa,dark:0x3e494a};
- for(const s of plan.structures){const g=new T.Group();g.name=s.name;const {width:w,depth:d,ux,uz,nx,nz,origin:o}=s;const angle=-Math.atan2(uz,ux),seed=Math.abs(s.owner),roofColors=[0x648b94,0x7c897c,0x9b7c6a,0x7b8588],roofColor=s.roofColor??roofColors[seed%4],roofKind=s.roofKind??'lean-metal',covered=roofKind!=='none';
+ for(const s of plan.structures){if(!visibleRecord({...s,height:s.roofHeight||3},elevation))continue;const g=new T.Group();g.name=s.name;const {width:w,depth:d,ux,uz,nx,nz,origin:o}=s;const angle=-Math.atan2(uz,ux),seed=Math.abs(s.owner),roofColors=[0x648b94,0x7c897c,0x9b7c6a,0x7b8588],roofColor=s.roofColor??roofColors[seed%4],roofKind=s.roofKind??'lean-metal',covered=roofKind!=='none';
  const P=(u,v)=>[o[0]+ux*u+nx*v,o[1]+uz*u+nz*v];const Y=(u,v)=>elevation(...P(u,v));const {high:hi,low:lo}=footprintHeights((a,b)=>P(w/2+a,d/2+b),w,d,elevation,.5);const roofY=hi+(s.roofHeight??2.7),roofAt=(v,u=w/2)=>roofY-.20*v/d+(roofKind==='arched-poly'?.24*Math.sin(Math.PI*v/d):roofKind==='gable-metal'?.40*(1-Math.abs(u-w/2)/(w/2)):0);
  function mesh(geo,color,name='structure-part'){const overlay=name==='yard-access-surface',m=new T.Mesh(geo,material(C[color]??color,overlay));m.name=name;m.userData.surfaceOverlay=overlay;g.add(m);return m}
  function box(u,y,v,ww,hh,dd,color,name='structure-part'){const p=P(u,v),geo=new T.BoxGeometry(ww,hh,dd,name==='shed-grounded-plinth'?Math.ceil(ww/.25):1,1,name==='shed-grounded-plinth'?Math.ceil(dd/.25):1);geo.rotateY(angle);geo.translate(p[0],y,p[1]);return mesh(geo,color,name)}

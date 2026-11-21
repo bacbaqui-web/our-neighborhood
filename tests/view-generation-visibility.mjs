@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {configureViewVisibility,visibleObject,filterInfillVisibility} from '../outputs/domestic-test/view-generation-visibility.js';
+const qa={position:[0,0],eyeY:1.65,radius:50,proxies:[{top:10,geometry:{type:'Polygon',coordinates:[[[-10,10],[10,10],[10,15],[-10,15],[-10,10]]]}}]};
+configureViewVisibility({version:3},qa);
+assert.equal(visibleObject(0,25,2,.4),false);
+assert.equal(visibleObject(0,-25,2,.4),true);
+assert.equal(visibleObject(0,25,40,.4),true);
+assert.equal(visibleObject(0,0,2,.4),false);
+assert.equal(visibleObject(0,-70,2,.4),false);
+assert.equal(filterInfillVisibility({plants:[{point:[0,25]},{point:[0,-25]}]}).plants.length,1);
+assert.equal(filterInfillVisibility({bays:[{footprint:{type:'Polygon',coordinates:[[[-1,24],[1,24],[1,26],[-1,26],[-1,24]]]},point:[0,25]}]}).bays.length,0);
+configureViewVisibility(null,null);assert.equal(visibleObject(0,25),true);
+console.log('360-degree prop visibility and start clearance passed');

@@ -39,14 +39,23 @@ sys.path.insert(0,str(SHARED.parents[1]/'work'))
 from neighborhood_sources import acquire_buildings,acquire_roads
 from kakao_terrain import load_terrain
 near=load_terrain(ROOT,{'origin':ORIGIN})
+location=json.loads((ROOT/'location.json').read_text()) if (ROOT/'location.json').exists() else {}
+gentle=location.get('terrainMode')=='gentle-terrain30'
+include_city=location.get('contextBuildings',True)
+# Distant DEM heights stay relative to their own measured center, not synthetic zero.
+datum=coarse_datum=elevation(0,0) if gentle else near.datum
 coarse_elevation=elevation
 def elevation(x,z):
  d=math.hypot(x,z)
+ if gentle:
+  edge=location.get('detailRadius',150)+120
+  u=max(0,min(1,(d-edge)/max(650,1200-edge)));u=u*u*(3-2*u)
+  return (coarse_datum+near.height(x,z))*(1-u)+coarse_elevation(x,z)*u
  if d>=2200:return coarse_elevation(x,z)
  fine=near.absolute(x,z)
  u=max(0,min(1,(d-1400)/800));u=u*u*(3-2*u)
  return fine*(1-u)+coarse_elevation(x,z)*u
-datum=near.datum;radii=list(range(0,401,10))+list(np.geomspace(425,rad,92));angles=512;positions=[];heights=[]
+radii=list(range(0,401,10))+list(np.geomspace(425,rad,92));angles=512;positions=[];heights=[]
 for r in radii:
  for j in range(angles):
   a=j/angles*math.tau;x=math.sin(a)*r;z=-math.cos(a)*r;h=elevation(x,z)
@@ -55,7 +64,8 @@ for r in radii:
 from shapely.geometry import shape,Polygon
 context=OUT/'context';context.mkdir(exist_ok=True)
 cache=context/'buildings-2000.geojson'
-if cache.exists():raw=json.loads(cache.read_text())
+if not include_city:raw={'features':[]}
+elif cache.exists():raw=json.loads(cache.read_text())
 else:
  records={}
  for dx in range(-1750,2000,500):
@@ -69,7 +79,7 @@ else:
    for f in batch['features']:records[f['properties']['objectid']]=f
  raw={'type':'FeatureCollection','features':list(records.values()),'origin':ORIGIN}
  cache.write_text(json.dumps(raw,separators=(',',':')))
-context_roads=acquire_roads(context,{'origin':ORIGIN,'sizeMetres':4000})
+context_roads=acquire_roads(context,{'origin':ORIGIN,'sizeMetres':4000}) if include_city else []
 city=[];cityFootprints=[]
 for f in raw['features']:
  g=shape(f['geometry'])
@@ -91,7 +101,7 @@ profiles=[]
 for j in range(angles):
  best=max(((math.degrees(math.atan2(heights[i*angles+j]-datum-1.65,r)),i) for i,r in enumerate(radii) if r>700))
  profiles.append({'bearing':round(j*360/angles,2),'angle':round(best[0],3),'distance':round(float(radii[best[1]])),'height':round(heights[best[1]*angles+j],1)})
-result={'version':32,'origin':[LAT,LON],'axes':'x east, z south, y elevation minus origin DEM','datumMetres':round(datum,3),'radius':rad,'angles':angles,'radii':[round(float(r),2) for r in radii],'positions':positions,'city':city,'cityFootprints':cityFootprints,'contextRadius':2000,'roads':context_roads,'skyline':profiles,'sources':{'terrain':'https://registry.opendata.aws/terrain-tiles/','format':'https://github.com/tilezen/joerd/blob/master/docs/formats.md','attribution':'https://github.com/tilezen/joerd/blob/master/docs/attribution.md','accessed':'2026-10-14','tileZoom':ZOOM,'tileCount':len(tiles)},'contextBuildings':'MOIS / Esri Korea footprints; minimum bounding rectangles; height estimated as floors x 3m'}
+result={'version':32,'origin':[LAT,LON],'axes':'x east, z south, y elevation minus origin DEM','datumMetres':round(datum,3),'radius':rad,'angles':angles,'radii':[round(float(r),2) for r in radii],'positions':positions,'city':city,'cityFootprints':cityFootprints,'contextRadius':2000 if include_city else 0,'nearGroundMode':location.get('terrainMode','measured'),'roads':context_roads,'skyline':profiles,'sources':{'terrain':'https://registry.opendata.aws/terrain-tiles/','format':'https://github.com/tilezen/joerd/blob/master/docs/formats.md','attribution':'https://github.com/tilezen/joerd/blob/master/docs/attribution.md','accessed':'2026-10-14','tileZoom':ZOOM,'tileCount':len(tiles)},'contextBuildings':'MOIS / Esri Korea footprints; minimum bounding rectangles; height estimated as floors x 3m'}
 (OUT/'terrain.json').write_text(json.dumps(result,separators=(',',':')))
-qa={'tileCount':len(tiles),'datumMetres':datum,'vertices':len(positions)//3,'triangles':(len(radii)-1)*angles*2,'minElevation':min(heights),'maxElevation':max(heights),'contextBuildings':len(city),'highestSkyline':max(profiles,key=lambda a:a['angle']),'allFinite':bool(np.isfinite(positions).all())}
+qa={'tileCount':len(tiles),'datumMetres':datum,'vertices':len(positions)//3,'triangles':(len(radii)-1)*angles*2,'minElevation':min(heights),'maxElevation':max(heights),'contextBuildings':len(city),'nearGroundMode':location.get('terrainMode','measured'),'highestSkyline':max(profiles,key=lambda a:a['angle']),'allFinite':bool(np.isfinite(positions).all())}
 (REPORT/'environment-v32/terrain-validation.json').write_text(json.dumps(qa,indent=2));print(qa)

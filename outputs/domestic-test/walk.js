@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {setupNumberScrub} from './ui-controls.js?v=151';
 
-export function setupWalk({camera,controls,renderer,host,elevation,roadInfo,getGround,getBuildings,getBoundarySegments=()=>[],isLoaded}){
+export function setupWalk({camera,controls,renderer,host,elevation,roadInfo,getGround,getBuildings,getBoundarySegments=()=>[],getRadius=()=>150,isLoaded}){
  const canvas=renderer.domElement,walkButton=document.getElementById('walk');
  let mode='off',eyeHeight=1.65,yaw=0,pitch=0,drag=null,saved=null,last=performance.now();
  const keys=new Set(),ray=new T.Raycaster(),mouse=new T.Vector2();
@@ -19,11 +19,13 @@ export function setupWalk({camera,controls,renderer,host,elevation,roadInfo,getG
  const setNumber=setupNumberScrub(heightInput,value=>{eyeHeight=value;if(mode==='walk')camera.position.y=elevation(camera.position.x,camera.position.z)+eyeHeight;else if(mode==='pick')mapHelp();report();});
  hud.querySelector('#walkEyeReset').onclick=()=>{setNumber(1.65);eyeHeight=1.65;if(mode==='walk')camera.position.y=elevation(camera.position.x,camera.position.z)+eyeHeight;else if(mode==='pick')mapHelp();report();};
  function blocked(x,z){
-  if(Math.abs(x)>140||Math.abs(z)>140)return true;
+  if(Math.hypot(x,z)>getRadius())return true;
   for(const s of getBoundarySegments()){
+   // Layouts also include descriptive open-access records without endpoints.
+   if(!s?.a||!s?.b||![...s.a,...s.b].every(Number.isFinite))continue;
    if(x<Math.min(s.a[0],s.b[0])-.5||x>Math.max(s.a[0],s.b[0])+.5||z<Math.min(s.a[1],s.b[1])-.5||z>Math.max(s.a[1],s.b[1])+.5)continue;
    const dx=s.b[0]-s.a[0],dz=s.b[1]-s.a[1],l=dx*dx+dz*dz,t=l?T.MathUtils.clamp(((x-s.a[0])*dx+(z-s.a[1])*dz)/l,0,1):0;
-   if(Math.hypot(x-s.a[0]-dx*t,z-s.a[1]-dz*t)<s.width/2+.3)return true;
+   if(Math.hypot(x-s.a[0]-dx*t,z-s.a[1]-dz*t)<(s.width??.16)/2+.3)return true;
   }
   for(const [dx,dz] of [[0,0],[.3,0],[-.3,0],[0,.3],[0,-.3]]){ray.set(new T.Vector3(x+dx,1000,z+dz),new T.Vector3(0,-1,0));if(ray.intersectObjects(getBuildings(),false).length)return true;}
   return false;
@@ -33,7 +35,7 @@ export function setupWalk({camera,controls,renderer,host,elevation,roadInfo,getG
   if(!saved)saved={pos:camera.position.clone(),target:controls.target.clone(),fov:camera.fov};
   mode='pick';host.dataset.walkMode=mode;walkButton.setAttribute('aria-pressed','true');walkButton.classList.add('active');clearInput();controls.enabled=false;hud.hidden=false;host.classList.add('walking');
   title.textContent='출발할 골목을 클릭하세요';mapHelp();hud.querySelector('#walkPad').hidden=true;
-  camera.fov=43;camera.updateProjectionMatrix();camera.position.set(0,Math.max(430,430/camera.aspect),.01);camera.lookAt(0,0,0);report();
+  camera.fov=43;camera.updateProjectionMatrix();camera.position.set(0,Math.max(getRadius()*2.87,getRadius()*2.87/camera.aspect),.01);camera.lookAt(0,0,0);report();
  }
  function exit(){
   if(mode==='off')return;mode='off';host.dataset.walkMode=mode;walkButton.setAttribute('aria-pressed','false');clearInput();hud.hidden=true;host.classList.remove('walking');controls.enabled=true;

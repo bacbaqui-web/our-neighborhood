@@ -1,0 +1,4 @@
+이 지침은 docs/project-guidelines.txt로 통합했습니다.
+
+앞으로 통합 지침의 5~8절을 따르고, 수정도 통합 문서에서 진행합니다.
+통합 전 원문: archive/guidelines-before-unification-20261121/docs/prop-production-guidelines.txt

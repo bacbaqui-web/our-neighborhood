@@ -1,9 +1,12 @@
+import {WINDOW_RECESS,windowOpening} from '../window-recess.js?v=recess22';
+import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitApartment} from '../apartments/models.js';
 import * as T from 'three';
 import {facilityById} from './catalog.js';
 import {inPolygon} from './placement.js';
 // Thin wall-bound geometry keeps every footprint and pedestrian route intact.
-export function emitFacility(batch,b,buildings,elevation){
+export function emitFacility(batch,b,buildings,elevation,options={}){
+ const recessed=!!options.windowOpenings;
  if(b.facility.id==='apartment')return emitApartment(batch,b);
  const f=facilityById[b.facility.id],{points,base,top}=b,H=top-base,levels=Math.max(1,b.levels),fh=H/levels;
  const signed=points.reduce((v,a,i)=>{const c=points[(i+1)%points.length];return v+a[0]*c[1]-c[0]*a[1]},0),sign=Math.sign(signed)||1;
@@ -12,10 +15,13 @@ export function emitFacility(batch,b,buildings,elevation){
   const a=points[edge],c=points[(edge+1)%points.length],L=Math.hypot(c[0]-a[0],c[1]-a[1]);if(L<1)continue;
   const ux=(c[0]-a[0])/L,uz=(c[1]-a[1])/L,nx=uz*sign,nz=-ux*sign;
   if([.2,.5,.8].every(t=>buildings.some(other=>other!==b&&inPolygon([a[0]+ux*L*t+nx*.14,a[1]+uz*L*t+nz*.14],other.points))))continue;
-  const out=batch.writer([a[0],base,a[1]],ux,uz,nx,nz),Q=(x,y,w,h,col,z=.025)=>{if(w>0&&h>0)out.quad(x,y,z,w,h,col,true);},B=(x,y,w,h,col,z=.035,d=.025)=>out.box(x,y,z,w,h,d,col);
+  const panels=[],cuts=[],out=batch.writer([a[0],base,a[1]],ux,uz,nx,nz),rawQ=(x,y,w,h,col,z=.025)=>{if(w>0&&h>0)out.quad(x,y,z,w,h,col,true);},rawB=(x,y,w,h,col,z=.035,d=.025)=>out.box(x,y,z,w,h,d,col);
+  const Q=(...args)=>recessed?panels.push(['quad',args]):rawQ(...args),B=(...args)=>recessed?panels.push(['box',args]):rawB(...args);
   const front=edge===(b.facility.frontEdge??b.frontEdge),ground=Math.max(.05,elevation(a[0]+ux*L/2,a[1]+uz*L/2)-base),usable=H-ground;
   Q(L/2,H/2,L-.02,H-.02,f.wall,.012);
-  const frame=(x,y,w,h,col=f.glass,z=.045)=>{if(w<.3||h<.3)return;Q(x,y,w,h,0xb7b7a9,z-.013);Q(x,y,w-.1,h-.1,col,z);B(x,y,.04,h,0x5a6b67,z+.015);windows++;};
+  const frame=(x,y,w,h,col=f.glass,z=.045)=>{if(w<.3||h<.3)return;
+   if(recessed){const reveal=batch.writer([0,0,0]);const rect=windowOpening(reveal,options.windowOpenings,b,edge,a,[ux,uz],[nx,nz],x,base+y,w,h,f.wall);cuts.push([rect[0],rect[1],rect[2]-base,rect[3]-base]);emitWindow(out.at(x,y,0),'white-slider',w,h,0,0xb7b7a9,b.seed+edge,{recess:WINDOW_RECESS,sill:false,accessories:false});}
+   else{Q(x,y,w,h,0xb7b7a9,z-.013);Q(x,y,w-.1,h-.1,col,z);B(x,y,.04,h,0x5a6b67,z+.015);}windows++;};
   const bands=(start=1)=>{const cols=Math.max(1,Math.min(20,Math.floor(L/3.1))),pw=(L-.4)/cols;for(let r=start;r<levels;r++)for(let j=0;j<cols;j++)frame(.2+pw*(j+.5),r*fh+fh*.56,Math.min(pw-.28,2.4),Math.min(fh*.54,1.7));};
   if(f.pattern==='balconies'){
    const cols=Math.max(1,Math.min(20,Math.floor(L/(front?3.1:3.8)))),pw=(L-.5)/cols;
@@ -25,7 +31,7 @@ export function emitFacility(batch,b,buildings,elevation){
     if(front||L>12){B(x,y-h*.31,w,.035,0xc5c6b8,.085);for(let k=1;k<5;k++)B(x-w/2+w*k/5,y-h*.38,.025,h*.25,0xb8bdb2,.085);}
    }
    // Stair core: a narrow vertical strip with smaller landings, observed on the tower ends.
-   if(!front&&L>6){Q(L*.18,H/2,Math.min(1.35,L*.15),H-.1,0xc4b79a,.09);for(let r=0;r<levels;r++)Q(L*.18,r*fh+fh*.65,.55,fh*.35,f.glass,.10);}
+   if(!front&&L>6){Q(L*.18,H/2,Math.min(1.35,L*.15),H-.1,0xc4b79a,.09);for(let r=0;r<levels;r++)frame(L*.18,r*fh+fh*.65,.55,fh*.35,f.glass,.10);}
   }else if(f.pattern==='school'){
    const cols=Math.max(1,Math.min(20,Math.floor(L/3.8))),pw=(L-.4)/cols;
    for(let r=0;r<levels;r++){B(L/2,r*fh+.12,L-.1,.12,0xc6c3ad);for(let j=0;j<cols;j++){const x=.2+pw*(j+.5);frame(x,r*fh+fh*.6,pw-.4,fh*.55);B(x-pw/2+.13,r*fh+fh*.55,.25,fh*.85,f.accent,.07);B(x,r*fh+fh*.6,pw-.4,.045,f.accent,.07);}}
@@ -43,7 +49,7 @@ export function emitFacility(batch,b,buildings,elevation){
   }else if(f.pattern==='bowed'&&front&&usable>3.2){
    const center=L*.5,w=L*.56,start=center-w/2,cols=Math.max(4,Math.min(16,Math.floor(w/1.3))),pw=w/cols;
    // Faceted curve is recessed into the mapped facade, not a footprint expansion.
-   for(let j=0;j<cols;j++){const x=start+pw*(j+.5),depth=.035+.045*Math.sin(Math.PI*(j+.5)/cols);for(let r=1;r<Math.max(3,levels);r++){const rh=(H-ground-2.8)/(Math.max(3,levels)-1),y=ground+2.8+rh*(r-.5);Q(x,y,pw-.06,rh-.08,f.glass,depth);B(x-pw/2,y,.045,rh,0xb1b8ad,depth+.01);}}
+   for(let j=0;j<cols;j++){const x=start+pw*(j+.5),depth=.035+.045*Math.sin(Math.PI*(j+.5)/cols);for(let r=1;r<Math.max(3,levels);r++){const rh=(H-ground-2.8)/(Math.max(3,levels)-1),y=ground+2.8+rh*(r-.5);frame(x,y,pw-.06,rh-.08,f.glass,depth);B(x-pw/2,y,.045,rh,0xb1b8ad,depth+.01);}}
    B(L/2,H-.5,L-.15,.8,f.id==='traders'?f.accent:f.wall);
    if(f.id==='traders')Q(L*.87,H*.54,L*.2,H*.85,f.accent,.04);
   }else if(f.pattern==='civic-glass'&&front){
@@ -57,6 +63,11 @@ export function emitFacility(batch,b,buildings,elevation){
    if(front&&L>8){for(const x of [L*.25,L*.75])B(x,H*.53,.48,H*.88,0x81867e,.07);B(L/2,ground+2.5,L*.87,.9,f.accent,.06);}
   }else bands(1);
   if(front&&f.pattern!=='garage'&&usable>2.4){const w=Math.min(4.2,L*.23),h=Math.min(2.45,usable*.55);frame(L/2,ground+h/2,w,h);B(L/2,ground+h+.14,w+.2,.16,0x81877d,.065);}
+  if(recessed)for(const [kind,args] of panels){
+   const [x,y,w,h,col,z,depth]=args;let pieces=[[x-w/2,x+w/2,y-h/2,y+h/2]];
+   for(const [l,r,b,t] of cuts)pieces=pieces.flatMap(([a,c,d,e])=>{if(c<=l||a>=r||e<=b||d>=t)return[[a,c,d,e]];const left=Math.max(a,l),right=Math.min(c,r);return [[a,left,d,e],[right,c,d,e],[left,right,d,Math.max(d,b)],[left,right,Math.min(e,t),e]].filter(q=>q[1]-q[0]>.001&&q[3]-q[2]>.001);});
+   for(const [l,r,b,t] of pieces)(kind==='quad'?rawQ:rawB)((l+r)/2,(b+t)/2,r-l,t-b,col,z,depth);
+  }
  }
  return {windows,sourceId:f.sourceId};
 }
@@ -70,7 +81,7 @@ export function addSignText(root,spec){
 }
 export function addFacilityLabels(root,buildings){
  if(typeof document==='undefined')return;
- for(const b of buildings){if(!b.facility||b.facility.id==='apartment')continue;
+ for(const b of buildings){if(!b.facility||b.facility.id==='apartment'||b.assetChoice)continue;
   const f=facilityById[b.facility.id],i=b.facility.frontEdge??b.frontEdge??0,a=b.points[i],c=b.points[(i+1)%b.points.length],L=Math.hypot(c[0]-a[0],c[1]-a[1]);if(L<3)continue;
   const sign=Math.sign(b.points.reduce((v,p,j)=>{const q=b.points[(j+1)%b.points.length];return v+p[0]*q[1]-q[0]*p[1]},0))||1,nx=(c[1]-a[1])/L*sign,nz=-(c[0]-a[0])/L*sign;
   const label=new T.Group();label.position.set((a[0]+c[0])/2,b.top-Math.min(1.1,(b.top-b.base)*.1),(a[1]+c[1])/2);label.rotation.y=Math.atan2(nx,nz);

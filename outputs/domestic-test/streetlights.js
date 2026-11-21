@@ -1,3 +1,4 @@
+import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
 import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
@@ -5,7 +6,7 @@ import {windowIsLit} from './environment-policy.js?v=151';
 
 export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],surface=elevation){
  // Mounted fixtures keep their mounting height; freestanding lights use finished paving.
- plan={...plan,lights:plan.lights.map(l=>({...l,root:[l.root[0],l.type==='arterial'?surface(l.root[0],l.root[2]):l.type==='pole'?elevation(l.root[0],l.root[2]):l.root[1],l.root[2]]}))};
+ plan={...plan,lights:plan.lights.map(l=>({...l,root:[l.root[0],l.type==='arterial'?surface(l.root[0],l.root[2]):l.type==='pole'?elevation(l.root[0],l.root[2]):l.root[1],l.root[2]]})).filter(l=>visibleObject(l.root[0],l.root[2],l.height,Math.max(.5,l.reach||0),l.root[1],false))};
  const group=new T.Group();group.name='AlleySecurityLights';const bucket=new Map(),lenses=[],heads=[],halos=[],pools=[];
  function add(geo,color){if(!bucket.has(color))bucket.set(color,[]);bucket.get(color).push(geo);}
  function box(x,y,z,w,h,d,angle,color,grounded=false){const g=new T.BoxGeometry(w,h,d);g.rotateY(angle);g.translate(x,y,z);if(grounded)fitSupportBase(g,surface);add(g,color);}

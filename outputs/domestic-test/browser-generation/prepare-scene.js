@@ -4,6 +4,75 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
+// outputs/domestic-test/view-generation-visibility.js?v=view3c
+var context = null;
+function configureViewVisibility(view, qa) {
+  context = view?.version === 3 && qa?.proxies ? { view, qa, stats: { tested: 0, hidden: 0, startClearance: 0 } } : null;
+}
+function segments(g) {
+  const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+  return polys.flatMap((p) => p.flatMap((r) => r.slice(1).map((b, i) => [r[i], b])));
+}
+function visibleRay(x, y, z) {
+  const { qa } = context, [ox, oz] = qa.position, dx = x - ox, dz = z - oz;
+  for (const proxy of qa.proxies) {
+    if (!proxy.edges) proxy.edges = segments(proxy.geometry);
+    for (const [[ax, az], [bx, bz]] of proxy.edges) {
+      const ex = bx - ax, ez = bz - az, den = dx * ez - dz * ex;
+      if (Math.abs(den) < 1e-9) continue;
+      const t = ((ax - ox) * ez - (az - oz) * ex) / den, u = ((ax - ox) * dz - (az - oz) * dx) / den;
+      if (t > 1e-5 && t < 1 - 0.18 / (Math.hypot(dx, dz) || 1) && u >= 0 && u <= 1 && qa.eyeY + (y - qa.eyeY) * t < proxy.top - 0.05) return false;
+    }
+  }
+  return true;
+}
+function visibleObject(x, z, height = 2, radius = 0.5, base = 0, checkStart = true) {
+  if (!context) return true;
+  const { qa, stats } = context, [ox, oz] = qa.position;
+  stats.tested++;
+  const distance = Math.hypot(x - ox, z - oz);
+  if (checkStart && distance < radius + 1.2) {
+    stats.startClearance++;
+    return false;
+  }
+  if (distance - radius > qa.radius + 1) {
+    stats.hidden++;
+    return false;
+  }
+  for (const [dx, dz] of [[0, 0], [-radius, 0], [radius, 0], [0, -radius], [0, radius]]) for (const y of [base + 0.2, base + height]) if (visibleRay(x + dx, y, z + dz)) return true;
+  stats.hidden++;
+  return false;
+}
+function visibleRecord(p, elevation = () => 0) {
+  if (!context || !p || typeof p !== "object") return true;
+  let points = p.footprint || p.points;
+  if (points?.type === "Polygon") points = points.coordinates[0];
+  if (points && !Array.isArray(points)) points = null;
+  if (p.a && p.b) points = [p.a, p.b];
+  if (!points && p.geometry) {
+    const g = p.geometry;
+    points = g.type === "Polygon" ? g.coordinates[0] : g.type === "LineString" ? g.coordinates : null;
+  }
+  const point = p.point || (p.root ? [p.root[0], p.root[2]] : null) || (Number.isFinite(p.x) && Number.isFinite(p.z) ? [p.x, p.z] : null);
+  if (!point && !points) return true;
+  const pts = points?.filter((v2) => Array.isArray(v2) && v2.length >= 2) || [point];
+  if (!pts.length) return true;
+  const x = pts.reduce((n, p2) => n + p2[0], 0) / pts.length, z = pts.reduce((n, p2) => n + p2[1], 0) / pts.length;
+  const radius = Math.max(p.radius || 0.4, ...pts.map((p2) => Math.hypot(p2[0] - x, p2[1] - z)));
+  if (pts.length > 1) {
+    const [ox, oz] = context.qa.position;
+    const close = pts.slice(1).some((b, i) => {
+      const a = pts[i], dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((ox - a[0]) * dx + (oz - a[1]) * dz) / (dx * dx + dz * dz || 1)));
+      return Math.hypot(ox - a[0] - t * dx, oz - a[1] - t * dz) < 1.2;
+    });
+    if (close) {
+      context.stats.startClearance++;
+      return false;
+    }
+  }
+  return visibleObject(x, z, p.height || p.h || 2, radius, elevation(x, z), pts.length === 1);
+}
+
 // outputs/domestic-test/facilities/catalog.js
 var row = (id, name, pattern, wall, accent, glass, nominal) => ({ id, name, pattern, wall, accent, glass, nominal, sourceId: id, reference: "./first-batch-review/#" + id, dimensions: "estimated; fitted to mapped footprint and floor count" });
 var facilities = [
@@ -1694,11 +1763,11 @@ var ImageUtils = class {
       if (_canvas === void 0) _canvas = createElementNS("canvas");
       _canvas.width = image.width;
       _canvas.height = image.height;
-      const context = _canvas.getContext("2d");
+      const context2 = _canvas.getContext("2d");
       if (image instanceof ImageData) {
-        context.putImageData(image, 0, 0);
+        context2.putImageData(image, 0, 0);
       } else {
-        context.drawImage(image, 0, 0, image.width, image.height);
+        context2.drawImage(image, 0, 0, image.width, image.height);
       }
       canvas = _canvas;
     }
@@ -1714,14 +1783,14 @@ var ImageUtils = class {
       const canvas = createElementNS("canvas");
       canvas.width = image.width;
       canvas.height = image.height;
-      const context = canvas.getContext("2d");
-      context.drawImage(image, 0, 0, image.width, image.height);
-      const imageData = context.getImageData(0, 0, image.width, image.height);
+      const context2 = canvas.getContext("2d");
+      context2.drawImage(image, 0, 0, image.width, image.height);
+      const imageData = context2.getImageData(0, 0, image.width, image.height);
       const data = imageData.data;
       for (let i = 0; i < data.length; i++) {
         data[i] = SRGBToLinear(data[i] / 255) * 255;
       }
-      context.putImageData(imageData, 0, 0);
+      context2.putImageData(imageData, 0, 0);
       return canvas;
     } else if (image.data) {
       const data = image.data.slice(0);
@@ -5458,7 +5527,7 @@ var Object3D = class _Object3D extends EventDispatcher {
     if (isRootObject) {
       const geometries = extractFromCache(meta.geometries);
       const materials = extractFromCache(meta.materials);
-      const textures = extractFromCache(meta.textures);
+      const textures2 = extractFromCache(meta.textures);
       const images = extractFromCache(meta.images);
       const shapes = extractFromCache(meta.shapes);
       const skeletons = extractFromCache(meta.skeletons);
@@ -5466,7 +5535,7 @@ var Object3D = class _Object3D extends EventDispatcher {
       const nodes = extractFromCache(meta.nodes);
       if (geometries.length > 0) output.geometries = geometries;
       if (materials.length > 0) output.materials = materials;
-      if (textures.length > 0) output.textures = textures;
+      if (textures2.length > 0) output.textures = textures2;
       if (images.length > 0) output.images = images;
       if (shapes.length > 0) output.shapes = shapes;
       if (skeletons.length > 0) output.skeletons = skeletons;
@@ -6464,9 +6533,9 @@ var Material = class extends EventDispatcher {
       return values;
     }
     if (isRootObject) {
-      const textures = extractFromCache(meta.textures);
+      const textures2 = extractFromCache(meta.textures);
       const images = extractFromCache(meta.images);
-      if (textures.length > 0) data.textures = textures;
+      if (textures2.length > 0) data.textures = textures2;
       if (images.length > 0) data.images = images;
     }
     return data;
@@ -8670,30 +8739,30 @@ var Frustum = class {
   }
 };
 function WebGLAnimation() {
-  let context = null;
+  let context2 = null;
   let isAnimating = false;
   let animationLoop = null;
   let requestId = null;
   function onAnimationFrame(time, frame) {
     animationLoop(time, frame);
-    requestId = context.requestAnimationFrame(onAnimationFrame);
+    requestId = context2.requestAnimationFrame(onAnimationFrame);
   }
   return {
     start: function() {
       if (isAnimating === true) return;
       if (animationLoop === null) return;
-      requestId = context.requestAnimationFrame(onAnimationFrame);
+      requestId = context2.requestAnimationFrame(onAnimationFrame);
       isAnimating = true;
     },
     stop: function() {
-      context.cancelAnimationFrame(requestId);
+      context2.cancelAnimationFrame(requestId);
       isAnimating = false;
     },
     setAnimationLoop: function(callback) {
       animationLoop = callback;
     },
     setContext: function(value) {
-      context = value;
+      context2 = value;
     }
   };
 }
@@ -11383,7 +11452,7 @@ function WebGLInfo(gl) {
     update
   };
 }
-function WebGLMorphtargets(gl, capabilities, textures) {
+function WebGLMorphtargets(gl, capabilities, textures2) {
   const morphTextures = /* @__PURE__ */ new WeakMap();
   const morph = new Vector4();
   function update(object, geometry2, program) {
@@ -11458,7 +11527,7 @@ function WebGLMorphtargets(gl, capabilities, textures) {
       geometry2.addEventListener("dispose", disposeTexture);
     }
     if (object.isInstancedMesh === true && object.morphTexture !== null) {
-      program.getUniforms().setValue(gl, "morphTexture", object.morphTexture, textures);
+      program.getUniforms().setValue(gl, "morphTexture", object.morphTexture, textures2);
     } else {
       let morphInfluencesSum = 0;
       for (let i = 0; i < objectInfluences.length; i++) {
@@ -11468,7 +11537,7 @@ function WebGLMorphtargets(gl, capabilities, textures) {
       program.getUniforms().setValue(gl, "morphTargetBaseInfluence", morphBaseInfluence);
       program.getUniforms().setValue(gl, "morphTargetInfluences", objectInfluences);
     }
-    program.getUniforms().setValue(gl, "morphTargetsTexture", entry.texture, textures);
+    program.getUniforms().setValue(gl, "morphTargetsTexture", entry.texture, textures2);
     program.getUniforms().setValue(gl, "morphTargetsTextureSize", entry.size);
   }
   return {
@@ -11587,14 +11656,14 @@ function copyArray(a, b) {
     a[i] = b[i];
   }
 }
-function allocTexUnits(textures, n) {
+function allocTexUnits(textures2, n) {
   let r = arrayCacheI32[n];
   if (r === void 0) {
     r = new Int32Array(n);
     arrayCacheI32[n] = r;
   }
   for (let i = 0; i !== n; ++i) {
-    r[i] = textures.allocateTextureUnit();
+    r[i] = textures2.allocateTextureUnit();
   }
   return r;
 }
@@ -11800,9 +11869,9 @@ function setValueV4ui(gl, v2) {
     copyArray(cache, v2);
   }
 }
-function setValueT1(gl, v2, textures) {
+function setValueT1(gl, v2, textures2) {
   const cache = this.cache;
-  const unit = textures.allocateTextureUnit();
+  const unit = textures2.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
@@ -11814,34 +11883,34 @@ function setValueT1(gl, v2, textures) {
   } else {
     emptyTexture2D = emptyTexture;
   }
-  textures.setTexture2D(v2 || emptyTexture2D, unit);
+  textures2.setTexture2D(v2 || emptyTexture2D, unit);
 }
-function setValueT3D1(gl, v2, textures) {
+function setValueT3D1(gl, v2, textures2) {
   const cache = this.cache;
-  const unit = textures.allocateTextureUnit();
+  const unit = textures2.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures.setTexture3D(v2 || empty3dTexture, unit);
+  textures2.setTexture3D(v2 || empty3dTexture, unit);
 }
-function setValueT6(gl, v2, textures) {
+function setValueT6(gl, v2, textures2) {
   const cache = this.cache;
-  const unit = textures.allocateTextureUnit();
+  const unit = textures2.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures.setTextureCube(v2 || emptyCubeTexture, unit);
+  textures2.setTextureCube(v2 || emptyCubeTexture, unit);
 }
-function setValueT2DArray1(gl, v2, textures) {
+function setValueT2DArray1(gl, v2, textures2) {
   const cache = this.cache;
-  const unit = textures.allocateTextureUnit();
+  const unit = textures2.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures.setTexture2DArray(v2 || emptyArrayTexture, unit);
+  textures2.setTexture2DArray(v2 || emptyArrayTexture, unit);
 }
 function getSingularSetter(type) {
   switch (type) {
@@ -11979,52 +12048,52 @@ function setValueV3uiArray(gl, v2) {
 function setValueV4uiArray(gl, v2) {
   gl.uniform4uiv(this.addr, v2);
 }
-function setValueT1Array(gl, v2, textures) {
+function setValueT1Array(gl, v2, textures2) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures, n);
+  const units = allocTexUnits(textures2, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures.setTexture2D(v2[i] || emptyTexture, units[i]);
+    textures2.setTexture2D(v2[i] || emptyTexture, units[i]);
   }
 }
-function setValueT3DArray(gl, v2, textures) {
+function setValueT3DArray(gl, v2, textures2) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures, n);
+  const units = allocTexUnits(textures2, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures.setTexture3D(v2[i] || empty3dTexture, units[i]);
+    textures2.setTexture3D(v2[i] || empty3dTexture, units[i]);
   }
 }
-function setValueT6Array(gl, v2, textures) {
+function setValueT6Array(gl, v2, textures2) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures, n);
+  const units = allocTexUnits(textures2, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures.setTextureCube(v2[i] || emptyCubeTexture, units[i]);
+    textures2.setTextureCube(v2[i] || emptyCubeTexture, units[i]);
   }
 }
-function setValueT2DArrayArray(gl, v2, textures) {
+function setValueT2DArrayArray(gl, v2, textures2) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures, n);
+  const units = allocTexUnits(textures2, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures.setTexture2DArray(v2[i] || emptyArrayTexture, units[i]);
+    textures2.setTexture2DArray(v2[i] || emptyArrayTexture, units[i]);
   }
 }
 function getPureArraySetter(type) {
@@ -12137,11 +12206,11 @@ var StructuredUniform = class {
     this.seq = [];
     this.map = {};
   }
-  setValue(gl, value, textures) {
+  setValue(gl, value, textures2) {
     const seq = this.seq;
     for (let i = 0, n = seq.length; i !== n; ++i) {
       const u = seq[i];
-      u.setValue(gl, value[u.id], textures);
+      u.setValue(gl, value[u.id], textures2);
     }
   }
 };
@@ -12182,19 +12251,19 @@ var WebGLUniforms = class {
       parseUniform(info, addr, this);
     }
   }
-  setValue(gl, name, value, textures) {
+  setValue(gl, name, value, textures2) {
     const u = this.map[name];
-    if (u !== void 0) u.setValue(gl, value, textures);
+    if (u !== void 0) u.setValue(gl, value, textures2);
   }
   setOptional(gl, object, name) {
     const v2 = object[name];
     if (v2 !== void 0) this.setValue(gl, name, v2);
   }
-  static upload(gl, seq, values, textures) {
+  static upload(gl, seq, values, textures2) {
     for (let i = 0, n = seq.length; i !== n; ++i) {
       const u = seq[i], v2 = values[u.id];
       if (v2.needsUpdate !== false) {
-        u.setValue(gl, v2.value, textures);
+        u.setValue(gl, v2.value, textures2);
       }
     }
   }
@@ -13807,8 +13876,8 @@ function WebGLLights(extensions) {
     state.ambient[0] = r;
     state.ambient[1] = g;
     state.ambient[2] = b;
-    const hash = state.hash;
-    if (hash.directionalLength !== directionalLength || hash.pointLength !== pointLength || hash.spotLength !== spotLength || hash.rectAreaLength !== rectAreaLength || hash.hemiLength !== hemiLength || hash.numDirectionalShadows !== numDirectionalShadows || hash.numPointShadows !== numPointShadows || hash.numSpotShadows !== numSpotShadows || hash.numSpotMaps !== numSpotMaps || hash.numLightProbes !== numLightProbes) {
+    const hash3 = state.hash;
+    if (hash3.directionalLength !== directionalLength || hash3.pointLength !== pointLength || hash3.spotLength !== spotLength || hash3.rectAreaLength !== rectAreaLength || hash3.hemiLength !== hemiLength || hash3.numDirectionalShadows !== numDirectionalShadows || hash3.numPointShadows !== numPointShadows || hash3.numSpotShadows !== numSpotShadows || hash3.numSpotMaps !== numSpotMaps || hash3.numLightProbes !== numLightProbes) {
       state.directional.length = directionalLength;
       state.spot.length = spotLength;
       state.rectArea.length = rectAreaLength;
@@ -13826,16 +13895,16 @@ function WebGLLights(extensions) {
       state.spotLightMap.length = numSpotMaps;
       state.numSpotLightShadowsWithMaps = numSpotShadowsWithMaps;
       state.numLightProbes = numLightProbes;
-      hash.directionalLength = directionalLength;
-      hash.pointLength = pointLength;
-      hash.spotLength = spotLength;
-      hash.rectAreaLength = rectAreaLength;
-      hash.hemiLength = hemiLength;
-      hash.numDirectionalShadows = numDirectionalShadows;
-      hash.numPointShadows = numPointShadows;
-      hash.numSpotShadows = numSpotShadows;
-      hash.numSpotMaps = numSpotMaps;
-      hash.numLightProbes = numLightProbes;
+      hash3.directionalLength = directionalLength;
+      hash3.pointLength = pointLength;
+      hash3.spotLength = spotLength;
+      hash3.rectAreaLength = rectAreaLength;
+      hash3.hemiLength = hemiLength;
+      hash3.numDirectionalShadows = numDirectionalShadows;
+      hash3.numPointShadows = numPointShadows;
+      hash3.numSpotShadows = numSpotShadows;
+      hash3.numSpotMaps = numSpotMaps;
+      hash3.numLightProbes = numLightProbes;
       state.version = nextVersion++;
     }
   }
@@ -14546,12 +14615,12 @@ function WebGLState(gl, extensions) {
         drawBuffers2 = [];
         currentDrawbuffers.set(framebuffer, drawBuffers2);
       }
-      const textures = renderTarget.textures;
-      if (drawBuffers2.length !== textures.length || drawBuffers2[0] !== gl.COLOR_ATTACHMENT0) {
-        for (let i = 0, il = textures.length; i < il; i++) {
+      const textures2 = renderTarget.textures;
+      if (drawBuffers2.length !== textures2.length || drawBuffers2[0] !== gl.COLOR_ATTACHMENT0) {
+        for (let i = 0, il = textures2.length; i < il; i++) {
           drawBuffers2[i] = gl.COLOR_ATTACHMENT0 + i;
         }
-        drawBuffers2.length = textures.length;
+        drawBuffers2.length = textures2.length;
         needsUpdate = true;
       }
     } else {
@@ -15184,8 +15253,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         const canvas = needsNewCanvas ? createCanvas(width, height) : _canvas2;
         canvas.width = width;
         canvas.height = height;
-        const context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, width, height);
+        const context2 = canvas.getContext("2d");
+        context2.drawImage(image, 0, 0, width, height);
         console.warn("THREE.WebGLRenderer: Texture has been resized from (" + dimensions.width + "x" + dimensions.height + ") to (" + width + "x" + height + ").");
         return canvas;
       } else {
@@ -15374,14 +15443,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       if (renderTargetProperties.__webglDepthRenderbuffer) _gl.deleteRenderbuffer(renderTargetProperties.__webglDepthRenderbuffer);
     }
-    const textures = renderTarget.textures;
-    for (let i = 0, il = textures.length; i < il; i++) {
-      const attachmentProperties = properties.get(textures[i]);
+    const textures2 = renderTarget.textures;
+    for (let i = 0, il = textures2.length; i < il; i++) {
+      const attachmentProperties = properties.get(textures2[i]);
       if (attachmentProperties.__webglTexture) {
         _gl.deleteTexture(attachmentProperties.__webglTexture);
         info.memory.textures--;
       }
-      properties.remove(textures[i]);
+      properties.remove(textures2[i]);
     }
     properties.remove(renderTarget);
   }
@@ -15923,9 +15992,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, glAttachmentType, _gl.RENDERBUFFER, renderbuffer);
     } else {
-      const textures = renderTarget.textures;
-      for (let i = 0; i < textures.length; i++) {
-        const texture = textures[i];
+      const textures2 = renderTarget.textures;
+      for (let i = 0; i < textures2.length; i++) {
+        const texture = textures2[i];
         const glFormat = utils.convert(texture.format, texture.colorSpace);
         const glType = utils.convert(texture.type);
         const glInternalFormat = getInternalFormat(texture.internalFormat, glFormat, glType, texture.colorSpace);
@@ -16040,9 +16109,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     const renderTargetProperties = properties.get(renderTarget);
     const textureProperties = properties.get(texture);
     renderTarget.addEventListener("dispose", onRenderTargetDispose);
-    const textures = renderTarget.textures;
+    const textures2 = renderTarget.textures;
     const isCube = renderTarget.isWebGLCubeRenderTarget === true;
-    const isMultipleRenderTargets = textures.length > 1;
+    const isMultipleRenderTargets = textures2.length > 1;
     if (!isMultipleRenderTargets) {
       if (textureProperties.__webglTexture === void 0) {
         textureProperties.__webglTexture = _gl.createTexture();
@@ -16072,8 +16141,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         renderTargetProperties.__webglFramebuffer = _gl.createFramebuffer();
       }
       if (isMultipleRenderTargets) {
-        for (let i = 0, il = textures.length; i < il; i++) {
-          const attachmentProperties = properties.get(textures[i]);
+        for (let i = 0, il = textures2.length; i < il; i++) {
+          const attachmentProperties = properties.get(textures2[i]);
           if (attachmentProperties.__webglTexture === void 0) {
             attachmentProperties.__webglTexture = _gl.createTexture();
             info.memory.textures++;
@@ -16084,8 +16153,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         renderTargetProperties.__webglMultisampledFramebuffer = _gl.createFramebuffer();
         renderTargetProperties.__webglColorRenderbuffer = [];
         state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
-        for (let i = 0; i < textures.length; i++) {
-          const texture2 = textures[i];
+        for (let i = 0; i < textures2.length; i++) {
+          const texture2 = textures2[i];
           renderTargetProperties.__webglColorRenderbuffer[i] = _gl.createRenderbuffer();
           _gl.bindRenderbuffer(_gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
           const glFormat = utils.convert(texture2.format, texture2.colorSpace);
@@ -16120,8 +16189,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       state.unbindTexture();
     } else if (isMultipleRenderTargets) {
-      for (let i = 0, il = textures.length; i < il; i++) {
-        const attachment = textures[i];
+      for (let i = 0, il = textures2.length; i < il; i++) {
+        const attachment = textures2[i];
         const attachmentProperties = properties.get(attachment);
         state.bindTexture(_gl.TEXTURE_2D, attachmentProperties.__webglTexture);
         setTextureParameters(_gl.TEXTURE_2D, attachment);
@@ -16155,9 +16224,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
   }
   function updateRenderTargetMipmap(renderTarget) {
-    const textures = renderTarget.textures;
-    for (let i = 0, il = textures.length; i < il; i++) {
-      const texture = textures[i];
+    const textures2 = renderTarget.textures;
+    for (let i = 0, il = textures2.length; i < il; i++) {
+      const texture = textures2[i];
       if (textureNeedsGenerateMipmaps(texture)) {
         const targetType = getTargetType(renderTarget);
         const webglTexture = properties.get(texture).__webglTexture;
@@ -16172,15 +16241,15 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
   function updateMultisampleRenderTarget(renderTarget) {
     if (renderTarget.samples > 0) {
       if (useMultisampledRTT(renderTarget) === false) {
-        const textures = renderTarget.textures;
+        const textures2 = renderTarget.textures;
         const width = renderTarget.width;
         const height = renderTarget.height;
         let mask = _gl.COLOR_BUFFER_BIT;
         const depthStyle = renderTarget.stencilBuffer ? _gl.DEPTH_STENCIL_ATTACHMENT : _gl.DEPTH_ATTACHMENT;
         const renderTargetProperties = properties.get(renderTarget);
-        const isMultipleRenderTargets = textures.length > 1;
+        const isMultipleRenderTargets = textures2.length > 1;
         if (isMultipleRenderTargets) {
-          for (let i = 0; i < textures.length; i++) {
+          for (let i = 0; i < textures2.length; i++) {
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
             _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.RENDERBUFFER, null);
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
@@ -16189,14 +16258,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         }
         state.bindFramebuffer(_gl.READ_FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
         state.bindFramebuffer(_gl.DRAW_FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
-        for (let i = 0; i < textures.length; i++) {
+        for (let i = 0; i < textures2.length; i++) {
           if (renderTarget.resolveDepthBuffer) {
             if (renderTarget.depthBuffer) mask |= _gl.DEPTH_BUFFER_BIT;
             if (renderTarget.stencilBuffer && renderTarget.resolveStencilBuffer) mask |= _gl.STENCIL_BUFFER_BIT;
           }
           if (isMultipleRenderTargets) {
             _gl.framebufferRenderbuffer(_gl.READ_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0, _gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
-            const webglTexture = properties.get(textures[i]).__webglTexture;
+            const webglTexture = properties.get(textures2[i]).__webglTexture;
             _gl.framebufferTexture2D(_gl.DRAW_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0, _gl.TEXTURE_2D, webglTexture, 0);
           }
           _gl.blitFramebuffer(0, 0, width, height, 0, 0, width, height, mask, _gl.NEAREST);
@@ -16215,10 +16284,10 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         state.bindFramebuffer(_gl.READ_FRAMEBUFFER, null);
         state.bindFramebuffer(_gl.DRAW_FRAMEBUFFER, null);
         if (isMultipleRenderTargets) {
-          for (let i = 0; i < textures.length; i++) {
+          for (let i = 0; i < textures2.length; i++) {
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
             _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
-            const webglTexture = properties.get(textures[i]).__webglTexture;
+            const webglTexture = properties.get(textures2[i]).__webglTexture;
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
             _gl.framebufferTexture2D(_gl.DRAW_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.TEXTURE_2D, webglTexture, 0);
           }
@@ -17650,7 +17719,7 @@ var WebGLRenderer = class {
   constructor(parameters = {}) {
     const {
       canvas = createCanvasElement(),
-      context = null,
+      context: context2 = null,
       depth = true,
       stencil = false,
       alpha = false,
@@ -17663,11 +17732,11 @@ var WebGLRenderer = class {
     } = parameters;
     this.isWebGLRenderer = true;
     let _alpha;
-    if (context !== null) {
-      if (typeof WebGLRenderingContext !== "undefined" && context instanceof WebGLRenderingContext) {
+    if (context2 !== null) {
+      if (typeof WebGLRenderingContext !== "undefined" && context2 instanceof WebGLRenderingContext) {
         throw new Error("THREE.WebGLRenderer: WebGL 1 is not supported since r163.");
       }
-      _alpha = context.getContextAttributes().alpha;
+      _alpha = context2.getContextAttributes().alpha;
     } else {
       _alpha = alpha;
     }
@@ -17732,7 +17801,7 @@ var WebGLRenderer = class {
     function getTargetPixelRatio() {
       return _currentRenderTarget === null ? _pixelRatio : 1;
     }
-    let _gl = context;
+    let _gl = context2;
     function getContext(contextName, contextAttributes) {
       return canvas.getContext(contextName, contextAttributes);
     }
@@ -17767,7 +17836,7 @@ var WebGLRenderer = class {
       throw error;
     }
     let extensions, capabilities, state, info;
-    let properties, textures, cubemaps, cubeuvmaps, attributes, geometries, objects;
+    let properties, textures2, cubemaps, cubeuvmaps, attributes, geometries, objects;
     let programCache, materials, renderLists, renderStates, clipping, shadowMap;
     let background, morphtargets, bufferRenderer, indexedBufferRenderer;
     let utils, bindingStates, uniformsGroups;
@@ -17782,14 +17851,14 @@ var WebGLRenderer = class {
       }
       info = new WebGLInfo(_gl);
       properties = new WebGLProperties();
-      textures = new WebGLTextures(_gl, extensions, state, properties, capabilities, utils, info);
+      textures2 = new WebGLTextures(_gl, extensions, state, properties, capabilities, utils, info);
       cubemaps = new WebGLCubeMaps(_this);
       cubeuvmaps = new WebGLCubeUVMaps(_this);
       attributes = new WebGLAttributes(_gl);
       bindingStates = new WebGLBindingStates(_gl, attributes);
       geometries = new WebGLGeometries(_gl, attributes, info, bindingStates);
       objects = new WebGLObjects(_gl, geometries, attributes, info);
-      morphtargets = new WebGLMorphtargets(_gl, capabilities, textures);
+      morphtargets = new WebGLMorphtargets(_gl, capabilities, textures2);
       clipping = new WebGLClipping(properties);
       programCache = new WebGLPrograms(_this, cubemaps, cubeuvmaps, extensions, capabilities, bindingStates, clipping);
       materials = new WebGLMaterials(_this, properties);
@@ -18282,8 +18351,8 @@ var WebGLRenderer = class {
         renderScene(currentRenderList, scene, camera);
       }
       if (_currentRenderTarget !== null) {
-        textures.updateMultisampleRenderTarget(_currentRenderTarget);
-        textures.updateRenderTargetMipmap(_currentRenderTarget);
+        textures2.updateMultisampleRenderTarget(_currentRenderTarget);
+        textures2.updateRenderTargetMipmap(_currentRenderTarget);
       }
       if (scene.isScene === true) scene.onAfterRender(_this, scene, camera);
       bindingStates.resetDefaultState();
@@ -18410,8 +18479,8 @@ var WebGLRenderer = class {
       currentRenderState.setupLightsView(camera);
       if (_clippingEnabled === true) clipping.setGlobalState(_this.clippingPlanes, camera);
       renderObjects(opaqueObjects, scene, camera);
-      textures.updateMultisampleRenderTarget(transmissionRenderTarget);
-      textures.updateRenderTargetMipmap(transmissionRenderTarget);
+      textures2.updateMultisampleRenderTarget(transmissionRenderTarget);
+      textures2.updateRenderTargetMipmap(transmissionRenderTarget);
       if (extensions.has("WEBGL_multisampled_render_to_texture") === false) {
         let renderTargetNeedsUpdate = false;
         for (let i = 0, l = transmissiveObjects.length; i < l; i++) {
@@ -18431,8 +18500,8 @@ var WebGLRenderer = class {
           }
         }
         if (renderTargetNeedsUpdate === true) {
-          textures.updateMultisampleRenderTarget(transmissionRenderTarget);
-          textures.updateRenderTargetMipmap(transmissionRenderTarget);
+          textures2.updateMultisampleRenderTarget(transmissionRenderTarget);
+          textures2.updateRenderTargetMipmap(transmissionRenderTarget);
         }
       }
       _this.setRenderTarget(currentRenderTarget);
@@ -18562,7 +18631,7 @@ var WebGLRenderer = class {
     }
     function setProgram(camera, scene, geometry2, material, object) {
       if (scene.isScene !== true) scene = _emptyScene;
-      textures.resetTextureUnits();
+      textures2.resetTextureUnits();
       const fog = scene.fog;
       const environment = material.isMeshStandardMaterial ? scene.environment : null;
       const colorSpace = _currentRenderTarget === null ? _this.outputColorSpace : _currentRenderTarget.isXRRenderTarget === true ? _currentRenderTarget.texture.colorSpace : LinearSRGBColorSpace;
@@ -18697,17 +18766,17 @@ var WebGLRenderer = class {
         const skeleton = object.skeleton;
         if (skeleton) {
           if (skeleton.boneTexture === null) skeleton.computeBoneTexture();
-          p_uniforms.setValue(_gl, "boneTexture", skeleton.boneTexture, textures);
+          p_uniforms.setValue(_gl, "boneTexture", skeleton.boneTexture, textures2);
         }
       }
       if (object.isBatchedMesh) {
         p_uniforms.setOptional(_gl, object, "batchingTexture");
-        p_uniforms.setValue(_gl, "batchingTexture", object._matricesTexture, textures);
+        p_uniforms.setValue(_gl, "batchingTexture", object._matricesTexture, textures2);
         p_uniforms.setOptional(_gl, object, "batchingIdTexture");
-        p_uniforms.setValue(_gl, "batchingIdTexture", object._indirectTexture, textures);
+        p_uniforms.setValue(_gl, "batchingIdTexture", object._indirectTexture, textures2);
         p_uniforms.setOptional(_gl, object, "batchingColorTexture");
         if (object._colorsTexture !== null) {
-          p_uniforms.setValue(_gl, "batchingColorTexture", object._colorsTexture, textures);
+          p_uniforms.setValue(_gl, "batchingColorTexture", object._colorsTexture, textures2);
         }
       }
       const morphAttributes = geometry2.morphAttributes;
@@ -18734,10 +18803,10 @@ var WebGLRenderer = class {
           materials.refreshFogUniforms(m_uniforms, fog);
         }
         materials.refreshMaterialUniforms(m_uniforms, material, _pixelRatio, _height, currentRenderState.state.transmissionRenderTarget[camera.id]);
-        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures);
+        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures2);
       }
       if (material.isShaderMaterial && material.uniformsNeedUpdate === true) {
-        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures);
+        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures2);
         material.uniformsNeedUpdate = false;
       }
       if (material.isSpriteMaterial) {
@@ -18812,16 +18881,16 @@ var WebGLRenderer = class {
           state.bindFramebuffer(_gl.FRAMEBUFFER, null);
           useDefaultFramebuffer = false;
         } else if (renderTargetProperties.__webglFramebuffer === void 0) {
-          textures.setupRenderTarget(renderTarget);
+          textures2.setupRenderTarget(renderTarget);
         } else if (renderTargetProperties.__hasExternalTextures) {
-          textures.rebindTextures(renderTarget, properties.get(renderTarget.texture).__webglTexture, properties.get(renderTarget.depthTexture).__webglTexture);
+          textures2.rebindTextures(renderTarget, properties.get(renderTarget.texture).__webglTexture, properties.get(renderTarget.depthTexture).__webglTexture);
         } else if (renderTarget.depthBuffer) {
           const depthTexture = renderTarget.depthTexture;
           if (renderTargetProperties.__boundDepthTexture !== depthTexture) {
             if (depthTexture !== null && properties.has(depthTexture) && (renderTarget.width !== depthTexture.image.width || renderTarget.height !== depthTexture.image.height)) {
               throw new Error("WebGLRenderTarget: Attached DepthTexture is initialized to the incorrect size.");
             }
-            textures.setupDepthRenderbuffer(renderTarget);
+            textures2.setupDepthRenderbuffer(renderTarget);
           }
         }
         const texture = renderTarget.texture;
@@ -18836,7 +18905,7 @@ var WebGLRenderer = class {
             framebuffer = __webglFramebuffer[activeCubeFace];
           }
           isCube = true;
-        } else if (renderTarget.samples > 0 && textures.useMultisampledRTT(renderTarget) === false) {
+        } else if (renderTarget.samples > 0 && textures2.useMultisampledRTT(renderTarget) === false) {
           framebuffer = properties.get(renderTarget).__webglMultisampledFramebuffer;
         } else {
           if (Array.isArray(__webglFramebuffer)) {
@@ -18952,7 +19021,7 @@ var WebGLRenderer = class {
       const height = Math.floor(texture.image.height * levelScale);
       const x = position !== null ? position.x : 0;
       const y = position !== null ? position.y : 0;
-      textures.setTexture2D(texture, 0);
+      textures2.setTexture2D(texture, 0);
       _gl.copyTexSubImage2D(_gl.TEXTURE_2D, level, 0, 0, x, y, width, height);
       state.unbindTexture();
     };
@@ -18996,13 +19065,13 @@ var WebGLRenderer = class {
       const glType = utils.convert(dstTexture.type);
       let glTarget;
       if (dstTexture.isData3DTexture) {
-        textures.setTexture3D(dstTexture, 0);
+        textures2.setTexture3D(dstTexture, 0);
         glTarget = _gl.TEXTURE_3D;
       } else if (dstTexture.isDataArrayTexture || dstTexture.isCompressedArrayTexture) {
-        textures.setTexture2DArray(dstTexture, 0);
+        textures2.setTexture2DArray(dstTexture, 0);
         glTarget = _gl.TEXTURE_2D_ARRAY;
       } else {
-        textures.setTexture2D(dstTexture, 0);
+        textures2.setTexture2D(dstTexture, 0);
         glTarget = _gl.TEXTURE_2D;
       }
       _gl.pixelStorei(_gl.UNPACK_FLIP_Y_WEBGL, dstTexture.flipY);
@@ -19087,18 +19156,18 @@ var WebGLRenderer = class {
     };
     this.initRenderTarget = function(target) {
       if (properties.get(target).__webglFramebuffer === void 0) {
-        textures.setupRenderTarget(target);
+        textures2.setupRenderTarget(target);
       }
     };
     this.initTexture = function(texture) {
       if (texture.isCubeTexture) {
-        textures.setTextureCube(texture, 0);
+        textures2.setTextureCube(texture, 0);
       } else if (texture.isData3DTexture) {
-        textures.setTexture3D(texture, 0);
+        textures2.setTexture3D(texture, 0);
       } else if (texture.isDataArrayTexture || texture.isCompressedArrayTexture) {
-        textures.setTexture2DArray(texture, 0);
+        textures2.setTexture2DArray(texture, 0);
       } else {
-        textures.setTexture2D(texture, 0);
+        textures2.setTexture2D(texture, 0);
       }
       state.unbindTexture();
     };
@@ -21460,15 +21529,15 @@ var Curve = class {
     const t = this.getUtoTmapping(u);
     return this.getTangent(t, optionalTarget);
   }
-  computeFrenetFrames(segments, closed) {
+  computeFrenetFrames(segments2, closed) {
     const normal = new Vector3();
     const tangents = [];
     const normals = [];
     const binormals = [];
     const vec = new Vector3();
     const mat = new Matrix4();
-    for (let i = 0; i <= segments; i++) {
-      const u = i / segments;
+    for (let i = 0; i <= segments2; i++) {
+      const u = i / segments2;
       tangents[i] = this.getTangentAt(u, new Vector3());
     }
     normals[0] = new Vector3();
@@ -21491,7 +21560,7 @@ var Curve = class {
     vec.crossVectors(tangents[0], normal).normalize();
     normals[0].crossVectors(tangents[0], vec);
     binormals[0].crossVectors(tangents[0], normals[0]);
-    for (let i = 1; i <= segments; i++) {
+    for (let i = 1; i <= segments2; i++) {
       normals[i] = normals[i - 1].clone();
       binormals[i] = binormals[i - 1].clone();
       vec.crossVectors(tangents[i - 1], tangents[i]);
@@ -21503,12 +21572,12 @@ var Curve = class {
       binormals[i].crossVectors(tangents[i], normals[i]);
     }
     if (closed === true) {
-      let theta = Math.acos(clamp(normals[0].dot(normals[segments]), -1, 1));
-      theta /= segments;
-      if (tangents[0].dot(vec.crossVectors(normals[0], normals[segments])) > 0) {
+      let theta = Math.acos(clamp(normals[0].dot(normals[segments2]), -1, 1));
+      theta /= segments2;
+      if (tangents[0].dot(vec.crossVectors(normals[0], normals[segments2])) > 0) {
         theta = -theta;
       }
-      for (let i = 1; i <= segments; i++) {
+      for (let i = 1; i <= segments2; i++) {
         normals[i].applyMatrix4(mat.makeRotationAxis(tangents[i], theta * i));
         binormals[i].crossVectors(tangents[i], normals[i]);
       }
@@ -22213,8 +22282,8 @@ var CurvePath = class extends Curve {
     let last;
     for (let i = 0, curves = this.curves; i < curves.length; i++) {
       const curve = curves[i];
-      const resolution = curve.isEllipseCurve ? divisions * 2 : curve.isLineCurve || curve.isLineCurve3 ? 1 : curve.isSplineCurve ? divisions * curve.points.length : divisions;
-      const pts = curve.getPoints(resolution);
+      const resolution2 = curve.isEllipseCurve ? divisions * 2 : curve.isLineCurve || curve.isLineCurve3 ? 1 : curve.isSplineCurve ? divisions * curve.points.length : divisions;
+      const pts = curve.getPoints(resolution2);
       for (let j = 0; j < pts.length; j++) {
         const point = pts[j];
         if (last && last.equals(point)) continue;
@@ -22365,23 +22434,23 @@ var Path = class extends CurvePath {
   }
 };
 var LatheGeometry = class _LatheGeometry extends BufferGeometry {
-  constructor(points = [new Vector2(0, -0.5), new Vector2(0.5, 0), new Vector2(0, 0.5)], segments = 12, phiStart = 0, phiLength = Math.PI * 2) {
+  constructor(points = [new Vector2(0, -0.5), new Vector2(0.5, 0), new Vector2(0, 0.5)], segments2 = 12, phiStart = 0, phiLength = Math.PI * 2) {
     super();
     this.type = "LatheGeometry";
     this.parameters = {
       points,
-      segments,
+      segments: segments2,
       phiStart,
       phiLength
     };
-    segments = Math.floor(segments);
+    segments2 = Math.floor(segments2);
     phiLength = clamp(phiLength, 0, Math.PI * 2);
     const indices = [];
     const vertices = [];
     const uvs = [];
     const initNormals = [];
     const normals = [];
-    const inverseSegments = 1 / segments;
+    const inverseSegments = 1 / segments2;
     const vertex2 = new Vector3();
     const uv = new Vector2();
     const normal = new Vector3();
@@ -22419,7 +22488,7 @@ var LatheGeometry = class _LatheGeometry extends BufferGeometry {
           prevNormal.copy(curNormal);
       }
     }
-    for (let i = 0; i <= segments; i++) {
+    for (let i = 0; i <= segments2; i++) {
       const phi = phiStart + i * inverseSegments * phiLength;
       const sin = Math.sin(phi);
       const cos = Math.cos(phi);
@@ -22428,7 +22497,7 @@ var LatheGeometry = class _LatheGeometry extends BufferGeometry {
         vertex2.y = points[j].y;
         vertex2.z = points[j].x * cos;
         vertices.push(vertex2.x, vertex2.y, vertex2.z);
-        uv.x = i / segments;
+        uv.x = i / segments2;
         uv.y = j / (points.length - 1);
         uvs.push(uv.x, uv.y);
         const x = initNormals[3 * j + 0] * sin;
@@ -22437,7 +22506,7 @@ var LatheGeometry = class _LatheGeometry extends BufferGeometry {
         normals.push(x, y, z);
       }
     }
-    for (let i = 0; i < segments; i++) {
+    for (let i = 0; i < segments2; i++) {
       for (let j = 0; j < points.length - 1; j++) {
         const base = j + i * points.length;
         const a = base;
@@ -22481,16 +22550,16 @@ var CapsuleGeometry = class _CapsuleGeometry extends LatheGeometry {
   }
 };
 var CircleGeometry = class _CircleGeometry extends BufferGeometry {
-  constructor(radius = 1, segments = 32, thetaStart = 0, thetaLength = Math.PI * 2) {
+  constructor(radius = 1, segments2 = 32, thetaStart = 0, thetaLength = Math.PI * 2) {
     super();
     this.type = "CircleGeometry";
     this.parameters = {
       radius,
-      segments,
+      segments: segments2,
       thetaStart,
       thetaLength
     };
-    segments = Math.max(3, segments);
+    segments2 = Math.max(3, segments2);
     const indices = [];
     const vertices = [];
     const normals = [];
@@ -22500,8 +22569,8 @@ var CircleGeometry = class _CircleGeometry extends BufferGeometry {
     vertices.push(0, 0, 0);
     normals.push(0, 0, 1);
     uvs.push(0.5, 0.5);
-    for (let s = 0, i = 3; s <= segments; s++, i += 3) {
-      const segment = thetaStart + s / segments * thetaLength;
+    for (let s = 0, i = 3; s <= segments2; s++, i += 3) {
+      const segment = thetaStart + s / segments2 * thetaLength;
       vertex2.x = radius * Math.cos(segment);
       vertex2.y = radius * Math.sin(segment);
       vertices.push(vertex2.x, vertex2.y, vertex2.z);
@@ -22510,7 +22579,7 @@ var CircleGeometry = class _CircleGeometry extends BufferGeometry {
       uv.y = (vertices[i + 1] / radius + 1) / 2;
       uvs.push(uv.x, uv.y);
     }
-    for (let i = 1; i <= segments; i++) {
+    for (let i = 1; i <= segments2; i++) {
       indices.push(i, i + 1, 0);
     }
     this.setIndex(indices);
@@ -23076,7 +23145,7 @@ var EdgesGeometry = class extends BufferGeometry {
           const vecHash1 = hashes[jNext];
           const v0 = _triangle[vertKeys[j]];
           const v1 = _triangle[vertKeys[jNext]];
-          const hash = `${vecHash0}_${vecHash1}`;
+          const hash3 = `${vecHash0}_${vecHash1}`;
           const reverseHash = `${vecHash1}_${vecHash0}`;
           if (reverseHash in edgeData && edgeData[reverseHash]) {
             if (_normal.dot(edgeData[reverseHash].normal) <= thresholdDot) {
@@ -23084,8 +23153,8 @@ var EdgesGeometry = class extends BufferGeometry {
               vertices.push(v1.x, v1.y, v1.z);
             }
             edgeData[reverseHash] = null;
-          } else if (!(hash in edgeData)) {
-            edgeData[hash] = {
+          } else if (!(hash3 in edgeData)) {
+            edgeData[hash3] = {
               index0: indexArr[j],
               index1: indexArr[jNext],
               normal: _normal.clone()
@@ -24671,7 +24740,7 @@ var WireframeGeometry = class extends BufferGeometry {
     };
     if (geometry2 !== null) {
       const vertices = [];
-      const edges = /* @__PURE__ */ new Set();
+      const edges2 = /* @__PURE__ */ new Set();
       const start = new Vector3();
       const end = new Vector3();
       if (geometry2.index !== null) {
@@ -24691,7 +24760,7 @@ var WireframeGeometry = class extends BufferGeometry {
               const index2 = indices.getX(i + (j + 1) % 3);
               start.fromBufferAttribute(position, index1);
               end.fromBufferAttribute(position, index2);
-              if (isUniqueEdge(start, end, edges) === true) {
+              if (isUniqueEdge(start, end, edges2) === true) {
                 vertices.push(start.x, start.y, start.z);
                 vertices.push(end.x, end.y, end.z);
               }
@@ -24706,7 +24775,7 @@ var WireframeGeometry = class extends BufferGeometry {
             const index2 = 3 * i + (j + 1) % 3;
             start.fromBufferAttribute(position, index1);
             end.fromBufferAttribute(position, index2);
-            if (isUniqueEdge(start, end, edges) === true) {
+            if (isUniqueEdge(start, end, edges2) === true) {
               vertices.push(start.x, start.y, start.z);
               vertices.push(end.x, end.y, end.z);
             }
@@ -24722,14 +24791,14 @@ var WireframeGeometry = class extends BufferGeometry {
     return this;
   }
 };
-function isUniqueEdge(start, end, edges) {
+function isUniqueEdge(start, end, edges2) {
   const hash1 = `${start.x},${start.y},${start.z}-${end.x},${end.y},${end.z}`;
-  const hash2 = `${end.x},${end.y},${end.z}-${start.x},${start.y},${start.z}`;
-  if (edges.has(hash1) === true || edges.has(hash2) === true) {
+  const hash22 = `${end.x},${end.y},${end.z}-${start.x},${start.y},${start.z}`;
+  if (edges2.has(hash1) === true || edges2.has(hash22) === true) {
     return false;
   } else {
-    edges.add(hash1);
-    edges.add(hash2);
+    edges2.add(hash1);
+    edges2.add(hash22);
     return true;
   }
 }
@@ -27278,12 +27347,12 @@ var MaterialLoader = class _MaterialLoader extends Loader {
     }, onProgress, onError);
   }
   parse(json) {
-    const textures = this.textures;
+    const textures2 = this.textures;
     function getTexture(name) {
-      if (textures[name] === void 0) {
+      if (textures2[name] === void 0) {
         console.warn("THREE.MaterialLoader: Undefined texture", name);
       }
-      return textures[name];
+      return textures2[name];
     }
     const material = this.createMaterialFromType(json.type);
     if (json.uuid !== void 0) material.uuid = json.uuid;
@@ -27705,9 +27774,9 @@ var ObjectLoader = class extends Loader {
     const images = this.parseImages(json.images, function() {
       if (onLoad !== void 0) onLoad(object);
     });
-    const textures = this.parseTextures(json.textures, images);
-    const materials = this.parseMaterials(json.materials, textures);
-    const object = this.parseObject(json.object, geometries, materials, textures, animations);
+    const textures2 = this.parseTextures(json.textures, images);
+    const materials = this.parseMaterials(json.materials, textures2);
+    const object = this.parseObject(json.object, geometries, materials, textures2, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
@@ -27728,9 +27797,9 @@ var ObjectLoader = class extends Loader {
     const shapes = this.parseShapes(json.shapes);
     const geometries = this.parseGeometries(json.geometries, shapes);
     const images = await this.parseImagesAsync(json.images);
-    const textures = this.parseTextures(json.textures, images);
-    const materials = this.parseMaterials(json.materials, textures);
-    const object = this.parseObject(json.object, geometries, materials, textures, animations);
+    const textures2 = this.parseTextures(json.textures, images);
+    const materials = this.parseMaterials(json.materials, textures2);
+    const object = this.parseObject(json.object, geometries, materials, textures2, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
@@ -27787,12 +27856,12 @@ var ObjectLoader = class extends Loader {
     }
     return geometries;
   }
-  parseMaterials(json, textures) {
+  parseMaterials(json, textures2) {
     const cache = {};
     const materials = {};
     if (json !== void 0) {
       const loader = new MaterialLoader();
-      loader.setTextures(textures);
+      loader.setTextures(textures2);
       for (let i = 0, l = json.length; i < l; i++) {
         const data = json[i];
         if (cache[data.uuid] === void 0) {
@@ -27928,7 +27997,7 @@ var ObjectLoader = class extends Loader {
       console.warn("THREE.ObjectLoader.parseTexture: Constant should be in numeric form.", value);
       return type[value];
     }
-    const textures = {};
+    const textures2 = {};
     if (json !== void 0) {
       for (let i = 0, l = json.length; i < l; i++) {
         const data = json[i];
@@ -27978,12 +28047,12 @@ var ObjectLoader = class extends Loader {
         if (data.unpackAlignment !== void 0) texture.unpackAlignment = data.unpackAlignment;
         if (data.compareFunction !== void 0) texture.compareFunction = data.compareFunction;
         if (data.userData !== void 0) texture.userData = data.userData;
-        textures[data.uuid] = texture;
+        textures2[data.uuid] = texture;
       }
     }
-    return textures;
+    return textures2;
   }
-  parseObject(data, geometries, materials, textures, animations) {
+  parseObject(data, geometries, materials, textures2, animations) {
     let object;
     function getGeometry(name) {
       if (geometries[name] === void 0) {
@@ -28010,10 +28079,10 @@ var ObjectLoader = class extends Loader {
       return materials[name];
     }
     function getTexture(uuid) {
-      if (textures[uuid] === void 0) {
+      if (textures2[uuid] === void 0) {
         console.warn("THREE.ObjectLoader: Undefined texture", uuid);
       }
-      return textures[uuid];
+      return textures2[uuid];
     }
     let geometry2, material;
     switch (data.type) {
@@ -28196,7 +28265,7 @@ var ObjectLoader = class extends Loader {
     if (data.children !== void 0) {
       const children = data.children;
       for (let i = 0; i < children.length; i++) {
-        object.add(this.parseObject(children[i], geometries, materials, textures, animations));
+        object.add(this.parseObject(children[i], geometries, materials, textures2, animations));
       }
     }
     if (data.animations !== void 0) {
@@ -28354,8 +28423,8 @@ var AudioLoader = class extends Loader {
     loader.load(url, function(buffer) {
       try {
         const bufferCopy = buffer.slice(0);
-        const context = AudioContext.getContext();
-        context.decodeAudioData(bufferCopy, function(audioBuffer) {
+        const context2 = AudioContext.getContext();
+        context2.decodeAudioData(bufferCopy, function(audioBuffer) {
           onLoad(audioBuffer);
         }).catch(handleError);
       } catch (e) {
@@ -34493,8 +34562,693 @@ function classifyYards(data, specs, elevation) {
   });
 }
 
-// outputs/domestic-test/facilities/models.js
-function emitFacility(batch, b, buildings, elevation) {
+// outputs/domestic-test/window-recess.js?v=recess22
+var WINDOW_RECESS = 0.14;
+function windowOpening(out, records2, building, edge, a, u, n, x, y, w, h, color) {
+  const pad = 9e-3, depth = WINDOW_RECESS, rect = [x - w / 2 - pad, x + w / 2 + pad, y - h / 2 - pad, y + h / 2 + pad];
+  const record = { owner: building.seed, inkObjectId: building.inkObjectId, edge, a, u, n, rect, depth, x: a[0] + u[0] * x, z: a[1] + u[1] * x, y, w, h };
+  records2.push(record);
+  const p = (xx, yy, zz) => [a[0] + u[0] * xx + n[0] * zz, yy, a[1] + u[1] * xx + n[1] * zz];
+  const corners = [p(rect[0], rect[2], 0.012), p(rect[1], rect[2], 0.012), p(rect[1], rect[3], 0.012), p(rect[0], rect[3], 0.012)];
+  const back = [p(rect[0], rect[2], -depth - 0.035), p(rect[1], rect[2], -depth - 0.035), p(rect[1], rect[3], -depth - 0.035), p(rect[0], rect[3], -depth - 0.035)];
+  for (let i = 0; i < 4; i++) out.reveal(corners[i], corners[(i + 1) % 4], back[(i + 1) % 4], back[i], color);
+  return rect;
+}
+function subtract(poly, planes) {
+  const outside = [];
+  let rest = poly;
+  for (const distance of planes) {
+    if (rest.length < 3) break;
+    const inside2 = [], out = [];
+    for (let i = 0; i < rest.length; i++) {
+      const a = rest[i], b = rest[(i + 1) % rest.length], da = distance(a), db = distance(b), ia = da >= -1e-7, ib = db >= -1e-7;
+      (ia ? inside2 : out).push(a);
+      if (ia !== ib) {
+        const t = da / (da - db), v2 = a.map((q, j) => q + (b[j] - q) * t);
+        inside2.push(v2);
+        out.push(v2);
+      }
+    }
+    if (out.length >= 3) outside.push(out);
+    rest = inside2;
+  }
+  return outside;
+}
+function cutBuildingWindows(roots, openings) {
+  const started = performance.now(), byOwner = /* @__PURE__ */ new Map(), qa = { depth: WINDOW_RECESS, windows: openings.length, buildings: new Set(openings.map((r) => r.owner)).size, cutMeshes: 0, cutWallTriangles: 0, addedTriangles: 0, matchedWindows: 0, milliseconds: 0 };
+  for (const row2 of openings) {
+    const key = String(row2.owner);
+    if (!byOwner.has(key)) byOwner.set(key, []);
+    byOwner.get(key).push(row2);
+  }
+  const matched = /* @__PURE__ */ new Set(), seen = /* @__PURE__ */ new Set();
+  for (const root of (Array.isArray(roots) ? roots : [roots]).filter(Boolean)) {
+    root.updateWorldMatrix(true, true);
+    root.traverse((mesh) => {
+      if (!mesh.isMesh || seen.has(mesh) || !(mesh.geometry.userData.windowShell || mesh.userData.windowShell)) return;
+      seen.add(mesh);
+      const owner = mesh.userData.windowOwner ?? mesh.userData.owner ?? mesh.userData.objectid;
+      const rows3 = byOwner.get(String(owner));
+      if (!rows3?.length) return;
+      const original = mesh.geometry, geo = original.index ? original.toNonIndexed() : original, attrs = Object.entries(geo.attributes), offsets = [];
+      let size = 0;
+      for (const [name, attr] of attrs) {
+        offsets.push([name, attr, size]);
+        size += attr.itemSize;
+      }
+      const p = geo.attributes.position, normal = geo.attributes.normal, worldNormal = new Matrix3().getNormalMatrix(mesh.matrixWorld), v2 = new Vector3(), nv = new Vector3(), out = attrs.map(() => []), groups = [];
+      let count3 = 0, changed = 0;
+      for (let i = 0; i < p.count; i += 3) {
+        let polys = [Array.from({ length: 3 }, (_, j) => offsets.flatMap(([, attr]) => Array.from({ length: attr.itemSize }, (_2, k) => attr.array[(i + j) * attr.itemSize + k])))];
+        const world = polys[0].map((q) => v2.set(q[0], q[1], q[2]).applyMatrix4(mesh.matrixWorld).toArray());
+        nv.set(normal.getX(i), normal.getY(i), normal.getZ(i)).applyMatrix3(worldNormal).normalize();
+        if (Math.abs(nv.y) < 0.1) for (const row2 of rows3) {
+          if (Math.abs(nv.x * row2.n[0] + nv.z * row2.n[1]) < 0.95) continue;
+          const coord = (q) => {
+            v2.set(q[0], q[1], q[2]).applyMatrix4(mesh.matrixWorld);
+            return [(v2.x - row2.a[0]) * row2.u[0] + (v2.z - row2.a[1]) * row2.u[1], v2.y, (v2.x - row2.a[0]) * row2.n[0] + (v2.z - row2.a[1]) * row2.n[1]];
+          };
+          const ds = world.map((q) => (q[0] - row2.a[0]) * row2.n[0] + (q[2] - row2.a[1]) * row2.n[1]);
+          if (Math.max(...ds) < -row2.depth - 0.04 || Math.min(...ds) > 0.025) continue;
+          const uv = world.map((q) => [(q[0] - row2.a[0]) * row2.u[0] + (q[2] - row2.a[1]) * row2.u[1], q[1]]), [l, r, b, t] = row2.rect;
+          if (Math.max(...uv.map((q) => q[0])) <= l || Math.min(...uv.map((q) => q[0])) >= r || Math.max(...uv.map((q) => q[1])) <= b || Math.min(...uv.map((q) => q[1])) >= t) continue;
+          const planes = [(q) => coord(q)[0] - l, (q) => r - coord(q)[0], (q) => coord(q)[1] - b, (q) => t - coord(q)[1], (q) => coord(q)[2] + row2.depth + 0.04, (q) => 0.025 - coord(q)[2]];
+          const next = [];
+          for (const poly of polys) next.push(...subtract(poly, planes));
+          polys = next;
+          matched.add(row2);
+          changed++;
+        }
+        const material = geo.groups.find((g) => i >= g.start && i < g.start + g.count)?.materialIndex ?? 0, start = count3;
+        for (const poly of polys) for (let k = 1; k < poly.length - 1; k++) {
+          const tri = [poly[0], poly[k], poly[k + 1]];
+          const aa = new Vector3(...tri[0].slice(0, 3)), bb = new Vector3(...tri[1].slice(0, 3)), cc = new Vector3(...tri[2].slice(0, 3));
+          if (bb.sub(aa).cross(cc.sub(aa)).lengthSq() < 1e-16) continue;
+          for (const q of tri) {
+            offsets.forEach(([, attr, offset], j) => {
+              for (let k2 = 0; k2 < attr.itemSize; k2++) out[j].push(q[offset + k2]);
+            });
+            count3++;
+          }
+        }
+        if (count3 > start) {
+          const last = groups.at(-1);
+          if (last?.materialIndex === material) last.count += count3 - start;
+          else groups.push({ start, count: count3 - start, materialIndex: material });
+        }
+      }
+      if (changed) {
+        const result = new BufferGeometry();
+        offsets.forEach(([name, attr], j) => result.setAttribute(name, new BufferAttribute(new attr.array.constructor(out[j]), attr.itemSize, attr.normalized)));
+        result.groups = groups;
+        result.userData = { ...original.userData, recessedWindows: true };
+        result.computeBoundingBox();
+        result.computeBoundingSphere();
+        mesh.geometry = result;
+        qa.cutMeshes++;
+        qa.cutWallTriangles += changed;
+        qa.addedTriangles += (count3 - p.count) / 3;
+        original.dispose();
+      }
+      if (geo !== original) geo.dispose();
+    });
+  }
+  qa.matchedWindows = matched.size;
+  qa.milliseconds = Math.round(performance.now() - started);
+  return qa;
+}
+function auditWindowOpenings(roots, openings) {
+  const byOwner = /* @__PURE__ */ new Map(), seen = /* @__PURE__ */ new Set();
+  for (const root of (Array.isArray(roots) ? roots : [roots]).filter(Boolean)) {
+    root.updateWorldMatrix(true, true);
+    root.traverse((m) => {
+      if (!m.isMesh || seen.has(m) || !(m.geometry.userData.windowShell || m.userData.windowShell)) return;
+      seen.add(m);
+      const id = String(m.userData.windowOwner ?? m.userData.owner ?? m.userData.objectid);
+      if (!byOwner.has(id)) byOwner.set(id, []);
+      byOwner.get(id).push(m);
+    });
+  }
+  const ray = new Raycaster(), blocked = [];
+  ray.near = 0;
+  ray.far = 0.185;
+  for (const w of openings) {
+    ray.set(new Vector3(w.x + w.n[0] * 0.025, w.y, w.z + w.n[1] * 0.025), new Vector3(-w.n[0], 0, -w.n[1]));
+    if (ray.intersectObjects(byOwner.get(String(w.owner)) || [], false).length) blocked.push({ owner: w.owner, edge: w.edge, y: w.y });
+  }
+  return { checkedPanes: openings.length, blockedPanes: blocked.length, blockedExamples: blocked.slice(0, 10) };
+}
+
+// outputs/domestic-test/facade-textures.js?v=masonry19
+var facadeTextureCatalog = [
+  { id: "red-brick", name: "\uC801\uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 0, base: 9002576, joint: 11901830, cols: 4, rows: 8, width: 1.56, height: 1.36, gap: 9e-3, bond: "running", grain: 4, variation: 10 },
+  { id: "dark-brick", name: "\uC9D9\uC740 \uAC08\uC0C9 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 1, base: 6508873, joint: 9799803, cols: 4, rows: 8, width: 1.56, height: 1.36, gap: 9e-3, bond: "running", grain: 4, variation: 9 },
+  { id: "light-brick", name: "\uBC1D\uC740 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 2, base: 12761508, joint: 9997947, cols: 4, rows: 8, width: 1.56, height: 1.36, gap: 9e-3, bond: "running", grain: 3, variation: 7 },
+  { id: "gray-stone", name: "\uD68C\uC0C9 \uC11D\uC7AC", family: "\uC11D\uC7AC", style: 3, base: 10725024, joint: 7502195, cols: 3, rows: 4, width: 2.85, height: 1.92, gap: 8e-3, bond: "stack", grain: 5, variation: 5 },
+  { id: "cream-tile", name: "\uD06C\uB9BC \uD0C0\uC77C", family: "\uD0C0\uC77C", style: 4, base: 13352870, joint: 10983811, cols: 4, rows: 8, width: 2.08, height: 2.08, gap: 6e-3, bond: "stack", grain: 1, variation: 3 },
+  { id: "ivory-render", name: "\uC544\uC774\uBCF4\uB9AC \uBBF8\uC7A5", family: "\uBBF8\uC7A5", style: 5, base: 12763056, joint: 11183766, width: 2, height: 2, bond: "render", grain: 4, variation: 0 },
+  { id: "long-brown-brick", name: "\uAE34 \uD669\uAC08\uC0C9 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 0, base: 10123108, joint: 13219488, cols: 3, rows: 12, width: 1.8, height: 1.08, gap: 8e-3, bond: "running", grain: 4, variation: 10 },
+  { id: "charcoal-stack-brick", name: "\uBA39\uC0C9 \uC138\uB85C\uB9DE\uCDA4 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 1, base: 5001296, joint: 8291712, cols: 4, rows: 10, width: 1.2, height: 1.2, gap: 8e-3, bond: "stack", grain: 3, variation: 6 },
+  { id: "painted-white-brick", name: "\uBC31\uC0C9 \uB3C4\uC7A5 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 2, base: 14276296, joint: 12171693, cols: 5, rows: 10, width: 1.5, height: 1.2, gap: 9e-3, bond: "running", grain: 3, variation: 3 },
+  { id: "mixed-old-brick", name: "\uC0C9\uC774 \uC11E\uC778 \uB0A1\uC740 \uBCBD\uB3CC", family: "\uBCBD\uB3CC", style: 0, base: 9266258, joint: 11247497, cols: 5, rows: 10, width: 1.5, height: 1.3, gap: 0.012, bond: "running", grain: 6, variation: 22 },
+  { id: "beige-large-stone", name: "\uBCA0\uC774\uC9C0 \uB300\uD615 \uC11D\uC7AC", family: "\uC11D\uC7AC", style: 3, base: 12366753, joint: 9341824, cols: 2, rows: 4, width: 2.4, height: 2.4, gap: 8e-3, bond: "running", grain: 4, variation: 5 },
+  { id: "white-granite", name: "\uBC31\uC0C9 \uD654\uAC15\uC11D", family: "\uC11D\uC7AC", style: 3, base: 12895675, joint: 8949383, cols: 3, rows: 3, width: 1.8, height: 1.8, gap: 7e-3, bond: "stack", grain: 10, variation: 4, speckle: true },
+  { id: "charcoal-granite", name: "\uC9D9\uC740 \uD654\uAC15\uC11D", family: "\uC11D\uC7AC", style: 3, base: 5463131, joint: 8752518, cols: 3, rows: 4, width: 1.8, height: 1.6, gap: 6e-3, bond: "stack", grain: 7, variation: 4, speckle: true },
+  { id: "small-white-tile", name: "\uC791\uC740 \uBC31\uC0C9 \uD0C0\uC77C", family: "\uD0C0\uC77C", style: 4, base: 14014412, joint: 10333088, cols: 10, rows: 10, width: 1, height: 1, gap: 4e-3, bond: "stack", grain: 1, variation: 4 },
+  { id: "vertical-gray-tile", name: "\uC138\uB85C\uD615 \uD68C\uC0C9 \uD0C0\uC77C", family: "\uD0C0\uC77C", style: 4, base: 11253424, joint: 8162179, cols: 10, rows: 4, width: 1, height: 1.2, gap: 5e-3, bond: "stack", grain: 2, variation: 5 },
+  { id: "muted-blue-tile", name: "\uCCAD\uD68C\uC0C9 \uC791\uC740 \uD0C0\uC77C", family: "\uD0C0\uC77C", style: 4, base: 7442065, joint: 11057071, cols: 8, rows: 8, width: 1.2, height: 1.2, gap: 5e-3, bond: "stack", grain: 2, variation: 7 },
+  { id: "exposed-concrete", name: "\uB178\uCD9C \uCF58\uD06C\uB9AC\uD2B8", family: "\uCF58\uD06C\uB9AC\uD2B8", style: 5, base: 11053730, joint: 8620930, cols: 2, rows: 2, width: 2.4, height: 2.4, gap: 4e-3, bond: "concrete", grain: 4, variation: 4 },
+  { id: "sand-stucco", name: "\uBAA8\uB798\uC0C9 \uAC70\uCE5C \uBBF8\uC7A5", family: "\uBBF8\uC7A5", style: 5, base: 12892317, joint: 11050886, width: 2, height: 2, bond: "render", grain: 8, variation: 0 }
+];
+var defaultFacadeTextures = facadeTextureCatalog.slice(0, 6).map((x) => x.id);
+function wallTextureFor(owner = {}) {
+  return owner.wallTexture || owner.textureId || defaultFacadeTextures[owner.styleIndex ?? 5];
+}
+var textures = /* @__PURE__ */ new Map();
+var resolution = 512;
+function rgb(hex) {
+  return [hex >> 16 & 255, hex >> 8 & 255, hex & 255];
+}
+function hash(x, y, seed = 0) {
+  let h = Math.imul(x + seed * 271, 374761393) ^ Math.imul(y + seed * 97, 668265263);
+  h = Math.imul(h ^ h >>> 13, 1274126177);
+  return ((h ^ h >>> 16) >>> 0) / 4294967295;
+}
+var mod = (x, m) => (x % m + m) % m;
+function getFacadeTexture(id) {
+  if (textures.has(id)) return textures.get(id);
+  const r = facadeTextureCatalog.find((r2) => r2.id === id);
+  if (!r) throw Error("Unknown facade texture: " + id);
+  const bytes = new Uint8Array(resolution * resolution * 4), base = rgb(r.base), joint = rgb(r.joint), seed = facadeTextureCatalog.indexOf(r) + 1;
+  for (let py2 = 0; py2 < resolution; py2++) for (let px2 = 0; px2 < resolution; px2++) {
+    const X = (px2 + 0.5) / resolution * r.width, Y = (py2 + 0.5) / resolution * r.height;
+    let paint = base, tone = 0, isJoint = false;
+    if (r.bond !== "render") {
+      const cw = r.width / r.cols, rh = r.height / r.rows, row2 = Math.floor(Y / rh), shift = r.bond === "running" ? row2 % 2 * cw / 2 : 0, sx = X + shift, col = mod(Math.floor(sx / cw), r.cols), xx = mod(sx, cw), yy = mod(Y, rh);
+      const edge = Math.min(xx, cw - xx, yy, rh - yy);
+      isJoint = edge < r.gap / 2;
+      paint = isJoint ? joint : base;
+      tone = isJoint ? 0 : (hash(col, row2, seed) - 0.5) * r.variation;
+      if (!isJoint && edge < r.gap / 2 + 3e-3) tone -= 3;
+      if (r.bond === "concrete") for (const hx of [cw * 0.23, cw * 0.77]) for (const hy of [rh * 0.23, rh * 0.77]) {
+        const d = Math.hypot(xx - hx, yy - hy);
+        if (d < 0.012) tone -= 26;
+        else if (d < 0.018) tone -= 8;
+      }
+    }
+    const noise = (hash(px2, py2, seed) - 0.5) * (isJoint ? 1 : r.grain);
+    if (r.speckle && !isJoint) {
+      const cluster = hash(Math.floor(px2 / 2), Math.floor(py2 / 2), seed);
+      tone += cluster > 0.87 ? -19 : cluster < 0.12 ? 13 : 0;
+    }
+    const mottling = r.bond === "render" || r.bond === "concrete" ? Math.sin(2 * Math.PI * px2 / resolution) * Math.cos(4 * Math.PI * py2 / resolution) * 1.8 : 0;
+    const at = (py2 * resolution + px2) * 4;
+    for (let c = 0; c < 3; c++) bytes[at + c] = Math.max(0, Math.min(255, Math.round(paint[c] + tone + noise + mottling)));
+    bytes[at + 3] = 255;
+  }
+  const texture = new DataTexture(bytes, resolution, resolution, RGBAFormat);
+  texture.name = "facade-" + id;
+  texture.colorSpace = SRGBColorSpace;
+  texture.wrapS = texture.wrapT = RepeatWrapping;
+  texture.magFilter = LinearFilter;
+  texture.minFilter = LinearMipmapLinearFilter;
+  texture.generateMipmaps = true;
+  texture.anisotropy = 4;
+  texture.needsUpdate = true;
+  texture.userData = { facadePattern: id, meters: [r.width, r.height], generated: true };
+  textures.set(id, texture);
+  return texture;
+}
+function emitFacadeTexture(batch, out, { width, bottom, top, id, cuts = [], offset = 0 }) {
+  const recipe = facadeTextureCatalog.find((r) => r.id === id);
+  if (!recipe) throw Error("Unknown facade texture: " + id);
+  const ys = [bottom, top, 3, ...cuts.flatMap((c) => [c[2], c[3]])].filter((y) => y >= bottom && y <= top).sort((a, b) => a - b), levels = [...new Set(ys)];
+  for (let j = 0; j < levels.length - 1; j++) {
+    const lo = levels[j], hi = levels[j + 1];
+    if (hi - lo < 1e-6) continue;
+    let spans = [[0, width]];
+    for (const [a, b, c, d] of cuts) {
+      if (hi <= c || lo >= d) continue;
+      spans = spans.flatMap(([x, y]) => b <= x || a >= y ? [[x, y]] : [[x, Math.min(y, a)], [Math.max(x, b), y]].filter(([x2, y2]) => y2 - x2 > 1e-6));
+    }
+    for (const [a, b] of spans) out.textureQuad((a + b) / 2, (lo + hi) / 2, 0.01, b - a, hi - lo, id, [(a + offset) / recipe.width, lo / recipe.height, (b + offset) / recipe.width, hi / recipe.height]);
+  }
+}
+
+// outputs/domestic-test/solar-position.js?v=151
+var RAD = Math.PI / 180;
+function localDateISO(now2 = /* @__PURE__ */ new Date(), utcOffset = 9) {
+  return new Date(now2.getTime() + utcOffset * 36e5).toISOString().slice(0, 10);
+}
+var SOLAR_CONTEXT = Object.freeze({
+  latitude: 37.626469,
+  longitude: 127.015677,
+  utcOffset: 9,
+  // Freeze the scene's date at load time; a long session must not jump at midnight.
+  date: localDateISO()
+});
+
+// outputs/domestic-test/environment-policy.js?v=151
+function windowLightBand(seed) {
+  let x = Math.trunc(seed) | 0;
+  x = Math.imul(x ^ x >>> 16, 73244475);
+  x = Math.imul(x ^ x >>> 16, 73244475);
+  return (x ^ x >>> 16) >>> 28;
+}
+
+// outputs/domestic-test/surface-policy.js?v=151
+function finishDepth(layer = 1) {
+  return { polygonOffset: true, polygonOffsetFactor: -layer, polygonOffsetUnits: -layer };
+}
+
+// outputs/domestic-test/korean-facades.js?v=recess22
+var facadeStyles = [
+  { name: "\uC801\uBCBD\uB3CC \uB2E4\uC138\uB300", wall: 9002576, joint: 11901830, frame: 13948879, roof: 6716521, pattern: "brick" },
+  { name: "\uC9D9\uC740 \uBCBD\uB3CC \uC8FC\uD0DD", wall: 6508873, joint: 9799803, frame: 5655619, roof: 7570545, pattern: "brick" },
+  { name: "\uBC1D\uC740 \uBCBD\uB3CC \uBE4C\uB77C", wall: 12761508, joint: 9997947, frame: 14803414, roof: 7571062, pattern: "brick" },
+  { name: "\uD68C\uC0C9 \uC11D\uC7AC \uBE4C\uB77C", wall: 10725024, joint: 7502195, frame: 5397851, roof: 7111542, pattern: "stone" },
+  { name: "\uD06C\uB9BC \uD0C0\uC77C \uC8FC\uD0DD", wall: 13352870, joint: 10983811, frame: 13423047, roof: 7439985, pattern: "tile" },
+  { name: "\uBBF8\uC7A5 \uB2E8\uB3C5\uC8FC\uD0DD", wall: 12763056, joint: 11183766, frame: 7106665, roof: 6913127, pattern: "render" }
+];
+facadeStyles.forEach((style, i) => {
+  style.textureId = defaultFacadeTextures[i];
+});
+var windowCatalog = [
+  { id: "white-slider", name: "\uBC31\uC0C9 PVC \uB450\uC9DD \uBBF8\uB2EB\uC774\uCC3D", width: 1.9, height: 1.35 },
+  { id: "brown-slider", name: "\uAC08\uC0C9 \uC54C\uB8E8\uBBF8\uB284 \uC0F7\uC2DC", width: 1.8, height: 1.35 },
+  { id: "wide-slider", name: "\uAC70\uC2E4 \uC138\uC9DD \uBBF8\uB2EB\uC774\uCC3D", width: 2.7, height: 1.4 },
+  { id: "veranda", name: "\uBCA0\uB780\uB2E4 \uB124\uC9DD \uC5F0\uC18D \uC0F7\uC2DC", width: 3.3, height: 1.85 },
+  { id: "guard", name: "\uB3CC\uCD9C \uBC29\uBC94\uCC3D\uACFC \uC0F7\uC2DC", width: 1.8, height: 1.25 },
+  { id: "basement", name: "\uBC18\uC9C0\uD558 \uAC00\uB85C\uCC3D\uACFC \uBC29\uBC94\uCC3D", width: 1.6, height: 0.7 },
+  { id: "frosted", name: "\uC695\uC2E4 \uBD88\uD22C\uBA85 \uD658\uAE30\uCC3D", width: 0.85, height: 0.6 },
+  { id: "stair", name: "\uACC4\uB2E8\uC2E4 \uC138\uB85C \uBD84\uD560\uCC3D", width: 0.8, height: 1.8 },
+  { id: "awning", name: "\uBE57\uBB3C \uCC28\uC591 \uB2EC\uB9B0 \uBBF8\uB2EB\uC774\uCC3D", width: 1.85, height: 1.25 },
+  { id: "bay", name: "\uB3CC\uCD9C \uBCA0\uB780\uB2E4 \uC0F7\uC2DC", width: 2.6, height: 1.6 }
+];
+var unitBox = new BoxGeometry(1, 1, 1).toNonIndexed();
+var edgePoints = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
+var white = 14738137;
+var metal = 7831159;
+var dark = 3423802;
+var sill = 12105896;
+var FacadeBatch = class {
+  constructor(minimumLOD = 0) {
+    this.minimumLOD = minimumLOD;
+    this.parts = /* @__PURE__ */ new Map();
+    this.lines = /* @__PURE__ */ new Map();
+    this.count = 0;
+    this.maxLOD = 2;
+  }
+  atLOD(level, fn) {
+    if (level < this.minimumLOD) return;
+    const previous = this.maxLOD;
+    this.maxLOD = Math.min(previous, level);
+    try {
+      return fn();
+    } finally {
+      this.maxLOD = previous;
+    }
+  }
+  bucket(color, surface = false, textureId = null) {
+    const windowBand = this.windowBand ?? -1, key = color + ":" + surface + ":" + this.maxLOD + ":" + windowBand + ":" + (textureId || "");
+    if (!this.parts.has(key)) this.parts.set(key, { color, surface, maxLOD: this.maxLOD, windowBand, textureId, p: [], n: [], uv: [], inkIds: [] });
+    return this.parts.get(key);
+  }
+  lineBucket(color) {
+    const key = color + ":" + this.maxLOD;
+    if (!this.lines.has(key)) this.lines.set(key, { color, maxLOD: this.maxLOD, p: [] });
+    return this.lines.get(key).p;
+  }
+  writer(origin = [0, 0, 0], ux = 1, uz = 0, nx = 0, nz = 1) {
+    const P = (x, y, z) => [origin[0] + ux * x + nx * z, origin[1] + y, origin[2] + uz * x + nz * z];
+    const box = (x, y, z, w, h, d, color, edge = false, surface = false, textureId = null) => {
+      if (Math.min(w, h, d) <= 0) return;
+      const p = unitBox.attributes.position, n = unitBox.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
+      for (let i = 0; i < p.count; i++) {
+        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p.getX(i) * w, Y = y + p.getY(i) * h, Z = z + p.getZ(i) * d;
+        b.p.push(...P(X, Y, Z));
+        b.inkIds.push(this.inkObjectId ?? 0);
+        b.n.push(ux * n.getX(i) + nx * n.getZ(i), n.getY(i), uz * n.getX(i) + nz * n.getZ(i));
+        if (textured) b.uv.push((X * n.getZ(i) - Z * n.getX(i)) / meters[0], Y / meters[1]);
+      }
+      if (edge) {
+        const a = this.lineBucket(color);
+        for (let i = 0; i < edgePoints.length; i += 3) a.push(...P(x + edgePoints[i] * w, y + edgePoints[i + 1] * h, z + edgePoints[i + 2] * d));
+      }
+      this.count++;
+    };
+    const quad = (x, y, z, w, h, color, surface = true) => {
+      const b = this.bucket(color, surface);
+      for (const [u, v2] of [[-1, -1], [1, -1], [1, 1], [-1, -1], [1, 1], [-1, 1]]) {
+        b.p.push(...P(x + u * w / 2, y + v2 * h / 2, z));
+        b.inkIds.push(this.inkObjectId ?? 0);
+        b.n.push(nx, 0, nz);
+      }
+      ;
+    };
+    const textureQuad = (x, y, z, w, h, id, uv) => {
+      const b = this.bucket(16777215, true, id);
+      for (const [u, v2] of [[0, 0], [1, 0], [1, 1], [0, 0], [1, 1], [0, 1]]) {
+        b.p.push(...P(x + (u - 0.5) * w, y + (v2 - 0.5) * h, z));
+        b.n.push(nx, 0, nz);
+        b.uv.push(u ? uv[2] : uv[0], v2 ? uv[3] : uv[1]);
+        b.inkIds.push(this.inkObjectId ?? 0);
+      }
+    };
+    const rod = (a, b, r, color, segments2 = 6) => {
+      const A = new Vector3(...P(...a)), B = new Vector3(...P(...b)), dir = B.clone().sub(A), len = dir.length();
+      if (len < 1e-6) return;
+      dir.divideScalar(len);
+      const u = new Vector3(0, 1, 0);
+      if (Math.abs(dir.y) > 0.99) u.set(1, 0, 0);
+      u.cross(dir).normalize();
+      const v2 = dir.clone().cross(u);
+      const out = this.bucket(color);
+      for (let i = 0; i < segments2; i++) {
+        const ns = [i, i + 1].map((j) => u.clone().multiplyScalar(Math.cos(j * 2 * Math.PI / segments2)).addScaledVector(v2, Math.sin(j * 2 * Math.PI / segments2)));
+        const q = [A.clone().addScaledVector(ns[0], r), A.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[0], r)];
+        for (const k of [0, 1, 2, 0, 2, 3]) {
+          out.p.push(...q[k].toArray());
+          out.inkIds.push(this.inkObjectId ?? 0);
+          out.n.push(...ns[k === 0 || k === 3 ? 0 : 1].toArray());
+        }
+      }
+    };
+    const reveal = (a, b, c, d, color) => {
+      const bucket = this.bucket(color, false), normal = new Vector3(...b).sub(new Vector3(...a)).cross(new Vector3(...c).sub(new Vector3(...a))).normalize();
+      for (const q of [a, b, c, a, c, d]) {
+        bucket.p.push(...q);
+        bucket.n.push(...normal.toArray());
+        bucket.inkIds.push(this.inkObjectId ?? 0);
+      }
+    };
+    return { box, quad, rod, textureQuad, reveal, lit: (band, fn) => {
+      const old = this.windowBand;
+      this.windowBand = band;
+      try {
+        fn();
+      } finally {
+        this.windowBand = old;
+      }
+    }, detail: (level, fn) => this.atLOD(level, fn), at: (x, y, z) => this.writer(P(x, y, z), ux, uz, nx, nz) };
+  }
+  finish(name = "KoreanFacadeDetails") {
+    const group = new Group();
+    group.name = name;
+    for (const b of this.parts.values()) {
+      const g = new BufferGeometry();
+      g.setAttribute("position", new Float32BufferAttribute(b.p, 3));
+      g.setAttribute("normal", new Float32BufferAttribute(b.n, 3));
+      if (b.textureId) g.setAttribute("uv", new Float32BufferAttribute(b.uv, 2));
+      if (b.inkIds.length === b.p.length / 3 && b.inkIds.some((id) => id > 0)) g.setAttribute("inkObjectId", new Float32BufferAttribute(b.inkIds, 1));
+      const m = new Mesh(g, new MeshStandardMaterial({ color: b.color, roughness: 0.9, side: DoubleSide, ...b.textureId ? { map: getFacadeTexture(b.textureId) } : {}, ...b.surface ? finishDepth() : {} }));
+      if (b.windowBand >= 0) m.material.userData.nightWindowBand = b.windowBand;
+      m.name = "korean-facade-" + (b.surface ? "surface" : "parts") + "-" + b.color.toString(16);
+      m.userData = { facadeTextureId: b.textureId, detailKind: b.color === dark ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
+      group.add(m);
+    }
+    for (const { color, p, maxLOD } of this.lines.values()) {
+      const g = new BufferGeometry();
+      g.setAttribute("position", new Float32BufferAttribute(p, 3));
+      const c = new Color(color).multiplyScalar(0.47), m = new LineSegments(g, new LineBasicMaterial({ color: c }));
+      m.userData.faceLineColor = c.getHex();
+      m.userData.lodMaxLevel = maxLOD;
+      group.add(m);
+    }
+    return group;
+  }
+};
+function emitWindow(out, id, w, h, variation = 0, frame = white, lightSeed = null, options = {}) {
+  const { box: B, quad: Q, rod: R } = out, isGuard = id === "guard" || id === "basement", isBay = id === "bay" && options.recess == null, veranda = id === "veranda";
+  const z = options.recess != null ? -options.recess - 0.025 : isBay ? 0.3 : 0.085, f = id === "frosted" ? 0.042 : 0.055, m = 0.042, frameDepth = 0.06;
+  frame = id === "brown-slider" ? 5721411 : frame;
+  const cols = id === "frosted" ? 1 : veranda ? 4 : id === "wide-slider" || id === "bay" ? 3 : 2;
+  const iw = w - 2 * f, ih = h - 2 * f, pw = (iw - (cols - 1) * m) / cols, glassZ = z + 0.018;
+  const cross2 = id === "stair" ? h * 0.12 : veranda ? -h * 0.24 : null;
+  const glassRects = cross2 === null ? [[-ih / 2, ih / 2]] : [[-ih / 2, cross2 - m / 2], [cross2 + m / 2, ih / 2]];
+  for (let j = 0; j < cols; j++) {
+    const x = -iw / 2 + pw / 2 + j * (pw + m), glass = id === "frosted" ? 11519165 : [7969178, 9019290, 6785164][((j + variation) % 3 + 3) % 3];
+    const curtain = !["frosted", "basement", "stair"].includes(id) && (variation + j) % 4 === 0;
+    const cw = curtain ? pw * 0.35 : 0;
+    for (const [lo, hi] of glassRects) {
+      const paintGlass = () => Q(x + cw / 2, (lo + hi) / 2, glassZ, pw - cw, hi - lo, glass, false);
+      if (lightSeed === null) paintGlass();
+      else out.lit(windowLightBand(lightSeed), paintGlass);
+      if (curtain) Q(x - (pw - cw) / 2, (lo + hi) / 2, glassZ, cw, hi - lo, variation % 2 ? 12041393 : 13158069, false);
+    }
+    if (cross2 !== null) B(x, cross2, z + 0.025, pw, m, frameDepth, frame, false);
+  }
+  for (const side of [-1, 1]) B(side * (w - f) / 2, 0, z + 0.025, f, ih, frameDepth, frame, true);
+  for (const side of [-1, 1]) B(0, side * (h - f) / 2, z + 0.025, w, f, frameDepth, frame, true);
+  for (let j = 1; j < cols; j++) B(-iw / 2 + j * pw + (j - 0.5) * m, 0, z + 0.025, m, ih, frameDepth, frame, false);
+  if (cols > 1 && id !== "basement") out.detail(0, () => B(-iw / 2 + pw + m / 2, -0.03, z + 0.068, 0.024, 0.13, 0.026, dark, false));
+  const sillDepth = options.recess != null ? options.recess + 0.14 : isBay ? z + 0.08 : 0.17, sillZ = options.recess != null ? 0.07 - sillDepth / 2 : isBay ? sillDepth / 2 : z - 5e-3;
+  if (options.sill !== false) B(0, -h / 2 - 0.035, sillZ, w + 0.1, 0.07, sillDepth, sill, true);
+  if (isBay) {
+    const depth = z - 5e-3;
+    for (const side of [-1, 1]) B(side * (w - f) / 2, 0, depth / 2, f, ih, depth, frame, false);
+    B(0, (h - f) / 2, depth / 2, w, f, depth, frame, false);
+  }
+  if (isGuard && options.accessories !== false) {
+    const depth = id === "basement" ? 0.26 : 0.3, rail = 0.025;
+    for (const x of [-w / 2 + rail / 2, w / 2 - rail / 2]) {
+      B(x, 0, depth, rail, h - 2 * rail, rail, dark, false);
+      for (const yy of [-h / 2 + rail / 2, h / 2 - rail / 2]) B(x, yy, (depth + z + 0.055) / 2, rail, rail, depth - z - 0.055, dark, false);
+    }
+    for (const yy of [-h / 2 + rail / 2, h / 2 - rail / 2]) B(0, yy, depth, w, rail, rail, dark, false);
+    const n = Math.max(4, Math.round(w / 0.24));
+    for (let i = 1; i < n; i++) out.detail(i % 2 ? 2 : 1, () => B(-w / 2 + i * w / n, 0, depth, 0.02, h - 2 * rail, 0.025, dark, false));
+    if (id === "guard") B(0, -h * 0.19, depth - 0.026, w - 2 * rail, rail, 0.022, dark, false);
+  }
+  if (id === "awning" && options.accessories !== false) {
+    B(0, h / 2 + 0.14, 0.27, w + 0.22, 0.045, 0.6, 8362897, true);
+    for (const x of [-w * 0.4, w * 0.4]) R([x, h / 2 - 0.2, 0.06], [x, h / 2 + 0.11, 0.5], 0.013, metal);
+  }
+}
+function emitAircon(out, x, y, variant = 0) {
+  const { box: B, quad: Q, rod: R } = out;
+  const z = 0.3;
+  B(x, y, z, 0.82, 0.55, 0.35, 13881789, true);
+  const cx = x - 0.13;
+  const color = 5332053;
+  const steps = 20;
+  for (let j = 0; j < steps; j++) {
+    const a = j * Math.PI * 2 / steps, b = (j + 1) * Math.PI * 2 / steps;
+    R([cx + Math.cos(a) * 0.205, y + Math.sin(a) * 0.205, z + 0.185], [cx + Math.cos(b) * 0.205, y + Math.sin(b) * 0.205, z + 0.185], 0.012, color, 4);
+    out.detail(j % 5 ? 0 : 1, () => R([cx, y, z + 0.19], [cx + Math.cos(a) * 0.197, y + Math.sin(a) * 0.197, z + 0.19], 5e-3, color, 4));
+  }
+  out.detail(1, () => {
+    for (let j = 0; j < 5; j++) B(x + 0.28, y - 0.14 + j * 0.066, z + 0.18, 0.14, 0.019, 0.013, color, false);
+  });
+  for (const xx of [x - 0.3, x + 0.3]) {
+    B(xx, y - 0.32, 0.25, 0.045, 0.055, 0.53, metal, false);
+    R([xx, y - 0.31, 0.47], [xx, y - 0.05, 0.055], 0.02, metal);
+  }
+  const side = variant % 2 ? -1 : 1;
+  R([x + side * 0.42, y - 0.12, 0.2], [x + side * 0.6, y - 0.12, 0.12], 0.025, 13089184);
+  R([x + side * 0.6, y - 0.12, 0.12], [x + side * 0.6, y - 0.72, 0.12], 0.025, 13089184);
+}
+
+// outputs/domestic-test/korean-facades.js
+var facadeStyles2 = [
+  { name: "\uC801\uBCBD\uB3CC \uB2E4\uC138\uB300", wall: 9002576, joint: 11901830, frame: 13948879, roof: 6716521, pattern: "brick" },
+  { name: "\uC9D9\uC740 \uBCBD\uB3CC \uC8FC\uD0DD", wall: 6508873, joint: 9799803, frame: 5655619, roof: 7570545, pattern: "brick" },
+  { name: "\uBC1D\uC740 \uBCBD\uB3CC \uBE4C\uB77C", wall: 12761508, joint: 9997947, frame: 14803414, roof: 7571062, pattern: "brick" },
+  { name: "\uD68C\uC0C9 \uC11D\uC7AC \uBE4C\uB77C", wall: 10725024, joint: 7502195, frame: 5397851, roof: 7111542, pattern: "stone" },
+  { name: "\uD06C\uB9BC \uD0C0\uC77C \uC8FC\uD0DD", wall: 13352870, joint: 10983811, frame: 13423047, roof: 7439985, pattern: "tile" },
+  { name: "\uBBF8\uC7A5 \uB2E8\uB3C5\uC8FC\uD0DD", wall: 12763056, joint: 11183766, frame: 7106665, roof: 6913127, pattern: "render" }
+];
+facadeStyles2.forEach((style, i) => {
+  style.textureId = defaultFacadeTextures[i];
+});
+var unitBox2 = new BoxGeometry(1, 1, 1).toNonIndexed();
+var edgePoints2 = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
+
+// outputs/domestic-test/apartments/models.js
+var eras = [{ id: "old", name: "\uAD6C\uCD95", wall: 13289140, accent: 9214859, glass: 7441287, roof: 8296064 }, { id: "middle", name: "\uC911\uAC04 \uC2DC\uB300", wall: 14010799, accent: 10188896, glass: 7507345, roof: 7433828 }, { id: "new", name: "\uC2E0\uC2DD", wall: 14277843, accent: 5267299, glass: 6915469, roof: 8885140 }];
+var apartmentCatalog = eras.flatMap((e) => ["\uAE34 \uB3D9", "\uAEBE\uC778 \uB3D9", "\uD0C0\uC6CC\uC640 \uD63C\uD569"].map((shape, i) => ({ ...e, id: `${e.id}-${i + 1}`, era: e.id, variant: i, name: `${e.name} \xB7 ${shape}`, source: "../apartment-research/", nominalLevels: [5, 12, 15, 15, 18, 22, 20, 25, 30][eras.indexOf(e) * 3 + i] })));
+var hash2 = (s) => Array.from(String(s)).reduce((h, c) => Math.imul(h, 31) + c.charCodeAt(0) >>> 0, 7);
+function chooseApartment(b) {
+  const p = b.properties || {}, name = p.building_name || p.buld_nm_dc || b.address || String(b.seed), key = name.replace(/\s*\d+동.*$/, "");
+  const raw = String(p.useAprDay || p.use_apr_day || p.approval_date || ""), year = Number(raw.slice(0, 4));
+  let era = p.apartment_era, source = "\uC124\uC815";
+  if (!eras.some((e) => e.id === era)) {
+    if (year >= 1900 && year <= 2100) {
+      era = year < 1995 ? "old" : year < 2010 ? "middle" : "new";
+      source = "\uC900\uACF5 \uAE30\uB85D";
+    } else {
+      era = /주공|시영/.test(name) ? "old" : /원베일리|디에이치|아크로/.test(name) ? "new" : "middle";
+      source = "\uC720\uD615 \uCD94\uC815 \xB7 \uC900\uACF5 \uC5F0\uB3C4 \uC5C6\uC74C";
+    }
+  }
+  let variant = p.apartment_variant;
+  if (!Number.isInteger(variant) || variant < 0 || variant > 2) variant = b.points.length > 6 ? 1 : b.levels >= 22 ? 2 : hash2(key) % 3;
+  return { ...apartmentCatalog.find((a) => a.era === era && a.variant === variant), selection: source, complexKey: key };
+}
+function edges(b) {
+  const ps = b.points, sign2 = Math.sign(ps.reduce((v2, p, i) => {
+    const q = ps[(i + 1) % ps.length];
+    return v2 + p[0] * q[1] - q[0] * p[1];
+  }, 0)) || 1;
+  return ps.map((a, i) => {
+    const c = ps[(i + 1) % ps.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]), ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L;
+    return { i, a, L, ux, uz, nx: uz * sign2, nz: -ux * sign2 };
+  }).filter((e) => e.L > 0.5);
+}
+function emitApartment(batch, b) {
+  const style = b.apartment || chooseApartment(b);
+  b.apartment = style;
+  const H = b.top - b.base, levels = Math.max(1, Math.round(b.levels)), fh = H / levels, es = edges(b), longest = Math.max(...es.map((e) => e.L));
+  let windows = 0;
+  const insideBox = (e, x, z, w, d) => [-1, 0, 1].every((u) => [-1, 0, 1].every((v2) => inPolygon([e.a[0] + e.ux * (x + u * w / 2) + e.nx * (z + v2 * d / 2), e.a[1] + e.uz * (x + u * w / 2) + e.nz * (z + v2 * d / 2)], b.points) && !(b.holePoints || []).some((h) => inPolygon([e.a[0] + e.ux * (x + u * w / 2) + e.nx * (z + v2 * d / 2), e.a[1] + e.uz * (x + u * w / 2) + e.nz * (z + v2 * d / 2)], h))));
+  for (const e of es) {
+    const { L, i } = e, out = batch.writer([e.a[0], b.base, e.a[1]], e.ux, e.uz, e.nx, e.nz), B = out.box, Q = out.quad;
+    Q(L / 2, H / 2, 0.018, L, H, style.wall);
+    B(L / 2, H + 0.3, -0.09, L, 0.6, 0.18, style.wall);
+    B(L / 2, 0.7, 0.025, L, 1.4, 0.035, style.accent);
+    const entrance = i === (b.frontEdge ?? es[0].i) && L > 4, doorX = L * (b.frontFraction ?? 0.5);
+    const main = L > longest * 0.46, cols = Math.max(1, Math.floor(L / (main ? 3.2 : 3.8))), pw = L / cols, back = i % 2 === 1;
+    if (style.era === "new") for (let j = 0; j < cols; j += 3) B((j + 0.93) * pw, H / 2, 0.54, 0.16, H, 0.08, style.accent);
+    if (main) for (let j = 2; j < cols; j += 5) B((j + 0.5) * pw, H / 2, 0.025, 1.25, H, 0.03, style.accent);
+    const openings = [];
+    for (let r = 0; r < levels; r++) for (let j = 0; j < cols; j++) {
+      const stair = main && j % 5 === 2, x = (j + 0.5) * pw;
+      const w = r === 0 ? stair ? 0.62 : Math.min(pw - 0.65, 2.2) : stair ? 0.75 : Math.min(pw - 0.35, style.era === "new" ? 2.25 : 2.65);
+      const h = r === 0 ? stair ? 0.92 : 1.42 : stair ? fh * 0.5 : fh * 0.65, y = r === 0 ? stair ? 1.92 : 1.83 : r * fh + fh * 0.57;
+      if (r === 0 && entrance && Math.abs(x - doorX) < (stair ? 0.75 : Math.min(pw - 0.35, style.era === "new" ? 2.25 : 2.65)) / 2 + 1.85) continue;
+      openings.push({ x0: x - w / 2 - 0.065, x1: x + w / 2 + 0.065, y0: y - h / 2 - 0.065, y1: y + h / 2 + 0.065 });
+    }
+    if (entrance) openings.push({ x0: doorX - 1.52, x1: doorX + 1.52, y0: 0, y1: 2.77 });
+    const cuts = [.../* @__PURE__ */ new Set([0, H, ...openings.flatMap((a) => [a.y0, a.y1])])].filter((y) => y >= 0 && y <= H).sort((a, b2) => a - b2);
+    for (let k = 0; k < cuts.length - 1; k++) {
+      const lo = cuts[k], hi = cuts[k + 1], mid = (lo + hi) / 2, holes = openings.filter((a) => a.y0 < hi && a.y1 > lo).sort((a, b2) => a.x0 - b2.x0);
+      let start = 0;
+      const panel = (end) => {
+        if (end > start + 1e-3) B((start + end) / 2, mid, 0.27, end - start, hi - lo, 0.5, mid < 0.48 ? 9343109 : mid < 3 ? 12959918 : style.wall);
+      };
+      for (const hole of holes) {
+        panel(Math.max(0, hole.x0));
+        start = Math.max(start, hole.x1);
+      }
+      panel(L);
+    }
+    for (let r = 0; r < levels; r++) for (let j = 0; j < cols; j++) {
+      const stair = main && j % 5 === 2, x = (j + 0.5) * pw, y = r * fh + fh * 0.57, w = stair ? 0.75 : Math.min(pw - 0.35, style.era === "new" ? 2.25 : 2.65), h = stair ? fh * 0.5 : fh * 0.65;
+      if (r === 0) {
+        if (entrance && Math.abs(x - doorX) < w / 2 + 1.85) continue;
+        const ww = stair ? 0.62 : Math.min(pw - 0.65, 2.2), hh = stair ? 0.92 : 1.42, yy = stair ? 1.92 : 1.83, frame2 = 14211535;
+        Q(x, yy, 0.105, ww, hh, stair ? 7242368 : style.glass);
+        for (const xx of [-ww / 2, ww / 2]) B(x + xx, yy, 0.16, 0.075, hh + 0.12, 0.19, frame2);
+        for (const dy of [-hh / 2, hh / 2]) B(x, yy + dy, 0.18, ww + 0.12, 0.075, 0.24, frame2);
+        B(x, yy, 0.21, 0.045, hh, 0.045, frame2);
+        B(x, yy - 0.3, 0.215, ww, 0.035, 0.04, frame2);
+        B(x, yy - hh / 2 - 0.09, 0.23, ww + 0.22, 0.13, 0.38, 11184538);
+        if (!stair) {
+          Q(x, yy - 0.36, 0.225, ww - 0.1, 0.55, 9740955);
+          for (const xx of [-ww * 0.43, ww * 0.43]) B(x + xx, yy - 0.35, 0.25, 0.025, 0.5, 0.03, 13225410);
+        }
+        continue;
+      }
+      const frame = style.era === "old" ? 13750463 : 14737363, depth = 0.16;
+      Q(x, y, 0.075, w, h, (r + j) % 11 === 0 ? 10398372 : style.glass);
+      for (const xx of [-w / 2, w / 2]) B(x + xx, y, depth / 2, 0.085, h + 0.14, depth, frame);
+      for (const yy of [-h / 2, h / 2]) B(x, y + yy, depth / 2, w + 0.12, 0.09, depth, frame);
+      for (let m = 1; m < 3; m++) B(x - w / 2 + w * m / 3, y, depth - 0.035, 0.045, h, 0.065, frame);
+      B(x, y - h * 0.18, depth - 0.02, w, 0.045, 0.055, frame);
+      windows++;
+      if (!stair) {
+        B(x, r * fh + 0.15, 0.5, pw - 0.1, 0.13, 0.08, style.wall);
+        B(x, y - h / 2 - 0.22, 0.48, w + 0.18, 0.25, 0.08, style.wall);
+        if (style.era !== "new") {
+          B(x, y - h / 2 + 0.52, 0.42, w, 0.035, 0.04, 9411479);
+          B(x, y - h / 2 + 0.08, 0.42, w, 0.03, 0.04, 9411479);
+          for (let k = 0; k <= 10; k++) B(x - w / 2 + w * k / 10, y - h / 2 + 0.3, 0.42, 0.018, 0.44, 0.025, 9411479);
+        }
+        if (style.era === "middle") {
+          B(x - pw * 0.46, r * fh + fh / 2, 0.535, 0.09, fh, 0.035, style.accent);
+        }
+        if (style.era !== "new" && (r + j * 3) % 7 === 0) {
+          B(x + w * 0.28, r * fh + 0.48, 0.57, 0.68, 0.46, 0.33, 12764085);
+          for (let l = 0; l < 4; l++) B(x + w * 0.28, r * fh + 0.34 + l * 0.085, 0.75, 0.52, 0.025, 0.025, 8029568);
+        }
+      } else {
+        B(x, y - h / 2 - 0.13, 0.47, w + 0.3, 0.12, 0.1, style.accent);
+      }
+    }
+    if (main && L >= 8) {
+      const n = Math.max(1, Math.floor(L / 15));
+      for (let k = 0; k < n; k++) {
+        const x = L * (k + 0.5) / n, w = Math.min(3.4, L / n * 0.4), d = 3.4;
+        if (insideBox(e, x, -d / 2 - 0.35, w, d)) {
+          const h = style.era === "old" ? 2.5 : style.era === "middle" ? 3 : 1.2;
+          B(x, H + h / 2, -d / 2 - 0.35, w, h, d, style.era === "new" ? style.accent : style.wall);
+          if (style.era === "old") {
+            B(x, H + h + 0.12, -d / 2 - 0.35, w + 0.18, 0.24, d + 0.18, style.wall);
+            Q(x, H + h * 0.5, -0.34, w * 0.5, 0.45, style.accent);
+          }
+          if (style.era === "middle") {
+            for (let step = 0; step < 4; step++) B(x, H + h + 0.15 + step * 0.22, -d / 2 - 0.35, w + 0.5 - step * 0.45, 0.23, d + 0.5 - step * 0.45, style.roof);
+          }
+          if (style.era === "new") {
+            for (const xx of [-1, 1]) B(x + xx * w * 0.4, H + 2, -d / 2 - 0.35, 0.3, 3.2, d, style.accent);
+            B(x, H + 3.6, -d / 2 - 0.35, w + 0.3, 0.35, d, style.accent);
+          }
+        }
+      }
+    }
+    if (entrance) {
+      Q(doorX, 1.43, 0.12, 3.35, 2.7, 4017225);
+      for (const dx of [-1.7, 1.7]) B(doorX + dx, 1.45, 0.3, 0.32, 2.9, 0.58, 12039074);
+      B(doorX, 2.87, 0.34, 3.7, 0.24, 0.68, 12039074);
+      const metal2 = 10858409;
+      for (const dx of [-0.6, 0.6]) {
+        Q(doorX + dx, 1.34, 0.23, 1.14, 2.12, 5401968);
+        B(doorX + dx, 0.37, 0.26, 1.14, 0.22, 0.05, 9148562);
+        B(doorX + dx, 1.16, 0.27, 1.14, 0.09, 0.04, 13160130);
+      }
+      for (const dx of [-1.2, 0, 1.2]) B(doorX + dx, 1.34, 0.28, 0.06, 2.2, 0.09, metal2);
+      B(doorX, 2.44, 0.27, 2.46, 0.07, 0.09, metal2);
+      B(doorX, 2.62, 0.28, 2.45, 0.24, 0.08, 7702656);
+      for (const dx of [-0.13, 0.13]) {
+        B(doorX + dx, 1.22, 0.36, 0.035, 0.48, 0.05, 14145995);
+      }
+      B(doorX, 2.98, 0.78, 3.9, 0.18, 1.75, style.accent);
+      B(doorX, 2.89, 0.81, 3.65, 0.025, 1.48, 13946810);
+      for (const dx of [-1, 1]) B(doorX + dx, 2.865, 1.1, 0.24, 0.018, 0.12, 15787454);
+      const number = String(b.properties?.buld_nm_dc || "").match(/\d+/)?.[0];
+      if (number) {
+        const digitSegments = ["ab cdef".replaceAll(" ", ""), "bc", "abdeg", "abcdg", "bcfg", "acdfg", "acdefg", "abc", "abcdefg", "abcdfg"], segments2 = { a: [0, 0.12, 0.14, 0.024], b: [0.075, 0.06, 0.024, 0.12], c: [0.075, -0.06, 0.024, 0.12], d: [0, -0.12, 0.14, 0.024], e: [-0.075, -0.06, 0.024, 0.12], f: [-0.075, 0.06, 0.024, 0.12], g: [0, 0, 0.14, 0.024] };
+        number.split("").forEach((digit, k) => {
+          for (const seg of digitSegments[Number(digit)]) {
+            const [x, y, w, h] = segments2[seg];
+            B(doorX + (k - (number.length - 1) / 2) * 0.23 + x, 2.65 + y, 0.34, w, h, 0.015, 15065291);
+          }
+        });
+      }
+      B(doorX, 0.09, 0.9, 3.25, 0.18, 1.8, 11908519);
+      B(doorX, 0.19, 0.55, 2.3, 0.025, 0.65, 6582121);
+      for (let dx = -1.4; dx < 1.5; dx += 0.45) B(doorX + dx, 0.187, 1.45, 0.012, 0.01, 0.55, 9146502);
+      B(doorX + 1.48, 1.38, 0.64, 0.22, 0.36, 0.07, 5463643);
+      Q(doorX + 1.48, 1.45, 0.681, 0.15, 0.1, 9217700);
+      for (let k = 0; k < 3; k++) for (let m = 0; m < 3; m++) B(doorX + 1.42 + m * 0.055, 1.33 - k * 0.05, 0.687, 0.023, 0.022, 0.01, 13225667);
+      B(doorX, 2.49, 0.35, 0.17, 0.07, 0.1, 3950661);
+      for (let dx = -0.8; dx < 0.9; dx += 0.28) {
+        B(doorX + dx, 0.195, 1.62, 0.26, 0.025, 0.25, 13153913);
+        for (let m = 0; m < 3; m++) for (let k = 0; k < 3; k++) B(doorX + dx - 0.08 + m * 0.08, 0.218, 1.54 + k * 0.08, 0.035, 0.015, 0.035, 14206347);
+      }
+    }
+    B(L / 2, H + 0.63, -0.08, L + 0.08, 0.08, 0.28, 12106930);
+    if (L > 8) {
+      B(0.18, H / 2, 0.14, 0.09, H, 0.1, style.accent);
+    }
+  }
+  return { windows };
+}
+
+// outputs/domestic-test/facilities/models.js?v=building-edit1
+function emitFacility(batch, b, buildings, elevation, options = {}) {
+  const recessed = !!options.windowOpenings;
+  if (b.facility.id === "apartment") return emitApartment(batch, b);
   const f = facilityById[b.facility.id], { points, base, top } = b, H = top - base, levels = Math.max(1, b.levels), fh = H / levels;
   const signed2 = points.reduce((v2, a, i) => {
     const c = points[(i + 1) % points.length];
@@ -34506,16 +35260,24 @@ function emitFacility(batch, b, buildings, elevation) {
     if (L < 1) continue;
     const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2;
     if ([0.2, 0.5, 0.8].every((t) => buildings.some((other) => other !== b && inPolygon([a[0] + ux * L * t + nx * 0.14, a[1] + uz * L * t + nz * 0.14], other.points)))) continue;
-    const out = batch.writer([a[0], base, a[1]], ux, uz, nx, nz), Q = (x, y, w, h, col, z = 0.025) => {
+    const panels = [], cuts = [], out = batch.writer([a[0], base, a[1]], ux, uz, nx, nz), rawQ = (x, y, w, h, col, z = 0.025) => {
       if (w > 0 && h > 0) out.quad(x, y, z, w, h, col, true);
-    }, B = (x, y, w, h, col, z = 0.035, d = 0.025) => out.box(x, y, z, w, h, d, col);
+    }, rawB = (x, y, w, h, col, z = 0.035, d = 0.025) => out.box(x, y, z, w, h, d, col);
+    const Q = (...args) => recessed ? panels.push(["quad", args]) : rawQ(...args), B = (...args) => recessed ? panels.push(["box", args]) : rawB(...args);
     const front = edge === (b.facility.frontEdge ?? b.frontEdge), ground2 = Math.max(0.05, elevation(a[0] + ux * L / 2, a[1] + uz * L / 2) - base), usable = H - ground2;
     Q(L / 2, H / 2, L - 0.02, H - 0.02, f.wall, 0.012);
     const frame = (x, y, w, h, col = f.glass, z = 0.045) => {
       if (w < 0.3 || h < 0.3) return;
-      Q(x, y, w, h, 12040105, z - 0.013);
-      Q(x, y, w - 0.1, h - 0.1, col, z);
-      B(x, y, 0.04, h, 5925735, z + 0.015);
+      if (recessed) {
+        const reveal = batch.writer([0, 0, 0]);
+        const rect = windowOpening(reveal, options.windowOpenings, b, edge, a, [ux, uz], [nx, nz], x, base + y, w, h, f.wall);
+        cuts.push([rect[0], rect[1], rect[2] - base, rect[3] - base]);
+        emitWindow(out.at(x, y, 0), "white-slider", w, h, 0, 12040105, b.seed + edge, { recess: WINDOW_RECESS, sill: false, accessories: false });
+      } else {
+        Q(x, y, w, h, 12040105, z - 0.013);
+        Q(x, y, w - 0.1, h - 0.1, col, z);
+        B(x, y, 0.04, h, 5925735, z + 0.015);
+      }
       windows++;
     };
     const bands = (start = 1) => {
@@ -34535,7 +35297,7 @@ function emitFacility(batch, b, buildings, elevation) {
       }
       if (!front && L > 6) {
         Q(L * 0.18, H / 2, Math.min(1.35, L * 0.15), H - 0.1, 12892058, 0.09);
-        for (let r = 0; r < levels; r++) Q(L * 0.18, r * fh + fh * 0.65, 0.55, fh * 0.35, f.glass, 0.1);
+        for (let r = 0; r < levels; r++) frame(L * 0.18, r * fh + fh * 0.65, 0.55, fh * 0.35, f.glass, 0.1);
       }
     } else if (f.pattern === "school") {
       const cols = Math.max(1, Math.min(20, Math.floor(L / 3.8))), pw = (L - 0.4) / cols;
@@ -34584,7 +35346,7 @@ function emitFacility(batch, b, buildings, elevation) {
         const x = start + pw * (j + 0.5), depth = 0.035 + 0.045 * Math.sin(Math.PI * (j + 0.5) / cols);
         for (let r = 1; r < Math.max(3, levels); r++) {
           const rh = (H - ground2 - 2.8) / (Math.max(3, levels) - 1), y = ground2 + 2.8 + rh * (r - 0.5);
-          Q(x, y, pw - 0.06, rh - 0.08, f.glass, depth);
+          frame(x, y, pw - 0.06, rh - 0.08, f.glass, depth);
           B(x - pw / 2, y, 0.045, rh, 11647149, depth + 0.01);
         }
       }
@@ -34618,12 +35380,22 @@ function emitFacility(batch, b, buildings, elevation) {
       frame(L / 2, ground2 + h / 2, w, h);
       B(L / 2, ground2 + h + 0.14, w + 0.2, 0.16, 8488829, 0.065);
     }
+    if (recessed) for (const [kind, args] of panels) {
+      const [x, y, w, h, col, z, depth] = args;
+      let pieces = [[x - w / 2, x + w / 2, y - h / 2, y + h / 2]];
+      for (const [l, r, b2, t] of cuts) pieces = pieces.flatMap(([a2, c2, d, e]) => {
+        if (c2 <= l || a2 >= r || e <= b2 || d >= t) return [[a2, c2, d, e]];
+        const left = Math.max(a2, l), right = Math.min(c2, r);
+        return [[a2, left, d, e], [right, c2, d, e], [left, right, d, Math.max(d, b2)], [left, right, Math.min(e, t), e]].filter((q) => q[1] - q[0] > 1e-3 && q[3] - q[2] > 1e-3);
+      });
+      for (const [l, r, b2, t] of pieces) (kind === "quad" ? rawQ : rawB)((l + r) / 2, (b2 + t) / 2, r - l, t - b2, col, z, depth);
+    }
   }
   return { windows, sourceId: f.sourceId };
 }
 function addSignText(root, spec) {
   if (typeof document === "undefined" || !spec.signText) return;
-  const canvas = typeof document === "undefined" ? new OffscreenCanvas(128, 128) : document.createElement("canvas");
+  const canvas = document.createElement("canvas");
   canvas.width = 512;
   canvas.height = 96;
   const ctx = canvas.getContext("2d");
@@ -34644,7 +35416,7 @@ function addSignText(root, spec) {
 function addFacilityLabels(root, buildings) {
   if (typeof document === "undefined") return;
   for (const b of buildings) {
-    if (!b.facility || b.facility.id === "apartment") continue;
+    if (!b.facility || b.facility.id === "apartment" || b.assetChoice) continue;
     const f = facilityById[b.facility.id], i = b.facility.frontEdge ?? b.frontEdge ?? 0, a = b.points[i], c = b.points[(i + 1) % b.points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
     if (L < 3) continue;
     const sign2 = Math.sign(b.points.reduce((v2, p, j) => {
@@ -34802,6 +35574,14 @@ function emitGasNetwork(batch, plan, proxy) {
 
 // outputs/domestic-test/terrain-fit.js?v=151
 function fittedRibbon(points, width, bottom, top, maxStep = 0.5) {
+  const clean = [];
+  for (const p of points) {
+    if (!Array.isArray(p) || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) throw new Error("fittedRibbon: non-finite path coordinate");
+    const last = clean.at(-1);
+    if (!last || Math.hypot(p[0] - last[0], p[1] - last[1]) > 1e-6) clean.push(p);
+  }
+  if (clean.length < 2) throw new Error("fittedRibbon: path needs two distinct points");
+  points = clean;
   const ps = [];
   for (let i = 0; i < points.length - 1; i++) {
     const a = points[i], b = points[i + 1], count3 = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / maxStep));
@@ -34852,7 +35632,7 @@ function stitchBoundaryRuns(input, tolerance = 0.04) {
     groups.get(key).push(r);
   }
   for (const rows3 of groups.values()) {
-    const nodes = [], edges = [], seen = /* @__PURE__ */ new Set();
+    const nodes = [], edges2 = [], seen = /* @__PURE__ */ new Set();
     const node = (p) => {
       let n = nodes.find((n2) => Math.hypot(n2.p[0] - p[0], n2.p[1] - p[1]) <= tolerance);
       if (!n) {
@@ -34872,7 +35652,7 @@ function stitchBoundaryRuns(input, tolerance = 0.04) {
       }
       seen.add(key);
       const e = { a, b, r, used: false };
-      edges.push(e);
+      edges2.push(e);
       a.edges.push(e);
       b.edges.push(e);
     }
@@ -34892,7 +35672,7 @@ function stitchBoundaryRuns(input, tolerance = 0.04) {
     for (const n of nodes) if (n.edges.length !== 2) {
       for (const e of n.edges) if (!e.used) walk(e, n);
     }
-    for (const e of edges) if (!e.used) walk(e, e.a);
+    for (const e of edges2) if (!e.used) walk(e, e.a);
   }
   return { runs, qa: { sourceRuns: input.length, stitchedRuns: runs.length, joinedSpans: joined, duplicateSpansRemoved: duplicates } };
 }
@@ -35085,53 +35865,45 @@ function planRooftops(buildings) {
   return plans;
 }
 
-// outputs/domestic-test/solar-position.js?v=151
-var RAD = Math.PI / 180;
-function localDateISO(now2 = /* @__PURE__ */ new Date(), utcOffset = 9) {
-  return new Date(now2.getTime() + utcOffset * 36e5).toISOString().slice(0, 10);
-}
-var SOLAR_CONTEXT = Object.freeze({
-  latitude: 37.626469,
-  longitude: 127.015677,
-  utcOffset: 9,
-  // Freeze the scene's date at load time; a long session must not jump at midnight.
-  date: localDateISO()
+// outputs/domestic-test/korean-facades.js?v=masonry19
+var facadeStyles3 = [
+  { name: "\uC801\uBCBD\uB3CC \uB2E4\uC138\uB300", wall: 9002576, joint: 11901830, frame: 13948879, roof: 6716521, pattern: "brick" },
+  { name: "\uC9D9\uC740 \uBCBD\uB3CC \uC8FC\uD0DD", wall: 6508873, joint: 9799803, frame: 5655619, roof: 7570545, pattern: "brick" },
+  { name: "\uBC1D\uC740 \uBCBD\uB3CC \uBE4C\uB77C", wall: 12761508, joint: 9997947, frame: 14803414, roof: 7571062, pattern: "brick" },
+  { name: "\uD68C\uC0C9 \uC11D\uC7AC \uBE4C\uB77C", wall: 10725024, joint: 7502195, frame: 5397851, roof: 7111542, pattern: "stone" },
+  { name: "\uD06C\uB9BC \uD0C0\uC77C \uC8FC\uD0DD", wall: 13352870, joint: 10983811, frame: 13423047, roof: 7439985, pattern: "tile" },
+  { name: "\uBBF8\uC7A5 \uB2E8\uB3C5\uC8FC\uD0DD", wall: 12763056, joint: 11183766, frame: 7106665, roof: 6913127, pattern: "render" }
+];
+facadeStyles3.forEach((style, i) => {
+  style.textureId = defaultFacadeTextures[i];
 });
+var unitBox3 = new BoxGeometry(1, 1, 1).toNonIndexed();
+var edgePoints3 = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
 
-// outputs/domestic-test/environment-policy.js?v=151
-function windowLightBand(seed) {
-  let x = Math.trunc(seed) | 0;
-  x = Math.imul(x ^ x >>> 16, 73244475);
-  x = Math.imul(x ^ x >>> 16, 73244475);
-  return (x ^ x >>> 16) >>> 28;
-}
-
-// outputs/domestic-test/surface-policy.js?v=151
-function finishDepth(layer = 1) {
-  return { polygonOffset: true, polygonOffsetFactor: -layer, polygonOffsetUnits: -layer };
-}
-
-// outputs/domestic-test/korean-facades.js?v=151
-var unitBox = new BoxGeometry(1, 1, 1).toNonIndexed();
-var edgePoints = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
-
-// outputs/domestic-test/rooftops.js?v=151
+// outputs/domestic-test/rooftops.js?v=masonry19
 function emitRooftop(batch, plan, style) {
   const { x, z, top, w, d, h, angle, kind, variation } = plan, c = Math.cos(angle), s = Math.sin(angle);
   const out = batch.writer([x, top + 0.025, z], c, s, -s, c), B = out.box, R = out.rod;
-  const wall = kind === "brick" && style.pattern !== "brick" && variation % 2 === 0 ? 11641748 : style.wall;
+  const wall = style.wall, textureId = wallTextureFor(style), meters = getFacadeTexture(textureId).userData.meters;
+  const W = (xx, y, zz, ww, hh, dd, color = wall, edge = true) => B(xx, y, zz, ww, hh, dd, color, edge, false, textureId);
   const slab = [11909296, 11188145, 12763316][variation % 3], metal2 = [6716792, 7831169, 7172971][variation % 3], door = [5205346, 6714744, 8157035, 6318966][variation % 4];
-  function face(vertices, color) {
+  function face(vertices, color, textured = false) {
     const p = vertices.map(([xx, y, zz]) => new Vector3(x + c * xx - s * zz, top + 0.025 + y, z + s * xx + c * zz)), n = p[1].clone().sub(p[0]).cross(p[2].clone().sub(p[0])).normalize();
-    const bucket = batch.bucket(color);
-    for (let i = 1; i < p.length - 1; i++) for (const v2 of [p[0], p[i], p[i + 1]]) {
+    const bucket = batch.bucket(textured ? 16777215 : color, false, textured ? textureId : null);
+    for (let i = 1; i < p.length - 1; i++) for (const index of [0, i, i + 1]) {
+      const v2 = p[index];
       bucket.p.push(v2.x, v2.y, v2.z);
       bucket.n.push(n.x, n.y, n.z);
       bucket.inkIds.push(batch.inkObjectId ?? 0);
+      if (textured) {
+        const q = vertices[index];
+        const localNX = c * n.x + s * n.z, localNZ = -s * n.x + c * n.z;
+        bucket.uv.push((q[0] * localNZ - q[2] * localNX) / meters[0], q[1] / meters[1]);
+      }
     }
   }
   function flat(xx, zz, ww, dd, hh, color = wall) {
-    B(xx, hh / 2, zz, ww, hh, dd, color, true);
+    W(xx, hh / 2, zz, ww, hh, dd, color);
     B(xx, hh + 0.075, zz, ww + 0.24, 0.15, dd + 0.24, slab, true);
   }
   function slopingCap(ww, dd, yAt, color) {
@@ -35146,27 +35918,24 @@ function emitRooftop(batch, plan, style) {
   if (kind === "compact" || kind === "brick") {
     flat(0, 0, w, d, h);
     if (kind === "brick") {
-      for (const side of [-1, 1]) B(side * (w / 2 - 0.065), h + 0.29, 0, 0.13, 0.28, d, wall, true);
-      for (const side of [-1, 1]) B(0, h + 0.29, side * (d / 2 - 0.065), w - 0.26, 0.28, 0.13, wall, true);
-      out.detail(1, () => {
-        for (let y = 0.45; y < h - 0.15; y += 0.45) B(0, y, d / 2 + 9e-3, w, 9e-3, 0.012, style.joint, false);
-      });
+      for (const side of [-1, 1]) W(side * (w / 2 - 0.065), h + 0.29, 0, 0.13, 0.28, d);
+      for (const side of [-1, 1]) W(0, h + 0.29, side * (d / 2 - 0.065), w - 0.26, 0.28, 0.13);
     }
   } else if (kind === "shed" || kind === "hatch") {
-    B(0, h / 2, 0, w, h, d, kind === "hatch" ? slab : wall, true);
+    W(0, h / 2, 0, w, h, d);
     const rise = kind === "hatch" ? 0.46 : 0.5;
-    face([[-w / 2, h, d / 2], [-w / 2, h + rise, -d / 2], [-w / 2, h, -d / 2]], wall);
-    face([[w / 2, h, -d / 2], [w / 2, h + rise, -d / 2], [w / 2, h, d / 2]], wall);
-    B(0, h + rise / 2, -d / 2 + 0.025, w, rise, 0.05, wall, false);
+    face([[-w / 2, h, d / 2], [-w / 2, h + rise, -d / 2], [-w / 2, h, -d / 2]], wall, true);
+    face([[w / 2, h, -d / 2], [w / 2, h + rise, -d / 2], [w / 2, h, d / 2]], wall, true);
+    W(0, h + rise / 2, -d / 2 + 0.025, w, rise, 0.05, wall, false);
     slopingCap(w + 0.28, d + 0.28, (zz) => h + 0.14 + rise * (d / 2 - zz) / d, metal2);
     out.detail(1, () => {
       for (const xx of [-w * 0.3, 0, w * 0.3]) R([xx, h + 0.16, d / 2 + 0.14], [xx, h + 0.16 + rise, -d / 2 - 0.14], 0.015, slab, 4);
     });
   } else if (kind === "gable") {
-    B(0, h / 2, 0, w, h, d, wall, true);
+    W(0, h / 2, 0, w, h, d);
     const rise = 0.62;
-    face([[-w / 2, h, d / 2], [w / 2, h, d / 2], [0, h + rise, d / 2]], wall);
-    face([[w / 2, h, -d / 2], [-w / 2, h, -d / 2], [0, h + rise, -d / 2]], wall);
+    face([[-w / 2, h, d / 2], [w / 2, h, d / 2], [0, h + rise, d / 2]], wall, true);
+    face([[w / 2, h, -d / 2], [-w / 2, h, -d / 2], [0, h + rise, -d / 2]], wall, true);
     const ww = w / 2 + 0.16, dd = d / 2 + 0.16;
     for (const side of [-1, 1]) {
       const roof = [[-side * ww, h + 0.09, dd], [0, h + rise + 0.14, dd], [0, h + rise + 0.14, -dd], [-side * ww, h + 0.09, -dd]];
@@ -35177,8 +35946,8 @@ function emitRooftop(batch, plan, style) {
     }
     R([0, h + rise + 0.14, -dd], [0, h + rise + 0.14, dd], 0.045, slab);
   } else if (kind === "elbow") {
-    B(0, h / 2, -d * 0.265, w, h, d * 0.47, wall, true);
-    B(-w * 0.21, h / 2, d * 0.235, w * 0.58, h, d * 0.53, wall, true);
+    W(0, h / 2, -d * 0.265, w, h, d * 0.47);
+    W(-w * 0.21, h / 2, d * 0.235, w * 0.58, h, d * 0.53);
     B(0, h + 0.075, -d * 0.265 - 0.06, w + 0.24, 0.15, d * 0.47 + 0.12, slab, true);
     B(-w * 0.21, h + 0.075, d * 0.235 + 0.06, w * 0.58 + 0.24, 0.15, d * 0.53 + 0.12, slab, true);
   } else if (kind === "stepped") {
@@ -35221,214 +35990,45 @@ function emitRooftop(batch, plan, style) {
   }
 }
 
-// outputs/domestic-test/korean-facades.js?v=151
-var facadeStyles2 = [
-  { name: "\uC801\uBCBD\uB3CC \uB2E4\uC138\uB300", wall: 9002576, joint: 11901830, frame: 13948879, roof: 6716521, pattern: "brick" },
-  { name: "\uC9D9\uC740 \uBCBD\uB3CC \uC8FC\uD0DD", wall: 6508873, joint: 9799803, frame: 5655619, roof: 7570545, pattern: "brick" },
-  { name: "\uBC1D\uC740 \uBCBD\uB3CC \uBE4C\uB77C", wall: 12761508, joint: 9997947, frame: 14803414, roof: 7571062, pattern: "brick" },
-  { name: "\uD68C\uC0C9 \uC11D\uC7AC \uBE4C\uB77C", wall: 10725024, joint: 7502195, frame: 5397851, roof: 7111542, pattern: "stone" },
-  { name: "\uD06C\uB9BC \uD0C0\uC77C \uC8FC\uD0DD", wall: 13352870, joint: 10983811, frame: 13423047, roof: 7439985, pattern: "tile" },
-  { name: "\uBBF8\uC7A5 \uB2E8\uB3C5\uC8FC\uD0DD", wall: 12763056, joint: 11183766, frame: 7106665, roof: 6913127, pattern: "render" }
-];
-var windowCatalog = [
-  { id: "white-slider", name: "\uBC31\uC0C9 PVC \uB450\uC9DD \uBBF8\uB2EB\uC774\uCC3D", width: 1.9, height: 1.35 },
-  { id: "brown-slider", name: "\uAC08\uC0C9 \uC54C\uB8E8\uBBF8\uB284 \uC0F7\uC2DC", width: 1.8, height: 1.35 },
-  { id: "wide-slider", name: "\uAC70\uC2E4 \uC138\uC9DD \uBBF8\uB2EB\uC774\uCC3D", width: 2.7, height: 1.4 },
-  { id: "veranda", name: "\uBCA0\uB780\uB2E4 \uB124\uC9DD \uC5F0\uC18D \uC0F7\uC2DC", width: 3.3, height: 1.85 },
-  { id: "guard", name: "\uB3CC\uCD9C \uBC29\uBC94\uCC3D\uACFC \uC0F7\uC2DC", width: 1.8, height: 1.25 },
-  { id: "basement", name: "\uBC18\uC9C0\uD558 \uAC00\uB85C\uCC3D\uACFC \uBC29\uBC94\uCC3D", width: 1.6, height: 0.7 },
-  { id: "frosted", name: "\uC695\uC2E4 \uBD88\uD22C\uBA85 \uD658\uAE30\uCC3D", width: 0.85, height: 0.6 },
-  { id: "stair", name: "\uACC4\uB2E8\uC2E4 \uC138\uB85C \uBD84\uD560\uCC3D", width: 0.8, height: 1.8 },
-  { id: "awning", name: "\uBE57\uBB3C \uCC28\uC591 \uB2EC\uB9B0 \uBBF8\uB2EB\uC774\uCC3D", width: 1.85, height: 1.25 },
-  { id: "bay", name: "\uB3CC\uCD9C \uBCA0\uB780\uB2E4 \uC0F7\uC2DC", width: 2.6, height: 1.6 }
-];
-var unitBox2 = new BoxGeometry(1, 1, 1).toNonIndexed();
-var edgePoints2 = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
-var white = 14738137;
-var metal = 7831159;
-var dark = 3423802;
-var sill = 12105896;
-var FacadeBatch2 = class {
-  constructor(minimumLOD = 0) {
-    this.minimumLOD = minimumLOD;
-    this.parts = /* @__PURE__ */ new Map();
-    this.lines = /* @__PURE__ */ new Map();
-    this.count = 0;
-    this.maxLOD = 2;
-  }
-  atLOD(level, fn) {
-    if (level < this.minimumLOD) return;
-    const previous = this.maxLOD;
-    this.maxLOD = Math.min(previous, level);
-    try {
-      return fn();
-    } finally {
-      this.maxLOD = previous;
-    }
-  }
-  bucket(color, surface = false) {
-    const windowBand = this.windowBand ?? -1, key = color + ":" + surface + ":" + this.maxLOD + ":" + windowBand;
-    if (!this.parts.has(key)) this.parts.set(key, { color, surface, maxLOD: this.maxLOD, windowBand, p: [], n: [], inkIds: [] });
-    return this.parts.get(key);
-  }
-  lineBucket(color) {
-    const key = color + ":" + this.maxLOD;
-    if (!this.lines.has(key)) this.lines.set(key, { color, maxLOD: this.maxLOD, p: [] });
-    return this.lines.get(key).p;
-  }
-  writer(origin = [0, 0, 0], ux = 1, uz = 0, nx = 0, nz = 1) {
-    const P = (x, y, z) => [origin[0] + ux * x + nx * z, origin[1] + y, origin[2] + uz * x + nz * z];
-    const box = (x, y, z, w, h, d, color, edge = false, surface = false) => {
-      if (Math.min(w, h, d) <= 0) return;
-      const b = this.bucket(color, surface), p = unitBox2.attributes.position, n = unitBox2.attributes.normal;
-      for (let i = 0; i < p.count; i++) {
-        b.p.push(...P(x + p.getX(i) * w, y + p.getY(i) * h, z + p.getZ(i) * d));
-        b.inkIds.push(this.inkObjectId ?? 0);
-        b.n.push(ux * n.getX(i) + nx * n.getZ(i), n.getY(i), uz * n.getX(i) + nz * n.getZ(i));
-      }
-      if (edge) {
-        const a = this.lineBucket(color);
-        for (let i = 0; i < edgePoints2.length; i += 3) a.push(...P(x + edgePoints2[i] * w, y + edgePoints2[i + 1] * h, z + edgePoints2[i + 2] * d));
-      }
-      this.count++;
-    };
-    const quad = (x, y, z, w, h, color, surface = true) => {
-      const b = this.bucket(color, surface);
-      for (const [u, v2] of [[-1, -1], [1, -1], [1, 1], [-1, -1], [1, 1], [-1, 1]]) {
-        b.p.push(...P(x + u * w / 2, y + v2 * h / 2, z));
-        b.inkIds.push(this.inkObjectId ?? 0);
-        b.n.push(nx, 0, nz);
-      }
-      ;
-    };
-    const rod = (a, b, r, color, segments = 6) => {
-      const A = new Vector3(...P(...a)), B = new Vector3(...P(...b)), dir = B.clone().sub(A), len = dir.length();
-      if (len < 1e-6) return;
-      dir.divideScalar(len);
-      const u = new Vector3(0, 1, 0);
-      if (Math.abs(dir.y) > 0.99) u.set(1, 0, 0);
-      u.cross(dir).normalize();
-      const v2 = dir.clone().cross(u);
-      const out = this.bucket(color);
-      for (let i = 0; i < segments; i++) {
-        const ns = [i, i + 1].map((j) => u.clone().multiplyScalar(Math.cos(j * 2 * Math.PI / segments)).addScaledVector(v2, Math.sin(j * 2 * Math.PI / segments)));
-        const q = [A.clone().addScaledVector(ns[0], r), A.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[0], r)];
-        for (const k of [0, 1, 2, 0, 2, 3]) {
-          out.p.push(...q[k].toArray());
-          out.inkIds.push(this.inkObjectId ?? 0);
-          out.n.push(...ns[k === 0 || k === 3 ? 0 : 1].toArray());
-        }
-      }
-    };
-    return { box, quad, rod, lit: (band, fn) => {
-      const old = this.windowBand;
-      this.windowBand = band;
-      try {
-        fn();
-      } finally {
-        this.windowBand = old;
-      }
-    }, detail: (level, fn) => this.atLOD(level, fn), at: (x, y, z) => this.writer(P(x, y, z), ux, uz, nx, nz) };
-  }
-  finish(name = "KoreanFacadeDetails") {
-    const group = new Group();
-    group.name = name;
-    for (const b of this.parts.values()) {
-      const g = new BufferGeometry();
-      g.setAttribute("position", new Float32BufferAttribute(b.p, 3));
-      g.setAttribute("normal", new Float32BufferAttribute(b.n, 3));
-      if (b.inkIds.length === b.p.length / 3 && b.inkIds.some((id) => id > 0)) g.setAttribute("inkObjectId", new Float32BufferAttribute(b.inkIds, 1));
-      const m = new Mesh(g, new MeshStandardMaterial({ color: b.color, roughness: 0.9, side: DoubleSide, ...b.surface ? finishDepth() : {} }));
-      if (b.windowBand >= 0) m.material.userData.nightWindowBand = b.windowBand;
-      m.name = "korean-facade-" + (b.surface ? "surface" : "parts") + "-" + b.color.toString(16);
-      m.userData = { detailKind: b.color === dark ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
-      group.add(m);
-    }
-    for (const { color, p, maxLOD } of this.lines.values()) {
-      const g = new BufferGeometry();
-      g.setAttribute("position", new Float32BufferAttribute(p, 3));
-      const c = new Color(color).multiplyScalar(0.47), m = new LineSegments(g, new LineBasicMaterial({ color: c }));
-      m.userData.faceLineColor = c.getHex();
-      m.userData.lodMaxLevel = maxLOD;
-      group.add(m);
-    }
-    return group;
-  }
-};
-function emitWindow(out, id, w, h, variation = 0, frame = white, lightSeed = null) {
-  const { box: B, quad: Q, rod: R } = out, isGuard = id === "guard" || id === "basement", isBay = id === "bay", veranda = id === "veranda";
-  const z = isBay ? 0.3 : 0.085, f = id === "frosted" ? 0.042 : 0.055, m = 0.042, frameDepth = 0.06;
-  frame = id === "brown-slider" ? 5721411 : frame;
-  const cols = id === "frosted" ? 1 : veranda ? 4 : id === "wide-slider" || isBay ? 3 : 2;
-  const iw = w - 2 * f, ih = h - 2 * f, pw = (iw - (cols - 1) * m) / cols, glassZ = z + 0.018;
-  const cross2 = id === "stair" ? h * 0.12 : veranda ? -h * 0.24 : null;
-  const glassRects = cross2 === null ? [[-ih / 2, ih / 2]] : [[-ih / 2, cross2 - m / 2], [cross2 + m / 2, ih / 2]];
-  for (let j = 0; j < cols; j++) {
-    const x = -iw / 2 + pw / 2 + j * (pw + m), glass = id === "frosted" ? 11519165 : [7969178, 9019290, 6785164][((j + variation) % 3 + 3) % 3];
-    const curtain = !["frosted", "basement", "stair"].includes(id) && (variation + j) % 4 === 0;
-    const cw = curtain ? pw * 0.35 : 0;
-    for (const [lo, hi] of glassRects) {
-      const paintGlass = () => Q(x + cw / 2, (lo + hi) / 2, glassZ, pw - cw, hi - lo, glass, false);
-      if (lightSeed === null) paintGlass();
-      else out.lit(windowLightBand(lightSeed), paintGlass);
-      if (curtain) Q(x - (pw - cw) / 2, (lo + hi) / 2, glassZ, cw, hi - lo, variation % 2 ? 12041393 : 13158069, false);
-    }
-    if (cross2 !== null) B(x, cross2, z + 0.025, pw, m, frameDepth, frame, false);
-  }
-  for (const side of [-1, 1]) B(side * (w - f) / 2, 0, z + 0.025, f, ih, frameDepth, frame, true);
-  for (const side of [-1, 1]) B(0, side * (h - f) / 2, z + 0.025, w, f, frameDepth, frame, true);
-  for (let j = 1; j < cols; j++) B(-iw / 2 + j * pw + (j - 0.5) * m, 0, z + 0.025, m, ih, frameDepth, frame, false);
-  if (cols > 1 && id !== "basement") out.detail(0, () => B(-iw / 2 + pw + m / 2, -0.03, z + 0.068, 0.024, 0.13, 0.026, dark, false));
-  const sillDepth = isBay ? z + 0.08 : 0.17, sillZ = isBay ? sillDepth / 2 : z - 5e-3;
-  B(0, -h / 2 - 0.035, sillZ, w + 0.1, 0.07, sillDepth, sill, true);
-  if (isBay) {
-    const depth = z - 5e-3;
-    for (const side of [-1, 1]) B(side * (w - f) / 2, 0, depth / 2, f, ih, depth, frame, false);
-    B(0, (h - f) / 2, depth / 2, w, f, depth, frame, false);
-  }
-  if (isGuard) {
-    const depth = id === "basement" ? 0.26 : 0.3, rail = 0.025;
-    for (const x of [-w / 2 + rail / 2, w / 2 - rail / 2]) {
-      B(x, 0, depth, rail, h - 2 * rail, rail, dark, false);
-      for (const yy of [-h / 2 + rail / 2, h / 2 - rail / 2]) B(x, yy, (depth + z + 0.055) / 2, rail, rail, depth - z - 0.055, dark, false);
-    }
-    for (const yy of [-h / 2 + rail / 2, h / 2 - rail / 2]) B(0, yy, depth, w, rail, rail, dark, false);
-    const n = Math.max(4, Math.round(w / 0.24));
-    for (let i = 1; i < n; i++) out.detail(i % 2 ? 2 : 1, () => B(-w / 2 + i * w / n, 0, depth, 0.02, h - 2 * rail, 0.025, dark, false));
-    if (id === "guard") B(0, -h * 0.19, depth - 0.026, w - 2 * rail, rail, 0.022, dark, false);
-  }
-  if (id === "awning") {
-    B(0, h / 2 + 0.14, 0.27, w + 0.22, 0.045, 0.6, 8362897, true);
-    for (const x of [-w * 0.4, w * 0.4]) R([x, h / 2 - 0.2, 0.06], [x, h / 2 + 0.11, 0.5], 0.013, metal);
-  }
-}
-function emitAircon(out, x, y, variant = 0) {
-  const { box: B, quad: Q, rod: R } = out;
-  const z = 0.3;
-  B(x, y, z, 0.82, 0.55, 0.35, 13881789, true);
-  const cx = x - 0.13;
-  const color = 5332053;
-  const steps = 20;
-  for (let j = 0; j < steps; j++) {
-    const a = j * Math.PI * 2 / steps, b = (j + 1) * Math.PI * 2 / steps;
-    R([cx + Math.cos(a) * 0.205, y + Math.sin(a) * 0.205, z + 0.185], [cx + Math.cos(b) * 0.205, y + Math.sin(b) * 0.205, z + 0.185], 0.012, color, 4);
-    out.detail(j % 5 ? 0 : 1, () => R([cx, y, z + 0.19], [cx + Math.cos(a) * 0.197, y + Math.sin(a) * 0.197, z + 0.19], 5e-3, color, 4));
-  }
-  out.detail(1, () => {
-    for (let j = 0; j < 5; j++) B(x + 0.28, y - 0.14 + j * 0.066, z + 0.18, 0.14, 0.019, 0.013, color, false);
-  });
-  for (const xx of [x - 0.3, x + 0.3]) {
-    B(xx, y - 0.32, 0.25, 0.045, 0.055, 0.53, metal, false);
-    R([xx, y - 0.31, 0.47], [xx, y - 0.05, 0.055], 0.02, metal);
-  }
-  const side = variant % 2 ? -1 : 1;
-  R([x + side * 0.42, y - 0.12, 0.2], [x + side * 0.6, y - 0.12, 0.12], 0.025, 13089184);
-  R([x + side * 0.6, y - 0.12, 0.12], [x + side * 0.6, y - 0.72, 0.12], 0.025, 13089184);
-}
-
 // outputs/domestic-test/details.js
 function createDetails(buildings, elevation, architecture = { structures: [] }, options = {}) {
-  const gasNetworks = [], nightWindowSources = [], windowBands = Array(16).fill(0), batch = new FacadeBatch2(options.minimumLOD || 0), spots = [], placementProxies = [], windowTypes = {}, counts = { windows: 0, skippedNarrowWindows: 0, doors: 0, roofs: 0, aircons: 0, downpipes: 0, guardWindows: 0, doorCanopies: 0, shelteredDoors: 0 };
+  const recessed = !!options.shells && options.recessedWindows !== false, windowOpenings = [];
+  const gasNetworks = [], nightWindowSources = [], windowBands = Array(16).fill(0), batch = new FacadeBatch(options.minimumLOD || 0), spots = [], placementProxies = [], windowTypes = {}, counts = { windows: 0, skippedNarrowWindows: 0, doors: 0, roofs: 0, aircons: 0, downpipes: 0, guardWindows: 0, doorCanopies: 0, shelteredDoors: 0 };
+  const lineOwners = /* @__PURE__ */ new Map();
+  if (options.trackGroundOwners) {
+    const bucket = batch.bucket.bind(batch), lineBucket = batch.lineBucket.bind(batch), finish = batch.finish.bind(batch);
+    batch.bucket = (...args) => {
+      const original = bucket(...args);
+      if (!batch.groundUtility) return original;
+      const key = "ground-utility:" + args.join(":") + ":" + batch.maxLOD;
+      if (!batch.parts.has(key)) batch.parts.set(key, { ...original, p: [], n: [], inkIds: [], groundUtility: true });
+      return batch.parts.get(key);
+    };
+    batch.lineBucket = (color) => {
+      let positions;
+      if (batch.groundUtility) {
+        const key = "ground-utility:" + color + ":" + batch.maxLOD;
+        if (!batch.lines.has(key)) batch.lines.set(key, { color, maxLOD: batch.maxLOD, p: [], groundUtility: true });
+        positions = batch.lines.get(key).p;
+      } else positions = lineBucket(color);
+      if (!lineOwners.has(positions)) lineOwners.set(positions, []);
+      return { push(...values) {
+        positions.push(...values);
+        for (let i = 0; i < values.length; i += 3) lineOwners.get(positions).push(batch.inkObjectId ?? 0);
+      } };
+    };
+    batch.finish = (...args) => {
+      const group2 = finish(...args), meshes = group2.children.filter((o) => o.isMesh), lines = group2.children.filter((o) => o.isLineSegments);
+      let i = 0;
+      for (const part of batch.parts.values()) meshes[i++].userData.groundUtility = !!part.groundUtility;
+      i = 0;
+      for (const part of batch.lines.values()) {
+        lines[i].geometry.setAttribute("inkObjectId", new Float32BufferAttribute(lineOwners.get(part.p) || [], 1));
+        lines[i++].userData.groundUtility = !!part.groundUtility;
+      }
+      return group2;
+    };
+  }
   const rooftopPlans = planRooftops(buildings), roofsByBuilding = new Map(rooftopPlans.map((p) => [p.buildingIndex, p]));
   const households = new Map((architecture.households || []).map((h) => [h.owner, h]));
   const styleCounts = Array(6).fill(0), boxes = buildings.map((b) => ({ b, minX: Math.min(...b.points.map((p) => p[0])), maxX: Math.max(...b.points.map((p) => p[0])), minZ: Math.min(...b.points.map((p) => p[1])), maxZ: Math.max(...b.points.map((p) => p[1])) }));
@@ -35441,7 +36041,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
     return c;
   };
   const occupied = (x, z, owner) => boxes.some((q) => q.b.seed !== owner && x >= q.minX && x <= q.maxX && z >= q.minZ && z <= q.maxZ && inside2(x, z, q.b.points));
-  function segments(lo, hi, cuts) {
+  function segments2(lo, hi, cuts) {
     let a = [[lo, hi]];
     for (const [c, d] of cuts) a = a.flatMap(([x, y]) => d <= x || c >= y ? [[x, y]] : [[x, Math.min(y, c)], [Math.max(x, d), y]].filter(([u, v2]) => v2 - u > 8e-3));
     return a;
@@ -35450,11 +36050,11 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
     if (b.arterialKiosk || options.owners && !options.owners.has(b.seed)) continue;
     batch.inkObjectId = b.inkObjectId;
     if (b.facility) {
-      counts.windows += emitFacility(batch, b, buildings, elevation).windows;
+      counts.windows += emitFacility(batch, b, buildings, elevation, recessed ? { windowOpenings } : {}).windows;
       continue;
     }
     const gasFaces = [];
-    const { points, top, base, floor, levels, seed, holes } = b, style = facadeStyles2[Math.abs(seed) % 6], covers = architecture.structures.filter((s) => s.owner === seed && s.roofKind !== "none"), annexes = architecture.structures.filter((s) => s.owner === seed && ["shed", "workshop"].includes(s.type));
+    const { points, top, base, floor, levels, seed, holes } = b, style = facadeStyles[b.styleIndex ?? Math.abs(seed) % 6], covers = architecture.structures.filter((s) => s.owner === seed && s.roofKind !== "none"), annexes = architecture.structures.filter((s) => s.owner === seed && ["shed", "workshop"].includes(s.type));
     styleCounts[Math.abs(seed) % 6]++;
     let signed2 = 0;
     for (let i = 0; i < points.length; i++) {
@@ -35475,8 +36075,10 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       const sheltered = (u) => covers.some((s) => inside2(a[0] + ux * u + nx * 0.38, a[1] + uz * u + nz * 0.38, s.footprint));
       const groundAt = (u) => elevation(a[0] + ux * u + nx * 0.3, a[1] + uz * u + nz * 0.3);
       const facadeClear = (u, depth = 0.8) => !occupied(a[0] + ux * u + nx * depth, a[1] + uz * u + nz * depth, seed);
-      B(L / 2, top + 0.29, 0, L, 0.58, 0.18, style.wall, true);
-      B(L / 2, top + 0.61, 0, L + 0.025, 0.065, 0.28, 12631728, false);
+      if (!b.continuousParapet) {
+        B(L / 2, top + 0.29, 0, L, 0.58, 0.18, style.wall, true);
+        B(L / 2, top + 0.61, 0, L + 0.025, 0.065, 0.28, 12631728, false);
+      }
       const exposed = [0.2, 0.5, 0.8].some((t) => facadeClear(L * t));
       if (!exposed) continue;
       if (options.minimumLOD >= 2) {
@@ -35496,8 +36098,9 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       const shops = (b.storefronts || []).filter((p) => p.edge === i);
       const shopOpening = (p) => [p.lo - 0.12, p.hi + 0.12, p.groundMin - 0.05, p.position[1] + p.height + 0.12];
       const shopRects = shops.map(shopOpening);
+      if (b.groundOpening && i === b.frontEdge) shopRects.push([b.groundOpening[0] - 0.02, b.groundOpening[0] + b.groundOpening[1] + 0.02, b.groundOpeningBase - 0.02, b.groundOpeningBase + 2.81]);
       const shopHits = (lo, hi, bottom2, ceil) => shopRects.some((r) => hi > r[0] && lo < r[1] && ceil > r[2] && bottom2 < r[3]);
-      const openings = shopRects.slice();
+      const windowCuts = [], openings = shopRects.slice();
       const isFront = i === front, entry = isFront ? b.frontage?.entry ?? L / 2 : null;
       const bays = Math.max(1, Math.floor((L - 0.6) / 3.35)), space = (L - 0.6) / bays;
       for (let f = 0; f < levels; f++) {
@@ -35509,14 +36112,15 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
             const x = 0.075 + (k + 0.5) * span, w = span - 0.16, h = Math.max(1.4, fy + commercialFloor - 0.65 - g);
             if (shopHits(x - w / 2, x + w / 2, g, fy + 3)) continue;
             B(x, g + 0.12, 0.08, w, 0.24, 0.12, 7701890, false);
+            if (recessed) windowCuts.push(windowOpening(out, windowOpenings, b, i, a, [ux, uz], [nx, nz], x, g + 0.25 + h / 2, w, h, style.wall));
             const panes = Math.max(2, Math.round(w / 1.2)), pw = w / panes;
             for (let j = 0; j < panes; j++) {
               const xx = x - w / 2 + (j + 0.5) * pw;
-              out.lit(windowLightBand(seed + i * 31 + k), () => Q(xx, g + 0.25 + h / 2, 0.12, pw - 0.05, h, 6588299, false));
-              B(xx - pw / 2, g + 0.25 + h / 2, 0.15, 0.04, h, 0.06, 4084567, false);
-              if (j === 1) B(xx + pw * 0.3, g + 1.2, 0.19, 0.025, 0.44, 0.035, 11189173, false);
+              out.lit(windowLightBand(seed + i * 31 + k), () => Q(xx, g + 0.25 + h / 2, recessed ? -0.147 : 0.12, pw - 0.05, h, 6588299, false));
+              B(xx - pw / 2, g + 0.25 + h / 2, recessed ? -0.115 : 0.15, 0.04, h, 0.06, 4084567, false);
+              if (j === 1) B(xx + pw * 0.3, g + 1.2, recessed ? -0.075 : 0.19, 0.025, 0.44, 0.035, 11189173, false);
             }
-            B(x + w / 2, g + 0.25 + h / 2, 0.15, 0.04, h, 0.06, 4084567, false);
+            B(x + w / 2, g + 0.25 + h / 2, recessed ? -0.115 : 0.15, 0.04, h, 0.06, 4084567, false);
             B(x, fy + commercialFloor - 0.19, 0.15, w, 0.35, 0.22, k % 2 ? 10715502 : 12831683, false);
             B(x, fy + commercialFloor - 0.38, 0.19, w, 0.055, 0.24, k % 2 ? 9193280 : 6520171, false);
             out.detail(1, () => {
@@ -35537,13 +36141,16 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           const count3 = Math.max(1, Math.ceil(ww / 1.35)), bay = ww / count3;
           for (let k = 0; k < count3; k++) {
             const x = start + (k + 0.5) * bay, h = glassHeight, w = bay - 0.052, y = glassBottom + h / 2;
-            out.lit(windowLightBand(seed * 997 + i * 131 + f * 31 + k), () => Q(x, y, 0.09, w, h, [5864327, 6654870, 7443354][(k + f) % 3], false));
+            if (recessed) {
+              windowCuts.push(windowOpening(out, windowOpenings, b, i, a, [ux, uz], [nx, nz], x, y, w, h, style.wall));
+              emitWindow(out.at(x, y, 0), "white-slider", w, h, k, 4742756, seed * 997 + i * 131 + f * 31 + k, { recess: WINDOW_RECESS, sill: false, accessories: false });
+            } else out.lit(windowLightBand(seed * 997 + i * 131 + f * 31 + k), () => Q(x, y, 0.09, w, h, [5864327, 6654870, 7443354][(k + f) % 3], false));
             counts.windows++;
             windowBands[windowLightBand(seed * 997 + i * 131 + f * 31 + k)]++;
             windowTypes["commercial-glass"] = (windowTypes["commercial-glass"] || 0) + 1;
             B(start + k * bay, glassBottom + h / 2, 0.11, 0.044, h, 0.055, 4742756, false);
-            if (ribbon) out.detail(1, () => B(x, glassBottom + 0.43, 0.12, w, 0.035, 0.035, 4742756, false));
-            if (!ribbon && f < 4 && (k + f) % 7 === 0) Q(x, glassBottom + 0.32, 0.13, w * 0.9, 0.48, [12634045, 5405838, 10380893][f % 3], false);
+            if (ribbon) out.detail(1, () => B(x, glassBottom + 0.43, recessed ? -0.105 : 0.12, w, 0.035, 0.035, 4742756, false));
+            if (!ribbon && f < 4 && (k + f) % 7 === 0) Q(x, glassBottom + 0.32, recessed ? -0.1 : 0.13, w * 0.9, 0.48, [12634045, 5405838, 10380893][f % 3], false);
           }
           B(end, glassBottom + glassHeight / 2, 0.11, 0.044, glassHeight, 0.055, 4742756, false);
           for (const yy of [glassBottom - 0.025, glassBottom + glassHeight + 0.025]) B(center, yy, 0.11, ww, 0.05, 0.055, 4742756, false);
@@ -35560,7 +36167,8 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           if (f === 0 && isStair) continue;
           const wet = !isStair && bays > 2 && k === (Math.abs(seed) + i) % bays, veranda = !isStair && !wet && isFront && levels >= 3 && k % 3 === 0;
           let id = isStair ? "stair" : wet ? "frosted" : veranda ? "veranda" : style.frame === 5655619 ? "brown-slider" : space > 3.7 ? "wide-slider" : "white-slider";
-          if (f === 0 && !wet && !isStair) id = (seed + k) % 3 === 0 ? "awning" : "guard";
+          if (f === 0 && b.modernGround) id = wet ? "frosted" : "white-slider";
+          else if (f === 0 && !wet && !isStair) id = (seed + k) % 3 === 0 ? "awning" : "guard";
           else if (!wet && !isStair && !veranda && f > 0 && levels > 2 && (seed + i + k) % 9 === 0) id = "bay";
           let w = isStair ? 0.78 : wet ? 0.82 : veranda ? Math.min(3.35, space * 0.88) : Math.min(id === "bay" ? 2.65 : space > 3.7 ? 2.65 : 2.05, space * 0.79), h = isStair ? 1.85 : wet ? 0.62 : veranda ? 1.85 : id === "bay" ? 1.6 : 1.35;
           const minWidth = isStair ? 0.6 : wet ? 0.55 : 0.85, cornerMargin = id === "bay" ? 0.42 : 0.18;
@@ -35576,8 +36184,9 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           if (f === 0 && annexes.some((s) => inside2(wx + nx * 0.25, wz + nz * 0.25, s.footprint) && y - h / 2 < Math.max(...s.footprint.map((p) => elevation(...p))) + (s.roofHeight ?? 2.7) + 0.2)) continue;
           if (id === "awning" && (sheltered(u) || levels >= 4)) id = "guard";
           if (id === "bay" && !facadeClear(u, 0.65)) id = "white-slider";
+          if (recessed) windowCuts.push(windowOpening(out, windowOpenings, b, i, a, [ux, uz], [nx, nz], u, y, w, h, style.wall));
           openings.push([u - w / 2 - 0.13, u + w / 2 + 0.13, y - h / 2 - 0.17, y + h / 2 + 0.16]);
-          emitWindow(out.at(u, y, 0), id, w, h, Math.abs(seed) + k + f, style.frame, seed * 997 + i * 131 + f * 31 + k);
+          emitWindow(out.at(u, y, 0), id, w, h, Math.abs(seed) + k + f, style.frame, seed * 997 + i * 131 + f * 31 + k, recessed ? { recess: WINDOW_RECESS } : {});
           windowBands[windowLightBand(seed * 997 + i * 131 + f * 31 + k)]++;
           proxy(u, y, id === "bay" ? 0.28 : 0.23, w + 0.18, h + 0.18, id === "awning" ? 0.8 : id === "bay" ? 0.6 : 0.48);
           counts.windows++;
@@ -35591,7 +36200,8 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           }
           if (f === 0 && b.basementLevels > 0 && !wet && !isStair && y - h / 2 - ground2 > 1 && (seed + k) % 2 === 0) {
             const bh = 0.64, bw = Math.min(1.48, w), by = ground2 + 0.43;
-            emitWindow(out.at(u, by, 0), "basement", bw, bh, seed, style.frame, seed * 991 + i * 137 + k);
+            if (recessed) windowCuts.push(windowOpening(out, windowOpenings, b, i, a, [ux, uz], [nx, nz], u, by, bw, bh, style.wall));
+            emitWindow(out.at(u, by, 0), "basement", bw, bh, seed, style.frame, seed * 991 + i * 137 + k, recessed ? { recess: WINDOW_RECESS } : {});
             windowBands[windowLightBand(seed * 991 + i * 137 + k)]++;
             openings.push([u - bw / 2 - 0.14, u + bw / 2 + 0.14, ground2 + 0.03, by + bh / 2 + 0.15]);
             proxy(u, by, 0.2, bw + 0.18, bh + 0.18, 0.4);
@@ -35603,7 +36213,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
           if (isFront && f <= 1 && !wet) spots.push({ owner: seed, id, style: style.name, x: wx, z: wz, y, nx, nz, ux, uz, w, h, ground: ground2 });
         }
       }
-      if (!arterialFace && isFront && L > 2.4 && facadeClear(entry) && !shopHits(entry - 1, entry + 1, groundAt(entry), groundAt(entry) + 2.6)) {
+      if (b.hasEntry !== false && !b.openGround && !arterialFace && isFront && L > 2.4 && facadeClear(entry) && !shopHits(entry - 1, entry + 1, groundAt(entry), groundAt(entry) + 2.6)) {
         const w = 1.34, h = 2.12, u = Math.max(0.85, Math.min(L - 0.85, entry)), world = (du, v2) => [a[0] + ux * (u + du) + nx * v2, a[1] + uz * (u + du) + nz * v2], g = footprintHeights((du, dv) => world(du, 0.26 + dv), w + 0.28, 0.45, elevation).high;
         B(u, g + h / 2 + 0.1, 0.06, w + 0.16, h + 0.18, 0.15, 10198931, true);
         B(u, g + h / 2 + 0.1, 0.16, w, h, 0.065, levels > 2 ? 7699569 : 4282445, true);
@@ -35644,19 +36254,26 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         counts.doors++;
       }
       const bottom = Math.max(base + 0.1, Math.min(groundAt(0.15), groundAt(L - 0.15)) + 0.1), rise = top - bottom;
-      if (!arterialFace && style.pattern !== "render" && rise > 0) {
+      if (!arterialFace && rise > 0 && options.wallTextures !== false) {
+        const wallBottom = Math.max(base, Math.min(groundAt(0.15), groundAt(L - 0.15))), cuts = [...shopRects, ...windowCuts], floorTop = (b.groundOpeningBase ?? base) + 3;
+        if (b.groundWallTexture) {
+          emitFacadeTexture(batch, out, { width: L, bottom: wallBottom, top: Math.min(floorTop, top), id: b.groundWallTexture, cuts });
+          if (top > floorTop) emitFacadeTexture(batch, out, { width: L, bottom: floorTop, top, id: b.wallTexture || style.textureId, cuts });
+        } else emitFacadeTexture(batch, out, { width: L, bottom: wallBottom, top, id: b.wallTexture || style.textureId, cuts });
+      }
+      if (options.wallTextures === false && !arterialFace && style.pattern !== "render" && rise > 0) {
         const rh = style.pattern === "brick" ? 0.17 : style.pattern === "tile" ? 0.26 : 0.48, cw = style.pattern === "brick" ? 0.39 : style.pattern === "tile" ? 0.52 : 0.95, thick = style.pattern === "brick" ? 8e-3 : 9e-3;
         for (let row2 = 0, y = bottom; y < top; row2++, y += rh) {
-          for (const [lo, hi] of segments(0.04, L - 0.04, openings.filter((r) => y > r[2] && y < r[3]).map((r) => [r[0], r[1]]))) batch.atLOD(style.pattern === "brick" && row2 % 3 ? 0 : 1, () => Q((lo + hi) / 2, y, 0.014, hi - lo, thick, style.joint));
+          for (const [lo, hi] of segments2(0.04, L - 0.04, openings.filter((r) => y > r[2] && y < r[3]).map((r) => [r[0], r[1]]))) batch.atLOD(style.pattern === "brick" && row2 % 3 ? 0 : 1, () => Q((lo + hi) / 2, y, 0.014, hi - lo, thick, style.joint));
           const yy = y + rh / 2;
           for (let x = 0.05 + (style.pattern === "brick" ? row2 % 2 * cw / 2 : 0); x < L - 0.05; x += cw) {
-            for (const [lo, hi] of segments(y + 9e-3, Math.min(top, y + rh - 9e-3), openings.filter((r) => x > r[0] && x < r[1]).map((r) => [r[2], r[3]]))) batch.atLOD(0, () => Q(x, (lo + hi) / 2, 0.015, thick, hi - lo, style.joint));
+            for (const [lo, hi] of segments2(y + 9e-3, Math.min(top, y + rh - 9e-3), openings.filter((r) => x > r[0] && x < r[1]).map((r) => [r[2], r[3]]))) batch.atLOD(0, () => Q(x, (lo + hi) / 2, 0.015, thick, hi - lo, style.joint));
             if (style.pattern === "brick" && (row2 * 17 + Math.round(x * 100) + Math.abs(seed)) % 19 === 0 && x + cw < L - 0.03 && !openings.some((r) => x + cw > r[0] && x < r[1] && yy + rh / 2 > r[2] && yy - rh / 2 < r[3])) Q(x + cw / 2, yy, 0.012, cw - 0.018, rh - 0.018, new Color(style.wall).multiplyScalar(0.91).getHex());
           }
         }
       }
-      if (!arterialFace && L > 3 && facadeClear(0.22, 0.3) && !shopHits(0.12, 0.45, groundAt(0.22), top)) {
-        const x = 0.22, g = groundAt(x), pipe = 11843239;
+      if (!b.sideServices && !arterialFace && L > 3 && facadeClear(0.22, 0.3) && !shopHits(0.12, 0.45, groundAt(0.22), top)) {
+        const x = 0.22, g = b.openGround ? base : groundAt(x), pipe = 11843239;
         R([x, top + 0.2, 0.18], [x, top - 0.35, 0.18], 0.044, pipe);
         R([x, top - 0.35, 0.18], [x + 0.1, top - 0.55, 0.1], 0.044, pipe);
         R([x + 0.1, top - 0.55, 0.1], [x + 0.1, g + 0.18, 0.1], 0.044, pipe);
@@ -35667,7 +36284,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
         proxy(x + 0.08, (g + top) / 2, 0.15, 0.23, top - g, 0.28);
         counts.downpipes++;
       }
-      if (!arterialFace) gasFaces.push({ edge: i, a, L, ux, uz, nx, nz, isFront, clear: facadeClear(L / 2, 0.35), openings, groundAt, proxy, facadeClear });
+      if (!b.sideServices && !b.openGround && !arterialFace) gasFaces.push({ edge: i, a, L, ux, uz, nx, nz, isFront, clear: facadeClear(L / 2, 0.35), openings, groundAt, proxy, facadeClear });
     }
     const gas = planGasNetwork(gasFaces, b);
     if (gas) {
@@ -35676,10 +36293,12 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
     }
     const rooftop = roofsByBuilding.get(buildingIndex);
     if (rooftop) {
-      emitRooftop(batch, rooftop, style);
+      emitRooftop(batch, rooftop, { ...style, wallTexture: b.wallTexture || style.textureId });
       counts.roofs++;
     }
   }
+  const recessQA = recessed ? cutBuildingWindows(options.shells, windowOpenings) : null;
+  if (recessQA && options.auditWindows) Object.assign(recessQA, auditWindowOpenings(options.shells, windowOpenings));
   const group = batch.finish();
   addFacilityLabels(group, buildings.filter((b) => !options.owners || options.owners.has(b.seed)));
   let triangles = 0, finite = true;
@@ -35689,7 +36308,7 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
     for (const v2 of o.geometry.attributes.position.array) if (!Number.isFinite(v2)) finite = false;
   });
   if (!finite) throw Error("\uC678\uAD00 \uBA54\uC26C \uC88C\uD45C \uC624\uB958");
-  group.userData = { gasNetworks, rooftopPlans: rooftopPlans.filter((p) => !buildings[p.buildingIndex]?.facility).filter((p) => !options.owners || options.owners.has(buildings[p.buildingIndex]?.seed)), rooftopTypes: rooftopCatalog.map((r) => ({ id: r.id, name: r.name, count: rooftopPlans.filter((p) => p.kind === r.id).length })), nightWindowSources, windowBands, meshValidation: { triangles, finite }, ...counts, styles: facadeStyles2.map((s, i) => ({ name: s.name, count: styleCounts[i] })), windowTypes: windowCatalog.map((t) => ({ id: t.id, name: t.name, count: windowTypes[t.id] || 0 })), facadeSpots: spots, placementProxies, procedural: true, version: 41 };
+  group.userData = { windowOpenings, recessQA, gasNetworks, rooftopPlans: rooftopPlans.filter((p) => !buildings[p.buildingIndex]?.facility).filter((p) => !options.owners || options.owners.has(buildings[p.buildingIndex]?.seed)), rooftopTypes: rooftopCatalog.map((r) => ({ id: r.id, name: r.name, count: rooftopPlans.filter((p) => p.kind === r.id).length })), nightWindowSources, windowBands, meshValidation: { triangles, finite }, ...counts, styles: facadeStyles.map((s, i) => ({ name: s.name, count: styleCounts[i] })), windowTypes: windowCatalog.map((t) => ({ id: t.id, name: t.name, count: windowTypes[t.id] || 0 })), facadeSpots: spots, placementProxies, procedural: true, version: 41 };
   return group;
 }
 
@@ -35750,14 +36369,14 @@ function repairCourtyardBoundaries(plan, parcels, attached, specs = [], roadInfo
     const dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / (dx * dx + dz * dz || 1)));
     return dist2(p, [a[0] + t * dx, a[1] + t * dz]);
   };
-  const walls = plan.wallRuns.filter((r) => r.points.length > 1), segments = walls.flatMap((r) => r.points.slice(1).map((b, i) => ({ a: r.points[i], b, owner: r.owner }))).concat((plan.connections || []).map((r) => ({ ...r })));
+  const walls = plan.wallRuns.filter((r) => r.points.length > 1), segments2 = walls.flatMap((r) => r.points.slice(1).map((b, i) => ({ a: r.points[i], b, owner: r.owner }))).concat((plan.connections || []).map((r) => ({ ...r })));
   const access = parcels.yards.flatMap((y) => (y.entrance || []).slice(1).map((b, i) => ({ a: y.entrance[i], b })));
   const reservations = [...(attached.drives || []).map((d) => d.polygon), ...(attached.structures || []).flatMap((s) => [s.footprint, s.entryApron].filter(Boolean))];
   const endpoints = [];
   for (const r of walls) for (const end of [0, r.points.length - 1]) {
     const p = r.points[end], q = r.points[end === 0 ? 1 : end - 1], L = dist2(p, q);
     if (L < 0.02 || dist2(r.points[0], r.points.at(-1)) < 0.05) continue;
-    if (segments.some((s) => s.owner === r.owner && near(p, s.a, s.b) < 0.06 && dist2(p, s.a) > 0.1 && dist2(p, s.b) > 0.1)) continue;
+    if (segments2.some((s) => s.owner === r.owner && near(p, s.a, s.b) < 0.06 && dist2(p, s.a) > 0.1 && dist2(p, s.b) > 0.1)) continue;
     endpoints.push({ p, r, out: [(p[0] - q[0]) / L, (p[1] - q[1]) / L] });
   }
   const bridges = [], used = /* @__PURE__ */ new Set(), rejected = { access: 0, ground: 0, building: 0 };
@@ -35796,17 +36415,17 @@ function repairCourtyardBoundaries(plan, parcels, attached, specs = [], roadInfo
   for (const { i, j, L } of pairs) {
     if (used.has(i) || used.has(j)) continue;
     const a = endpoints[i], b = endpoints[j];
-    if (segments.some((s) => near([(a.p[0] + b.p[0]) / 2, (a.p[1] + b.p[1]) / 2], s.a, s.b) < 0.1)) continue;
+    if (segments2.some((s) => near([(a.p[0] + b.p[0]) / 2, (a.p[1] + b.p[1]) / 2], s.a, s.b) < 0.1)) continue;
     if (!clear(a.p, b.p, a.r.owner)) continue;
     const endHeight = (r2) => r2.height + (r2.capProfile === "scalloped" && r2.length > 2.2 ? 0.2 : 0);
     const r = { ...a.r, points: [a.p, b.p], length: L, height: (a.r.height + b.r.height) / 2, startHeight: endHeight(a.r), endHeight: endHeight(b.r), capProfile: "straight", repair: true };
     bridges.push(r);
-    segments.push({ a: a.p, b: b.p, owner: r.owner });
+    segments2.push({ a: a.p, b: b.p, owner: r.owner });
     used.add(i);
     used.add(j);
   }
   const removedPiers = [], piers = plan.piers.filter((p) => {
-    const q = [p.x, p.z], connected = segments.some((s) => near(q, s.a, s.b) < (p.width || 0.34) / 2 + 0.16) || plan.gates.some((g) => dist2(q, [g.x, g.z]) < g.width / 2 + 0.6);
+    const q = [p.x, p.z], connected = segments2.some((s) => near(q, s.a, s.b) < (p.width || 0.34) / 2 + 0.16) || plan.gates.some((g) => dist2(q, [g.x, g.z]) < g.width / 2 + 0.6);
     if (!connected) removedPiers.push(p);
     return connected;
   });
@@ -36128,12 +36747,12 @@ function latheCandidate(c) {
       phase = Math.atan2(edge[0][ab[1]] - cz, edge[0][ab[0]] - cx);
     }
     if (bad) continue;
-    const edges = /* @__PURE__ */ new Map();
+    const edges2 = /* @__PURE__ */ new Map();
     for (let i = 0; i < c.positions.length; i += 3) for (let k = 0; k < 3; k++) {
       const a = c.positions[i + k].map((x) => Math.round(x / EPS)).join(","), b = c.positions[i + (k + 1) % 3].map((x) => Math.round(x / EPS)).join(","), key = [a, b].sort().join("|");
-      edges.set(key, (edges.get(key) || 0) + 1);
+      edges2.set(key, (edges2.get(key) || 0) + 1);
     }
-    if ([...edges.values()].some((n2) => n2 !== 2)) continue;
+    if ([...edges2.values()].some((n2) => n2 !== 2)) continue;
     const old = c.inds.length / 3, n = Math.min(40, Math.floor((old + 4) / (2 * rings.length))), oldN = Math.max(...rings.map((r) => r.n));
     if (n <= oldN) continue;
     const rr = rings.map((r) => Array.from({ length: n }, (_, i) => {
@@ -36177,7 +36796,7 @@ function smoothedNormals(g) {
   g.setAttribute("normal", new BufferAttribute(out, 3));
   return changed;
 }
-function tube(points, r, segments = 6) {
+function tube(points, r, segments2 = 6) {
   const ps = points.map(v), path = new CurvePath();
   let last = ps[0];
   for (let i = 1; i < ps.length - 1; i++) {
@@ -36187,10 +36806,10 @@ function tube(points, r, segments = 6) {
     last = exit;
   }
   path.add(new LineCurve3(last, ps.at(-1)));
-  const g = new TubeGeometry(path, segments, r, 5, false), raw = g.toNonIndexed(), p = raw.attributes.position, ts = [];
+  const g = new TubeGeometry(path, segments2, r, 5, false), raw = g.toNonIndexed(), p = raw.attributes.position, ts = [];
   for (let i = 0; i < p.count; i += 3) ts.push([0, 1, 2].map((k) => [p.getX(i + k), p.getY(i + k), p.getZ(i + k)]));
   const pos = g.attributes.position;
-  for (const [start, first] of [[0, true], [segments * 6, false]]) {
+  for (const [start, first] of [[0, true], [segments2 * 6, false]]) {
     const rr = Array.from({ length: 5 }, (_, k) => [pos.getX(start + k), pos.getY(start + k), pos.getZ(start + k)]);
     const normal = v(rr[1]).sub(v(rr[0])).cross(v(rr[2]).sub(v(rr[0]))), target = path.getTangent(first ? 0 : 1).multiplyScalar(first ? -1 : 1), reverse = normal.dot(target) < 0;
     for (let i = 1; i < 4; i++) ts.push(reverse ? [rr[0], rr[i + 1], rr[i]] : [rr[0], rr[i], rr[i + 1]]);
@@ -36483,22 +37102,8 @@ function evaluatePlacement(rule, c) {
   return null;
 }
 
-// outputs/domestic-test/arterial.js?v=151
-function inArterial(plan, x, z, pad = 0) {
-  if (!plan) return false;
-  const inside2 = (p, r) => {
-    let c = false;
-    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-      const a = r[i], b = r[j];
-      if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
-    }
-    return c;
-  };
-  return [[x, z], [x - pad, z - pad], [x + pad, z + pad], [x - pad, z + pad], [x + pad, z - pad]].some((p) => plan.publicRings.some((r) => inside2(p, r.outer) && !r.holes.some((h) => inside2(p, h))));
-}
-
 // outputs/domestic-test/ground-contact.js?v=151
-function contactPoints2(geometry2, matrix = new Matrix4()) {
+function contactPoints(geometry2, matrix = new Matrix4()) {
   const points = [], seen = /* @__PURE__ */ new Set(), p = geometry2.attributes.position, v2 = new Vector3();
   for (let i = 0; i < p.count; i++) {
     v2.fromBufferAttribute(p, i).applyMatrix4(matrix);
@@ -36510,7 +37115,7 @@ function contactPoints2(geometry2, matrix = new Matrix4()) {
   }
   return points;
 }
-function lowestContact2(root, points, surface) {
+function lowestContact(root, points, surface) {
   root.updateMatrix();
   let gap = Infinity, point;
   for (const p of points) {
@@ -36537,10 +37142,10 @@ function solve(matrix, rhs) {
   }
   return a.map((r) => r[3]);
 }
-function fitContactPose2(root, contacts, surface) {
+function fitContactPose(root, contacts, surface) {
   if (!contacts.length) return null;
   for (let pass = 0; pass < 12; pass++) {
-    const hits2 = contacts.map((c) => lowestContact2(root, c, surface)), M = [[0, 0, 0], [0, 1e-6, 0], [0, 0, 1e-6]], b = [0, 0, 0];
+    const hits2 = contacts.map((c) => lowestContact(root, c, surface)), M = [[0, 0, 0], [0, 1e-6, 0], [0, 0, 1e-6]], b = [0, 0, 0];
     for (const h of hits2) {
       const row2 = [1, h.point.x - root.position.x, h.point.z - root.position.z];
       for (let i = 0; i < 3; i++) {
@@ -36554,12 +37159,12 @@ function fitContactPose2(root, contacts, surface) {
     root.quaternion.premultiply(tilt);
     if (Math.max(Math.abs(y), Math.abs(dx), Math.abs(dz)) < 1e-6) break;
   }
-  const hits = contacts.map((c) => lowestContact2(root, c, surface));
+  const hits = contacts.map((c) => lowestContact(root, c, surface));
   root.position.y -= Math.min(...hits.map((h) => h.gap));
-  return contactReport2(root, contacts, surface);
+  return contactReport(root, contacts, surface);
 }
-function contactReport2(root, contacts, surface) {
-  const hits = contacts.map((c) => lowestContact2(root, c, surface));
+function contactReport(root, contacts, surface) {
+  const hits = contacts.map((c) => lowestContact(root, c, surface));
   return { method: "rendered-contact-vertices", contacts: hits.map((h) => ({ at: h.point.toArray(), gap: h.gap })), maxGap: Math.max(...hits.map((h) => h.gap)) };
 }
 function libraryWheelContacts(root) {
@@ -36572,15 +37177,15 @@ function libraryWheelContacts(root) {
     g.computeBoundingBox();
     const size = g.boundingBox.getSize(new Vector3()), dims = size.toArray(), axisIndex = dims.indexOf(Math.min(...dims)), axis = new Vector3(axisIndex === 0 ? 1 : 0, axisIndex === 1 ? 1 : 0, axisIndex === 2 ? 1 : 0).transformDirection(matrix);
     if (m.userData.groundContactWheel || rubber && Math.abs(axis.y) < 0.35 && (torus && p.radius >= 0.085 && p.tube >= 0.025 || g.type === "CylinderGeometry" && p.radiusTop >= 0.12)) {
-      const points = contactPoints2(g, matrix);
+      const points = contactPoints(g, matrix);
       if (Math.min(...points.map((v2) => v2.y)) < 0.12) wheels.push({ mesh: m, points });
     }
   });
   return wheels;
 }
-function seatGroundAsset2(root, surface, { wheels = true, suspension = false } = {}) {
+function seatGroundAsset(root, surface, { wheels = true, suspension = false } = {}) {
   if (root.userData.wheelContactPoints) {
-    let contacts2 = root.userData.wheelContactPoints.map((ps) => ps.map((p) => new Vector3(...p))), qa2 = fitContactPose2(root, contacts2, surface);
+    let contacts2 = root.userData.wheelContactPoints.map((ps) => ps.map((p) => new Vector3(...p))), qa2 = fitContactPose(root, contacts2, surface);
     if (suspension && contacts2.length === 4 && qa2.maxGap > 0.025 && qa2.maxGap <= 0.12) {
       root.updateMatrixWorld(true);
       const inverse2 = root.matrixWorld.clone().invert();
@@ -36607,7 +37212,7 @@ function seatGroundAsset2(root, surface, { wheels = true, suspension = false } =
       });
       contacts2 = contacts2.map((ps, k) => ps.map((p) => p.clone().add(travel[k])));
       root.userData.wheelContactPoints = contacts2.map((ps) => ps.map((p) => p.toArray()));
-      qa2 = contactReport2(root, contacts2, surface);
+      qa2 = contactReport(root, contacts2, surface);
       qa2.suspension = true;
     }
     root.userData.groundFit = qa2;
@@ -36615,7 +37220,7 @@ function seatGroundAsset2(root, surface, { wheels = true, suspension = false } =
   }
   const wheelParts = wheels ? libraryWheelContacts(root) : [];
   if (wheelParts.length >= 2) {
-    let qa2 = fitContactPose2(root, wheelParts.map((w) => w.points), surface);
+    let qa2 = fitContactPose(root, wheelParts.map((w) => w.points), surface);
     if (suspension && qa2.maxGap > 0.025 && qa2.maxGap <= 0.12) {
       wheelParts.forEach((w, i) => {
         const gap = qa2.contacts[i].gap;
@@ -36626,7 +37231,7 @@ function seatGroundAsset2(root, surface, { wheels = true, suspension = false } =
         w.mesh.position.add(d);
       });
       const adjusted = libraryWheelContacts(root);
-      qa2 = contactReport2(root, adjusted.map((w) => w.points), surface);
+      qa2 = contactReport(root, adjusted.map((w) => w.points), surface);
       qa2.suspension = true;
     }
     root.userData.groundFit = qa2;
@@ -36637,14 +37242,14 @@ function seatGroundAsset2(root, surface, { wheels = true, suspension = false } =
   let bottom = Infinity;
   root.traverse((m) => {
     if (!m.isMesh) return;
-    const matrix = inverse.clone().multiply(m.matrixWorld), points = contactPoints2(m.geometry, matrix);
+    const matrix = inverse.clone().multiply(m.matrixWorld), points = contactPoints(m.geometry, matrix);
     const min = Math.min(...points.map((p) => p.y));
     bottom = Math.min(bottom, min);
     parts.push({ m, matrix, points, min });
   });
   const feet = parts.filter((p) => p.min <= bottom + 0.055), contacts = feet.map((p) => p.points.filter((v2) => v2.y <= bottom + 0.06));
   if (!contacts.length) return null;
-  root.position.y -= Math.min(...contacts.map((c) => lowestContact2(root, c, surface).gap));
+  root.position.y -= Math.min(...contacts.map((c) => lowestContact(root, c, surface).gap));
   root.updateMatrixWorld(true);
   const top = bottom + 0.24;
   for (const { m, matrix, min } of feet) {
@@ -36665,13 +37270,27 @@ function seatGroundAsset2(root, surface, { wheels = true, suspension = false } =
   }
   root.updateMatrixWorld(true);
   const actual = feet.map(({ m }) => {
-    const cloud = contactPoints2(m.geometry, inverse.copy(root.matrixWorld).invert().multiply(m.matrixWorld));
+    const cloud = contactPoints(m.geometry, inverse.copy(root.matrixWorld).invert().multiply(m.matrixWorld));
     return cloud;
   });
-  const qa = contactReport2(root, actual, surface);
+  const qa = contactReport(root, actual, surface);
   qa.method = "vertical-furniture-adaptive-feet";
   root.userData.groundFit = qa;
   return qa;
+}
+
+// outputs/domestic-test/arterial.js?v=151
+function inArterial(plan, x, z, pad = 0) {
+  if (!plan) return false;
+  const inside2 = (p, r) => {
+    let c = false;
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const a = r[i], b = r[j];
+      if (a[1] > p[1] !== b[1] > p[1] && p[0] < (b[0] - a[0]) * (p[1] - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+    }
+    return c;
+  };
+  return [[x, z], [x - pad, z - pad], [x + pad, z + pad], [x - pad, z + pad], [x + pad, z - pad]].some((p) => plan.publicRings.some((r) => inside2(p, r.outer) && !r.holes.some((h) => inside2(p, h))));
 }
 
 // outputs/domestic-test/contact-shadows.js?v=151
@@ -37040,36 +37659,6 @@ function populateStreetLife({ specs, walls, roadInfo, elevation, template, place
     record("parking", s, start, "\uAC74\uBB3C \uC55E \uD6C4\uD1F4 \uACF5\uAC04\uC5D0 \uC8FC\uCC28, \uB3C4\uB85C \uC5F0\uACB0 \uB760\uC640 \uBCF4\uD589 \uCD9C\uC785\uAD6C\uB294 \uBE44\uC6CC \uB460");
   }
   return { version: 22, source: "Kakao roadview neighborhood observations, 2022-08 and 2025-06; inferred placement", groups, supports: supports.length, counts: Object.fromEntries(["equipment", "bicycle", "collection", "parking"].map((k) => [k, groups.filter((g) => g.kind === k).length])) };
-}
-
-// outputs/domestic-test/contact-shadows.js?v=151
-function createContactSurfaceSampler2(roots, fallback) {
-  const cells = /* @__PURE__ */ new Map(), v2 = new Vector3();
-  for (const root of roots) {
-    root.updateWorldMatrix(true, true);
-    root.traverse((o) => {
-      if (!o.isMesh || !o.visible || o.userData.detailKind === "roadmark" || !(o.name.startsWith("alley-batch-ground") || ["house-shaped-yard", "yard-access-surface"].includes(o.name))) return;
-      const p = o.geometry.attributes.position, index = o.geometry.index, n = index?.count ?? p.count;
-      for (let i = 0; i < n; i += 3) {
-        const points = [0, 1, 2].map((k) => v2.fromBufferAttribute(p, index ? index.getX(i + k) : i + k).applyMatrix4(o.matrixWorld).toArray()), [a, b, c] = points, den = (b[2] - c[2]) * (a[0] - c[0]) + (c[0] - b[0]) * (a[2] - c[2]);
-        if (Math.abs(den) < 1e-9) continue;
-        const triangle = { a, b, c, den };
-        for (let x = Math.floor(Math.min(a[0], b[0], c[0]) / 3); x <= Math.floor(Math.max(a[0], b[0], c[0]) / 3); x++) for (let z = Math.floor(Math.min(a[2], b[2], c[2]) / 3); z <= Math.floor(Math.max(a[2], b[2], c[2]) / 3); z++) {
-          const key = x + "," + z;
-          if (!cells.has(key)) cells.set(key, []);
-          cells.get(key).push(triangle);
-        }
-      }
-    });
-  }
-  return (x, z) => {
-    let y = fallback(x, z);
-    for (const { a, b, c, den } of cells.get(Math.floor(x / 3) + "," + Math.floor(z / 3)) || []) {
-      const u = ((b[2] - c[2]) * (x - c[0]) + (c[0] - b[0]) * (z - c[2])) / den, w = ((c[2] - a[2]) * (x - c[0]) + (a[0] - c[0]) * (z - c[2])) / den, t = 1 - u - w;
-      if (u >= -1e-6 && w >= -1e-6 && t >= -1e-6) y = Math.max(y, u * a[1] + w * b[1] + t * c[1]);
-    }
-    return y;
-  };
 }
 
 // outputs/alley-library/korean-vehicles.js?v=151
@@ -39333,7 +39922,7 @@ function addLines(root) {
   return root;
 }
 
-// outputs/domestic-test/attached-structures.js?v=151
+// outputs/domestic-test/attached-structures.js?v=view3c
 function renderAttachedStructures(plan, elevation) {
   const group = new Group();
   group.name = "facade-attached-architecture";
@@ -39396,7 +39985,7 @@ function renderAttachedStructures(plan, elevation) {
       a.rotation.y = angle + (a.userData.memoVehicle ? Math.PI / 2 : 0);
       a.scale.multiplyScalar(scale);
       if (!lift) {
-        const qa = seatGroundAsset2(a, pavedSurface, { suspension: !!elevation.routeCorrected });
+        const qa = seatGroundAsset(a, pavedSurface, { suspension: !!elevation.routeCorrected });
         groundContacts.push({ id, owner: s.owner, ...qa });
       }
       a.updateMatrixWorld(true);
@@ -39405,6 +39994,7 @@ function renderAttachedStructures(plan, elevation) {
       assetPlacements.push({ id, name: a.name, owner: s.owner, x: a.position.x, y: a.position.y, z: a.position.z, angle, height: bb.max.y - bb.min.y, role: s.type === "carport" ? "\uC8FC\uCC28\uBA74 \uCC28\uB7C9" : "\uCC28\uC591 \uC544\uB798 \uC0DD\uD65C \uC18C\uD488", groundFit: a.userData.groundFit, footprint: [[bb.min.x, bb.min.z], [bb.max.x, bb.min.z], [bb.max.x, bb.max.z], [bb.min.x, bb.max.z]] });
       return a;
     };
+    if (!visibleRecord({ ...s, height: s.roofHeight || 3 }, elevation)) continue;
     const g = new Group();
     g.name = s.name;
     const { width: w, depth: d, ux, uz, nx, nz, origin: o } = s;
@@ -39418,7 +40008,7 @@ function renderAttachedStructures(plan, elevation) {
       const xx = Math.min(w, x + 0.8), zz = Math.min(d, z + 0.8);
       quad([[x, Y(x, z) + 0.085, z], [xx, Y(xx, z) + 0.085, z], [xx, Y(xx, zz) + 0.085, zz], [x, Y(x, zz) + 0.085, zz]], s.type === "carport" ? 10333097 : 11841698, "yard-access-surface");
     }
-    pavedSurface = createContactSurfaceSampler2([g], elevation);
+    pavedSurface = createContactSurfaceSampler([g], elevation);
     for (let x = 1.2; x < w; x += 2.4) groundStrip(x, 0.05, x, d - 0.05, 0.018, 9080711, "apron-expansion-joint");
     if (covered) {
       const count3 = roofKind === "arched-poly" ? 12 : 1;
@@ -39587,10 +40177,21 @@ function edgeCandidates(y) {
 }
 
 // outputs/domestic-test/korean-facades.js?v=151
-var unitBox3 = new BoxGeometry(1, 1, 1).toNonIndexed();
-var edgePoints3 = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
+var facadeStyles4 = [
+  { name: "\uC801\uBCBD\uB3CC \uB2E4\uC138\uB300", wall: 9002576, joint: 11901830, frame: 13948879, roof: 6716521, pattern: "brick" },
+  { name: "\uC9D9\uC740 \uBCBD\uB3CC \uC8FC\uD0DD", wall: 6508873, joint: 9799803, frame: 5655619, roof: 7570545, pattern: "brick" },
+  { name: "\uBC1D\uC740 \uBCBD\uB3CC \uBE4C\uB77C", wall: 12761508, joint: 9997947, frame: 14803414, roof: 7571062, pattern: "brick" },
+  { name: "\uD68C\uC0C9 \uC11D\uC7AC \uBE4C\uB77C", wall: 10725024, joint: 7502195, frame: 5397851, roof: 7111542, pattern: "stone" },
+  { name: "\uD06C\uB9BC \uD0C0\uC77C \uC8FC\uD0DD", wall: 13352870, joint: 10983811, frame: 13423047, roof: 7439985, pattern: "tile" },
+  { name: "\uBBF8\uC7A5 \uB2E8\uB3C5\uC8FC\uD0DD", wall: 12763056, joint: 11183766, frame: 7106665, roof: 6913127, pattern: "render" }
+];
+facadeStyles4.forEach((style, i) => {
+  style.textureId = defaultFacadeTextures[i];
+});
+var unitBox4 = new BoxGeometry(1, 1, 1).toNonIndexed();
+var edgePoints4 = new EdgesGeometry(new BoxGeometry(1, 1, 1)).attributes.position.array;
 var dark2 = 3423802;
-var FacadeBatch3 = class {
+var FacadeBatch4 = class {
   constructor(minimumLOD = 0) {
     this.minimumLOD = minimumLOD;
     this.parts = /* @__PURE__ */ new Map();
@@ -39608,9 +40209,9 @@ var FacadeBatch3 = class {
       this.maxLOD = previous;
     }
   }
-  bucket(color, surface = false) {
-    const windowBand = this.windowBand ?? -1, key = color + ":" + surface + ":" + this.maxLOD + ":" + windowBand;
-    if (!this.parts.has(key)) this.parts.set(key, { color, surface, maxLOD: this.maxLOD, windowBand, p: [], n: [], inkIds: [] });
+  bucket(color, surface = false, textureId = null) {
+    const windowBand = this.windowBand ?? -1, key = color + ":" + surface + ":" + this.maxLOD + ":" + windowBand + ":" + (textureId || "");
+    if (!this.parts.has(key)) this.parts.set(key, { color, surface, maxLOD: this.maxLOD, windowBand, textureId, p: [], n: [], uv: [], inkIds: [] });
     return this.parts.get(key);
   }
   lineBucket(color) {
@@ -39620,17 +40221,19 @@ var FacadeBatch3 = class {
   }
   writer(origin = [0, 0, 0], ux = 1, uz = 0, nx = 0, nz = 1) {
     const P = (x, y, z) => [origin[0] + ux * x + nx * z, origin[1] + y, origin[2] + uz * x + nz * z];
-    const box = (x, y, z, w, h, d, color, edge = false, surface = false) => {
+    const box = (x, y, z, w, h, d, color, edge = false, surface = false, textureId = null) => {
       if (Math.min(w, h, d) <= 0) return;
-      const b = this.bucket(color, surface), p = unitBox3.attributes.position, n = unitBox3.attributes.normal;
+      const p = unitBox4.attributes.position, n = unitBox4.attributes.normal, meters = textureId ? getFacadeTexture(textureId).userData.meters : null;
       for (let i = 0; i < p.count; i++) {
-        b.p.push(...P(x + p.getX(i) * w, y + p.getY(i) * h, z + p.getZ(i) * d));
+        const textured = textureId && Math.abs(n.getY(i)) < 0.5, b = this.bucket(textured ? 16777215 : color, surface, textured ? textureId : null), X = x + p.getX(i) * w, Y = y + p.getY(i) * h, Z = z + p.getZ(i) * d;
+        b.p.push(...P(X, Y, Z));
         b.inkIds.push(this.inkObjectId ?? 0);
         b.n.push(ux * n.getX(i) + nx * n.getZ(i), n.getY(i), uz * n.getX(i) + nz * n.getZ(i));
+        if (textured) b.uv.push((X * n.getZ(i) - Z * n.getX(i)) / meters[0], Y / meters[1]);
       }
       if (edge) {
         const a = this.lineBucket(color);
-        for (let i = 0; i < edgePoints3.length; i += 3) a.push(...P(x + edgePoints3[i] * w, y + edgePoints3[i + 1] * h, z + edgePoints3[i + 2] * d));
+        for (let i = 0; i < edgePoints4.length; i += 3) a.push(...P(x + edgePoints4[i] * w, y + edgePoints4[i + 1] * h, z + edgePoints4[i + 2] * d));
       }
       this.count++;
     };
@@ -39643,7 +40246,16 @@ var FacadeBatch3 = class {
       }
       ;
     };
-    const rod = (a, b, r, color, segments = 6) => {
+    const textureQuad = (x, y, z, w, h, id, uv) => {
+      const b = this.bucket(16777215, true, id);
+      for (const [u, v2] of [[0, 0], [1, 0], [1, 1], [0, 0], [1, 1], [0, 1]]) {
+        b.p.push(...P(x + (u - 0.5) * w, y + (v2 - 0.5) * h, z));
+        b.n.push(nx, 0, nz);
+        b.uv.push(u ? uv[2] : uv[0], v2 ? uv[3] : uv[1]);
+        b.inkIds.push(this.inkObjectId ?? 0);
+      }
+    };
+    const rod = (a, b, r, color, segments2 = 6) => {
       const A = new Vector3(...P(...a)), B = new Vector3(...P(...b)), dir = B.clone().sub(A), len = dir.length();
       if (len < 1e-6) return;
       dir.divideScalar(len);
@@ -39652,8 +40264,8 @@ var FacadeBatch3 = class {
       u.cross(dir).normalize();
       const v2 = dir.clone().cross(u);
       const out = this.bucket(color);
-      for (let i = 0; i < segments; i++) {
-        const ns = [i, i + 1].map((j) => u.clone().multiplyScalar(Math.cos(j * 2 * Math.PI / segments)).addScaledVector(v2, Math.sin(j * 2 * Math.PI / segments)));
+      for (let i = 0; i < segments2; i++) {
+        const ns = [i, i + 1].map((j) => u.clone().multiplyScalar(Math.cos(j * 2 * Math.PI / segments2)).addScaledVector(v2, Math.sin(j * 2 * Math.PI / segments2)));
         const q = [A.clone().addScaledVector(ns[0], r), A.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[1], r), B.clone().addScaledVector(ns[0], r)];
         for (const k of [0, 1, 2, 0, 2, 3]) {
           out.p.push(...q[k].toArray());
@@ -39662,7 +40274,15 @@ var FacadeBatch3 = class {
         }
       }
     };
-    return { box, quad, rod, lit: (band, fn) => {
+    const reveal = (a, b, c, d, color) => {
+      const bucket = this.bucket(color, false), normal = new Vector3(...b).sub(new Vector3(...a)).cross(new Vector3(...c).sub(new Vector3(...a))).normalize();
+      for (const q of [a, b, c, a, c, d]) {
+        bucket.p.push(...q);
+        bucket.n.push(...normal.toArray());
+        bucket.inkIds.push(this.inkObjectId ?? 0);
+      }
+    };
+    return { box, quad, rod, textureQuad, reveal, lit: (band, fn) => {
       const old = this.windowBand;
       this.windowBand = band;
       try {
@@ -39679,11 +40299,12 @@ var FacadeBatch3 = class {
       const g = new BufferGeometry();
       g.setAttribute("position", new Float32BufferAttribute(b.p, 3));
       g.setAttribute("normal", new Float32BufferAttribute(b.n, 3));
+      if (b.textureId) g.setAttribute("uv", new Float32BufferAttribute(b.uv, 2));
       if (b.inkIds.length === b.p.length / 3 && b.inkIds.some((id) => id > 0)) g.setAttribute("inkObjectId", new Float32BufferAttribute(b.inkIds, 1));
-      const m = new Mesh(g, new MeshStandardMaterial({ color: b.color, roughness: 0.9, side: DoubleSide, ...b.surface ? finishDepth() : {} }));
+      const m = new Mesh(g, new MeshStandardMaterial({ color: b.color, roughness: 0.9, side: DoubleSide, ...b.textureId ? { map: getFacadeTexture(b.textureId) } : {}, ...b.surface ? finishDepth() : {} }));
       if (b.windowBand >= 0) m.material.userData.nightWindowBand = b.windowBand;
       m.name = "korean-facade-" + (b.surface ? "surface" : "parts") + "-" + b.color.toString(16);
-      m.userData = { detailKind: b.color === dark2 ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
+      m.userData = { facadeTextureId: b.textureId, detailKind: b.color === dark2 ? "metal" : "facade", noPlacementCollision: b.surface, surfaceOverlay: b.surface, lodMaxLevel: b.maxLOD };
       group.add(m);
     }
     for (const { color, p, maxLOD } of this.lines.values()) {
@@ -39700,7 +40321,7 @@ var FacadeBatch3 = class {
 
 // outputs/domestic-test/parcel-renderer.js?v=151
 function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
-  const group = new Group(), batch = new FacadeBatch3(), segments = [], colliders = [], views = [], programMap = new Map(profiles.map((p) => [p.owner, p]));
+  const group = new Group(), batch = new FacadeBatch4(), segments2 = [], colliders = [], views = [], programMap = new Map(profiles.map((p) => [p.owner, p]));
   const C = { brick: 8411463, dark: 6507587, joint: 11182224, stone: 8489088, stoneJoint: 5594711, render: 11053985, base: 7831413, cap: 11711399, green: 4944224, iron: 3623490, silver: 9674388 };
   const styleNames = { "brick-vent": "\uAD6C\uBA4D \uC7A5\uC2DD \uC801\uBCBD\uB3CC \uB2F4\uACFC \uB300\uBB38", "dark-brick": "\uB2E8\uCC28 \uBCBD\uB3CC \uB2F4\uACFC \uC544\uCE58 \uB300\uBB38", "stone-gate": "\uC11D\uC7AC \uB2F4\uACFC \uBC15\uACF5\uC9C0\uBD95 \uB300\uBB38", "rendered": "\uD68C\uC0C9 \uBBF8\uC7A5 \uB2F4\uACFC \uCCA0\uBB38", "green-fence": "\uAE30\uB2E8 \uC704 \uB179\uC0C9 \uCCA0\uB9DD \uC6B8\uD0C0\uB9AC", "brick-rail": "\uBCBD\uB3CC \uAE30\uB2E8\uACFC \uCCA0\uC81C \uB2F4", "villa-curb": "\uAC1C\uBC29\uD615 \uBE4C\uB77C \uC8FC\uCC28 \uC9C4\uC785\uBD80" };
   function floor(tris2, color, lift = 0.065, layer = 1) {
@@ -39847,7 +40468,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
       const a = points[i - 1], b = points[i], N = Math.ceil((lengths[i] - lengths[i - 1]) / 0.6);
       for (let j = 0; j < N; j++) {
         const aa = a.map((v2, k) => v2 + (b[k] - v2) * j / N), bb = a.map((v2, k) => v2 + (b[k] - v2) * (j + 1) / N);
-        segments.push({ a: aa, b: bb, base: Math.min(elevation(...aa), elevation(...bb)) - 0.08, top: Math.max(elevation(...aa), elevation(...bb)) + height + 0.09, width: 0.22, kind: kind === "villa-curb" ? "low-curb" : "parcel-wall", owner });
+        segments2.push({ a: aa, b: bb, base: Math.min(elevation(...aa), elevation(...bb)) - 0.08, top: Math.max(elevation(...aa), elevation(...bb)) + height + 0.09, width: 0.22, kind: kind === "villa-curb" ? "low-curb" : "parcel-wall", owner });
       }
     }
   }
@@ -39888,7 +40509,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
     const cs = [[-width / 2, -0.22], [width / 2, -0.22], [width / 2, 0.38], [-width / 2, 0.38]].map(([u, v2]) => [x + ux * u + nx * v2, z + uz * u + nz * v2]);
     floor([[cs[0], cs[1], cs[2]], [cs[0], cs[2], cs[3]]], 10659739, 0.09, 4);
   }
-  const gateSurface = createContactSurfaceSampler2(group.children, elevation);
+  const gateSurface = createContactSurfaceSampler(group.children, elevation);
   for (const gate of plan.gates) {
     const { x, z, ux, uz, nx, nz, width, style, owner } = gate, base = Math.max(...gate.pieces.map((p) => elevation(x + ux * p.u, z + uz * p.u))), out = batch.writer([x, base, z], ux, uz, nx, nz), B = out.box, R = out.rod, col = style === "stone-gate" ? C.stone : style === "rendered" ? C.render : style === "dark-brick" ? C.dark : C.brick, iron = style === "rendered" ? 4612949 : C.iron, h = 2.1;
     for (const p of gate.pieces) {
@@ -39937,7 +40558,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
     }
     views.push({ x, z, y: base, ux, uz, nx, nz, owner, style, label: styleNames[style] });
   }
-  const surface = createContactSurfaceSampler2(group.children.filter((o) => o.userData.detailKind !== "roadmark"), elevation);
+  const surface = createContactSurfaceSampler(group.children.filter((o) => o.userData.detailKind !== "roadmark"), elevation);
   for (const d of plan.drains) boundaryFit.drains.push(addFittedDrain(batch, d, surface, roadInfo));
   const solids = batch.finish("KoreanStreetBoundary");
   solids.traverse((o) => {
@@ -39948,7 +40569,7 @@ function renderParcels(data, elevation, profiles = [], plan, roadInfo = null) {
   });
   group.add(solids);
   group.userData = { ...plan.qa, gateViews: views, boundaryFit };
-  return { group, segments, colliders, views };
+  return { group, segments: segments2, colliders, views };
 }
 
 // outputs/domestic-test/alley-placement.js
@@ -39989,13 +40610,13 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
       return s.points.some((a, i) => edgeBox(a, s.points[(i + 1) % s.points.length], b));
     });
   }
-  function segments(a, b, c, d) {
+  function segments2(a, b, c, d) {
     const cross2 = (p, q, r) => (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
     return cross2(a, b, c) * cross2(a, b, d) < -1e-10 && cross2(c, d, a) * cross2(c, d, b) < -1e-10;
   }
   function footprintHits(p) {
     const xs = p.map((q) => q[0]), zs = p.map((q) => q[1]), loX = Math.min(...xs), hiX = Math.max(...xs), loZ = Math.min(...zs), hiZ = Math.max(...zs);
-    return polys.some((s) => !(s.maxX < loX || s.minX > hiX || s.maxZ < loZ || s.minZ > hiZ) && (p.some((q) => inside2(q[0], q[1], s.points)) || s.points.some((q) => inside2(q[0], q[1], p)) || p.some((a, i) => s.points.some((c, j) => segments(a, p[(i + 1) % p.length], c, s.points[(j + 1) % s.points.length])))));
+    return polys.some((s) => !(s.maxX < loX || s.minX > hiX || s.maxZ < loZ || s.minZ > hiZ) && (p.some((q) => inside2(q[0], q[1], s.points)) || s.points.some((q) => inside2(q[0], q[1], p)) || p.some((a, i) => s.points.some((c, j) => segments2(a, p[(i + 1) % p.length], c, s.points[(j + 1) % s.points.length])))));
   }
   const cells = new Map(options.staticCache ? [...options.staticCache.obstacleCells].map(([k, v2]) => [k, v2.slice()]) : []);
   function keys(b) {
@@ -40035,7 +40656,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     return { x: f.a[0] + f.ux * f.entry, z: f.a[1] + f.uz * f.entry, nx: f.nx, nz: f.nz, depth: f.mean + 0.7, owner: s.seed };
   });
   function overlapPolys(a, b) {
-    return a.some((p) => inside2(...p, b)) || b.some((p) => inside2(...p, a)) || a.some((p, i) => b.some((q, j) => segments(p, a[(i + 1) % a.length], q, b[(j + 1) % b.length])));
+    return a.some((p) => inside2(...p, b)) || b.some((p) => inside2(...p, a)) || a.some((p, i) => b.some((q, j) => segments2(p, a[(i + 1) % a.length], q, b[(j + 1) % b.length])));
   }
   const accessShapes = parcelData.yards.flatMap((y) => (y.entrance || []).slice(1).map((b, i) => {
     const a = y.entrance[i], L = Math.hypot(b[0] - a[0], b[1] - a[1]), ux = (b[0] - a[0]) / (L || 1), uz = (b[1] - a[1]) / (L || 1), r = 0.9;
@@ -40167,6 +40788,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     });
   }
   function tryPlace(id, x, z, angle, lift = 0, owner = null, role = "household") {
+    if (!visibleObject(x, z, 3, 1.5, elevation(x, z) + lift)) return false;
     if (!eligible(owner)) return false;
     if (retiredLegacy(id)) return false;
     if (commercialFaceAt(owner, x, z)) {
@@ -40183,14 +40805,14 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     const yard = yards.find((y2) => y2.owner === owner && inYard(y2, x, z)) || yards.find((y2) => y2.owner === owner);
     const wall = nearestPolicyWall(x, z, owner);
     const entry = entries.find((e) => e.owner === owner);
-    const context = { zone: yard?.type || "unknown", role, area: yard?.area || 0, lift, scale: info?.fitScale || 1, count: policyCounts.get(owner + ":" + policyKey) || 0, wallGap: wall ? Math.max(0, wall.distance - (local.max.z - local.min.z) / 2) : Infinity, entryDistance: entry ? Math.hypot(x - entry.x, z - entry.z) : Infinity };
+    const context2 = { zone: yard?.type || "unknown", role, area: yard?.area || 0, lift, scale: info?.fitScale || 1, count: policyCounts.get(owner + ":" + policyKey) || 0, wallGap: wall ? Math.max(0, wall.distance - (local.max.z - local.min.z) / 2) : Infinity, entryDistance: entry ? Math.hypot(x - entry.x, z - entry.z) : Infinity };
     if (rule) {
-      const reason = evaluatePlacement(rule, context);
+      const reason = evaluatePlacement(rule, context2);
       if (reason) return policyReject(reason);
       if (rule.orientation === "front-away-from-wall") angle = wall.angle;
       if (info?.assetId === "a182" && policyAccepted.some((v2) => v2.assetId === "a182" && Math.hypot(v2.x - x, v2.z - z) < 18)) return policyReject("rest-area-spacing");
     }
-    const livingReason = livingRejection({ id, role, lift, area: yard?.area, zone: yard?.type, footprintArea: (local.max.x - local.min.x + 0.24) * (local.max.z - local.min.z + 0.24), depth: local.max.z - local.min.z, wallGap: context.wallGap, facadeDistance: nearestFacade(x, z, owner, polys), entryDistance: context.entryDistance, existing: report.placements, x, z, owner });
+    const livingReason = livingRejection({ id, role, lift, area: yard?.area, zone: yard?.type, footprintArea: (local.max.x - local.min.x + 0.24) * (local.max.z - local.min.z + 0.24), depth: local.max.z - local.min.z, wallGap: context2.wallGap, facadeDistance: nearestFacade(x, z, owner, polys), entryDistance: context2.entryDistance, existing: report.placements, x, z, owner });
     if (livingReason) return policyReject(livingReason);
     const y = elevation(x, z) - local.min.y + 0.03 + lift;
     const mat = new Matrix4().compose(new Vector3(x, y, z), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), angle), new Vector3(1, 1, 1));
@@ -40250,7 +40872,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     obj.position.set(x, max - local.min.y + 0.02 + lift, z);
     obj.rotation.y = angle;
     obj.userData = { ...m.userData, vegetationAssetId: id, placementOwner: owner, placement: "roadview-inspired, not surveyed" };
-    const groundFit = lift === 0 && !["wall-meter", "wall-riser"].includes(role) && ![154, 155, 196, 197, 200].includes(id) ? seatGroundAsset2(obj, placementSurface, { suspension: !!elevation.routeCorrected }) : null;
+    const groundFit = lift === 0 && !["wall-meter", "wall-riser"].includes(role) && ![154, 155, 196, 197, 200].includes(id) ? seatGroundAsset(obj, placementSurface, { suspension: !!elevation.routeCorrected }) : null;
     obj.updateMatrixWorld(true);
     const fittedBox = new Box3().setFromObject(obj), pb = fittedBox.clone().expandByScalar(0.08);
     if (groundFit?.method === "rendered-contact-vertices" && intersectsBuilding(pb)) {
@@ -40282,9 +40904,9 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
       for (const q of approach) ab.expandByPoint(new Vector3(q[0], max, q[1]));
       if (footprintHits(approach) || reservedHit(approach, ab) || placed.some((b) => overlapPolys(approach, b.fp))) return policyReject("working-side-blocked");
     }
-    const ruleAudit = rule ? { profile: rule.profile || "workstation", label: rule.label, zone: context.zone, wallGap: context.wallGap, entryDistance: context.entryDistance, support: rule.support, frontClearance: rule.frontClearance || 0, orientation: angle, scale: context.scale, componentsSupported: info?.componentIds?.length > 1 ? "worktop at 0.78m" : null } : null;
+    const ruleAudit = rule ? { profile: rule.profile || "workstation", label: rule.label, zone: context2.zone, wallGap: context2.wallGap, entryDistance: context2.entryDistance, support: rule.support, frontClearance: rule.frontClearance || 0, orientation: angle, scale: context2.scale, componentsSupported: info?.componentIds?.length > 1 ? "worktop at 0.78m" : null } : null;
     if (rule) {
-      policyCounts.set(owner + ":" + policyKey, context.count + 1);
+      policyCounts.set(owner + ":" + policyKey, context2.count + 1);
       policyAccepted.push({ assetId: policyKey, owner, x, z });
       if (approach) policyApproaches.push(approach);
     }
@@ -40386,7 +41008,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     }
   }
   for (const y of yards.filter((y2) => eligible(y2.owner)).sort((a, b) => Math.hypot(a.x, a.z) - Math.hypot(b.x, b.z))) {
-    const p = programs2[y.type], start = report.placements.length, seed = Math.abs(y.owner), interior = yardCandidates(y), edges = edgeCandidates(y), covered = coverByOwner.get(y.owner)?.structureArea || 0, budget = Math.min(16, Math.max(4, Math.round((y.area - covered) / 18)));
+    const p = programs2[y.type], start = report.placements.length, seed = Math.abs(y.owner), interior = yardCandidates(y), edges2 = edgeCandidates(y), covered = coverByOwner.get(y.owner)?.structureArea || 0, budget = Math.min(16, Math.max(4, Math.round((y.area - covered) / 18)));
     report.neighborhood.programs[y.label] = (report.neighborhood.programs[y.label] || 0) + 1;
     const spots = [];
     const recipes = p.clusters;
@@ -40427,7 +41049,7 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
     }
     for (let j = 0; j < Math.min(covered ? 2 : 4, Math.max(1, Math.ceil((y.area - covered) / 60))); j++) {
       const recipe = recipes[(seed + j) % recipes.length];
-      for (const a of [...edges.slice(j * 2), ...edges.slice(0, j * 2), ...interior]) {
+      for (const a of [...edges2.slice(j * 2), ...edges2.slice(0, j * 2), ...interior]) {
         if (spots.some((b) => Math.hypot(a.x - b.x, a.z - b.z) < 1.65)) continue;
         const [id, dx, dz] = recipe[0];
         if (!fit(y, id, a, dx, dz, 0, "cluster-" + y.type)) continue;
@@ -40439,9 +41061,9 @@ function decorateAlleys(specs, elevation, roadInfo, obstacles, parcelData, attac
         break;
       }
     }
-    for (let i = 0; i < edges.length && report.placements.length - start < Math.min(budget, 8); i++) {
+    for (let i = 0; i < edges2.length && report.placements.length - start < Math.min(budget, 8); i++) {
       if (["parking", "service", "narrow"].includes(y.type)) break;
-      const a = edges[i], ids = [p.edge[(seed + Math.floor(i / 4)) % p.edge.length], p.edge[(seed + Math.floor(i / 4) + 3) % p.edge.length], ...[151, 198, 152, 116, 117, 197].slice(seed % 3)];
+      const a = edges2[i], ids = [p.edge[(seed + Math.floor(i / 4)) % p.edge.length], p.edge[(seed + Math.floor(i / 4) + 3) % p.edge.length], ...[151, 198, 152, 116, 117, 197].slice(seed % 3)];
       for (const id of ids) if (fit(y, id, a, 0, 0, 0, "edge-" + y.type)) {
         if (i % 2 === 0) {
           fit(y, [116, 117, 163, 29][seed % 4], a, 1, 0.4, 0, "edge-companion");
@@ -40616,6 +41238,12 @@ function createUtilityNetwork(plan, elevation) {
       for (const v2 of [-0.12, 0.12]) cylinder(q[0] + ux * v2, q[1] + 0.5, q[2] + uz * v2, 0.045, 0.05, 0.14, colors.ceramic, "metal", 8);
       rod(at(-0.12, 0, 4.6), at(-0.7, 0, 4.6), 0.04, colors.metal);
     }
+    if (p.lamp) {
+      rod(at(0, 0, 5.4), at(-0.75, 0, 5.8), 0.045, colors.metal);
+      rod(at(-0.75, 0, 5.8), at(-1.25, 0, 5.8), 0.045, colors.metal);
+      box(...at(-1.25, 0, 5.72), 0.55, 0.12, 0.25, angle, colors.dark);
+      box(...at(-1.25, 0, 5.65), 0.45, 0.025, 0.19, angle, 15260864);
+    }
     const fp = Array.from({ length: 12 }, (_, i) => [x + Math.cos(i * Math.PI / 6) * (r + 0.05), z + Math.sin(i * Math.PI / 6) * (r + 0.05)]);
     colliders.push(...fp.map((a, i) => ({ a, b: fp[(i + 1) % fp.length], width: 0.025 })));
     proxies.push([[-r, -r], [r, -r], [-r, r], [r, r]].flatMap(([dx, dz]) => [[x + dx, y, z + dz], [x + dx, y + H, z + dz]]));
@@ -40721,7 +41349,7 @@ function applyRoadContext(root, plan) {
   group.name = "AdaptiveAlleySurfaces";
   for (const [kind, positions] of Object.entries(plan.positions)) {
     if (!positions.length) continue;
-    const g = geometry(positions, plan.normals?.[kind]), blocks = kind === "sidewalk" && plan.roadPriority;
+    const g = geometry(positions, plan.normals?.[kind]), blocks = (kind === "sidewalk" || kind === "pavers") && (plan.roadPriority || plan.routePolicy);
     if (blocks) {
       const uv = [];
       for (let i = 0; i < positions.length; i += 3) uv.push(positions[i] / 0.8, positions[i + 2] / 0.8);
@@ -40914,7 +41542,7 @@ function reserveShopApproaches(plan, attached, streetscape) {
   const hit = (points) => points?.some((p) => inShopApproach2(plan.placements, ...p, 0.15));
   const segmentHit = (s) => hit([s.a, s.b, [(s.a[0] + s.b[0]) / 2, (s.a[1] + s.b[1]) / 2]]);
   const architecture = { ...attached, structures: attached.structures.filter((s) => !hit(s.footprint)), wallSegments: attached.wallSegments.filter((s) => !segmentHit(s)) };
-  const context = { ...streetscape, wallRuns: streetscape.wallRuns.flatMap((w) => {
+  const context2 = { ...streetscape, wallRuns: streetscape.wallRuns.flatMap((w) => {
     if (!w.points.slice(1).some((b, i) => segmentHit({ a: w.points[i], b }))) return [w];
     const runs = [];
     for (let i = 1; i < w.points.length; i++) {
@@ -40923,13 +41551,14 @@ function reserveShopApproaches(plan, attached, streetscape) {
     }
     return runs;
   }), piers: streetscape.piers.filter((p) => !inShopApproach2(plan.placements, p.x, p.z, 0.35)), gates: streetscape.gates.filter((g) => !inShopApproach2(plan.placements, g.x, g.z, g.width / 2) && !hit(g.pieces?.flatMap((p) => [...p.post, ...p.leaf]))) };
-  return { architecture, context };
+  return { architecture, context: context2 };
 }
 
 // work/browser-generation/prepare-scene.js
 async function prepareScene(FS, root, mode, terrainText, bounds3) {
   installGenerationBounds(bounds3);
   const read = (p) => JSON.parse(FS.readFile(root + "/" + p, { encoding: "utf8" })), location2 = read("location.json");
+  configureViewVisibility(location2.view, location2.viewQA);
   const binary = FS.readFile(root + "/corrected-base.glb");
   const oldRoot = (await new GLTFLoader().parseAsync(binary.buffer.slice(binary.byteOffset, binary.byteOffset + binary.byteLength), "")).scene;
   if (mode === "placement") applyRoadContext(oldRoot, read("road-context.json"));
@@ -40955,9 +41584,9 @@ async function prepareScene(FS, root, mode, terrainText, bounds3) {
     const catalog3 = JSON.parse(FS.readFile("/outputs/domestic-test/shops/library/catalog.json", { encoding: "utf8" }));
     planFacilities(specs, read("shops/places.json").places, { xz });
     const plan = planNeighborhoodShops(specs, read("shops/places.json").places, catalog3, terrain);
-    const { architecture, context } = reserveShopApproaches(plan, read("attached-structures.json"), read("streetscape-context.json"));
+    const { architecture, context: context2 } = reserveShopApproaches(plan, read("attached-structures.json"), read("streetscape-context.json"));
     const details = createDetails(specs, elevation, architecture), utility = createUtilityNetwork(read("utilities.json"), elevation);
-    const alley = decorateAlleys(specs, elevation, roadInfo, [details, utility], parcel, architecture, context);
+    const alley = decorateAlleys(specs, elevation, roadInfo, [details, utility], parcel, architecture, context2);
     FS.writeFile(root + "/../alley-placement-report-v23.json", JSON.stringify(alley.userData));
     FS.writeFile(root + "/../shop-plan.json", JSON.stringify(plan));
     console.log(JSON.stringify({ props: alley.userData.count, shops: plan.placements.length, footprintOverlap: alley.userData.footprintOverlap }));

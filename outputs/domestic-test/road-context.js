@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createWeatheredGroundMaterial,setGroundWeatherUV} from './ground-weather29.js?v=29b';
 import {finishDepth} from './surface-policy.js';
 
 // Finishes are ordinary meshes: daylight/shadows, monochrome styles and GLB
@@ -32,9 +33,11 @@ export function applyRoadContext(root,plan){
  const group=new T.Group();group.name='AdaptiveAlleySurfaces';
  for(const [kind,positions] of Object.entries(plan.positions)){
   if(!positions.length)continue;
-  const g=geometry(positions,plan.normals?.[kind]),blocks=kind==='sidewalk'&&plan.roadPriority;
+  const g=geometry(positions,plan.normals?.[kind]),blocks=(kind==='sidewalk'||kind==='pavers')&&(plan.roadPriority||plan.routePolicy);
   if(blocks){const uv=[];for(let i=0;i<positions.length;i+=3)uv.push(positions[i]/.8,positions[i+2]/.8);g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));}
-  const m=new T.Mesh(g,new T.MeshStandardMaterial({
+  const asphalt=kind==='asphalt'||kind==='arterial';
+  if(asphalt)setGroundWeatherUV(g);
+  const m=new T.Mesh(g,asphalt?createWeatheredGroundMaterial('asphalt'):new T.MeshStandardMaterial({
    map:blocks?sidewalkBlocks():null,
    color:blocks?0xffffff:kind==='asphalt'&&plan.roadPriority?0x30343a:({concrete:0xb0aea1,pavers:0x919487,sidewalk:0xa9ada5,platform:0xb2b5aa,arterial:0x5f6970})[kind]??0x626a70,roughness:1,side:T.DoubleSide
   }));

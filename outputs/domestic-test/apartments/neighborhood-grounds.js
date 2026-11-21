@@ -1,3 +1,4 @@
+import {treePlanting,normalizeTreeHeight} from '../tree-planting.js';
 import * as T from 'three';
 import {inPolygon} from '../facilities/placement.js';
 import {FacadeBatch} from '../korean-facades.js';
@@ -16,8 +17,9 @@ export function planApartmentPlanting(plan){
   if(!['garden','tree'].includes(s.kind))continue;
   const root=(x,z)=>[s.origin[0]+s.ux*x+s.nx*z,s.y+.09,s.origin[1]+s.uz*x+s.nz*z];
   const add=(x,z,h,r,count,type)=>{
-   const p=gardenPlant({id:`apartment-${s.owner}-${i}-${plants.length}`,root:root(x,z),height:h,radius:r,count,variant:plants.length%6});
+   let p=gardenPlant({id:`apartment-${s.owner}-${i}-${plants.length}`,root:root(x,z),height:h,radius:r,count,variant:plants.length%6,...(type==='tree'?treePlanting({id:`apartment-${s.owner}-${i}-${plants.length}`,use:'yard',radius:r}):{})});
    for(const c of p.clumps){c.radius=Math.max(c.radius,type==='cover'?.15:.21);c.tone*=.84+(plants.length%5)*.025;}
+   if(type==='tree')p=normalizeTreeHeight(p,p.height,true);
    plants.push(p);
   };
   // The building side is layered groundcover and low shrubs; the outer 1.4 m

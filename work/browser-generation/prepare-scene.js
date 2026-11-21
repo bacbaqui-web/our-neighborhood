@@ -1,5 +1,6 @@
+import {configureViewVisibility} from '../../outputs/domestic-test/view-generation-visibility.js?v=view3c';
 import {planFacilities} from '../../outputs/domestic-test/facilities/placement.js';
-import {installGenerationBounds} from '../../outputs/domestic-test/memo-scene.js?v=134';
+import {installGenerationBounds} from '../../outputs/domestic-test/memo-scene.js?v=151';
 import * as T from 'three';
 import {GLTFLoader} from '../../outputs/domestic-test/vendor/GLTFLoader.js';
 import {planFrontages} from '../../outputs/domestic-test/frontage.js';
@@ -12,6 +13,7 @@ import {planNeighborhoodShops,reserveShopApproaches} from '../../outputs/domesti
 export async function prepareScene(FS,root,mode,terrainText,bounds){
 installGenerationBounds(bounds);
 const read=p=>JSON.parse(FS.readFile(root+'/'+p,{encoding:'utf8'})),location=read('location.json');
+configureViewVisibility(location.view,location.viewQA);
 const binary=FS.readFile(root+'/corrected-base.glb');
 const oldRoot=(await new GLTFLoader().parseAsync(binary.buffer.slice(binary.byteOffset,binary.byteOffset+binary.byteLength),'')).scene;
 if(mode==='placement')applyRoadContext(oldRoot,read('road-context.json'));

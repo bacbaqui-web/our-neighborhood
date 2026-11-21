@@ -6,7 +6,7 @@ files={}
 for p in (ROOT/'outputs/domestic-test/generation').glob('*.py'):
  text=p.read_text().replace('with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:terrain=dict(pool.map(load,tiles))','terrain=dict(map(load,tiles))')
  files['/'+str(p.relative_to(ROOT))]=text
-for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','road_priority.py']:
+for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','gentle_terrain.py','view_generation.py','road_priority.py','site_layout.py']:
  text=(ROOT/'work'/name).read_text()
  if name=='neighborhood_sources.py':
   start=text.index('LOCAL_SETTINGS=');end=text.index('def request(')
@@ -17,6 +17,9 @@ for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','ro
 '''+text[end:]
  text=text.replace("loc['roadAddress'].get(","(loc.get('roadAddress') or {}).get(")
  files['/work/'+name]=text
+for name in ['build','infill','parking','straight_plots','piloti','ground_floors','enrich_sites','gaps','refine','access_routes','street_front','street_rules','wall_connections']:
+ p=ROOT/'work/house-plots-test'/(name+'.py')
+ files['/work/house-plots-test/'+p.name]=p.read_text()
 for name in ['domestic-test/route-elevation.json','domestic-test/site-rules.json','domestic-test/people/catalog.json','domestic-test/vegetation/catalog.json','domestic-test/shops/library/catalog.json','alley-library/alley-catalog-210.json','alley-library/alley-catalog-212.json']:
  files['/outputs/'+name]=(ROOT/'outputs'/name).read_text()
 p=ROOT/'work/arterial-v76/seoul-stops-20260902.json'

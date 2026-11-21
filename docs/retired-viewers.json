@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-21",
+  "pages": [
+    {
+      "path": "domestic-test/apartment-research/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/apartment-research/index.html"
+    },
+    {
+      "path": "domestic-test/apartments/garden/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/apartments/garden/index.html"
+    },
+    {
+      "path": "domestic-test/apartments/garden/mapped.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/apartments/garden/mapped.html"
+    },
+    {
+      "path": "domestic-test/apartments/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/apartments/index.html"
+    },
+    {
+      "path": "domestic-test/assets.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/assets.html"
+    },
+    {
+      "path": "domestic-test/browser-generation/check.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/browser-generation/check.html"
+    },
+    {
+      "path": "domestic-test/building-parts/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/building-parts/index.html"
+    },
+    {
+      "path": "domestic-test/building-parts/window-results/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/building-parts/window-results/index.html"
+    },
+    {
+      "path": "domestic-test/cars-billboard-v87.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/cars-billboard-v87.html"
+    },
+    {
+      "path": "domestic-test/cars.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/cars.html"
+    },
+    {
+      "path": "domestic-test/first-batch-review/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/first-batch-review/index.html"
+    },
+    {
+      "path": "domestic-test/first-batch.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/first-batch.html"
+    },
+    {
+      "path": "domestic-test/ground-test135.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/ground-test135.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/refinement-report/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/refinement-report/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/roadview-100/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/roadview-100/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/roadview-yeonnam/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/roadview-yeonnam/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/rules-applied/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/rules-applied/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/all-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/all-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/asset-inventory/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/asset-inventory/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/boundary-plan/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/boundary-plan/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/boundary-plan/review.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/boundary-plan/review.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/boundary10-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/boundary10-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/ground9-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/ground9-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/large-building23-results/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/large-building23-results/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/legal-study/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/legal-study/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/map-compare/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/map-compare/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/map-roads/audit.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/map-roads/audit.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/map-roads/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/map-roads/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/roads7-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/roads7-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/roads8-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/roads8-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/user-rules11-results.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/user-rules11-results.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/space-first/vacant25-results/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/space-first/vacant25-results/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/street-boundary-study/extra/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/street-boundary-study/extra/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/street-boundary-study/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/street-boundary-study/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/wall-connections/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/wall-connections/index.html"
+    },
+    {
+      "path": "domestic-test/house-plots-test/wall-review-202/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/house-plots-test/wall-review-202/index.html"
+    },
+    {
+      "path": "domestic-test/integration-check/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/integration-check/index.html"
+    },
+    {
+      "path": "domestic-test/leaf-hires-test.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/leaf-hires-test.html"
+    },
+    {
+      "path": "domestic-test/leaf-layout-comparison.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/leaf-layout-comparison.html"
+    },
+    {
+      "path": "domestic-test/leaf-layout-frame.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/leaf-layout-frame.html"
+    },
+    {
+      "path": "domestic-test/memo-scene-report.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/memo-scene-report.html"
+    },
+    {
+      "path": "domestic-test/people.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/people.html"
+    },
+    {
+      "path": "domestic-test/prop-remakes/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/prop-remakes/index.html"
+    },
+    {
+      "path": "domestic-test/rooftops.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/rooftops.html"
+    },
+    {
+      "path": "domestic-test/splat-lighting/index.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/splat-lighting/index.html"
+    },
+    {
+      "path": "domestic-test/storefronts.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/storefronts.html"
+    },
+    {
+      "path": "domestic-test/street-types.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/street-types.html"
+    },
+    {
+      "path": "domestic-test/tree-growth.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/tree-growth.html"
+    },
+    {
+      "path": "domestic-test/tree-library.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/tree-library.html"
+    },
+    {
+      "path": "domestic-test/vegetation.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/vegetation.html"
+    },
+    {
+      "path": "domestic-test/vehicles.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/vehicles.html"
+    },
+    {
+      "path": "domestic-test/view-generation-test.html",
+      "target": "domestic-test/start.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/view-generation-test.html"
+    },
+    {
+      "path": "domestic-test/windows.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/domestic-test/windows.html"
+    },
+    {
+      "path": "alley-library/index.html",
+      "target": "domestic-test/asset-encyclopedia/index.html",
+      "archive": "archive/retired-viewers-20261121/alley-library/index.html"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
+import {gentleMeshHeight} from './gentle-terrain30.js';
 import * as T from 'three';
 import {facadeStyles} from './korean-facades.js?v=151';
 import {environmentProfile,bearingVector} from './environment-policy.js?v=151';
 
 // A separate depth pass keeps 22 km terrain from reducing the precision of nearby roofs.
-export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwners=null){
+export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwners=null,options={}){
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(43,1,1,60000),root=new T.Group();scene.add(root);
  const color=s=>new T.Color(s),u={zenith:{value:color('#6b9fc8')},horizon:{value:color('#dbe6e2')},cloud:{value:color('#ffffff')},sunColor:{value:color('#fff0d1')},sunDir:{value:new T.Vector3()},night:{value:0},sunset:{value:0},sunVisibility:{value:1},windowChance:{value:0},windowPattern:{value:0},cloudiness:{value:0},style:{value:0}};
  const skyMaterial=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,depthTest:false,uniforms:u,vertexShader:`varying vec3 vDir;void main(){vDir=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,fragmentShader:`
@@ -45,7 +46,7 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
  const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute(data.positions,3));const indices=[],N=data.angles;
  for(let r=0;r<data.radii.length-1;r++)for(let j=0;j<N;j++){const a=r*N+j,b=r*N+(j+1)%N,c=a+N,d=b+N;indices.push(a,b,c,b,d,c);}geo.setIndex(indices);geo.computeVertexNormals();
  const terrain=new T.Mesh(geo,landMaterial());terrain.name='GeographicTerrain22km';root.add(terrain);
- const entries=data.city.map((b,i)=>({b,points:data.cityFootprints?.[i]})).filter(({b,points})=>{
+ const entries=(options.contextBuildings===false?[]:data.city).map((b,i)=>({b,points:data.cityFootprints?.[i]})).filter(({b,points})=>{
   // Full detailed buildings are retained; all other records remain as simple background.
   if(detailedOwners)return !detailedOwners.has(Number(b[6]));
   if(points)return !points.every(p=>Math.hypot(...p)<=detailRadius);
@@ -67,7 +68,7 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
  }
  function buildContextRoads(){
   const vertices=[];
-  for(const road of data.roads||[]){
+  for(const road of (options.contextBuildings===false?[]:data.roads||[])){
    const lines=road.geometry.type==='LineString'?[road.geometry.coordinates]:road.geometry.coordinates;
    for(const points of lines)for(let i=1;i<points.length;i++){
     const a=points[i-1],b=points[i],dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);if(!length)continue;
@@ -82,7 +83,7 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
   }
   const old=root.getObjectByName('SimpleContextRoads');if(old){old.geometry.dispose();old.material.dispose();root.remove(old);}
   if(vertices.length){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.computeVertexNormals();const m=landMaterial(false,true);m.fragmentShader=m.fragmentShader.replace(/float roadBlend=.*?;c=mix/, 'float roadBlend=1.;c=mix');const mesh=new T.Mesh(g,m);mesh.name='SimpleContextRoads';root.add(mesh);}
-  stats.contextRoadSegments=(data.roads||[]).length;stats.contextRoadTriangles=vertices.length/9;
+  stats.contextRoadSegments=options.contextBuildings===false?0:(data.roads||[]).length;stats.contextRoadTriangles=vertices.length/9;
  }
  function bridgeGround(nearRoot){nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;if(o.name!=='ground')return;o.material=landMaterial(false,false);o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
  function fitGround(sample){
@@ -90,13 +91,14 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
   // Match the inner terrain to the actual road/ground surface and ease out the correction.
   for(let j=0;j<N;j++){
    const angle=j/N*Math.PI*2,sx=Math.sin(angle),sz=-Math.cos(angle),edge=detailRadius;
-   const current=sample(sx*edge,sz*edge,NaN);
+   const field=options.gentle?gentleMeshHeight(...data.origin):null;
+   const sampled=sample(sx*edge,sz*edge,NaN),current=Number.isFinite(sampled)?sampled:field?field(sx*edge,sz*edge):0;
    const ring=data.radii.reduce((best,r,i)=>Math.abs(r-edge)<Math.abs(data.radii[best]-edge)?i:best,0);
    const delta=Number.isFinite(current)?current-p.getY(ring*N+j):0;changes.set(j,delta);
    for(let r=0;r<data.radii.length;r++){
-    const index=r*N+j,d=data.radii[r],x=p.getX(index),z=p.getZ(index),actual=d<=edge?sample(x,z,NaN):NaN;
-    const u=Math.max(0,Math.min(1,(d-edge)/140)),fade=1-u*u*(3-2*u);
-    p.setY(index,Number.isFinite(actual)?actual-.08:p.getY(index)+delta*fade-.08);
+    const index=r*N+j,d=data.radii[r],x=p.getX(index),z=p.getZ(index),actual=d<=edge?sample(x,z,field?field(x,z):NaN):NaN;
+    const u=Math.max(0,Math.min(1,(d-edge)/(options.gentle?Math.max(650,1200-edge):140))),fade=1-u*u*(3-2*u);
+    p.setY(index,Number.isFinite(actual)?actual-.08:options.gentle?current*fade+p.getY(index)*(1-fade)-.08:p.getY(index)+delta*fade-.08);
    }
   }
   entries.forEach(({b},i)=>{const d=Math.hypot(b[0],b[2]),angle=(Math.atan2(b[0],-b[2])+Math.PI*2)%(Math.PI*2),j=Math.round(angle/(Math.PI*2)*N)%N,u=Math.max(0,Math.min(1,(d-detailRadius)/140));place([b[0],b[1]+changes.get(j)*(1-u*u*(3-2*u)),...b.slice(2)],i);});

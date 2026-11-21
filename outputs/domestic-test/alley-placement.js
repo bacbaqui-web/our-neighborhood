@@ -1,7 +1,8 @@
+import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import {livingRejection,rankPocketAssets,nearestFacade} from './living-context.js?v=151';
 import {repairCourtyardBoundaries} from './courtyard-rules.js?v=151';
 import {retiredLegacy,recordMemoScene} from './memo-scene.js?v=151';
-import {applyRepresentative} from './representative-assets.js?v=151';
+import {applyRepresentative,representativeDeleted} from './representative-assets.js?v=151';
 import {getLegacyPlacementRule} from './legacy-placement-policy.js?v=151';
 import {evaluatePlacement} from './placement-policy.js?v=151';
 import {getRoadview50Template,roadview50Summary,getPlacementRule,getPlacementRuleInfo} from './roadview50-loader.js?v=151';
@@ -12,7 +13,7 @@ import {inShopApproach} from './shops/neighborhood-plan.js?v=151';
 import {extractVegetation} from './vegetation-legacy.js?v=151';
 import {partMaxLOD} from './lod-policy.js?v=151';
 import {populateStreetLife,contextOnly} from './street-life.js?v=151';
-import {renderAttachedStructures} from './attached-structures.js?v=151';
+import {renderAttachedStructures} from './attached-structures.js?v=view3c';
 import {classifyYards,programs,inYard,yardCandidates,edgeCandidates} from './neighborhood-rules.js?v=151';
 import {renderParcels} from './parcel-renderer.js?v=151';
 import * as T from 'three';
@@ -62,7 +63,8 @@ export function decorateAlleys(specs,elevation,roadInfo,obstacles,parcelData,att
  report.rule=attachedPlan.rule+'; wall-supported equipment and bikes, road-accessible spaced pickup pockets, driveway-validated parking before yard decoration';report.parcels=yards.map(({triangles,anchors,...p})=>p);report.parcelValidation=parcelData.qa;
  function template(id){if(!cache.has(id)){const legacy=createAsset(id);legacy.updateMatrixWorld(true);const m=getRoadview50Template(id,legacy);m.updateMatrixWorld(true);const b=new T.Box3().setFromObject(m);let triangles=0;m.traverse(o=>{if(o.isMesh)triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;});cache.set(id,{m,b,triangles});}return cache.get(id)}
  function commercialFaceAt(owner,x,z){const b=polys.find(b=>b.seed===owner);if(b?.arterialKiosk)return true;return (b?.arterialFacades||[]).some(f=>{const a=b.points[f.edge],c=b.points[(f.edge+1)%b.points.length],dx=c[0]-a[0],dz=c[1]-a[1],L=Math.hypot(dx,dz),u=((x-a[0])*dx+(z-a[1])*dz)/L,d=Math.abs((x-a[0])*dz-(z-a[1])*dx)/L;return u>-.4&&u<L+.4&&d<2.0;});}
- function tryPlace(id,x,z,angle,lift=0,owner=null,role="household"){if(!eligible(owner))return false;if(retiredLegacy(id))return false;if(commercialFaceAt(owner,x,z)){report.rejected++;return false;}if(inArterial(arterialPlan,x,z,.7)||inShopApproach(shopPlans,x,z,.6)){report.rejected++;return false;}if((id>=201&&id<=205)||[15,76,77,78,79,80,162].includes(id))return false;if(role.startsWith('courtyard-')&&template(id).triangles>1000)return policyReject('courtyard-triangle-budget');const {m,b:local}=template(id),info=m.userData.roadview50,rule=info?getPlacementRule(info):getLegacyPlacementRule(id),policyKey=info?.assetId||'legacy-'+id;
+ function tryPlace(id,x,z,angle,lift=0,owner=null,role="household"){if(!visibleObject(x,z,3,1.5,elevation(x,z)+lift))return false;if(!eligible(owner))return false;if(retiredLegacy(id))return false;if(commercialFaceAt(owner,x,z)){report.rejected++;return false;}if(inArterial(arterialPlan,x,z,.7)||inShopApproach(shopPlans,x,z,.6)){report.rejected++;return false;}if((id>=201&&id<=205)||[15,76,77,78,79,80,162].includes(id))return false;if(role.startsWith('courtyard-')&&template(id).triangles>1000)return policyReject('courtyard-triangle-budget');const {m,b:local}=template(id),info=m.userData.roadview50,rule=info?getPlacementRule(info):getLegacyPlacementRule(id),policyKey=info?.assetId||'legacy-'+id;
+ if(representativeDeleted(m,id))return policyReject('asset-deleted');
  const yard=yards.find(y=>y.owner===owner&&inYard(y,x,z))||yards.find(y=>y.owner===owner);
  const wall=nearestPolicyWall(x,z,owner);const entry=entries.find(e=>e.owner===owner);
  const context={zone:yard?.type||'unknown',role,area:yard?.area||0,lift,scale:info?.fitScale||1,count:policyCounts.get(owner+':'+policyKey)||0,wallGap:wall?Math.max(0,wall.distance-(local.max.z-local.min.z)/2):Infinity,entryDistance:entry?Math.hypot(x-entry.x,z-entry.z):Infinity};

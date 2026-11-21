@@ -1,5 +1,6 @@
+import {isDeleted} from './asset-encyclopedia/curation.js';
 import * as T from 'three';
-import {fittedRibbon} from './terrain-fit.js?v=151';
+import {fittedRibbon} from './terrain-fit.js?v=ribbon2';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 export function createStreet(specs,elevation,roadInfo,previewType=null){
  const root=new T.Group();root.name='StreetAndFoundations';const stats={foundationSegments:0,poles:0,cars:0,people:0};const buckets={},edge=[];
@@ -36,7 +37,7 @@ export function createStreet(specs,elevation,roadInfo,previewType=null){
  function ring(x,y,z,r,kind){const g=new T.TorusGeometry(r,.025,3,12);g.translate(x,y,z);add(g,kind)}
  function bead(x,y,z,rx,ry,rz,kind){if(Math.max(rx,ry,rz)<.014)return;const g=new T.SphereGeometry(1,6,4);g.scale(rx,ry,rz);g.translate(x,y,z);add(g,kind,false)}
  function fineRing(x,y,z,r,t,kind){const g=new T.TorusGeometry(r,t,3,10);g.translate(x,y,z);add(g,kind,false)}
- function asset(x,y,z,type){if(type===5)return;assetCounts[type]=(assetCounts[type]||0)+1;
+ function asset(x,y,z,type){if(type===5||(previewType===null&&isDeleted('street:'+type)))return;assetCounts[type]=(assetCounts[type]||0)+1;
  if(type===0){ // recycling station
  for(let i=-1;i<=1;i++){const k=['yardBlue','yardGreen','yardYellow'][i+1];box(x+i*.31,y+.38,z,.28,.7,.48,0,k);box(x+i*.31,y+.75,z,.3,.08,.52,0,'yardDark');box(x+i*.31,y+.57,z+.246,.16,.1,.02,0,'yardWall')}}
  if(type===1){ // bicycle and rack

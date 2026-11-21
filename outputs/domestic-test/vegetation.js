@@ -1,3 +1,4 @@
+import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import {createVegetationSunShadows} from './vegetation-sun-shadows.js?v=151';
 import * as T from 'three';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
@@ -8,6 +9,7 @@ export async function loadVegetationAssets(catalog){
  await Promise.all(catalog.assets.map(async a=>{const texture=await loader.loadAsync(new URL('./vegetation/'+a.image,import.meta.url).href);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;assets.set(a.id,{...a,texture});}));return assets;
 }
 export function createVegetation(placements,assets,elevation,shadowElevation=elevation,contactPlacements=placements){
+ placements=placements.filter(p=>visibleRecord(p,elevation));contactPlacements=contactPlacements.filter(p=>visibleRecord(p,elevation));
  let legacyVisible=true;const sunlight=createBillboardSunUniforms();
  const group=new T.Group();group.name='IllustratedVegetation';const style={value:0},batches=[],figures=[];
  for(const [id,asset] of assets){
@@ -57,7 +59,7 @@ export function createVegetation(placements,assets,elevation,shadowElevation=ele
    f.cameraElevation=pitch*180/Math.PI;f.worldWidth=extent.width;f.worldHeight=extent.height;
   }batch.mesh.instanceMatrix.needsUpdate=true;if(changedUV)batch.rects.needsUpdate=true;}
  }
- function setLighting(field){if(field.sunlight)Object.assign(sunlight,field.sunlight);for(const f of figures){const colors=typeof field==='string'?[0,1,2].map(()=>new T.Color(field)):field.sampleFigure(f.root,f.placement.height);f.sunExposure=field.sunExposure?.(f.root,f.placement.height,f.placement.radius)||[0,0,0];writeBillboardSun(f.mesh.geometry,f.index,f.root,f.placement.height,f.sunExposure,true);f.lighting=colors;writeBillboardLight(f.mesh.geometry,f.index,colors,true);}}
+ function setLighting(field){if(field.sunlight)Object.entries(field.sunlight).forEach(([key,uniform])=>{sunlight[key].value=uniform.value;});for(const f of figures){const colors=typeof field==='string'?[0,1,2].map(()=>new T.Color(field)):field.sampleFigure(f.root,f.placement.height);f.sunExposure=field.sunExposure?.(f.root,f.placement.height,f.placement.radius)||[0,0,0];writeBillboardSun(f.mesh.geometry,f.index,f.root,f.placement.height,f.sunExposure,true);f.lighting=colors;writeBillboardLight(f.mesh.geometry,f.index,colors,true);}}
  function setStyle(value){style.value=value==='line'?1:value==='tone'?2:0;}
  // Export regular UV-mapped cutouts at the current camera view; the instance
  // attributes used by the renderer are not standard glTF texture coordinates.

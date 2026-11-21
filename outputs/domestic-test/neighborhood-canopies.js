@@ -1,9 +1,11 @@
+import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import {planPlantCanopies} from './plant-canopy-layout.js?v=151';
 import {fitSupportBase} from './support-geometry.js?v=151';
-import {createVegetation} from './vegetation.js?v=151';
-import {createHybridTrees} from './hybrid-tree.js?v=151';
+import {createVegetation} from './vegetation.js?v=view3c';
+import {createHybridTrees} from './hybrid-tree.js?v=view3c';
 import {planNeighborhoodTrees} from './neighborhood-tree-plans.js?v=151';
 export function createNeighborhoodVegetation(placements,assets,elevation,shadowElevation,texture,buildings,structures){
+ placements=placements.filter(p=>visibleRecord(p,elevation));
  const {plans,report}=planNeighborhoodTrees(placements,buildings,structures,elevation,shadowElevation);
  const plants=placements.filter(p=>p.kind!=='tree'),contacts=[...plants,...plans.map(p=>({...p,kind:'tree',source:p.stats.source}))];
  const plantPlans=planPlantCanopies(plants);

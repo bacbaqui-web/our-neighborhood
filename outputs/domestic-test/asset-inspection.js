@@ -15,7 +15,7 @@ export function installAssetInspection({placements,camera,controls,elevation,bui
   controls.target.copy(target);camera.position.copy(best.pos);controls.update();requestRender();detail.textContent=`${index+1} / ${list.length} · ${p.name} · ${p.ruleAudit?.label||p.role||'기존 위치 규칙'} · 건물 ${p.owner}`;detail.dataset.placement=JSON.stringify(p);
  }
  select.onchange=()=>{index=0;focus();};for(const [name,step]of [['이전 위치',-1],['다음 위치',1]]){const b=document.createElement('button');b.textContent=name;b.style.marginRight='6px';b.onclick=()=>{const n=byType.get(select.value).length;index=(index+step+n)%n;focus();};section.append(b);}
- const link=document.createElement('a');link.href='https://neighborhood-lowpoly-50-oct27.bacbaqui2.chatgpt.site/#catalog';link.target='_blank';link.textContent='통합 도감 열기 ↗';link.style.cssText='display:block;margin-top:10px';section.append(link);
+ const link=document.createElement('a');link.href='./asset-encyclopedia/';link.target='_blank';link.textContent='통합 도감 열기 ↗';link.style.cssText='display:block;margin-top:10px';section.append(link);
  document.getElementById('environmentControls').append(section);section.dataset.types=String(entries.length);section.dataset.instances=String(placements.length);
  const requested=new URLSearchParams(location.search).get('inspectAll');if(requested&&byType.has(requested)){select.value=requested;focus();}
 }

@@ -29,3 +29,257 @@ tests/apartment-garden.mjs: 28동·경계 포함·길과 건물 겹침·출입�
 work/apartment-garden/retrace-map.py: 확대 일반 지도 4장의 좌표를 바탕으로 길·주차열·정원·건물 교정을 재생성합니다. build-plan.py에서도 마지막에 호출합니다.
 outputs/domestic-test/apartments/garden/trace-{north,center,east,south}.png: 직접 확인한 지도 원본. parking-reference.json에 좌표와 교정 내역을 보관합니다.
 주차열 44곳·재구성 320칸 유지, 충돌 때문에 삭제하는 처리 없음. 비교 버튼으로 같은 위치·배율 대조.
+
+구조 테스트판 v2 — 로컬 전용, 공개판 미변경
+work/structure-lab/: 지도 위치 선택, 주소 검색, 구조 전용 생성, 네 길 종류, 미니맵/WASD, 원 밖 실제 건물·22km 지형 및 낮밤 창문.
+server.py를 사용해야 주소 검색 가능. http://127.0.0.1:8800/work/structure-lab/ (8799도 같은 서버 실행 중).
+기존 소품 배치 단계는 실행하지 않으며 전용 IndexedDB에 저장. source-cache/data는 재생성 가능한 로컬 자료, 실행 소스는 Git에서 누락되지 않게 예외 등록.
+검증: 도봉로 반경50m 새 생성·저장·복원·취소·미니맵 이동·낮밤. verification/structure-lab/v2-checks.json.
+
+아파트·정원 본 화면 통합 — 공개 반영 및 실제 주소 생성 확인
+outputs/domestic-test/apartments/neighborhood-grounds.js: 지도 건물 주변 빈 공간에 식재·보도·벤치를 배치하고, 확보되는 공간에 놀이터·쉼터·분리수거장을 연결합니다. 아파트 위치 메뉴에서 가까이 볼 수 있습니다.
+본 화면은 비교 페이지의 나무 생성 방식·보도 텍스처·시설 모델을 재사용하며, 비교용 고정 단지 배치를 복사하지 않습니다. 기존 주차 위치·차량 형상은 유지합니다. 준공 자료 없는 아파트 유형은 추정입니다.
+공개 정릉풍림아이원 반경 50m 생성: 아파트 5동·주변 공간 12곳·식물 584개, 여름/겨울 화면 및 콘솔 오류 0건 확인. 공개 커밋·검증 화면은 PROJECT_STATE.json 참조.
+
+집마다 땅 나누기 — 별도 로컬 테스트
+outputs/domestic-test/house-plots-test/: 원본 건물 437동을 유지하고 땅 437개를 나눈 평면·입체 확인 화면.
+work/house-plots-test/build.py: 도로 블록별 건물 외곽 거리 분할, 건물 전체 포함, 떨어진 조각 재배정. 실제 지적 경계가 아니며 원본 데이터는 변경하지 않습니다.
+
+2026-10-30 집별 땅 테스트 도로 충돌 수정: work/house-plots-test/build.py가 원본 도로를 보존하고 건물을 축소·병합합니다. 결과와 QA는 outputs/domestic-test/house-plots-test/, 화면 증거는 verification/house-plots-road-fit/에 있습니다. 원본과 공개판은 변경하지 않았습니다.
+
+집별 빈땅 채우기 — 로컬 테스트: work/house-plots-test/infill.py와 outputs/domestic-test/house-plots-test/infill-models.js. 주차 진입 폭 3m, 후면 녹지·담장, 120㎡ 이상 넓은 여분 공간 별도 부지 추정. 원본 plots.json 보존, 표시용 infill-plots.json 생성. build.py 실행 시 함께 재생성합니다. 실제 용도·차량 회전 경로·경사지 검증은 별도입니다.
+
+집별 빈땅 테스트 parking-v2: work/house-plots-test/parking.py에서 건물 기준 두 방향과 시작 위치 여섯 개를 비교합니다. 도로 연결 2.8m 여유 통로 검사, 회전 궤적은 미검증. 시멘트 기본 바닥·40cm 배수 띠·직선 담장·전봇대·차량 3종. 검증 자료 verification/house-plots-parking-v2/.
+
+직선 땅 분할: work/house-plots-test/straight_plots.py. 블록 공통 두 축을 우선하는 재귀 직선 분할; 건물이 엇갈린 곳은 중심점 직선 셀에 건물 전체를 보존하는 보정 사용. 전역 모서리 최솟값 보장은 하지 않습니다. 기존 분할은 verification/house-plots-before-straight/에 보관했습니다.
+
+2026-10-30 필로티 시험: work/house-plots-test/piloti.py → outputs/domestic-test/house-plots-test/piloti*.json. infill.py 완료 후 자동 재생성. 세 패턴 23동, 하부 주차 32칸. piloti-details.js는 원본 details.js의 시험판 복사본이며 열린 1층 문·배관을 생략합니다. 원본·공개 버전 미반영.
+
+2026-10-30 1층 패턴 확장: ground_floors.py → ground-floors.json / ground-infill.json / ground-floor-qa.json. piloti.py 이후 자동 실행. 기존 필로티 3종+신규 9종, 총104동 시험 배치. 원본 상층 형태 유지, 건물ID로 패턴 고정. 실제 용도는 미확인 추정이며 지하주차장은 진입로만 구현.
+
+건물 사이 틈 — 로컬 테스트
+work/house-plots-test/gaps.py: 도로와 연결되고 폭이 확보된 틈은 보행로·가로등, 좁은 틈은 담장·철제 셔터. enrich_sites.py 다음 단계로 실행됩니다.
+outputs/domestic-test/house-plots-test/gaps-infill.json: 최종 시험 배치. 보행로 58곳·담장 37곳·셔터 35곳, 기존 현관·주차 구역과 겹침 0. 실제 통행권이나 지적 경계가 아닌 시험 규칙입니다.
+
+2026-10-30 house-plots-test frontage refinement: gaps.py -> refine.py + access_routes.py -> refined-infill.json and frontages.json. Local report: outputs/domestic-test/house-plots-test/refinement-report/. Checks: work/house-plots-test/check_refinement.py. Original/public scene unchanged.
+
+2026-10-30 street_front.py runs after refine.py and writes street-infill.json (viewer final data): road-side boundary closure, yellow asphalt edge paint, inferred resident parking and cars. Tests are integrated assertions and street-front-qa.json; public unchanged.
+
+2026-10-30: work/house-plots-test/street_rules.py = facade-oriented boundary and inferred road parking rules.
+outputs/domestic-test/house-plots-test/rules-applied/ = 30 rendered images and application report (21 map, 9 conditional).
+
+2026-10-30 roadview100V6: outputs/domestic-test/house-plots-test/roadview-100/ — 101 roadview captures, 26 capture groups, analysis.json, local before/after report. Generator: work/house-plots-test/build_roadview100_report.py. Changes in street_rules.py; originals in verification/roadview-100-v6/before. No public deployment.
+
+2026-10-30: roadview-yeonnam/ — 연남동 새 로드뷰101장, 26촬영묶음, 분석20항목. build_yeonnam_report.py로 보고서 재생성. street_rules.py 상가 전면·측면 담·주차 검사 보완. 로컬 한정.
+
+2026-10-30 wallConnectionsV8: wall_connections.py performs anchored boundary cleanup after street_rules.py. wall-connections/ contains actual local scene images; prior data in verification/wall-connections-v8/before. Public unchanged.
+
+2026-10-30 본 화면 통합: work/site_layout.py -> site-layout.json -> outputs/domestic-test/site-layout.js
+공통 배치 모델: outputs/domestic-test/site-layout-models/ (테스트 모델 파일은 공통 모듈 재사용)
+검증 및 범위: docs/site-layout-integration.txt, verification/main-site-integration/
+
+2026-10-31 space-first 전체 구역 적용: work/house-plots-test/space_first.py가 현재 반경 150m의 405채 전체를 처리합니다. outputs/domestic-test/house-plots-test/space-first/에서397개 현관 통로·공유 통로 121개·주차 27칸·담장 888구간을 확인할 수 있습니다. 출입 미해결 8채는 표시하고 문·담장 배치를 보류합니다. all-results.html에 실제 렌더 7장을 정리했습니다. 검증은 check_space_first.py, 기록은 verification/space-first-all6/. 기존 6채 자료는 before/와 results.html에 보존. 원본·공개판 변경 없음.
+
+2026-10-31 space-first 지도 길 재수집 roads7: work/house-plots-test/all_roads.py가 공식 OSM API 자료를 다시 읽어 테스트 안의 길 63개(주거 골목 60·진입로 2·계단 1)를 종류별로 유지합니다. ?roads=all&revision=roads7에서 424채·현관 421개·추정 공유 통로 135개·주차 32칸을 확인합니다. 차량은 계단길을 진입 대상으로 쓰지 않습니다. 폭은 모두 추정이며 등록되지 않은 실제 길은 포함을 보장하지 않습니다. 계단 높이 없는 평지 시험입니다. roads7-results.html에 전후 실제 렌더 7장, check_all_roads.py에 원본 길 보존·접근 종류·충돌 검사. 기존 all6·원본·공개판 유지. 원본 응답은 work/house-plots-test/all-roads/, 변경 전은 verification/space-first-roads7/before/에 보존합니다.
+
+2026-10-31 실제 지도 대조: space-first/map-compare/ — 카카오 지도 원본 캡처 6장(일반·항공 전체, 상세 네 구역)을 좌표·축척에 맞춰 roads7/all6와 나란히 비교합니다. 불러온 길 겹치기·같은 위치 이동·누락 후보 2곳·실제 비교 캡처 5장. 원본 화면 좌표는 capture-provenance.json, 수동 표시 좌표와 한계는 findings.json. 후보 길은 지도에만 표시했고 생성 자료와 공개판은 변경하지 않았습니다.
+
+2026-10-31 지도 대조 재검토 v2: 사용자가 지적한 사진 4장을 포함해 총 12곳(길 누락 후보 9·통로 확인 3)으로 확장했습니다. map-compare/findings.json에 사용자 사진 연결 번호·원본 캡처 픽셀·상태를 보관하며, captures-v2/에 후보 12장과 전체·네 구역 5장을 저장했습니다. 위아래 막다른 골목을 임의로 연결하지 않습니다. 비교 화면의 선만 갱신했으며 실제 도로·부지 생성에는 미반영입니다. 최초 2곳 기록은 verification/roads7-map-compare-expanded/before/에 보존했습니다.
+
+2026-10-31 지도 폭 분류 시험 map-widths2: space-first/map-roads/ — 기존 OSM 중심선 63개의 지도 단면을 읽어 53개 폭 추정·10개 판독 보류. 기존 후보12+추가8곳을 지도 화면에서 대조하여 총20곳(22선분)을 분류 도면에 보완했습니다. 폭에 따라 넓은 길·차량 골목 후보·보행로 후보·확인 대상으로 표시하며 실제 통행권은 전부 미확인입니다. map_road_widths.py → map_road_review.py → map_road_network.py 순서로 생성합니다. check_map_road_widths.py는 단면 추출·분류면 겹침·차량 제외 정책·지도 예시4곳을 검사합니다. captures/는 실제 브라우저 비교28장. map-compare/에 길 폭 분류 링크 추가. 원본 캡처·roads7/all6·3D 배치·공개판 유지. 자동으로 검출한 잡선 전체를 실제 길로 확정하지 않습니다.
+
+2026-10-31 지도 누락 재검토 map-coverage3: space-first/map-roads/에서 기존 300×300m를 9구역으로 대조했습니다. 지도상 길 5곳을 추가하고 불명확한 틈 4곳은 붉은 점선만 표시합니다. 삼양로73다길 중심선·공유 교차점을 보정했고 기존 갈래2곳의 끊긴 끝을 연결했습니다. 원본 OSM63개와 기존 보완22선분을 보존하며 보완선은27개가 됐습니다. 두 화면 모두 같은 카카오 지도 원본을 쓰고 이전 3D 건물 도형은 비교 배경에서 제외했습니다. previous-network.json은 직전 분류입니다. 원본 주석은 work/house-plots-test/map-road-coverage-notes.json, 생성은 map_road_review.py → map_road_network.py. check_map_road_coverage.py와 check_map_road_widths.py 통과, 연결지점9곳 확인. captures-v3/에 비교22장, verification/map-road-coverage/captures/에 좌표 대조10장 보존. automatic.json·audit.html은 오검출이 섞인 진단 자료이며 실제 길로 모두 채택하지 않습니다. 전체 길 수집·실제 통행·다른 위치 자동 취득은 보장하지 않으며 3D/공개판은 변경하지 않았습니다.
+
+지도 보완 길 3D 테스트 roads8 — 로컬 전용
+work/house-plots-test/mapped_roads.py가 map-roads/network.json의 coverage3 길 90개(기존63+보완27)를 읽어 roads8-{network,source,input,plan,frontages}.json을 생성합니다. ?roads=mapped&revision=roads8 로 열며 roads8-results.html에 실제 화면을 정리했습니다. all6·roads7·공개판 유지.
+424채·현관422·주차25·담장929구간. 길과 충돌한 원본230채 외곽 조정, 작은13채 병합. 미확인 틈4곳 제외, 보행·폭확인 길 차량 제외. 길 폭·통행권·담장·현관 위치는 추정. 300×300m 평지 시험, 출입 미해결2채. check_mapped_roads.py 및 verification/space-first-roads8/ 참조.
+
+2026-10-31 버스 스플래팅 시험: work/idol-bus-test/ — 현재 파란 버스 GLB를 우리동네 선 설정으로 촬영한 입력 한 장 → Idol 서버 50단계·65,536가우시안. 요청 30.14초, 결과4.46MB. index.html 비교·viewer.html 회전. 뒷면 추정 오류 확인, 원본·공개판 변경 없음. 버스 로컬 생성·메모리 측정은 수행하지 않았습니다.
+
+2026-10-31 레이 원본 이미지 기반 Idol 시험: work/idol-ray-test/ — 이전 트라이포용 네 방향 그림을 내장 이미지 생성 도구로 사선 한 장으로 재구성한 뒤 Idol 서버에 입력. 31.56초·65,536가우시안·4.46MB. index.html에 원본 그림·새 입력·트라이포 적용본·Idol 앞뒤 비교. 원본·공개판 변경 없음. 다른 다중 시점 모델은 조사만 수행했습니다.
+
+2026-10-31 레이 그림체 시험: work/idol-ray-flat-test/ — 기존 레이 입력을 carnival-ka4-flat의 미색 차체·불투명 유리·단순한 색면 스타일로 변경. Idol 설정 동일, 서버34.68초·65,536점. index.html에 이전/이번 입력과 실제 앞뒤 비교, 원본·공개판 유지.
+
+2026-10-31 그림체 레이 GLB 변환: work/idol-ray-flat-test/mesh/ — Poisson 표면 추출·삼각형 단순화·UV 색상 텍스처. 30,000/7,999 삼각형, 실제 illustration-renderer 선 없음/외곽/내부/둘다 비교. report.html 결과·index.html 조절. 표면 구멍·색 경계 잡음 미해결, 원본·중간파일·공개판 보존.
+
+2026-10-31 레이 독립 재모델링: work/ray-remodel/ — 가우시안 부피·원본 네 방향 그림 참고, 새 차체·바퀴 메시와 원본 투영 텍스처. 6,052삼각형·1.54MB. index.html에서 트라이포 적용본과 동일 각도/선 비교. 모서리 램프 중복·텍스처 연결 결함 남음, 실험본이며 공개판 유지. build.py와 .blend 보존.
+
+2026-10-31 1층 에셋 연결 ground9: space-first/?roads=mapped 에 기본 적용. 기존 ground-floor-models/piloti-models를 roads8의 실제 출입 방향·건물 형태에 맞춰 317채에 연결(현관3종·상가3종·필로티3종). 107채 유지, 필로티7채·하부주차12칸. ground=old로 같은 시점 전후 비교. ground9-results.html에 실제 캡처18장. mapped_ground_floors.py → ground9.json, ground-floor-fit.js는 3m 아래의 겹치는 창문·배관만 잘라내며 상층 상세 속성 해시 일치 확인. piloti-services.js는 열린 1층 위 배관을 계단실로 연결. ground9_report.py는 저장된 캡처로 결과 페이지 생성. check_mapped_ground_floors.py와 tests/ground-floor-fit.mjs, tests/ground-floor-render.mjs 통과. verification/ground-floor-roads9/before/에 변경 전 파일 보존. 원본 roads8 데이터·상층424채·기존 all6/roads7·공개판 유지. 실제 1층 용도 추정, 차량 회전 및 지하램프 미검증.
+
+2026-10-31 레이 수정2: work/ray-remodel/ — 옆면 중복 램프 제거, 지붕 볼륨·전후 폭·모서리 곡면 수정, 차체 4096px 단일 재질 베이크. v1에 수정 전 보존. index.html 앞뒤/내부선 트라이포 비교. 모서리 색 차이·단순한 세부 형상은 남음. 공개판 유지.
+
+2026-10-31 트라이포 레이 색 정리: work/ray-tripo-polish/ — 원래 정점·UV·곡면 유지, Blender 색상 재질 베이크·무광 처리. 5,673삼각형, 정점 차이0 검증. index.html 동일 카메라 전후 비교. 연한 손잡이 약화·유리 잡선·번호판 흰 조각 남음. 형상 재구성은 수행하지 않음. 원본·공개판 유지.
+
+2026-10-31 집·길·담장 규칙 제안 boundary-plan10: space-first/boundary-plan/ — 기존 로드뷰 202장 기록 중 42장을 직접 재검토하고 6개 집 유형·38개 조건부 규칙 정리. 사진별 관찰·예외·근거 연결. build_boundary_plan.py → index.html/rules.json. 현재 ground9 장면 및 생성 로직 미변경, 공개 미반영. 기존 자료·캡션 보존.
+
+2026-10-31 레이 그림 텍스처: work/ray-drawn-texture/ — 내장 이미지 생성으로 UV 지도 스타일 변경. 원본 GLB의 이미지 데이터만 교체, 형상 버퍼 동일 검사. 5,673삼각형. index.html 전후 비교, prompt.txt 지시문. 일부 조각 경계 정렬 한계, 원본·공개판 유지.
+
+2026-10-31 레이 겹침 진단·수정: work/ray-seam-repair/ — 회색 진단으로 번호판/유리 아래 분리 면 확인, 작은 구성요소10개 제거·번호판 재제작·후미등 반복 텍스처 단순화·독립 UV 베이크. 6,220삼각형. index.html 회색/텍스처 전후 비교. 앞 범퍼 잔선·유리 가는 선·번호판 주변 색 차이 남음. 원본·공개판 유지.
+
+2026-10-31 집·길·담장 적용 boundary10: space-first/?roads=mapped 에 기본 적용. boundary_layout.py가 roads8·ground9를 보존하면서 424채의 도로 방향·거리와 통로·주차를 함께 판단합니다. 직선 담756구간(길 쪽87), 현관 대문38곳, 양끝이 담·외벽에 연결된 주차 셔터1곳, 필로티6채·하부주차15칸. 화단138·화분272·전봇대82. 담과 도로/건물/보행/주차/진입 겹침0, 대문 폭·기둥 연결·셔터 뒤 주차공간 검사 통과. 상층 상세1,112,662개 속성 일치 확인. boundary10-results.html에 같은 시점 전후8쌍과38개 규칙의 실제 적용/부분적용/기존유지/보류 상태 기록. boundary=old로 직전 ground9 확인. 생성: /tmp/street-types-venv/bin/python work/house-plots-test/boundary_layout.py, 검사: check_boundary_layout.py, 보고: boundary10_report.py. 변경 전 verification/boundary-layout10/before/. 300×300m 평지 로컬 시험, 출입 미해결2채·지하램프·경사옹벽·차량회전·수관 세부간섭은 남음. 통로 양옆 긴 담의 외관은 추가 개선 필요. 공개판 변경 없음.
+
+2026-10-31 사용자 조건 우선 시험 user11: space-first/?roads=mapped&rules=user&revision=user11. 추가 로드뷰 조사 취소 후 사용자가 제시한 집·도로 관계를 우선 규칙으로 적용. 상가144·필로티15(석재/타일)·길 쪽 담324·대문40·추가 주차40·지하 진입3·옆면 설비420. 도로/건물 평면 보존, 현관267 이동·큰 건물6채 층수 변경. user_rules11.py + user_rules_policy.py → user-rules11.json; check_user_rules11.py 및 tests/user-rule-ray.mjs 검사 통과. user-rules11-results.html 실제 화면7장·규칙10개·적용 한계. 기존 boundary10 기본 경로와 공개판 유지. 변경 전 verification/user-rules11/before/.
+
+2026-10-31 건물·주차·조경 법규 조사: work/legal-layout-study/build_report.py → space-first/legal-study/index.html·sources.json. 국가 법령과 서울 조례 공식 자료16건, 층수·건폐율·용적률·조경·주차·출입·담장 기준 및 user11 수정안 정리. 현행과 10/16 입법예고 분리. 주차·조경 요구 공간을 먼저 확보하고 1층·담장을 정하는 방식 제안. 실제 API 수집·생성 로직 변경·공개 배포 없음. 계산 예시·문서 링크·브라우저 표시 확인, verification/legal-layout-study/.
+
+2026-10-31 자연스러운 배치 방향 naturalLayoutPolicy12: 사용자의 유연한 생성 지시 반영. work/legal-layout-study/natural-policy.json에 건물 유형6개·관련 변형·첫 시험 비중70/25/5(관측 통계 아님)·유형별 묶음 선택·추정 자료 진행·겹침/출입/보행/접지 검사를 정리. legal-study/#natural 보고서 갱신. 법규 사실은 보존, user11 생성기·3D 장면·공개판 변경 없음. verification/natural-rule-policy12/.
+
+2026-10-31 user11 집 종류·에셋 구성표: space-first/asset-inventory/ — 현재 424채를 5종과 출입 보류 2채로 분류하고 집 구성 1,269묶음·주변 구성 3,013묶음을 집계합니다. 집별 검색·필터·상세·3D 연결, 기존 실화면 7장, CSV/JSON 제공. work/house-plots-test/asset_inventory.py와 asset_inventory.html이 원본입니다. 창문 등 외관 내부 부품은 별도 수량 미집계, 화분 통과 잎 중복 제거, 담은 직선 구간 기준. 전선31연결은 별도. 실제 3D 차량87대·식물1544개 일치 확인. 생성·배치·공개판 변경 없음.
+
+2026-10-31 기본 부품 도감 — 로컬 전용
+outputs/domestic-test/building-parts/: 실제 생성 함수를 불러 외벽6·창문10·문/현관5·1층7·담장/대문8·옥탑8·외벽설비2의 총46개 미리보기를 표시합니다. 개별 부품과 조합 구성을 구분하며, house별 수량표와는 별도입니다. parts.js는 표준 치수의 전시용 입력만 구성하고 원본 모델 함수와 배치 JSON은 변경하지 않습니다. 카드 회전·검색·외부선/내부선 표시·개별 GLB 저장. user-rules11-results.html 및 asset-inventory에서 연결, 공개 배포 없음. verification/building-parts/에 화면과 검사 기록.
+
+2026-10-31 외벽 반복 텍스처 18종 — 로컬 반영
+outputs/domestic-test/facade-textures.js: 기존 외벽6종의 줄눈 기하를 512×512 반복 텍스처로 교체하고 긴 벽돌·백색 벽돌·화강석·소형/세로 타일·노출 콘크리트 등을 추가해 총18종. korean-facades.js FacadeBatch가 UV/texture material을 지원하며 details.js와 house-plots-test/piloti-details.js에서 같은 텍스처를 씁니다. building-parts는 총58개. 기존 맵의6종 선택과 배치는 유지하며 추가12종은 wallTexture ID로 지정 가능. 1층 절단 뒤에도 UV/상층 속성 유지 검사, 실제 필로티 화면 및 PNG 내장 GLB 저장 확인. 캐시 revision texture18. verification/facade-textures/에 원본 백업·검사·캡처 보관. 공개 배포 없음.
+
+2026-10-31 담장·옥상 출입실 외벽 텍스처 통일 — 로컬 반영
+facade-textures.js의 wallTextureFor/applyWallTexture와 FacadeBatch 텍스처 박스로 담장 몸체·대문 기둥·옥상 출입실8종의 벽면을 집 외벽 마감에 연결합니다. 대문·난간·문·덮개·지붕은 기존 입체 형태를 유지하고 벽돌 줄눈 기하는 제거했습니다. 본 화면 site-layout-models와 space-first 테스트, building-parts 도감에 반영. 기존 배치·벽체 형태·출입구는 유지합니다. tests/wall-roof-textures.mjs는 144개 옥상/마감 조합·58개 부품·벽체 형상 보존을 검사하며, tests/ground-floor-render.mjs는 424채 상층 속성 일치를 확인합니다. 실제 도감·user11 마당집·본 화면 렌더와 PNG 내장 GLB 저장 확인. verification/wall-roof-textures/에 원본 백업·검사·캡처 보관. 캐시 revision masonry19. 전체 맵 성능 비교 및 공개 배포는 하지 않았습니다.
+
+2026-10-31 창문과 별도 부착물 — 도감 시험
+outputs/domestic-test/window-parts.js: 기본 창문8종·별도 부착물6종·조합 예시3종 추가. 기존 창문 조합10종 유지, building-parts 총75개. 실제 구멍이 있는 32cm 두께 벽 안에 창틀을 0~25cm 넣으며, 방범창·돌출 난간·받침대·차양·창 아래 턱을 따로 조립합니다. 폭을 바꿀 때 쇠살 두께는 고정하고 수를 바꿉니다. 도감의 창문 조합하기에서 종류·폭·높이·깊이·외벽 마감·부착물 변경 및 현재 조합 GLB 저장. 96개 조합 검사 최대976삼각형, 사진형 벽 포함652삼각형. 실제 브라우저 조절·GLB 내장 텍스처/사용자 치수 저장·기존 외관 회귀 검사 통과. verification/window-modules/에 캡처·원본 백업·검사. 동네 전체 창문 교체와 공개 배포는 아직 하지 않았습니다.
+
+2026-10-31 건물 외곽 화단 — 도감 시험
+outputs/domestic-test/perimeter-garden.js: 직선형·모서리형(흙/식재)·현관 양옆형·건물 배치 예시(흙/식재), 총6종. 기본 폭1.2m·턱48cm·현관 통로1.8m는 시험값이며 실측이 아닙니다. 턱은 직각으로 이어진 하나의 벽체이며 집 외벽 텍스처를 공유합니다. 식물은 기존 planPlantCanopies/gardenPlant/createHybridTrees 방식과 species-v65 이미지 사용. 도감 총81개, 화단 가까이 버튼과 잎을 포함한 GLB 저장. 단독 화단188~788삼각형. tests/perimeter-garden.mjs에서 직선·출입 공간·식물 뿌리·잎 내보내기 확인, verification/perimeter-garden/에 백업·캡처·GLB·검사 기록. 기존 맵과 새 맵에 자동 배치는 아직 연결하지 않았고 평지 도감 시험입니다. 공개 배포 없음.
+
+2026-10-31 길 방향 담과 마당 — 도감 시험
+outputs/domestic-test/road-facing-courtyard.js: 비스듬한 집·반대 방향 집·좁은 마당 3종. 집의 회전은 유지하고 담과 대문은 도로 방향으로 놓으며, 집 앞과 길 사이를 시멘트 마당·현관 통로·한쪽 화단으로 구성합니다. 옆 담은 집까지 이어지고 대문은 안쪽으로 열립니다. 벽과 문기둥은 집 외벽 텍스처를 공유합니다. building-parts 총84개, 위에서 보기·대문 열고 닫기·GLB 저장. tests/road-facing-courtyard.mjs의 6모델 및 63개 평면 조합 검사, 실제 브라우저 3종·잎과 텍스처 내장 GLB 확인. verification/road-facing-courtyard/에 백업·검사·화면 보관. 평지 도감 예시이며 동네 전체 자동 배치와 공개 배포는 아직 연결하지 않았습니다.
+
+2026-10-31 동네 전체 안쪽 창틀 — 로컬 원본·테스트 적용
+outputs/domestic-test/window-recess.js는 외벽과 텍스처에 실제 창 구멍을 내고 창틀을 14cm 안쪽에 둡니다. 방범창·차양·난간은 외부 유지. details.js/piloti-details.js, 본 화면 및 두 테스트 경로에 연결하고 window-inspection.js의 가까이·다른 집·전체 보기로 확인합니다. 실제 외곽점으로 창 위치를 맞추고 1층 하부 벽도 절단합니다. 424채 테스트에서 창 위치7,684곳·원본6,226곳 벽 막힘0, 1층 교체 후 상층 속성 유지 검사 통과. building-parts/window-results/에 실제 변경 전후·전체 화면. 먼 배경 단순 창과 아파트 전용 기존 창 구조 유지. verification/recessed-neighborhood/에 백업·검사·캡처. 새 위치 전체 생성·FPS 비교·공개 배포 미실시. pack.py --check는 기존 Python 묶음 sources.json 불일치로 실패하여 별도 기록했고 이번 JS 수정에 섞어 갱신하지 않았습니다.
+
+2026-11-01 큰 건물 1층·외곽 화단 large23 — 로컬 space-first 테스트
+work/house-plots-test/large_building_ground.py가 기존 user-rules11.json을 보존하고 large-ground23.json을 생성합니다. rules=user의 기본 데이터로 연결했으며 large=old로 이전 배치를 비교할 수 있습니다. 큰 건물6채에 넓은 공동현관·석재1층·높이50cm 직선 화단60구간을 배치하고, 4채에는 지면이 실제로 내려가는 지하 진입로와 안내판·배수구·차단기를 추가했습니다. 5951656·5963706은 진입 공간이 부족해 램프를 제외합니다. 5951656의 기존 공유 통로는 유지합니다. large-building-ground.js는 기존 텍스처·수목 표현을 사용하고, piloti-details.js의 큰 건물 전용 옵션으로 상층 배치를 보존합니다.
+largeOwner=5960554&largeView=building|entrance|ramp로 확인하고 large-building23-results/에서 같은 시점 전후를 봅니다. 424채 외곽·층수·부지·도로 보존, 화단의 도로/건물/출입 통로 겹침0, 입구 가림0, 기존 전체 창문 검사 통과. 6채 실제 화면 확인. verification/large-building23/에 백업·검사·캡처 보존. 지하 내부 주차층, 새 위치 자동 생성, 원본 통합과 공개 배포는 아직 미반영입니다.
+
+아스팔트 표면 road24 — space-first 로컬 테스트, 미배포
+work/house-plots-test/road_surface24.py → space-first/road-surface24.json. large-ground23.json을 읽으며 건물과 길 원본은 변경하지 않습니다.
+space-first/road-surface.js: 잔골재 반복 텍스처, 길 안쪽 노란 실선·출입구 점선, 거주자 우선 주차 5칸과 기존 차 3대, 맨홀 74개, 보수 자국 60곳, 높이 8cm 방지턱 6개.
+기존 300 × 300m 평지에서만 적용합니다. 주차는 출입구·교차로를 피하고 한쪽에 배치하며 통행 폭 3m를 남깁니다. 공식 주차 지정이나 교통 법규 재현은 아닙니다.
+화면 오른쪽 아스팔트 표현에서 네 사례 이동 및 같은 위치 적용 전후 비교. 검사 tests/road-surface24.mjs, verification/road-surface24/. 변경 전 app.js·index.html은 work/house-plots-test/backups/road24/에 보존했습니다.
+
+road24 성능 측정 — 2026-11-01, 로컬 확인
+space-first/road-performance.js는 perf=1일 때만 실행합니다. 같은 위치에서 적용 전·노면만·차량 포함을 각 2회 비교합니다. 원본 외형과 렌더 설정은 변경하지 않았습니다.
+전체 장면 삼각형 3,378,282 → 3,399,910 (+21,628, 0.64%). 노면 4,691, 차량 3대 16,937. 화면 밖 모델과 그림자용 메시도 포함한 장면 수치이며, 프레임별 렌더 수치와 다릅니다.
+681×1071 화면에서 전/후 FPS: 맨홀 사례 51.77/49.27, 주차 사례 46.70/48.96. 위치별 결과가 반대여서 일관된 성능 저하는 확인되지 않았습니다. GPU 병목과 이동 중 성능은 미측정입니다. 기록 verification/road-surface24-performance/, 변경 전 파일 work/house-plots-test/backups/road24-perf/. 공개 미배포.
+
+
+2026-11-01 빈 땅 기존 모델 복원 vacant25 — space-first 로컬 테스트
+work/house-plots-test/vacant_lots25.py가 street-infill.json의 독립 부지를 현재 large-ground23 길·건물·현관 통로에 맞춰 다시 자릅니다. 원본 파일은 보존하고 vacant-lots25.json으로 겹치는 일반 화단·담·식물만 교체합니다. 주차장2·작은 쉼터3·무성한 녹지5·공사중3·방치공사장2, 총15곳 약4071㎡. 주차25칸·차21대, 새식물394개(기존 겹친42개 교체), 벤치3개. 기존 createInfill/createSiteDetails/gardenPlant/createHybridTrees와 차량4종을 재사용합니다.
+?roads=mapped&rules=user에서 기본 적용, vacantSite=vacant-528-0으로 사례 확인, vacant=old로 적용 전 비교. vacant25-results/에 실제5종 사진·주차 전후·성능 정리. 검사 check_vacant_lots25.py, verification/vacant-lots25/check-wood.mjs; 건물/도로/출입/기존1층주차 겹침0.
+wood-batches.js는 현재 테스트에서 고정 줄기2526개를32m 구역별100묶음으로 합칩니다. 형상/색상/삼각형 보존. 전체 삼각형3,399,910→3,799,420(+11.8%). 같은 녹지 화면54→51FPS(초기 최적화 전38FPS), 고정 카메라 단일 측정. 공개판·새 위치 생성은 미반영. 이전 파일과 캡처·검사·성능 기록 verification/vacant-lots25/.
+
+2026-11-01 도로 교차부 돌출 정리 junction26 — space-first 로컬 테스트
+work/house-plots-test/road_edge_geometry.py와 road_surface24.py: 합쳐진 아스팔트의 수치 오차 틈을 2mm 닫기로 없애고 노란선의 길게 뻗는 모서리를 제한합니다. 가짜 경계 약28m 제거. 빈땅의 좁은 삼각형 끝10곳(총22.14㎡)은 주변 경계까지 짧은 직선으로 잘라 도로·시멘트·마당·화단에 함께 반영합니다. 건물·담·보행로·전봇대·vacant25 독립 부지는 보호합니다. 424채 원본 및 주차·맨홀·보수·방지턱 배치는 동일합니다.
+space-first의 도로 경계 확인에서14개 사례와 roadEdges=old|new 비교. edgeView=3은 교차로 노란선, edgeView=6은 좁은 삼각형 끝 사례입니다. 검사 check_road_junction26.py와 tests/road-surface24.mjs, 증거 verification/road-junction26/. 노면 부가요소4740삼각형/9회 그리기(이전4691). 전체FPS는 재측정하지 않았습니다. 공개판과 새 위치 생성은 미반영입니다.
+
+2026-11-01 테스트 전체 규칙 main27 — 로컬 원본 우리동네 반영
+work/house-plots-test/package_main27.py는 roads8-plan/frontages, large-ground23, vacant-lots25, road-surface24의 검증된 순서를 그대로 묶어 outputs/domestic-test/site-layout27.json을 만듭니다. 원본 JSON 5종은 해시로 보존을 확인합니다. Shapely가 있는 /tmp/street-types-venv/bin/python으로 실행합니다.
+site-layout27.js와 site-layout27-geometry.js를 통해 원래 동네의 본 화면에 연결했습니다. 기본 ?location=original&radius=150에서 건물364채·필로티12채·큰 건물6채·담장740구간·대문31곳·지하램프4곳·독립 빈땅10곳·주차85칸을 적용합니다. 기존 아파트·특수건물·등록상가26채는 유지합니다. 원본 지형의 건물 아래 구멍은 주변 높이로 보간하고, 새 도로 아래 기존 지면을 잘라 겹침과 급상승을 방지합니다. 건물 바닥은 수평이고 마당은 원래 도로 높이로 이어집니다.
+창문14cm·외벽/담장 텍스처·도로 표면24·빈땅25·교차부26·기존 차량/전봇대/전선/나뭇잎/낮밤을 함께 연결했습니다. 적용 결과 위치 메뉴에서 사례별 확인, ruleView=18은 교차로, 7은 큰 건물, 10은 담장/마당. siteRules=old는 이전 본 화면 배치로 돌아갑니다.
+verification/main-rules27/에 이전 파일·실제 렌더 캡처·runtime.json. tests/main-rules27.mjs, tests/test_main_rules27.py와 담장/1층/노면/빈땅 검사 통과. 관련 로컬 JS 모듈142개 누락0, 실제 브라우저 오류0. 새 주차차량74대의 접지 샘플 최대차2.43cm, 불규칙 바닥의2대는 배치 제외. 모든 집을 개별 검수하거나 전체FPS/GLB를 재검증한 것은 아닙니다.
+공개 사이트와 다른 주소의 새 맵 생성에는 main27을 적용하지 않았습니다. 브라우저 생성 sources.json의 기존 원본 불일치는 이번에도 --check에서 확인했으며, 별도 생성 변경을 섞지 않도록 갱신하지 않았습니다. 배포할 때 새 파일과 기존 미등록 의존 파일을 함께 확인해야 합니다.
+
+
+2026-11-05 집 사이 경계 neighbor28 · 바닥 사용감 weather29 — 로컬 원본 반영
+build_neighbor_boundaries28.py → neighbor-boundaries28.json/js: 이웃 쌍마다 중간에 직선 담장 하나를 두고, 길 쪽 틈에는 폭과 통행 조건에 맞춰 철장·철문·낮은 담을 만듭니다. 전체 원본 261쌍·중간담121·틈막이104, 주차·출입 통로 보호. ground-weather29.js는 기존 시멘트/아스팔트 면에 균열·얼룩·보수 자국을 입힙니다. 공용 1024 텍스처2장, 추가 삼각형0. 공개판과 새 위치의 일반 경계 생성기는 별도입니다.
+
+2026-11-05 완만한 지형 gentle30 — 로컬 본 화면과 새 지도 생성 기본 적용
+work/gentle_terrain.py와 gentle-terrain30.js가 같은 위치에서 같은 완만한 지면을 만듭니다. 가까운 지면은 실제 고도를 조회하지 않습니다. 선택한 원과 겹치는 건물만 통째로 만들며, 2km 바깥 건물 수집/생성과 원경 도로 생성은 생략합니다. 22km 실제 산 지형은 유지하고 가까운 지면과 완만하게 연결합니다. 기존 terrain.json은 보존하며 원본 맵의 terrain-mountains30.json은 배경 도시를 제외한 2.4MB 파일입니다(이전12.1MB).
+브라우저 생성 entry.py와 서버 generate-neighborhood.py에 함께 적용, sources.json은 pack.py로43개 원본을 묶었습니다. 카카오 가게 조회 실패 때 중심 좌표를 알고 있으면 가게 정보만 생략합니다. 부지 분할의 아주 작은 수치 오차 조각은 공용 땅으로 보존합니다.
+실제 반경50m 새 생성39동·고도조회0·바깥건물0, worker37.296초, 화면 표시 및 산 확인. 주소/가게 조회와 최종 렌더는 시간에서 제외됐고 재시도 중 캐시가 남아 있을 수 있으므로 이전 대비 속도 향상 수치가 아닙니다. 본 동네 반경150m의 샘플 높이차3.12m, 새50m는0.74m. 공개 미배포. verification/gentle-terrain30/에 백업·실화면·실행값, tests/test_gentle_terrain30.py 및 tests/gentle-terrain30.mjs에 높이 일치/경계 건물 보존/원경산 보존 검사.
+
+2026-11-21 가우시안 외곽선 시험: work/gaussian-outline-test/index.html — 기존 그림체 레이 PLY 렌더 알파에서 실루엣 추출·외곽 확장. 원본/외곽선/가장자리 정리/선만 보기·회전·두께·투명도 조절. Edge 앞뒤·회전·표시 모드 확인. comparison.jpg, back.jpg, line-only.jpg. 화면 기준 외곽선이며 작은 계단 현상 남음. CPU 시험 구현, 최대15회/초, 원본·공개판 유지.
+
+2026-11-21 사람 시야 생성 v1 — 로컬 시험
+work/view_generation.py가 앞쪽90도+좌우15도 및 주변12m에 걸치는 건물 전체를 선택합니다. 지도 선택의 사람 시야/주변 전체·방향·거리, 생성 캐시 구분, 눈높이1.65m 시작을 연결했습니다. 시야 밖 건물은 상세 계산 전에 제외하며 도로/독립 소품은 기존 범위입니다. 건물 가림 판정과 이동 시 자동 확장은 미구현. 실제50m 북쪽 생성34→13채,26.5초(가게 검색 제외); 로컬 카카오SDK 실패로 지도 선택 끝까지는 미검증. view-generation-test.html에서 실제 생성 시험 가능. 공개 미배포.
+
+같은 날 추가: v2는 도로 중심선도 시야+8m 여유로 먼저 자릅니다. 같은50m 시험에서 전체34채24.5초→시야13채10.5초. 순차1회·가게검색/렌더시간 제외·HTTP캐시 영향 있음. 최종실제렌더 확인, 검사5개 통과. 결과 verification/view-generation/result.jpg.
+
+2026-11-21 사람 시야 생성 v3 — 로컬 구현
+work/view_generation.py: 도로 예약 면에서 보행 가능한 지점을 찾고, 골목 중심선 또는 인도로 최대30m 보정합니다. 360도1440개 기본 레이와 건물 모서리 보강 레이로 앞 건물 가림을 계산합니다. 층수 기반 높이로 뒤쪽 고층 상부도 보존합니다. 보이는 건물은 전체 형태를 유지하며, 상세 메시 면 단위 절단은 하지 않습니다.
+view-generation-visibility.js: 상세 소품/주차/식물/행인 모델 생성 전 건물 프리즘 시선 검사와 시작점 여유 공간을 적용합니다. 생성 worker와 화면에서 같은 함수를 사용합니다. 가려진 길은 1m 연결 여유를 남기고 자릅니다. 이동 시 추가 생성은 미구현, 공개 미배포.
+검사 tests/test_view_generation.py, tests/view-generation-visibility.mjs, tests/browser-generation.mjs. 새 worker 묶음은 work/browser-generation/prepare-scene.js 원본을 esbuild로 번들합니다. installGenerationBounds와 memo-scene 소비 모듈의 URL 버전을 일치시켜야 차량 자료가 공유됩니다.
+
+2026-11-21 건물 선택·배치 설정 — 로컬 구현, 공개 미배포
+outputs/domestic-test/building-assets/: catalog.js(4분류15모델·브라우저 저장), model.js(기존 생성기 연결), preview.js(3D 미리보기), settings.js/index.html(사용할 모델 목록), editor.js(Shift 클릭·개별 교체·카메라 복원). app.js/site-layout.js/site-layout27.js/details.js/facilities/models.js에 연결. tests/building-assets.mjs 검사, Edge 저장·선택·외관 교체·새로고침 유지 확인. verification/building-assets/ 참고.
+
+2026-11-21 건물 자동 배치 NaN 경고 수정: owner5951667 윤곽의 연속 중복점이 terrain-fit.js fittedRibbon에서 0/0 방향 계산을 일으킴. 밑단 원본과 병합 메시에서 각각 경고 발생. 연속 영길이 구간 제거, 비정상/붕괴 경로 명시적 오류 처리. tests/fitted-ribbon.mjs 실제 좌표 회귀 검사 통과. 같은 자동 배치 조건의 새 Edge 탭 렌더 완료·오류0 확인. 공개 미배포.
+
+2026-11-21 에셋 백과 — 로컬 구현, 공개 미배포
+outputs/domestic-test/asset-encyclopedia/: 901항목·14묶음. 초기212종은 현재 삭제/교체 규칙을 거치지 않고 보관 GLB와 초기 차량 생성기로 열기. 개별 GLB·건물부품84·시설17·상가18·나무10·사람10·초기식물13 등 통합. 검색/분류/24개 페이지/3D 회전·이미지 원본 보기. scripts/build-asset-encyclopedia.mjs로 목록 재생성, tests/asset-encyclopedia.mjs 경로·누락 검사. check.html 전체901개 로딩·좌표 검사 오류0. verification/asset-encyclopedia/ 증거. 외부 백업 중복파일/연구사진/전체지도 제외, 원본·수정본·색상 변형은 따로 계산.
+
+2026-11-21 모델링 제작 지침: docs/modeling-guidelines.txt. 형태·색·선·접지·성능·완료 검사와 사용/수정 후 사용/보관/검토 전 기준. AGENTS.md에서 연결. 문서 작성만 완료했으며 에셋 분류·교체·삭제·공개 배포는 하지 않았습니다.
+
+2026-11-21 에셋 검토 표시: asset-encyclopedia/reviews.js와 카드·상세 ×/↻ 버튼, 상태 필터, JSON 받기. work/asset_review.py가 work/asset-review/decisions.json에 원자적으로 저장하고 다른 창 수정 충돌을 검사합니다. serve-neighborhood.py --direct-files --port 8765로 실행. 공개판은 미배포, 정적 호스팅에서는 브라우저 저장+JSON 전달. 원본·실제 배치 미변경. tests/asset-reviews.mjs, tests/test_asset_review.py 및 Edge 새로고침/상세 변경/취소 확인.
+2026-11-21 가우시안 조명 시험: outputs/domestic-test/splat-lighting/, work/splat-lighting/build.mjs. 소화전 원본 표면을 18,000개 가우시안으로 변환, 시간별 조명·보조 메시 그림자. 낮밤·가림판 확인, 면 경계 얼룩 남음. 사용자 중단으로 최종 확인이 끝나기 전 에셋 검토 작업으로 전환. 원본/본 화면/공개판 유지.
+
+에셋 검토 반영 — 2026-11-21, 로컬 미배포
+검토 revision 404: 폐기 표시 353개, 교체 표시 8개. 같은 파일 170개를 합쳐 삭제 338종 / 사용 목록 393종(교체 대기 8종 포함).
+scripts/apply-asset-reviews.py: 검토 기록을 읽어 curation.json과 curation-data.js 생성. 명시적으로 검토를 반영할 때만 실행합니다.
+work/asset-review/applied-revision-404.json: 반영 당시 원본 기록과 중복 연결표. 원본 파일과 현재 decisions.json은 보존했습니다.
+outputs/domestic-test/asset-encyclopedia/curation.js: 도감 표시·배치 제외 규칙. 구형 차량 슬롯과 현재 교체 차량을 구분합니다.
+원형 맨홀뚜껑은 동일 파일에 삭제/교체 표시가 함께 있어 교체 대기 하나로 남겼습니다. 이름만 같은 다른 수정본은 유지합니다.
+
+에셋 도감 정리 — 검토 revision 452, 로컬 미배포
+추가 폐기 48종 반영: 삭제 총 386종 / 남은 목록 345종, 교체 대기 8종 유지. 원본과 검토 기록 보존.
+groups.js: 건물(부품·설비 포함), 나무, 자동차, 소품, 사람 분류. 제목·검색·탭·연속 목록으로 화면 간소화.
+
+나무 도감 미리보기 — 로컬 미배포
+검토 revision 509 추가 삭제 57종, 전체 남은 목록 288종. 계절 4종·높이 3~20m 미리보기 옵션 추가. 동네 배치는 변경하지 않습니다.
+
+2026-11-21 나무 용도·실제 크기 연결 — 로컬 확인, 공개 미배포
+tree-profiles.js: 10종 성목 범위·출처·가로수/마당 중복 용도·배치 높이. tree-planting.js: 용도와 화단 폭에 맞는 수종 선택, 미터 높이 보정. 성목 중간값은 실측 평균이 아니며 마당 높이는 관리된 나무 기준의 프로젝트 설정입니다.
+에셋 백과 필터·카드·상세·catalog.json과 기본/저장 동네 배치·마당·아파트 식재를 연결했습니다. 기존 화단 폭·밑동 위치 유지, 풀과 관목은 변경하지 않았습니다. Edge 실제 50m 저장 동네 마당 나무81개 수종별 높이·낮밤 렌더 확인. catalog 전체 재생성은 기존 people/seasons.json 누락으로 실패하여 나무 항목만 갱신하고 전체 항목 보존 검사했습니다.
+
+2026-11-21 사람 사계절 의상 — 로컬 백과 반영
+기존 10명 봄 원본 보존, 내장 image_gen으로 여름·가을·겨울 30장 제작(각 눈높이 8방향). people/seasons/와 seasons.json, 제작 기록 work/people-seasons/. 에셋백과 사람 상세에서 사계절 선택 및 선택 이미지 다운로드. 40개 브라우저 로딩·방향키 전환·오류0 확인. tests/people-seasons.mjs, 기존 백과 검사, pack --check 통과. 동네 자동 계절 교체·높은 시점 추가 제작·공개 배포 미적용.
+
+2026-11-21 사람 회전 미리보기·공개 배포 준비: asset-encyclopedia/person-preview.js가 1인 이미지를 드래그/방향키로 8방향×3시점 전환합니다. 공개판 기준 별도 release branch에 계절 의상·백과를 합쳤고, 다른 로컬 동네 변경은 보존했습니다. 최종 공개 상태는 PROJECT_STATE.json의 peopleSeasonalOutfits를 확인합니다.
+
+2026-11-21 사람 공개 반영 완료: e9e1553 / 호스팅5fecf99 / Actions44806043806. 마우스 회전 미리보기와 계절별 0°·30°·60° 동네 자동 교체를 공개 화면에서 확인했습니다. 나머지 로컬 동네 변경은 기존 미배포 상태입니다.
+
+소품 제작 지침 — 2026-11-21
+docs/prop-production-guidelines.txt: 참고 자료, 형태·색·선, 접지·배치, 성능, 대표 1종 검토, 제작 카드와 삭제·교체 상태 처리. 모델 변경은 포함하지 않습니다.
+
+[소품 교체 대표안 / 2026-11-21]
+outputs/domestic-test/prop-remakes/ : 바리케이드 제작 코드, GLB, 기존 모델 비교 화면
+work/prop-remakes/ : 내보내기 도구와 제작 카드 (README.txt)
+tests/prop-barrier.mjs : 형태·재질·여섯 접점 검사
+검토용으로 백과 등록. 실제 동네 배치 및 공개 배포는 미진행.
+
+소품 교체안 추가: prop-remakes/shoe-rack.js, shoe-rack-v1.glb — 2단 신발 정리대.
+비교 화면 ?asset=shoe-rack / 제작 카드 work/prop-remakes/shoe-rack.txt. 로컬 검토용.
+
+2026-11-21 교체 소품 6종: outputs/domestic-test/prop-remakes/remaining.js와 mesh-tools.js → 개별 GLB. catalog.js와 preview.js에서 기존 2종 포함 8종 비교. 조사·제한: work/prop-remakes/remaining-six.txt. 동네 배치 미적용.
+
+2026-11-21 기존 소품 개선 첫 10종: prop-remakes/batch-one.js, 개별 GLB, tests/prop-batch-one.mjs. 비교 선택 메뉴 총18종. 원본·검토 요청 보존. 제작 카드 work/prop-remakes/batch-one.txt. 로컬 비교만 반영.
+
+2026-11-21 에셋 백과 제작본 적용: asset-encyclopedia/remakes.js가 대표 ID에 18개 새 GLB를 연결하고 후보 중복 표시를 숨깁니다. line-options.js는 캡처 기본값과 조절 UI, app.js는 illustration-renderer로 목록/상세 선을 표시합니다. 원본/검토 기록 보존. tests/asset-encyclopedia-lines.mjs. Edge 로컬 확인, 공개 미배포.
+
+2026-11-21 나무·행인 조명 수정: app.js의 조명 갱신에 siteLayoutView.foliage를 연결해 마당 나무의 야간 밝기 고정 해결. pedestrians.js/vegetation.js는 컴파일된 조명 uniform 연결 유지. tests/billboard-lighting-refresh.mjs 및 사계절 검사·pack --check 통과. Edge 실제 저장 동네 낮밤 확인, 공개 미배포.
+
+2026-11-21 파일 통합안: docs/file-consolidation-plan.txt 및 file-consolidation-inventory.json 작성. 실제 파일 이동 없음.
+
+2026-11-21 새 소품18개/백과 선 설정 공개 완료: release41b10a4, hosting3c170be, Actions44819391870 성공. Edge 공개 싱크대와 선 표시 확인. 에셋 백과 범위이며 실제 동네 새 소품 배치는 미변경.
+
+2026-11-21 에셋 기준 통일: asset-encyclopedia/registry.js에서 백과/대표소품/메모소품/차량 파일 선택. 구 도감3곳은 백과로 연결하고 archive/asset-catalogs-before-encyclopedia에 문서 보존. 모델 원본 경로는 유지. 생성 규칙 적용 차이는 docs/asset-authority-and-generation.txt 참조.
+
+2026-11-21 에셋 기준 공개 완료: aaf38f6 / 호스팅0fce745 / Actions44821136081. 공개22파일 해시 일치, 이전 도감→백과/고깔 단일항목/동네 로딩 확인. 생성 규칙27의 새 주소 일반화와 공개 연결은 별도 미완료.
+
+2026-11-21 나뭇잎 한 그루 비교: location=ff486fdeb343ab9c&leafCompare=new에서 infill-0 하나만 새 잎으로 표시, original은 기존 잎·동일 카메라. hybrid-tree.js의 개별 텍스처 분리, site-layout-models/infill-models.js의 제한된 시험 연결. leaf-trial/zelkova-crisp-v1.png 원본 복사 보존. verification/leaf-trial/ 낮 비교와 밤 화면. 테스트3종 및 pack 검사 통과, 공개 미배포.
+
+2026-11-21 지침 통합: docs/project-guidelines.txt를 공통 기준으로 사용합니다. AGENTS.md와 기존 두 제작 지침은 통합 문서로 안내합니다. 이전 원문은 archive/guidelines-before-unification-20261121/에 보존했습니다. 실행 코드와 공개 배포 변경은 없습니다.
+
+2026-11-21 통합 지침 9절 보완: 길 위 관찰 지점의 눈높이에서 360도 레이로 보이는 대상만 생성하는 최종 기준 명시. 문서만 수정했으며 구현·배포 변경 없음.
+
+2026-11-21 최신 실행 버전 통합: start.html → browser-generation/entry.py, 정책11/street-visible360-v1. 실험 화면57개 원본은 archive/retired-viewers-20261121, 정식 공통모델7개는 site-layout-models. 상세 검사와 제한은 docs/unified-version-report.txt. 공개 반영 전.
+
+2026-11-21 아스팔트 텍스처 복구: road-context.js의 asphalt/arterial에 ground-weather29.js 공통 재질과 월드 UV 적용. 도봉로 이전 저장 지도 Edge 새로고침으로 확인. 삼각형 추가 없음, 공개 미배포.
+
+2026-11-21 큰길 시설 높이 복구: terrain-fit.js rebaseArterialHeights를 app.js 완만한 지형 변형 전에 호출. 기존 지도 차선/출입구/차량/정류장/지지면을 같은 높이 기준으로 옮김. 50m Edge 차선·출입구 확인 및 회귀검사 통과. 버스/정류장은 해당 지도 중심70m·140m로50m 밖. 공개 미배포.
+
+2026-11-21 에셋 누락·높이 점검: 벽/교통시설 조명 높이 보정 및 가로등 접지 후 시야검사 순서 수정. 기본 동네 경로보정 분기에도 연결. 도봉로50m 낮밤/150m 버스정류장 실화면 확인. 상세 docs/asset-visibility-audit.txt, 공개 미배포.
+
+2026-11-21 시야 방식 진입 강제: local/original/browser 저장 지도도 currentScene 검사, 이전 반경 지도는 시작 화면 위치선택으로 전환. 목록은360도 시야 지도만 표시. 레이 선택 건물의 주소 중심 재필터 제거, 소품 사전반경에 길 보정 거리 허용. 공개 미배포.
+
+2026-11-21 메인 고정·공개 배포 준비: canonical root + origin/main만 수정/배포 기준. 전체백업20261029, 이전 release 작업사본, archive 실물은 /Users/bacbaqui/.project-archives/our-neighborhood로 이동. archive 링크는 문서 호환 조회용. 통합 지침과 AGENTS에 명시.

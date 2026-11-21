@@ -1,5 +1,6 @@
+import {treePlanting,planSizedTree} from './tree-planting.js';
 import {speciesById} from './tree-species.js?v=151';
-import {planCanopy,obstacleVolumes,validateCanopy,seededRandom} from './canopy-growth.js?v=151';
+import {obstacleVolumes,validateCanopy} from './canopy-growth.js?v=151';
 
 const replacements=Object.freeze({jujube:'zelkova',cornelian:'fringe',lilac:'cherry','crape-myrtle':'plane',juniper:'metasequoia'});
 
@@ -11,18 +12,20 @@ export function planNeighborhoodTrees(placements,buildings,structures,elevation,
   minZ:Math.min(...o.points.map(p=>p[1])),maxZ:Math.max(...o.points.map(p=>p[1]))}));
  const plans=[],omitted=[],trees=placements.filter(p=>p.kind==='tree');
  for(const p of trees){
-  const species=speciesById(p.asset)?.id||replacements[p.asset]||'zelkova',profile=speciesById(species),random=seededRandom(p.id);
+  const requestedSpecies=speciesById(p.asset)?.id||replacements[p.asset];
   const compact=p.source==='existing-plant',root=[p.root[0],compact?Math.max(p.root[1],shadowElevation(p.root[0],p.root[2])):shadowElevation(p.root[0],p.root[2]),p.root[2]];
-  const height=compact?Math.max(4.5,Math.min(5.2,p.height*1.25)):Math.max(9,Math.min(12,profile.height*(.93+random()*.12)));
-  const radius=compact?Math.max(1.6,Math.min(2.3,p.radius*1.2)):Math.min(profile.radius*(.88+random()*.12),Math.max(2.6,(p.clearance??3.3)+.8));
+  const use=p.treeUse||(/garden|yard|existing-plant/.test(p.source||'')?'yard':'street');
+  const planting=treePlanting({id:p.id,species:requestedSpecies,use,radius:compact?Math.max(.85,Math.min(2.3,p.radius*1.2)):null});
+  const {species,height}=planting;
+  const radius=compact?planting.radius:Math.min(planting.radius,Math.max(2.6,(p.clearance??3.3)+.8));
   const nearby=obstacles.filter(o=>o.minX<root[0]+radius+2&&o.maxX>root[0]-radius-2&&o.minZ<root[2]+radius+2&&o.maxZ>root[2]-radius-2);
   let chosen=null,errors=[];
   // Try another branching pattern, then a narrower crown, without moving the
   // planted root onto a path or into another property.
   for(let attempt=0;attempt<4;attempt++){
-   const plan=planCanopy({id:p.id,seed:attempt?p.id+':fit-'+attempt:p.id,root,height,radius:radius*(attempt>=2?.74:1),species,obstacles:nearby});
+   const plan=planSizedTree({id:p.id,seed:attempt?p.id+':fit-'+attempt:p.id,root,height,radius:radius*(attempt>=2?.74:1),species,obstacles:nearby});
    errors=validateCanopy(plan,nearby);
-   if(!plan.blocked&&!errors.length){chosen=plan;chosen.stats={...chosen.stats,previousAsset:p.asset,source:p.source,compact,fitAttempt:attempt,validationErrors:0};break;}
+   if(!plan.blocked&&!errors.length){chosen=plan;chosen.stats={...chosen.stats,previousAsset:p.asset,source:p.source,compact,treeUse:use,heightBasis:planting.heightBasis,fitAttempt:attempt,validationErrors:0};break;}
   }
   if(chosen)plans.push(chosen);else omitted.push({id:p.id,species,root,reason:errors.length?'solid intersection':'no connected crown',errors});
  }

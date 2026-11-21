@@ -25,6 +25,7 @@ self.onmessage=async({data})=>{
   for(const [path,text] of Object.entries(sources)){py.FS.mkdirTree(path.slice(0,path.lastIndexOf('/')));py.FS.writeFile(path,text);}
   py.globals.set('PARAMETERS',JSON.stringify(data));
   await py.runPythonAsync("exec(open('/work/browser-entry.py').read())");
+  if(data.roadSetupOnly){progress('주변 도로의 연결 구간을 정리합니다…',65);const roads=JSON.parse(await py.runPythonAsync('prepare_roads()'));await mapCache.flush();postMessage({type:'roads',roads});return;}
   progress('길 위에 위치를 맞추고 360도로 보이는 건물을 확인합니다…',12);
   await py.runPythonAsync('stage_base()');
   const root=py.runPython('str(root)');

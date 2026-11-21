@@ -23,7 +23,7 @@ export function drawRoadMap(svg,data,selectedId,grades,onSelect){
  for(const rings of data.buildings)node('path',{d:rings.map(ps=>'M'+ps.map(p=>q(p).join(',')).join('L')+'Z').join(''),fill:'#c5ceca',stroke:'#84938c','stroke-width':.7,'fill-rule':'evenodd','pointer-events':'none'});
  for(const r of data.roads.filter(r=>r.editId===selectedId))node('polyline',{points:r.geometry.coordinates.map(p=>q(p).join(',')).join(' '),fill:'none',stroke:'#a65300','stroke-width':2,'stroke-dasharray':'5 3','pointer-events':'none'});
  const pin=(p,color,label)=>{const [x,y]=q(p);node('circle',{cx:x,cy:y,r:6,fill:color,stroke:'white','stroke-width':2,'pointer-events':'none'});node('text',{x:x+10,y:y-10,fill:color,'font-size':13,'font-weight':700,stroke:'white','stroke-width':3,'paint-order':'stroke','pointer-events':'none'},label);};
- pin([0,0],'#b84624','선택 기준점');if(Math.hypot(...data.position)>1)pin(data.position,'#006d8c','길 위 관찰점');
+ pin([0,0],'#df2424','선택 기준점');if(Math.hypot(...data.position)>1)pin(data.position,'#006d8c','길 위 관찰점');
  node('text',{x:W-16,y:24,'text-anchor':'end','font-size':14,fill:'#203b45'},'북 ↑');
  svg.onclick=e=>{const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const at=p.matrixTransform(svg.getScreenCTM().inverse()),r=closestMapRoad(data.roads,[(at.x-W/2)/scale,(at.y-H/2)/scale],8/scale,grades);if(r)onSelect(r);};
  svg.dataset.selectedRoad=selectedId;svg.dataset.origin='0,0';

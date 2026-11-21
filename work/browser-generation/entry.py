@@ -32,6 +32,18 @@ if view:loc['view']=view
 def write(name,value): (root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
 write('location.json',loc)
 rules=json.loads(Path('/outputs/domestic-test/site-rules.json').read_text());rules.update(origin=loc['origin'],localBounds=[-radius+14,-radius+14,radius-14,radius-14]);write('site-rules.json',rules)
+def prepare_roads():
+ from scene_edits import classify_roads
+ from road_sections import group_road_sections
+ roads=params.get('sourceRoads') or source.acquire_roads(root,{**loc,'sizeMetres':max(200,radius+150)*2})
+ for road in roads:road.pop('manualGrade',None)
+ classify_roads(roads,(params.get('sceneEdits') or {}).get('roads',{}),loc['origin'])
+ for road in roads:
+  if road.get('gradeSource')=='user':road['manualGrade']=road['grade']
+ roads=group_road_sections(roads)
+ classify_roads(roads,{},loc['origin'])
+ return json.dumps(roads)
+
 def stage_base():
  global buildings,terrain
  source_loc={**loc,'sizeMetres':(radius+30)*2}

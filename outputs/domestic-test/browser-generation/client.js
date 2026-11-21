@@ -27,13 +27,14 @@ export async function generateInBrowser(point,onProgress,{signal}={}){
  if(existing&&!point.force)return existing;
  let sceneEdits,sourceRoads;
  if(existing){const saved=await getScene(existing.id),bytes=saved?.files['scene-edits.json'];if(bytes)sceneEdits=JSON.parse(new TextDecoder().decode(bytes));const input=saved?.files['generation-input.json'];if(input&&Object.keys(sceneEdits?.roads||{}).length)sourceRoads=JSON.parse(new TextDecoder().decode(input)).sourceRoads;}
+ if(point.sourceRoads){sourceRoads=point.sourceRoads;sceneEdits={...sceneEdits,...point.sceneEdits,buildings:{...sceneEdits?.buildings,...point.sceneEdits?.buildings}};}
  onProgress('주변 가게를 확인하고 있습니다…',0);
  let extra;try{extra=await placesNear(point);}catch(error){extra={places:[],stations:[],exits:[],warnings:['주변 가게 정보를 받지 못해 건물과 도로만으로 배치했습니다.']};onProgress('가게 조회를 건너뛰고 건물과 도로를 만듭니다…',1);}
  if(signal?.aborted)throw new DOMException('취소했습니다.','AbortError');
  onProgress('건물 모양과 층수를 조회하고 있습니다…',1);
  const buildingCollection=await loadBuildings(point,{signal});
  return new Promise((resolve,reject)=>{
-  const worker=new Worker(new URL('./worker.js?v=unified11',import.meta.url),{type:'module'});
+  const worker=new Worker(new URL('./worker.js?v=road-first1',import.meta.url),{type:'module'});
   const finish=()=>{worker.terminate();signal?.removeEventListener('abort',abort);};
   const abort=()=>{finish();reject(new DOMException('동네 만들기를 취소했습니다.','AbortError'));};signal?.addEventListener('abort',abort,{once:true});
   worker.onerror=event=>{finish();reject(Error(event.message||'동네 계산을 시작하지 못했습니다.'));};

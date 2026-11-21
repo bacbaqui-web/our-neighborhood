@@ -1,4 +1,8 @@
-2026-11-22 부동산3개 사진 외관
-사용자 첨부에서 승인된 사랑채/88/가이드공인중개사 사진을 그대로 텍스처로 사용. 이미지 생성이나 글자 재작성 없음. 원본 바이트 보존, UV로 외관 영역을 매핑하고 투명한 유리 영역만 실제 기하 구멍으로 뚫음. 나머지 광고와 상호 보존. 실제 내부 박스 가구 및 시간 조명 유지.
-범위: estate-01/02/03. 다른15종 외관 유지. 실제 건물 크기는 추정. 사진의 원근/가림/낮은 해상도는 남아 있음. 사진 원본 출처와 미확인 사용조건은 textures/estate-exteriors/sources.json에 기록.
-검사:18종 실내/조명 회귀,3종 간판 map/emissiveMap 및 회색 모드 map 유지, 모든 유리 구멍에서 실내로 향하는 ray 검증 통과. 로컬 Edge3개 외관 확인. 공개 검증 후 추가기록.
+2026-11-22 부동산3개 만화풍 외관 — 사용자 정정 반영 최종안
+사진 전체를 외벽에 붙이는 시도는 사용자 요청과 달라 폐기. 해당 공개호스팅 작업44920129284 취소 완료. 원본사진은 rejected-photo-exteriors에 보존하고 실행 에셋에서 제거.
+최종: 벽, 창틀, 문틀, 손잡이, 간판 판, 문턱과 계단은 입체/단색 기하. 간판, 창문 광고, 매물표만 새로 생성한 만화풍 그림을 면 텍스처로 사용. 18종 내부 및 시간 조명 유지, 이번 외관 수정은 estate-01/02/03만. 사용자 그림체는 첨부에 보인 기존 동네 모델의 단색 만화풍을 기준으로 적용.
+생성: built-in image_gen (CLI/API 추가사용 없음). 원본 사진은 글자/색 참고이며 새 텍스처에 사진을 넣지 않음.
+저장: outputs/domestic-test/shops/textures/estate-comic/signs.png, vertical.png, main-signs.png.
+Prompt set: signs.png — 3columns x4rows comic sign/window-vinyl atlas, flat Korean webtoon graphic artwork, reference top-row model style and bottom-row photo identity; 사랑채/88부동산/가이드공인중개사; main signs, lower vinyl, six listing papers, supplementary adverts. No facade/photo/reflection/shadow. vertical.png — 3vertical columns, warm yellow 부/동/산 and 신안군 토지전문, navy 땅/가/이/드/공인중개사/284-8924, yellow 부동산/매물접수/상담환영. main-signs.png — 3equal horizontal 6:1 signs, blue 사랑채 부동산 281·1007, yellow88 부동산279-1188, yellow/navy 가이드 공인중개사284-8924/010-8985-8188; flat comic colors, correct Hangul, no photographic surface.
+생성 결과 main-signs는 사랑채와88의 간판 비율 보정에 사용. 가이드는 signs의 첫행 사용. 광고 문구 구성은 사진을 참고해 단순화한 예시이며 완전한 실측 복제는 아님.
+검사:18종 내부/가구/조명/회색 모드 회귀,3종 건축재질에 사진map없음 및 별도 광고map, 실제 유리영역에서 실내 ray검사. 생성번들47개 최신 일치, 로딩검사 통과. 옛 서울POI 연결은 해제하고 previousSource에 원본이력 보존.

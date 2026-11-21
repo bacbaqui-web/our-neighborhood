@@ -1,4 +1,4 @@
-import {prepareShopInteriors,applyInteriorStyle} from './shops/interiors.js?v=exteriors1';
+import {prepareShopInteriors,applyInteriorStyle} from './shops/interiors.js?v=exteriors2';
 import {prepareBuildingIdentity} from './building-remakes/identity.js?v=replacements3';
 import {approvedBuildingId,approvedBuildingProfiles} from './building-remakes/models.js?v=replacements3';
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
@@ -27,8 +27,8 @@ import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
 import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=replacements3';
-import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=exteriors1';
-import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=exteriors1';
+import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=exteriors2';
+import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=exteriors2';
 import {loadData} from './load-data.js?v=151';
 import {applyRoadContext} from './road-context.js?v=grounds1';
 import {createIllustrationRenderer} from './illustration-renderer.js?v=slope3';

@@ -1,5 +1,5 @@
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
-import {stableHash,scheduleFor} from './storefront-hours.js?v=exteriors1';
+import {stableHash,scheduleFor} from './storefront-hours.js?v=exteriors2';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const normalize=s=>(s||'').replace(/\s/g,'');

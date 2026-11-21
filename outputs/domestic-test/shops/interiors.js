@@ -1,4 +1,4 @@
-import {prepareReferenceExteriors} from './reference-exteriors.js?v=exteriors1';
+import {prepareReferenceExteriors} from './reference-exteriors.js?v=exteriors2';
 import * as T from 'three';
 
 export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe'];

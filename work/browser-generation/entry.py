@@ -33,15 +33,10 @@ def write(name,value): (root/name).write_text(json.dumps(value,ensure_ascii=Fals
 write('location.json',loc)
 rules=json.loads(Path('/outputs/domestic-test/site-rules.json').read_text());rules.update(origin=loc['origin'],localBounds=[-radius+14,-radius+14,radius-14,radius-14]);write('site-rules.json',rules)
 def prepare_roads():
- from scene_edits import classify_roads
- from road_sections import group_road_sections
+ from scene_edits import prepare_editable_roads
  roads=params.get('sourceRoads') or source.acquire_roads(root,{**loc,'sizeMetres':max(200,radius+150)*2})
- for road in roads:road.pop('manualGrade',None)
- classify_roads(roads,(params.get('sceneEdits') or {}).get('roads',{}),loc['origin'])
- for road in roads:
-  if road.get('gradeSource')=='user':road['manualGrade']=road['grade']
- roads=group_road_sections(roads)
- classify_roads(roads,{},loc['origin'])
+ edits=params.get('sceneEdits') or {}
+ roads=prepare_editable_roads(roads,edits,loc['origin'],bool(params.get('sourceRoads')) and 'roadGroups' in edits)
  return json.dumps(roads)
 
 def stage_base():
@@ -50,9 +45,10 @@ def stage_base():
  all_buildings=source.acquire_buildings(root,source_loc if view else loc)
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  all_roads=params.get('sourceRoads') or source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
- from scene_edits import classify_roads,apply_building_rules
+ from scene_edits import classify_roads,apply_building_rules,validate_road_groups
  edits=params.get('sceneEdits') or {'roads':{},'buildings':{}}
  classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
+ validate_road_groups(all_roads,edits.get('roadGroups',[]))
  apply_building_rules(all_buildings,all_roads,edits.get('buildings',{}),loc['origin'])
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  write('scene-edits.json',edits)

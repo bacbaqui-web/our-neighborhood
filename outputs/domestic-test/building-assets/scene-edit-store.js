@@ -1,7 +1,9 @@
+import {validateRoadGroups} from './road-selection.js';
 import {assetById} from './catalog.js?v=scene-edit1';
 import {getScene,saveScene} from '../browser-generation/storage.js';
 export function validateSceneEdits(edits){
  if(!edits||typeof edits!=='object'||Array.isArray(edits)||!edits.roads||typeof edits.roads!=='object'||Array.isArray(edits.roads)||!edits.buildings||typeof edits.buildings!=='object'||Array.isArray(edits.buildings))throw Error('도로·건물 수정 정보를 읽지 못했습니다.');
+ validateRoadGroups(edits.roadGroups);
  for(const r of Object.values(edits.roads))if(!Number.isInteger(r?.grade)||r.grade<1||r.grade>4)throw Error('도로 등급은 1~4차도로 중에서 선택해 주세요.');
  for(const b of Object.values(edits.buildings)){
   if(!b||typeof b!=='object'||Array.isArray(b))throw Error('건물 정보를 다시 입력해 주세요.');

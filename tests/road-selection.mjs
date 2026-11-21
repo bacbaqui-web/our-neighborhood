@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {createRoadSelection} from '../outputs/domestic-test/building-assets/road-selection.js';
+const roads=['a','b','c','offscreen'].map(editId=>({editId,grade:1}));
+const m=createRoadSelection(roads);m.select('a');m.select('b',true);m.group();
+assert.deepEqual(m.groups,[['a','b']]);assert.deepEqual(m.grades,{},'Grouping must not manufacture grade overrides');
+m.select('c');m.select('a',true);assert.equal(m.selected.size,3);m.select('b',true);assert.deepEqual([...m.selected],['c']);
+m.select('a');m.setGrade(2);assert.deepEqual(m.grades,{a:{grade:2},b:{grade:2}});
+const saved=JSON.parse(JSON.stringify(m.snapshot()));const restored=createRoadSelection(roads,saved);restored.select('b');assert.equal(restored.selected.size,2);restored.ungroup();assert.deepEqual(restored.groups,[]);assert.equal(restored.grade,2);assert.deepEqual(saved.roadGroups,[['a','b']]);
+const mixed=createRoadSelection(roads,{roads:{a:{grade:2}}});mixed.selectMany(['a','b']);assert.throws(()=>mixed.group(),/등급/);mixed.setGrade(3);mixed.group();mixed.selectMany(['a','offscreen']);mixed.setGrade(4);mixed.group();assert.equal(mixed.groups[0].length,3);mixed.reset();assert.deepEqual(mixed.snapshot(),{roads:{},roadGroups:[]});
+assert.throws(()=>createRoadSelection(roads,{roadGroups:[['a','missing']]}));
+assert.throws(()=>createRoadSelection(roads,{roadGroups:[['a','b'],['b','c']]}));
+console.log('Road selection: additive toggle, persistent grouping, batch grades, offscreen member, unlink/reset, mixed grades and invalid input passed.');
+const pedestrian=createRoadSelection([{editId:'walk',grade:0}]);pedestrian.select('walk');pedestrian.setGrade(2);assert.equal(pedestrian.canRestorePedestrian,true);pedestrian.setGrade(0);assert.equal(pedestrian.grade,0);assert.deepEqual(pedestrian.grades,{});
+const reverted=createRoadSelection(roads);reverted.select('a');reverted.setGrade(2);reverted.setGrade(1);assert.deepEqual(reverted.grades,{},'Reverting a draft must not convert inferred grades into overrides');

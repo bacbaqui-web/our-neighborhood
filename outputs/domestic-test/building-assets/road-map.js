@@ -16,16 +16,17 @@ export function closestMapRoad(roads,point,tolerance,grades={}){
 }
 export function focusedRoads(roads,radius){return roads.filter(r=>closestMapRoad([r],[0,0],radius));}
 export function drawRoadMap(svg,data,selectedId,grades,onSelect){
+ const selectedIds=selectedId instanceof Set?selectedId:new Set([selectedId]);
  const W=640,H=440,scale=Math.min(W,H)/(data.radius*2+12),q=([x,z])=>[W/2+x*scale,H/2+z*scale];
  svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
  const node=(name,attrs,text)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text)n.textContent=text;svg.append(n);return n;};
  node('rect',{width:W,height:H,fill:'#eef1e8'});
- for(const r of data.roads){const grade=grades[r.editId]?.grade??roadGrade(r),selected=r.editId===selectedId,points=r.geometry.coordinates.map(p=>q(p).join(',')).join(' ');node('polyline',{points,fill:'none',stroke:selected?'#e69a25':'#68777d','stroke-width':Math.max(3,roadWidth(grade)*scale)+(selected?4:0),'stroke-linejoin':'round','stroke-linecap':'round','data-road-id':r.editId});}
+ for(const r of data.roads){const grade=grades[r.editId]?.grade??roadGrade(r),selected=selectedIds.has(r.editId),points=r.geometry.coordinates.map(p=>q(p).join(',')).join(' ');node('polyline',{points,fill:'none',stroke:selected?'#e69a25':'#68777d','stroke-width':Math.max(3,roadWidth(grade)*scale)+(selected?4:0),'stroke-linejoin':'round','stroke-linecap':'round','data-road-id':r.editId});}
  for(const rings of data.buildings)node('path',{d:rings.map(ps=>'M'+ps.map(p=>q(p).join(',')).join('L')+'Z').join(''),fill:'#c5ceca',stroke:'#84938c','stroke-width':.7,'fill-rule':'evenodd','pointer-events':'none'});
- for(const r of data.roads.filter(r=>r.editId===selectedId))node('polyline',{points:r.geometry.coordinates.map(p=>q(p).join(',')).join(' '),fill:'none',stroke:'#a65300','stroke-width':2,'stroke-dasharray':'5 3','pointer-events':'none'});
+ for(const r of data.roads.filter(r=>selectedIds.has(r.editId)))node('polyline',{points:r.geometry.coordinates.map(p=>q(p).join(',')).join(' '),fill:'none',stroke:'#a65300','stroke-width':2,'stroke-dasharray':'5 3','pointer-events':'none'});
  const pin=(p,color,label)=>{const [x,y]=q(p);node('circle',{cx:x,cy:y,r:6,fill:color,stroke:'white','stroke-width':2,'pointer-events':'none'});node('text',{x:x+10,y:y-10,fill:color,'font-size':13,'font-weight':700,stroke:'white','stroke-width':3,'paint-order':'stroke','pointer-events':'none'},label);};
  pin([0,0],'#df2424','선택 기준점');if(Math.hypot(...data.position)>1)pin(data.position,'#006d8c','길 위 관찰점');
  node('text',{x:W-16,y:24,'text-anchor':'end','font-size':14,fill:'#203b45'},'북 ↑');
- svg.onclick=e=>{const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const at=p.matrixTransform(svg.getScreenCTM().inverse()),r=closestMapRoad(data.roads,[(at.x-W/2)/scale,(at.y-H/2)/scale],8/scale,grades);if(r)onSelect(r);};
- svg.dataset.selectedRoad=selectedId;svg.dataset.origin='0,0';svg.dataset.radius=String(data.radius);
+ svg.onclick=e=>{const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const at=p.matrixTransform(svg.getScreenCTM().inverse()),r=closestMapRoad(data.roads,[(at.x-W/2)/scale,(at.y-H/2)/scale],8/scale,grades);if(r)onSelect(r,e);};
+ svg.dataset.selectedRoad=[...selectedIds][0]||'';svg.dataset.selectedRoads=JSON.stringify([...selectedIds]);svg.dataset.origin='0,0';svg.dataset.radius=String(data.radius);
 }

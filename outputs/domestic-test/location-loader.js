@@ -1,9 +1,9 @@
 import {savedSceneOptions} from './saved-scene-options.js';
 import {currentScene} from './browser-generation/policy.js';
-import {chooseMapPoint} from './map-picker.js?v=road-first2';
+import {chooseMapPoint} from './map-picker.js?v=road-groups1';
 import {browserContext,listScenes} from './browser-generation/storage.js';
-import {createNeighborhood} from './browser-generation/progress.js?v=road-first2';
-import {AUTO_VIEW_RADIUS} from './map-picker.js?v=road-first2';
+import {createNeighborhood} from './browser-generation/progress.js?v=road-groups1';
+import {AUTO_VIEW_RADIUS} from './map-picker.js?v=road-groups1';
 const original={id:'original',address:'서울 강북구 솔매로17가길 7',origin:[37.626469,127.015677],sizeMetres:300,roadAddress:{road_name:'솔매로17가길',main_building_no:'7',sub_building_no:''}};
 const key='neighborhood-last-location-v74';
 const deployment=fetch(new URL('./deployment.json',import.meta.url),{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('배포 설정을 불러오지 못했습니다.');return r.json();});

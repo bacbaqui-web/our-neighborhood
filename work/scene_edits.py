@@ -91,3 +91,27 @@ def align_profile(profile,polygon):
   return min(a.distance(c)+b.distance(d),a.distance(d)+b.distance(c))
  edge=min(range(len(ring)-1),key=lambda i:score((ring[i],ring[i+1])))
  return {**profile,'frontEdge':edge}
+
+def validate_road_groups(roads,groups):
+ if not isinstance(groups,list):raise ValueError('도로 묶음 정보를 읽지 못했습니다.')
+ by_id={r['editId']:r for r in roads};seen=set()
+ for group in groups:
+  if not isinstance(group,list) or len(group)<2:raise ValueError('도로 묶음에는 두 구간 이상이 필요합니다.')
+  for key in group:
+   if not isinstance(key,str) or key not in by_id or key in seen:raise ValueError('도로 묶음의 구간 정보가 맞지 않습니다.')
+   seen.add(key)
+  if len({by_id[key]['grade'] for key in group})!=1:raise ValueError('묶은 도로의 등급을 하나로 맞춰 주세요.')
+
+def prepare_editable_roads(roads,edits,origin=None,preserve=False):
+ from road_sections import group_road_sections
+ for road in roads:road.pop('manualGrade',None)
+ classify_roads(roads,edits.get('roads',{}),origin)
+ for road in roads:
+  if road.get('gradeSource')=='user':road['manualGrade']=road['grade']
+ # Once a user has edited logical groups, keep original segment identities,
+ # including after unlinking the last group. Never merge their IDs away.
+ if not preserve:
+  roads=group_road_sections(roads)
+  classify_roads(roads,{},origin)
+ validate_road_groups(roads,edits.get('roadGroups',[]))
+ return roads

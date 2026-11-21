@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source=JSON.parse(fs.readFileSync('outputs/domestic-test/shops/textures/comic-manifest.json'));
+globalThis.document={};let images=[];
+globalThis.Image=class {set src(value){images.push(value);queueMicrotask(()=>this.onload());}};
+globalThis.fetch=async()=>({ok:true,json:async()=>({files:source.files.map(s=>s.replace(/\.png$/,'.webp'))})});
+await (await import('../outputs/domestic-test/shops/comic-artwork.js?publication-webp')).prepareComicShopArtwork();
+assert.equal(images.length,source.files.length);assert(images.every(s=>s.endsWith('.webp')));
+globalThis.fetch=async()=>({ok:true,json:async()=>({files:['../outside.webp']})});
+await assert.rejects((await import('../outputs/domestic-test/shops/comic-artwork.js?publication-invalid')).prepareComicShopArtwork(),/목록이 올바르지/);
+console.log('Published WebP atlas manifest loads; unsafe texture paths remain rejected.');

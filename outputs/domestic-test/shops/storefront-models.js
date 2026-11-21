@@ -1,6 +1,6 @@
-import {addComicShopArtwork} from './comic-artwork.js?v=shop50v1';
-import {buildReferenceExterior} from './reference-exteriors.js?v=shop50v1';
-import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=shop50v1';
+import {addComicShopArtwork} from './comic-artwork.js?v=shop50v2';
+import {buildReferenceExterior} from './reference-exteriors.js?v=shop50v2';
+import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=shop50v2';
 import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';

@@ -8,10 +8,10 @@ function textureFor(file){
 export function prepareComicShopArtwork(){
  if(typeof document==='undefined')return Promise.resolve();
  return ready??=(async()=>{
-  const response=await fetch(new URL('./textures/comic-manifest.json?v=shop50v1',import.meta.url));
+  const response=await fetch(new URL('./textures/comic-manifest.json?v=shop50v2',import.meta.url));
   if(!response.ok)throw Error('가게 간판 목록을 불러오지 못했습니다. 새로고침해 주세요.');
   const data=await response.json();
-  if(!Array.isArray(data.files)||data.files.some(f=>typeof f!=='string'||!/^comic-[a-z-]+\/[a-z0-9_-]+\.png$/.test(f)))throw Error('가게 간판 파일 목록이 올바르지 않습니다.');
+  if(!Array.isArray(data.files)||data.files.some(f=>typeof f!=='string'||!/^comic-[a-z-]+\/[a-z0-9_-]+\.(?:png|webp)$/.test(f)))throw Error('가게 간판 파일 목록이 올바르지 않습니다.');
   await Promise.all(data.files.map(file=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>{const t=textureFor(file);t.image=image;t.needsUpdate=true;resolve();};image.onerror=()=>reject(Error('가게 간판 그림을 불러오지 못했습니다: '+file));image.src=new URL('./textures/'+file,import.meta.url).href;})));
  })().catch(e=>{ready=null;throw e;});
 }

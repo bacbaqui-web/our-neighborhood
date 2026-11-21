@@ -1,6 +1,6 @@
-import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop50v1';
+import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop50v2';
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
-import {stableHash,scheduleFor} from './storefront-hours.js?v=shop50v1';
+import {stableHash,scheduleFor} from './storefront-hours.js?v=shop50v2';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const normalize=s=>(s||'').replace(/\s/g,'');

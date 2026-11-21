@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "exportedAt": "2026-11-21T09:20:12.651Z",
+  "items": [
+    {
+      "version": 1,
+      "assetId": "road:a46",
+      "reference": {
+        "id": "cone-kr-1",
+        "imageUrl": "https://gddesign.co.kr/web/product/big/202311/af43ff0f74ce50fdd7a7d457c64c444e.jpg",
+        "sourceUrl": "https://gddesign.co.kr/product/detail.html?product_no=447",
+        "sourceName": "굿디자인 · 고속도로용 라바콘",
+        "koreaEvidence": "국내 도로시설 판매업체의 주황 라바콘 제품 사진. 국내 실제 설치 장소는 미확인."
+      },
+      "status": "approved",
+      "approvedReferenceId": "cone-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:35.330Z"
+    },
+    {
+      "version": 1,
+      "assetId": "road:a68",
+      "reference": {
+        "id": "paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
+        "imageUrl": "local-only:bus-reference.webp",
+        "sourceUrl": "",
+        "sourceName": "직접 제공한 이미지",
+        "koreaEvidence": "한국에서 사용하는 물건인지 확인한 뒤 승인해 주세요.",
+        "userProvided": true,
+        "imageSha256": "6d8efbf233c4d239503a08d0d58b86a6182509f3d9c3a9d7f8dbf3d435e84c06"
+      },
+      "status": "approved",
+      "approvedReferenceId": "paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
+      "revision": 2,
+      "updatedAt": "2026-11-21T09:17:37.601Z"
+    },
+    {
+      "version": 1,
+      "assetId": "road:a72",
+      "reference": {
+        "id": "barrier-kr-1",
+        "imageUrl": "https://sj7.co.kr/web/product/big/202402/d88d7973f126e472dde3ec9060b28428.jpg",
+        "sourceUrl": "https://sj7.co.kr/product/detail.html?product_no=504",
+        "sourceName": "서진기업 · 접이식 바리케이드",
+        "koreaEvidence": "국내 안전용품 업체의 접이식 스테인리스 제품 사진. 실제 설치 장소는 미확인."
+      },
+      "status": "approved",
+      "approvedReferenceId": "barrier-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:17:44.444Z"
+    },
+    {
+      "version": 1,
+      "assetId": "road:a75",
+      "reference": {
+        "id": "manhole-kr-1",
+        "imageUrl": "https://m.intelrior.com/web/upload/NNEditor/20240411/mobile/71da85ad22c26cf62ac898e7eefd8631_1712796342.png",
+        "sourceUrl": "https://m.intelrior.com/product/detail.html?product_no=18481",
+        "sourceName": "인텔리어 · 고려맨홀",
+        "koreaEvidence": "한국산 표기가 있는 원형 통신 맨홀뚜껑 제품 사진. 뚜껑과 받침을 구분해 검토."
+      },
+      "status": "approved",
+      "approvedReferenceId": "manhole-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:48.922Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:a74",
+      "reference": {
+        "id": "grating-kr-1",
+        "imageUrl": "https://ktomok.com/data/editor/30/3010/1581995538_01.jpg",
+        "sourceUrl": "https://ktomok.com/shop/item.php?it_id=1581995611",
+        "sourceName": "건설토목자재 · 국산 그레이팅",
+        "koreaEvidence": "국산으로 안내된 400×1000×50mm 배수로 덮개 도면. 설치 사진이 아닌 규격 참고 자료."
+      },
+      "status": "approved",
+      "approvedReferenceId": "grating-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:47.049Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:a134",
+      "reference": {
+        "id": "hydrant-kr-1",
+        "imageUrl": "https://www.fireds.net/m/upload/shopimg/T_2Nega_1._A-0662.jpg",
+        "sourceUrl": "https://www.fireds.net/m/eshop/list.html?cgCode=41",
+        "sourceName": "DS 소방마켓 · 육송 YOH-I100",
+        "koreaEvidence": "국내 소방용품 업체가 판매하는 육송 지상식 소화전 제품 사진. 실제 설치 장소는 미확인."
+      },
+      "status": "approved",
+      "approvedReferenceId": "hydrant-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:52.165Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:legacy-109",
+      "reference": {
+        "id": "cable-kr-1",
+        "imageUrl": "https://allcall.co.kr/shop/images/inimage/1025-0100-1.jpg",
+        "sourceUrl": "https://allcall.co.kr/Shop/k_view?code=1025-0100-001",
+        "sourceName": "우일광 · 2구 전선보호덮개",
+        "koreaEvidence": "국내 안전용품 업체의 2구 전선보호덮개 제품 사진. 국내 실제 설치 장소와 제조국은 미확인."
+      },
+      "status": "approved",
+      "approvedReferenceId": "cable-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:17:00.750Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:a67",
+      "reference": {
+        "id": "speed-seoul-1",
+        "imageUrl": "https://image.edaily.co.kr/images/Photo/files/NP/S/2021/04/PS21041800305.jpg",
+        "sourceUrl": "https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01889286629017432",
+        "sourceName": "이데일리 · 서울 제한속도 표지 사진",
+        "koreaEvidence": "2021년 서울 도로의 50km/h 표지판 설치 사진. 아래 60 해제 보조판은 당시 상황."
+      },
+      "status": "approved",
+      "approvedReferenceId": "speed-seoul-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:54.585Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:a77",
+      "reference": {
+        "id": "pole-kr-1",
+        "imageUrl": "https://cdn.imweb.me/thumbnail/20241120/32a36d4252d85.png",
+        "sourceUrl": "https://svee.co.kr/",
+        "sourceName": "SVEE Korea · 전주 안전보호대",
+        "koreaEvidence": "국내 제조사가 제공한 전주 안전보호대 설치 예시. 제조사에서 한국전력 적용을 안내."
+      },
+      "status": "approved",
+      "approvedReferenceId": "pole-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:16:56.822Z"
+    },
+    {
+      "version": 1,
+      "assetId": "representative:a47",
+      "reference": {
+        "id": "parking-kr-1",
+        "imageUrl": "https://m.ecoguardmall.com/web/product/big/202008/d52d2cf2696b1adbeec3d71c79412fbd.jpg",
+        "sourceUrl": "https://m.ecoguardmall.com/product/detail.html?product_no=263",
+        "sourceName": "에코가드몰 · 해광 사각 주차콘",
+        "koreaEvidence": "국내 판매업체의 한글 주차금지 표지가 있는 해광 주차콘 사진. 실제 설치 장소는 미확인."
+      },
+      "status": "approved",
+      "approvedReferenceId": "parking-kr-1",
+      "revision": 1,
+      "updatedAt": "2026-11-21T09:17:03.126Z"
+    }
+  ]
+}

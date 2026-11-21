@@ -5748,5 +5748,24 @@
     ],
     "publicScene": "d52fa91caaa507fa",
     "screenshot": "verification/scene-edit/public-road-first.jpg"
+  },
+  "approvedRoad20261121": {
+    "status": "implemented-and-locally-verified",
+    "count": 10,
+    "approvalSnapshot": "work/approved-road/approvals.json",
+    "models": "outputs/domestic-test/approved-road/manifest.json",
+    "customReference": "road:a68 / paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
+    "checks": [
+      "10 approval-bound GLB roundtrips and supporting contacts",
+      "real openings: cable channels, handle, grate, pole clearance",
+      "Edge front/back/side/top/bottom, day/night/edges",
+      "existing house and 1.7m reference comparison"
+    ],
+    "notes": [
+      "Photo dimensions inferred except grating/cable product dimensions",
+      "No photo textures, lettering or advertisements",
+      "Original files retained; current registry replaced"
+    ],
+    "deployment": "pending"
   }
 }

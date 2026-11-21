@@ -1,6 +1,6 @@
 import {createReferenceReview} from './reference-review.js?v=references1';
 import {remakeAliases} from './remakes.js?v=authority1';
-import {loadAssetRegistry} from './registry.js?v=review527';
+import {loadAssetRegistry} from './registry.js?v=approvedroad1';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';

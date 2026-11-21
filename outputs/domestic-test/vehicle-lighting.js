@@ -3,19 +3,19 @@ import * as T from 'three';
 // Normalized registered vehicles face +Z. Fractions refer to their original
 // body bounds; attachment depth is sampled from the actual GLB surface.
 export const LAMP_LAYOUTS={
- 'city-bus':{front:[.34,.19,.14,.11],rear:[.43,.31,.13,.22]},
+ 'city-bus':{front:[.34,.19,.14,.11],rear:[.35,.31,.13,.22]},
  porter2:{front:[.37,.37,.17,.18],rear:[.37,.18,.18,.09]},
- 'porter2-delivery':{front:[.36,.25,.18,.11],rear:[.38,.10,.19,.07]},
+ 'porter2-delivery':{front:[.36,.25,.18,.11],rear:[.34,.13,.19,.07]},
  'sonata-dn8':{front:[.35,.51,.22,.065],rear:[.32,.65,.22,.055]},
- ray:{front:[.38,.47,.13,.17],rear:[.43,.53,.10,.19]},
- 'carnival-ka4':{front:[.37,.49,.24,.07],rear:[.39,.64,.25,.06]},
- 'grandeur-ig':{front:[.36,.46,.24,.09],rear:[.37,.61,.26,.07]},
- 'spark-m400':{front:[.35,.48,.17,.12],rear:[.40,.55,.12,.18]},
- 'grand-starex-school':{front:[.39,.36,.15,.19],rear:[.43,.43,.10,.23]},
+ ray:{front:[.38,.47,.13,.17],rear:[.34,.53,.10,.19]},
+ 'carnival-ka4':{front:[.37,.49,.24,.07],rear:[.33,.64,.25,.06]},
+ 'grandeur-ig':{front:[.36,.46,.24,.09],rear:[.33,.61,.26,.07]},
+ 'spark-m400':{front:[.35,.48,.17,.12],rear:[.34,.55,.12,.18]},
+ 'grand-starex-school':{front:[.39,.36,.15,.19],rear:[.34,.43,.10,.23]},
 };
 const visibleInScene=o=>{for(let p=o;p;p=p.parent)if(!p.visible)return false;return true;};
 export function createVehicleLighting(scene,onShadowChange=()=>{}){
- const rigs=new Map(),geometry=new T.CircleGeometry(.5,12),frontMaterial=new T.MeshBasicMaterial({color:0xfff1cc,toneMapped:false,side:T.FrontSide}),rearMaterial=new T.MeshBasicMaterial({color:0xff1810,toneMapped:false,side:T.FrontSide});
+ const rigs=new Map(),geometries=new Map(),frontMaterial=new T.MeshBasicMaterial({color:0xfff1cc,toneMapped:false,side:T.FrontSide}),rearMaterial=new T.MeshBasicMaterial({color:0xff1810,toneMapped:false,side:T.FrontSide});
  const pool=Array.from({length:2},()=>{
   const light=new T.SpotLight(0xffefd4,0,24,Math.PI/7,.72,2);
   light.castShadow=true;light.shadow.mapSize.set(512,512);light.shadow.bias=-.00008;light.shadow.normalBias=.025;light.shadow.camera.near=.1;light.shadow.camera.far=24;
@@ -36,10 +36,22 @@ export function createVehicleLighting(scene,onShadowChange=()=>{}){
     const hit=ray.intersectObjects(body,false)[0];
     // No guessed floating lamps when a model has no surface at this anchor.
     if(!hit)continue;
-    const normal=hit.face.normal.clone().transformDirection(hit.object.matrixWorld);
-    const local=root.worldToLocal(hit.point.clone().addScaledVector(normal,.014));
-    const localNormal=normal.transformDirection(root.matrixWorld.clone().invert());
-    const lens=new T.Mesh(geometry,kind==='front'?frontMaterial:rearMaterial);lens.position.copy(local);lens.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),localNormal);lens.scale.set(width,height,1);lens.userData={environmentOwned:true,noInk:true,vehicleLamp:kind};group.add(lens);
+    const local=root.worldToLocal(hit.point.clone());local.z+=sign*.018;
+    const key=[root.userData.vehicleFamily,...size,kind,side].join(':');
+    let geometry=geometries.get(key);
+    if(!geometry){
+     geometry=new T.CircleGeometry(.5,12);const vertices=geometry.attributes.position;
+     for(let i=0;i<vertices.count;i++){
+      const x=local.x+vertices.getX(i)*width,y=local.y+vertices.getY(i)*height;
+      ray.set(root.localToWorld(new T.Vector3(x,y,sign*(l/2+1))),direction);
+      const sample=ray.intersectObjects(body,false)[0];
+      const z=sample?root.worldToLocal(sample.point.clone()).z+sign*.018:local.z;
+      vertices.setXYZ(i,x,y,z);
+     }
+     if(sign<0){const ix=geometry.index;for(let i=0;i<ix.count;i+=3){const v=ix.getX(i+1);ix.setX(i+1,ix.getX(i+2));ix.setX(i+2,v);}}
+     geometry.computeVertexNormals();geometries.set(key,geometry);
+    }
+    const lens=new T.Mesh(geometry,kind==='front'?frontMaterial:rearMaterial);lens.userData={environmentOwned:true,noInk:true,vehicleLamp:kind};group.add(lens);
     if(kind==='front')anchors.push(local);
    }
   }
@@ -78,5 +90,5 @@ export function createVehicleLighting(scene,onShadowChange=()=>{}){
   if(changed)onShadowChange();
   return Math.min(pool.length,candidates.length);
  }
- return {set,update,stats:()=>({vehicles:rigs.size,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group}]of rigs)root.remove(group);rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}geometry.dispose();frontMaterial.dispose();rearMaterial.dispose();}};
+ return {set,update,stats:()=>({vehicles:rigs.size,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group}]of rigs)root.remove(group);rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}for(const geometry of geometries.values())geometry.dispose();geometries.clear();frontMaterial.dispose();rearMaterial.dispose();}};
 }

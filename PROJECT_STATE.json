@@ -5984,5 +5984,17 @@
     "report": "work/shop-interiors/exterior-report.txt",
     "proof": "verification/shop-exteriors/public-comic-estate.jpg",
     "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=shop%3Aestate&tab=part"
+  },
+  "remainingComicShops20261122": {
+    "date": "2026-11-22",
+    "implementedShops": 15,
+    "preservedEstateShops": 3,
+    "artworkAtlases": 8,
+    "sourceCommit": "fdbe640eb783a49b749e5d154f71f1caa675a424",
+    "publicDeploymentRun": 44923979436,
+    "publicVerified": true,
+    "proposalCount": 50,
+    "report": "work/shop-expansion/report.txt",
+    "publicProposal": "https://magamiscom.ing/neighborhood/domestic-test/shops/alley-shop-candidates-50.txt"
   }
 }

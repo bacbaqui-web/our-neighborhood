@@ -232,6 +232,17 @@ def build(root,roads=None,terrain=None):
  for k,v in rc['positions'].items():rc['positions'][k]=cut_positions(v,zone)
  rc['normals']={}
  road_surface=connected_surface(shape(plan['road']).intersection(zone),.035)
+ # Adjacent blended triangles can sample the feather at different subdivisions.
+ # Share interior road vertices; keep old outer seam and real curb heights fixed.
+ interior=shape(plan['road']).buffer(-.2).intersection(zone.buffer(-.01));vertices={}
+ for i in range(0,len(road_surface),3):
+  x,y,z=road_surface[i:i+3]
+  if interior.covers(Point(x,z)):vertices.setdefault((round(x,6),round(z,6)),[]).append(i)
+ for indices in vertices.values():
+  heights={road_surface[i+1] for i in indices}
+  if max(heights)-min(heights)>.000001:
+   shared=sum(heights)/len(heights)
+   for i in indices:road_surface[i+1]=shared
  rc['positions'].setdefault('asphalt',[]);rc['positions']['asphalt']+=road_surface
  rc['positions'].setdefault('sidewalk',[]);rc['positions']['sidewalk']+=connected_surface(shape(plan['sidewalk']).intersection(zone).difference(rm),.185)
  # Both classes use the same asphalt material. One mesh avoids a false object

@@ -11,6 +11,9 @@ import neighborhood_sources as source
 source.request=request
 urllib.request.urlopen=urlopen
 params=json.loads(PARAMETERS)
+import re
+if params.get('sceneId') and not re.fullmatch('[a-f0-9]{16}',params['sceneId']):raise ValueError('저장된 동네 식별자가 올바르지 않습니다.')
+input_snapshot=json.loads(PARAMETERS)
 source.fetch_building_collection=lambda bbox: params['buildingCollection']
 source.kakao=lambda path,params2: {'documents':params.get('stations' if path=='category' else 'exits',[]),'meta':{'is_end':True}}
 from view_generation import validate_view,select_view,select_roads,snap_to_road
@@ -19,7 +22,7 @@ radius=params['radius'];lat,lon=params['center']
 if radius not in (range(50,501,50) if params.get('structureLab') else range(50,301,50)) or not(33<lat<39.5 and 124<lon<132): raise ValueError('국내 위치와 50~300m 범위를 선택해 주세요.')
 from gentle_terrain import GentleTerrain,select_buildings,VERSION,elevation_info as terrain_info
 elevation_info=terrain_info()
-key=hashlib.sha256(('vworld-street-end-v1:'+json.dumps(view,sort_keys=True)+':'+VERSION+':'+str(radius)+':'+','.join(f'{n:.6f}' for n in [lat,lon])).encode()).hexdigest()[:16]
+key=params.get('sceneId') or hashlib.sha256(('vworld-street-end-v1:'+json.dumps(view,sort_keys=True)+':'+VERSION+':'+str(radius)+':'+','.join(f'{n:.6f}' for n in [lat,lon])).encode()).hexdigest()[:16]
 final=Path('/outputs/generated-neighborhoods')/key;root=final/'data';root.mkdir(parents=True,exist_ok=True)
 for name in ['generation','people','vegetation','environment','shops']:(root/name).mkdir(exist_ok=True)
 for name in ['alley-v62','environment-v32','vegetation-v31']:(final/name).mkdir(exist_ok=True)
@@ -34,7 +37,14 @@ def stage_base():
  source_loc={**loc,'sizeMetres':(radius+30)*2}
  all_buildings=source.acquire_buildings(root,source_loc if view else loc)
  buildings=select_buildings(all_buildings,source_loc if view else loc)
- all_roads=source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
+ all_roads=params.get('sourceRoads') or source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
+ from scene_edits import classify_roads,apply_building_rules
+ edits=params.get('sceneEdits') or {'roads':{},'buildings':{}}
+ classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
+ apply_building_rules(all_buildings,all_roads,edits.get('buildings',{}),loc['origin'])
+ buildings=select_buildings(all_buildings,source_loc if view else loc)
+ write('scene-edits.json',edits)
+ write('generation-input.json',{**input_snapshot,'sceneId':key,'sourceRoads':all_roads})
  from shapely.geometry import box,shape,mapping
  road_limit=box(-radius-35,-radius-35,radius+35,radius+35)
  roads=[]
@@ -54,6 +64,7 @@ def stage_base():
   roads=select_roads(roads,radius,view,view_qa)
  write('buildings.geojson',buildings)
  write('base-qa.json',source.write_glb(root,terrain,roads,buildings,source_loc))
+ write('buildings.geojson',buildings)
  final_road=json.loads((root/'road-reservation.json').read_text())
  from street_end_context import build_context
  for road in roads:

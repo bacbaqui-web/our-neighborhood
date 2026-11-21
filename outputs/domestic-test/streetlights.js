@@ -42,7 +42,7 @@ export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],s
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(verts,3));g.setAttribute('glow',new T.Float32BufferAttribute(values,1));const pool=new T.Mesh(g,poolMat);pool.name=l.id+'-ground-spill';pool.renderOrder=2;group.add(pool);pools.push(pool);
  }
  for(const [color,gs] of bucket){const mesh=new T.Mesh(mergeGeometries(gs,false),new T.MeshStandardMaterial({color,roughness:.72}));mesh.name='security-light-fixtures';mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);gs.forEach(g=>g.dispose());}
- const lensMesh=new T.Mesh(mergeGeometries(lenses,false),lensMaterial);lensMesh.name='security-light-lenses';group.add(lensMesh);lenses.forEach(g=>g.dispose());
+ if(lenses.length){const lensMesh=new T.Mesh(mergeGeometries(lenses,false),lensMaterial);lensMesh.name='security-light-lenses';group.add(lensMesh);lenses.forEach(g=>g.dispose());}
  // Only two nearby lamps get shadowed, physically attenuated lighting. All lamps
  // keep their emissive lenses and terrain-conforming pools at distant viewpoints.
  const actual=Array.from({length:2},()=>{const light=new T.SpotLight(0xffd5a0,0,23,Math.PI*.31,.72,2);light.shadow.mapSize.set(1024,1024);light.shadow.bias=-.00008;light.shadow.normalBias=.07;light.shadow.camera.near=.2;light.shadow.camera.far=26;light.castShadow=false;group.add(light,light.target);return{light,id:-1};});
@@ -69,7 +69,7 @@ export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],s
   billboardSources={lamps:high?null:indices.map(i=>plan.lights[i].id),windows:room>=0?['window-'+room]:[]};billboardSignature=JSON.stringify(billboardSources);
   pools.forEach((p,i)=>p.visible=!indices.includes(i));if(changed)renderer.shadowMap.needsUpdate=true;return indices.length+(room>=0?1:0);
  }
- function dispose(){group.traverse(o=>{o.geometry?.dispose();if(o.material)o.material.dispose();if(o.isLight)o.shadow?.dispose();});glowTexture.dispose();}
+ function dispose(){group.traverse(o=>{o.geometry?.dispose();if(o.material)o.material.dispose();if(o.isLight)o.shadow?.dispose();});glowTexture.dispose();lensMaterial.dispose();glowMat.dispose();poolMat.dispose();}
  function exportGroup(){const out=new T.Group();out.name=group.name;for(const o of group.children)if(o.isMesh&&o.material.isMeshStandardMaterial)out.add(o.clone());return out;}
  group.traverse(o=>o.userData.environmentOwned=true);group.userData={environmentOwned:true,qa:plan.qa,supportFit:{freeStanding:plan.lights.filter(l=>l.type==='arterial').length,mounted:plan.lights.filter(l=>l.type!=='arterial').length}};return{group,set,update,heads,plan,dispose,exportGroup,sourcesForCamera,getBillboardSources:()=>billboardSources,getBillboardSignature:()=>billboardSignature};
 }

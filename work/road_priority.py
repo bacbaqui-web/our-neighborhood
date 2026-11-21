@@ -9,6 +9,7 @@ MAJOR={'primary','secondary','trunk','tertiary'}
 def street_type(props):
  # Access restrictions override road class; width alone never means no vehicles.
  kind=props.get('class','minor');sub=props.get('subclass','')
+ if props.get('sceneGrade'):return 'shared' if props['sceneGrade']==1 else 'carriageway'
  if sub=='sidewalk' or props.get('footway')=='sidewalk':return 'sidewalk'
  if sub in {'footway','pedestrian','steps','cycleway'} or kind in {'path','pedestrian'} or props.get('motor_vehicle')=='no' or props.get('vehicle')=='no':return 'pedestrian'
  if kind in MAJOR or kind=='motorway':return 'carriageway'
@@ -27,7 +28,9 @@ def reserve(root,location,roads,buildings):
  paths=[];majorPaths=[];public=[];servicePaths=[];entries=[];byType={k:[] for k in ['carriageway','sidewalk','shared','pedestrian']}
  for r in roads:
   kind=r['properties'].get('class','minor');line=shape(r['geometry']);width=float(r['width']);sidewalk=0;usage=street_type(r['properties'])
-  if usage=='carriageway':
+  if r.get('grade'):
+   sidewalk=r.get('sidewalkEachSide',0)
+  elif usage=='carriageway':
    width=19.9 if hasbus and kind!='tertiary' else (7.1 if kind=='tertiary' else 13.5)
    sidewalk=3.0
    # Bus stop widening and the existing main-road furniture band remain protected.
@@ -50,6 +53,19 @@ def reserve(root,location,roads,buildings):
  allRoad=allRoad.union(service)
  protected=allRoad.union(majorPublic).buffer(.4,join_style=2)
  original=copy.deepcopy(buildings);out=[];changed=[];omitted=[]
+ if any(r.get('grade') for r in roads):
+  # Inferred widths never cut a known building. Fit the public surface instead.
+  built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']])
+  clearance=built.buffer(.15,join_style=2)
+  for r in roads:
+   if r.get('gradeSource')=='user' and shape(r['geometry']).buffer(min(float(r['width'])/2,1.5)).intersection(built).area>.2:
+    raise ValueError('선택한 도로가 실제 건물과 겹칩니다. 도로 위치를 확인하거나 이전 등급을 유지해 주세요.')
+  overlap=allRoad.intersection(clearance).area
+  surfaces={k:g.difference(clearance) for k,g in surfaces.items()}
+  allRoad=allRoad.difference(clearance);majorRoad=majorRoad.difference(clearance);majorPublic=majorPublic.difference(clearance)
+  result={'version':4,'surfaces':{k:mapping(v) for k,v in surfaces.items()},'road':mapping(allRoad),'majorRoad':mapping(majorRoad),'majorPublic':mapping(majorPublic),'protected':mapping(protected.difference(clearance)),'entries':entries,'qa':{'adjustedBuildings':0,'omittedBuildings':0,'roadBuildingOverlapM2':round(built.intersection(allRoad).area,7),'sidewalkBuildingOverlapM2':round(built.intersection(majorPublic).area,7),'inferredSurfaceTrimmedM2':round(overlap,2),'changes':[],'omittedIds':[]},'classification':'street-grades-v1; inferred widths fitted around preserved building footprints'}
+  for name,value in [('buildings-source.geojson',original),('buildings.geojson',buildings),('road-reservation.json',result),('roads-source.json',{'roads':roads,'source':'OpenFreeMap / OpenStreetMap'})]:(root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
+  return result
  for f in buildings['features']:
   local=transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry']))
   cut=S.make_valid(local).difference(protected)

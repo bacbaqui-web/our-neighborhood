@@ -1,6 +1,6 @@
 import {loadBuildings} from './vworld.js';
 import {generationPoint,matchingScene} from './policy.js';
-import {saveScene,listScenes} from './storage.js';
+import {saveScene,listScenes,getScene} from './storage.js';
 import {loadSDK} from '../map-picker.js?v=unified11';
 async function placesNear(point){
  await loadSDK();const service=new kakao.maps.services.Places(),found=new Map(),warnings=[];
@@ -23,8 +23,10 @@ async function placesNear(point){
 }
 export async function generateInBrowser(point,onProgress,{signal}={}){
  point=generationPoint(point);
- const cached=(await listScenes()).find(m=>!point.force&&m.streetEndContext?.version===1&&m.sources?.buildings?.startsWith('VWorld /')&&matchingScene(m,point));
- if(cached)return cached;
+ const existing=(await listScenes()).find(m=>m.streetEndContext?.version===1&&m.sources?.buildings?.startsWith('VWorld /')&&matchingScene(m,point));
+ if(existing&&!point.force)return existing;
+ let sceneEdits;
+ if(existing){const saved=await getScene(existing.id),bytes=saved?.files['scene-edits.json'];if(bytes)sceneEdits=JSON.parse(new TextDecoder().decode(bytes));}
  onProgress('주변 가게를 확인하고 있습니다…',0);
  let extra;try{extra=await placesNear(point);}catch(error){extra={places:[],stations:[],exits:[],warnings:['주변 가게 정보를 받지 못해 건물과 도로만으로 배치했습니다.']};onProgress('가게 조회를 건너뛰고 건물과 도로를 만듭니다…',1);}
  if(signal?.aborted)throw new DOMException('취소했습니다.','AbortError');
@@ -40,6 +42,6 @@ export async function generateInBrowser(point,onProgress,{signal}={}){
    if(data.type==='error'){finish();const error=Error(data.message);error.generationDetail={stage:data.stage,detail:data.detail};reject(error);}
    if(data.type==='complete'){finish();try{data.files['visibility-source.json']=new TextEncoder().encode(JSON.stringify(buildingCollection));data.manifest.visibilitySource=true;onProgress('이 브라우저에 동네를 저장하고 있습니다…',99);await saveScene(data.manifest,data.files);resolve(data.manifest);}catch(error){reject(Error('동네를 저장할 공간이 부족하거나 브라우저 저장이 차단되어 있습니다. '+error.message));}}
   };
-  worker.postMessage({...point,...extra,buildingCollection});
+  worker.postMessage({...point,...extra,buildingCollection,sceneEdits});
  });
 }

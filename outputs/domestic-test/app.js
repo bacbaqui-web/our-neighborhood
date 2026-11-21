@@ -1,7 +1,7 @@
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
-import {readPalette,readEdits,chooseBuildingAsset} from './building-assets/catalog.js';
+import {readPalette,readEdits,chooseBuildingAsset,assetById} from './building-assets/catalog.js?v=scene-edit1';
 import {applyAssetToSpec,assetColors} from './building-assets/model.js';
-import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=compact1';
+import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=scene-edit1';
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=grounds1';
 import {installWindowInspection} from './window-inspection.js?v=recess22';
@@ -23,7 +23,7 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=compact1';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=scene-edit1';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=151';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=151';
 import {loadData} from './load-data.js?v=151';
@@ -36,7 +36,7 @@ import {createPrecipitation} from './precipitation.js?v=151';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
 import {createBillboardLightField} from './billboard-lighting.js?v=151';
 import {createAtmosphere} from './atmosphere.js?v=windows-grounds1';
-import {createStreetlights} from './streetlights.js?v=height-audit2';
+import {createStreetlights} from './streetlights.js?v=scene-edit1';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
 import {loadVegetationAssets} from './vegetation.js?v=view3c';
 import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=view3c';
@@ -145,7 +145,7 @@ async function build(){const assetPalette=readPalette(),assetEdits=readEdits();c
 for(const f of data.features){const pr=f.properties;const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;for(const rings of polygons){const points=rings[0].slice(0,-1).map(xz);if(points.length<3||(!locationContext.view&&!withinScope(points,detailRadius)))continue;const cx=points.reduce((a,c)=>a+c[0],0)/points.length,cz=points.reduce((a,c)=>a+c[1],0)/points.length;
 const shape=new T.Shape(points.map(v=>new T.Vector2(v[0],-v[1])));for(const ring of rings.slice(1)){const path=new T.Path(ring.slice(0,-1).map(c=>{const v=xz(c);return new T.Vector2(v[0],-v[1])}));shape.holes.push(path)}
 const base=Math.min(...points.map(v=>elevation(v[0],v[1])),elevation(cx,cz))-.1;const top=elevation(cx,cz)+Math.max(1,pr.gro_flo_co)*floor;
-const assetChoice=chooseBuildingAsset(pr,assetPalette,assetEdits),style=assetColors(assetChoice,facadeStyles[Math.abs(Number(pr.objectid))%6]);
+const assetChoice=chooseBuildingAsset(pr,assetPalette,assetEdits),style=assetColors(assetChoice,facadeStyles[pr.streetProfile?.styleIndex??Math.abs(Number(pr.objectid))%6]);
 const geo=createBuildingShellGeometry(shape,base,top,style.wall,style.roof);
 const roadAddress=locationContext.roadAddress;const isHome=roadAddress&&pr.street_name===roadAddress.road_name&&String(pr.house_number)===[roadAddress.main_building_no,roadAddress.sub_building_no].filter(Boolean).join('-');
 const mesh=new T.Mesh(geo,new T.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.9}));mesh.name=`${pr.street_name} ${pr.house_number}`;mesh.userData={...pr,estimatedHeight:pr.gro_flo_co*floor,source:pr.source||locationContext.sources?.buildings||'MOIS / Esri Korea 2026.07',cx,cz,base,buildingAsset:assetChoice?.id};
@@ -156,7 +156,7 @@ for(const b of specs){b.arterialFacades=(arterialPlan?.commercialFacades||[]).fi
 planFrontages(specs,roadInfo);
 host.dataset.facilityPlan=JSON.stringify(planFacilities(specs,shopPlaces.places,{xz}));
 for(const b of specs)if(b.facility?.id==='apartment')b.apartment=chooseApartment(b);
-for(const b of specs)applyAssetToSpec(b,chooseBuildingAsset(b.properties,assetPalette,assetEdits));
+for(const b of specs){const p=b.properties.streetProfile;if(!b.facility||p?.assetId||(assetEdits[String(b.seed)]&&!p?.resetLegacyAsset)||assetPalette.enabled)applyAssetToSpec(b,chooseBuildingAsset(b.properties,assetPalette,assetEdits));const edge=p?.frontStart?b.points.findIndex((a,i)=>{const c=b.points[(i+1)%b.points.length],dist=(x,y)=>Math.hypot(x[0]-y[0],x[1]-y[1]);return Math.min(dist(a,p.frontStart)+dist(c,p.frontEnd),dist(c,p.frontStart)+dist(a,p.frontEnd))<.1;}):p?.frontEdge;if(p&&edge>=0){b.frontEdge=edge;b.frontage=undefined;b.styleIndex=assetById[b.assetChoice]?.styleIndex??p.styleIndex;if(b.facility)b.facility.frontEdge=edge;}}
 const shopInputs=arterialShopInputs(shopCatalog,shopPlaces.places,arterialPlan);
 shopPlan=planNeighborhoodShops(specs.filter(b=>!b.arterialKiosk),shopInputs.places,shopInputs.catalog,{xz,elevation,roadInfo,arterial:arterialPlan});
 for(const p of shopPlan.placements){const r=arterialPlan?.storefrontOverrides?.find(r=>String(r.placeId)===String(p.placeId));if(r&&!p.spec.referenceOnly){p.spec={...p.spec,...structuredClone(r.spec)};p.reference=r.reference;}}
@@ -226,7 +226,7 @@ function applyStyle(style,scope=scene,refresh=true){renderStyle=style;pedestrian
 navigation=setupCameraNavigation({camera,controls,canvas:renderer.domElement,host,isWalking:()=>walking?.isActive(),isReady:()=>loaded,getMap:()=>({radius:detailRadius,ground,buildings:data.features.flatMap(f=>(f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates).map(r=>r[0].map(xz)))})});
 walking=setupWalk({camera,controls,renderer,host,elevation:(x,z)=>(finishedGround||elevation)(x,z),roadInfo,getGround:()=>ground,getBuildings:()=>meshes,getRadius:()=>detailRadius,getBoundarySegments:()=>[...(siteLayoutView?.group.visible&&streetGroup?.visible?[...siteLayout.data.walls,...siteLayout.data.gaps.filter(g=>g.a&&g.b&&!['passage','kept-access','open-pedestrian'].includes(g.kind)),...siteLayout.data.siteDetails.fences,...siteLayout.data.siteDetails.gates].map(w=>({a:w.a,b:w.b,width:.16})):[]),...(arterial?.group.userData.walkObstacles||[]),...(alleyGroup?.visible&&streetGroup?.visible?[...alleyGroup.userData.openBoundaries,...alleyGroup.userData.walkObstacles]:[]),...detailGroup.children.flatMap(c=>c.children.flatMap(g=>g.userData.walkObstacles||[])),...(utilityGroup?.visible&&streetGroup?.visible?utilityGroup.userData.walkObstacles:[]),...(vegetationSystem?.group.visible&&streetGroup?.visible?vegetationPlan.trees.flatMap(t=>{const [x,y,z]=t.root,r=vegetationSystem.plans?.some(p=>p.id===t.id)?.42:.22;return [[x-r,z-r],[x+r,z-r],[x+r,z+r],[x-r,z+r]].map((a,i,ps)=>({a,b:ps[(i+1)%4],width:.04}));}):[])],isLoaded:()=>loaded});
 if(loaded&&locationContext.view?.version===3){const v=locationContext.view;walking.start(...v.position,-v.heading*Math.PI/180);}
-if(loaded){restoreEditCamera({id:locationContext.id,camera,controls,walking});installBuildingEditor({canvas:renderer.domElement,scene,camera,controls,getBuildings:()=>meshes,host,id:locationContext.id,walking,render:requestRender});}
+if(loaded){restoreEditCamera({id:locationContext.id,camera,controls,walking});installBuildingEditor({canvas:renderer.domElement,scene,camera,controls,getBuildings:()=>meshes,host,id:locationContext.id,walking,render:requestRender,context:locationContext,load:siteData,elevation});}
 
 async function compareRendering(lodOnly=false){
  if(!loaded||benchmarking)return;

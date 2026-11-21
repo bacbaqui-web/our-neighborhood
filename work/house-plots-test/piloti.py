@@ -8,11 +8,14 @@ ROOT=Path(__file__).resolve().parents[2]; OUT=Path(os.environ.get('NEIGHBORHOOD_
 def build():
  d=json.loads((OUT/'infill-plots.json').read_text());road=shape(d['road']);camera_road=road.buffer(-.35);buildings=d['buildings']; plans=[]; counts=[0,0,0]
  for b in sorted(buildings,key=lambda b:b['id']):
+  profile=b.get('streetProfile')
+  if profile and (profile['use']=='mixed' or 'frontEdge' in profile.get('manualFields',[])):continue
   p=shape(b['building'])
   if p.geom_type!='Polygon' or p.interiors or not 3<=b['levels']<=6 or not 75<p.area<300:continue
   other=unary_union([shape(x['building']) for x in buildings if x['id']!=b['id'] and shape(x['building']).distance(p)<15])
   ring=list(p.exterior.coords); options=[]
   for i,(a,c) in enumerate(zip(ring,ring[1:])):
+   if profile and i!=profile['frontEdge']:continue
    L=math.dist(a,c)
    if L<7:continue
    u=((c[0]-a[0])/L,(c[1]-a[1])/L);n=(-u[1],u[0]);mid=((a[0]+c[0])/2,(a[1]+c[1])/2)

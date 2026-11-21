@@ -19,7 +19,7 @@ def rings(g):return [{'outer':list(p.exterior.coords),'holes':[list(h.coords) fo
 def write(p,d):p.parent.mkdir(exist_ok=True,parents=True);tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));tmp.replace(p)
 def build(root):
  root=Path(root);read=lambda p:json.loads((root/p).read_text());loc=read('location.json');lat,lon=loc['origin'];sx,sy=scales(lat);radius=int(loc.get('sizeMetres',300)/2)
- sources=read('roads-source.json')['roads'];major=[r for r in sources if r['properties']['class'] in ['primary','trunk','secondary','tertiary']]
+ sources=read('roads-source.json')['roads'];major=[r for r in sources if r.get('grade',0)>=2 or ('grade' not in r and r['properties']['class'] in ['primary','trunk','secondary','tertiary'])]
  if not major:return None
  # Pair parallel carriageways. Keep distinct crossings out of the dominant corridor.
  leader=max(major,key=lambda r:LineString(r['geometry']['coordinates']).length)
@@ -85,7 +85,8 @@ def build(root):
  hasbus=bool(transit['stops']) or any(r['properties'].get('class')=='busway' for r in sources)
  # Six lanes for the surveyed Dobong-ro corridor; generic major roads derive count
  # from one-way pair spacing. No bus lane unless there is supporting bus evidence.
- lanes=6 if hasbus else (2 if leader['properties']['class']=='tertiary' else 4)
+ lanes={2:2,3:4,4:6}.get(leader.get('grade'),6 if hasbus else (2 if leader['properties']['class']=='tertiary' else 4))
+ if leader.get('grade') and leader['grade']<4:hasbus=False
  lane=3.2;baseHalf=lanes/2*lane+.35
  def widen(t,side):
   return max([0]+[2.4*max(0,min(1,(32-abs(t-s['t']))/12)) for s in transit['stops'] if s['side']==side])
@@ -326,7 +327,7 @@ def build(root):
   for t in np.arange(t0+20,t1-8,53):
    if not at_mouth(t,side,3):place('utility-cover',t,side*(half(t,side)+.72),.7,.55)
  for side in [-1,1]:
-  for i,t in enumerate(np.arange(t0+12,t1-10,17)):
+  for i,t in enumerate(np.arange(t0+12,t1-10,17) if lanes>=4 else []):
    d=side*(half(t,side)+.95)
    if at_mouth(t,side,4) or any(rect(t,d,1.55,1.55).distance(Polygon(e['footprint']))<3.5 for e in exits):continue
    if place('tree-pit',t,d,1.55,1.55):

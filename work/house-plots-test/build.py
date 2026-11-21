@@ -20,11 +20,12 @@ original={k:b for k,b in site.buildings.items() if limit.covers(b)}
 road=site.road.intersection(limit)
 land=limit.difference(road)
 blocks=[p for p in S.get_parts(land) if p.geom_type=='Polygon' and p.area>.001]
-protected=road.buffer(.4,join_style=2)
+has_profiles=any(f['properties'].get('streetProfile') for f in json.loads((source/'buildings.geojson').read_text())['features'])
+protected=road if has_profiles else road.buffer(.4,join_style=2)
 bs={};changes={};small=[];unresolved=[];merged=[]
 for k,b in original.items():
  parts=[p for p in S.get_parts(b.difference(protected)) if p.geom_type=='Polygon' and p.area>.01]
- fitted=max(parts,key=lambda p:p.area) if parts else Polygon()
+ fitted=b if has_profiles else max(parts,key=lambda p:p.area) if parts else Polygon()
  changed=b.symmetric_difference(fitted).area>.01
  changes[k]={'originalArea':round(b.area,2),'fittedArea':round(fitted.area,2),'status':'shrunk' if changed else 'unchanged','sourceIds':[k]}
  if fitted.area>0:bs[k]=fitted
@@ -74,11 +75,14 @@ common=land.difference(allplots)
 qa={'originalBuildings':len(original),'shrunkBuildings':sum(changes[k]['status']=='shrunk' for k in bs),'mergedBuildings':merged,'unresolvedSmallBuildings':unresolved,'roadPreservedAreaDifference':road.symmetric_difference(site.road.intersection(limit)).area,'buildingRoadOverlapArea':built.intersection(road).area,'buildingOverlapArea':sum(b.area for b in bs.values())-built.area,'buildings':len(bs),'plots':len(plots),'blocks':len(blocks),'emptyBlockArea':common.area,'unassignedArea':land.difference(allplots.union(common)).area,'overlapArea':sum(p.area for p in plots.values())-allplots.area,'roadOverlapArea':allplots.intersection(road).area,'outsideOwnPlotArea':sum(b.difference(plots[k]).area for k,b in bs.items()),'multipartPlots':sum(p.geom_type!='Polygon' for p in plots.values()),'sourceBuildingOverlapArea':sum(b.area for b in original.values())-unary_union(list(original.values())).area,'removedNoFootprint':[k for k in original if k not in bs and not any(m['source']==k for m in merged)]}
 qa.update(partition_qa)
 assert qa['buildingRoadOverlapArea']<1e-6 and abs(qa['buildingOverlapArea'])<1e-6 and qa['outsideOwnPlotArea']<1e-6 and qa['unassignedArea']<1e-6 and abs(qa['overlapArea'])<1e-6 and qa['roadOverlapArea']<1e-6,qa
+sys.path.insert(0,str(ROOT/'work'))
+from scene_edits import align_profile
+profiles={int(f['properties']['objectid']):f['properties'].get('streetProfile') for f in json.loads((source/'buildings.geojson').read_text())['features']}
 features=[]
 for k,b in bs.items():
  p=plots[k]
  if p.is_empty:print('EMPTY',k,b.area,b.geom_type,flush=True);continue
- c=b.centroid;features.append({'change':changes[k],'id':k,'building':mapping(b),'plot':mapping(p),'levels':site.levels[k],'base':min(site.height(x,z) for x,z in b.exterior.coords),'area':round(p.area,1),'yardArea':round(p.difference(b).area,1),'roadContact':p.boundary.intersection(road.buffer(.02)).length>.1})
+ c=b.centroid;features.append({'streetProfile':align_profile(profiles.get(k),b),'change':changes[k],'id':k,'building':mapping(b),'plot':mapping(p),'levels':site.levels[k],'base':min(site.height(x,z) for x,z in b.exterior.coords),'area':round(p.area,1),'yardArea':round(p.difference(b).area,1),'roadContact':p.boundary.intersection(road.buffer(.02)).length>.1})
 body={'origin':origin,'radius':radius,'road':mapping(road),'common':mapping(common),'buildings':features,'qa':qa}
 (out/'plots.json').write_text(json.dumps(body,ensure_ascii=False,separators=(',',':')))
 (out/'qa.json').write_text(json.dumps(qa,indent=2));print(qa)

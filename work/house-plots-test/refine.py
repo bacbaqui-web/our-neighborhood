@@ -10,7 +10,7 @@ def build():
  simplified=0
  for b in bs:
   p=shape(b['building']);candidate=p.simplify(.20,preserve_topology=True)
-  if b['id'] not in pm and b['id'] not in gm and p.geom_type=='Polygon' and candidate.is_valid and candidate.area>.99*p.area and candidate.symmetric_difference(p).area<.015*p.area and candidate.intersection(road).area<.001 and len(candidate.exterior.coords)<len(p.exterior.coords):
+  if not b.get('streetProfile') and b['id'] not in pm and b['id'] not in gm and p.geom_type=='Polygon' and candidate.is_valid and candidate.area>.99*p.area and candidate.symmetric_difference(p).area<.015*p.area and candidate.intersection(road).area<.001 and len(candidate.exterior.coords)<len(p.exterior.coords):
    b['building']=mapping(candidate);simplified+=1
  houses=unary_union([shape(b['building']) for b in bs])
  for b in bs:
@@ -32,7 +32,9 @@ def build():
      q=nearest_points(m,path)[1];line=LineString([m,q])
      if line.length<12 and line.intersection(p.buffer(-.03)).length<.05 and line.intersection(others.buffer(.15)).length<.05:candidates.append((line.length,i,line))
   fixed=pm.get(b['id']) or gm.get(b['id']);edge=fixed['frontEdge'] if fixed else min(candidates)[1] if candidates else None
-  fronts[str(b['id'])]={'renderBuilding':b['building'],'frontEdge':edge,'styleIndex':3+(abs(b['id'])%2) if b['id'] in pm else abs(b['id'])%6,'verifiedAccess':bool(fixed or candidates)}
+  profile=b.get('streetProfile')
+  if profile:edge=profile['frontEdge']
+  fronts[str(b['id'])]={'renderBuilding':b['building'],'frontEdge':edge,'styleIndex':profile['styleIndex'] if profile else 3+(abs(b['id'])%2) if b['id'] in pm else abs(b['id'])%6,'verifiedAccess':bool(fixed or candidates)}
   ring=p.buffer(.09,join_style=2).difference(p.buffer(-.09,join_style=2));cap=p.buffer(.14,join_style=2).difference(p.buffer(-.14,join_style=2));parapets.append(dict(id=b['id'],wall=mapping(ring),cap=mapping(cap),top=b['levels']*3))
  def ownerstyle(line):
   b=min(bs,key=lambda b:line.distance(shape(b['building'])));return fronts[str(b['id'])]['styleIndex']

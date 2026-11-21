@@ -10,13 +10,14 @@ def build():
  d=json.loads((OUT/'infill-plots.json').read_text());inf=json.loads((OUT/'piloti-infill.json').read_text());pil=json.loads((OUT/'piloti.json').read_text());ids={v['id'] for v in pil['plans']};road=shape(d['road']);rc=road.buffer(-.35);plans=[]
  for b in d['buildings']:
   if b['id'] in ids:continue
-  p=shape(b['building']);plot=shape(b['plot'])
-  if p.geom_type!='Polygon' or p.interiors or b['levels']<2:continue
+  p=shape(b['building']);plot=shape(b['plot']);profile=b.get('streetProfile')
+  if p.geom_type!='Polygon' or p.interiors or b['levels']<1:continue
   others=unary_union([shape(v['building']) for v in d['buildings'] if v['id']!=b['id'] and p.distance(shape(v['building']))<18]);opts=[]
   ring=list(p.exterior.coords)
   for i,(a,c) in enumerate(zip(ring,ring[1:])):
+   if profile and i!=profile['frontEdge']:continue
    L=math.dist(a,c)
-   if L<5:continue
+   if L<(2.4 if profile else 5):continue
    u=((c[0]-a[0])/L,(c[1]-a[1])/L);n=(-u[1],u[0]);mid=((a[0]+c[0])/2,(a[1]+c[1])/2)
    if not p.contains(Point(mid[0]+n[0]*.2,mid[1]+n[1]*.2)):n=(-n[0],-n[1])
    pt=lambda x,y:[a[0]+u[0]*x+n[0]*y,a[1]+u[1]*x+n[1]*y]
@@ -31,10 +32,11 @@ def build():
    if access.intersection(others).area>.001 or not plot.union(road).buffer(.1).covers(access):continue
    # Source supplies shape/floors, not a reliable use label. Stable inferred family.
    roadWidth=math.dist(cameras[0],cameras[-1]);rng=random.Random(b['id']);family='house' if b['levels']<=2 else 'mixed' if roadWidth>=5 or (p.area>170 and b['levels']>=4) else 'villa'
-   choices={'house':['gate-solid','gate-rail','lobby-steps'],'villa':['lobby-center','lobby-side','lobby-steps'],'mixed':['shop-single','shop-pair','shop-shutter','lobby-center']}[family];rng.shuffle(choices)
+   if profile:family='mixed' if profile['use']=='mixed' else 'house' if b['levels']<=2 else 'villa'
+   choices={'house':['gate-solid','gate-rail','lobby-steps'],'villa':['lobby-center','lobby-side','lobby-steps'],'mixed':['shop-single','shop-pair','shop-shutter']}[family];rng.shuffle(choices)
    # Basement layout is only eligible with an uninterrupted 11m deep frontage.
    ramp=rect(.6,0,3.4,11)
-   if b['levels']>=3 and L>8 and p.buffer(.001).covers(ramp) and rng.random()<.45:choices.insert(0,'basement-ramp')
+   if not profile and b['levels']>=3 and L>8 and p.buffer(.001).covers(ramp) and rng.random()<.45:choices.insert(0,'basement-ramp')
    for kind in choices:
     x=.6 if kind=='basement-ramp' else .6 if kind=='lobby-side' else L/2-1.15
     width=3.4 if kind=='basement-ramp' else L-1 if kind.startswith('shop') else 2.3

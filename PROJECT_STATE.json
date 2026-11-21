@@ -5644,5 +5644,26 @@
       "verification/grounds-windows/public-night.jpg",
       "verification/grounds-windows/public-street-day.jpg"
     ]
+  },
+  "sceneEditing20261121": {
+    "status": "implemented-local-verified-awaiting-public-deploy",
+    "features": [
+      "Shift+도로 클릭: 1~4차 등급 수정 후 주변 자동 재생성",
+      "Shift+건물 클릭: 디자인·연식·층수·용도·입구 면 편집",
+      "원본 스냅샷과 동네별 수동 수정 분리, 실제 윤곽·층수·용도 및 수동 수정 우선"
+    ],
+    "verification": [
+      "Edge 실제 생성 장면: 도로 1→2차 저장·재생성, 수동 건물 6층/적벽돌/입구29 유지",
+      "Edge 충돌 오류에서 기존 동네 유지, 다시 편집 가능",
+      "Python scene edit tests 6 passed; view generation 9 passed",
+      "JS scene editor/building assets/empty streetlights/loading/browser-generation/VWorld passed"
+    ],
+    "limits": [
+      "현재는 변경할 때 장면을 다시 계산하므로 완료까지 기다려야 함",
+      "입구는 벽면 선택이며 벽 위의 세부 위치 이동은 미포함",
+      "도로 폭·미확인 층수는 구현 기본값; 실제 건물 때문에 국소 폭이 줄 수 있음",
+      "상가 출입구는 접근 공간이 확보된 면에만 생성; 모든 도로 풍경 세부 규칙의 완전 적용 아님"
+    ],
+    "record": "docs/scene-editing.txt"
   }
 }

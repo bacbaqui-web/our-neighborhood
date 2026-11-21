@@ -1,4 +1,4 @@
-import {approvedRoad} from '../approved-road/catalog.js?v=busdetail4';
+import {approvedRoad} from '../approved-road/catalog.js?v=signtexture3';
 import {canonicalId} from './curation.js';
 import {props} from '../prop-remakes/catalog.js';
 const approved=new Map(approvedRoad.map(p=>[p.id,p]));

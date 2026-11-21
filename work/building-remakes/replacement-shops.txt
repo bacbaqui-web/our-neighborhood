@@ -1,0 +1,28 @@
+교체 상가 2종 제작 카드 — 2026-11-21
+작업: outputs/domestic-test/building-remakes/replacement-shops.js
+함수: emitReplacementShopsFace(c), facility:cu / facility:mega. 다른 ID는 false.
+좌표: m, x 0..L, y 지면 위, z 정면 바깥. c.faceOnly=true면 상층 추정 창 생략.
+
+CU
+referenceId: building-reference-cu-songpa-20261121-v2
+nominal: [11,7,8], levels:2, wall:0xd7d6c7, texture:null, roofCore:false
+ glass: [0x374c42,0x586b58,0x263b33]
+원본: https://stqnq5ux4599.edge.naverncp.com/data2/content/image/2019/08/18/.cache/512/201908180527848.jpg
+자료: building-references.json에 등록된 2019년 송파 특화 매장. 최신 이미지 직접 내려받아 열어 확인.
+확인: 흰 간판, Nice to 연두 캡슐과 녹색 CU, 오른쪽 긴 연두 캡슐, 짙은 녹색 차양, 유리 전면, 미색 상층 외벽. 보라색은 파라솔이며 간판 아님.
+구현: 간판 문구/색/캡슐 모서리, 전면 유리와 좌중앙 출입구, 녹색 차양. 가려진 그림문자·실내 포스터·파라솔은 건축 외피에 만들지 않음.
+
+메가
+referenceId: building-reference-mega-storefront-20261121-v2
+nominal: [8.5,4.4,8], levels:1, wall:0xd9ddd2, texture:null, roofCore:false
+ glass: [0x647d77,0x718b80,0x415e57]
+원본: https://t1.daumcdn.net/news/202609/01/NEWS1/20260901064654220wyce.jpg
+자료: building-references.json의 2026년 뉴스1/메가 제공 이미지. 최신 이미지 직접 내려받아 열어 확인.
+확인: 노란 넓은 곡면 간판, MEGA / 중앙 세로 MGC 표장 / COFFEE 흰 글씨, 얇은 노란 차양, 곡면 유리와 중앙 출입문. 양옆 검정/금색 가는 창틀.
+구현: 곡면은 64개 간판 단면과 48개 유리 단면으로 근사. 중앙 출입구와 손잡이는 돌출 전면 높이에 맞춤. 통합 sign callback으로 MEGA, MGC, COFFEE 제공. MGC 표장의 정확한 세로/집지붕 형태는 identity.js의 mega-mgc 아트로 교체 권장.
+
+sign API: c.sign(key,x,y,w,h,z,{text,color,preserveAspect:true,size:220})
+CU key: cu-nice / cu-logo. Mega key: mega-word / mega-mgc / mega-coffee.
+글자 브랜드는 사용자 요청 범위. 사진은 형태 관찰용, 재배포/텍스처 사용하지 않음. 사진 이용 허가는 미확인.
+건물 전체 깊이·높이·후면·실측 값 미확인. 수치는 사람/문 기준 시각 추정이며 지도 형상이 우선. 메가 상층 전체를 지어내지 않아 1층 점포 기본값.
+수치 검사: 폭 1.15/3/8.5/11/25m × 높이 1.7/3.5/7/14m × 앞/뒤 × 2종 = 80 조합. 유한 좌표·양수 입체 크기 통과. 통합 후 실제 브라우저/공개 화면 검사는 상위 작업에서 수행.

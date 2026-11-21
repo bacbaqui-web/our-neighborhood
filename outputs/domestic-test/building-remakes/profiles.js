@@ -22,3 +22,23 @@ Object.assign(approvedBuildingProfiles['facility:police'],{levels:5,roofColor:0x
 for(const id of ['gs25','seven','emart24','starbucks'])Object.assign(approvedBuildingProfiles['facility:'+id],{levels:id==='seven'?1:2,glass:[0x314746,0x526965,0x263f42]});
 
 for(const id of ['emart24','starbucks'])approvedBuildingProfiles['facility:'+id].glass=[0x6e9cab,0xa1c0c7,0x456a78];
+
+// Explicit user request to build the current replacement candidates (2026-11-21).
+approvedBuildingProfiles['building:shop-glass']={"referenceId":"building-reference-glass-seongnae-20261121-v2","wall":12829624,"texture":null,"nominal":[17,25.2,12],"levels":7,"glass":[6323332,8627114,4679541],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['building:school']={"referenceId":"building-reference-school-noryangjin-20261121-v2","wall":14076082,"texture":null,"nominal":[46,13.2,12],"levels":4,"glass":[5664630,8558740,4415079],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:school']={"referenceId":"building-reference-school-noryangjin-20261121-v2","wall":14076082,"texture":null,"nominal":[46,13.2,12],"levels":4,"glass":[5664630,8558740,4415079],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['building:civic']={"referenceId":"building-reference-civic-gasan-20261121-v2","wall":12368299,"texture":null,"nominal":[24,18,15],"levels":5,"glass":[7904681,10139839,4680828],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['building:fire']={"referenceId":"building-reference-fire-sandong-20261121-v2","wall":11974830,"texture":null,"nominal":[25,7.5,14],"levels":2,"glass":[5401445,7572612,3493705],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:fire']={"referenceId":"building-reference-fire-sandong-20261121-v2","wall":11974830,"texture":null,"nominal":[25,7.5,14],"levels":2,"glass":[5401445,7572612,3493705],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:lotte']={"referenceId":"building-reference-lotte-yangpyeong-20261121-v2","wall":13157045,"texture":null,"nominal":[32,24,24],"levels":7,"glass":[9549233,11125947,7642266],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:post']={"referenceId":"building-reference-post-gyeolseong-20261121-v2","wall":5066837,"texture":null,"nominal":[11,5.2,8],"levels":1,"glass":[3429992,5404807,2572110],"roofCore":false,"requestedRemake":true,"parapet":false};
+approvedBuildingProfiles['facility:daiso']={"referenceId":"building-reference-daiso-sinsa-20261121-v2","wall":6448489,"texture":null,"nominal":[12,13,10],"levels":4,"glass":[7903939,10270677,5798820],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:cu']={"referenceId":"building-reference-cu-songpa-20261121-v2","wall":14145223,"texture":null,"nominal":[11,7,8],"levels":2,"glass":[3624002,5794648,2505523],"roofCore":false,"requestedRemake":true};
+approvedBuildingProfiles['facility:mega']={"referenceId":"building-reference-mega-storefront-20261121-v2","wall":14278098,"texture":null,"nominal":[8.5,4.4,8],"levels":1,"glass":[6585719,7441280,4283991],"roofCore":false,"requestedRemake":true};
+
+Object.assign(approvedBuildingProfiles['building:shop-glass'],{wall:3358288,glass:[3491953, 6255255, 2440289]});
+Object.assign(approvedBuildingProfiles['building:school'],{wall:15197396,glass:[4746346, 7444881, 3561304]});
+Object.assign(approvedBuildingProfiles['facility:school'],{wall:15197396,glass:[4746346, 7444881, 3561304]});
+Object.assign(approvedBuildingProfiles['building:civic'],{wall:12499110,glass:[4553585, 7776410, 3562837]});
+Object.assign(approvedBuildingProfiles['building:fire'],{wall:14803676,glass:[5734263, 8363664, 4679518]});
+Object.assign(approvedBuildingProfiles['facility:fire'],{wall:14803676,glass:[5734263, 8363664, 4679518]});

@@ -1,13 +1,16 @@
-import {identityWindowWriter} from './identity.js';
+import {emitReplacementCivicFace} from './replacement-civic.js?v=replacements3';
+import {emitReplacementRetailFace} from './replacement-retail.js?v=replacements3';
+import {emitReplacementShopsFace} from './replacement-shops.js?v=replacements3';
+import {identityWindowWriter} from './identity.js?v=replacements3';
 import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitFacadeTexture} from '../facade-textures.js?v=masonry19';
 import {windowOpening,WINDOW_RECESS} from '../window-recess.js?v=recess22';
 import {inPolygon} from '../facilities/placement.js';
-import {emitApprovedCivicFace} from './civic-residential.js?v=identity2';
-import {emitApprovedRetailFace} from './retail.js?v=identity2';
-import {emitApprovedStorefrontFace} from './storefronts.js?v=identity2';
-import {approvedBuildingProfiles} from './profiles.js?v=identity2';
-export {approvedBuildingProfiles} from './profiles.js?v=identity2';
+import {emitApprovedCivicFace} from './civic-residential.js?v=replacements3';
+import {emitApprovedRetailFace} from './retail.js?v=replacements3';
+import {emitApprovedStorefrontFace} from './storefronts.js?v=replacements3';
+import {approvedBuildingProfiles} from './profiles.js?v=replacements3';
+export {approvedBuildingProfiles} from './profiles.js?v=replacements3';
 export function approvedBuildingId(b){const id=b.assetChoice?'building:'+b.assetChoice:'facility:'+b.facility?.id;return approvedBuildingProfiles[id]?id:null;}
 function clipped(rect,cuts){let pieces=[rect];for(const [l,r,b,t] of cuts)pieces=pieces.flatMap(([a,c,d,e])=>{if(c<=l||a>=r||e<=b||d>=t)return[[a,c,d,e]];const left=Math.max(a,l),right=Math.min(c,r);return[[a,left,d,e],[right,c,d,e],[left,right,d,Math.max(d,b)],[left,right,Math.min(e,t),e]].filter(q=>q[1]-q[0]>.001&&q[3]-q[2]>.001)});return pieces;}
 // A roof core must fit the whole polygon, including concave notches and holes.
@@ -43,15 +46,18 @@ export function emitApprovedBuilding(batch,b,buildings,elevation,options={}){
    emitWindow(identityWindowWriter(out.at(x,y,0),glass),kind,w,h,windows%7,frame,b.seed*997+edge*131+windows,{...(options.windowOpenings?{recess:WINDOW_RECESS}:{}),accessories:false});windows++;
   };
   const sign=(key,x,y,w,h,z=.3,options={})=>signs.push({key,x:a[0]+ux*x+nx*z,y:base+y,z:a[1]+uz*x+nz*z,w,h,angle:Math.atan2(nx,nz),options,owner:b.seed});
-  const ctx={id,L,H,levels,fh,front,edge,ground,out,window,surface,box,sign};
-  if(!emitApprovedCivicFace(ctx)&&!emitApprovedRetailFace(ctx)&&!emitApprovedStorefrontFace(ctx))throw Error('승인된 건물 생성기가 없습니다: '+id);
+  const face=(vertices,color)=>{const q=vertices.map(([x,y,z])=>[a[0]+ux*x+nx*z,base+y,a[1]+uz*x+nz*z]);out.reveal(q[0],q[1],q[2],q[3]||q[2],color);};
+  const projected=points.map(p=>[(p[0]-a[0])*ux+(p[1]-a[1])*uz,-((p[0]-a[0])*nx+(p[1]-a[1])*nz)]),depth=Math.max(...projected.map(p=>p[1]));
+  const roofDepth=points.length===4&&!b.holePoints?.length&&projected.every(([x,z])=>(Math.abs(x)<.01||Math.abs(x-L)<.01)&&(Math.abs(z)<.01||Math.abs(z-depth)<.01))?depth:0;
+  const ctx={id,L,H,levels,fh,front,edge,ground,out,window,surface,box,sign,face,roofDepth};
+  if(!emitReplacementCivicFace(ctx)&&!emitReplacementRetailFace(ctx)&&!emitReplacementShopsFace(ctx)&&!emitApprovedCivicFace(ctx)&&!emitApprovedRetailFace(ctx)&&!emitApprovedStorefrontFace(ctx))throw Error('승인된 건물 생성기가 없습니다: '+id);
   // Keep only one exterior finish at a point; all finishes share aperture cuts.
   const wallCuts=[...cuts,...panels.map(p=>p.rect)];
   if(profile.texture)emitFacadeTexture(batch,out,{width:L,bottom:ground,top:H,id:profile.texture,cuts:wallCuts});
   else for(const [l,r,bt,t] of clipped([.015,L-.015,ground,H],wallCuts))out.quad((l+r)/2,(bt+t)/2,.010,r-l,t-bt,profile.wall,true);
   for(const panel of panels)for(const [l,r,bt,t] of clipped(panel.rect,cuts))out.quad((l+r)/2,(bt+t)/2,panel.z,r-l,t-bt,panel.color,true);
   // Parapet sits inside the footprint, with a cap instead of a floating roof slab.
-  box(L/2,H+.25,-.10,L,.5,.20,profile.wall);box(L/2,H+.52,-.10,L+.02,.055,.25,0x8c9891);
+  if(profile.parapet!==false){box(L/2,H+.25,-.10,L,.5,.20,profile.wall);box(L/2,H+.52,-.10,L+.02,.055,.25,0x8c9891);}
   if(L>3){const x=front?L-.17:.17;out.rod([x,ground+.12,.075],[x,H-.06,.075],.045,0x818e86,6);for(let y=ground+.45;y<H;y+=2.1)box(x,y,.06,.14,.065,.15,0x74827a);}
   features.push({edge,front,openings:cuts.length});
  }

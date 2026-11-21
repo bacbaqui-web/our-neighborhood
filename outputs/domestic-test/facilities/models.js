@@ -1,5 +1,5 @@
-import {addApprovedIdentity} from '../building-remakes/identity.js';
-import {emitApprovedBuilding} from '../building-remakes/models.js?v=identity2';
+import {addApprovedIdentity} from '../building-remakes/identity.js?v=replacements3';
+import {emitApprovedBuilding} from '../building-remakes/models.js?v=replacements3';
 import {WINDOW_RECESS,windowOpening} from '../window-recess.js?v=recess22';
 import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitApartment} from '../apartments/models.js';

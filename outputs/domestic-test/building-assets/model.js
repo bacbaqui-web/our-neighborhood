@@ -1,6 +1,6 @@
-import {approvedBuildingProfiles} from '../building-remakes/models.js?v=identity2';
+import {approvedBuildingProfiles} from '../building-remakes/models.js?v=replacements3';
 import * as T from 'three';
-import {createDetails} from '../details.js?v=identity2';
+import {createDetails} from '../details.js?v=replacements3';
 import {facadeStyles} from '../korean-facades.js?v=masonry19';
 import {facilityById} from '../facilities/catalog.js';
 import {chooseApartment} from '../apartments/models.js';

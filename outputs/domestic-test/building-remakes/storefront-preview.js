@@ -1,12 +1,15 @@
-import {addIdentitySign,identityWindowWriter} from './identity.js';
-import {approvedBuildingProfiles} from './profiles.js?v=identity2';
+import {emitReplacementShopsFace} from './replacement-shops.js?v=replacements3';
+import {addIdentitySign,identityWindowWriter} from './identity.js?v=replacements3';
+import {approvedBuildingProfiles} from './profiles.js?v=replacements3';
 import {FacadeBatch,emitWindow} from '../korean-facades.js?v=recess22';
-import {emitApprovedStorefrontFace} from './storefronts.js?v=identity2';
+import {emitApprovedStorefrontFace} from './storefronts.js?v=replacements3';
 
 const REFERENCES={
  gs25:['building-reference-gs25-bucheon-20261121',0xd4d2c9],
  seven:['seven-exterior-kr-v1',0x575e5c],
  emart24:['emart24-0-kr-v1',0x343936],
+ cu:['building-reference-cu-songpa-20261121-v2',0xd7d6c7],
+ mega:['building-reference-mega-storefront-20261121-v2',0xd9ddd2],
  starbucks:['starbucks-0-kr-v1',0xc8c8bd],
 };
 // Split rectangles at openings instead of putting an opaque wall over glazing.
@@ -39,7 +42,8 @@ export function createApprovedStorefront(spec,{shell=true,attachment=false}={}){
   emitWindow(identityWindowWriter(out.at(x,y,0),approvedBuildingProfiles['facility:'+spec.facilityId].glass),kind,w,h,1,frame,null,{sill:false,accessories:false});
  };
  const surface=(x,y,w,h,color,z=.014)=>panels.push({rect:bounds(x,y,w,h),color,z});
- emitApprovedStorefrontFace({id:'facility:'+spec.facilityId,L:W,H,levels:1,fh:H,front:true,edge:0,ground:0,out,window,surface,box:out.box,entryOpening:opening=>approvedOpenings.push({...opening,x:opening.x-W/2}),sign:(key,x,y,w,h,z=.3,options={})=>signs.push({key,x:x-W/2,y,z,w,h,options})});
+ const ctx={faceOnly:true,id:'facility:'+spec.facilityId,L:W,H,levels:1,fh:H,front:true,edge:0,ground:0,out,window,surface,box:out.box,entryOpening:opening=>approvedOpenings.push({...opening,x:opening.x-W/2}),sign:(key,x,y,w,h,z=.3,options={})=>signs.push({key,x:x-W/2,y,z,w,h,options})};
+ if(!emitReplacementShopsFace(ctx))emitApprovedStorefrontFace(ctx);
  const paint=(rect,color,z,cuts)=>{
   for(const r of subtract(rect,cuts))if(r[1]-r[0]>.001&&r[3]-r[2]>.001)out.quad((r[0]+r[1])/2,(r[2]+r[3])/2,z,r[1]-r[0],r[3]-r[2],color,false);
  };

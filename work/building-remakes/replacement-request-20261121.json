@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-21",
+  "authorization": "User explicitly requested remaining replacement-requested buildings to be newly made and shown; police/fire labels large and undistorted. Uses current replacement references, does not change browser image approval records.",
+  "items": [
+    {
+      "assetId": "building:shop-glass",
+      "referenceId": "building-reference-glass-seongnae-20261121-v2",
+      "imageUrl": "https://luxteel.com/projects/case-707/images/6911/thumbnail"
+    },
+    {
+      "assetId": "building:school",
+      "referenceId": "building-reference-school-noryangjin-20261121-v2",
+      "imageUrl": "https://history.seoul.go.kr/common/getImg.do?key=bbsctt&name=201702/163004100713531.jpg"
+    },
+    {
+      "assetId": "facility:school",
+      "referenceId": "building-reference-school-noryangjin-20261121-v2",
+      "imageUrl": "https://history.seoul.go.kr/common/getImg.do?key=bbsctt&name=201702/163004100713531.jpg"
+    },
+    {
+      "assetId": "building:civic",
+      "referenceId": "building-reference-civic-gasan-20261121-v2",
+      "imageUrl": "https://geumcheon.go.kr/site/portal/images/contents/cts654_img06.jpg"
+    },
+    {
+      "assetId": "building:fire",
+      "referenceId": "building-reference-fire-sandong-20261121-v2",
+      "imageUrl": "https://www.gnfire.go.kr/editor/cheditor/attach/20200715160853_pwotspww.jpg"
+    },
+    {
+      "assetId": "facility:fire",
+      "referenceId": "building-reference-fire-sandong-20261121-v2",
+      "imageUrl": "https://www.gnfire.go.kr/editor/cheditor/attach/20200715160853_pwotspww.jpg"
+    },
+    {
+      "assetId": "facility:lotte",
+      "referenceId": "building-reference-lotte-yangpyeong-20261121-v2",
+      "imageUrl": "https://image.newdaily.co.kr/site/data/img/2017/06/26/2017062610033_0.jpg"
+    },
+    {
+      "assetId": "facility:post",
+      "referenceId": "building-reference-post-gyeolseong-20261121-v2",
+      "imageUrl": "https://m.hjn24.com/news/photo/202401/121198_126821_2118.jpg"
+    },
+    {
+      "assetId": "facility:daiso",
+      "referenceId": "building-reference-daiso-sinsa-20261121-v2",
+      "imageUrl": "https://cdn.cnbizm.com/news/photo/202609/315881_222863_301.jpg"
+    },
+    {
+      "assetId": "facility:cu",
+      "referenceId": "building-reference-cu-songpa-20261121-v2",
+      "imageUrl": "https://stqnq5ux4599.edge.naverncp.com/data2/content/image/2019/08/18/.cache/512/201908180527848.jpg"
+    },
+    {
+      "assetId": "facility:mega",
+      "referenceId": "building-reference-mega-storefront-20261121-v2",
+      "imageUrl": "https://t1.daumcdn.net/news/202609/01/NEWS1/20260901064654220wyce.jpg"
+    }
+  ]
+}

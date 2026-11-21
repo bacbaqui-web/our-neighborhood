@@ -87,9 +87,10 @@ export function emitApprovedCivicFace(c){
    const w=Math.min(4.2,L*.36);W(L/2,ground+1.3,w,2.45,'wide-slider',0x71898a);
    B(L/2,fh-.10,.29,L-.16,.25,.58,white);
    B(L/2,H-.31,.10,L,.70,.20,white);
-   sign('police-name',L*.61,H-.26,L*.58,.48,.22,{text:'서울서대문경찰서',color:'#28517b'});
-   sign('police-name',L*.61,H-.57,L*.44,.15,.23,{text:'Seodaemun Police Station',color:'#dbb32a'});
-   sign('police-emblem',L*.275,H-.28,.82,.55,.23);
+   const scale=Math.min(1,L/14),sy=H+.75*scale;
+   B(L/2,sy,.10,11.8*scale,2.25*scale,.22,white);
+   sign('police-name',L/2+1.35*scale,sy,6.1*scale,1.7*scale,.235,{text:'경찰서',color:'#204e84',preserveAspect:true,size:230});
+   sign('police-emblem',L/2-3.55*scale,sy,2.55*scale,1.6*scale,.235);
   }
   return true;
  }

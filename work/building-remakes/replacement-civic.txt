@@ -1,0 +1,36 @@
+교체 요청 건물 — 2026-11-21 신규 제작
+대상: outputs/domestic-test/building-remakes/replacement-civic.js
+최근 building-references.json의 정확한 imageUrl 4개를 내려받아 확인. 사진을 텍스처로 복제하지 않고 관찰한 창 배열·외벽 색·간판을 재구성합니다. 원본 사진 사용권은 해당 references usageNote 유지.
+
+제안 프로필 (nominal [정면 폭, 전체 높이, 깊이] m; 실제 지도에서는 기존 윤곽·층수 우선)
+building:shop-glass
+ referenceId: building-reference-glass-seongnae-20261121-v2
+ nominal: [17,25.2,12]; levels:7; wall:0x333e50; texture:null; roofCore:false
+ glass:[0x354871,0x5f7297,0x253c61]
+ 관찰: 짙은 청회색 전면, 촘촘하고 돌출된 수직 핀, 층별 얇은 수평 띠, 간헐적인 작은 환기창, 상단 '동 해' 및 '동아프린터'.
+ 추정: 수목에 가린 1층·좌측창과 후면, 실제 치수. 일곱 층을 기준으로 보이는 층별 비례를 설정함.
+
+building:school, facility:school
+ referenceId: building-reference-school-noryangjin-20261121-v2
+ nominal:[46,13.2,12]; levels:4; wall:0xe7e4d4; texture:null; roofCore:false
+ glass:[0x486c6a,0x719991,0x365758]
+ 관찰: 긴 4층 건물, 양끝 좁은 창 구획, 중앙 연속 쌍창, 크림색 외벽, 아래부터 진분홍·살구·연노랑 층간 띠, 초록 창틀과 낮은 안전난간. 중앙 문구 '푸른 꿈이 자라는 사랑의 배움터'.
+ 추정: 후면·측면과 내부, 정확한 치수. 사진 밖 독립 체육관이나 배경 아파트를 합치지 않음.
+
+building:civic
+ referenceId:building-reference-civic-gasan-20261121-v2
+ nominal:[24,18,15]; levels:5; wall:0xbeb8a6; texture:null; roofCore:false
+ glass:[0x457b71,0x76a89a,0x365d55]
+ 관찰: 베이지 석재, 녹색 창, 좌측 원형 모서리 계단동, 가로 띠·세로 돌기둥, 가산로129 주소와 주민센터 간판.
+ 추정/제한: 실제 지도 윤곽을 바꾸지 않으므로 원형 모서리는 정면의 나뉜 창·돌출 석재띠로만 표현. 원통형 실루엣을 재현했다고 하지 않음. 후면·옥상 잘린 부분 추정.
+
+building:fire, facility:fire
+ referenceId:building-reference-fire-sandong-20261121-v2
+ nominal:[25,7.5,14]; levels:2; wall:0xe1e2dc; texture:null; roofCore:false
+ glass:[0x577f77,0x7f9e90,0x47675e]
+ 관찰: 좌측 2층 사무동, 짙은 회색 낮은 수평 금속띠, 우측 4개 녹회색 차고문, 가로 셔터와 낮은 소형 창, 밝은 외벽과 빨간 처마.
+ 사용자 추가 요청: 차고 위 흰 면에 크게 '소방서'와 공식 소방 문양. 원본 사진의 글자가 아니라 사용자가 지정한 추가 구성. fire-emblem 공식 원본은 메인 담당자가 identity.js에 연결하며 fire-name에는 preserveAspect:true, size:220 적용.
+ 추정/제한: 차고 뒤의 실제 단면은 확인되지 않아 지도 전체 높이는 유지하고 전면 차고와 사무동 구획으로 구분. 후면 창은 추정.
+
+공통: building: 정면 x를 뒤집고 facility: 정면은 유지. 창은 c.window로 개구·리세스 생성 경로를 유지. 외벽은 c.surface, 골조는 c.box, 글자는 c.sign으로 배치. 미세 길이 에지에서는 생성 생략, 막대의 폭은 면 내부로 자름. 부지나 holePoints, 실제 levels를 수정하지 않음.
+검사: 별도 mock 호출로 6 ID × 정면/측면 × 6 폭 × 3 높이 총216 조건에서 숫자·양의 치수·박스 면 범위를 확인. 실제 공개 화면 확인은 메인 통합 후 필요.

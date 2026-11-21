@@ -1,5 +1,5 @@
 import * as T from 'three';
-const files={costco:'costco.svg',gs25:'gs25-sign.svg',homeplus:'homeplus.svg',starbucks:'starbucks-wordmark.svg','starbucks-emblem':'starbucks-siren.png','police-emblem':'police-horizontal.svg'};
+const files={costco:'costco.svg',gs25:'gs25-sign.svg',homeplus:'homeplus.svg',starbucks:'starbucks-wordmark.svg','starbucks-emblem':'starbucks-siren.png','police-emblem':'police-horizontal.svg','fire-emblem':'fire-emblem.png'};
 const images=new Map(),textures=new Map();let preparation;
 export function prepareBuildingIdentity(){
  if(typeof document==='undefined')return Promise.resolve();
@@ -13,8 +13,11 @@ function textureFor(key,options={}){
  if(typeof document==='undefined'){texture=new T.DataTexture(new Uint8Array([255,255,255,255]),1,1);}
  else{
   const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=Math.round(1024/(options.aspect||4));const c=canvas.getContext('2d'),W=canvas.width,H=canvas.height;
-  const text=(value,color='#ffffff',size=160,x=W/2,y=H/2,max=W*.95,font='Arial, sans-serif')=>{c.font=`700 ${size*H/256}px ${font}`;c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.save();c.translate(x,y===H/2?y:y*H/256);c.scale(max/c.measureText(value).width,1);if(key==='emart24'&&!options.text)c.strokeText(value,0,0);c.fillText(value,0,0);c.restore();};
-  if(options.text)text(options.text,options.color||'#ffffff',options.size||150,W/2,H/2,W*.96,options.serif?'serif':'Arial, "Noto Sans KR", sans-serif');
+  const text=(value,color='#ffffff',size=160,x=W/2,y=H/2,max=W*.95,font='Arial, sans-serif')=>{c.font=`700 ${size*H/256}px ${font}`;c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.save();c.translate(x,y===H/2?y:y*H/256);const fit=max/c.measureText(value).width;if(options.preserveAspect){const scale=Math.min(1,fit);c.scale(scale,scale);}else c.scale(fit,1);if(key==='emart24'&&!options.text)c.strokeText(value,0,0);c.fillText(value,0,0);c.restore();};
+  if(key==='mega-mgc'){
+   c.strokeStyle='#fff235';c.fillStyle='#fff235';c.lineWidth=H*.055;c.beginPath();c.moveTo(W*.13,H*.20);c.lineTo(W*.46,H*.08);c.lineTo(W*.85,H*.20);c.stroke();
+   c.textAlign='center';c.textBaseline='middle';c.font=`900 ${H*.47}px Arial, sans-serif`;c.fillText('M',W/2,H*.44);c.font=`900 ${H*.29}px Arial, sans-serif`;c.fillText('GC',W/2,H*.80);
+  }else if(options.text)text(options.text,options.color||'#ffffff',options.size||150,W/2,H/2,W*.96,options.serif?'serif':'Arial, "Noto Sans KR", sans-serif');
   else if(files[key]){
    const img=images.get(key);if(!img)throw Error('건물 로고 준비가 끝나지 않았습니다: '+key);
    // The authentic police SVG includes its national wordmark; select only its emblem UV region.

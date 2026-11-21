@@ -161,7 +161,7 @@ function planFacilities(buildings, places, { xz }) {
   return { applied, skipped };
 }
 
-// outputs/domestic-test/building-remakes/profiles.js?v=identity2
+// outputs/domestic-test/building-remakes/profiles.js?v=replacements3
 var p = (referenceId, wall, texture, nominal) => ({ referenceId, wall, texture, nominal });
 var approvedBuildingProfiles = {
   "building:shop-tile": p("bangyi-before-kr-v1", 11777714, "small-white-tile", [29, 9.3, 11]),
@@ -187,6 +187,23 @@ Object.assign(approvedBuildingProfiles["facility:apartment"], { levels: 15, roof
 Object.assign(approvedBuildingProfiles["facility:police"], { levels: 5, roofColor: 6465389 });
 for (const id of ["gs25", "seven", "emart24", "starbucks"]) Object.assign(approvedBuildingProfiles["facility:" + id], { levels: id === "seven" ? 1 : 2, glass: [3229510, 5400933, 2506562] });
 for (const id of ["emart24", "starbucks"]) approvedBuildingProfiles["facility:" + id].glass = [7249067, 10600647, 4549240];
+approvedBuildingProfiles["building:shop-glass"] = { "referenceId": "building-reference-glass-seongnae-20261121-v2", "wall": 12829624, "texture": null, "nominal": [17, 25.2, 12], "levels": 7, "glass": [6323332, 8627114, 4679541], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["building:school"] = { "referenceId": "building-reference-school-noryangjin-20261121-v2", "wall": 14076082, "texture": null, "nominal": [46, 13.2, 12], "levels": 4, "glass": [5664630, 8558740, 4415079], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:school"] = { "referenceId": "building-reference-school-noryangjin-20261121-v2", "wall": 14076082, "texture": null, "nominal": [46, 13.2, 12], "levels": 4, "glass": [5664630, 8558740, 4415079], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["building:civic"] = { "referenceId": "building-reference-civic-gasan-20261121-v2", "wall": 12368299, "texture": null, "nominal": [24, 18, 15], "levels": 5, "glass": [7904681, 10139839, 4680828], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["building:fire"] = { "referenceId": "building-reference-fire-sandong-20261121-v2", "wall": 11974830, "texture": null, "nominal": [25, 7.5, 14], "levels": 2, "glass": [5401445, 7572612, 3493705], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:fire"] = { "referenceId": "building-reference-fire-sandong-20261121-v2", "wall": 11974830, "texture": null, "nominal": [25, 7.5, 14], "levels": 2, "glass": [5401445, 7572612, 3493705], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:lotte"] = { "referenceId": "building-reference-lotte-yangpyeong-20261121-v2", "wall": 13157045, "texture": null, "nominal": [32, 24, 24], "levels": 7, "glass": [9549233, 11125947, 7642266], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:post"] = { "referenceId": "building-reference-post-gyeolseong-20261121-v2", "wall": 5066837, "texture": null, "nominal": [11, 5.2, 8], "levels": 1, "glass": [3429992, 5404807, 2572110], "roofCore": false, "requestedRemake": true, "parapet": false };
+approvedBuildingProfiles["facility:daiso"] = { "referenceId": "building-reference-daiso-sinsa-20261121-v2", "wall": 6448489, "texture": null, "nominal": [12, 13, 10], "levels": 4, "glass": [7903939, 10270677, 5798820], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:cu"] = { "referenceId": "building-reference-cu-songpa-20261121-v2", "wall": 14145223, "texture": null, "nominal": [11, 7, 8], "levels": 2, "glass": [3624002, 5794648, 2505523], "roofCore": false, "requestedRemake": true };
+approvedBuildingProfiles["facility:mega"] = { "referenceId": "building-reference-mega-storefront-20261121-v2", "wall": 14278098, "texture": null, "nominal": [8.5, 4.4, 8], "levels": 1, "glass": [6585719, 7441280, 4283991], "roofCore": false, "requestedRemake": true };
+Object.assign(approvedBuildingProfiles["building:shop-glass"], { wall: 3358288, glass: [3491953, 6255255, 2440289] });
+Object.assign(approvedBuildingProfiles["building:school"], { wall: 15197396, glass: [4746346, 7444881, 3561304] });
+Object.assign(approvedBuildingProfiles["facility:school"], { wall: 15197396, glass: [4746346, 7444881, 3561304] });
+Object.assign(approvedBuildingProfiles["building:civic"], { wall: 12499110, glass: [4553585, 7776410, 3562837] });
+Object.assign(approvedBuildingProfiles["building:fire"], { wall: 14803676, glass: [5734263, 8363664, 4679518] });
+Object.assign(approvedBuildingProfiles["facility:fire"], { wall: 14803676, glass: [5734263, 8363664, 4679518] });
 
 // outputs/domestic-test/approved-road/catalog.js?v=signtexture3
 var approvedRoad = [
@@ -442,7 +459,7 @@ var props = [
   ["tray-rack", "\uC81C\uBE75 \uD2B8\uB808\uC774\uB799", "a176", 1332, "ground"]
 ].map(([key, name, old, triangles, support]) => ({ key, name, old, triangles, support }));
 
-// outputs/domestic-test/asset-encyclopedia/remakes.js?v=identity2
+// outputs/domestic-test/asset-encyclopedia/remakes.js?v=replacements3
 var approved = new Map(approvedRoad.map((p2) => [p2.id, p2]));
 var replacements = new Map(props.map((p2) => [canonicalId("road:" + p2.old), p2]));
 var remakeAliases = new Map(props.map((p2) => [canonicalId("representative:" + p2.old), canonicalId("road:" + p2.old)]).filter(([a, b]) => a !== b));
@@ -26817,8 +26834,8 @@ var FileLoader = class extends Loader {
           } else {
             const re = /charset="?([^;"\s]*)"?/i;
             const exec = re.exec(mimeType);
-            const label = exec && exec[1] ? exec[1].toLowerCase() : void 0;
-            const decoder = new TextDecoder(label);
+            const label2 = exec && exec[1] ? exec[1].toLowerCase() : void 0;
+            const decoder = new TextDecoder(label2);
             return response.arrayBuffer().then((ab) => decoder.decode(ab));
           }
       }
@@ -35085,8 +35102,8 @@ function emitFacadeTexture(batch, out, { width, bottom, top, id, cuts = [], offs
   }
 }
 
-// outputs/domestic-test/building-remakes/identity.js
-var files = { costco: "costco.svg", gs25: "gs25-sign.svg", homeplus: "homeplus.svg", starbucks: "starbucks-wordmark.svg", "starbucks-emblem": "starbucks-siren.png", "police-emblem": "police-horizontal.svg" };
+// outputs/domestic-test/building-remakes/identity.js?v=replacements3
+var files = { costco: "costco.svg", gs25: "gs25-sign.svg", homeplus: "homeplus.svg", starbucks: "starbucks-wordmark.svg", "starbucks-emblem": "starbucks-siren.png", "police-emblem": "police-horizontal.svg", "fire-emblem": "fire-emblem.png" };
 var images = /* @__PURE__ */ new Map();
 var textures2 = /* @__PURE__ */ new Map();
 function textureFor(key, options = {}) {
@@ -35107,12 +35124,31 @@ function textureFor(key, options = {}) {
       c.textBaseline = "middle";
       c.save();
       c.translate(x, y === H / 2 ? y : y * H / 256);
-      c.scale(max / c.measureText(value).width, 1);
+      const fit = max / c.measureText(value).width;
+      if (options.preserveAspect) {
+        const scale = Math.min(1, fit);
+        c.scale(scale, scale);
+      } else c.scale(fit, 1);
       if (key === "emart24" && !options.text) c.strokeText(value, 0, 0);
       c.fillText(value, 0, 0);
       c.restore();
     };
-    if (options.text) text(options.text, options.color || "#ffffff", options.size || 150, W / 2, H / 2, W * 0.96, options.serif ? "serif" : 'Arial, "Noto Sans KR", sans-serif');
+    if (key === "mega-mgc") {
+      c.strokeStyle = "#fff235";
+      c.fillStyle = "#fff235";
+      c.lineWidth = H * 0.055;
+      c.beginPath();
+      c.moveTo(W * 0.13, H * 0.2);
+      c.lineTo(W * 0.46, H * 0.08);
+      c.lineTo(W * 0.85, H * 0.2);
+      c.stroke();
+      c.textAlign = "center";
+      c.textBaseline = "middle";
+      c.font = `900 ${H * 0.47}px Arial, sans-serif`;
+      c.fillText("M", W / 2, H * 0.44);
+      c.font = `900 ${H * 0.29}px Arial, sans-serif`;
+      c.fillText("GC", W / 2, H * 0.8);
+    } else if (options.text) text(options.text, options.color || "#ffffff", options.size || 150, W / 2, H / 2, W * 0.96, options.serif ? "serif" : 'Arial, "Noto Sans KR", sans-serif');
     else if (files[key]) {
       const img = images.get(key);
       if (!img) throw Error("\uAC74\uBB3C \uB85C\uACE0 \uC900\uBE44\uAC00 \uB05D\uB098\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4: " + key);
@@ -35198,6 +35234,327 @@ function identityWindowWriter(out, palette) {
   if (!palette) return out;
   const old = [7969178, 9019290, 6785164, 11519165];
   return { ...out, quad: (x, y, z, w, h, color, surface) => out.quad(x, y, z, w, h, old.includes(color) ? palette[old.indexOf(color) % palette.length] : color, surface) };
+}
+
+// outputs/domestic-test/building-remakes/replacement-civic.js?v=replacements3
+function emitReplacementCivicFace(c) {
+  const { id, L, H, levels, fh, front, ground: ground2 } = c;
+  if (!["building:shop-glass", "building:school", "facility:school", "building:civic", "building:fire", "facility:fire"].includes(id)) return false;
+  if (![L, H, fh, ground2].every(Number.isFinite) || L <= 0 || H <= 0 || fh <= 0) throw Error("\uC0C8 \uAC74\uBB3C\uC758 \uD06C\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (L < 0.65 || H - ground2 < 0.4) return true;
+  const X = (x) => front && id.startsWith("building:") ? L - x : x;
+  const B = (x, y, z, w, h, d, col) => {
+    const a = Math.max(0.015, x - w / 2), b = Math.min(L - 0.015, x + w / 2);
+    if (b - a > 0.02 && h > 5e-3 && d > 5e-3) c.box(X((a + b) / 2), y, z, b - a, h, d, col);
+  };
+  const W = (x, y, w, h, kind = "wide-slider", frame = 5466985, glass2) => {
+    if (w > 0.3 && h > 0.35) c.window(X(x), y, w, h, kind, frame, glass2);
+  };
+  const S = (x, y, w, h, col, z = 0.018) => {
+    if (w > 0.02 && h > 0.02) c.surface(X(x), y, w, h, col, z);
+  };
+  const sign3 = (key, x, y, w, h, z = 0.3, options = {}) => {
+    w = Math.min(w, L - 0.12);
+    if (w > 0.15 && h > 0.08) c.sign(key, X(Math.max(w / 2 + 0.03, Math.min(L - w / 2 - 0.03, x))), y, w, h, z, options);
+  };
+  const grid = (a, b, r, wanted, h, frame, kind = "wide-slider") => {
+    const span2 = b - a;
+    if (span2 < 0.6) return;
+    const n = Math.max(1, Math.round(span2 / wanted)), step2 = span2 / n;
+    for (let j = 0; j < n; j++) W(a + step2 * (j + 0.5), r * fh + fh * 0.57, step2 * 0.82, h, kind, frame);
+  };
+  if (id === "building:shop-glass") {
+    S(L / 2, H / 2, L, H, 3358288);
+    const n = Math.max(1, Math.round((L - 0.35) / 0.8)), step2 = (L - 0.35) / n;
+    for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) {
+      const x = 0.175 + step2 * (j + 0.5), h = Math.min(fh * 0.86, fh - 0.18);
+      W(x, r * fh + fh * 0.48, step2 - 0.09, h, "stair", 3423819, [3491953, 6255255, 2440289]);
+      if (r > 0 && (j + 2 * r) % 5 === 0) B(x, r * fh + fh * 0.42, 0.1, step2 * 0.75, 0.045, 0.07, 1846073);
+    }
+    for (let j = 0; j <= n; j++) B(0.175 + step2 * j, H / 2, 0.12, 0.07, H, 0.24, 3489353);
+    for (let r = 1; r < levels; r++) B(L / 2, r * fh, 0.14, L, 0.1, 0.28, 3423558);
+    B(L / 2, H - 0.28, 0.08, L, 0.53, 0.16, 4278875);
+    if (front) {
+      sign3("glass-name", L * 0.88, H - 0.27, Math.min(2.4, L * 0.27), 0.44, 0.18, { text: "\uB3D9 \uD574", color: "#e8e9e6", preserveAspect: true });
+      if (levels > 2) sign3("glass-printer", L * 0.85, H - fh * 1.6, Math.min(3, L * 0.32), 0.35, 0.23, { text: "\uB3D9\uC544\uD504\uB9B0\uD130", color: "#e9eae5", preserveAspect: true });
+    }
+    return true;
+  }
+  if (id.endsWith(":school")) {
+    const cream = 15197396, frame = 4619639, colors = [14245755, 15249041, 15261607];
+    const wing = Math.min(3.8, L * 0.12), a = wing + 0.3, b = L - wing - 0.3;
+    for (let r = 0; r < levels; r++) {
+      if (front && L > 6) {
+        grid(0.2, wing - 0.15, r, 3, fh * 0.56, frame);
+        grid(L - wing + 0.15, L - 0.2, r, 3, fh * 0.56, frame);
+        grid(a, b, r, 3.2, fh * 0.52, frame);
+      } else grid(0.2, L - 0.2, r, 3.2, fh * 0.53, frame);
+      if (r > 0) {
+        const y = r * fh - 0.19;
+        B(L / 2, y, 0.1, L - 0.08, 0.5, 0.2, front ? colors[(r - 1) % 3] : cream);
+      }
+      if (r > 0 && front && L > 6) {
+        const n = Math.max(1, Math.round((b - a) / 3.2)), step2 = (b - a) / n;
+        for (let j = 0; j < n; j++) {
+          const x = a + step2 * (j + 0.5), w = step2 * 0.84;
+          for (const dy of [-0.16, 0, 0.16]) B(x, r * fh + fh * 0.34 + dy, 0.23, w, 0.025, 0.03, 10332576);
+          for (const dx of [-w / 2, w / 2]) B(x + dx, r * fh + fh * 0.34, 0.23, 0.025, 0.42, 0.03, 11055530);
+        }
+      }
+    }
+    B(L / 2, H - 0.18, 0.14, L, 0.36, 0.28, cream);
+    for (const x of [wing, L - wing]) B(x, H / 2, 0.14, 0.2, H, 0.28, cream);
+    if (front) {
+      const ew = Math.min(4.2, L * 0.22);
+      B(L / 2, Math.min(fh - 0.13, 3.1), 0.65, ew + 1, 0.16, 1.3, 14276808);
+      sign3("school-banner", L / 2, fh - 0.17, Math.min(10, L * 0.44), 0.46, 0.25, { text: "\uD478\uB978 \uAFC8\uC774 \uC790\uB77C\uB294 \uC0AC\uB791\uC758 \uBC30\uC6C0\uD130", color: "#39785b", preserveAspect: true, size: 160 });
+      if (levels > 2) sign3("school-clock", L / 2, H - fh - 0.05, 0.65, 0.65, 0.25, { text: "\u25F7", color: "#4b6464", preserveAspect: true });
+    }
+    return true;
+  }
+  if (id === "building:civic") {
+    const stone = 12499110, frame = 4023646, tower = L * 0.22;
+    for (let r = 0; r < levels; r++) {
+      grid(0.15, tower - 0.1, r, 2.8, fh * 0.61, frame);
+      grid(tower + 0.23, L - 0.2, r, 2.5, fh * 0.69, frame);
+      B(L / 2, r * fh + 0.12, 0.07, L, 0.23, 0.14, stone);
+      B(tower / 2, r * fh + 0.25, 0.2, tower, 0.4, 0.4, stone);
+    }
+    for (let x = 0.15; x < L; x += 1.15) B(x, H / 2, 0.022, 0.015, H, 0.026, 10066317);
+    for (let y = 0.55; y < H; y += 0.58) B(L / 2, y, 0.024, L, 0.018, 0.028, 10920852);
+    for (const x of [0.08, tower * 0.49, tower, tower + (L - tower) * 0.5, L - 0.08]) B(x, H / 2, 0.14, 0.2, H, 0.28, stone);
+    if (front) {
+      sign3("civic-name", L * 0.66, H - 0.35, L * 0.61, 0.42, 0.23, { text: "\uAC00\uC0B0\uB3D9\uC8FC\uBBFC\uC13C\uD130", color: "#49688b", preserveAspect: true });
+      sign3("civic-address", tower * 0.5, fh - 0.35, tower * 0.8, 0.25, 0.42, { text: "\uAC00\uC0B0\uB85C 129", color: "#494b43", preserveAspect: true });
+      B(L * 0.64, fh - 0.13, 0.55, L * 0.56, 0.18, 1.1, 12105125);
+      sign3("civic-door", L * 0.66, fh - 0.45, L * 0.43, 0.35, 0.59, { text: "\uAC00\uC0B0\uB3D9\uC8FC\uBBFC\uC13C\uD130", color: "#486e6b", preserveAspect: true });
+    }
+    return true;
+  }
+  const office = L * 0.36, gray = 5988705, white2 = 14803676, red = 15675436;
+  if (!front) {
+    for (let r = 0; r < levels; r++) grid(0.2, L - 0.2, r, 3.6, Math.min(fh * 0.44, 1.4), 7438460);
+    return true;
+  }
+  S(office / 2, H * 0.3, office, H * 0.6, 9475988);
+  const officeLevels = Math.max(1, levels), ofh = H / officeLevels;
+  for (let r = 0; r < officeLevels; r++) {
+    const n = Math.max(1, Math.round(office / 2.4)), step2 = (office - 0.3) / n;
+    for (let j = 0; j < n; j++) W(0.15 + step2 * (j + 0.5), r * ofh + ofh * 0.48, Math.min(0.85, step2 * 0.6), Math.min(1.8, ofh * 0.6), "stair", 5860968);
+  }
+  const bayA = office + 0.12, bayB = L - 0.15, span = bayB - bayA, nb = Math.max(1, Math.round(span / 3.8)), step = span / nb, doorTop = H * 0.72, doorBottom = ground2 + 0.1, dh = doorTop - doorBottom;
+  for (let j = 0; j < nb; j++) {
+    const x = bayA + step * (j + 0.5), w = step - 0.18;
+    W(x, (doorTop + doorBottom) / 2, w, dh, "stair", 5334622, [5734263, 8363664, 4679518]);
+    for (let y = doorBottom + 0.4; y < doorTop; y += 0.58) B(x, y, 0.075, w, 0.045, 0.06, 10794665);
+    for (let k = 0; k < 3; k++) B(x + (k - 1) * w * 0.27, doorBottom + dh * 0.24, 0.112, w * 0.14, 0.16, 0.032, 3493191);
+    B(bayA + step * j, doorTop / 2, 0.13, 0.18, doorTop, 0.26, white2);
+  }
+  B((office + L) / 2, doorTop + 0.15, 0.28, L - office, 0.25, 0.56, red);
+  B(office / 2, H * 0.59, 0.25, office, 0.95, 0.5, gray);
+  for (let y = H * 0.59 - 0.4; y < H * 0.59 + 0.45; y += 0.11) B(office / 2, y, 0.51, office, 0.025, 0.025, 7633783);
+  const sh = Math.min(1.6, H * 0.21), sy = doorTop + (H - doorTop) * 0.58;
+  sign3("fire-emblem", office + (L - office) * 0.13, sy, sh * 2.27, sh, 0.1);
+  sign3("fire-name", office + (L - office) * 0.58, sy, Math.min(5, (L - office) * 0.62), sh, 0.11, { text: "\uC18C\uBC29\uC11C", color: "#303c49", preserveAspect: true, size: 220 });
+  B(office * 0.53, H * 0.45, 0.65, Math.min(3.3, office * 0.74), 0.13, 1.3, 12502975);
+  sign3("fire-office", office * 0.53, H * 0.5, Math.min(2.9, office * 0.8), 0.27, 0.54, { text: "119 \uC548\uC804\uC13C\uD130", color: "#bd2427", preserveAspect: true });
+  return true;
+}
+
+// outputs/domestic-test/building-remakes/replacement-retail.js?v=replacements3
+function emitReplacementRetailFace(c) {
+  const { id, L, H, front, ground: ground2 = 0, box, surface, window: win, sign: sign3 } = c;
+  if (!["facility:lotte", "facility:post", "facility:daiso"].includes(id)) return false;
+  if (L < 2 || H < 2) return true;
+  const label2 = (key, text, x, y, w, h, color, z = 0.16) => sign3(key, x, y, w, h, z, { text, color, preserveAspect: true, size: 220 });
+  const panes = (a, b, lo, hi, n, frame, glass2) => {
+    if (hi - lo < 0.4) return;
+    const s = (b - a) / n;
+    for (let i = 0; i < n; i++) win(a + s * (i + 0.5), (lo + hi) / 2, s - 0.065, hi - lo, "white-slider", frame, [glass2, glass2, glass2]);
+  };
+  const slab = (a, b, y, d, color) => box((a + b) / 2, y, d / 2, b - a, 0.16, d, color);
+  if (id === "facility:lotte") {
+    const stone = 13157045, metal2 = 6585209;
+    surface(L / 2, H / 2, L, H, stone);
+    if (front) {
+      const a = L * 0.58, b = L * 0.85, lo = H * 0.105, hi = H * 0.88, n = 7, s = (b - a) / n;
+      panes(a, b, lo, hi, n, metal2, 9549233);
+      for (let y = lo + 0.7; y < hi; y += Math.max(0.7, H * 0.045)) box((a + b) / 2, y, 0.085, b - a, 0.045, 0.12, metal2);
+      for (let i = 0; i < n; i++) {
+        const x = a + s * (i + 0.5), bow = 0.48 * Math.sin(Math.PI * (i + 0.5) / n);
+        box(x, H * 0.94, bow / 2, s + 0.012, H * 0.12, bow + 0.08, 11506295);
+        box(x, lo - 0.08, bow / 2, s + 0.012, 0.16, bow + 0.12, metal2);
+      }
+      label2("replacement-lotte", "LOTTE Mart", (a + b) / 2, H * 0.94, (b - a) * 0.86, H * 0.055, "#ffffff", 0.55);
+      panes(L * 0.13, L * 0.43, ground2 + 0.12, H * 0.24, 5, metal2, 7838876);
+      panes(a, b, ground2 + 0.12, lo - 0.2, 4, 4016456, 5335914);
+      slab(a, b, lo - 0.08, 0.64, 6384486);
+      for (let y = H * 0.33; y < H * 0.91; y += H * 0.09) for (let x = L * 0.08; x < L * 0.43; x += L * 0.08) box(x, y, 0.022, L * 0.042, 0.025, 0.025, 11249823);
+      box(L * 0.21, H + 0.72, 0.08, L * 0.19, 1.44, 0.2, 11374970);
+      label2("replacement-lotte-roof", "LOTTE Mart", L * 0.21, H + 0.8, L * 0.16, 0.57, "#ffffff", 0.2);
+    } else {
+      for (let j = 1; j <= 5; j++) panes(L * 0.1, L * 0.9, H * (0.2 + j * 0.115), H * (0.245 + j * 0.115), 4, 8159870, 3490111);
+    }
+  } else if (id === "facility:post") {
+    const wall = 5066837, roof = 3490128;
+    surface(L / 2, H / 2, L, H, wall);
+    for (let y = ground2 + 0.1; y < H; y += 0.09) surface(L / 2, y, L, 0.012, 6448234, 0.025);
+    if (front) {
+      for (const [a2, b2, rise] of [[L * 0.02, L * 0.6, H * 0.32], [L * 0.6, L * 0.98, H * 0.22]]) {
+        const mid = (a2 + b2) / 2;
+        c.face([[a2, H, 0.06], [b2, H, 0.06], [mid, H + rise, 0.06]], wall);
+        if (c.roofDepth > 0) {
+          const d = c.roofDepth;
+          c.face([[a2, H, 0.02], [mid, H + rise, 0.02], [mid, H + rise, -d], [a2, H, -d]], roof);
+          c.face([[mid, H + rise, 0.02], [b2, H, 0.02], [b2, H, -d], [mid, H + rise, -d]], roof);
+          c.face([[a2, H, -d], [mid, H + rise, -d], [b2, H, -d]], wall);
+        }
+        c.out.rod([a2, H + 0.04, 0.075], [mid, H + rise + 0.04, 0.075], 0.085, roof, 4);
+        c.out.rod([mid, H + rise + 0.04, 0.075], [b2, H + 0.04, 0.075], 0.085, roof, 4);
+      }
+      const a = L * 0.19, b = L * 0.56, top = H * 0.69;
+      panes(a, b, ground2 + 0.08, top, 3, 12173250, 3429992);
+      for (let i = 0; i < 10; i++) {
+        const d = 0.7 * (i + 0.5) / 10, y = top + 0.1 + 0.22 * Math.sqrt(Math.max(0, 1 - (d / 0.74) ** 2));
+        box((a + b) / 2, y, d, b - a + 0.22, 0.065, 0.08, 6055280);
+      }
+      for (const x of [a - 0.1, (a + b) / 2, b + 0.1]) for (let i = 0; i < 10; i++) {
+        const d = 0.7 * (i + 0.5) / 10, y = top + 0.15 + 0.22 * Math.sqrt(Math.max(0, 1 - (d / 0.74) ** 2));
+        box(x, y, d, 0.035, 0.035, 0.085, 3160904);
+      }
+      box((a + b) / 2, H * 0.855, 0.08, b - a + 0.22, H * 0.16, 0.16, 15856361);
+      box(L * 0.485, H * 0.855, 0.175, L * 0.18, H * 0.16, 0.035, 13048117);
+      label2("replacement-post-latin", "KOREA POST", L * 0.29, H * 0.855, L * 0.17, H * 0.043, "#293a4b", 0.2);
+      label2("replacement-post-name", "\uACB0\uC131\uC6B0\uCCB4\uAD6D", L * 0.485, H * 0.855, L * 0.165, H * 0.065, "#ffffff", 0.205);
+      box((a + b) / 2, H * 0.26, 0.085, b - a, 0.065, 0.05, 14640159);
+      const mw = Math.min(0.55, L * 0.07), mh = Math.min(1.15, H * 0.36);
+      box(L * 0.12, ground2 + mh / 2 + 0.12, 0.23, mw, mh, 0.46, 14226487);
+      box(L * 0.12, ground2 + mh * 0.79 + 0.12, 0.475, mw * 0.62, 0.055, 0.035, 6760248);
+      label2("replacement-post-box", "\uC6B0\uCCB4\uD1B5", L * 0.12, ground2 + mh * 0.94 + 0.12, mw * 0.85, 0.12, "#ffffff", 0.48);
+    }
+  } else {
+    const grey = 6448489;
+    surface(L / 2, H / 2, L, H, grey);
+    for (let y = 0.5; y < H; y += 0.85) surface(L / 2, y, L, 0.018, 4672593, 0.026);
+    for (let x = 0.9; x < L; x += 1.3) surface(x, H / 2, 0.018, H, 4672593, 0.027);
+    if (front) {
+      panes(L * 0.08, L * 0.92, ground2 + 0.1, H * 0.225, 7, 3620162, 8492433);
+      panes(L * 0.22, L * 0.94, H * 0.36, H * 0.77, 6, 3489608, 7903939);
+      for (const y of [0.48, 0.6, 0.7]) box(L * 0.58, H * y, 0.075, L * 0.72, 0.035, 0.1, 3424591);
+      panes(L * 0.24, L * 0.8, H * 0.855, H * 0.95, 6, 3160645, 11911360);
+      slab(L * 0.19, L * 0.95, H * 0.8, 0.48, grey);
+      slab(L * 0.19, L * 0.85, H * 0.98, 0.54, grey);
+      box(L * 0.52, H * 0.292, 0.1, L * 0.89, H * 0.13, 0.2, grey);
+      box(L * 0.285, H * 0.292, 0.225, L * 0.09, H * 0.085, 0.06, 12128818);
+      label2("replacement-daiso-small", "daiso", L * 0.285, H * 0.277, L * 0.082, H * 0.021, "#ffffff", 0.265);
+      label2("replacement-daiso", "\uB2E4\uC774\uC18C", L * 0.53, H * 0.292, L * 0.36, H * 0.069, "#d1233a", 0.24);
+      slab(L * 0.3, L * 0.6, H * 0.226, 0.9, 10623798);
+      box(L * 0.45, H * 0.216, 0.87, L * 0.3, 0.13, 0.08, 9379636);
+      for (const y of [0.815, 0.835, 0.855]) box(L * 0.55, H * y, 0.18, L * 0.74, 0.035, 0.035, 3292745);
+      for (let i = 0; i < 8; i++) box(L * 0.18 + L * 0.74 * i / 7, H * 0.835, 0.18, 0.035, H * 0.06, 0.035, 3292745);
+    }
+  }
+  return true;
+}
+
+// outputs/domestic-test/building-remakes/replacement-shops.js?v=replacements3
+var GREEN = 1529914;
+var LIME = 10472988;
+var YELLOW = 16041527;
+var FRAME = 11969371;
+var DARK = 3160886;
+var label = (c, key, x, y, w, h, z, text, color) => c.sign?.(key, x, y, w, h, z, { text, color, preserveAspect: true, size: 220 });
+function pane(c, a, b, lo, hi, frame = DARK) {
+  if (b - a > 0.3 && hi - lo > 0.35) c.window((a + b) / 2, (lo + hi) / 2, b - a, hi - lo, "white-slider", frame);
+}
+function door(c, x, w, top, frame, z = 0.14) {
+  pane(c, x - w / 2, x + w / 2, 0.08, top, frame);
+  c.entryOpening?.({ x, y: (top + 0.08) / 2, w, h: top - 0.08, panes: 1, door: 0, frameWidth: 0.05 });
+  c.box(x, 0.045, z, w + 0.08, 0.06, 0.25, 11382428);
+  for (const side2 of [-1, 1]) c.box(x + side2 * 0.12, 1.1, z + 0.05, 0.025, 0.43, 0.035, 13948360);
+}
+function pill(c, x, y, z, w, h, col) {
+  const n = 16, r = h / 2;
+  for (let i = 0; i < n; i++) {
+    const yy = -r + (i + 0.5) * h / n, ww = Math.max(0.02, w - h + 2 * Math.sqrt(Math.max(0, r * r - yy * yy)));
+    c.box(x, y + yy, z, ww, h / n + 1e-3, 0.06, col);
+  }
+}
+function upper(c, top) {
+  if (c.faceOnly) return;
+  const fh = c.fh || 3.5;
+  for (let lo = top + 0.32; lo + 1 < c.H - 0.25; lo += fh) {
+    const hi = Math.min(c.H - 0.35, lo + 1.55), count3 = Math.max(1, Math.floor(c.L / 2.7)), step = (c.L - 0.4) / count3;
+    for (let i = 0; i < count3; i++) pane(c, 0.2 + i * step + 0.12, 0.2 + (i + 1) * step - 0.12, lo, hi, 13093049);
+  }
+}
+function roundedDepth(x, L, depth) {
+  const r = Math.min(L * 0.2, 1.3, depth - 0.02), a = Math.min(x, L - x);
+  return a >= r ? depth : depth - r + Math.sqrt(Math.max(0, r * r - (r - a) * (r - a)));
+}
+function curvedBand(c, y, h, depth, col) {
+  const n = 64, step = (c.L - 0.12) / n;
+  for (let i = 0; i < n; i++) {
+    const x = 0.06 + (i + 0.5) * step, z = roundedDepth(x, c.L, depth);
+    c.box(x, y, (z + 0.02) / 2, step + 1e-3, h, Math.max(0.025, z - 0.02), col);
+  }
+}
+function emitReplacementShopsFace(c) {
+  if (!["facility:cu", "facility:mega"].includes(c.id)) return false;
+  const { L, H, box: B } = c;
+  if (!Number.isFinite(L) || !Number.isFinite(H) || L < 1.15 || H < 1.7) return true;
+  const top = Math.min(H - 0.12, c.faceOnly ? H - 0.12 : Math.max(2.7, Math.min(c.fh || 3.7, 4.4)));
+  upper(c, top);
+  if (!c.front) {
+    pane(c, 0.2, Math.min(L - 0.2, 2.5), 0.3, Math.max(0.9, top - 0.9), c.id === "facility:cu" ? GREEN : FRAME);
+    return true;
+  }
+  if (c.id === "facility:cu") {
+    const fascia = 0.69, glassTop = top - fascia - 0.36;
+    B(L / 2, top - fascia / 2, 0.13, L - 0.03, fascia, 0.26, 14869720);
+    pill(c, L * 0.105, top - 0.34, 0.29, L * 0.15, 0.29, LIME);
+    label(c, "cu-nice", L * 0.105, top - 0.34, L * 0.13, 0.19, 0.335, "Nice to", "#17583a");
+    label(c, "cu-logo", L * 0.245, top - 0.33, L * 0.13, 0.57, 0.3, "CU", "#17583a");
+    pill(c, L * 0.59, top - 0.32, 0.29, L * 0.54, 0.31, LIME);
+    B(L / 2, glassTop + 0.13, 0.38, L - 0.05, 0.12, 0.76, GREEN);
+    B(L / 2, glassTop + 0.04, 0.72, L - 0.05, 0.18, 0.055, 1526840);
+    const dw = Math.min(1.6, L * 0.2), dx = L * 0.44;
+    pane(c, 0.17, dx - dw / 2 - 0.1, 0.24, glassTop, GREEN);
+    door(c, dx, dw, glassTop, GREEN);
+    pane(c, dx + dw / 2 + 0.1, L - 0.17, 0.24, glassTop, GREEN);
+    B(L / 2, 0.12, 0.06, L - 0.04, 0.22, 0.12, 12762794);
+    for (const x of [0.085, L - 0.085]) B(x, glassTop / 2, 0.07, 0.13, glassTop, 0.14, GREEN);
+  } else {
+    const fascia = Math.min(0.91, top * 0.23), glassTop = top - fascia - 0.3;
+    const radius = Math.min(L * 0.2, 1.3), depth = c.faceOnly ? 0.16 : radius + 0.12;
+    curvedBand(c, top - fascia / 2, fascia, depth, YELLOW);
+    curvedBand(c, glassTop + 0.13, 0.13, depth + 0.17, 16766280);
+    curvedBand(c, glassTop + 0.045, 0.055, depth + 0.18, 14460706);
+    label(c, "mega-word", L * 0.31, top - fascia * 0.49, L * 0.24, fascia * 0.46, depth + 0.025, "MEGA", "#fffced");
+    label(c, "mega-mgc", L * 0.49, top - fascia * 0.49, L * 0.09, fascia * 0.68, depth + 0.035, "MGC", "#fff000");
+    label(c, "mega-coffee", L * 0.7, top - fascia * 0.49, L * 0.31, fascia * 0.46, depth + 0.025, "COFFEE", "#fffced");
+    const dx = L * 0.51, dw = Math.min(1.65, L * 0.23), lo = 0.1;
+    pane(c, 0.13, dx - dw / 2 - 0.07, lo, glassTop, FRAME);
+    door(c, dx, dw, glassTop, FRAME, depth);
+    for (const side2 of [-1, 1]) B(dx + side2 * dw / 4, (lo + glassTop) / 2, depth - 0.025, dw / 2 - 0.055, glassTop - lo, 0.025, 7441280);
+    pane(c, dx + dw / 2 + 0.07, L - 0.13, lo, glassTop, FRAME);
+    const n = 48, step = (L - 0.26) / n;
+    for (let i = 0; i < n; i++) {
+      const x = 0.13 + (i + 0.5) * step;
+      if (Math.abs(x - dx) < dw / 2 + 0.06) continue;
+      const z = roundedDepth(x, L, depth) - 0.025;
+      B(x, (lo + glassTop) / 2, z, step + 1e-3, glassTop - lo, 0.026, 6585719);
+      B(x, lo, z + 0.02, step + 1e-3, 0.065, 0.05, FRAME);
+      B(x, glassTop, z + 0.02, step + 1e-3, 0.06, 0.05, FRAME);
+    }
+    for (const x of [dx - dw / 2, dx, dx + dw / 2]) B(x, glassTop / 2, depth - 0.01, 0.045, glassTop, 0.055, FRAME);
+    B(dx, glassTop, depth - 0.01, dw, 0.055, 0.055, FRAME);
+    for (const x of [L * 0.17, L * 0.32, L * 0.7, L * 0.85]) {
+      if (Math.abs(x - dx) < dw / 2 + 0.08) continue;
+      B(x, (lo + glassTop) / 2, roundedDepth(x, L, depth), 0.035, glassTop - lo, 0.045, DARK);
+    }
+  }
+  return true;
 }
 
 // outputs/domestic-test/solar-position.js?v=151
@@ -35454,7 +35811,7 @@ function emitAircon(out, x, y, variant = 0) {
   R([x + side2 * 0.6, y - 0.12, 0.12], [x + side2 * 0.6, y - 0.72, 0.12], 0.025, 13089184);
 }
 
-// outputs/domestic-test/building-remakes/civic-residential.js?v=identity2
+// outputs/domestic-test/building-remakes/civic-residential.js?v=replacements3
 function emitApprovedCivicFace(c) {
   const { id, L, H, levels, fh, front, ground: ground2 } = c;
   const X = (x) => front && id.startsWith("building:") ? L - x : x, W = (x, ...a) => c.window(X(x), ...a), B = (x, ...a) => c.box(X(x), ...a), S = (x, ...a) => c.surface(X(x), ...a), sign3 = (key, x, ...a) => c.sign(key, X(x), ...a);
@@ -35497,8 +35854,8 @@ function emitApprovedCivicFace(c) {
   }
   if (id === "building:shop-panel") {
     if (front) {
-      const split = L * 0.46, upper = H - fh;
-      S((split + L) / 2, upper / 2 + fh * 0.5, L - split, upper - fh, 2437175, 0.022);
+      const split = L * 0.46, upper2 = H - fh;
+      S((split + L) / 2, upper2 / 2 + fh * 0.5, L - split, upper2 - fh, 2437175, 0.022);
       for (let x = 0.08; x < L; x += 0.18) B(x, H / 2, 0.035, 0.026, H - 0.08, 0.05, 7622972);
       const nLeft = Math.max(3, Math.round(split / 1.4)), step = split / nLeft, nRight = Math.max(4, Math.round((L - split) / 1.45)), rw = (L - split - 0.3) / nRight;
       for (let r = 1; r < levels - 1; r++) {
@@ -35511,7 +35868,7 @@ function emitApprovedCivicFace(c) {
         W(x, H - fh * 0.48, w, fh * 0.58, "wide-slider", 4278599);
         B(x, H - fh * 0.68, 0.13, w, 0.045, 0.045, 3687752);
       }
-      W(split / 2, upper - 0.2, split - 0.22, 0.55, "wide-slider", 2437689);
+      W(split / 2, upper2 - 0.2, split - 0.22, 0.55, "wide-slider", 2437689);
       for (let j = 0; j < Math.max(3, Math.round(L / 3.2)); j++) {
         const n = Math.max(3, Math.round(L / 3.2)), w = (L - 0.4) / n;
         W(0.2 + w * (j + 0.5), ground2 + fh * 0.42, w - 0.18, fh * 0.79, "wide-slider", 3489341, [1522496, 3303021, 2380897]);
@@ -35581,22 +35938,23 @@ function emitApprovedCivicFace(c) {
       W(L / 2, ground2 + 1.3, w, 2.45, "wide-slider", 7440778);
       B(L / 2, fh - 0.1, 0.29, L - 0.16, 0.25, 0.58, white2);
       B(L / 2, H - 0.31, 0.1, L, 0.7, 0.2, white2);
-      sign3("police-name", L * 0.61, H - 0.26, L * 0.58, 0.48, 0.22, { text: "\uC11C\uC6B8\uC11C\uB300\uBB38\uACBD\uCC30\uC11C", color: "#28517b" });
-      sign3("police-name", L * 0.61, H - 0.57, L * 0.44, 0.15, 0.23, { text: "Seodaemun Police Station", color: "#dbb32a" });
-      sign3("police-emblem", L * 0.275, H - 0.28, 0.82, 0.55, 0.23);
+      const scale = Math.min(1, L / 14), sy = H + 0.75 * scale;
+      B(L / 2, sy, 0.1, 11.8 * scale, 2.25 * scale, 0.22, white2);
+      sign3("police-name", L / 2 + 1.35 * scale, sy, 6.1 * scale, 1.7 * scale, 0.235, { text: "\uACBD\uCC30\uC11C", color: "#204e84", preserveAspect: true, size: 230 });
+      sign3("police-emblem", L / 2 - 3.55 * scale, sy, 2.55 * scale, 1.6 * scale, 0.235);
     }
     return true;
   }
   return false;
 }
 
-// outputs/domestic-test/building-remakes/retail.js?v=identity2
+// outputs/domestic-test/building-remakes/retail.js?v=replacements3
 function emitApprovedRetailFace(c) {
   const { id, L, H, front, box, window: win, surface } = c;
   if (!["facility:emart", "facility:homeplus", "facility:costco", "facility:traders"].includes(id)) return false;
   if (L < 2 || H < 2) return true;
   const band = (y, h, color, z = 0.06, d = 0.12) => box(L / 2, y, z, L, h, d, color);
-  const pane = (a, b, lo, hi, spacing = 2, frame = 12175045) => {
+  const pane2 = (a, b, lo, hi, spacing = 2, frame = 12175045) => {
     if (hi - lo < 0.4 || b - a < 0.5) return;
     const n = Math.max(1, Math.ceil((b - a) / spacing)), s = (b - a) / n;
     for (let i = 0; i < n; i++) win(a + s * (i + 0.5), (lo + hi) / 2, s - 0.1, hi - lo, "white-slider", frame);
@@ -35624,9 +35982,9 @@ function emitApprovedRetailFace(c) {
         box(x, H * 0.99, z + 0.07, step + 8e-3, H * 0.025, 0.34, 12042174);
       }
       for (let x = a + 0.04; x < b; x += 0.21) box(x, H * 0.72, bow(x) + 0.045, 0.045, H * 0.33, 0.07, 12624780);
-      pane(a, b, entry2 + 0.06, H * 0.55, Math.max(1.1, L * 0.15), 12569037);
+      pane2(a, b, entry2 + 0.06, H * 0.55, Math.max(1.1, L * 0.15), 12569037);
       for (const y of [0.34, 0.445]) box(L / 2, H * y, 0.075, b - a, 0.055, 0.12, 12634574);
-      pane(L * 0.25, L * 0.76, 0.08, entry2 - 0.14, Math.max(1, L * 0.075), 5596517);
+      pane2(L * 0.25, L * 0.76, 0.08, entry2 - 0.14, Math.max(1, L * 0.075), 5596517);
       canopy(a, b, entry2, 14081242, 1.05);
       for (const x of [L * 0.22, L * 0.78]) box(x, entry2 / 2, 0.32, L * 0.025, entry2, 0.64, 14737362);
       for (const x of [L * 0.07, L * 0.93]) {
@@ -35649,8 +36007,8 @@ function emitApprovedRetailFace(c) {
     for (let x = 1.5; x < L; x += 2.9) box(x, H / 2, 0.033, 0.025, H, 0.025, 9933709);
     if (front) {
       const a = L * 0.25, b = L * 0.91, entry2 = H * 0.24, top = H * 0.73;
-      pane(a, b, 0.1, entry2 - 0.25, Math.max(1, L * 0.075), 6518389);
-      pane(a, b, entry2 + 0.04, top, Math.max(1.3, L * 0.072), 14014676);
+      pane2(a, b, 0.1, entry2 - 0.25, Math.max(1, L * 0.075), 6518389);
+      pane2(a, b, entry2 + 0.04, top, Math.max(1.3, L * 0.072), 14014676);
       for (let x = a; x <= b + 0.01; x += (b - a) / 5) box(x, (top + entry2) / 2, 0.17, 0.14, top - entry2, 0.34, 14737109);
       for (const y of [0.4, 0.56]) box((a + b) / 2, H * y, 0.1, b - a, 0.065, 0.15, 6519931);
       for (const x of [a - 0.12, b + 0.12]) box(x, (top + 0.1) / 2, 0.16, 0.23, top + 0.1, 0.32, 14736851);
@@ -35667,12 +36025,12 @@ function emitApprovedRetailFace(c) {
     if (front) {
       const lower = H * 0.17, top = H * 0.78;
       for (const [x, w] of [[L * 0.2, L * 0.065], [L * 0.79, L * 0.13]]) {
-        pane(x - w / 2, x + w / 2, lower, top, Math.max(0.7, w / 3), 11977927);
+        pane2(x - w / 2, x + w / 2, lower, top, Math.max(0.7, w / 3), 11977927);
         for (let y = lower + 0.7; y < top; y += 0.85) box(x, y, 0.08, w, 0.045, 0.12, 12963536);
       }
       box(L * 0.855, H + 0.7, 0.015, L * 0.255, 1.4, 0.26, 15263969);
       c.sign("costco", L * 0.855, H + 0.72, L * 0.22, 1.12, 0.17);
-      pane(L * 0.36, L * 0.6, 0.08, Math.min(2.5, H * 0.18), 2, 6781569);
+      pane2(L * 0.36, L * 0.6, 0.08, Math.min(2.5, H * 0.18), 2, 6781569);
       canopy(L * 0.35, L * 0.61, Math.min(2.5, H * 0.18) + 0.12, 12437705, 0.65);
     } else service();
     band(H - 0.04, 0.1, 13029069);
@@ -35685,12 +36043,12 @@ function emitApprovedRetailFace(c) {
       const a = L * 0.24, b = L * 0.46, entry2 = H * 0.17, top = H * 0.88;
       surface(L * 0.535, H / 2, L * 0.15, H, lime, 0.032);
       box(L * 0.535, H + 0.38, 0.1, L * 0.15, 0.76, 0.2, lime);
-      pane(a, b, entry2 + 0.04, top, Math.max(1, L * 0.07), 7640984);
+      pane2(a, b, entry2 + 0.04, top, Math.max(1, L * 0.07), 7640984);
       for (let y = entry2 + 0.75; y < top; y += 1.05) box((a + b) / 2, y, 0.1, b - a, 0.055, 0.16, 10730172);
-      pane(a, b, 0.1, entry2 - 0.15, Math.max(1, L * 0.07), 7904665);
+      pane2(a, b, 0.1, entry2 - 0.15, Math.max(1, L * 0.07), 7904665);
       canopy(a - 0.025, b + 0.03, entry2, lime, 1.1);
       for (const x of [a + 0.1, b - 0.1]) box(x, entry2 / 2, 0.63, 0.14, entry2, 1.26, 14016463);
-      pane(L * 0.64, L * 0.81, H * 0.2, H * 0.69, Math.max(1, L * 0.07), 5005932);
+      pane2(L * 0.64, L * 0.81, H * 0.2, H * 0.69, Math.max(1, L * 0.07), 5005932);
       for (let y = H * 0.22; y < H * 0.69; y += 0.7) box(L * 0.725, y, 0.1, L * 0.17, 0.055, 0.14, 10137267);
       canopy(L * 0.82, L * 0.98, H * 0.21, 3766705, 1.2);
       c.sign("traders", L * 0.535, H * 0.915, L * 0.125, H * 0.1, 0.23);
@@ -35699,9 +36057,9 @@ function emitApprovedRetailFace(c) {
   return true;
 }
 
-// outputs/domestic-test/building-remakes/storefronts.js?v=identity2
+// outputs/domestic-test/building-remakes/storefronts.js?v=replacements3
 var PALE = 13947593;
-var DARK = 3422518;
+var DARK2 = 3422518;
 var SILVER = 10462881;
 function capsule(c, x, y, z, w, h, depth, color) {
   const r = h / 2, n = 12;
@@ -35719,12 +36077,12 @@ function upperHost(c, shopTop) {
     const h = Math.min(glassHost ? fh - 0.55 : 1.65, H - 0.32 - bottom), n = Math.max(1, Math.floor((L - 0.6) / (glassHost ? 2.2 : 2.8))), step = (L - 0.6) / n;
     for (let i = 0; i < n; i++) {
       const x = 0.3 + step * (i + 0.5), w = Math.min(step - 0.24, glassHost ? 2.8 : 2.05);
-      if (w > 0.45) W(x, bottom + h / 2, w, h, "white-slider", glassHost ? DARK : PALE);
+      if (w > 0.45) W(x, bottom + h / 2, w, h, "white-slider", glassHost ? DARK2 : PALE);
     }
-    if (glassHost) B(L / 2, bottom - 0.13, 0.07, L - 0.08, 0.12, 0.14, DARK);
+    if (glassHost) B(L / 2, bottom - 0.13, 0.07, L - 0.08, 0.12, 0.14, DARK2);
   }
 }
-function glass(c, a, b, bottom, top, frame = DARK) {
+function glass(c, a, b, bottom, top, frame = DARK2) {
   if (b - a < 0.35 || top - bottom < 0.5) return;
   c.window((a + b) / 2, (bottom + top) / 2, b - a, top - bottom, "white-slider", frame);
 }
@@ -35744,8 +36102,8 @@ function side(c, top) {
   const corner = id === "facility:gs25" || id === "facility:starbucks";
   const span = corner ? Math.min(L - 0.3, Math.max(1.1, L * 0.62)) : Math.min(L - 0.4, 2.8);
   if (span > 0.5) {
-    glass(c, 0.18, 0.18 + span, 0.3, top - 0.8, id === "facility:starbucks" ? SILVER : DARK);
-    B(0.18 + span / 2, top - 0.38, 0.09, span + 0.18, 0.56, 0.18, id === "facility:gs25" ? DARK : id === "facility:starbucks" ? 8676167 : 6448994);
+    glass(c, 0.18, 0.18 + span, 0.3, top - 0.8, id === "facility:starbucks" ? SILVER : DARK2);
+    B(0.18 + span / 2, top - 0.38, 0.09, span + 0.18, 0.56, 0.18, id === "facility:gs25" ? DARK2 : id === "facility:starbucks" ? 8676167 : 6448994);
     if (id === "facility:starbucks") {
       for (let x = 0.22; x < span + 0.15; x += 0.15) B(x, top - 0.38, 0.205, 0.035, 0.56, 0.1, 10978144);
       sign2(c, "starbucks-emblem", 0.18 + span * 0.72, Math.min(1.65, top - 0.95), Math.min(0.9, span * 0.23), Math.min(0.9, span * 0.23), 0.15);
@@ -35753,7 +36111,7 @@ function side(c, top) {
     if (id === "facility:gs25") sign2(c, "gs25", 0.18 + span / 2, top - 0.38, Math.min(span * 0.55, 1.7), 0.38, 0.19);
   }
   if (L > 4.3) {
-    glass(c, L - 0.95, L - 0.3, 0.55, 2.25, DARK);
+    glass(c, L - 0.95, L - 0.3, 0.55, 2.25, DARK2);
     B(L - 0.63, 1.05, 0.1, 0.03, 0.22, 0.04, SILVER);
   }
 }
@@ -35769,7 +36127,7 @@ function emitApprovedStorefrontFace(c) {
   }
   const glassTop = top - fasciaH - 0.14;
   if (id === "facility:gs25") {
-    B(L / 2, top - fasciaH / 2, 0.14, L - 0.06, fasciaH, 0.28, DARK);
+    B(L / 2, top - fasciaH / 2, 0.14, L - 0.06, fasciaH, 0.28, DARK2);
     sign2(c, "gs25", L * 0.5, top - 0.31, L * 0.25, 0.43, 0.3);
     sign2(c, "gs25", L * 0.19, top - 0.35, L * 0.21, 0.13, 0.325, { text: "Lifestyle Platform", color: "#ffffff" });
     for (const x of [L * 0.17, L * 0.83]) {
@@ -35780,8 +36138,8 @@ function emitApprovedStorefrontFace(c) {
     glass(c, 0.18, doorX - doorW / 2 - 0.12, 0.22, glassTop, SILVER);
     entry(c, doorX, doorW, glassTop, SILVER, false);
     glass(c, doorX + doorW / 2 + 0.12, L - 0.18, 0.22, glassTop, SILVER);
-    B(0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK);
-    B(L - 0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK);
+    B(0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK2);
+    B(L - 0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK2);
     B(L / 2, glassTop + 0.06, 0.16, L - 0.08, 0.1, 0.32, 2370347);
   } else if (id === "facility:seven") {
     B(L / 2, top - 0.31, 0.13, L - 0.06, 0.62, 0.26, 5265236);
@@ -35797,12 +36155,12 @@ function emitApprovedStorefrontFace(c) {
       if (x < dx - dw / 2 - 0.04 || x > dx + dw / 2 + 0.04) B(x, glassTop / 2, 0.042, 0.025, glassTop, 0.028, 8877399);
       else B(x, glassTop - 0.1, 0.042, 0.025, 0.2, 0.028, 8877399);
     }
-    entry(c, dx, dw, glassTop - 0.3, DARK, false);
-    glass(c, 0.2, dx - dw / 2 - 0.42, 0.2, glassTop - 0.1, DARK);
-    glass(c, dx + dw / 2 + 0.42, L - 0.2, 0.2, glassTop - 0.1, DARK);
+    entry(c, dx, dw, glassTop - 0.3, DARK2, false);
+    glass(c, 0.2, dx - dw / 2 - 0.42, 0.2, glassTop - 0.1, DARK2);
+    glass(c, dx + dw / 2 + 0.42, L - 0.2, 0.2, glassTop - 0.1, DARK2);
     for (const x of [dx - dw / 2 - 0.34, dx + dw / 2 + 0.34]) {
       B(x, glassTop / 2, 0.09, pier, glassTop, 0.18, 5528408);
-      B(x, glassTop - 0.45, 0.22, 0.11, 0.15, 0.1, DARK);
+      B(x, glassTop - 0.45, 0.22, 0.11, 0.15, 0.1, DARK2);
     }
   } else if (id === "facility:emart24") {
     capsule(c, L / 2, top - 0.31, 0.16, L - 0.06, 0.62, 0.32, 16758059);
@@ -35810,16 +36168,16 @@ function emitApprovedStorefrontFace(c) {
     sign2(c, "emart24", L * 0.5, top - 0.3, L * 0.36, 0.43, 0.36);
     sign2(c, "emart24", L * 0.16, top - 0.3, L * 0.22, 0.1, 0.38, { text: "ALL DAY HIGHLIGHT", color: "#ffffff" });
     const dx = L * 0.62, dw = Math.min(1.65, L * 0.25);
-    entry(c, dx, dw, Math.min(glassTop - 0.22, 2.35), DARK, true);
+    entry(c, dx, dw, Math.min(glassTop - 0.22, 2.35), DARK2, true);
     const doorTop = Math.min(glassTop - 0.22, 2.35);
-    if (glassTop - doorTop > 0.45) glass(c, dx - dw / 2, dx + dw / 2, doorTop + 0.17, glassTop, DARK);
-    glass(c, 0.17, dx - dw / 2 - 0.17, 0.14, glassTop, DARK);
-    glass(c, dx + dw / 2 + 0.17, L - 0.17, 0.14, glassTop, DARK);
-    for (const x of [0.08, dx - dw / 2 - 0.09, dx + dw / 2 + 0.09, L - 0.08]) B(x, glassTop / 2, 0.085, 0.1, glassTop, 0.17, DARK);
+    if (glassTop - doorTop > 0.45) glass(c, dx - dw / 2, dx + dw / 2, doorTop + 0.17, glassTop, DARK2);
+    glass(c, 0.17, dx - dw / 2 - 0.17, 0.14, glassTop, DARK2);
+    glass(c, dx + dw / 2 + 0.17, L - 0.17, 0.14, glassTop, DARK2);
+    for (const x of [0.08, dx - dw / 2 - 0.09, dx + dw / 2 + 0.09, L - 0.08]) B(x, glassTop / 2, 0.085, 0.1, glassTop, 0.17, DARK2);
   } else {
     B(L / 2, top - 0.43, 0.13, L - 0.04, 0.86, 0.26, 7953218);
     for (let x = 0.09; x < L - 0.05; x += 0.15) B(x, top - 0.43, 0.235, 0.035, 0.82, 0.14, 10781280);
-    B(L / 2, top - 0.88, 0.13, L - 0.04, 0.09, 0.3, DARK);
+    B(L / 2, top - 0.88, 0.13, L - 0.04, 0.09, 0.3, DARK2);
     sign2(c, "starbucks", L * 0.57, top - 0.43, L * 0.57, 0.42, 0.32);
     const dx = L * 0.65, dw = Math.min(1.65, L * 0.25);
     glass(c, 0.15, dx - dw / 2 - 0.12, 0.1, glassTop, SILVER);
@@ -35833,7 +36191,7 @@ function emitApprovedStorefrontFace(c) {
   return true;
 }
 
-// outputs/domestic-test/building-remakes/models.js?v=identity2
+// outputs/domestic-test/building-remakes/models.js?v=replacements3
 function approvedBuildingId(b) {
   const id = b.assetChoice ? "building:" + b.assetChoice : "facility:" + b.facility?.id;
   return approvedBuildingProfiles[id] ? id : null;
@@ -35899,14 +36257,22 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
       windows++;
     };
     const sign3 = (key, x, y, w, h, z = 0.3, options2 = {}) => signs.push({ key, x: a[0] + ux * x + nx * z, y: base2 + y, z: a[1] + uz * x + nz * z, w, h, angle: Math.atan2(nx, nz), options: options2, owner: b.seed });
-    const ctx = { id, L, H, levels, fh, front, edge, ground: ground2, out, window: window2, surface, box, sign: sign3 };
-    if (!emitApprovedCivicFace(ctx) && !emitApprovedRetailFace(ctx) && !emitApprovedStorefrontFace(ctx)) throw Error("\uC2B9\uC778\uB41C \uAC74\uBB3C \uC0DD\uC131\uAE30\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4: " + id);
+    const face = (vertices, color) => {
+      const q = vertices.map(([x, y, z]) => [a[0] + ux * x + nx * z, base2 + y, a[1] + uz * x + nz * z]);
+      out.reveal(q[0], q[1], q[2], q[3] || q[2], color);
+    };
+    const projected = points.map((p2) => [(p2[0] - a[0]) * ux + (p2[1] - a[1]) * uz, -((p2[0] - a[0]) * nx + (p2[1] - a[1]) * nz)]), depth = Math.max(...projected.map((p2) => p2[1]));
+    const roofDepth = points.length === 4 && !b.holePoints?.length && projected.every(([x, z]) => (Math.abs(x) < 0.01 || Math.abs(x - L) < 0.01) && (Math.abs(z) < 0.01 || Math.abs(z - depth) < 0.01)) ? depth : 0;
+    const ctx = { id, L, H, levels, fh, front, edge, ground: ground2, out, window: window2, surface, box, sign: sign3, face, roofDepth };
+    if (!emitReplacementCivicFace(ctx) && !emitReplacementRetailFace(ctx) && !emitReplacementShopsFace(ctx) && !emitApprovedCivicFace(ctx) && !emitApprovedRetailFace(ctx) && !emitApprovedStorefrontFace(ctx)) throw Error("\uC2B9\uC778\uB41C \uAC74\uBB3C \uC0DD\uC131\uAE30\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4: " + id);
     const wallCuts = [...cuts, ...panels.map((p2) => p2.rect)];
     if (profile.texture) emitFacadeTexture(batch, out, { width: L, bottom: ground2, top: H, id: profile.texture, cuts: wallCuts });
     else for (const [l, r, bt, t] of clipped([0.015, L - 0.015, ground2, H], wallCuts)) out.quad((l + r) / 2, (bt + t) / 2, 0.01, r - l, t - bt, profile.wall, true);
     for (const panel of panels) for (const [l, r, bt, t] of clipped(panel.rect, cuts)) out.quad((l + r) / 2, (bt + t) / 2, panel.z, r - l, t - bt, panel.color, true);
-    box(L / 2, H + 0.25, -0.1, L, 0.5, 0.2, profile.wall);
-    box(L / 2, H + 0.52, -0.1, L + 0.02, 0.055, 0.25, 9214097);
+    if (profile.parapet !== false) {
+      box(L / 2, H + 0.25, -0.1, L, 0.5, 0.2, profile.wall);
+      box(L / 2, H + 0.52, -0.1, L + 0.02, 0.055, 0.25, 9214097);
+    }
     if (L > 3) {
       const x = front ? L - 0.17 : 0.17;
       out.rod([x, ground2 + 0.12, 0.075], [x, H - 0.06, 0.075], 0.045, 8490630, 6);
@@ -36124,7 +36490,7 @@ function emitApartment(batch, b) {
   return { windows };
 }
 
-// outputs/domestic-test/facilities/models.js?v=identity2
+// outputs/domestic-test/facilities/models.js?v=replacements3
 function emitFacility(batch, b, buildings, elevation, options = {}) {
   const approved2 = emitApprovedBuilding(batch, b, buildings, elevation, options);
   if (approved2) return approved2;
@@ -36305,11 +36671,11 @@ function addFacilityLabels(root, buildings) {
       const q = b.points[(j + 1) % b.points.length];
       return v2 + p2[0] * q[1] - q[0] * p2[1];
     }, 0)) || 1, nx = (c[1] - a[1]) / L * sign3, nz = -(c[0] - a[0]) / L * sign3;
-    const label = new Group();
-    label.position.set((a[0] + c[0]) / 2, b.top - Math.min(1.1, (b.top - b.base) * 0.1), (a[1] + c[1]) / 2);
-    label.rotation.y = Math.atan2(nx, nz);
-    addSignText(label, { signText: f.name, textColor: "#343e3a", signs: [{ x: 0, y: 0, w: Math.min(8, L * 0.5), h: 0.8 }] });
-    root.add(label);
+    const label2 = new Group();
+    label2.position.set((a[0] + c[0]) / 2, b.top - Math.min(1.1, (b.top - b.base) * 0.1), (a[1] + c[1]) / 2);
+    label2.rotation.y = Math.atan2(nx, nz);
+    addSignText(label2, { signText: f.name, textColor: "#343e3a", signs: [{ x: 0, y: 0, w: Math.min(8, L * 0.5), h: 0.8 }] });
+    root.add(label2);
   }
 }
 
@@ -36768,7 +37134,7 @@ function emitRooftop(batch, plan, style) {
   const out = batch.writer([x, top + 0.025, z], c, s, -s, c), B = out.box, R = out.rod;
   const wall = style.wall, textureId = wallTextureFor(style), meters = getFacadeTexture(textureId).userData.meters;
   const W = (xx, y, zz, ww, hh, dd, color = wall, edge = true) => B(xx, y, zz, ww, hh, dd, color, edge, false, textureId);
-  const slab = [11909296, 11188145, 12763316][variation % 3], metal2 = [6716792, 7831169, 7172971][variation % 3], door = [5205346, 6714744, 8157035, 6318966][variation % 4];
+  const slab = [11909296, 11188145, 12763316][variation % 3], metal2 = [6716792, 7831169, 7172971][variation % 3], door2 = [5205346, 6714744, 8157035, 6318966][variation % 4];
   function face(vertices, color, textured = false) {
     const p2 = vertices.map(([xx, y, zz]) => new Vector3(x + c * xx - s * zz, top + 0.025 + y, z + s * xx + c * zz)), n = p2[1].clone().sub(p2[0]).cross(p2[2].clone().sub(p2[0])).normalize();
     const bucket = batch.bucket(textured ? 16777215 : color, false, textured ? textureId : null);
@@ -36789,12 +37155,12 @@ function emitRooftop(batch, plan, style) {
     B(xx, hh + 0.075, zz, ww + 0.24, 0.15, dd + 0.24, slab, true);
   }
   function slopingCap(ww, dd, yAt, color) {
-    const corners = [[-ww / 2, dd / 2], [ww / 2, dd / 2], [ww / 2, -dd / 2], [-ww / 2, -dd / 2]], upper = corners.map(([xx, zz]) => [xx, yAt(zz), zz]), lower = upper.map(([xx, yy, zz]) => [xx, yy - 0.12, zz]);
-    face(upper, color);
+    const corners = [[-ww / 2, dd / 2], [ww / 2, dd / 2], [ww / 2, -dd / 2], [-ww / 2, -dd / 2]], upper2 = corners.map(([xx, zz]) => [xx, yAt(zz), zz]), lower = upper2.map(([xx, yy, zz]) => [xx, yy - 0.12, zz]);
+    face(upper2, color);
     face([...lower].reverse(), color);
     for (let i = 0; i < 4; i++) {
       const j = (i + 1) % 4;
-      face([lower[i], lower[j], upper[j], upper[i]], color);
+      face([lower[i], lower[j], upper2[j], upper2[i]], color);
     }
   }
   if (kind === "compact" || kind === "brick") {
@@ -36844,7 +37210,7 @@ function emitRooftop(batch, plan, style) {
     });
   }
   const doorX = rooftopDoorX(kind, w), doorHeight = kind === "hatch" ? 0.93 : 1.93, doorWidth = kind === "hatch" ? 0.9 : 0.86, doorZ = d / 2 + 0.036;
-  B(doorX, doorHeight / 2 + 0.07, doorZ, doorWidth, doorHeight, 0.07, door, true);
+  B(doorX, doorHeight / 2 + 0.07, doorZ, doorWidth, doorHeight, 0.07, door2, true);
   for (const side2 of [-1, 1]) B(doorX + side2 * (doorWidth / 2 + 0.025), doorHeight / 2 + 0.07, doorZ + 7e-3, 0.045, doorHeight + 0.1, 0.085, slab, false);
   B(doorX, doorHeight + 0.1, doorZ + 7e-3, doorWidth, 0.055, 0.085, slab, false);
   B(doorX, 0.045, d / 2 + 0.17, doorWidth + 0.16, 0.09, 0.34, slab, true);

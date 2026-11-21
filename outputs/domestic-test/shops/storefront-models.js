@@ -1,4 +1,4 @@
-import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=identity2';
+import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
 import {FacadeBatch} from '../korean-facades.js?v=151';

@@ -34,7 +34,7 @@ export async function generateInBrowser(point,onProgress,{signal}={}){
  onProgress('건물 모양과 층수를 조회하고 있습니다…',1);
  const buildingCollection=await loadBuildings(point,{signal});
  return new Promise((resolve,reject)=>{
-  const worker=new Worker(new URL('./worker.js?v=identity2',import.meta.url),{type:'module'});
+  const worker=new Worker(new URL('./worker.js?v=replacements3',import.meta.url),{type:'module'});
   const finish=()=>{worker.terminate();signal?.removeEventListener('abort',abort);};
   const abort=()=>{finish();reject(new DOMException('동네 만들기를 취소했습니다.','AbortError'));};signal?.addEventListener('abort',abort,{once:true});
   worker.onerror=event=>{finish();reject(Error(event.message||'동네 계산을 시작하지 못했습니다.'));};

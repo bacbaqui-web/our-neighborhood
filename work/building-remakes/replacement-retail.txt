@@ -1,0 +1,35 @@
+교체 요청 건물 3종 / 최신 참고 사진 직접 열어 확인 / 2026-11-21
+제작 파일: outputs/domestic-test/building-remakes/replacement-retail.js
+좌표: 정면 x=왼쪽→오른쪽, y=지면 위, z=외부. 지도 윤곽·층수 유지.
+공통: 사진은 관찰에만 사용하며 텍스처 재배포하지 않음. 사진 사용 허가 미확인.
+간판은 관찰된 실제 문구·색상을 사용. 상표 원본 도안 확보 전에는 마크를 추측해 그리지 않음.
+
+facility:lotte
+referenceId building-reference-lotte-yangpyeong-20261121-v2
+사진 https://image.newdaily.co.kr/site/data/img/2017/06/26/2017062610033_0.jpg
+출처 https://biz.newdaily.co.kr/svc/article_print.html?no=2017062610033
+제안 profile: nominal [32,24], levels 7, wall 0xc8c2b5, glass 0x91b5b1, roofCore false
+관찰: 베이지 무창벽, 정면 우측 58~85% 폭 둥근 유리탑, 탑 상단 갈색 띠의 백색 LOTTE Mart, 옥상 별도 간판, 주차층의 긴 슬롯.
+구현: 촘촘한 가로 창살, 분절된 볼록 상단/하단, 하단 유리문과 연결 차양, 옥상 간판.
+한계: 공통 창 생성기는 평면 창만 지원하므로 유리탑 유리면 자체는 평면이며 상하단으로 곡면을 근사. 후면과 실측 크기는 미확인, 비정면 주차 슬롯은 측면 사진을 다른 면에 적용한 추정.
+
+facility:post
+referenceId building-reference-post-gyeolseong-20261121-v2
+사진 https://m.hjn24.com/news/photo/202401/121198_126821_2118.jpg
+출처 https://m.hjn24.com/news/articleView.html?idxno=121198
+제안 profile: nominal [11,8], levels 1, wall 0x4d5055, glass 0x345668, roofCore false, parapet false
+관찰: 회색 얇은 벽돌, 큰 왼쪽/작은 오른쪽 박공, 좌측 유리 출입문, 검은 곡면 차양, 흰/빨강 간판 KOREA POST 결성우체국, 출입문 좌측 빨간 우체통.
+구현: 2개 박공 전면, 연결된 둥근 차양, 문 가로 안전띠, 우체통.
+통합 수정: 박공은 삼각형 면과 경사 테두리로 제작. 직사각형 건물에는 연결된 경사 지붕과 뒤 박공까지 생성. 비정형 지도 윤곽은 보존하며 정면 박공만 적용.
+한계: 지붕 깊이와 후면은 사진으로 확인 불가하여 추정. 붉은 제비 마크·황색 곡선은 원본 도안 미확보로 생략.
+
+facility:daiso
+referenceId building-reference-daiso-sinsa-20261121-v2
+사진 https://cdn.cnbizm.com/news/photo/202609/315881_222863_301.jpg
+출처 https://www.cnbizm.com/news/articleView.html?idxno=315881
+제안 profile: nominal [12,13], levels 4, wall 0x626569, glass 0x789ac3, roofCore false
+관찰: 회색 판벽, 1층 중앙 적색 차양, 적색 다이소 문자, 위층 큰 청색 유리면, 상층 작은 창과 테라스 검은 난간.
+구현: 하단 점포/문, 큰 상부 유리와 가로 창살, 상단 작은 창, 연결 차양/난간, 백색 daiso와 붉은 한글.
+한계: 수목이 가린 좌측 면은 추정; 대형 유리의 빨간 원과 육점 상표 도안은 원본 미확보로 생략. 실제 층별 후퇴 윤곽은 지도 윤곽 유지 조건으로 차양/띠 돌출로 표현.
+
+검사: Node mock 3종 × 폭4 × 높이4 × 정면/비정면, 양의 크기/유한 좌표 9,528회 통과. 실제 3D 렌더·공개 확인은 통합 단계에서 별도 필요.

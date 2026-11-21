@@ -1,8 +1,8 @@
-import {prepareBuildingIdentity} from '../building-remakes/identity.js';
+import {prepareBuildingIdentity} from '../building-remakes/identity.js?v=replacements3';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {GLTFExporter} from '../vendor/GLTFExporter.js';
-import {buildStorefront} from './storefront-models.js?v=identity2';
+import {buildStorefront} from './storefront-models.js?v=replacements3';
 import {createStorefrontLighting} from './storefront-lighting.js?v=151';
 import {lightingState,scheduleFor,clockText} from './storefront-hours.js?v=151';
 import {environmentProfile,bearingVector} from '../environment-policy.js?v=151';

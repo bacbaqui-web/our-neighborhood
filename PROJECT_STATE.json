@@ -5928,5 +5928,28 @@
     "proof": "verification/scene-edit/public-bounded-road-push.jpg",
     "deploymentNote": "Run 44904371651 first failed on missing artifact metadata and rerun failed on duplicate artifacts. Fresh run 44905011521 succeeded. No artifacts deleted.",
     "limitation": "Older scenes use the new geometry after regeneration or road edit."
+  },
+  "requestedBuildingReplacements20261121": {
+    "status": "implemented-local-verified-awaiting-public-deployment",
+    "uniqueModels": 9,
+    "catalogEntries": 11,
+    "assets": [
+      "building:shop-glass",
+      "building:school",
+      "facility:school",
+      "building:civic",
+      "building:fire",
+      "facility:fire",
+      "facility:lotte",
+      "facility:post",
+      "facility:daiso",
+      "facility:cu",
+      "facility:mega"
+    ],
+    "policeLettering": "경찰서, uniform glyph scaling",
+    "fireLettering": "소방서 with official NFA emblem, enlarged",
+    "approvalStateChanged": false,
+    "verification": "verification/building-replacements",
+    "limitations": "Reference-hidden sides inferred; some curved facade surfaces approximated; post and Daiso artwork omissions listed in replacement-retail.txt"
   }
 }

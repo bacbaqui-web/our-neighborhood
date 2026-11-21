@@ -10,14 +10,14 @@ const root=new T.Group(),sign=key=>addIdentitySign(root,{key,x:0,y:1,z:0,w:2,h:.
 assert.throws(()=>sign('costco'),/준비가 끝나지/);
 const first=prepareBuildingIdentity();
 assert.equal(prepareBuildingIdentity(),first,'concurrent galleries should share preparation');
-assert.equal(pending.length,6);
+assert.equal(pending.length,7);
 let finished=false;first.then(()=>{finished=true;});
 await Promise.resolve();assert.equal(finished,false);
 for(const image of pending){image.loaded=true;image.onload();}
 await first;
-for(const key of ['costco','gs25','homeplus','starbucks','starbucks-emblem','police-emblem'])sign(key);
-assert.equal(drawn.length,6);
-assert.equal(root.children.length,6);
+for(const key of ['costco','gs25','homeplus','starbucks','starbucks-emblem','police-emblem','fire-emblem'])sign(key);
+assert.equal(drawn.length,7);
+assert.equal(root.children.length,7);
 assert(root.children.every(o=>o.material.map.isCanvasTexture));
 assert.equal(prepareBuildingIdentity(),first,'completed preparation should be reused');
-console.log('Browser logo preload waits for all six images and enables every image-backed sign.');
+console.log('Browser logo preload waits for all seven images and enables every image-backed sign.');

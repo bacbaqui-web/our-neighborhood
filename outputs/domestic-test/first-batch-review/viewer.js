@@ -1,8 +1,8 @@
-import {prepareBuildingIdentity} from '../building-remakes/identity.js';
+import {prepareBuildingIdentity} from '../building-remakes/identity.js?v=replacements3';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {facilities} from '../facilities/catalog.js';
-import {previewBuilding} from '../facilities/preview.js?v=identity2';
+import {previewBuilding} from '../facilities/preview.js?v=replacements3';
 try{await prepareBuildingIdentity();}catch(e){document.querySelector('#status').textContent=e.message;throw e;}
 const data=await(await fetch('sources.json')).json(),host=document.querySelector('#view'),renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;host.append(renderer.domElement);
 const scene=new T.Scene();scene.background=new T.Color(0xe6e6dc);const camera=new T.PerspectiveCamera(36,1,.1,800),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;scene.add(new T.HemisphereLight(0xfaf5df,0x747f79,2.2));const sun=new T.DirectionalLight(0xfff2d7,2.5);sun.position.set(-35,65,45);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-65,right:65,top:65,bottom:-65});sun.shadow.normalBias=.035;scene.add(sun);

@@ -5,9 +5,9 @@ import {previewBuilding} from '../outputs/domestic-test/facilities/preview.js';
 import {previewModel} from '../outputs/domestic-test/building-assets/model.js';
 import {assetById} from '../outputs/domestic-test/building-assets/catalog.js';
 const approvals=JSON.parse(fs.readFileSync('work/building-remakes/approval-20261121.json')).items;
-const approved=approvals.filter(r=>r.status==='approved');
+const approved=[...approvals.filter(r=>r.status==='approved'),...JSON.parse(fs.readFileSync('work/building-remakes/replacement-request-20261121.json')).items.map(r=>({...r,approvedReferenceId:r.referenceId}))];
 assert.deepEqual(Object.keys(approvedBuildingProfiles).sort(),approved.map(r=>r.assetId).sort());
-assert.equal(approvedBuildingId({assetChoice:'civic',facility:{id:'police'}}),null);
+assert.equal(approvedBuildingId({assetChoice:'civic',facility:{id:'police'}}),'building:civic');
 const stats=[];
 for(const row of approved){
  assert.equal(approvedBuildingProfiles[row.assetId].referenceId,row.approvedReferenceId);
@@ -32,7 +32,7 @@ assert.equal(roofCoreFits([[-10,-10],[10,-10],[10,10],[.2,10],[.2,0],[-.2,0],[-.
 const {buildStorefront}=await import('../outputs/domestic-test/shops/storefront-models.js');
 const {facilityShops}=await import('../outputs/domestic-test/facilities/storefronts.js');
 const {createNeighborhoodShops}=await import('../outputs/domestic-test/shops/neighborhood-shops.js');
-for(const id of ['gs25','seven','emart24','starbucks']){
+for(const id of ['gs25','seven','emart24','starbucks','cu','mega']){
  const spec=structuredClone(facilityShops.find(s=>s.facilityId===id));
  const root=buildStorefront(spec,{shell:false,attachment:true});
  assert.equal(root.userData.approvedReferenceId,approvedBuildingProfiles['facility:'+id].referenceId);

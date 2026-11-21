@@ -1,9 +1,9 @@
-import {approvedBuildingProfiles} from '../building-remakes/models.js?v=identity2';
+import {approvedBuildingProfiles} from '../building-remakes/models.js?v=replacements3';
 import * as T from 'three';
 import {facilityById} from './catalog.js';
 import {facilityShops} from './storefronts.js';
 import {buildStorefront} from '../shops/storefront-models.js';
-import {createDetails} from '../details.js?v=identity2';
+import {createDetails} from '../details.js?v=replacements3';
 import {createBuildingShellGeometry} from '../building-shell.js';
 import {facadeStyles} from '../korean-facades.js';
 export function previewBuilding(id,{neighbors=true}={}){

@@ -4,7 +4,7 @@ from shapely.geometry import Point, LineString, Polygon, shape
 from shapely.ops import transform, unary_union
 from shapely.strtree import STRtree
 
-def build_context(collection, roads, origin, radius, view, detailed, terrain=None):
+def build_context(collection, roads, origin, radius, view, detailed, terrain=None, detailed_road=None):
  start=time.perf_counter();lat,lon=origin;a=math.radians(lat)
  sx=111412.84*math.cos(a)-93.5*math.cos(3*a)+.118*math.cos(5*a)
  sy=111132.92-559.82*math.cos(2*a)+1.175*math.cos(4*a)-.0023*math.cos(6*a)
@@ -49,7 +49,8 @@ def build_context(collection, roads, origin, radius, view, detailed, terrain=Non
   surfaces.append(g.buffer(width/2,cap_style=2,join_style=2))
  road_polys=[]
  if surfaces:
-  ground=unary_union(surfaces).intersection(region).difference(p.buffer(max(0,radius-8),quad_segs=64))
+  near_mask=detailed_road.buffer(-.08) if detailed_road is not None else p.buffer(max(0,radius-8),quad_segs=64)
+  ground=unary_union(surfaces).intersection(region).difference(near_mask)
   if geometries:ground=ground.difference(unary_union(geometries).buffer(.25))
   road_polys=[{'rings':rings(poly)} for poly in parts(ground.simplify(.08,preserve_topology=True)) if poly.area>.1]
  return {'version':1,'radius':extent,'source':collection.get('source'),'buildings':buildings,'roads':road_polys,

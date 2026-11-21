@@ -52,14 +52,15 @@ def stage_base():
   buildings,view_qa=select_view(buildings,loc['origin'],radius,view,terrain)
   loc['viewQA']=view_qa;write('location.json',loc);write('view-selection.json',view_qa)
   roads=select_roads(roads,radius,view,view_qa)
+ write('buildings.geojson',buildings)
+ write('base-qa.json',source.write_glb(root,terrain,roads,buildings,source_loc))
+ final_road=json.loads((root/'road-reservation.json').read_text())
  from street_end_context import build_context
  for road in roads:
   all_roads[road['_contextIndex']]['width']=road['width']
- context=build_context(all_buildings,all_roads,loc['origin'],radius,view or {},buildings,terrain)
+ context=build_context(all_buildings,all_roads,loc['origin'],radius,view or {},buildings,terrain,shape(final_road['road']).union(shape(final_road['majorPublic'])))
  write('environment/street-end-context.json',context)
  loc['streetEndContext']={**context['qa'],'version':1,'radius':context['radius']};write('location.json',loc)
- write('buildings.geojson',buildings)
- write('base-qa.json',source.write_glb(root,terrain,roads,buildings,source_loc))
  if view:
   from shapely.geometry import Point,shape
   final_road=json.loads((root/'road-reservation.json').read_text())

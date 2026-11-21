@@ -30,6 +30,21 @@ class ContextTest(unittest.TestCase):
    def height(self,x,z):return max(0,x-25)*.8
   out=build_context(collection([front,back]),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([front]),Hill())
   self.assertEqual([b['owner'] for b in out['buildings']],[2])
+ def test_dense_scene_cap(self):
+  fs=[]
+  for i in range(360):
+   a=i*math.tau/360;x,z=150*math.cos(a),150*math.sin(a)
+   fs.append(feature(i,[(x-1.1,z-1.1),(x+1.1,z-1.1),(x+1.1,z+1.1),(x-1.1,z+1.1),(x-1.1,z-1.1)],10))
+  out=build_context(collection(fs),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([]))
+  self.assertEqual(len(out['buildings']),256)
+  self.assertLessEqual(out['qa']['rays'],872)
+ def test_preserve_near_paving(self):
+  road={'width':6,'geometry':{'type':'LineString','coordinates':[[0,0],[0,190]]}}
+  near=box(-3,0,3,67)
+  out=build_context(collection([]),[road],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([]),detailed_road=near)
+  polys=[Polygon(r['rings'][0],r['rings'][1:]) for r in out['roads']]
+  self.assertTrue(all(p.intersection(near.buffer(-.1)).area<.001 for p in polys))
+  self.assertTrue(any(p.covers(__import__('shapely').geometry.Point(0,67)) for p in polys))
  def test_empty(self):
   out=build_context(collection([]),[],[LAT,LON],50,{'position':[0,0],'eyeHeight':2},collection([]))
   self.assertEqual(out['buildings'],[]);self.assertEqual(out['roads'],[])

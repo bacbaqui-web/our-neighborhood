@@ -9861,6 +9861,126 @@
       "kind": "glb",
       "file": "../vehicles/sonata-dn8/model.glb",
       "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다."
+    },
+    {
+      "id": "junction:curb-straight",
+      "name": "직선 연석 · 접속 부품",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-straight-v1.glb",
+      "triangles": 48,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:curb-corner",
+      "name": "곡선 연석 · 모퉁이",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-corner-v1.glb",
+      "triangles": 336,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:curb-ramp",
+      "name": "보도 턱낮춤 · 점자블록 연결",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-ramp-v1.glb",
+      "triangles": 4888,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:tactile-warning",
+      "name": "점형 점자블록 · 경고 띠",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/tactile-warning-v1.glb",
+      "triangles": 3248,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:tactile-guidance",
+      "name": "선형 점자블록 · 보행 연결",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/tactile-guidance-v1.glb",
+      "triangles": 240,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:crossing-stop",
+      "name": "횡단보도와 정지선 · 표시 부품",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/crossing-stop-v1.glb",
+      "triangles": 120,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:median-end",
+      "name": "중앙분리대 · 둥근 끝단",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/median-end-v1.glb",
+      "triangles": 364,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:edge-corner",
+      "name": "노란 가장자리선 · 곡선",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/edge-corner-v1.glb",
+      "triangles": 288,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:turn-guide",
+      "name": "회전 유도 점선 · 연결 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/turn-guide-v1.glb",
+      "triangles": 576,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:junction-alley-main",
+      "name": "좁은 길과 큰길 · 분리대 유지 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-alley-main-v1.glb",
+      "triangles": 13040,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:junction-small-t",
+      "name": "보도 있는 T자 접속 · 조립 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-small-t-v1.glb",
+      "triangles": 12644,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
+    },
+    {
+      "id": "junction:junction-crossroads",
+      "name": "다차로 사거리 · 조립 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-crossroads-v1.glb",
+      "triangles": 44012,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 연결 예시는 실측 복제가 아니며 자동 동네 배치에는 미적용."
     }
   ]
 }

@@ -1,0 +1,656 @@
+[
+  {
+    "id": "junction:curb-straight",
+    "name": "직선 연석 · 접속 부품",
+    "file": "curb-straight-v1.glb",
+    "triangles": 48,
+    "materials": 1,
+    "size": [
+      0.18000000715255737,
+      0.159999994635582,
+      1.99399995803833
+    ],
+    "bytes": 6112,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:curb-straight",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "105",
+      "113"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          0,
+          0.16,
+          -1
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0,
+          0.16,
+          1
+        ]
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:curb-corner",
+    "name": "곡선 연석 · 모퉁이",
+    "file": "curb-corner-v1.glb",
+    "triangles": 336,
+    "materials": 1,
+    "size": [
+      1.676996611757204,
+      0.15999999642372142,
+      1.676996611757204
+    ],
+    "bytes": 33904,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:curb-corner",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "105",
+      "113"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          1.59,
+          0.16,
+          0
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0,
+          0.16,
+          1.59
+        ]
+      }
+    ],
+    "radius": 1.5,
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:curb-ramp",
+    "name": "보도 턱낮춤 · 점자블록 연결",
+    "file": "curb-ramp-v1.glb",
+    "triangles": 4888,
+    "materials": 2,
+    "size": [
+      2.4000000953674316,
+      0.1809999942779541,
+      1.7999999523162842
+    ],
+    "bytes": 471716,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:curb-ramp",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "105",
+      "113",
+      "137"
+    ],
+    "ports": [
+      {
+        "role": "road",
+        "position": [
+          0,
+          0,
+          -0.9
+        ]
+      },
+      {
+        "role": "walk",
+        "position": [
+          0,
+          0.15,
+          0.9
+        ]
+      }
+    ],
+    "roadLip": 0.015,
+    "clearWidth": 2.4,
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:tactile-warning",
+    "name": "점형 점자블록 · 경고 띠",
+    "file": "tactile-warning-v1.glb",
+    "triangles": 3248,
+    "materials": 1,
+    "size": [
+      1.2000000476837158,
+      0.03099999976158141,
+      0.30000001192092896
+    ],
+    "bytes": 313336,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:tactile-warning",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "105",
+      "137"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          -0.6,
+          0,
+          0
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0.6,
+          0,
+          0
+        ]
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:tactile-guidance",
+    "name": "선형 점자블록 · 보행 연결",
+    "file": "tactile-guidance-v1.glb",
+    "triangles": 240,
+    "materials": 1,
+    "size": [
+      0.30000001192092896,
+      0.03099999976158141,
+      1.2000000476837158
+    ],
+    "bytes": 24560,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:tactile-guidance",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "137",
+      "184"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          0,
+          0,
+          -0.6
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0,
+          0,
+          0.6
+        ]
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:crossing-stop",
+    "name": "횡단보도와 정지선 · 표시 부품",
+    "file": "crossing-stop-v1.glb",
+    "triangles": 120,
+    "materials": 1,
+    "size": [
+      6,
+      0.003999999724328518,
+      4.075000047683716
+    ],
+    "bytes": 13072,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:crossing-stop",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "099",
+      "129",
+      "179"
+    ],
+    "ports": [
+      {
+        "role": "walk-left",
+        "position": [
+          -3,
+          0,
+          0
+        ]
+      },
+      {
+        "role": "walk-right",
+        "position": [
+          3,
+          0,
+          0
+        ]
+      }
+    ],
+    "traffic": "+Z on x>0; mirror only with traffic mapping",
+    "stopLineZ": -2.4,
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:median-end",
+    "name": "중앙분리대 · 둥근 끝단",
+    "file": "median-end-v1.glb",
+    "triangles": 364,
+    "materials": 3,
+    "size": [
+      0.25999999046325684,
+      1.120000003427267,
+      4.130000114440918
+    ],
+    "bytes": 38176,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:median-end",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "129",
+      "193"
+    ],
+    "ports": [
+      {
+        "role": "join",
+        "position": [
+          0,
+          0,
+          2
+        ]
+      }
+    ],
+    "closedEndZ": -2.13,
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:edge-corner",
+    "name": "노란 가장자리선 · 곡선",
+    "file": "edge-corner-v1.glb",
+    "triangles": 288,
+    "materials": 1,
+    "size": [
+      1.5619310210458934,
+      0.0040000006556510925,
+      1.5619310210458934
+    ],
+    "bytes": 29232,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:edge-corner",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "073",
+      "105"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          1.5,
+          0,
+          0
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0,
+          0,
+          1.5
+        ]
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:turn-guide",
+    "name": "회전 유도 점선 · 연결 예시",
+    "file": "turn-guide-v1.glb",
+    "triangles": 576,
+    "materials": 1,
+    "size": [
+      5.6773605942726135,
+      0.0040000006556510925,
+      6.052509409666527
+    ],
+    "bytes": 56876,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:turn-guide",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "145",
+      "153",
+      "177"
+    ],
+    "ports": [
+      {
+        "role": "start",
+        "position": [
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "role": "end",
+        "position": [
+          0,
+          0,
+          6
+        ]
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:junction-alley-main",
+    "name": "좁은 길과 큰길 · 분리대 유지 예시",
+    "file": "junction-alley-main-v1.glb",
+    "triangles": 13040,
+    "materials": 14,
+    "size": [
+      25,
+      1.1800000047683727,
+      36
+    ],
+    "bytes": 1266892,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:junction-alley-main",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "017",
+      "105",
+      "129",
+      "145",
+      "177"
+    ],
+    "ports": [
+      {
+        "role": "north",
+        "position": [
+          0,
+          0.06,
+          -18
+        ]
+      },
+      {
+        "role": "south",
+        "position": [
+          0,
+          0.06,
+          18
+        ]
+      },
+      {
+        "role": "east",
+        "position": [
+          18,
+          0.06,
+          0
+        ]
+      }
+    ],
+    "median": "continuous",
+    "layout": "concept assembly; not a surveyed reconstruction",
+    "crossingOpenings": [
+      {
+        "x": 8.5,
+        "z": -3.4,
+        "angle": 3.141592653589793,
+        "width": 2.4
+      },
+      {
+        "x": 8.5,
+        "z": 3.4,
+        "angle": 0,
+        "width": 2.4
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:junction-small-t",
+    "name": "보도 있는 T자 접속 · 조립 예시",
+    "file": "junction-small-t-v1.glb",
+    "triangles": 12644,
+    "materials": 10,
+    "size": [
+      23,
+      0.2409999942779552,
+      36
+    ],
+    "bytes": 1225196,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:junction-small-t",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "017",
+      "105",
+      "129",
+      "145",
+      "177"
+    ],
+    "ports": [
+      {
+        "role": "north",
+        "position": [
+          0,
+          0.06,
+          -18
+        ]
+      },
+      {
+        "role": "south",
+        "position": [
+          0,
+          0.06,
+          18
+        ]
+      },
+      {
+        "role": "east",
+        "position": [
+          18,
+          0.06,
+          0
+        ]
+      }
+    ],
+    "median": "none",
+    "layout": "concept assembly; not a surveyed reconstruction",
+    "crossingOpenings": [
+      {
+        "x": 6.5,
+        "z": -2.9,
+        "angle": 3.141592653589793,
+        "width": 2.4
+      },
+      {
+        "x": 6.5,
+        "z": 2.9,
+        "angle": 0,
+        "width": 2.4
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  },
+  {
+    "id": "junction:junction-crossroads",
+    "name": "다차로 사거리 · 조립 예시",
+    "file": "junction-crossroads-v1.glb",
+    "triangles": 44012,
+    "materials": 33,
+    "size": [
+      36,
+      1.1800000047683727,
+      36
+    ],
+    "bytes": 4262184,
+    "units": "m",
+    "front": "+Z",
+    "status": "reviewed-concept",
+    "assetId": "junction:junction-crossroads",
+    "up": "+Y",
+    "origin": "ground datum; see ports",
+    "dimensions": "estimated production dimensions, not measured or statutory",
+    "evidence": [
+      "017",
+      "105",
+      "129",
+      "145",
+      "177"
+    ],
+    "ports": [
+      {
+        "role": "north",
+        "position": [
+          0,
+          0.06,
+          -18
+        ]
+      },
+      {
+        "role": "south",
+        "position": [
+          0,
+          0.06,
+          18
+        ]
+      },
+      {
+        "role": "east",
+        "position": [
+          18,
+          0.06,
+          0
+        ]
+      },
+      {
+        "role": "west",
+        "position": [
+          -18,
+          0.06,
+          0
+        ]
+      }
+    ],
+    "median": "ends-before-crossing",
+    "layout": "concept assembly; not a surveyed reconstruction",
+    "crossingOpenings": [
+      {
+        "x": -9.5,
+        "z": -6.9,
+        "angle": 3.141592653589793,
+        "width": 2.4
+      },
+      {
+        "x": -6.9,
+        "z": -9.5,
+        "angle": -1.5707963267948966,
+        "width": 2.4
+      },
+      {
+        "x": -9.5,
+        "z": 6.9,
+        "angle": 0,
+        "width": 2.4
+      },
+      {
+        "x": -6.9,
+        "z": 9.5,
+        "angle": -1.5707963267948966,
+        "width": 2.4
+      },
+      {
+        "x": 9.5,
+        "z": -6.9,
+        "angle": 3.141592653589793,
+        "width": 2.4
+      },
+      {
+        "x": 6.9,
+        "z": -9.5,
+        "angle": 1.5707963267948966,
+        "width": 2.4
+      },
+      {
+        "x": 9.5,
+        "z": 6.9,
+        "angle": 0,
+        "width": 2.4
+      },
+      {
+        "x": 6.9,
+        "z": 9.5,
+        "angle": 1.5707963267948966,
+        "width": 2.4
+      }
+    ],
+    "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
+    "placement": "asset library only; not auto-generated in neighborhoods"
+  }
+]

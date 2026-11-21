@@ -1,0 +1,252 @@
+[
+  {
+    "group": "A01",
+    "search_query": "도봉로188",
+    "location": "도봉로 본선",
+    "imagery_date": "2026-06",
+    "photos": "001–008",
+    "observed": "중앙분리대, 청색 차선, 흰색 차선, 보도 가로수",
+    "source_search_url": "https://map.kakao.com/?q=%EB%8F%84%EB%B4%89%EB%A1%9C188",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "A02",
+    "search_query": "도봉로188",
+    "location": "도봉로50길 입구 접근",
+    "imagery_date": "2026-06",
+    "photos": "009–016",
+    "observed": "보도 있는 좁은 접속길, 본선 분리시설 관찰. 1–4 확정 표본 아님",
+    "source_search_url": "https://map.kakao.com/?q=%EB%8F%84%EB%B4%89%EB%A1%9C188",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "A03",
+    "search_query": "도봉로188",
+    "location": "도봉로50길 입구",
+    "imagery_date": "2026-06",
+    "photos": "017–024",
+    "observed": "양쪽 보도 있는 접속길 입구 횡단보도와 연석. 1차도로 확정 철회",
+    "source_search_url": "https://map.kakao.com/?q=%EB%8F%84%EB%B4%89%EB%A1%9C188",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "A04",
+    "search_query": "미아역",
+    "location": "미아역 인근 도봉로",
+    "imagery_date": "2026-06",
+    "photos": "025–032",
+    "observed": "간선도로 중앙분리대와 버스차로, 도로변 보도 시설",
+    "source_search_url": "https://map.kakao.com/?q=%EB%AF%B8%EC%95%84%EC%97%AD",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "A05",
+    "search_query": "미아역",
+    "location": "주유소 인근 접속부",
+    "imagery_date": "2026-06",
+    "photos": "033–040",
+    "observed": "주유소 차량 출입과 옆골목 구분, 모서리 노란선",
+    "source_search_url": "https://map.kakao.com/?q=%EB%AF%B8%EC%95%84%EC%97%AD",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "B01",
+    "search_query": "서울 강북구 솔매로17가길 7",
+    "location": "주택 골목",
+    "imagery_date": "2022-08",
+    "photos": "041–048",
+    "observed": "중앙선과 별도 보도 없음, 벽돌 담장과 전선",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B0%80%EA%B8%B8%207",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "B02",
+    "search_query": "서울 강북구 솔매로17가길 7",
+    "location": "주택 골목 곡선부",
+    "imagery_date": "2022-08",
+    "photos": "049–056",
+    "observed": "노란 가장자리선, 담장 안쪽에서 뻗은 수목. 소유권 미확인",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B0%80%EA%B8%B8%207",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "B03",
+    "search_query": "서울 강북구 솔매로17가길 7",
+    "location": "옹벽 아래 갈림길",
+    "imagery_date": "2026-06",
+    "photos": "057–064",
+    "observed": "아스팔트 골목과 밝고 거친 별도 포장 경사 통로가 함께 보임. 차량통행·재료 미확정",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B0%80%EA%B8%B8%207",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "B04",
+    "search_query": "서울 강북구 솔매로17가길 7",
+    "location": "경사 골목 중간",
+    "imagery_date": "2026-06",
+    "photos": "065–072",
+    "observed": "노란 실선과 점선, 전신주, 계단과 배수",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B0%80%EA%B8%B8%207",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "B05",
+    "search_query": "서울 강북구 솔매로17가길 7",
+    "location": "경사 골목 갈림길",
+    "imagery_date": "2026-06",
+    "photos": "073–080",
+    "observed": "건물 모서리를 따라 굽는 노란선, 맨홀, 가공선",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C17%EA%B0%80%EA%B8%B8%207",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "C01",
+    "search_query": "서울 강북구 솔매로 80",
+    "location": "솔매로 교차로 접근",
+    "imagery_date": "2026-06",
+    "photos": "081–088",
+    "observed": "왕복2차로, 좁은 보도, 중앙선, 황백색 방지턱",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2080",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "C02",
+    "search_query": "서울 강북구 솔매로 80",
+    "location": "솔매로 방지턱 옆",
+    "imagery_date": "2026-06",
+    "photos": "089–096",
+    "observed": "방지턱과 흰색 횡단보도 구분, 보도 앞 상품",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2080",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "C03",
+    "search_query": "서울 강북구 솔매로 80",
+    "location": "솔매로31길 모서리 접근",
+    "imagery_date": "2026-06",
+    "photos": "097–104",
+    "observed": "교차부 중앙선 단절, 횡단보도, 도로 가로지르는 배수로",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2080",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "C04",
+    "search_query": "서울 강북구 솔매로 80",
+    "location": "솔매로31길 접속점",
+    "imagery_date": "2026-06",
+    "photos": "105–112",
+    "observed": "둥근 연석·점자블록과 그 위 기둥, 마을버스. 신호기 동작 미확인",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2080",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "C05",
+    "search_query": "서울 강북구 솔매로 80",
+    "location": "솔매로31길 안쪽",
+    "imagery_date": "2026-06",
+    "photos": "113–120",
+    "observed": "정지표지, 반사경, 내리막 접속, 턱낮춤과 배수구",
+    "source_search_url": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%B6%81%EA%B5%AC%20%EC%86%94%EB%A7%A4%EB%A1%9C%2080",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "D01",
+    "search_query": "삼양사거리역",
+    "location": "삼양로197 골목 접속",
+    "imagery_date": "2026-06",
+    "photos": "121–128",
+    "observed": "왕복4차로 본선과 좁은 접속길. 분리시설 끝단·횡단시설이 있어 골목 정면 연속 범위 미확정",
+    "source_search_url": "https://map.kakao.com/?q=%EC%82%BC%EC%96%91%EC%82%AC%EA%B1%B0%EB%A6%AC%EC%97%AD",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "D02",
+    "search_query": "삼양사거리역",
+    "location": "삼양로 횡단보도 접근",
+    "imagery_date": "2026-06",
+    "photos": "129–136",
+    "observed": "횡단보도 전 분리대 끝단, 정지선, 보행 난간",
+    "source_search_url": "https://map.kakao.com/?q=%EC%82%BC%EC%96%91%EC%82%AC%EA%B1%B0%EB%A6%AC%EC%97%AD",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "D03",
+    "search_query": "삼양사거리역",
+    "location": "삼양로33길 접속부",
+    "imagery_date": "2026-06",
+    "photos": "137–144",
+    "observed": "지하철 승강기, 점자블록 연결, 가로수와 전신주",
+    "source_search_url": "https://map.kakao.com/?q=%EC%82%BC%EC%96%91%EC%82%AC%EA%B1%B0%EB%A6%AC%EC%97%AD",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "D04",
+    "search_query": "삼양동사거리",
+    "location": "삼양로·솔샘로 교차로 중앙",
+    "imagery_date": "2026-06",
+    "photos": "145–152",
+    "observed": "직진·회전 유도 점선, 교차로 바깥 횡단보도, 신호기",
+    "source_search_url": "https://map.kakao.com/?q=%EC%82%BC%EC%96%91%EB%8F%99%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "D05",
+    "search_query": "삼양동사거리",
+    "location": "솔샘로 접속쪽 교차로 내부",
+    "imagery_date": "2026-06",
+    "photos": "153–160",
+    "observed": "여러 유도선, 중앙선 재개, 노란 빗금 형태 표시",
+    "source_search_url": "https://map.kakao.com/?q=%EC%82%BC%EC%96%91%EB%8F%99%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "E01",
+    "search_query": "미아사거리",
+    "location": "미아사거리 중앙",
+    "imagery_date": "2026-06",
+    "photos": "161–168",
+    "observed": "분홍 유도선, 넓은 교차부, 붉은 노면, 공사시설",
+    "source_search_url": "https://map.kakao.com/?q=%EB%AF%B8%EC%95%84%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "E02",
+    "search_query": "미아사거리",
+    "location": "미아사거리 남측 접속",
+    "imagery_date": "2026-06",
+    "photos": "169–176",
+    "observed": "공사구역에 따른 임시 경계, 유도선과 횡단보도",
+    "source_search_url": "https://map.kakao.com/?q=%EB%AF%B8%EC%95%84%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "E03",
+    "search_query": "수유사거리",
+    "location": "수유사거리 중앙",
+    "imagery_date": "2026-06",
+    "photos": "177–184",
+    "observed": "다차로 직진·회전 유도선, 넓은 횡단보도, 신호기",
+    "source_search_url": "https://map.kakao.com/?q=%EC%88%98%EC%9C%A0%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "E04",
+    "search_query": "수유사거리",
+    "location": "수유사거리 북측 접근",
+    "imagery_date": "2026-06",
+    "photos": "185–192",
+    "observed": "중앙버스차로 청색선, 보도 수목·전기함",
+    "source_search_url": "https://map.kakao.com/?q=%EC%88%98%EC%9C%A0%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  },
+  {
+    "group": "E05",
+    "search_query": "수유사거리",
+    "location": "도봉로 북측 연속 구간",
+    "imagery_date": "2026-06",
+    "photos": "193–200",
+    "observed": "중앙분리대 연속, 차로별 방향 화살표, 안내표지",
+    "source_search_url": "https://map.kakao.com/?q=%EC%88%98%EC%9C%A0%EC%82%AC%EA%B1%B0%EB%A6%AC",
+    "position_precision": "검색 위치에서 화면 화살표로 이동한 인근 지점; 정확한 좌표·파노라마 ID 미수집"
+  }
+]

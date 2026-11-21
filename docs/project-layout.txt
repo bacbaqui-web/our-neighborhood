@@ -305,3 +305,5 @@ docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
 2026-11-21 도로·건물 편집: building-assets/editor.js와 scene-edit-store.js → browser-generation/entry.py → work/scene_edits.py. 도로 등급 변경과 주변 자동 재생성, 건물 디자인·연식·층수·용도·입구 면. 검사 범위와 제한은 docs/scene-editing.txt 및 PROJECT_STATE.json.
 
 2026-11-21 승인 완성건물12종: outputs/domestic-test/building-remakes가 승인 사진별 외벽·실창·옥상과 점포4종을 생성합니다. 기존 지도 윤곽·층수·입구면 유지. 교체 요청11개는 building-references.json의 새 후보로 승인 대기. 근거/제작/검사는 work/building-remakes와 tests/approved-buildings.mjs, 공개 상태는 PROJECT_STATE.json.
+
+2026-11-22 도로 교차검증·조립 부품: work/road-junction-survey-20261122/review-a,b.txt와 cross-review-a,b.txt, final-review.txt; 확정 규칙은 통합 지침 「교차로 연결과 도로 시설」. work/junction-assets 제작/등록/내보내기, outputs/domestic-test/junction-assets 부품9+조립3 GLB와 manifest. 자동 동네 배치 미적용. 공개 상태는 PROJECT_STATE.json의 junctionAssets20261122.

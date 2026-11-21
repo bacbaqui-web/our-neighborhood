@@ -6030,5 +6030,15 @@
       "issues": []
     },
     "publicScreenshot": "verification/alley-housing/public.jpg"
+  },
+  "junctionAssets20261122": {
+    "status": "guidelines finalized; 12 assets built and locally verified; public deployment pending",
+    "date": "2026-11-22",
+    "assets": 12,
+    "parts": 9,
+    "assemblies": 3,
+    "automaticPlacement": false,
+    "evidence": "work/road-junction-survey-20261122/final-review.txt",
+    "production": "work/junction-assets/production.txt"
   }
 }

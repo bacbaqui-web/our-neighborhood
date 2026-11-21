@@ -5930,7 +5930,7 @@
     "limitation": "Older scenes use the new geometry after regeneration or road edit."
   },
   "requestedBuildingReplacements20261121": {
-    "status": "implemented-local-verified-awaiting-public-deployment",
+    "status": "public-deployed-and-browser-verified",
     "uniqueModels": 9,
     "catalogEntries": 11,
     "assets": [
@@ -5950,6 +5950,11 @@
     "fireLettering": "소방서 with official NFA emblem, enlarged",
     "approvalStateChanged": false,
     "verification": "verification/building-replacements",
-    "limitations": "Reference-hidden sides inferred; some curved facade surfaces approximated; post and Daiso artwork omissions listed in replacement-retail.txt"
+    "limitations": "Reference-hidden sides inferred; some curved facade surfaces approximated; post and Daiso artwork omissions listed in replacement-retail.txt",
+    "sourceCommit": "9780ae2a67bef9b39888f0692f012b4a29f48a07",
+    "hostingCommit": "b70077e820f32cf612ade2991f9d8a0790868259",
+    "sourceRun": 44912010411,
+    "hostingRun": 44912018526,
+    "publicChecks": 12
   }
 }

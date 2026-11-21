@@ -6,4 +6,11 @@
 로컬 실제 화면: civic.png, retail.png, shops.png. 왼쪽 참고 사진 / 오른쪽 모델.
 검사: 23개 건물의 유한 좌표·창 개구부·지도 윤곽 보존·6개 상점 문/보행면 연결, 간판 글자 비율, 이미지 사전 로딩, 시설 배치, 참고 이미지 연결, 로딩 및 생성기 묶음 일치 확인.
 사진에서 보이지 않는 면과 실측 치수는 추정. 곡면 단순화 및 생략 도안은 work/building-remakes/replacement-retail.txt에 기록.
-공개 배포와 공개 화면 확인은 다음 단계.
+공개 배포 및 실제 화면 확인 완료.
+소스: 9780ae2a67bef9b39888f0692f012b4a29f48a07 (모델 변경 2fe999c1322b85dccf740b92f64793b6b11c8b14 포함)
+호스팅: b70077e820f32cf612ade2991f9d8a0790868259
+소스 검사/배포: https://github.com/bacbaqui-web/our-neighborhood/actions/runs/44912010411 성공
+공개 배포: https://github.com/bacbaqui-web/magamiscoming/actions/runs/44912018526 성공
+공개 주소: https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?tab=building
+공개 브라우저: 교체 11개 항목 + 경찰서 총 12개 상세 모델 모두 열어 확인. 오류 메시지 없음. public-checks.json 및 public-*.png 참조.
+첫 공개 확인에서는 오래된 app.js 쿼리 캐시가 보여 에셋백과 index.html의 실행 파일 버전을 replacements3으로 갱신한 뒤 재배포하고 확인.

@@ -1,7 +1,7 @@
 import {reviseShopSpec} from '../memo-scene.js?v=151';
 import {applySignEmission} from './sign-lighting.js?v=151';
 import * as T from 'three';
-import {buildStorefront} from './storefront-models.js?v=approvedbuildings1';
+import {buildStorefront} from './storefront-models.js?v=identity2';
 import {lightingState} from './storefront-hours.js?v=151';
 
 const tints={convenience:'#eef5e8',laundry:'#e5efff',salon:'#ffe8cb',estate:'#f3ecd9',food:'#ffdfa9',cafe:'#ffd39d',pharmacy:'#f0f6e6',retail:'#eaf5df',bakery:'#ffe0bb',optical:'#edf1e1',telecom:'#eee7f8'};

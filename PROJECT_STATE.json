@@ -5887,5 +5887,12 @@
       "Original 12 reference approvals preserved; 11 new references pending",
       "All 11 replacement image instances decoded in public Edge"
     ]
+  },
+  "buildingIdentity20261121": {
+    "date": "2026-11-21",
+    "status": "implemented and locally verified; public verification pending",
+    "scope": "12 approved building remakes: original brand textures, facade colors, windows and proportions",
+    "verification": "verification/building-identity",
+    "notes": "Unseen elevations inferred; illegible tiny photo details simplified. Rejected reference candidates remain pending."
   }
 }

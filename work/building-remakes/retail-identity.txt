@@ -1,0 +1,40 @@
+판매시설 승인 원본 재대조 및 브랜드 복원 — 2026-11-21
+대상: outputs/domestic-test/building-remakes/retail.js
+승인 근거: work/building-remakes/approval-20261121.json의 approved 항목과 approvedReferenceId 일치 확인.
+이번 사용자 지시로 글자·로고를 복원하며 과거 retail-production.txt의 문자·로고 없음 결정은 더 이상 적용하지 않습니다.
+사진은 형태 관찰용이며 모델 텍스처로 복제하지 않습니다. 간판 이미지는 통합 담당의 별도 자산/출처 관리 대상입니다.
+
+관찰: facility:emart / emart-1-kr-v1
+https://image.newdaily.co.kr/site/data/img/2023/03/30/2023033000106_0.jpg
+캐시 emart-1.jpg를 직접 열어 확인. 이마트 연수점 사진의 전면 간판은 THE TOWN MALL이며 노란 emart 간판이 아닙니다.
+적갈색 리브 외벽, 밝은 수평 띠, 파란 유리 중간층, 흰 기둥과 넓은 입구 차양, 상단 열린 기둥 열을 반영.
+간판 emart 키는 승인 사진에 맞는 THE TOWN MALL 글자/다색 표시 자산과 연결해야 합니다.
+
+관찰: facility:homeplus / homeplus-cheonan-kr-v1
+https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202604/15/daejonilbo/20260415161512119ydxu.jpg
+승인 URL을 /tmp/building-reference-research/homeplus-approved.jpg로 새로 받아 직접 열어 확인.
+기존 homeplus-21/22/23.jpg는 실내·그래프·인물 사진이라 이 모델의 외관 근거로 사용하지 않았습니다.
+회베이지 사각 패널, 위쪽 큰 빨간 Home plus 문자, 오른쪽에 치우친 높은 녹청색 유리, 가는 밝은 세로 프레임, 빨간 입구 차양 반영.
+승인 사진은 영업 중단 당시 자료이며 현재 영업 상태를 모델로 주장하지 않습니다.
+
+관찰: facility:costco / costco-3-kr-v1
+https://junglim.com/wp-content/uploads/2025/11/2002_COSTCO-Yangjae_slide_01.jpg
+캐시 costco-3.jpg를 직접 열어 확인.
+넓고 거의 빈 흰 창고 외벽, 상부 가는 선명한 빨간 띠, 폭이 다른 두 세로 유리 구간, 오른쪽 옥상 위 흰 간판 판과 COSTCO WHOLESALE 표시 반영.
+
+관찰: facility:traders / traders-0-kr-v1
+https://image.edaily.co.kr/images/Photo/files/NP/S/2019/02/PS19022500103.jpg
+캐시 traders-0.jpg를 직접 열어 확인.
+강한 라임색 상부 띠와 세로 탑, 모서리의 높은 녹청색 유리, 회색 수평 패널, 오른쪽 어두운 유리 구간과 파란 차양 반영.
+왼쪽 emart 건물과 오른쪽 주차장 건물은 별도 주변 건물이므로 트레이더스 단일 윤곽에 합치지 않음.
+
+추정·단순화
+미터 단위, x=0..L, y=바닥에서 높이, z=바깥 방향. 실제 지도 윤곽/층수는 변경하지 않음.
+사진의 곡면 코너는 지도 윤곽을 바꾸지 않는 평면 구성으로 단순화. 사진에 보이지 않는 측후면은 같은 외장과 최소 서비스 문으로 추정.
+창 수·프레임 간격·차양 깊이·간판 치수는 지도 규모에 맞춘 비례 추정이며 실측이 아님. 코스트코 옥상 간판은 층 추가가 아닌 부착물.
+사진에서 가려진 출입구의 문 분할 및 서비스 문 세부는 추정.
+
+검사
+Node data URL loader로 4종 × 정면/측면 × 3종 치수(34×14,3×3,100×28) 총 24경우 실행.
+숫자 좌표 유한성, 비어 있지 않은 면, 정면별 간판 1개 생성 확인.
+실제 브라우저/광원/외곽선/공개 배포 확인은 통합 담당 단계이며 이 기록만으로 완료 주장하지 않음.

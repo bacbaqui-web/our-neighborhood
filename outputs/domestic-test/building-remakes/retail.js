@@ -1,103 +1,113 @@
-// Approved Korean store photographs are recorded in retail-production.txt.
-// Coordinates follow the existing footprint; no lettering or photograph textures.
-export function emitApprovedRetailFace(ctx) {
-  const {id,L,H,front,box,window:win,surface}=ctx;
+// Source observations and permitted simplifications: work/building-remakes/retail-identity.txt.
+export function emitApprovedRetailFace(c) {
+  const {id,L,H,front,box,window:win,surface}=c;
   if (!['facility:emart','facility:homeplus','facility:costco','facility:traders'].includes(id)) return false;
-  if (L < 2 || H < 2) return true;
-  const band=(y,h,c,z=.07,d=.12)=>box(L/2,y,z,L,h,d,c);
-  const pier=(x,y,w,h,c,z=.12,d=.24)=>box(x,y,z,w,h,d,c);
-  const panes=(a,b,bottom,top,spacing,frame=0xc6cdcb)=>{
-    if(top-bottom<.4 || b-a<.5)return;
-    const n=Math.max(1,Math.ceil((b-a)/spacing)),step=(b-a)/n;
-    for(let i=0;i<n;i++)win(a+step*(i+.5),(bottom+top)/2,step-.11,top-bottom,'white-slider',frame);
+  if(L<2||H<2)return true;
+  const band=(y,h,color,z=.06,d=.12)=>box(L/2,y,z,L,h,d,color);
+  const pane=(a,b,lo,hi,spacing=2,frame=0xb9c6c5)=>{
+    if(hi-lo<.4||b-a<.5)return;
+    const n=Math.max(1,Math.ceil((b-a)/spacing)),s=(b-a)/n;
+    for(let i=0;i<n;i++)win(a+s*(i+.5),(lo+hi)/2,s-.10,hi-lo,'white-slider',frame);
   };
-  const canopy=(a,b,y,c)=>{
-    box((a+b)/2,y,.23,b-a,.18,.46,c);
-    box((a+b)/2,y-.11,.39,b-a,.06,.10,0x626760);
-    // Short wall-connected cantilever brackets, never free-floating supports.
-    for(let x=a+.22;x<b-.1;x+=Math.max(1.6,(b-a)/5))box(x,y-.24,.18,.075,.28,.36,0x777d77);
+  const canopy=(a,b,y,color,depth=.75)=>{
+    box((a+b)/2,y,depth/2,b-a,.20,depth,color);
+    box((a+b)/2,y-.14,depth-.035,b-a,.10,.07,color);
   };
   const service=()=>{
-    const dh=Math.min(3.3,H*.38),dw=Math.min(3.1,L*.24),x=L*.54;
-    surface(x,dh/2+.08,dw,dh,0x697170,.022);
-    for(let y=.22;y<dh;y+=.24)box(x,y,.065,dw,.027,.045,0x9ca39f);
-    pier(x-dw/2-.08,dh/2,.15,dh+.15,0xc6c8bf);
-    pier(x+dw/2+.08,dh/2,.15,dh+.15,0xc6c8bf);
-    box(x,dh+.08,.13,dw+.32,.16,.26,0xbfc2bb);
-    if(L>8) {
-      win(L*.18,1.12,Math.min(1.1,L*.1),2.1,'white-slider',0x777e78);
-      const vx=L*.82,vy=H*.58,vw=Math.min(1.8,L*.14),vh=Math.min(.9,H*.12);
-      surface(vx,vy,vw,vh,0x414b48,.025);
-      for(let y=vy-vh/2+.08;y<vy+vh/2;y+=.13)box(vx,y,.09,vw,.055,.12,0x969e98);
-    }
+    const h=Math.min(3,H*.27),w=Math.min(3,L*.2);
+    surface(L*.54,h/2+.07,w,h,0x687379,.028);
+    for(let y=.2;y<h;y+=.3)box(L*.54,y,.065,w,.025,.05,0xa2a8a9);
+    box(L*.54,h+.1,.15,w+.22,.17,.3,0xc0c4c1);
   };
   if(id==='facility:emart') {
-    // Shallow faceted central bow respects the mapped building silhouette.
-    const a=L*.15,b=L*.85,base=Math.min(3.05,H*.26),glassTop=H*.57;
-    surface(L/2,H*.7,L,H*.6,0x9f8874);
-    for(let x=.15;x<L;x+=.26)box(x,H*.72,.045,.035,H*.52,.035,0xc0a58b);
-    for(const y of [.62,.73,.84,.95])band(H*y,.10,0xe0d5c2);
-    if(front) {
-      panes(a,b,.12,base-.22,2.05,0xcbd1c7);
-      panes(a,b,base+.5,glassTop,2.45,0xb3c1bf);
-      canopy(a-.12,b+.12,base+.18,0xd5dad1);
-      const pw=Math.min(.6,L*.045);
-      for(const x of [a-pw/2,b+pw/2])pier(x,base/2,pw,base,0xc3beb0,.20,.40);
-      for(const x of [L*.075,L*.925])pier(x,H/2,Math.min(L*.075,1.5),H,0xa48b75,.13,.26);
-      for(const y of [.24,.57,.96])band(H*y,.16,0xd6c9b6,.17,.3);
-      // Roof colonnade suggested within original height, no raised extra storey.
-      for(let x=a;x<=b+.01;x+=(b-a)/5)pier(x,H*.969,.15,H*.06,0xc6c7bb,.17,.3);
-    } else service();
-  } else if(id==='facility:homeplus') {
-    surface(L/2,H/2,L,H,0xc5c6bd);
-    for(let y=.7;y<H;y+=.82)band(y,.025,0x9b9e96,.028,.025);
-    for(let x=1.5;x<L;x+=2.2)pier(x,H/2,.025,H,0xa6aaa0,.03,.03);
-    if(front) {
-      const a=L*.24,b=L*.91,doorTop=Math.min(2.55,H*.23),top=H*.76;
-      panes(a,b,.1,doorTop,2.0,0x889e97);
-      panes(a,b,doorTop+.4,top,1.7,0xb8c1b8);
-      canopy(a-.1,b+.1,doorTop+.2,0x9e2336);
-      for(const x of [a-.13,b+.13])pier(x,(top+.1)/2,.22,top+.1,0xd5d4c8,.16,.32);
-      box((a+b)/2,top+.16,.15,b-a+.48,.24,.3,0xd6d6cb);
-      // Narrow red entrance surround is structural, not a text-bearing logo panel.
-      pier(L*.86,doorTop/2,.12,doorTop,0xa6293b,.21,.40);
-    } else service();
-    band(H-.12,.15,0x787e75,.10,.2);
-  } else if(id==='facility:costco') {
-    surface(L/2,H/2,L,H,0xe0e0d5);
-    band(H*.85,.22,0xc64c55,.035,.045);
-    band(.4,.55,0xb5b8af,.055,.09);
-    for(let x=2.6;x<L;x+=3.2)pier(x,H/2,.026,H,0xbfc3ba,.03,.03);
-    if(front) {
-      const top=H*.78,lower=Math.min(2.8,H*.24),w=Math.min(3,L*.13);
-      for(const x of [L*.2,L*.78]) {
-        panes(x-w/2,x+w/2,lower+.25,top,1.15,0xadb9b5);
-        for(const px of [x-w/2-.07,x+w/2+.07])pier(px,(top+lower+.25)/2,.12,top-lower-.05,0xc1c6bd,.10,.2);
+    // The approved Yeonsu facade is THE TOWN MALL, not a yellow emart sign.
+    surface(L/2,H/2,L,H,0x9b7763);
+    if(front){
+      const a=L*.14,b=L*.86,entry=H*.245;
+      // Shallow convex bow: solid segments connect to the mapped wall instead of
+      // moving its footprint. Ribs, belt courses and roof arcade share the bow.
+      const bow=x=>.45*Math.sqrt(Math.max(0,1-((x-L/2)/((b-a)/2))**2));
+      const segments=18,step=(b-a)/segments;
+      for(let i=0;i<segments;i++){
+        const x=a+step*(i+.5),z=bow(x);
+        box(x,H*.72,z/2,step+.008,H*.33,z+.04,0x9b7763);
+        for(const y of [.565,.66,.755,.85])box(x,H*y,z+.055,step+.008,.10,.13,0xddd7cb);
+        box(x,H*.99,z+.07,step+.008,H*.025,.34,0xb7bfbe);
       }
-      panes(L*.35,L*.65,.12,lower,1.7,0x8b9995);
-      canopy(L*.33,L*.67,lower+.15,0xbcc2bb);
-      for(const x of [L*.33,L*.67])pier(x,lower/2,.22,lower,0xd0d2c9,.18,.36);
-    } else service();
-    band(H-.1,.12,0xc6c9bf,.08,.16);
-  } else {
-    surface(L/2,H/2,L,H,0xb6c1bd);
-    band(H*.93,H*.10,0x9dce37,.09,.18);
-    for(const y of [.32,.55,.77])band(H*y,.045,0x858f8c,.03,.035);
-    if(front) {
-      const a=L*.1,b=L*.39,bottom=Math.min(2.8,H*.22),top=H*.85;
-      surface(L*.46,H/2,L*.12,H,0x8ac440,.025);
-      panes(a,b,bottom+.24,top,1.8,0x829e91);
-      panes(a,b,.12,bottom-.1,1.7,0x88a092);
-      canopy(a-.1,b+.15,bottom+.04,0x99c93b);
-      for(const x of [a-.08,b+.08])pier(x,(top+bottom)/2,.12,top-bottom,0x7c998c,.14,.28);
-      // Tower's horizontal transoms connect across its complete glazing width.
-      for(let y=bottom+1.7;y<top;y+=1.65)box((a+b)/2,y,.14,b-a,.07,.14,0x9aafa1);
-      const ga=L*.58,gb=L*.85;
-      panes(ga,gb,H*.26,H*.66,2.1,0x6f8580);
-      for(let y=H*.28;y<H*.66;y+=.65)box((ga+gb)/2,y,.12,gb-ga,.055,.1,0x93a29a);
-      canopy(ga,gb,H*.22,0x587a9b);
-      panes(ga,gb,.1,H*.19,2.2,0x869a90);
-    } else service();
+      for(let x=a+.04;x<b;x+=.21)box(x,H*.72,bow(x)+.045,.045,H*.33,.07,0xc0a38c);
+      pane(a,b,entry+.06,H*.55,Math.max(1.1,L*.15),0xbfc9cd);
+      // Continuous blue-glass storey with fine horizontal transoms.
+      for(const y of [.34,.445])box(L/2,H*y,.075,b-a,.055,.12,0xc0c9ce);
+      pane(L*.25,L*.76,.08,entry-.14,Math.max(1,L*.075),0x556565);
+      canopy(a,b,entry,0xd6dcda,1.05);
+      for(const x of [L*.22,L*.78])box(x,entry/2,.32,L*.025,entry,.64,0xe0dfd2);
+      for(const x of [L*.07,L*.93]){
+        box(x,H*.47,.10,L*.09,H*.94,.2,0x997662);
+        for(const y of [.245,.565,.755,.91])box(x,H*y,.18,L*.095,.12,.24,0xd9cebc);
+      }
+      // Open roof arcade is attached to the parapet and kept inside the source height.
+      for(let i=0;i<6;i++){
+        const x=a+(b-a)*i/5;
+        box(x,H*.925,bow(x)+.07,.22,H*.13,.34,0xc5c9c5);
+      }
+      c.sign('emart',L/2,H*.695,L*.52,H*.115,.56);
+      c.sign('townmall-symbol',L/2,H*.845,H*.15,H*.15,.58);
+    }else{for(const y of [.245,.565,.755,.91])band(H*y,.10,0xd9cebc);service();}
+  }else if(id==='facility:homeplus'){
+    surface(L/2,H/2,L,H,0xc4c0b9);
+    for(let y=.6;y<H;y+=.78)band(y,.024,0x827f7c,.03,.025);
+    for(let x=1.5;x<L;x+=2.9)box(x,H/2,.033,.025,H,.025,0x97938d);
+    if(front){
+      const a=L*.25,b=L*.91,entry=H*.24,top=H*.73;
+      pane(a,b,.10,entry-.25,Math.max(1,L*.075),0x637675);
+      pane(a,b,entry+.04,top,Math.max(1.3,L*.072),0xd5d8d4);
+      for(let x=a;x<=b+.01;x+=(b-a)/5)box(x,(top+entry)/2,.17,.14,top-entry,.34,0xe0ded5);
+      for(const y of [.40,.56])box((a+b)/2,H*y,.10,b-a,.065,.15,0x637c7b);
+      for(const x of [a-.12,b+.12])box(x,(top+.1)/2,.16,.23,top+.1,.32,0xe0ddd3);
+      box((a+b)/2,top+.12,.16,b-a+.48,.23,.32,0xe0ddd3);
+      canopy(a-.12,b+.12,entry,0xd41e3a,.95);
+      c.sign('homeplus',L*.46,H*.865,L*.45,H*.12,.10);
+    }else service();
+    band(H-.06,.12,0x555b5b);
+  }else if(id==='facility:costco'){
+    surface(L/2,H/2,L,H,0xe8e8e1);
+    band(H*.845,H*.033,0xe1273b,.055,.07);
+    band(.28,.48,0xb9bbb7);
+    for(let x=2.8;x<L;x+=3.3)box(x,H/2,.025,.024,H,.025,0xc3c6c3);
+    if(front){
+      const lower=H*.17,top=H*.78;
+      for(const [x,w] of [[L*.20,L*.065],[L*.79,L*.13]]){
+        pane(x-w/2,x+w/2,lower,top,Math.max(.7,w/3),0xb6c4c7);
+        for(let y=lower+.7;y<top;y+=.85)box(x,y,.08,w,.045,.12,0xc5ced0);
+      }
+      // Original billboard is raised above the otherwise blank warehouse frontage.
+      box(L*.855,H+.70,.015,L*.255,1.4,.26,0xe8e8e1);
+      c.sign('costco',L*.855,H+.72,L*.22,1.12,.17);
+      pane(L*.36,L*.60,.08,Math.min(2.5,H*.18),2,0x677a81);
+      canopy(L*.35,L*.61,Math.min(2.5,H*.18)+.12,0xbdc8c9,.65);
+    }else service();
+    band(H-.04,.10,0xc6cecd);
+  }else{
+    const lime=0x8cda19;
+    surface(L/2,H/2,L,H,0xbec8c9);
+    for(const y of [.28,.48,.69,.89])band(H*y,.045,0x89999c,.035,.04);
+    band(H*.94,H*.10,lime,.10,.20);
+    if(front){
+      const a=L*.24,b=L*.46,entry=H*.17,top=H*.88;
+      // Tall corner glazing is framed by the unmistakable lime tower.
+      surface(L*.535,H/2,L*.15,H,lime,.032);
+      box(L*.535,H+.38,.10,L*.15,.76,.20,lime);
+      pane(a,b,entry+.04,top,Math.max(1,L*.07),0x749798);
+      for(let y=entry+.75;y<top;y+=1.05)box((a+b)/2,y,.10,b-a,.055,.16,0xa3babc);
+      pane(a,b,.1,entry-.15,Math.max(1,L*.07),0x789d99);
+      canopy(a-.025,b+.03,entry,lime,1.10);
+      for(const x of [a+.10,b-.10])box(x,entry/2,.63,.14,entry,1.26,0xd5dfcf);
+      // Dark right-hand glazed warehouse bay and the blue loading canopy.
+      pane(L*.64,L*.81,H*.20,H*.69,Math.max(1,L*.07),0x4c626c);
+      for(let y=H*.22;y<H*.69;y+=.7)box(L*.725,y,.10,L*.17,.055,.14,0x9aaeb3);
+      canopy(L*.82,L*.98,H*.21,0x3979b1,1.2);
+      c.sign('traders',L*.535,H*.915,L*.125,H*.10,.23);
+    }else service();
   }
   return true;
 }

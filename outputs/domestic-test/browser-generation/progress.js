@@ -1,4 +1,4 @@
-import {generateInBrowser} from './client.js?v=approvedbuildings1';
+import {generateInBrowser} from './client.js?v=identity2';
 import {configureRoads} from './road-setup.js?v=road-fit1';
 export async function createNeighborhood(point){
  point=await configureRoads(point);

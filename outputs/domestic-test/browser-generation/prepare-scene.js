@@ -161,22 +161,32 @@ function planFacilities(buildings, places, { xz }) {
   return { applied, skipped };
 }
 
-// outputs/domestic-test/building-remakes/profiles.js
+// outputs/domestic-test/building-remakes/profiles.js?v=identity2
 var p = (referenceId, wall, texture, nominal) => ({ referenceId, wall, texture, nominal });
 var approvedBuildingProfiles = {
-  "building:shop-tile": p("bangyi-before-kr-v1", 13028285, "small-white-tile", [18, 9.3, 10]),
-  "building:shop-panel": p("starbucks-30-kr-v1", 10125667, null, [20, 18, 13]),
-  "facility:apartment": p("building-reference-apartment-hanshin-20261121", 13687244, null, [25, 42, 12]),
-  "facility:emart": p("emart-1-kr-v1", 13221278, null, [34, 14, 22]),
-  "facility:homeplus": p("homeplus-cheonan-kr-v1", 13357768, "white-granite", [30, 20, 20]),
-  "facility:costco": p("costco-3-kr-v1", 13949393, null, [38, 14, 25]),
-  "facility:traders": p("traders-0-kr-v1", 10793118, null, [32, 16, 24]),
-  "facility:police": p("police-2-kr-v1", 13357768, null, [24, 15, 12]),
-  "facility:gs25": p("building-reference-gs25-bucheon-20261121", 13357253, "vertical-gray-tile", [8.4, 9, 8]),
-  "facility:seven": p("seven-exterior-kr-v1", 9739668, null, [8.6, 7, 8]),
-  "facility:emart24": p("emart24-0-kr-v1", 13025710, null, [10, 7.5, 9]),
-  "facility:starbucks": p("starbucks-0-kr-v1", 9666146, null, [11, 10.8, 9])
+  "building:shop-tile": p("bangyi-before-kr-v1", 11777714, "small-white-tile", [29, 9.3, 11]),
+  "building:shop-panel": p("starbucks-30-kr-v1", 9790273, null, [21, 16.5, 13]),
+  "facility:apartment": p("building-reference-apartment-hanshin-20261121", 12177608, null, [32, 45, 12]),
+  "facility:emart": p("emart-1-kr-v1", 10188643, null, [34, 14, 22]),
+  "facility:homeplus": p("homeplus-cheonan-kr-v1", 12894393, null, [36, 15, 20]),
+  "facility:costco": p("costco-3-kr-v1", 15263969, null, [38, 14, 25]),
+  "facility:traders": p("traders-0-kr-v1", 12503241, null, [40, 16, 24]),
+  "facility:police": p("police-2-kr-v1", 14082012, null, [28, 16, 13]),
+  "facility:gs25": p("building-reference-gs25-bucheon-20261121", 13947593, "vertical-gray-tile", [8.4, 6.8, 8]),
+  "facility:seven": p("seven-exterior-kr-v1", 5265236, null, [8.6, 3.8, 8]),
+  "facility:emart24": p("emart24-0-kr-v1", 3422518, null, [10, 7.5, 9]),
+  "facility:starbucks": p("starbucks-0-kr-v1", 13158589, null, [11, 7.5, 9])
 };
+for (const profile of Object.values(approvedBuildingProfiles)) {
+  profile.roofCore = false;
+  profile.glass = [5406343, 8365226, 3365991];
+}
+Object.assign(approvedBuildingProfiles["building:shop-panel"], { levels: 5, roofCore: true, glass: [5609917, 7779020, 2906227] });
+Object.assign(approvedBuildingProfiles["building:shop-tile"], { levels: 3, glass: [4562332, 9160382, 4749947] });
+Object.assign(approvedBuildingProfiles["facility:apartment"], { levels: 15, roofColor: 11583163 });
+Object.assign(approvedBuildingProfiles["facility:police"], { levels: 5, roofColor: 6465389 });
+for (const id of ["gs25", "seven", "emart24", "starbucks"]) Object.assign(approvedBuildingProfiles["facility:" + id], { levels: id === "seven" ? 1 : 2, glass: [3229510, 5400933, 2506562] });
+for (const id of ["emart24", "starbucks"]) approvedBuildingProfiles["facility:" + id].glass = [7249067, 10600647, 4549240];
 
 // outputs/domestic-test/approved-road/catalog.js?v=signtexture3
 var approvedRoad = [
@@ -432,7 +442,7 @@ var props = [
   ["tray-rack", "\uC81C\uBE75 \uD2B8\uB808\uC774\uB799", "a176", 1332, "ground"]
 ].map(([key, name, old, triangles, support]) => ({ key, name, old, triangles, support }));
 
-// outputs/domestic-test/asset-encyclopedia/remakes.js?v=approvedbuildings1
+// outputs/domestic-test/asset-encyclopedia/remakes.js?v=identity2
 var approved = new Map(approvedRoad.map((p2) => [p2.id, p2]));
 var replacements = new Map(props.map((p2) => [canonicalId("road:" + p2.old), p2]));
 var remakeAliases = new Map(props.map((p2) => [canonicalId("representative:" + p2.old), canonicalId("road:" + p2.old)]).filter(([a, b]) => a !== b));
@@ -4295,29 +4305,29 @@ var Ray = class {
     _edge2.subVectors(c, a);
     _normal$1.crossVectors(_edge1, _edge2);
     let DdN = this.direction.dot(_normal$1);
-    let sign2;
+    let sign3;
     if (DdN > 0) {
       if (backfaceCulling) return null;
-      sign2 = 1;
+      sign3 = 1;
     } else if (DdN < 0) {
-      sign2 = -1;
+      sign3 = -1;
       DdN = -DdN;
     } else {
       return null;
     }
     _diff.subVectors(this.origin, a);
-    const DdQxE2 = sign2 * this.direction.dot(_edge2.crossVectors(_diff, _edge2));
+    const DdQxE2 = sign3 * this.direction.dot(_edge2.crossVectors(_diff, _edge2));
     if (DdQxE2 < 0) {
       return null;
     }
-    const DdE1xQ = sign2 * this.direction.dot(_edge1.cross(_diff));
+    const DdE1xQ = sign3 * this.direction.dot(_edge1.cross(_diff));
     if (DdE1xQ < 0) {
       return null;
     }
     if (DdQxE2 + DdE1xQ > DdN) {
       return null;
     }
-    const QdN = -sign2 * _diff.dot(_normal$1);
+    const QdN = -sign3 * _diff.dot(_normal$1);
     if (QdN < 0) {
       return null;
     }
@@ -5807,16 +5817,16 @@ var Object3D = class _Object3D extends EventDispatcher {
     if (isRootObject) {
       const geometries = extractFromCache(meta.geometries);
       const materials2 = extractFromCache(meta.materials);
-      const textures2 = extractFromCache(meta.textures);
-      const images = extractFromCache(meta.images);
+      const textures3 = extractFromCache(meta.textures);
+      const images2 = extractFromCache(meta.images);
       const shapes = extractFromCache(meta.shapes);
       const skeletons = extractFromCache(meta.skeletons);
       const animations = extractFromCache(meta.animations);
       const nodes = extractFromCache(meta.nodes);
       if (geometries.length > 0) output.geometries = geometries;
       if (materials2.length > 0) output.materials = materials2;
-      if (textures2.length > 0) output.textures = textures2;
-      if (images.length > 0) output.images = images;
+      if (textures3.length > 0) output.textures = textures3;
+      if (images2.length > 0) output.images = images2;
       if (shapes.length > 0) output.shapes = shapes;
       if (skeletons.length > 0) output.skeletons = skeletons;
       if (animations.length > 0) output.animations = animations;
@@ -6813,10 +6823,10 @@ var Material = class extends EventDispatcher {
       return values;
     }
     if (isRootObject) {
-      const textures2 = extractFromCache(meta.textures);
-      const images = extractFromCache(meta.images);
-      if (textures2.length > 0) data.textures = textures2;
-      if (images.length > 0) data.images = images;
+      const textures3 = extractFromCache(meta.textures);
+      const images2 = extractFromCache(meta.images);
+      if (textures3.length > 0) data.textures = textures3;
+      if (images2.length > 0) data.images = images2;
     }
     return data;
   }
@@ -8710,10 +8720,10 @@ var CubeCamera = class extends Object3D {
   }
 };
 var CubeTexture = class extends Texture {
-  constructor(images, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy, colorSpace) {
-    images = images !== void 0 ? images : [];
+  constructor(images2, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy, colorSpace) {
+    images2 = images2 !== void 0 ? images2 : [];
     mapping = mapping !== void 0 ? mapping : CubeReflectionMapping;
-    super(images, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy, colorSpace);
+    super(images2, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy, colorSpace);
     this.isCubeTexture = true;
     this.flipY = false;
   }
@@ -8729,8 +8739,8 @@ var WebGLCubeRenderTarget = class extends WebGLRenderTarget {
     super(size, size, options);
     this.isWebGLCubeRenderTarget = true;
     const image = { width: size, height: size, depth: 1 };
-    const images = [image, image, image, image, image, image];
-    this.texture = new CubeTexture(images, options.mapping, options.wrapS, options.wrapT, options.magFilter, options.minFilter, options.format, options.type, options.anisotropy, options.colorSpace);
+    const images2 = [image, image, image, image, image, image];
+    this.texture = new CubeTexture(images2, options.mapping, options.wrapS, options.wrapT, options.magFilter, options.minFilter, options.format, options.type, options.anisotropy, options.colorSpace);
     this.texture.isRenderTargetTexture = true;
     this.texture.generateMipmaps = options.generateMipmaps !== void 0 ? options.generateMipmaps : false;
     this.texture.minFilter = options.minFilter !== void 0 ? options.minFilter : LinearFilter;
@@ -11732,7 +11742,7 @@ function WebGLInfo(gl) {
     update
   };
 }
-function WebGLMorphtargets(gl, capabilities, textures2) {
+function WebGLMorphtargets(gl, capabilities, textures3) {
   const morphTextures = /* @__PURE__ */ new WeakMap();
   const morph = new Vector4();
   function update(object, geometry2, program) {
@@ -11807,7 +11817,7 @@ function WebGLMorphtargets(gl, capabilities, textures2) {
       geometry2.addEventListener("dispose", disposeTexture);
     }
     if (object.isInstancedMesh === true && object.morphTexture !== null) {
-      program.getUniforms().setValue(gl, "morphTexture", object.morphTexture, textures2);
+      program.getUniforms().setValue(gl, "morphTexture", object.morphTexture, textures3);
     } else {
       let morphInfluencesSum = 0;
       for (let i = 0; i < objectInfluences.length; i++) {
@@ -11817,7 +11827,7 @@ function WebGLMorphtargets(gl, capabilities, textures2) {
       program.getUniforms().setValue(gl, "morphTargetBaseInfluence", morphBaseInfluence);
       program.getUniforms().setValue(gl, "morphTargetInfluences", objectInfluences);
     }
-    program.getUniforms().setValue(gl, "morphTargetsTexture", entry2.texture, textures2);
+    program.getUniforms().setValue(gl, "morphTargetsTexture", entry2.texture, textures3);
     program.getUniforms().setValue(gl, "morphTargetsTextureSize", entry2.size);
   }
   return {
@@ -11936,14 +11946,14 @@ function copyArray(a, b) {
     a[i] = b[i];
   }
 }
-function allocTexUnits(textures2, n) {
+function allocTexUnits(textures3, n) {
   let r = arrayCacheI32[n];
   if (r === void 0) {
     r = new Int32Array(n);
     arrayCacheI32[n] = r;
   }
   for (let i = 0; i !== n; ++i) {
-    r[i] = textures2.allocateTextureUnit();
+    r[i] = textures3.allocateTextureUnit();
   }
   return r;
 }
@@ -12149,9 +12159,9 @@ function setValueV4ui(gl, v2) {
     copyArray(cache, v2);
   }
 }
-function setValueT1(gl, v2, textures2) {
+function setValueT1(gl, v2, textures3) {
   const cache = this.cache;
-  const unit = textures2.allocateTextureUnit();
+  const unit = textures3.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
@@ -12163,34 +12173,34 @@ function setValueT1(gl, v2, textures2) {
   } else {
     emptyTexture2D = emptyTexture;
   }
-  textures2.setTexture2D(v2 || emptyTexture2D, unit);
+  textures3.setTexture2D(v2 || emptyTexture2D, unit);
 }
-function setValueT3D1(gl, v2, textures2) {
+function setValueT3D1(gl, v2, textures3) {
   const cache = this.cache;
-  const unit = textures2.allocateTextureUnit();
+  const unit = textures3.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures2.setTexture3D(v2 || empty3dTexture, unit);
+  textures3.setTexture3D(v2 || empty3dTexture, unit);
 }
-function setValueT6(gl, v2, textures2) {
+function setValueT6(gl, v2, textures3) {
   const cache = this.cache;
-  const unit = textures2.allocateTextureUnit();
+  const unit = textures3.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures2.setTextureCube(v2 || emptyCubeTexture, unit);
+  textures3.setTextureCube(v2 || emptyCubeTexture, unit);
 }
-function setValueT2DArray1(gl, v2, textures2) {
+function setValueT2DArray1(gl, v2, textures3) {
   const cache = this.cache;
-  const unit = textures2.allocateTextureUnit();
+  const unit = textures3.allocateTextureUnit();
   if (cache[0] !== unit) {
     gl.uniform1i(this.addr, unit);
     cache[0] = unit;
   }
-  textures2.setTexture2DArray(v2 || emptyArrayTexture, unit);
+  textures3.setTexture2DArray(v2 || emptyArrayTexture, unit);
 }
 function getSingularSetter(type) {
   switch (type) {
@@ -12328,52 +12338,52 @@ function setValueV3uiArray(gl, v2) {
 function setValueV4uiArray(gl, v2) {
   gl.uniform4uiv(this.addr, v2);
 }
-function setValueT1Array(gl, v2, textures2) {
+function setValueT1Array(gl, v2, textures3) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures2, n);
+  const units = allocTexUnits(textures3, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures2.setTexture2D(v2[i] || emptyTexture, units[i]);
+    textures3.setTexture2D(v2[i] || emptyTexture, units[i]);
   }
 }
-function setValueT3DArray(gl, v2, textures2) {
+function setValueT3DArray(gl, v2, textures3) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures2, n);
+  const units = allocTexUnits(textures3, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures2.setTexture3D(v2[i] || empty3dTexture, units[i]);
+    textures3.setTexture3D(v2[i] || empty3dTexture, units[i]);
   }
 }
-function setValueT6Array(gl, v2, textures2) {
+function setValueT6Array(gl, v2, textures3) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures2, n);
+  const units = allocTexUnits(textures3, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures2.setTextureCube(v2[i] || emptyCubeTexture, units[i]);
+    textures3.setTextureCube(v2[i] || emptyCubeTexture, units[i]);
   }
 }
-function setValueT2DArrayArray(gl, v2, textures2) {
+function setValueT2DArrayArray(gl, v2, textures3) {
   const cache = this.cache;
   const n = v2.length;
-  const units = allocTexUnits(textures2, n);
+  const units = allocTexUnits(textures3, n);
   if (!arraysEqual(cache, units)) {
     gl.uniform1iv(this.addr, units);
     copyArray(cache, units);
   }
   for (let i = 0; i !== n; ++i) {
-    textures2.setTexture2DArray(v2[i] || emptyArrayTexture, units[i]);
+    textures3.setTexture2DArray(v2[i] || emptyArrayTexture, units[i]);
   }
 }
 function getPureArraySetter(type) {
@@ -12486,11 +12496,11 @@ var StructuredUniform = class {
     this.seq = [];
     this.map = {};
   }
-  setValue(gl, value, textures2) {
+  setValue(gl, value, textures3) {
     const seq = this.seq;
     for (let i = 0, n = seq.length; i !== n; ++i) {
       const u = seq[i];
-      u.setValue(gl, value[u.id], textures2);
+      u.setValue(gl, value[u.id], textures3);
     }
   }
 };
@@ -12531,19 +12541,19 @@ var WebGLUniforms = class {
       parseUniform(info, addr, this);
     }
   }
-  setValue(gl, name, value, textures2) {
+  setValue(gl, name, value, textures3) {
     const u = this.map[name];
-    if (u !== void 0) u.setValue(gl, value, textures2);
+    if (u !== void 0) u.setValue(gl, value, textures3);
   }
   setOptional(gl, object, name) {
     const v2 = object[name];
     if (v2 !== void 0) this.setValue(gl, name, v2);
   }
-  static upload(gl, seq, values, textures2) {
+  static upload(gl, seq, values, textures3) {
     for (let i = 0, n = seq.length; i !== n; ++i) {
       const u = seq[i], v2 = values[u.id];
       if (v2.needsUpdate !== false) {
-        u.setValue(gl, v2.value, textures2);
+        u.setValue(gl, v2.value, textures3);
       }
     }
   }
@@ -14895,12 +14905,12 @@ function WebGLState(gl, extensions) {
         drawBuffers2 = [];
         currentDrawbuffers.set(framebuffer, drawBuffers2);
       }
-      const textures2 = renderTarget.textures;
-      if (drawBuffers2.length !== textures2.length || drawBuffers2[0] !== gl.COLOR_ATTACHMENT0) {
-        for (let i = 0, il = textures2.length; i < il; i++) {
+      const textures3 = renderTarget.textures;
+      if (drawBuffers2.length !== textures3.length || drawBuffers2[0] !== gl.COLOR_ATTACHMENT0) {
+        for (let i = 0, il = textures3.length; i < il; i++) {
           drawBuffers2[i] = gl.COLOR_ATTACHMENT0 + i;
         }
-        drawBuffers2.length = textures2.length;
+        drawBuffers2.length = textures3.length;
         needsUpdate = true;
       }
     } else {
@@ -15723,14 +15733,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       if (renderTargetProperties.__webglDepthRenderbuffer) _gl.deleteRenderbuffer(renderTargetProperties.__webglDepthRenderbuffer);
     }
-    const textures2 = renderTarget.textures;
-    for (let i = 0, il = textures2.length; i < il; i++) {
-      const attachmentProperties = properties.get(textures2[i]);
+    const textures3 = renderTarget.textures;
+    for (let i = 0, il = textures3.length; i < il; i++) {
+      const attachmentProperties = properties.get(textures3[i]);
       if (attachmentProperties.__webglTexture) {
         _gl.deleteTexture(attachmentProperties.__webglTexture);
         info.memory.textures--;
       }
-      properties.remove(textures2[i]);
+      properties.remove(textures3[i]);
     }
     properties.remove(renderTarget);
   }
@@ -16272,9 +16282,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, glAttachmentType, _gl.RENDERBUFFER, renderbuffer);
     } else {
-      const textures2 = renderTarget.textures;
-      for (let i = 0; i < textures2.length; i++) {
-        const texture = textures2[i];
+      const textures3 = renderTarget.textures;
+      for (let i = 0; i < textures3.length; i++) {
+        const texture = textures3[i];
         const glFormat = utils.convert(texture.format, texture.colorSpace);
         const glType = utils.convert(texture.type);
         const glInternalFormat = getInternalFormat(texture.internalFormat, glFormat, glType, texture.colorSpace);
@@ -16389,9 +16399,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     const renderTargetProperties = properties.get(renderTarget);
     const textureProperties = properties.get(texture);
     renderTarget.addEventListener("dispose", onRenderTargetDispose);
-    const textures2 = renderTarget.textures;
+    const textures3 = renderTarget.textures;
     const isCube = renderTarget.isWebGLCubeRenderTarget === true;
-    const isMultipleRenderTargets = textures2.length > 1;
+    const isMultipleRenderTargets = textures3.length > 1;
     if (!isMultipleRenderTargets) {
       if (textureProperties.__webglTexture === void 0) {
         textureProperties.__webglTexture = _gl.createTexture();
@@ -16421,8 +16431,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         renderTargetProperties.__webglFramebuffer = _gl.createFramebuffer();
       }
       if (isMultipleRenderTargets) {
-        for (let i = 0, il = textures2.length; i < il; i++) {
-          const attachmentProperties = properties.get(textures2[i]);
+        for (let i = 0, il = textures3.length; i < il; i++) {
+          const attachmentProperties = properties.get(textures3[i]);
           if (attachmentProperties.__webglTexture === void 0) {
             attachmentProperties.__webglTexture = _gl.createTexture();
             info.memory.textures++;
@@ -16433,8 +16443,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         renderTargetProperties.__webglMultisampledFramebuffer = _gl.createFramebuffer();
         renderTargetProperties.__webglColorRenderbuffer = [];
         state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
-        for (let i = 0; i < textures2.length; i++) {
-          const texture2 = textures2[i];
+        for (let i = 0; i < textures3.length; i++) {
+          const texture2 = textures3[i];
           renderTargetProperties.__webglColorRenderbuffer[i] = _gl.createRenderbuffer();
           _gl.bindRenderbuffer(_gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
           const glFormat = utils.convert(texture2.format, texture2.colorSpace);
@@ -16469,8 +16479,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
       state.unbindTexture();
     } else if (isMultipleRenderTargets) {
-      for (let i = 0, il = textures2.length; i < il; i++) {
-        const attachment = textures2[i];
+      for (let i = 0, il = textures3.length; i < il; i++) {
+        const attachment = textures3[i];
         const attachmentProperties = properties.get(attachment);
         state.bindTexture(_gl.TEXTURE_2D, attachmentProperties.__webglTexture);
         setTextureParameters(_gl.TEXTURE_2D, attachment);
@@ -16504,9 +16514,9 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
   }
   function updateRenderTargetMipmap(renderTarget) {
-    const textures2 = renderTarget.textures;
-    for (let i = 0, il = textures2.length; i < il; i++) {
-      const texture = textures2[i];
+    const textures3 = renderTarget.textures;
+    for (let i = 0, il = textures3.length; i < il; i++) {
+      const texture = textures3[i];
       if (textureNeedsGenerateMipmaps(texture)) {
         const targetType = getTargetType(renderTarget);
         const webglTexture = properties.get(texture).__webglTexture;
@@ -16521,15 +16531,15 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
   function updateMultisampleRenderTarget(renderTarget) {
     if (renderTarget.samples > 0) {
       if (useMultisampledRTT(renderTarget) === false) {
-        const textures2 = renderTarget.textures;
+        const textures3 = renderTarget.textures;
         const width = renderTarget.width;
         const height = renderTarget.height;
         let mask = _gl.COLOR_BUFFER_BIT;
         const depthStyle = renderTarget.stencilBuffer ? _gl.DEPTH_STENCIL_ATTACHMENT : _gl.DEPTH_ATTACHMENT;
         const renderTargetProperties = properties.get(renderTarget);
-        const isMultipleRenderTargets = textures2.length > 1;
+        const isMultipleRenderTargets = textures3.length > 1;
         if (isMultipleRenderTargets) {
-          for (let i = 0; i < textures2.length; i++) {
+          for (let i = 0; i < textures3.length; i++) {
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
             _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.RENDERBUFFER, null);
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
@@ -16538,14 +16548,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         }
         state.bindFramebuffer(_gl.READ_FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
         state.bindFramebuffer(_gl.DRAW_FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
-        for (let i = 0; i < textures2.length; i++) {
+        for (let i = 0; i < textures3.length; i++) {
           if (renderTarget.resolveDepthBuffer) {
             if (renderTarget.depthBuffer) mask |= _gl.DEPTH_BUFFER_BIT;
             if (renderTarget.stencilBuffer && renderTarget.resolveStencilBuffer) mask |= _gl.STENCIL_BUFFER_BIT;
           }
           if (isMultipleRenderTargets) {
             _gl.framebufferRenderbuffer(_gl.READ_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0, _gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
-            const webglTexture = properties.get(textures2[i]).__webglTexture;
+            const webglTexture = properties.get(textures3[i]).__webglTexture;
             _gl.framebufferTexture2D(_gl.DRAW_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0, _gl.TEXTURE_2D, webglTexture, 0);
           }
           _gl.blitFramebuffer(0, 0, width, height, 0, 0, width, height, mask, _gl.NEAREST);
@@ -16564,10 +16574,10 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
         state.bindFramebuffer(_gl.READ_FRAMEBUFFER, null);
         state.bindFramebuffer(_gl.DRAW_FRAMEBUFFER, null);
         if (isMultipleRenderTargets) {
-          for (let i = 0; i < textures2.length; i++) {
+          for (let i = 0; i < textures3.length; i++) {
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglMultisampledFramebuffer);
             _gl.framebufferRenderbuffer(_gl.FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.RENDERBUFFER, renderTargetProperties.__webglColorRenderbuffer[i]);
-            const webglTexture = properties.get(textures2[i]).__webglTexture;
+            const webglTexture = properties.get(textures3[i]).__webglTexture;
             state.bindFramebuffer(_gl.FRAMEBUFFER, renderTargetProperties.__webglFramebuffer);
             _gl.framebufferTexture2D(_gl.DRAW_FRAMEBUFFER, _gl.COLOR_ATTACHMENT0 + i, _gl.TEXTURE_2D, webglTexture, 0);
           }
@@ -18116,7 +18126,7 @@ var WebGLRenderer = class {
       throw error;
     }
     let extensions, capabilities, state, info;
-    let properties, textures2, cubemaps, cubeuvmaps, attributes, geometries, objects;
+    let properties, textures3, cubemaps, cubeuvmaps, attributes, geometries, objects;
     let programCache, materials2, renderLists, renderStates, clipping, shadowMap;
     let background, morphtargets, bufferRenderer, indexedBufferRenderer;
     let utils, bindingStates, uniformsGroups;
@@ -18131,14 +18141,14 @@ var WebGLRenderer = class {
       }
       info = new WebGLInfo(_gl);
       properties = new WebGLProperties();
-      textures2 = new WebGLTextures(_gl, extensions, state, properties, capabilities, utils, info);
+      textures3 = new WebGLTextures(_gl, extensions, state, properties, capabilities, utils, info);
       cubemaps = new WebGLCubeMaps(_this);
       cubeuvmaps = new WebGLCubeUVMaps(_this);
       attributes = new WebGLAttributes(_gl);
       bindingStates = new WebGLBindingStates(_gl, attributes);
       geometries = new WebGLGeometries(_gl, attributes, info, bindingStates);
       objects = new WebGLObjects(_gl, geometries, attributes, info);
-      morphtargets = new WebGLMorphtargets(_gl, capabilities, textures2);
+      morphtargets = new WebGLMorphtargets(_gl, capabilities, textures3);
       clipping = new WebGLClipping(properties);
       programCache = new WebGLPrograms(_this, cubemaps, cubeuvmaps, extensions, capabilities, bindingStates, clipping);
       materials2 = new WebGLMaterials(_this, properties);
@@ -18631,8 +18641,8 @@ var WebGLRenderer = class {
         renderScene(currentRenderList, scene, camera);
       }
       if (_currentRenderTarget !== null) {
-        textures2.updateMultisampleRenderTarget(_currentRenderTarget);
-        textures2.updateRenderTargetMipmap(_currentRenderTarget);
+        textures3.updateMultisampleRenderTarget(_currentRenderTarget);
+        textures3.updateRenderTargetMipmap(_currentRenderTarget);
       }
       if (scene.isScene === true) scene.onAfterRender(_this, scene, camera);
       bindingStates.resetDefaultState();
@@ -18759,8 +18769,8 @@ var WebGLRenderer = class {
       currentRenderState.setupLightsView(camera);
       if (_clippingEnabled === true) clipping.setGlobalState(_this.clippingPlanes, camera);
       renderObjects(opaqueObjects, scene, camera);
-      textures2.updateMultisampleRenderTarget(transmissionRenderTarget);
-      textures2.updateRenderTargetMipmap(transmissionRenderTarget);
+      textures3.updateMultisampleRenderTarget(transmissionRenderTarget);
+      textures3.updateRenderTargetMipmap(transmissionRenderTarget);
       if (extensions.has("WEBGL_multisampled_render_to_texture") === false) {
         let renderTargetNeedsUpdate = false;
         for (let i = 0, l = transmissiveObjects.length; i < l; i++) {
@@ -18780,8 +18790,8 @@ var WebGLRenderer = class {
           }
         }
         if (renderTargetNeedsUpdate === true) {
-          textures2.updateMultisampleRenderTarget(transmissionRenderTarget);
-          textures2.updateRenderTargetMipmap(transmissionRenderTarget);
+          textures3.updateMultisampleRenderTarget(transmissionRenderTarget);
+          textures3.updateRenderTargetMipmap(transmissionRenderTarget);
         }
       }
       _this.setRenderTarget(currentRenderTarget);
@@ -18911,7 +18921,7 @@ var WebGLRenderer = class {
     }
     function setProgram(camera, scene, geometry2, material, object) {
       if (scene.isScene !== true) scene = _emptyScene;
-      textures2.resetTextureUnits();
+      textures3.resetTextureUnits();
       const fog = scene.fog;
       const environment = material.isMeshStandardMaterial ? scene.environment : null;
       const colorSpace = _currentRenderTarget === null ? _this.outputColorSpace : _currentRenderTarget.isXRRenderTarget === true ? _currentRenderTarget.texture.colorSpace : LinearSRGBColorSpace;
@@ -19046,17 +19056,17 @@ var WebGLRenderer = class {
         const skeleton = object.skeleton;
         if (skeleton) {
           if (skeleton.boneTexture === null) skeleton.computeBoneTexture();
-          p_uniforms.setValue(_gl, "boneTexture", skeleton.boneTexture, textures2);
+          p_uniforms.setValue(_gl, "boneTexture", skeleton.boneTexture, textures3);
         }
       }
       if (object.isBatchedMesh) {
         p_uniforms.setOptional(_gl, object, "batchingTexture");
-        p_uniforms.setValue(_gl, "batchingTexture", object._matricesTexture, textures2);
+        p_uniforms.setValue(_gl, "batchingTexture", object._matricesTexture, textures3);
         p_uniforms.setOptional(_gl, object, "batchingIdTexture");
-        p_uniforms.setValue(_gl, "batchingIdTexture", object._indirectTexture, textures2);
+        p_uniforms.setValue(_gl, "batchingIdTexture", object._indirectTexture, textures3);
         p_uniforms.setOptional(_gl, object, "batchingColorTexture");
         if (object._colorsTexture !== null) {
-          p_uniforms.setValue(_gl, "batchingColorTexture", object._colorsTexture, textures2);
+          p_uniforms.setValue(_gl, "batchingColorTexture", object._colorsTexture, textures3);
         }
       }
       const morphAttributes = geometry2.morphAttributes;
@@ -19083,10 +19093,10 @@ var WebGLRenderer = class {
           materials2.refreshFogUniforms(m_uniforms, fog);
         }
         materials2.refreshMaterialUniforms(m_uniforms, material, _pixelRatio, _height, currentRenderState.state.transmissionRenderTarget[camera.id]);
-        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures2);
+        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures3);
       }
       if (material.isShaderMaterial && material.uniformsNeedUpdate === true) {
-        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures2);
+        WebGLUniforms.upload(_gl, getUniformList(materialProperties), m_uniforms, textures3);
         material.uniformsNeedUpdate = false;
       }
       if (material.isSpriteMaterial) {
@@ -19161,16 +19171,16 @@ var WebGLRenderer = class {
           state.bindFramebuffer(_gl.FRAMEBUFFER, null);
           useDefaultFramebuffer = false;
         } else if (renderTargetProperties.__webglFramebuffer === void 0) {
-          textures2.setupRenderTarget(renderTarget);
+          textures3.setupRenderTarget(renderTarget);
         } else if (renderTargetProperties.__hasExternalTextures) {
-          textures2.rebindTextures(renderTarget, properties.get(renderTarget.texture).__webglTexture, properties.get(renderTarget.depthTexture).__webglTexture);
+          textures3.rebindTextures(renderTarget, properties.get(renderTarget.texture).__webglTexture, properties.get(renderTarget.depthTexture).__webglTexture);
         } else if (renderTarget.depthBuffer) {
           const depthTexture = renderTarget.depthTexture;
           if (renderTargetProperties.__boundDepthTexture !== depthTexture) {
             if (depthTexture !== null && properties.has(depthTexture) && (renderTarget.width !== depthTexture.image.width || renderTarget.height !== depthTexture.image.height)) {
               throw new Error("WebGLRenderTarget: Attached DepthTexture is initialized to the incorrect size.");
             }
-            textures2.setupDepthRenderbuffer(renderTarget);
+            textures3.setupDepthRenderbuffer(renderTarget);
           }
         }
         const texture = renderTarget.texture;
@@ -19185,7 +19195,7 @@ var WebGLRenderer = class {
             framebuffer = __webglFramebuffer[activeCubeFace];
           }
           isCube = true;
-        } else if (renderTarget.samples > 0 && textures2.useMultisampledRTT(renderTarget) === false) {
+        } else if (renderTarget.samples > 0 && textures3.useMultisampledRTT(renderTarget) === false) {
           framebuffer = properties.get(renderTarget).__webglMultisampledFramebuffer;
         } else {
           if (Array.isArray(__webglFramebuffer)) {
@@ -19301,7 +19311,7 @@ var WebGLRenderer = class {
       const height = Math.floor(texture.image.height * levelScale);
       const x = position !== null ? position.x : 0;
       const y = position !== null ? position.y : 0;
-      textures2.setTexture2D(texture, 0);
+      textures3.setTexture2D(texture, 0);
       _gl.copyTexSubImage2D(_gl.TEXTURE_2D, level, 0, 0, x, y, width, height);
       state.unbindTexture();
     };
@@ -19345,13 +19355,13 @@ var WebGLRenderer = class {
       const glType = utils.convert(dstTexture.type);
       let glTarget;
       if (dstTexture.isData3DTexture) {
-        textures2.setTexture3D(dstTexture, 0);
+        textures3.setTexture3D(dstTexture, 0);
         glTarget = _gl.TEXTURE_3D;
       } else if (dstTexture.isDataArrayTexture || dstTexture.isCompressedArrayTexture) {
-        textures2.setTexture2DArray(dstTexture, 0);
+        textures3.setTexture2DArray(dstTexture, 0);
         glTarget = _gl.TEXTURE_2D_ARRAY;
       } else {
-        textures2.setTexture2D(dstTexture, 0);
+        textures3.setTexture2D(dstTexture, 0);
         glTarget = _gl.TEXTURE_2D;
       }
       _gl.pixelStorei(_gl.UNPACK_FLIP_Y_WEBGL, dstTexture.flipY);
@@ -19436,18 +19446,18 @@ var WebGLRenderer = class {
     };
     this.initRenderTarget = function(target) {
       if (properties.get(target).__webglFramebuffer === void 0) {
-        textures2.setupRenderTarget(target);
+        textures3.setupRenderTarget(target);
       }
     };
     this.initTexture = function(texture) {
       if (texture.isCubeTexture) {
-        textures2.setTextureCube(texture, 0);
+        textures3.setTextureCube(texture, 0);
       } else if (texture.isData3DTexture) {
-        textures2.setTexture3D(texture, 0);
+        textures3.setTexture3D(texture, 0);
       } else if (texture.isDataArrayTexture || texture.isCompressedArrayTexture) {
-        textures2.setTexture2DArray(texture, 0);
+        textures3.setTexture2DArray(texture, 0);
       } else {
-        textures2.setTexture2D(texture, 0);
+        textures3.setTexture2D(texture, 0);
       }
       state.unbindTexture();
     };
@@ -21679,11 +21689,11 @@ var CompressedArrayTexture = class extends CompressedTexture {
   }
 };
 var CompressedCubeTexture = class extends CompressedTexture {
-  constructor(images, format, type) {
-    super(void 0, images[0].width, images[0].height, format, type, CubeReflectionMapping);
+  constructor(images2, format, type) {
+    super(void 0, images2[0].width, images2[0].height, format, type, CubeReflectionMapping);
     this.isCompressedCubeTexture = true;
     this.isCubeTexture = true;
-    this.image = images;
+    this.image = images2;
   }
 };
 var CanvasTexture = class extends Texture {
@@ -22960,10 +22970,10 @@ var CylinderGeometry = class _CylinderGeometry extends BufferGeometry {
       const vertex2 = new Vector3();
       let groupCount = 0;
       const radius = top === true ? radiusTop : radiusBottom;
-      const sign2 = top === true ? 1 : -1;
+      const sign3 = top === true ? 1 : -1;
       for (let x = 1; x <= radialSegments; x++) {
-        vertices.push(0, halfHeight * sign2, 0);
-        normals.push(0, sign2, 0);
+        vertices.push(0, halfHeight * sign3, 0);
+        normals.push(0, sign3, 0);
         uvs.push(0.5, 0.5);
         index++;
       }
@@ -22974,12 +22984,12 @@ var CylinderGeometry = class _CylinderGeometry extends BufferGeometry {
         const cosTheta = Math.cos(theta);
         const sinTheta = Math.sin(theta);
         vertex2.x = radius * sinTheta;
-        vertex2.y = halfHeight * sign2;
+        vertex2.y = halfHeight * sign3;
         vertex2.z = radius * cosTheta;
         vertices.push(vertex2.x, vertex2.y, vertex2.z);
-        normals.push(0, sign2, 0);
+        normals.push(0, sign3, 0);
         uv.x = cosTheta * 0.5 + 0.5;
-        uv.y = sinTheta * 0.5 * sign2 + 0.5;
+        uv.y = sinTheta * 0.5 * sign3 + 0.5;
         uvs.push(uv.x, uv.y);
         index++;
       }
@@ -26884,7 +26894,7 @@ var CompressedTextureLoader = class extends Loader {
   }
   load(url, onLoad, onProgress, onError) {
     const scope = this;
-    const images = [];
+    const images2 = [];
     const texture = new CompressedTexture();
     const loader = new FileLoader(this.manager);
     loader.setPath(this.path);
@@ -26895,7 +26905,7 @@ var CompressedTextureLoader = class extends Loader {
     function loadTexture(i) {
       loader.load(url[i], function(buffer) {
         const texDatas = scope.parse(buffer, true);
-        images[i] = {
+        images2[i] = {
           width: texDatas.width,
           height: texDatas.height,
           format: texDatas.format,
@@ -26904,7 +26914,7 @@ var CompressedTextureLoader = class extends Loader {
         loaded += 1;
         if (loaded === 6) {
           if (texDatas.mipmapCount === 1) texture.minFilter = LinearFilter;
-          texture.image = images;
+          texture.image = images2;
           texture.format = texDatas.format;
           texture.needsUpdate = true;
           if (onLoad) onLoad(texture);
@@ -26921,15 +26931,15 @@ var CompressedTextureLoader = class extends Loader {
         if (texDatas.isCubemap) {
           const faces = texDatas.mipmaps.length / texDatas.mipmapCount;
           for (let f = 0; f < faces; f++) {
-            images[f] = { mipmaps: [] };
+            images2[f] = { mipmaps: [] };
             for (let i = 0; i < texDatas.mipmapCount; i++) {
-              images[f].mipmaps.push(texDatas.mipmaps[f * texDatas.mipmapCount + i]);
-              images[f].format = texDatas.format;
-              images[f].width = texDatas.width;
-              images[f].height = texDatas.height;
+              images2[f].mipmaps.push(texDatas.mipmaps[f * texDatas.mipmapCount + i]);
+              images2[f].format = texDatas.format;
+              images2[f].width = texDatas.width;
+              images2[f].height = texDatas.height;
             }
           }
-          texture.image = images;
+          texture.image = images2;
         } else {
           texture.image.width = texDatas.width;
           texture.image.height = texDatas.height;
@@ -27627,12 +27637,12 @@ var MaterialLoader = class _MaterialLoader extends Loader {
     }, onProgress, onError);
   }
   parse(json) {
-    const textures2 = this.textures;
+    const textures3 = this.textures;
     function getTexture(name) {
-      if (textures2[name] === void 0) {
+      if (textures3[name] === void 0) {
         console.warn("THREE.MaterialLoader: Undefined texture", name);
       }
-      return textures2[name];
+      return textures3[name];
     }
     const material = this.createMaterialFromType(json.type);
     if (json.uuid !== void 0) material.uuid = json.uuid;
@@ -28051,19 +28061,19 @@ var ObjectLoader = class extends Loader {
     const animations = this.parseAnimations(json.animations);
     const shapes = this.parseShapes(json.shapes);
     const geometries = this.parseGeometries(json.geometries, shapes);
-    const images = this.parseImages(json.images, function() {
+    const images2 = this.parseImages(json.images, function() {
       if (onLoad !== void 0) onLoad(object);
     });
-    const textures2 = this.parseTextures(json.textures, images);
-    const materials2 = this.parseMaterials(json.materials, textures2);
-    const object = this.parseObject(json.object, geometries, materials2, textures2, animations);
+    const textures3 = this.parseTextures(json.textures, images2);
+    const materials2 = this.parseMaterials(json.materials, textures3);
+    const object = this.parseObject(json.object, geometries, materials2, textures3, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
     if (onLoad !== void 0) {
       let hasImages = false;
-      for (const uuid in images) {
-        if (images[uuid].data instanceof HTMLImageElement) {
+      for (const uuid in images2) {
+        if (images2[uuid].data instanceof HTMLImageElement) {
           hasImages = true;
           break;
         }
@@ -28076,10 +28086,10 @@ var ObjectLoader = class extends Loader {
     const animations = this.parseAnimations(json.animations);
     const shapes = this.parseShapes(json.shapes);
     const geometries = this.parseGeometries(json.geometries, shapes);
-    const images = await this.parseImagesAsync(json.images);
-    const textures2 = this.parseTextures(json.textures, images);
-    const materials2 = this.parseMaterials(json.materials, textures2);
-    const object = this.parseObject(json.object, geometries, materials2, textures2, animations);
+    const images2 = await this.parseImagesAsync(json.images);
+    const textures3 = this.parseTextures(json.textures, images2);
+    const materials2 = this.parseMaterials(json.materials, textures3);
+    const object = this.parseObject(json.object, geometries, materials2, textures3, animations);
     const skeletons = this.parseSkeletons(json.skeletons, object);
     this.bindSkeletons(object, skeletons);
     this.bindLightTargets(object);
@@ -28136,12 +28146,12 @@ var ObjectLoader = class extends Loader {
     }
     return geometries;
   }
-  parseMaterials(json, textures2) {
+  parseMaterials(json, textures3) {
     const cache = {};
     const materials2 = {};
     if (json !== void 0) {
       const loader = new MaterialLoader();
-      loader.setTextures(textures2);
+      loader.setTextures(textures3);
       for (let i = 0, l = json.length; i < l; i++) {
         const data = json[i];
         if (cache[data.uuid] === void 0) {
@@ -28165,7 +28175,7 @@ var ObjectLoader = class extends Loader {
   }
   parseImages(json, onLoad) {
     const scope = this;
-    const images = {};
+    const images2 = {};
     let loader;
     function loadImage(url) {
       scope.manager.itemStart(url);
@@ -28213,18 +28223,18 @@ var ObjectLoader = class extends Loader {
               }
             }
           }
-          images[image.uuid] = new Source(imageArray);
+          images2[image.uuid] = new Source(imageArray);
         } else {
           const deserializedImage = deserializeImage(image.url);
-          images[image.uuid] = new Source(deserializedImage);
+          images2[image.uuid] = new Source(deserializedImage);
         }
       }
     }
-    return images;
+    return images2;
   }
   async parseImagesAsync(json) {
     const scope = this;
-    const images = {};
+    const images2 = {};
     let loader;
     async function deserializeImage(image) {
       if (typeof image === "string") {
@@ -28262,32 +28272,32 @@ var ObjectLoader = class extends Loader {
               }
             }
           }
-          images[image.uuid] = new Source(imageArray);
+          images2[image.uuid] = new Source(imageArray);
         } else {
           const deserializedImage = await deserializeImage(image.url);
-          images[image.uuid] = new Source(deserializedImage);
+          images2[image.uuid] = new Source(deserializedImage);
         }
       }
     }
-    return images;
+    return images2;
   }
-  parseTextures(json, images) {
+  parseTextures(json, images2) {
     function parseConstant(value, type) {
       if (typeof value === "number") return value;
       console.warn("THREE.ObjectLoader.parseTexture: Constant should be in numeric form.", value);
       return type[value];
     }
-    const textures2 = {};
+    const textures3 = {};
     if (json !== void 0) {
       for (let i = 0, l = json.length; i < l; i++) {
         const data = json[i];
         if (data.image === void 0) {
           console.warn('THREE.ObjectLoader: No "image" specified for', data.uuid);
         }
-        if (images[data.image] === void 0) {
+        if (images2[data.image] === void 0) {
           console.warn("THREE.ObjectLoader: Undefined image", data.image);
         }
-        const source = images[data.image];
+        const source = images2[data.image];
         const image = source.data;
         let texture;
         if (Array.isArray(image)) {
@@ -28327,12 +28337,12 @@ var ObjectLoader = class extends Loader {
         if (data.unpackAlignment !== void 0) texture.unpackAlignment = data.unpackAlignment;
         if (data.compareFunction !== void 0) texture.compareFunction = data.compareFunction;
         if (data.userData !== void 0) texture.userData = data.userData;
-        textures2[data.uuid] = texture;
+        textures3[data.uuid] = texture;
       }
     }
-    return textures2;
+    return textures3;
   }
-  parseObject(data, geometries, materials2, textures2, animations) {
+  parseObject(data, geometries, materials2, textures3, animations) {
     let object;
     function getGeometry(name) {
       if (geometries[name] === void 0) {
@@ -28359,10 +28369,10 @@ var ObjectLoader = class extends Loader {
       return materials2[name];
     }
     function getTexture(uuid) {
-      if (textures2[uuid] === void 0) {
+      if (textures3[uuid] === void 0) {
         console.warn("THREE.ObjectLoader: Undefined texture", uuid);
       }
-      return textures2[uuid];
+      return textures3[uuid];
     }
     let geometry2, material;
     switch (data.type) {
@@ -28545,7 +28555,7 @@ var ObjectLoader = class extends Loader {
     if (data.children !== void 0) {
       const children = data.children;
       for (let i = 0; i < children.length; i++) {
-        object.add(this.parseObject(children[i], geometries, materials2, textures2, animations));
+        object.add(this.parseObject(children[i], geometries, materials2, textures3, animations));
       }
     }
     if (data.animations !== void 0) {
@@ -35075,6 +35085,121 @@ function emitFacadeTexture(batch, out, { width, bottom, top, id, cuts = [], offs
   }
 }
 
+// outputs/domestic-test/building-remakes/identity.js
+var files = { costco: "costco.svg", gs25: "gs25-sign.svg", homeplus: "homeplus.svg", starbucks: "starbucks-wordmark.svg", "starbucks-emblem": "starbucks-siren.png", "police-emblem": "police-horizontal.svg" };
+var images = /* @__PURE__ */ new Map();
+var textures2 = /* @__PURE__ */ new Map();
+function textureFor(key, options = {}) {
+  const cacheKey = JSON.stringify([key, options]);
+  if (textures2.has(cacheKey)) return textures2.get(cacheKey);
+  let texture;
+  if (typeof document === "undefined") {
+    texture = new DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1);
+  } else {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1024;
+    canvas.height = Math.round(1024 / (options.aspect || 4));
+    const c = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
+    const text = (value, color = "#ffffff", size = 160, x = W / 2, y = H / 2, max = W * 0.95, font = "Arial, sans-serif") => {
+      c.font = `700 ${size * H / 256}px ${font}`;
+      c.fillStyle = color;
+      c.textAlign = "center";
+      c.textBaseline = "middle";
+      c.save();
+      c.translate(x, y === H / 2 ? y : y * H / 256);
+      c.scale(max / c.measureText(value).width, 1);
+      if (key === "emart24" && !options.text) c.strokeText(value, 0, 0);
+      c.fillText(value, 0, 0);
+      c.restore();
+    };
+    if (options.text) text(options.text, options.color || "#ffffff", options.size || 150, W / 2, H / 2, W * 0.96, options.serif ? "serif" : 'Arial, "Noto Sans KR", sans-serif');
+    else if (files[key]) {
+      const img = images.get(key);
+      if (!img) throw Error("\uAC74\uBB3C \uB85C\uACE0 \uC900\uBE44\uAC00 \uB05D\uB098\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4: " + key);
+      const sw = key === "police-emblem" ? 1040 : img.naturalWidth, sh = img.naturalHeight, s = Math.min(W / sw, H / sh) * 0.97;
+      c.drawImage(img, 0, 0, sw, sh, (W - sw * s) / 2, (H - sh * s) / 2, sw * s, sh * s);
+      if (key === "starbucks") {
+        c.globalCompositeOperation = "source-in";
+        c.fillStyle = "#ffffff";
+        c.fillRect(0, 0, W, H);
+        c.globalCompositeOperation = "source-over";
+      }
+    } else if (key === "emart") {
+      c.textAlign = "left";
+      c.textBaseline = "middle";
+      c.font = `900 ${H * 0.64}px "Arial Narrow", Arial, sans-serif`;
+      const parts = [["THE TOWN ", "#e8f2f5"], ["M", "#383c72"], ["A", "#f4be28"], ["L", "#159fca"], ["L", "#d33354"]], total = parts.reduce((n, [s]) => n + c.measureText(s).width, 0), scale = 990 / total;
+      c.save();
+      c.translate((W - total * scale) / 2, H / 2);
+      c.scale(scale, 1);
+      let x = 0;
+      for (const [s, col] of parts) {
+        c.fillStyle = col;
+        c.fillText(s, x, 0);
+        x += c.measureText(s).width;
+      }
+      c.restore();
+    } else if (key === "townmall-symbol") {
+      c.translate(W / 2, H / 2);
+      c.scale(Math.min(W, H) / 1024, Math.min(W, H) / 1024);
+      for (const col of ["#ba3753", "#129fc4", "#e7b22e", "#42497c"]) {
+        c.fillStyle = col;
+        c.beginPath();
+        c.moveTo(-25, -25);
+        c.lineTo(55, -25);
+        c.lineTo(55, -260);
+        c.quadraticCurveTo(65, -330, 250, -330);
+        c.lineTo(250, -405);
+        c.quadraticCurveTo(-25, -410, -25, -245);
+        c.closePath();
+        c.fill();
+        c.rotate(Math.PI / 2);
+      }
+    } else if (key === "traders") {
+      text("emart", "#5f3626", 62, W / 2, 48, W * 0.6);
+      text("TRADERS", "#61432d", 118, W / 2, 144, W * 0.96);
+      text("WHOLESALE CLUB", "#61432d", 34, W / 2, 223, W * 0.78);
+    } else if (key === "seven") text("7-ELEVEN", "#ffffff", 240);
+    else if (key === "emart24") {
+      c.font = `900 ${H * 0.96}px Arial, sans-serif`;
+      c.textAlign = "center";
+      c.textBaseline = "middle";
+      c.lineWidth = H * 0.043;
+      c.strokeStyle = "#e96825";
+      text("emart24", "#ffffff", 246);
+    } else if (key === "dongnae") text("\uB3D9 \uB798 \uBCC4 \uC7A5", "#d9b366", 150, W / 2, H / 2, W * 0.94, "serif");
+    else if (key === "hanshin") {
+      text("\uD55C\uC2E0", "#304c62", 120, W / 2, 80);
+      text("3", "#304c62", 96, W / 2, 198);
+    } else throw Error("\uB4F1\uB85D\uB418\uC9C0 \uC54A\uC740 \uAC74\uBB3C \uAC04\uD310: " + key);
+    texture = new CanvasTexture(canvas);
+  }
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
+  texture.userData = { brandKey: key, source: "approved reference lettering and attributed original artwork" };
+  textures2.set(cacheKey, texture);
+  return texture;
+}
+function addIdentitySign(root, { key, x, y, z, w, h, angle = 0, options = {}, owner }) {
+  if (![x, y, z, w, h, angle].every(Number.isFinite) || w <= 0 || h <= 0) throw Error("\uAC74\uBB3C \uAC04\uD310 \uC704\uCE58\uC640 \uD06C\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const map = textureFor(key, { ...options, aspect: w / h }), mesh = new Mesh(new PlaneGeometry(w, h), new MeshStandardMaterial({ map, emissiveMap: map, transparent: true, alphaTest: 0.08, depthWrite: false, roughness: 0.8, side: DoubleSide }));
+  mesh.position.set(x, y, z);
+  mesh.rotation.y = angle;
+  mesh.name = "BrandSign-" + key;
+  mesh.userData = { brandSign: key, sourceText: options.text, noPlacementCollision: true, noInk: true, storefrontLightRole: "sign", approvedOwner: owner };
+  mesh.receiveShadow = true;
+  root.add(mesh);
+  return mesh;
+}
+function addApprovedIdentity(root, buildings) {
+  for (const b of buildings) for (const sign3 of b.approvedRemake?.signs || []) addIdentitySign(root, sign3);
+}
+function identityWindowWriter(out, palette) {
+  if (!palette) return out;
+  const old = [7969178, 9019290, 6785164, 11519165];
+  return { ...out, quad: (x, y, z, w, h, color, surface) => out.quad(x, y, z, w, h, old.includes(color) ? palette[old.indexOf(color) % palette.length] : color, surface) };
+}
+
 // outputs/domestic-test/solar-position.js?v=151
 var RAD = Math.PI / 180;
 function localDateISO(now2 = /* @__PURE__ */ new Date(), utcOffset = 9) {
@@ -35329,195 +35454,263 @@ function emitAircon(out, x, y, variant = 0) {
   R([x + side2 * 0.6, y - 0.12, 0.12], [x + side2 * 0.6, y - 0.72, 0.12], 0.025, 13089184);
 }
 
-// outputs/domestic-test/building-remakes/civic-residential.js
+// outputs/domestic-test/building-remakes/civic-residential.js?v=identity2
 function emitApprovedCivicFace(c) {
-  const { id, L, H, levels, fh, front, ground: ground2, window: W, box: B, surface: S } = c;
+  const { id, L, H, levels, fh, front, ground: ground2 } = c;
+  const X = (x) => front && id.startsWith("building:") ? L - x : x, W = (x, ...a) => c.window(X(x), ...a), B = (x, ...a) => c.box(X(x), ...a), S = (x, ...a) => c.surface(X(x), ...a), sign3 = (key, x, ...a) => c.sign(key, X(x), ...a);
   if (id === "building:shop-tile") {
-    const cols = Math.max(1, Math.floor(L / 3.1)), bay = (L - 0.5) / cols;
-    for (let r = 1; r < levels; r++) for (let j = 0; j < cols; j++) W(0.25 + bay * (j + 0.5), r * fh + fh * 0.55, Math.min(1.9, bay - 0.35), Math.min(1.18, fh * 0.46), "brown-slider", 7300440);
+    const cols = Math.max(2, Math.round(L / 3.8)), bay = (L - 0.5) / cols, stair = L * 0.46;
+    for (let r = 1; r < levels; r++) for (let j = 0; j < cols; j++) {
+      const x = 0.25 + bay * (j + 0.5);
+      W(x, r * fh + fh * 0.52, Math.min(2.05, bay - 0.5), Math.min(1.15, fh * 0.4), "brown-slider", 7361863);
+    }
     if (front) {
-      for (let j = 0; j < cols; j++) {
-        const x = 0.25 + bay * (j + 0.5), h = Math.min(2.45, fh - 0.7);
-        W(x, ground2 + h / 2 + 0.06, bay - 0.25, h, "wide-slider", 6582637);
-        B(x, ground2 + h + 0.35, 0.1, bay - 0.14, 0.5, 0.15, [6642767, 10194033, 7361610][j % 3]);
-        if (j % 2 === 0) {
-          B(x, ground2 + h + 0.07, 0.23, bay - 0.1, 0.08, 0.46, 7701366);
-          B(x, ground2 + h - 0.03, 0.43, bay - 0.1, 0.16, 0.04, 7701366);
-        }
+      B(stair, H * 0.84, 0.13, Math.min(2.8, L * 0.11), H * 0.32, 0.26, 11777714);
+      B(stair, H + 0.62, 0.03, Math.min(2.8, L * 0.11), 1.24, 0.26, 11777714);
+      B(stair, H + 1.27, 0.26, Math.min(3.25, L * 0.14), 0.1, 0.75, 7367772);
+      for (const dx of [-0.9, 0.9]) B(stair + dx, H + 1.07, 0.43, 0.045, 0.36, 0.05, 5131842);
+      W(stair, H * 0.76, Math.min(1.7, L * 0.065), 1.05, "wide-slider", 7561299);
+      const bays = [[0.02, 0.25, 13156522], [0.25, 0.36, 1383712], [0.36, 0.47, 15197660], [0.47, 0.8, 5321510], [0.8, 0.98, 1647404]];
+      for (const [a, b, col] of bays) {
+        const x = (a + b) * L / 2, w = (b - a) * L - 0.1, head = Math.min(fh - 0.16, 3);
+        W(x, ground2 + 1.22, w - 0.12, 2.32, "wide-slider", 2635057, [2113084, 4085073, 1457472]);
+        B(x, head - 0.25, 0.14, w, 0.62, 0.28, col);
       }
-    } else for (let j = 0; j < cols; j++) W(0.25 + bay * (j + 0.5), ground2 + fh * 0.57, Math.min(1.3, bay - 0.4), Math.min(1.1, fh * 0.4));
-    for (let r = 1; r < levels; r++) B(L / 2, r * fh, 0.035, L - 0.06, 0.09, 0.07, 10398367);
+      sign3("dongnae", L * 0.635, Math.min(fh - 0.16, 3) - 0.25, L * 0.29, 0.44, 0.29);
+      sign3("tile-lettering", L * 0.415, Math.min(fh - 0.16, 3) - 0.25, L * 0.105, 0.36, 0.3, { text: "(\uC8FC) \uC544\uD504\uB808\uC2A4", color: "#aa852e" });
+      sign3("tile-lettering", L * 0.29, Math.min(fh - 0.16, 3) - 0.25, L * 0.055, 0.39, 0.3, { text: "\uBD80\uC790\uB3C5\uC11C\uC2E4", color: "#f5f3ea" });
+      for (const [a, b, col] of [[0.02, 0.25, 12169370], [0.47, 0.8, 3944488], [0.8, 0.98, 15093794]]) {
+        const w = (b - a) * L, x = (a + b) * L / 2;
+        B(x, 2.52, 0.42, w, 0.12, 0.84, col);
+        B(x, 2.4, 0.81, w, 0.2, 0.045, col);
+        if (a === 0.02) for (let xx = a * L; xx < b * L; xx += 0.21) B(xx, 2.585, 0.42, 0.065, 0.012, 0.84, 15261899);
+      }
+      for (const x of [L * 0.54, L * 0.73, L * 0.84]) B(x, 1, 0.2, 0.13, 1.9, 0.4, 5718321);
+      for (const x of [L * 0.42, L * 0.47]) {
+        B(x, fh + 0.22, 0.23, 0.65, 0.57, 0.46, 14012861);
+        for (let yy = fh + 0.05; yy < fh + 0.45; yy += 0.09) B(x, yy, 0.47, 0.49, 0.025, 0.025, 6450532);
+      }
+    } else for (let j = 0; j < cols; j++) W(0.25 + bay * (j + 0.5), ground2 + fh * 0.57, Math.min(1.4, bay - 0.4), Math.min(1.1, fh * 0.4));
+    for (let r = 1; r < levels; r++) B(L / 2, r * fh, 0.018, L - 0.06, 0.055, 0.036, 8883849);
+    B(L / 2, H + 0.08, 0.02, L, 0.08, 0.2, 7952198);
     return true;
   }
   if (id === "building:shop-panel") {
     if (front) {
-      const split = L * 0.46;
-      S((split + L) / 2, H * 0.51, L - split, H * 0.82, 3952210, 0.018);
-      const n = Math.max(2, Math.floor(L / 1.8)), bw = (L - 0.5) / n;
-      for (let r = 1; r < levels; r++) for (let j = 0; j < n; j++) {
-        const x = 0.25 + bw * (j + 0.5);
-        W(x, r * fh + fh * 0.5, bw * (x < split ? 0.46 : 0.68), Math.min(fh * 0.72, 2.25), "stair", 4742757);
+      const split = L * 0.46, upper = H - fh;
+      S((split + L) / 2, upper / 2 + fh * 0.5, L - split, upper - fh, 2437175, 0.022);
+      for (let x = 0.08; x < L; x += 0.18) B(x, H / 2, 0.035, 0.026, H - 0.08, 0.05, 7622972);
+      const nLeft = Math.max(3, Math.round(split / 1.4)), step = split / nLeft, nRight = Math.max(4, Math.round((L - split) / 1.45)), rw = (L - split - 0.3) / nRight;
+      for (let r = 1; r < levels - 1; r++) {
+        for (let j = 0; j < nLeft; j++) W(0.18 + step * (j + 0.5), r * fh + fh * 0.53, Math.min(0.65, step * 0.51), fh * 0.75, "stair", 3688014);
+        for (let j = 0; j < nRight; j++) W(split + 0.15 + rw * (j + 0.5), r * fh + fh * 0.53, rw * 0.7, fh * 0.76, "stair", 2372153);
       }
-      for (let x = 0.12; x < split - 0.08; x += 0.22) B(x, H * 0.52, 0.035, 0.025, H * 0.88, 0.045, 8350291);
-      const nGround = Math.max(2, Math.floor(L / 3.4)), gw = (L - 0.6) / nGround;
-      for (let j = 0; j < nGround; j++) W(0.3 + gw * (j + 0.5), ground2 + 1.35, gw - 0.25, 2.5, "wide-slider", 4870993);
-      B(L / 2, Math.min(fh - 0.12, 2.9), 0.16, L - 0.08, 0.22, 0.32, 8416082);
+      const nTop = Math.max(5, Math.round(L / 2.4)), tw = (L - 0.45) / nTop;
+      for (let j = 0; j < nTop; j++) {
+        const x = 0.22 + tw * (j + 0.5), w = j < nTop * 0.55 ? tw * 0.77 : tw * 0.5;
+        W(x, H - fh * 0.48, w, fh * 0.58, "wide-slider", 4278599);
+        B(x, H - fh * 0.68, 0.13, w, 0.045, 0.045, 3687752);
+      }
+      W(split / 2, upper - 0.2, split - 0.22, 0.55, "wide-slider", 2437689);
+      for (let j = 0; j < Math.max(3, Math.round(L / 3.2)); j++) {
+        const n = Math.max(3, Math.round(L / 3.2)), w = (L - 0.4) / n;
+        W(0.2 + w * (j + 0.5), ground2 + fh * 0.42, w - 0.18, fh * 0.79, "wide-slider", 3489341, [1522496, 3303021, 2380897]);
+      }
+      B(L / 2, fh - 0.1, 0.13, L - 0.08, 0.2, 0.26, 7228471);
     } else {
-      const n = Math.max(1, Math.floor(L / 2.7)), pw = (L - 0.6) / n;
-      for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) W(0.3 + pw * (j + 0.5), r * fh + fh * 0.54, Math.min(1.1, pw - 0.3), Math.min(fh * 0.63, 1.9), "stair", 4939104);
-      for (let x = 0.6; x < L; x += 1.2) B(x, H / 2, 0.025, 0.025, H - 0.15, 0.035, 8615782);
+      const n = Math.max(1, Math.floor(L / 3)), pw = (L - 0.6) / n;
+      for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) W(0.3 + pw * (j + 0.5), r * fh + fh * 0.54, Math.min(1, pw - 0.3), Math.min(fh * 0.6, 1.8), "stair", 3887192);
+      for (let x = 0.1; x < L; x += 0.24) B(x, H / 2, 0.022, 0.018, H - 0.12, 0.028, 7952446);
     }
     return true;
   }
   if (id === "facility:apartment") {
-    const n = Math.max(1, Math.floor(L / (front ? 3.3 : 3.7))), pw = (L - 0.5) / n;
+    if (!front && L < 20) {
+      S(L / 2, H / 2, L, H, 13818323);
+      S(L * 0.17, H / 2, L * 0.22, H, 10467245);
+      for (let r = 0; r < levels; r++) {
+        W(L * 0.17, r * fh + fh * 0.54, Math.min(1.05, L * 0.14), fh * 0.56, "stair", 13293521);
+        B(L * 0.18, r * fh + 0.15, 0.13, L * 0.34, 0.18, 0.26, 14804959);
+      }
+      if (c.edge === 1) sign3("hanshin", L * 0.63, H * 0.78, Math.min(3, L * 0.44), Math.min(4, H * 0.16), 0.035);
+      return true;
+    }
+    const n = Math.max(3, Math.round(L / 3.1)), pw = (L - 0.5) / n;
     for (let j = 0; j < n; j++) {
-      const x = 0.25 + pw * (j + 0.5), core = n > 3 && j % 5 === 2;
-      if (core) S(x, H / 2, pw * 0.83, H - 0.1, 10664112, 0.015);
+      const x = 0.25 + pw * (j + 0.5), mint = j % 4 === 2;
+      S(x, H / 2, pw - 0.07, H, mint ? 7842210 : 13358543, 0.014);
       for (let r = 0; r < levels; r++) {
         if (front && r === 0 && j === Math.floor(n / 2)) continue;
-        const w = core ? Math.min(0.8, pw * 0.45) : Math.min(2.65, pw - 0.22), h = core ? fh * 0.48 : Math.min(1.95, fh * 0.68), y = r * fh + fh * 0.56;
-        W(x, y, w, h, core ? "stair" : "veranda", 13096396);
-        if (!core) {
-          B(x, y - h / 2 - 0.1, 0.1, w + 0.14, 0.12, 0.24, 13818062);
-          if (r > 0) {
-            B(x, y - h / 2 + 0.5, 0.23, w, 0.035, 0.035, 7439229);
-            for (let k = 0; k <= 5; k++) B(x - w / 2 + k * w / 5, y - h / 2 + 0.26, 0.23, 0.022, 0.48, 0.022, 7439229);
-          }
+        const w = Math.min(2.7, pw - 0.24), h = Math.min(2.02, fh * 0.72), y = r * fh + fh * 0.57;
+        W(x, y, w, h, "veranda", 14016472, [5214104, 8697269, 3368818]);
+        B(x, y - h / 2 - 0.08, 0.09, w + 0.12, 0.12, 0.22, 12899534);
+        if (r > 0) {
+          B(x, y - h / 2 + 0.46, 0.17, w, 0.03, 0.035, 6584696);
+          for (let k = 0; k <= 5; k++) B(x - w / 2 + k * w / 5, y - h / 2 + 0.25, 0.17, 0.018, 0.42, 0.022, 6584696);
+        }
+        if ((j + r) % 4 === 0) {
+          B(x + w * 0.25, y - h * 0.22, 0.23, 0.57, 0.38, 0.46, 14014153);
+          for (let k = 0; k < 4; k++) B(x + w * 0.25, y - h * 0.22 - 0.12 + k * 0.08, 0.466, 0.42, 0.018, 0.018, 8557450);
         }
       }
-      if (!core && j < n - 1) B(0.25 + pw * (j + 1), H / 2, 0.055, 0.18, H, 0.11, 14410198);
+      if (j % 3 === 0) B(0.25 + pw * j, H / 2, 0.08, 0.23, H, 0.16, 14804959);
     }
     if (front) {
       const x = 0.25 + pw * (Math.floor(n / 2) + 0.5), w = Math.min(2.3, pw - 0.3);
-      W(x, ground2 + 1.25, w, 2.4, "wide-slider", 7901578);
-      B(x, ground2 + 2.55, 0.22, w + 0.3, 0.12, 0.44, 8363666);
+      W(x, ground2 + 1.25, w, 2.4, "wide-slider", 5864308);
+      B(x, ground2 + 2.55, 0.22, w + 0.3, 0.12, 0.44, 5471337);
     }
     return true;
   }
   if (id === "facility:police") {
-    const n = Math.max(2, Math.floor(L / 2.35)), pw = (L - 0.5) / n;
+    const n = Math.max(4, Math.round(L / 2)), pw = (L - 0.5) / n, white2 = 14082012, orange = 12343594;
     if (front) {
-      for (let r = 1; r < levels; r++) S(L / 2, r * fh + fh * 0.22, L - 0.5, fh * 0.46, 12154959, 0.016);
+      for (let r = 1; r < levels; r++) S(L / 2, r * fh + fh * 0.22, L - 0.5, fh * 0.49, orange, 0.016);
     }
     for (let r = 0; r < levels; r++) for (let j = 0; j < n; j++) {
       if (front && r === 0 && Math.abs(j - (n - 1) / 2) < 1.2) continue;
-      W(0.25 + pw * (j + 0.5), r * fh + fh * 0.64, Math.min(1.6, pw - 0.24), Math.min(fh * 0.46, 1.65), "wide-slider", 12765629);
+      W(0.25 + pw * (j + 0.5), r * fh + fh * 0.65, Math.min(1.6, pw - 0.27), Math.min(fh * 0.48, 1.65), "wide-slider", 14278620, [2635837, 5399393, 2372670]);
+      if (front && r === 1 && j % 2 === 0) {
+        B(0.25 + pw * (j + 0.5), fh + 0.15, 0.24, 0.65, 0.47, 0.48, 14736849);
+        for (let k = 0; k < 4; k++) B(0.25 + pw * (j + 0.5), fh + 0.02 + k * 0.09, 0.486, 0.5, 0.026, 0.02, 7503479);
+      }
     }
     if (front) {
-      for (let j = 0; j <= n; j++) B(0.25 + pw * j, H * 0.52, 0.115, 0.16, H * 0.91, 0.23, 13358026);
-      const w = Math.min(3.6, L * 0.36);
-      W(L / 2, ground2 + 1.3, w, 2.45, "wide-slider", 9280918);
-      B(L / 2, ground2 + 2.8, 0.23, Math.min(L - 0.1, w + 1.2), 0.25, 0.46, 13949135);
-      B(L / 2, H - 0.23, 0.08, L, 0.46, 0.16, 14081748);
+      for (let j = 0; j <= n; j++) B(0.25 + pw * j, H * 0.52, 0.12, 0.17, H * 0.91, 0.24, white2);
+      const w = Math.min(4.2, L * 0.36);
+      W(L / 2, ground2 + 1.3, w, 2.45, "wide-slider", 7440778);
+      B(L / 2, fh - 0.1, 0.29, L - 0.16, 0.25, 0.58, white2);
+      B(L / 2, H - 0.31, 0.1, L, 0.7, 0.2, white2);
+      sign3("police-name", L * 0.61, H - 0.26, L * 0.58, 0.48, 0.22, { text: "\uC11C\uC6B8\uC11C\uB300\uBB38\uACBD\uCC30\uC11C", color: "#28517b" });
+      sign3("police-name", L * 0.61, H - 0.57, L * 0.44, 0.15, 0.23, { text: "Seodaemun Police Station", color: "#dbb32a" });
+      sign3("police-emblem", L * 0.275, H - 0.28, 0.82, 0.55, 0.23);
     }
     return true;
   }
   return false;
 }
 
-// outputs/domestic-test/building-remakes/retail.js
-function emitApprovedRetailFace(ctx) {
-  const { id, L, H, front, box, window: win, surface } = ctx;
+// outputs/domestic-test/building-remakes/retail.js?v=identity2
+function emitApprovedRetailFace(c) {
+  const { id, L, H, front, box, window: win, surface } = c;
   if (!["facility:emart", "facility:homeplus", "facility:costco", "facility:traders"].includes(id)) return false;
   if (L < 2 || H < 2) return true;
-  const band = (y, h, c, z = 0.07, d = 0.12) => box(L / 2, y, z, L, h, d, c);
-  const pier = (x, y, w, h, c, z = 0.12, d = 0.24) => box(x, y, z, w, h, d, c);
-  const panes = (a, b, bottom, top, spacing, frame = 13028811) => {
-    if (top - bottom < 0.4 || b - a < 0.5) return;
-    const n = Math.max(1, Math.ceil((b - a) / spacing)), step = (b - a) / n;
-    for (let i = 0; i < n; i++) win(a + step * (i + 0.5), (bottom + top) / 2, step - 0.11, top - bottom, "white-slider", frame);
+  const band = (y, h, color, z = 0.06, d = 0.12) => box(L / 2, y, z, L, h, d, color);
+  const pane = (a, b, lo, hi, spacing = 2, frame = 12175045) => {
+    if (hi - lo < 0.4 || b - a < 0.5) return;
+    const n = Math.max(1, Math.ceil((b - a) / spacing)), s = (b - a) / n;
+    for (let i = 0; i < n; i++) win(a + s * (i + 0.5), (lo + hi) / 2, s - 0.1, hi - lo, "white-slider", frame);
   };
-  const canopy = (a, b, y, c) => {
-    box((a + b) / 2, y, 0.23, b - a, 0.18, 0.46, c);
-    box((a + b) / 2, y - 0.11, 0.39, b - a, 0.06, 0.1, 6448992);
-    for (let x = a + 0.22; x < b - 0.1; x += Math.max(1.6, (b - a) / 5)) box(x, y - 0.24, 0.18, 0.075, 0.28, 0.36, 7830903);
+  const canopy = (a, b, y, color, depth = 0.75) => {
+    box((a + b) / 2, y, depth / 2, b - a, 0.2, depth, color);
+    box((a + b) / 2, y - 0.14, depth - 0.035, b - a, 0.1, 0.07, color);
   };
   const service = () => {
-    const dh = Math.min(3.3, H * 0.38), dw = Math.min(3.1, L * 0.24), x = L * 0.54;
-    surface(x, dh / 2 + 0.08, dw, dh, 6910320, 0.022);
-    for (let y = 0.22; y < dh; y += 0.24) box(x, y, 0.065, dw, 0.027, 0.045, 10265503);
-    pier(x - dw / 2 - 0.08, dh / 2, 0.15, dh + 0.15, 13027519);
-    pier(x + dw / 2 + 0.08, dh / 2, 0.15, dh + 0.15, 13027519);
-    box(x, dh + 0.08, 0.13, dw + 0.32, 0.16, 0.26, 12567227);
-    if (L > 8) {
-      win(L * 0.18, 1.12, Math.min(1.1, L * 0.1), 2.1, "white-slider", 7831160);
-      const vx = L * 0.82, vy = H * 0.58, vw = Math.min(1.8, L * 0.14), vh = Math.min(0.9, H * 0.12);
-      surface(vx, vy, vw, vh, 4279112, 0.025);
-      for (let y = vy - vh / 2 + 0.08; y < vy + vh / 2; y += 0.13) box(vx, y, 0.09, vw, 0.055, 0.12, 9871e3);
-    }
+    const h = Math.min(3, H * 0.27), w = Math.min(3, L * 0.2);
+    surface(L * 0.54, h / 2 + 0.07, w, h, 6845305, 0.028);
+    for (let y = 0.2; y < h; y += 0.3) box(L * 0.54, y, 0.065, w, 0.025, 0.05, 10660009);
+    box(L * 0.54, h + 0.1, 0.15, w + 0.22, 0.17, 0.3, 12633281);
   };
   if (id === "facility:emart") {
-    const a = L * 0.15, b = L * 0.85, base2 = Math.min(3.05, H * 0.26), glassTop = H * 0.57;
-    surface(L / 2, H * 0.7, L, H * 0.6, 10455156);
-    for (let x = 0.15; x < L; x += 0.26) box(x, H * 0.72, 0.045, 0.035, H * 0.52, 0.035, 12625291);
-    for (const y of [0.62, 0.73, 0.84, 0.95]) band(H * y, 0.1, 14734786);
+    surface(L / 2, H / 2, L, H, 10188643);
     if (front) {
-      panes(a, b, 0.12, base2 - 0.22, 2.05, 13357511);
-      panes(a, b, base2 + 0.5, glassTop, 2.45, 11780543);
-      canopy(a - 0.12, b + 0.12, base2 + 0.18, 14015185);
-      const pw = Math.min(0.6, L * 0.045);
-      for (const x of [a - pw / 2, b + pw / 2]) pier(x, base2 / 2, pw, base2, 12828336, 0.2, 0.4);
-      for (const x of [L * 0.075, L * 0.925]) pier(x, H / 2, Math.min(L * 0.075, 1.5), H, 10783605, 0.13, 0.26);
-      for (const y of [0.24, 0.57, 0.96]) band(H * y, 0.16, 14076342, 0.17, 0.3);
-      for (let x = a; x <= b + 0.01; x += (b - a) / 5) pier(x, H * 0.969, 0.15, H * 0.06, 13027259, 0.17, 0.3);
-    } else service();
-  } else if (id === "facility:homeplus") {
-    surface(L / 2, H / 2, L, H, 12961469);
-    for (let y = 0.7; y < H; y += 0.82) band(y, 0.025, 10198678, 0.028, 0.025);
-    for (let x = 1.5; x < L; x += 2.2) pier(x, H / 2, 0.025, H, 10922656, 0.03, 0.03);
-    if (front) {
-      const a = L * 0.24, b = L * 0.91, doorTop = Math.min(2.55, H * 0.23), top = H * 0.76;
-      panes(a, b, 0.1, doorTop, 2, 8953495);
-      panes(a, b, doorTop + 0.4, top, 1.7, 12108216);
-      canopy(a - 0.1, b + 0.1, doorTop + 0.2, 10363702);
-      for (const x of [a - 0.13, b + 0.13]) pier(x, (top + 0.1) / 2, 0.22, top + 0.1, 14013640, 0.16, 0.32);
-      box((a + b) / 2, top + 0.16, 0.15, b - a + 0.48, 0.24, 0.3, 14079691);
-      pier(L * 0.86, doorTop / 2, 0.12, doorTop, 10889531, 0.21, 0.4);
-    } else service();
-    band(H - 0.12, 0.15, 7896693, 0.1, 0.2);
-  } else if (id === "facility:costco") {
-    surface(L / 2, H / 2, L, H, 14737621);
-    band(H * 0.85, 0.22, 12995669, 0.035, 0.045);
-    band(0.4, 0.55, 11909295, 0.055, 0.09);
-    for (let x = 2.6; x < L; x += 3.2) pier(x, H / 2, 0.026, H, 12567482, 0.03, 0.03);
-    if (front) {
-      const top = H * 0.78, lower = Math.min(2.8, H * 0.24), w = Math.min(3, L * 0.13);
-      for (const x of [L * 0.2, L * 0.78]) {
-        panes(x - w / 2, x + w / 2, lower + 0.25, top, 1.15, 11385269);
-        for (const px2 of [x - w / 2 - 0.07, x + w / 2 + 0.07]) pier(px2, (top + lower + 0.25) / 2, 0.12, top - lower - 0.05, 12699325, 0.1, 0.2);
+      const a = L * 0.14, b = L * 0.86, entry2 = H * 0.245;
+      const bow = (x) => 0.45 * Math.sqrt(Math.max(0, 1 - ((x - L / 2) / ((b - a) / 2)) ** 2));
+      const segments2 = 18, step = (b - a) / segments2;
+      for (let i = 0; i < segments2; i++) {
+        const x = a + step * (i + 0.5), z = bow(x);
+        box(x, H * 0.72, z / 2, step + 8e-3, H * 0.33, z + 0.04, 10188643);
+        for (const y of [0.565, 0.66, 0.755, 0.85]) box(x, H * y, z + 0.055, step + 8e-3, 0.1, 0.13, 14538699);
+        box(x, H * 0.99, z + 0.07, step + 8e-3, H * 0.025, 0.34, 12042174);
       }
-      panes(L * 0.35, L * 0.65, 0.12, lower, 1.7, 9148821);
-      canopy(L * 0.33, L * 0.67, lower + 0.15, 12370619);
-      for (const x of [L * 0.33, L * 0.67]) pier(x, lower / 2, 0.22, lower, 13685449, 0.18, 0.36);
-    } else service();
-    band(H - 0.1, 0.12, 13027775, 0.08, 0.16);
-  } else {
-    surface(L / 2, H / 2, L, H, 11977149);
-    band(H * 0.93, H * 0.1, 10341943, 0.09, 0.18);
-    for (const y of [0.32, 0.55, 0.77]) band(H * y, 0.045, 8753036, 0.03, 0.035);
+      for (let x = a + 0.04; x < b; x += 0.21) box(x, H * 0.72, bow(x) + 0.045, 0.045, H * 0.33, 0.07, 12624780);
+      pane(a, b, entry2 + 0.06, H * 0.55, Math.max(1.1, L * 0.15), 12569037);
+      for (const y of [0.34, 0.445]) box(L / 2, H * y, 0.075, b - a, 0.055, 0.12, 12634574);
+      pane(L * 0.25, L * 0.76, 0.08, entry2 - 0.14, Math.max(1, L * 0.075), 5596517);
+      canopy(a, b, entry2, 14081242, 1.05);
+      for (const x of [L * 0.22, L * 0.78]) box(x, entry2 / 2, 0.32, L * 0.025, entry2, 0.64, 14737362);
+      for (const x of [L * 0.07, L * 0.93]) {
+        box(x, H * 0.47, 0.1, L * 0.09, H * 0.94, 0.2, 10057314);
+        for (const y of [0.245, 0.565, 0.755, 0.91]) box(x, H * y, 0.18, L * 0.095, 0.12, 0.24, 14274236);
+      }
+      for (let i = 0; i < 6; i++) {
+        const x = a + (b - a) * i / 5;
+        box(x, H * 0.925, bow(x) + 0.07, 0.22, H * 0.13, 0.34, 12962245);
+      }
+      c.sign("emart", L / 2, H * 0.695, L * 0.52, H * 0.115, 0.56);
+      c.sign("townmall-symbol", L / 2, H * 0.845, H * 0.15, H * 0.15, 0.58);
+    } else {
+      for (const y of [0.245, 0.565, 0.755, 0.91]) band(H * y, 0.1, 14274236);
+      service();
+    }
+  } else if (id === "facility:homeplus") {
+    surface(L / 2, H / 2, L, H, 12894393);
+    for (let y = 0.6; y < H; y += 0.78) band(y, 0.024, 8552316, 0.03, 0.025);
+    for (let x = 1.5; x < L; x += 2.9) box(x, H / 2, 0.033, 0.025, H, 0.025, 9933709);
     if (front) {
-      const a = L * 0.1, b = L * 0.39, bottom = Math.min(2.8, H * 0.22), top = H * 0.85;
-      surface(L * 0.46, H / 2, L * 0.12, H, 9094208, 0.025);
-      panes(a, b, bottom + 0.24, top, 1.8, 8560273);
-      panes(a, b, 0.12, bottom - 0.1, 1.7, 8954002);
-      canopy(a - 0.1, b + 0.15, bottom + 0.04, 10078523);
-      for (const x of [a - 0.08, b + 0.08]) pier(x, (top + bottom) / 2, 0.12, top - bottom, 8165772, 0.14, 0.28);
-      for (let y = bottom + 1.7; y < top; y += 1.65) box((a + b) / 2, y, 0.14, b - a, 0.07, 0.14, 10137505);
-      const ga = L * 0.58, gb = L * 0.85;
-      panes(ga, gb, H * 0.26, H * 0.66, 2.1, 7308672);
-      for (let y = H * 0.28; y < H * 0.66; y += 0.65) box((ga + gb) / 2, y, 0.12, gb - ga, 0.055, 0.1, 9675418);
-      canopy(ga, gb, H * 0.22, 5798555);
-      panes(ga, gb, 0.1, H * 0.19, 2.2, 8821392);
+      const a = L * 0.25, b = L * 0.91, entry2 = H * 0.24, top = H * 0.73;
+      pane(a, b, 0.1, entry2 - 0.25, Math.max(1, L * 0.075), 6518389);
+      pane(a, b, entry2 + 0.04, top, Math.max(1.3, L * 0.072), 14014676);
+      for (let x = a; x <= b + 0.01; x += (b - a) / 5) box(x, (top + entry2) / 2, 0.17, 0.14, top - entry2, 0.34, 14737109);
+      for (const y of [0.4, 0.56]) box((a + b) / 2, H * y, 0.1, b - a, 0.065, 0.15, 6519931);
+      for (const x of [a - 0.12, b + 0.12]) box(x, (top + 0.1) / 2, 0.16, 0.23, top + 0.1, 0.32, 14736851);
+      box((a + b) / 2, top + 0.12, 0.16, b - a + 0.48, 0.23, 0.32, 14736851);
+      canopy(a - 0.12, b + 0.12, entry2, 13901370, 0.95);
+      c.sign("homeplus", L * 0.46, H * 0.865, L * 0.45, H * 0.12, 0.1);
+    } else service();
+    band(H - 0.06, 0.12, 5593947);
+  } else if (id === "facility:costco") {
+    surface(L / 2, H / 2, L, H, 15263969);
+    band(H * 0.845, H * 0.033, 14755643, 0.055, 0.07);
+    band(0.28, 0.48, 12172215);
+    for (let x = 2.8; x < L; x += 3.3) box(x, H / 2, 0.025, 0.024, H, 0.025, 12830403);
+    if (front) {
+      const lower = H * 0.17, top = H * 0.78;
+      for (const [x, w] of [[L * 0.2, L * 0.065], [L * 0.79, L * 0.13]]) {
+        pane(x - w / 2, x + w / 2, lower, top, Math.max(0.7, w / 3), 11977927);
+        for (let y = lower + 0.7; y < top; y += 0.85) box(x, y, 0.08, w, 0.045, 0.12, 12963536);
+      }
+      box(L * 0.855, H + 0.7, 0.015, L * 0.255, 1.4, 0.26, 15263969);
+      c.sign("costco", L * 0.855, H + 0.72, L * 0.22, 1.12, 0.17);
+      pane(L * 0.36, L * 0.6, 0.08, Math.min(2.5, H * 0.18), 2, 6781569);
+      canopy(L * 0.35, L * 0.61, Math.min(2.5, H * 0.18) + 0.12, 12437705, 0.65);
+    } else service();
+    band(H - 0.04, 0.1, 13029069);
+  } else {
+    const lime = 9230873;
+    surface(L / 2, H / 2, L, H, 12503241);
+    for (const y of [0.28, 0.48, 0.69, 0.89]) band(H * y, 0.045, 9017756, 0.035, 0.04);
+    band(H * 0.94, H * 0.1, lime, 0.1, 0.2);
+    if (front) {
+      const a = L * 0.24, b = L * 0.46, entry2 = H * 0.17, top = H * 0.88;
+      surface(L * 0.535, H / 2, L * 0.15, H, lime, 0.032);
+      box(L * 0.535, H + 0.38, 0.1, L * 0.15, 0.76, 0.2, lime);
+      pane(a, b, entry2 + 0.04, top, Math.max(1, L * 0.07), 7640984);
+      for (let y = entry2 + 0.75; y < top; y += 1.05) box((a + b) / 2, y, 0.1, b - a, 0.055, 0.16, 10730172);
+      pane(a, b, 0.1, entry2 - 0.15, Math.max(1, L * 0.07), 7904665);
+      canopy(a - 0.025, b + 0.03, entry2, lime, 1.1);
+      for (const x of [a + 0.1, b - 0.1]) box(x, entry2 / 2, 0.63, 0.14, entry2, 1.26, 14016463);
+      pane(L * 0.64, L * 0.81, H * 0.2, H * 0.69, Math.max(1, L * 0.07), 5005932);
+      for (let y = H * 0.22; y < H * 0.69; y += 0.7) box(L * 0.725, y, 0.1, L * 0.17, 0.055, 0.14, 10137267);
+      canopy(L * 0.82, L * 0.98, H * 0.21, 3766705, 1.2);
+      c.sign("traders", L * 0.535, H * 0.915, L * 0.125, H * 0.1, 0.23);
     } else service();
   }
   return true;
 }
 
-// outputs/domestic-test/building-remakes/storefronts.js
+// outputs/domestic-test/building-remakes/storefronts.js?v=identity2
 var PALE = 13947593;
 var DARK = 3422518;
 var SILVER = 10462881;
+function capsule(c, x, y, z, w, h, depth, color) {
+  const r = h / 2, n = 12;
+  for (let i = 0; i < n; i++) {
+    const yy = -r + (i + 0.5) * h / n, ww = w - h + 2 * Math.sqrt(Math.max(0, r * r - yy * yy));
+    c.box(x, y + yy, z, Math.max(0.01, ww), h / n + 1e-3, depth, color);
+  }
+}
+var sign2 = (c, key, x, y, w, h, z, opts) => c.sign?.(key, x, y, w, h, z, opts);
 var SUPPORTED = /* @__PURE__ */ new Set(["facility:gs25", "facility:seven", "facility:emart24", "facility:starbucks"]);
 function upperHost(c, shopTop) {
   const { L, H, fh, window: W, box: B, id } = c;
@@ -35539,7 +35732,7 @@ function entry(c, x, w, top, frame, canopy) {
   const bottom = 0.1;
   glass(c, x - w / 2, x + w / 2, bottom, top, frame);
   c.entryOpening?.({ x, y: (bottom + top) / 2, w, h: top - bottom, panes: 1, door: 0, frameWidth: 0 });
-  for (const sign2 of [-1, 1]) c.box(x + sign2 * 0.1, 1.12, 0.12, 0.025, 0.48, 0.035, SILVER);
+  for (const sign3 of [-1, 1]) c.box(x + sign3 * 0.1, 1.12, 0.12, 0.025, 0.48, 0.035, SILVER);
   c.box(x, 0.055, 0.15, w + 0.1, 0.07, 0.3, 9210755);
   if (canopy) {
     c.box(x, top + 0.1, 0.245, w + 0.38, 0.09, 0.49, frame);
@@ -35553,7 +35746,11 @@ function side(c, top) {
   if (span > 0.5) {
     glass(c, 0.18, 0.18 + span, 0.3, top - 0.8, id === "facility:starbucks" ? SILVER : DARK);
     B(0.18 + span / 2, top - 0.38, 0.09, span + 0.18, 0.56, 0.18, id === "facility:gs25" ? DARK : id === "facility:starbucks" ? 8676167 : 6448994);
-    if (id === "facility:starbucks") for (let x = 0.22; x < span + 0.15; x += 0.15) B(x, top - 0.38, 0.205, 0.035, 0.56, 0.1, 10978144);
+    if (id === "facility:starbucks") {
+      for (let x = 0.22; x < span + 0.15; x += 0.15) B(x, top - 0.38, 0.205, 0.035, 0.56, 0.1, 10978144);
+      sign2(c, "starbucks-emblem", 0.18 + span * 0.72, Math.min(1.65, top - 0.95), Math.min(0.9, span * 0.23), Math.min(0.9, span * 0.23), 0.15);
+    }
+    if (id === "facility:gs25") sign2(c, "gs25", 0.18 + span / 2, top - 0.38, Math.min(span * 0.55, 1.7), 0.38, 0.19);
   }
   if (L > 4.3) {
     glass(c, L - 0.95, L - 0.3, 0.55, 2.25, DARK);
@@ -35573,6 +35770,8 @@ function emitApprovedStorefrontFace(c) {
   const glassTop = top - fasciaH - 0.14;
   if (id === "facility:gs25") {
     B(L / 2, top - fasciaH / 2, 0.14, L - 0.06, fasciaH, 0.28, DARK);
+    sign2(c, "gs25", L * 0.5, top - 0.31, L * 0.25, 0.43, 0.3);
+    sign2(c, "gs25", L * 0.19, top - 0.35, L * 0.21, 0.13, 0.325, { text: "Lifestyle Platform", color: "#ffffff" });
     for (const x of [L * 0.17, L * 0.83]) {
       B(x, top - 0.22, 0.295, L * 0.23, 0.075, 0.045, 6471637);
       B(x + (x < L / 2 ? -1 : 1) * L * 0.115, top - 0.32, 0.295, 0.075, 0.27, 0.045, 6471637);
@@ -35585,11 +35784,13 @@ function emitApprovedStorefrontFace(c) {
     B(L - 0.1, glassTop / 2, 0.08, 0.16, glassTop, 0.16, DARK);
     B(L / 2, glassTop + 0.06, 0.16, L - 0.08, 0.1, 0.32, 2370347);
   } else if (id === "facility:seven") {
-    B(L / 2, top - 0.31, 0.13, L - 0.06, 0.62, 0.26, 5725788);
-    const stripeW = L * 0.22;
+    B(L / 2, top - 0.31, 0.13, L - 0.06, 0.62, 0.26, 5265236);
+    sign2(c, "seven", L / 2, top - 0.3, L * 0.56, 0.48, 0.3);
+    const stripeW = L * 0.15;
     for (const x of [stripeW / 2 + 0.1, L - stripeW / 2 - 0.1]) for (const [k, col] of [[0, 15234357], [1, 1341781], [2, 13975857]]) B(x, top - 0.12 - k * 0.13, 0.29, stripeW, 0.095, 0.08, col);
     B(L / 2, glassTop + 0.08, 0.245, L - 0.06, 0.06, 0.49, 2255183);
     B(L / 2, glassTop, 0.445, L - 0.06, 0.17, 0.045, 1467214);
+    sign2(c, "seven", L * 0.77, glassTop, L * 0.3, 0.085, 0.473, { text: "SINCE 1927  \uC138\uACC4 1\uB4F1 \uD3B8\uC758\uC810", color: "#ffffff" });
     const dw = Math.min(1.55, L * 0.3), dx = L * 0.5, pier = Math.min(0.38, L * 0.055);
     S(dx, glassTop / 2, dw + 0.52, glassTop, 10718056);
     for (let x = dx - dw / 2 - 0.22; x < dx + dw / 2 + 0.24; x += 0.14) {
@@ -35604,8 +35805,10 @@ function emitApprovedStorefrontFace(c) {
       B(x, glassTop - 0.45, 0.22, 0.11, 0.15, 0.1, DARK);
     }
   } else if (id === "facility:emart24") {
-    B(L / 2, top - 0.31, 0.16, L - 0.06, 0.62, 0.32, 16231722);
-    for (const x of [L * 0.16, L * 0.84]) B(x, top - 0.3, 0.345, L * 0.25, 0.18, 0.05, 15430717);
+    capsule(c, L / 2, top - 0.31, 0.16, L - 0.06, 0.62, 0.32, 16758059);
+    for (const x of [L * 0.16, L * 0.84]) capsule(c, x, top - 0.3, 0.345, L * 0.25, 0.2, 0.05, 15952950);
+    sign2(c, "emart24", L * 0.5, top - 0.3, L * 0.36, 0.43, 0.36);
+    sign2(c, "emart24", L * 0.16, top - 0.3, L * 0.22, 0.1, 0.38, { text: "ALL DAY HIGHLIGHT", color: "#ffffff" });
     const dx = L * 0.62, dw = Math.min(1.65, L * 0.25);
     entry(c, dx, dw, Math.min(glassTop - 0.22, 2.35), DARK, true);
     const doorTop = Math.min(glassTop - 0.22, 2.35);
@@ -35617,6 +35820,7 @@ function emitApprovedStorefrontFace(c) {
     B(L / 2, top - 0.43, 0.13, L - 0.04, 0.86, 0.26, 7953218);
     for (let x = 0.09; x < L - 0.05; x += 0.15) B(x, top - 0.43, 0.235, 0.035, 0.82, 0.14, 10781280);
     B(L / 2, top - 0.88, 0.13, L - 0.04, 0.09, 0.3, DARK);
+    sign2(c, "starbucks", L * 0.57, top - 0.43, L * 0.57, 0.42, 0.32);
     const dx = L * 0.65, dw = Math.min(1.65, L * 0.25);
     glass(c, 0.15, dx - dw / 2 - 0.12, 0.1, glassTop, SILVER);
     entry(c, dx, dw, Math.min(2.4, glassTop), SILVER, true);
@@ -35624,11 +35828,12 @@ function emitApprovedStorefrontFace(c) {
     glass(c, dx + dw / 2 + 0.12, L - 0.15, 0.1, glassTop, SILVER);
     B(0.075, glassTop / 2, 0.07, 0.1, glassTop, 0.14, SILVER);
     B(L - 0.075, glassTop / 2, 0.07, 0.1, glassTop, 0.14, SILVER);
+    sign2(c, "starbucks-emblem", L * 0.18, Math.min(1.6, glassTop * 0.62), Math.min(0.8, L * 0.09), Math.min(0.8, L * 0.09), 0.12);
   }
   return true;
 }
 
-// outputs/domestic-test/building-remakes/models.js?v=approvedbuildings1
+// outputs/domestic-test/building-remakes/models.js?v=identity2
 function approvedBuildingId(b) {
   const id = b.assetChoice ? "building:" + b.assetChoice : "facility:" + b.facility?.id;
   return approvedBuildingProfiles[id] ? id : null;
@@ -35659,16 +35864,16 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
   if (!id) return null;
   const profile = approvedBuildingProfiles[id], { points, base: base2, top } = b, H = top - base2, levels = Math.max(1, Math.round(b.levels)), fh = H / levels;
   if (!Number.isFinite(H) || H <= 0 || !points?.length) throw Error("\uC2B9\uC778 \uAC74\uBB3C\uC758 \uD06C\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  const sign2 = Math.sign(points.reduce((s, a, i) => {
+  const winding = Math.sign(points.reduce((s, a, i) => {
     const c = points[(i + 1) % points.length];
     return s + a[0] * c[1] - c[0] * a[1];
   }, 0)) || 1;
   let windows = 0;
-  const features = [];
+  const features = [], signs = [];
   for (let edge = 0; edge < points.length; edge++) {
     const a = points[edge], c = points[(edge + 1) % points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
     if (L < 0.6) continue;
-    const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2;
+    const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * winding, nz = -ux * winding;
     if ([0.2, 0.5, 0.8].every((t) => buildings.some((o) => o !== b && inPolygon([a[0] + ux * L * t + nx * 0.15, a[1] + uz * L * t + nz * 0.15], o.points)))) continue;
     const out = batch.writer([a[0], base2, a[1]], ux, uz, nx, nz), cuts = [], panels = [], front = edge === (b.facility.frontEdge ?? b.frontEdge ?? 0), ground2 = Math.max(0, elevation(a[0] + ux * L / 2, a[1] + uz * L / 2) - base2);
     const box = (x, y, z, w, h, d, color) => {
@@ -35678,7 +35883,7 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
     const surface = (x, y, w, h, color, z = 0.014) => {
       if (w > 0 && h > 0) panels.push({ rect: [Math.max(0.015, x - w / 2), Math.min(L - 0.015, x + w / 2), Math.max(ground2, y - h / 2), Math.min(H, y + h / 2)], color, z });
     };
-    const window2 = (x, y, w, h, kind = "white-slider", frame = 12962755) => {
+    const window2 = (x, y, w, h, kind = "white-slider", frame = 12962755, glass2 = profile.glass) => {
       const lo = Math.max(0.12, x - w / 2), hi = Math.min(L - 0.12, x + w / 2), bottom = Math.max(ground2 + 0.035, y - h / 2), ceiling = Math.min(H - 0.18, y + h / 2);
       w = hi - lo;
       h = ceiling - bottom;
@@ -35690,10 +35895,11 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
         const rect = windowOpening(out, options.windowOpenings, b, edge, a, [ux, uz], [nx, nz], x, base2 + y, w, h, profile.wall);
         cuts.push([rect[0], rect[1], rect[2] - base2, rect[3] - base2]);
       } else cuts.push([lo, hi, bottom, ceiling]);
-      emitWindow(out.at(x, y, 0), kind, w, h, windows % 7, frame, b.seed * 997 + edge * 131 + windows, { ...options.windowOpenings ? { recess: WINDOW_RECESS } : {}, accessories: false });
+      emitWindow(identityWindowWriter(out.at(x, y, 0), glass2), kind, w, h, windows % 7, frame, b.seed * 997 + edge * 131 + windows, { ...options.windowOpenings ? { recess: WINDOW_RECESS } : {}, accessories: false });
       windows++;
     };
-    const ctx = { id, L, H, levels, fh, front, edge, ground: ground2, out, window: window2, surface, box };
+    const sign3 = (key, x, y, w, h, z = 0.3, options2 = {}) => signs.push({ key, x: a[0] + ux * x + nx * z, y: base2 + y, z: a[1] + uz * x + nz * z, w, h, angle: Math.atan2(nx, nz), options: options2, owner: b.seed });
+    const ctx = { id, L, H, levels, fh, front, edge, ground: ground2, out, window: window2, surface, box, sign: sign3 };
     if (!emitApprovedCivicFace(ctx) && !emitApprovedRetailFace(ctx) && !emitApprovedStorefrontFace(ctx)) throw Error("\uC2B9\uC778\uB41C \uAC74\uBB3C \uC0DD\uC131\uAE30\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4: " + id);
     const wallCuts = [...cuts, ...panels.map((p2) => p2.rect)];
     if (profile.texture) emitFacadeTexture(batch, out, { width: L, bottom: ground2, top: H, id: profile.texture, cuts: wallCuts });
@@ -35710,7 +35916,7 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
   }
   const minX = Math.min(...points.map((p2) => p2[0])), maxX = Math.max(...points.map((p2) => p2[0])), minZ = Math.min(...points.map((p2) => p2[1])), maxZ = Math.max(...points.map((p2) => p2[1]));
   const cw = Math.min(3, (maxX - minX) * 0.23), cd = Math.min(2.6, (maxZ - minZ) * 0.25), cx = (minX + maxX) / 2, cz = (minZ + maxZ) / 2;
-  if (cw > 0.8 && cd > 0.8 && roofCoreFits(points, b.holePoints || [], cx, cz, cw, cd)) {
+  if (profile.roofCore !== false && cw > 0.8 && cd > 0.8 && roofCoreFits(points, b.holePoints || [], cx, cz, cw, cd)) {
     const roof = batch.writer([cx, base2, cz]);
     roof.box(0, H + 0.95, 0, cw, 1.9, cd, profile.wall);
     roof.box(0, H + 1.93, 0, cw + 0.12, 0.08, cd + 0.12, 8753029);
@@ -35718,7 +35924,7 @@ function emitApprovedBuilding(batch, b, buildings, elevation, options = {}) {
     roof.box(0.25, H + 0.9, cd / 2 + 0.05, 0.035, 0.16, 0.045, 13554890);
     for (let y = H + 0.5; y < H + 1.4; y += 0.15) roof.box(-cw * 0.3, y, cd / 2 + 0.035, 0.35, 0.035, 0.07, 6451050);
   }
-  b.approvedRemake = { id, referenceId: profile.referenceId, features };
+  b.approvedRemake = { id, referenceId: profile.referenceId, features, signs };
   return { windows, sourceId: profile.referenceId, remade: true };
 }
 
@@ -35759,13 +35965,13 @@ function chooseApartment(b) {
   return { ...apartmentCatalog.find((a) => a.era === era && a.variant === variant), selection: source, complexKey: key };
 }
 function edges(b) {
-  const ps = b.points, sign2 = Math.sign(ps.reduce((v2, p2, i) => {
+  const ps = b.points, sign3 = Math.sign(ps.reduce((v2, p2, i) => {
     const q = ps[(i + 1) % ps.length];
     return v2 + p2[0] * q[1] - q[0] * p2[1];
   }, 0)) || 1;
   return ps.map((a, i) => {
     const c = ps[(i + 1) % ps.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]), ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L;
-    return { i, a, L, ux, uz, nx: uz * sign2, nz: -ux * sign2 };
+    return { i, a, L, ux, uz, nx: uz * sign3, nz: -ux * sign3 };
   }).filter((e) => e.L > 0.5);
 }
 function emitApartment(batch, b) {
@@ -35918,7 +36124,7 @@ function emitApartment(batch, b) {
   return { windows };
 }
 
-// outputs/domestic-test/facilities/models.js?v=approvedbuildings1
+// outputs/domestic-test/facilities/models.js?v=identity2
 function emitFacility(batch, b, buildings, elevation, options = {}) {
   const approved2 = emitApprovedBuilding(batch, b, buildings, elevation, options);
   if (approved2) return approved2;
@@ -35928,12 +36134,12 @@ function emitFacility(batch, b, buildings, elevation, options = {}) {
   const signed2 = points.reduce((v2, a, i) => {
     const c = points[(i + 1) % points.length];
     return v2 + a[0] * c[1] - c[0] * a[1];
-  }, 0), sign2 = Math.sign(signed2) || 1;
+  }, 0), sign3 = Math.sign(signed2) || 1;
   let windows = 0;
   for (let edge = 0; edge < points.length; edge++) {
     const a = points[edge], c = points[(edge + 1) % points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
     if (L < 1) continue;
-    const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2;
+    const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign3, nz = -ux * sign3;
     if ([0.2, 0.5, 0.8].every((t) => buildings.some((other) => other !== b && inPolygon([a[0] + ux * L * t + nx * 0.14, a[1] + uz * L * t + nz * 0.14], other.points)))) continue;
     const panels = [], cuts = [], out = batch.writer([a[0], base2, a[1]], ux, uz, nx, nz), rawQ = (x, y, w, h, col, z = 0.025) => {
       if (w > 0 && h > 0) out.quad(x, y, z, w, h, col, true);
@@ -36082,22 +36288,23 @@ function addSignText(root, spec) {
   ctx.fillText(spec.signText, 256, 48, 480);
   const texture = new CanvasTexture(canvas);
   texture.colorSpace = SRGBColorSpace;
-  const sign2 = spec.signs[0], mesh = new Mesh(new PlaneGeometry(sign2.w * 0.8, sign2.h * 0.7), new MeshStandardMaterial({ map: texture, transparent: true, alphaTest: 0.15, roughness: 0.9, depthWrite: false }));
-  mesh.position.set(sign2.x, sign2.y, 0.29);
+  const sign3 = spec.signs[0], mesh = new Mesh(new PlaneGeometry(sign3.w * 0.8, sign3.h * 0.7), new MeshStandardMaterial({ map: texture, transparent: true, alphaTest: 0.15, roughness: 0.9, depthWrite: false }));
+  mesh.position.set(sign3.x, sign3.y, 0.29);
   mesh.name = "facility-sign-text";
   mesh.userData.noPlacementCollision = true;
   root.add(mesh);
 }
 function addFacilityLabels(root, buildings) {
+  addApprovedIdentity(root, buildings);
   if (typeof document === "undefined") return;
   for (const b of buildings) {
     if (!b.facility || b.facility.id === "apartment" || b.assetChoice || b.approvedRemake) continue;
     const f = facilityById[b.facility.id], i = b.facility.frontEdge ?? b.frontEdge ?? 0, a = b.points[i], c = b.points[(i + 1) % b.points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
     if (L < 3) continue;
-    const sign2 = Math.sign(b.points.reduce((v2, p2, j) => {
+    const sign3 = Math.sign(b.points.reduce((v2, p2, j) => {
       const q = b.points[(j + 1) % b.points.length];
       return v2 + p2[0] * q[1] - q[0] * p2[1];
-    }, 0)) || 1, nx = (c[1] - a[1]) / L * sign2, nz = -(c[0] - a[0]) / L * sign2;
+    }, 0)) || 1, nx = (c[1] - a[1]) / L * sign3, nz = -(c[0] - a[0]) / L * sign3;
     const label = new Group();
     label.position.set((a[0] + c[0]) / 2, b.top - Math.min(1.1, (b.top - b.base) * 0.1), (a[1] + c[1]) / 2);
     label.rotation.y = Math.atan2(nx, nz);
@@ -36489,8 +36696,8 @@ function planRooftops(buildings) {
     const signed2 = points.reduce((v2, p2, i) => {
       const q = points[(i + 1) % points.length];
       return v2 + p2[0] * q[1] - q[0] * p2[1];
-    }, 0), sign2 = signed2 >= 0 ? 1 : -1;
-    const ux = (b[0] - a[0]) / length, uz = (b[1] - a[1]) / length, ix = -uz * sign2, iz = ux * sign2;
+    }, 0), sign3 = signed2 >= 0 ? 1 : -1;
+    const ux = (b[0] - a[0]) / length, uz = (b[1] - a[1]) / length, ix = -uz * sign3, iz = ux * sign3;
     const projected = points.map((p2) => [(p2[0] - a[0]) * ux + (p2[1] - a[1]) * uz, (p2[0] - a[0]) * ix + (p2[1] - a[1]) * iz]), bb = bounds(projected);
     const entry2 = building.frontage?.entry ?? length / 2;
     const mode = rooftopRandom(seed, 2), hintU = mode < 0.65 ? entry2 : mode < 0.83 ? bb.x0 + (bb.x1 - bb.x0) * 0.24 : bb.x0 + (bb.x1 - bb.x0) * 0.76;
@@ -36736,12 +36943,12 @@ function createDetails(buildings, elevation, architecture = { structures: [] }, 
       const a = points[i], c = points[(i + 1) % points.length];
       signed2 += a[0] * c[1] - c[0] * a[1];
     }
-    const sign2 = signed2 >= 0 ? 1 : -1;
+    const sign3 = signed2 >= 0 ? 1 : -1;
     const front = Number.isInteger(b.frontEdge) ? b.frontEdge : points.reduce((k, p2, i) => Math.hypot(points[(i + 1) % points.length][0] - p2[0], points[(i + 1) % points.length][1] - p2[1]) > Math.hypot(points[(k + 1) % points.length][0] - points[k][0], points[(k + 1) % points.length][1] - points[k][1]) ? i : k, 0);
     for (let i = 0; i < points.length; i++) {
       const a = points[i], c = points[(i + 1) % points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
       if (L < 0.35) continue;
-      const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign2, nz = -ux * sign2, out = batch.writer([a[0], 0, a[1]], ux, uz, nx, nz), B = out.box, Q = out.quad, R = out.rod;
+      const ux = (c[0] - a[0]) / L, uz = (c[1] - a[1]) / L, nx = uz * sign3, nz = -ux * sign3, out = batch.writer([a[0], 0, a[1]], ux, uz, nx, nz), B = out.box, Q = out.quad, R = out.rod;
       const proxy = (u, y, z, w, h, d) => {
         const corners = [];
         for (const yy of [-1, 1]) for (const zz of [-1, 1]) for (const xx of [-1, 1]) corners.push([a[0] + ux * (u + xx * w / 2) + nx * (z + zz * d / 2), y + yy * h / 2, a[1] + uz * (u + xx * w / 2) + nz * (z + zz * d / 2)]);
@@ -37302,19 +37509,19 @@ function bevelBox(lo, hi, r) {
   let ts = [];
   const add = (q) => {
     for (let i = 1; i < q.length - 1; i++) ts.push([q[0], q[i], q[i + 1]]);
-  }, p2 = (sign2, shrink) => sign2.map((s, k) => s > 0 ? hi[k] - shrink[k] : lo[k] + shrink[k]);
-  for (let ax = 0; ax < 3; ax++) for (const sign2 of [-1, 1]) {
+  }, p2 = (sign3, shrink) => sign3.map((s, k) => s > 0 ? hi[k] - shrink[k] : lo[k] + shrink[k]);
+  for (let ax = 0; ax < 3; ax++) for (const sign3 of [-1, 1]) {
     const others = [0, 1, 2].filter((k) => k !== ax), q = [];
     for (const [u, w] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
       const s = [0, 0, 0];
-      s[ax] = sign2;
+      s[ax] = sign3;
       s[others[0]] = u;
       s[others[1]] = w;
       const sh = [r, r, r];
       sh[ax] = 0;
       q.push(p2(s, sh));
     }
-    if (v(q[1]).sub(v(q[0])).cross(v(q[2]).sub(v(q[0]))).getComponent(ax) * sign2 < 0) q.reverse();
+    if (v(q[1]).sub(v(q[0])).cross(v(q[2]).sub(v(q[0]))).getComponent(ax) * sign3 < 0) q.reverse();
     add(q);
   }
   for (let ax = 0; ax < 3; ax++) {
@@ -38231,8 +38438,8 @@ function populateStreetLife({ specs, walls, roadInfo, elevation, template, place
     const L = Math.hypot(w.b[0] - w.a[0], w.b[1] - w.a[1]);
     if (L < 0.85) continue;
     const x = (w.a[0] + w.b[0]) / 2, z = (w.a[1] + w.b[1]) / 2;
-    for (const sign2 of [1, -1]) {
-      const nx = -(w.b[1] - w.a[1]) / L * sign2, nz = (w.b[0] - w.a[0]) / L * sign2, d = roadDistance(x, z, nx, nz, 3);
+    for (const sign3 of [1, -1]) {
+      const nx = -(w.b[1] - w.a[1]) / L * sign3, nz = (w.b[0] - w.a[0]) / L * sign3, d = roadDistance(x, z, nx, nz, 3);
       if (Number.isFinite(d)) {
         supports.push({ x, z, nx, nz, ux: nz, uz: -nx, L, owner: w.owner, kind: "boundary", gap: w.width / 2 + 0.14, roadDistance: d, levels: byOwner.get(w.owner)?.levels || 1 });
         break;
@@ -40854,10 +41061,10 @@ function edgeCandidates(y) {
       const ux = (b[0] - a[0]) / L, uz = (b[1] - a[1]) / L;
       for (; next <= total + L; next += 1.9) {
         const t = next - total, px2 = a[0] + ux * t, pz2 = a[1] + uz * t;
-        for (const sign2 of [1, -1]) {
-          const x = px2 - uz * 0.86 * sign2, z = pz2 + ux * 0.86 * sign2;
-          if (inYard(y, x, z) && inYard(y, px2 - uz * 0.24 * sign2, pz2 + ux * 0.24 * sign2)) {
-            out.push({ x, z, angle: Math.atan2(-uz, ux) + (sign2 < 0 ? Math.PI : 0) });
+        for (const sign3 of [1, -1]) {
+          const x = px2 - uz * 0.86 * sign3, z = pz2 + ux * 0.86 * sign3;
+          if (inYard(y, x, z) && inYard(y, px2 - uz * 0.24 * sign3, pz2 + ux * 0.24 * sign3)) {
+            out.push({ x, z, angle: Math.atan2(-uz, ux) + (sign3 < 0 ? Math.PI : 0) });
             break;
           }
         }
@@ -42280,7 +42487,7 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
       skip("poi-too-far-from-address");
       continue;
     }
-    const sign2 = Math.sign(b.points.reduce((s, a, i) => {
+    const sign3 = Math.sign(b.points.reduce((s, a, i) => {
       const c = b.points[(i + 1) % b.points.length];
       return s + a[0] * c[1] - c[0] * a[1];
     }, 0));
@@ -42288,7 +42495,7 @@ function planNeighborhoodShops(buildings, places, catalog3, { xz, elevation, roa
     b.points.forEach((a, edge) => {
       const c = b.points[(edge + 1) % b.points.length], L = Math.hypot(c[0] - a[0], c[1] - a[1]);
       if (L < 3.6) return;
-      const u = [(c[0] - a[0]) / L, (c[1] - a[1]) / L], n = [u[1] * sign2, -u[0] * sign2];
+      const u = [(c[0] - a[0]) / L, (c[1] - a[1]) / L], n = [u[1] * sign3, -u[0] * sign3];
       const onArterial = frontEdges.some((f) => f.edge === edge);
       if (frontEdges.length && !onArterial) return;
       const assets = exact ? [exact] : catalog3.assets.filter((s) => !s.referenceOnly && (onArterial ? s.arterialOnly || !catalog3.assets.some((a2) => a2.arterialOnly && a2.category === category) : !s.arterialOnly) && s.category === category && s.height < 4.6 && !(category === "salon" && s.id === "salon-03") && !(category === "laundry" && s.id !== "laundry-02"));

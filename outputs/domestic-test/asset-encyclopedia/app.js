@@ -1,6 +1,6 @@
 import {createReferenceReview} from './reference-review.js?v=foldintro1';
-import {remakeAliases} from './remakes.js?v=approvedbuildings1';
-import {loadAssetRegistry} from './registry.js?v=approvedbuildings1';
+import {remakeAliases} from './remakes.js?v=identity2';
+import {loadAssetRegistry} from './registry.js?v=identity2';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';
@@ -10,7 +10,7 @@ import {curation,canonicalId,appliedLabel} from './curation.js?v=review527';
 import * as T from 'three';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {createReviewStore,LABELS} from './reviews.js?v=review1';
-import {createModel,release} from './models.js?v=approvedbuildings1';
+import {createModel,release} from './models.js?v=identity2';
 const $=id=>document.getElementById(id),cache=new Map();let entries=[],version=0,detailVersion=0,active=null,viewer=null,currentGroup='building',personViewState={angle:0,pitch:0,zoom:1};
 
 const getLineSettings=mountLineOptions($('lineOptions'),settings=>viewer?.setLines?.(settings));
@@ -81,7 +81,7 @@ for(const tab of tabs){
 }
 try{
  entries=(await loadAssetRegistry()).entries;
- for(const [group,options] of [['road',{}],['building',{manifestFile:'building-references.json?v=approvedbuildings1',exportName:'완성건물-참고이미지-검토.json',description:'교체할 건물의 참고 사진을 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.',evidenceNote:'사진을 누르면 크게 볼 수 있습니다. 실제 장소와 참고할 부분, 사진에서 확인하지 못한 부분을 함께 표시했습니다.'}]]){try{referenceReviews.set(group,await createReferenceReview(options));}catch(e){$('error').textContent=(GROUPS[group]||group)+': '+e.message;}}
+ for(const [group,options] of [['road',{}],['building',{manifestFile:'building-references.json?v=identity2',exportName:'완성건물-참고이미지-검토.json',description:'교체할 건물의 참고 사진을 확인해 주세요. 승인한 이미지로만 다음 모델링을 진행합니다.',evidenceNote:'사진을 누르면 크게 볼 수 있습니다. 실제 장소와 참고할 부분, 사진에서 확인하지 못한 부분을 함께 표시했습니다.'}]]){try{referenceReviews.set(group,await createReferenceReview(options));}catch(e){$('error').textContent=(GROUPS[group]||group)+': '+e.message;}}
  try{await reviews.load();reviewReady=true;}catch(e){$('reviewError').textContent=e.message;}
  const params=new URLSearchParams(location.search);$('search').value=params.get('search')||'';selectGroup(params.get('tab'));
  const hash=decodeURIComponent(location.hash.slice(1));if(hash){const a=entries.find(a=>a.id===(remakeAliases.get(canonicalId(hash))||canonicalId(hash))&&curation.items[a.id]?.state!=='deleted');if(a){selectGroup(assetGroup(a));open(a);}}

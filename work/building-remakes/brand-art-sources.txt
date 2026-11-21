@@ -1,0 +1,55 @@
+브랜드 원본 이미지 자료 (2026-11-21)
+경로 기준: outputs/domestic-test/building-remakes/brand-art/
+원본 SVG/PNG를 수정하지 않고 보관. SVG XML 파싱, script/foreignObject/외부 href 부재 확인. 모든 파일 렌더를 육안 확인함.
+브랜드 식별과 승인 사진 재현을 위한 자료이며 상표권이 사라지거나 자유 이용 허가를 받았다는 뜻이 아님. 공식 사이트 자산의 별도 재사용 허가는 확인되지 않음.
+
+emart.svg | 278.95642 x 79.470963 (3.510:1)
+source: https://commons.wikimedia.org/wiki/File:Emart_Logo.svg
+original: https://upload.wikimedia.org/wikipedia/commons/5/55/Emart_Logo.svg
+colors: #feb415 #494b57
+주의: 승인 연수점 사진의 주간판은 THE TOWN MALL. 이 파일은 일반 emart 로고라 주간판 대체에 사용하지 않음.
+
+gs25.svg | viewBox 0 0 600 207.432 (2.893:1)
+source: https://commons.wikimedia.org/wiki/File:GS25_bi_(2019).svg
+original: https://upload.wikimedia.org/wikipedia/commons/7/78/GS25_bi_%282019%29.svg
+colors: #006FBA #2ABADA
+2019 파랑 GS, 청록 25 정식 형태 확인.
+
+costco.svg | viewBox 208.5 290.5 201 72 (2.792:1)
+source: https://commons.wikimedia.org/wiki/File:Costco_Wholesale_logo_2010-10-26.svg
+original: https://upload.wikimedia.org/wikipedia/commons/5/59/Costco_Wholesale_logo_2010-10-26.svg
+colors: #E31837 #005DAA
+COSTCO / WHOLESALE 두 줄, 세 가로줄 포함.
+
+seven.svg | viewBox 0 0 272.68729 257.44435 (1.059:1); intrinsic width/height 271.95663/264.24695
+source: https://commons.wikimedia.org/wiki/File:7-eleven_logo.svg
+original: https://upload.wikimedia.org/wikipedia/commons/4/40/7-eleven_logo.svg
+colors: #008061 #F5821F #ED1B2D #ffffff
+초록 직사각 바탕과 흰 방패가 원본에 포함됨. 숫자 7, ELEVEN 합성 심벌.
+
+homeplus.svg | viewBox 0 0 148 56 (2.643:1)
+source: https://mfront.homeplus.co.kr/
+original: https://mfront.homeplus.co.kr/static/images/logos/default_logo.svg
+colors: #df0011
+공식 온라인몰 현행 Homeplus 글자. 원형 심벌 없음. 원본 자체 상하 여백 존재.
+
+starbucks-wordmark.svg | viewBox 0 0 575.23 56.52 (10.177:1)
+source: https://commons.wikimedia.org/wiki/File:Starbucks-wordmark-green.svg
+original: https://upload.wikimedia.org/wikipedia/commons/f/f6/Starbucks-wordmark-green.svg
+colors: #006241
+STARBUCKS만 있음. 승인 사진 STARBUCKS COFFEE와 같다고 보고하지 않음. Commons 페이지 단순 글자 PD-textlogo 안내.
+
+starbucks-siren.png | 75 x 75 (1:1)
+original: https://image.istarbucks.co.kr/common/img/common/logo.png
+한국 스타벅스 공식 사이트 이미지 CDN. 초록 원형 사이렌과 투명 모서리 확인. 저해상도라 확대 시 한계 있음. 별도 재사용 허가 미확인.
+
+police-horizontal.svg | viewBox 0 0 2048 641.2 (3.194:1)
+source: https://commons.wikimedia.org/wiki/File:Korean_National_Police_Agency_Logo_(horizontal).svg
+original: https://upload.wikimedia.org/wikipedia/commons/c/c1/Korean_National_Police_Agency_Logo_%28horizontal%29.svg
+노란 참수리 심벌과 경찰청/KOREAN NATIONAL POLICE AGENCY 글자가 함께 있음. 승인 서대문경찰서 명칭과 다르므로 전체를 기관 간판으로 쓰지 않음. 참수리만 필요한 경우 런타임 UV 등으로 심벌 영역을 선택. Commons는 South Korea-Gov 표기.
+
+미확보: THE TOWN MALL 원본 워드마크, 2019 E MART TRADERS 원본, STARBUCKS COFFEE 완전 워드마크, 승인사진용 2025 emart24 흰색 단색 원본.
+emart24 공식 https://emart24.co.kr/introduction/resource 를 확인했으나 기본 안내는 노랑 e/24와 회색 mart인 구형 컬러. 승인사진 주황 바탕 흰 로고와 동일 자료라고 간주하지 않음.
+Starbucks 뉴스룸 고해상도 JPG는 editorial only 명시로 이 폴더에 저장하지 않음: https://about.starbucks.com/multimedia/
+
+GS25 sign variant: original SVG blue GS paths rendered white to match the approved dark fascia photograph; original svg retained.

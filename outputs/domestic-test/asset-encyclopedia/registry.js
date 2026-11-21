@@ -1,4 +1,4 @@
-import {applyRemakes,remakeAliases} from './remakes.js?v=approvedbuildings1';
+import {applyRemakes,remakeAliases} from './remakes.js?v=identity2';
 import {canonicalId,isDeleted} from './curation.js?v=review527';
 const base=new URL('./',import.meta.url);
 let pending;

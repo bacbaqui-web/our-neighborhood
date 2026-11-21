@@ -1,5 +1,7 @@
+import {addIdentitySign,identityWindowWriter} from './identity.js';
+import {approvedBuildingProfiles} from './profiles.js?v=identity2';
 import {FacadeBatch,emitWindow} from '../korean-facades.js?v=recess22';
-import {emitApprovedStorefrontFace} from './storefronts.js?v=approved-storefronts1';
+import {emitApprovedStorefrontFace} from './storefronts.js?v=identity2';
 
 const REFERENCES={
  gs25:['building-reference-gs25-bucheon-20261121',0xd4d2c9],
@@ -29,15 +31,15 @@ export function createApprovedStorefront(spec,{shell=true,attachment=false}={}){
  if(!profile)return null;
  const W=spec.width,H=spec.height;
  if(!Number.isFinite(W)||!Number.isFinite(H)||W<1.15||H<1.7)throw new RangeError('Approved storefront requires finite width >= 1.15m and height >= 1.7m');
- const batch=new FacadeBatch(),out=batch.writer([-W/2,0,0]),openings=[],panels=[],approvedOpenings=[];
+ const batch=new FacadeBatch(),out=batch.writer([-W/2,0,0]),openings=[],panels=[],approvedOpenings=[],signs=[];
  const bounds=(x,y,w,h)=>[Math.max(0,x-w/2),Math.min(W,x+w/2),Math.max(0,y-h/2),Math.min(H,y+h/2)];
  const window=(x,y,w,h,kind='white-slider',frame=0xc5cbc3)=>{
   if(w<=.15||h<=.15||x-w/2<0||x+w/2>W||y-h/2<0||y+h/2>H)return;
   openings.push([x-w/2,x+w/2,y-h/2,y+h/2]);
-  emitWindow(out.at(x,y,0),kind,w,h,1,frame,null,{sill:false,accessories:false});
+  emitWindow(identityWindowWriter(out.at(x,y,0),approvedBuildingProfiles['facility:'+spec.facilityId].glass),kind,w,h,1,frame,null,{sill:false,accessories:false});
  };
  const surface=(x,y,w,h,color,z=.014)=>panels.push({rect:bounds(x,y,w,h),color,z});
- emitApprovedStorefrontFace({id:'facility:'+spec.facilityId,L:W,H,levels:1,fh:H,front:true,edge:0,ground:0,out,window,surface,box:out.box,entryOpening:opening=>approvedOpenings.push({...opening,x:opening.x-W/2})});
+ emitApprovedStorefrontFace({id:'facility:'+spec.facilityId,L:W,H,levels:1,fh:H,front:true,edge:0,ground:0,out,window,surface,box:out.box,entryOpening:opening=>approvedOpenings.push({...opening,x:opening.x-W/2}),sign:(key,x,y,w,h,z=.3,options={})=>signs.push({key,x:x-W/2,y,z,w,h,options})});
  const paint=(rect,color,z,cuts)=>{
   for(const r of subtract(rect,cuts))if(r[1]-r[0]>.001&&r[3]-r[2]>.001)out.quad((r[0]+r[1])/2,(r[2]+r[3])/2,z,r[1]-r[0],r[3]-r[2],color,false);
  };
@@ -45,8 +47,9 @@ export function createApprovedStorefront(spec,{shell=true,attachment=false}={}){
  for(const p of panels)paint(p.rect,p.color,p.z,openings);
  if(shell)out.box(W/2,H/2,-.24,W,H,.08,profile[1]);
  const root=batch.finish('ApprovedStorefront-'+spec.id);
- root.userData={plantAnchors:[],approvedOpenings,storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:true,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true,approvedReferenceId:profile[0]};
- const glass=new Set([0x79999a,0x899f9a,0x67888c,0xafc4bd]);
+ for(const sign of signs)addIdentitySign(root,sign);
+ root.userData={plantAnchors:[],approvedOpenings,storefrontId:spec.id,category:spec.category,source:spec.source,dimensionsEstimated:true,textFree:false,attachment:{normal:[0,0,1],origin:'frontage center at ground',width:W,height:H},lodCompatible:true,approvedReferenceId:profile[0]};
+ const glass=new Set(approvedBuildingProfiles['facility:'+spec.facilityId].glass);
  root.traverse(o=>{
   if(!o.isMesh)return;
   o.castShadow=true;o.receiveShadow=true;

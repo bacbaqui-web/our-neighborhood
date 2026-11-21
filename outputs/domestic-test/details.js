@@ -1,6 +1,6 @@
 import {WINDOW_RECESS,windowOpening,cutBuildingWindows,auditWindowOpenings} from './window-recess.js?v=recess22';
 import {emitFacadeTexture} from './facade-textures.js?v=masonry19';
-import {emitFacility,addFacilityLabels} from './facilities/models.js?v=approvedbuildings1';
+import {emitFacility,addFacilityLabels} from './facilities/models.js?v=identity2';
 import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=151';
 import * as T from 'three';
 import {addBoundaryRibbon} from './boundary-geometry.js?v=151';

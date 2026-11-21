@@ -1,4 +1,5 @@
-import {emitApprovedBuilding} from '../building-remakes/models.js?v=approvedbuildings1';
+import {addApprovedIdentity} from '../building-remakes/identity.js';
+import {emitApprovedBuilding} from '../building-remakes/models.js?v=identity2';
 import {WINDOW_RECESS,windowOpening} from '../window-recess.js?v=recess22';
 import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitApartment} from '../apartments/models.js';
@@ -82,6 +83,7 @@ export function addSignText(root,spec){
  mesh.position.set(sign.x,sign.y,.29);mesh.name='facility-sign-text';mesh.userData.noPlacementCollision=true;root.add(mesh);
 }
 export function addFacilityLabels(root,buildings){
+ addApprovedIdentity(root,buildings);
  if(typeof document==='undefined')return;
  for(const b of buildings){if(!b.facility||b.facility.id==='apartment'||b.assetChoice||b.approvedRemake)continue;
   const f=facilityById[b.facility.id],i=b.facility.frontEdge??b.frontEdge??0,a=b.points[i],c=b.points[(i+1)%b.points.length],L=Math.hypot(c[0]-a[0],c[1]-a[1]);if(L<3)continue;

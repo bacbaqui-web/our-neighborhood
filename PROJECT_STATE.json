@@ -5440,5 +5440,32 @@
       "screenshot": "verification/vworld/public-scene.png",
       "requiresLocalServer": false
     }
+  },
+  "streetEndContext": {
+    "date": "2026-11-21",
+    "status": "implemented; local generation rendered; final public verification pending",
+    "policy": "real-footprint background beyond detailed visibility radius",
+    "queryRadius": "max(200, detailRadius+150) metres; same paginated building query",
+    "maxBuildings": 256,
+    "maxRays": 872,
+    "extraBuildingQueryPasses": 0,
+    "renderer": "two merged meshes; no windows, props or new textures",
+    "tests": [
+      "Python context 4 tests passed",
+      "renderer footprint/holes/ground overlap passed",
+      "VWorld bounds passed",
+      "browser bundle current",
+      "loading/budget/full-detail/circular-background passed"
+    ],
+    "localScene": "61ce65488f210b03",
+    "localGenerationMilliseconds": 46637,
+    "baselinePublicGenerationMilliseconds": 50534,
+    "timingCaveat": "same address and settings, different run/cache state; not a controlled speedup comparison",
+    "reviewFixes": [
+      "terrain included in horizon",
+      "target rays for narrow facades",
+      "near road widths carried to context",
+      "foreground road overlap samples actual ground"
+    ]
   }
 }

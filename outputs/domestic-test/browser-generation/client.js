@@ -23,7 +23,7 @@ async function placesNear(point){
 }
 export async function generateInBrowser(point,onProgress,{signal}={}){
  point=generationPoint(point);
- const cached=(await listScenes()).find(m=>!point.force&&m.sources?.buildings?.startsWith('VWorld /')&&matchingScene(m,point));
+ const cached=(await listScenes()).find(m=>!point.force&&m.streetEndContext?.version===1&&m.sources?.buildings?.startsWith('VWorld /')&&matchingScene(m,point));
  if(cached)return cached;
  onProgress('주변 가게를 확인하고 있습니다…',0);
  let extra;try{extra=await placesNear(point);}catch(error){extra={places:[],stations:[],exits:[],warnings:['주변 가게 정보를 받지 못해 건물과 도로만으로 배치했습니다.']};onProgress('가게 조회를 건너뛰고 건물과 도로를 만듭니다…',1);}

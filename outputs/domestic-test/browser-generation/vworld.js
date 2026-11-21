@@ -2,7 +2,7 @@ export const BUILDING_SOURCE='VWorld / 도로명주소 건물 (LT_C_SPBD)';
 export function buildingBounds({center,radius}){
  const [lat,lon]=center||[];
  if(![lat,lon,radius].every(Number.isFinite)||lat<=33||lat>=39.5||lon<=124||lon>=132||radius<50||radius>300||radius%50)throw Error('국내 위치와 50~300m 범위를 선택해 주세요.');
- const a=lat*Math.PI/180,sx=111412.84*Math.cos(a)-93.5*Math.cos(3*a)+.118*Math.cos(5*a),sy=111132.92-559.82*Math.cos(2*a)+1.175*Math.cos(4*a)-.0023*Math.cos(6*a),r=radius+30;
+ const a=lat*Math.PI/180,sx=111412.84*Math.cos(a)-93.5*Math.cos(3*a)+.118*Math.cos(5*a),sy=111132.92-559.82*Math.cos(2*a)+1.175*Math.cos(4*a)-.0023*Math.cos(6*a),r=Math.max(200,radius+150);
  return [lon-r/sx,lat-r/sy,lon+r/sx,lat+r/sy];
 }
 export function readBuildingPage(payload){

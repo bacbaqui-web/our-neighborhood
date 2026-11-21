@@ -14,3 +14,6 @@ assert.equal(calls,2);assert.equal(all.features.length,2);assert.equal(all.sourc
 await assert.rejects(collectBuildings(n=>n===1?page([feature(1)],2):{response:{status:'NOT_FOUND'}}),/일부/);
 const controller=new AbortController();controller.abort();await assert.rejects(collectBuildings(()=>{throw Error('should not request');},{signal:controller.signal}),{name:'AbortError'});
 console.log('VWorld browser: bounds, geometry, floors, pagination, deduplication, errors and cancellation passed.');
+
+const narrow=buildingBounds({center:[37.62,127.02],radius:50}),wide=buildingBounds({center:[37.62,127.02],radius:300});
+assert(Math.abs((wide[2]-wide[0])/(narrow[2]-narrow[0])-450/200)<1e-8,'context request stays bounded independently of detailed radius');

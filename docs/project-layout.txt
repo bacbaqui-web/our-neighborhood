@@ -295,3 +295,5 @@ docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
 2026-11-21 브이월드 건물 조회(로컬): work/vworld_buildings.py → work/serve-neighborhood.py /api/buildings → 브라우저 생성기. 키는 .local-settings.json에만 보관. 공개 반영 전 동일 출처 건물 조회 경로를 준비해야 하며, 현재 공개 사이트에는 미반영.
 
 2026-11-21 브이월드 공개 적용 완료: 소스8511849, 호스팅e4ba75c, 배포44852639377 성공. 브라우저에서 직접 조회하므로 이 Mac의 서버 불필요. Edge 공개 지도에서 솔매로17가길7·50m를 새로 생성해 건물9동과 도로 화면 확인. 공개용 키는 빌드 설정 VWORLD_WEB_KEY로 주입하며 설정 원본은 비공개. docs/vworld-building-source.txt 참조.
+
+2026-11-21 길 끝 원경: work/street_end_context.py가 단일 지도 조회 자료에서 보이는 먼 건물을 고릅니다. street-end-context.js가 실제 윤곽의 벽·지붕과 이어지는 도로를 두 메시로 표시합니다. 상세 생성 범위 유지, 창문·소품 없음. 최종 공개 확인은 PROJECT_STATE.json 참조.

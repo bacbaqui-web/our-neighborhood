@@ -1,3 +1,4 @@
+import {createStreetEndContext} from './street-end-context.js';
 import {gentleMeshHeight} from './gentle-terrain30.js';
 import * as T from 'three';
 import {facadeStyles} from './korean-facades.js?v=151';
@@ -85,8 +86,10 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
   if(vertices.length){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.computeVertexNormals();const m=landMaterial(false,true);m.fragmentShader=m.fragmentShader.replace(/float roadBlend=.*?;c=mix/, 'float roadBlend=1.;c=mix');const mesh=new T.Mesh(g,m);mesh.name='SimpleContextRoads';root.add(mesh);}
   stats.contextRoadSegments=options.contextBuildings===false?0:(data.roads||[]).length;stats.contextRoadTriangles=vertices.length/9;
  }
- function bridgeGround(nearRoot){nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;if(o.name!=='ground')return;o.material=landMaterial(false,false);o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
+ let streetEnd=null,nearSurface=null;
+ function bridgeGround(nearRoot){if(data.streetEndContext){streetEnd?.dispose();streetEnd=createStreetEndContext(data.streetEndContext,detailedOwners,(x,z)=>nearSurface?nearSurface(x,z,heightAt(x,z)):heightAt(x,z));nearRoot.add(streetEnd.group);stats.streetEnd=streetEnd.stats;stats.contextBuildings=entries.length+streetEnd.stats.buildings;stats.contextRadius=data.streetEndContext.radius;stats.source=data.streetEndContext.source;}nearRoot.traverse(o=>{if(!o.isMesh||!['ground','road','path'].includes(o.name))return;if(o.name!=='ground')return;o.material=landMaterial(false,false);o.userData.environmentOwned=true;o.userData.noInk=true;o.userData.groundSurface=o.name;});const receivers=[];nearRoot.traverse(o=>{if(o.isMesh&&o.name==='ground'){const shadow=new T.Mesh(o.geometry,new T.ShadowMaterial({color:0x1c2930,opacity:.24,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));shadow.name='GroundShadowReceiver';shadow.matrix.copy(o.matrix);shadow.matrixAutoUpdate=false;shadow.receiveShadow=true;shadow.userData.environmentOwned=true;receivers.push([o.parent,shadow]);}});for(const [parent,shadow]of receivers)parent.add(shadow);}
  function fitGround(sample){
+  nearSurface=sample;
   const p=geo.attributes.position,changes=new Map();
   // Match the inner terrain to the actual road/ground surface and ease out the correction.
   for(let j=0;j<N;j++){
@@ -114,6 +117,6 @@ export function createAtmosphere(data,solarContext,detailRadius=150,detailedOwne
   terrainUniforms.nearColor.value.set(profile.terrain);terrainUniforms.hazeColor.value.set(profile.haze);return profile;
  }
  function render(renderer,mainCamera){camera.copy(mainCamera,false);camera.near=1;camera.far=60000;camera.updateProjectionMatrix();camera.updateMatrixWorld();sky.position.copy(mainCamera.position);root.visible=enabled;const auto=renderer.autoClear;renderer.autoClear=true;renderer.render(scene,camera);stats.calls=renderer.info.render.calls;stats.triangles=renderer.info.render.triangles;renderer.clearDepth();renderer.autoClear=false;return auto;}
- function dispose(){scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});}
+ function dispose(){streetEnd?.dispose();scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});}
  return{set,render,dispose,fitGround,heightAt,bridgeGround,setEnabled:value=>{enabled=value;},data,scene,stats};
 }

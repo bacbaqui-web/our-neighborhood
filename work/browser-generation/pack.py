@@ -6,7 +6,7 @@ files={}
 for p in (ROOT/'outputs/domestic-test/generation').glob('*.py'):
  text=p.read_text().replace('with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:terrain=dict(pool.map(load,tiles))','terrain=dict(map(load,tiles))')
  files['/'+str(p.relative_to(ROOT))]=text
-for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','gentle_terrain.py','view_generation.py','road_priority.py','site_layout.py']:
+for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','gentle_terrain.py','view_generation.py','street_end_context.py','road_priority.py','site_layout.py']:
  text=(ROOT/'work'/name).read_text()
  if name=='neighborhood_sources.py':
   start=text.index('LOCAL_SETTINGS=');end=text.index('def request(')

@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><base href="http://127.0.0.1:8765/domestic-test/"><title>1차도로 소품·전선 비교</title><style>body{margin:0;background:#e5e9e1}canvas{display:block}#note{position:absolute;top:12px;left:12px;font:16px sans-serif;background:#fff9;padding:12px}</style><div id="note">새 소품 8종 · 오른쪽 기존 바리케이드와 크기·표현 비교</div><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script><script type="module">
+import * as T from 'three';import {OrbitControls} from './vendor/OrbitControls.js';import {grade1Factories} from './grade1-street/models.js';import {createBarrier} from './prop-remakes/barrier.js';import {remainingFactories} from './prop-remakes/remaining.js';import {createIllustrationRenderer} from './illustration-renderer.js';import {createOutlinedWires,saggingCable} from './grade1-street/wires.js';
+const scene=new T.Scene();scene.background=new T.Color('#e5e9e1');const renderer=new T.WebGLRenderer({antialias:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(devicePixelRatio);document.body.append(renderer.domElement);const camera=new T.PerspectiveCamera(40,innerWidth/innerHeight,.1,150);camera.position.set(4.4,6.2,12);const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,2.2,0);controls.update();scene.add(new T.HemisphereLight('#eef7ff','#7b8164',2));const sun=new T.DirectionalLight('#fff6e2',2.5);sun.position.set(3,8,4);scene.add(sun);
+const floor=new T.Mesh(new T.BoxGeometry(14,.1,5),new T.MeshStandardMaterial({color:'#b8b7a5'}));floor.position.y=-.06;scene.add(floor);
+const keys=Object.keys(grade1Factories);for(let i=0;i<keys.length;i++){const key=keys[i],m=grade1Factories[key]();const wall=m.userData.support==='wall',lift=i<4?2.5:0;m.position.set(-4+(i%4)*1.8,(wall?1.2:0)+lift,-1.6+Math.floor(i/4)*2.1);scene.add(m);if(wall){const panel=new T.Mesh(new T.BoxGeometry(1.5,2.3,.1),new T.MeshStandardMaterial({color:'#bcae91'}));panel.position.set(m.position.x,1.15+lift,m.position.z-.06);scene.add(panel);}}
+const barrier=createBarrier();barrier.position.set(4.3,0,.5);scene.add(barrier);const basin=remainingFactories.basins?.();if(basin){basin.position.set(4.3,0,-1);scene.add(basin);}
+const wires=createOutlinedWires([{points:saggingCable([-6,3,-1],[6,3.5,-1],.4),radius:.012},{points:saggingCable([-6,3.3,-1],[6,3.8,-1],.4),radius:.021}]);scene.add(wires);
+const ink=createIllustrationRenderer(renderer),settings={lines:true,outerWidth:1,innerWidth:.4,outerBrightness:35,outerSaturation:100,innerBrightness:55,innerSaturation:100,minDistance:0,acrossObjects:true,outerFace:true,innerFace:true,antialias:'msaa'};
+function draw(){ink.render(scene,camera,()=>renderer.render(scene,camera),settings);}controls.addEventListener('change',draw);window.qa={scene,camera,controls,renderer,draw,settings};
+if(new URLSearchParams(location.search).has('lights')){
+ for(const child of [...scene.children])if(!child.isLight&&child!==floor)scene.remove(child);
+ const {createUtilityNetwork}=await import('./utility-network.js');const {createStreetlights}=await import('./streetlights.js');
+ const plan={poles:[-5,18].map((x,id)=>({id,x,z:0,nx:0,nz:-1,ux:1,uz:0,poleHeight:7.5,radius:.14,kind:'alley',lamp:true})),spans:[{a:0,b:1,length:23}],drops:[],qa:{}};
+ scene.add(createUtilityNetwork(plan,()=>0));const lamps=createStreetlights({lights:[]},()=>0,()=>true,renderer,[],()=>0,plan);scene.add(lamps.group);window.qa.lamps=lamps;
+ const blocker=new T.Mesh(new T.BoxGeometry(2,8,2),new T.MeshStandardMaterial({color:'#b7b4a2'}));blocker.position.set(7,4,1);scene.add(blocker);
+ camera.position.set(-10,2.6,9);controls.target.set(-1,4,0);controls.update();
+ window.qa.night=()=>{scene.background.set('#182739');scene.children.filter(o=>o.isLight).forEach(o=>o.intensity=.12);scene.traverse(o=>o.userData.setWireLighting?.(1));lamps.set(1);lamps.update(camera);draw();};
+ window.qa.exportMeshes=lamps.exportGroup().children.length;
+ document.querySelector('#note').textContent='전주 보안등 · 전선 가림 검사';
+}
+draw();
+</script>

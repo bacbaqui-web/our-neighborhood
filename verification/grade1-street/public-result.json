@@ -1,0 +1,58 @@
+{
+  "run": 44928638389,
+  "source": "293eb67",
+  "url": "https://magamiscom.ing/neighborhood/",
+  "files": {
+    "grade1-street/placement.js": {
+      "matches": true,
+      "sha256": "a7e7afe44548f2095d12c53ed89ea762e9ea18505c82bb5da235cf8358823f5e"
+    },
+    "grade1-street/models.js": {
+      "matches": true,
+      "sha256": "c7a4950c632c8f846de60681093e89e63cc8f5026c5b435909bb3893f67b7e3f"
+    },
+    "grade1-street/wires.js": {
+      "matches": true,
+      "sha256": "191f5d41b62240e4b9d52e04ee6a3e92f8c061d2c73c884e2136a8ba14fba803"
+    },
+    "contact-shadows.js": {
+      "matches": true,
+      "sha256": "18099080b4c6877e3ae16a79613793ac05fbd7a45a3958aaa8bbfb97878552c4"
+    },
+    "streetlights.js": {
+      "matches": true,
+      "sha256": "05fee660416daeb7be3345cc0d31cec85b9e27c6443f21684c26fcef5d6b3971"
+    }
+  },
+  "glbsVerified": [
+    "gas-meter-bank",
+    "wall-ac",
+    "drain-elbow",
+    "service-box",
+    "stacked-crates",
+    "cable-junction",
+    "security-lamp",
+    "storm-grate"
+  ],
+  "visualChecks": [
+    "public day pole and wires",
+    "public night illuminated diffuser and road light",
+    "local paved courtyard crate and grate contact",
+    "local opaque occluder hides wires",
+    "same scene comparison against existing barrier"
+  ],
+  "publicPlacements": 6,
+  "rejectedForClearance": 18,
+  "screenshots": [
+    "public-day.jpg",
+    "public-night.jpg",
+    "local-ground-contact.jpg",
+    "props-comparison.jpg"
+  ],
+  "remainingLimitations": [
+    "Saved older layouts require regeneration for new pole spacing",
+    "FPS improvement not measured",
+    "Current KEPCO internal design standard not directly verified"
+  ],
+  "camera": "Public review left at walkAt=-39,-4,0.801,0.28, hour 12"
+}

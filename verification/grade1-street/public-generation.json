@@ -1,0 +1,115 @@
+{
+  "grade1": [
+    {
+      "grade": 1,
+      "height": 7.5,
+      "lamp": true,
+      "nx": 0.2186322490799949,
+      "nz": -0.9758073271205864,
+      "point": [
+        -45.39378044843105,
+        -10.18586090605185
+      ],
+      "ux": 0.9758073271205864,
+      "uz": 0.2186322490799949
+    },
+    {
+      "grade": 1,
+      "height": 7.5,
+      "lamp": false,
+      "nx": 0.5955120530212618,
+      "nz": -0.803346372809638,
+      "point": [
+        -16.990807324299254,
+        2.978950065905555
+      ],
+      "ux": 0.803346372809638,
+      "uz": 0.5955120530212618
+    },
+    {
+      "grade": 1,
+      "height": 7.5,
+      "lamp": true,
+      "nx": 0.7527083632613273,
+      "nz": -0.6583540991567182,
+      "point": [
+        1.667754803761398,
+        19.23396645836026
+      ],
+      "ux": 0.6583540991567182,
+      "uz": 0.7527083632613273
+    }
+  ],
+  "id": "d88519e7828f02ab",
+  "links": [
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "message": "계산이 끝나 수정 결과를 저장하고 있습니다…",
+  "ms": 204413,
+  "percent": 99,
+  "poles": {
+    "barredGates": 1,
+    "bayOverlap": -2.8421709430404014e-14,
+    "booths": 0,
+    "canopyOverhangTrees": 7,
+    "drains": 2,
+    "entries": 2,
+    "frontageUnresolved": [],
+    "grade1Poles": 3,
+    "grade1Spans": 2,
+    "independentSites": 4,
+    "independentTypes": {
+      "construction": 1,
+      "garden": 1,
+      "parking": 1,
+      "wild": 1
+    },
+    "layoutsCompared": 14,
+    "modernPiloti": 0,
+    "newAccessPaths": 1,
+    "occupiedBays": 7,
+    "parkingBays": 13,
+    "parkingBuildingOverlap": 0,
+    "parkingRoadOverlap": 0,
+    "plantBuildingOverlap": 0,
+    "plantRoadOverlap": "canopy overhang allowed; trunks checked",
+    "plants": 1991,
+    "plotSiteOverlap": 3.4238837542943656e-8,
+    "poleBuildingOverlap": 0,
+    "poleRoadOverlap": 0,
+    "poles": 8,
+    "simplifiedFootprints": 0,
+    "trunkRoadOverlap": 0,
+    "types": {
+      "construction": 1,
+      "garden": 1,
+      "green": 1,
+      "parking": 1,
+      "wild": 1
+    },
+    "wallRoadOverlap": 0,
+    "walls": 39,
+    "wireSpans": 5
+  },
+  "started": 1795280937065,
+  "state": "done"
+}

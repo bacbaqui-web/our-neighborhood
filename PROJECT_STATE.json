@@ -6088,5 +6088,57 @@
     ],
     "cleanBuildBytes": 946472805,
     "cleanBuildBaseline": "033384107a6d18f6a709e25eaac80831acc829e2"
+  },
+  "grade1Street20261122": {
+    "status": "implemented-tested-deployed-public-verified",
+    "sourceCommits": [
+      "4915f18",
+      "7cb9e3f",
+      "1b74a80"
+    ],
+    "models": 8,
+    "catalog": "outputs/domestic-test/grade1-street/catalog.js",
+    "report": "docs/grade1-street.txt",
+    "research": "work/grade1-street/pole-research.txt",
+    "poleTargetMetres": 32,
+    "statutoryInterval": false,
+    "localScene": "61ce65488f210b03",
+    "localGenerationMs": 84641,
+    "newPoleSpansMetres": [
+      31.31,
+      24.75
+    ],
+    "checks": [
+      "8 GLB roundtrips, sizes and contacts",
+      "access, parking, grade and view occlusion",
+      "wire sag, outline toggle and custom shader batching",
+      "4 pole geometry and graph tests",
+      "11 alley housing regression tests",
+      "required browser-generation/loading/scene budget checks",
+      "local actual street and day/night lamp render"
+    ],
+    "deploymentPendingReason": "release size optimization from shop task; waiting shared hosting run44927761625",
+    "proof": "verification/grade1-street",
+    "deployment": {
+      "run": 44928638389,
+      "source": "293eb67",
+      "status": "success"
+    },
+    "publicGenerationMs": 204413,
+    "publicScene": "d88519e7828f02ab",
+    "publicFileMatches": 5,
+    "publicGlbMatches": 8,
+    "publicPlacements": 6,
+    "publicClearanceRejected": 18,
+    "evidence": "verification/grade1-street/public-result.json",
+    "publicScreenshots": [
+      "verification/grade1-street/public-day.jpg",
+      "verification/grade1-street/public-night.jpg"
+    ],
+    "remainingLimitations": [
+      "Saved older layouts require regeneration for new pole spacing",
+      "FPS improvement not measured",
+      "Current KEPCO internal design standard not directly verified"
+    ]
   }
 }

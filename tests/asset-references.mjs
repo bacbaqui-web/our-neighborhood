@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {referenceRecord,changeReference,validateRecord,canModel} from '../outputs/domestic-test/asset-encyclopedia/reference-store.js';
+const seed={id:'one',imageUrl:'https://example.com/image.jpg',sourceUrl:'https://example.com',sourceName:'국내 자료',koreaEvidence:'한국 설치 사진'};
+let r=referenceRecord('road:a46',seed);
+assert(!canModel(r));r=changeReference(r,'approve');assert(canModel(r));
+r=changeReference(r,'replace');assert(!canModel(r));assert.equal(r.status,'replace-requested');
+r=changeReference(r,'image',{...seed,id:'two'});assert.equal(r.status,'pending');assert(!canModel(r));
+assert.throws(()=>validateRecord({...r,reference:{...seed,imageUrl:'javascript:alert(1)'}}));
+assert.throws(()=>validateRecord({...r,reference:{...seed,imageUrl:'data:image/svg+xml;base64,YQ=='}}));
+assert.throws(()=>validateRecord({...r,status:'approved',approvedReferenceId:'old'}));
+assert.throws(()=>changeReference(r,'approve',null,false));
+assert.equal(referenceRecord('road:a46',{...seed,id:'new'},changeReference(r,'approve')).status,'pending');
+const custom=changeReference(r,'image',{...seed,id:'paste-one',imageUrl:'data:image/png;base64,YQ==',userProvided:true});
+assert.equal(referenceRecord('road:a46',{...seed,id:'new'},custom).reference.id,'paste-one');
+console.log('Reference approval is bound to the exact image; replacements, invalid input and failed-image approval checked.');
+import fs from 'node:fs';
+import {createRegistry} from '../outputs/domestic-test/asset-encyclopedia/registry.js';
+import {assetGroup} from '../outputs/domestic-test/asset-encyclopedia/groups.js';
+const base=new URL('../outputs/domestic-test/asset-encyclopedia/',import.meta.url);
+const registry=createRegistry(JSON.parse(fs.readFileSync(new URL('catalog.json',base))));
+const manifest=JSON.parse(fs.readFileSync(new URL('road-references.json',base)));
+assert.equal(Object.keys(manifest.items).length,10);
+for(const [id,seed] of Object.entries(manifest.items)){assert.equal(assetGroup(registry.resolve(id)),'road');assert.equal(referenceRecord(id,seed).status,'pending');}
+assert.throws(()=>validateRecord({...r,revision:-1}));
+console.log('All 10 candidates belong to active road assets and start unapproved.');

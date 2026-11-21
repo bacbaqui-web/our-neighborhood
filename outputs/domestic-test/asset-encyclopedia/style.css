@@ -10,3 +10,22 @@ header{padding-top:24px;padding-bottom:24px}header h1{margin:0}#filters{margin-b
 .person-preview{display:block;width:100%;height:100%;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.person-preview.dragging{cursor:grabbing}.person-preview:focus-visible{outline:3px solid #d59038;outline-offset:-3px}#personRotate{margin-block:.75rem}
 
 #detail{width:min(1320px,calc(100vw - 28px))}#viewerArea{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px;align-items:start}#viewerArea #stage{height:620px;position:sticky;top:0}#lineOptions{position:relative;background:#f7f9fa;border:1px solid #d5e1e6;border-radius:14px;padding:18px;color:#233e4a;font-size:15px}#lineOptions summary{font-weight:600;cursor:pointer;margin-bottom:24px}#lineOptions h3{font-size:18px;margin:26px 0 18px}#lineOptions h3:not(:first-of-type){border-top:1px solid #d5e1e6;padding-top:24px}.line-check{display:flex;align-items:center;gap:10px;margin:16px 0}.line-check input{width:20px;height:20px;min-height:0;accent-color:#00878b}.line-row{display:grid;grid-template-columns:100px minmax(0,1fr) 86px;align-items:center;gap:10px;margin:16px 0}.line-row input[type=range]{width:100%;min-width:0;min-height:36px;margin:0;padding:0;accent-color:#00878b}.line-number{display:flex;align-items:center;border:1px solid #d5e1e6;border-radius:12px;background:#fff;padding:4px 8px;gap:4px}.line-number input{min-width:0;width:100%;border:0;padding:6px 0;text-align:right;appearance:textfield;background:transparent}.line-number input::-webkit-inner-spin-button{appearance:none}.line-number span{font-size:12px;color:#68808e}.line-reset{position:absolute;top:61px;right:18px;font-size:24px;padding:0 7px;border:0;color:#00878b;background:transparent}#lineOptions .hint{line-height:1.6;color:#758a98}#viewerArea.image-only{display:block}@media(max-width:950px){#viewerArea{grid-template-columns:1fr}#viewerArea #stage{height:420px;position:static}#lineOptions{max-width:430px;width:100%;box-sizing:border-box}}
+
+/* Reference approval belongs to the asset, separate from model discard/remake. */
+.reference-intro{margin-block:1.5rem;padding-block:1rem;border-block:1px solid #b8cac4}
+.reference-intro h2{margin:0;font-size:1.3rem}.reference-intro p{margin-block:.5rem;max-width:75ch}
+.reference-summary{font-weight:700}.grid.road-references{grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))}
+.road-references .card-open{display:grid;grid-template-columns:6rem 1fr;align-items:center;text-align:left;width:100%}
+.road-references .thumb{height:5rem;aspect-ratio:auto}.road-references .thumb img{height:100%;object-fit:contain}.road-references .card-info{padding:.75rem}
+.reference-review{padding:1rem;border-top:1px solid #d7e0d9;display:flex;flex-direction:column;gap:.6rem}
+.reference-review h3,.reference-review p{margin:0}.reference-review h3{font-size:1rem}
+.reference-image-link{display:flex;align-items:center;justify-content:center;background:white;min-height:16rem}
+.reference-image-link img{width:100%;height:20rem;object-fit:contain}.reference-status{font-weight:700}
+.reference-evidence{font-size:.875rem}.reference-review a{color:#216558;overflow-wrap:anywhere}
+.reference-approve{display:flex;align-items:center;gap:.6rem;min-height:3rem}.reference-approve input{min-height:1.3rem;width:1.3rem;margin:0;accent-color:#216558}
+.reference-approve label{font-size:1rem;cursor:pointer}.reference-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.reference-actions button,.reference-intro button{min-height:3rem;font-size:1rem}.reference-review input[type=file]{max-width:100%;font-size:1rem}
+.reference-error{color:#a12d20;font-size:.875rem}.reference-review[data-reference-status=approved] .reference-status{color:#216558}
+.reference-review :focus-visible,.reference-intro :focus-visible{outline:3px solid #216558;outline-offset:3px}
+
+.reference-lightbox{max-width:95vw;max-height:95dvh;padding:1rem}.reference-lightbox img{display:block;max-width:100%;height:auto;margin-top:.75rem}.reference-lightbox button{position:sticky;top:0;min-height:3rem}

@@ -1,3 +1,4 @@
+import {createReferenceReview} from './reference-review.js?v=references1';
 import {remakeAliases} from './remakes.js?v=authority1';
 import {loadAssetRegistry} from './registry.js?v=review527';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
@@ -56,7 +57,8 @@ function observeThumbnails(rows,v){
  },{rootMargin:'400px'});
  for(const [,host] of rows)thumbObserver.observe(host);
 }
-function render(){const list=selected();++version;thumbObserver?.disconnect();thumbQueue=[];$('grid').replaceChildren();const rows=[];for(const a of list){const card=document.createElement('article');card.className='card';card.dataset.asset=a.id;card.dataset.reviewStatus=reviewStatus(a);const openButton=document.createElement('button');openButton.className='card-open';openButton.setAttribute('aria-label',a.name+' · '+a.collection+' 보기');const thumb=document.createElement('div');thumb.className='thumb';thumb.textContent='미리보기 준비 중';const info=document.createElement('div');info.className='card-info';const badge=document.createElement('span');badge.className='badge';badge.textContent=a.collection;const name=document.createElement('strong');name.textContent=a.name;const cat=document.createElement('small');cat.textContent=a.kind==='tree'?treeProfileText(a.key):a.category;info.append(badge,name,cat);openButton.append(thumb,info);openButton.onclick=()=>open(a);card.append(openButton,reviewButtons(a));$('grid').append(card);rows.push([a,thumb]);}observeThumbnails(rows,version);$('status').textContent=`${list.length.toLocaleString()}개`;$('empty').hidden=list.length>0;const params=new URLSearchParams();if($('search').value)params.set('search',$('search').value);params.set('tab',currentGroup);history.replaceState(null,'','?'+params.toString()+location.hash);}
+let referenceReview;
+function render(){const list=selected();++version;thumbObserver?.disconnect();thumbQueue=[];$('grid').replaceChildren();const rows=[];for(const a of list){const card=document.createElement('article');card.className='card';card.dataset.asset=a.id;card.dataset.reviewStatus=reviewStatus(a);const openButton=document.createElement('button');openButton.className='card-open';openButton.setAttribute('aria-label',a.name+' · '+a.collection+' 보기');const thumb=document.createElement('div');thumb.className='thumb';thumb.textContent='미리보기 준비 중';const info=document.createElement('div');info.className='card-info';const badge=document.createElement('span');badge.className='badge';badge.textContent=a.collection;const name=document.createElement('strong');name.textContent=a.name;const cat=document.createElement('small');cat.textContent=a.kind==='tree'?treeProfileText(a.key):a.category;info.append(badge,name,cat);openButton.append(thumb,info);openButton.onclick=()=>open(a);card.append(openButton,reviewButtons(a));if(currentGroup==='road'&&referenceReview){const ref=referenceReview.card(a);if(ref)card.append(ref);}$('grid').append(card);rows.push([a,thumb]);}observeThumbnails(rows,version);$('status').textContent=`${list.length.toLocaleString()}개`;$('empty').hidden=list.length>0;const params=new URLSearchParams();if($('search').value)params.set('search',$('search').value);params.set('tab',currentGroup);history.replaceState(null,'','?'+params.toString()+location.hash);}
 async function open(a,keepOptions=false){
  $('personOptions').hidden=!a.seasons;$('personActionOptions').hidden=!a.seasons;
  if(!keepOptions){personViewState={angle:0,pitch:0,zoom:1};document.querySelector('[name=personSeason][value=spring]').checked=true;$('personPitch').value='0';document.querySelector('[name=personAction][value=walk]').checked=true;}
@@ -71,7 +73,7 @@ const tabs=[...document.querySelectorAll('[role="tab"]')];
 function selectGroup(group){
  $('treeUseFilter').hidden=group!=='tree';currentGroup=Object.hasOwn(GROUPS,group)?group:'building';
  for(const tab of tabs){const selected=tab.dataset.group===currentGroup;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;}
- $('panel').setAttribute('aria-labelledby','tab-'+currentGroup);render();
+ $('referenceIntro').hidden=currentGroup!=='road';$('grid').classList.toggle('road-references',currentGroup==='road');$('panel').setAttribute('aria-labelledby','tab-'+currentGroup);render();
 }
 for(const tab of tabs){
  tab.onclick=()=>selectGroup(tab.dataset.group);
@@ -79,6 +81,7 @@ for(const tab of tabs){
 }
 try{
  entries=(await loadAssetRegistry()).entries;
+ try{referenceReview=await createReferenceReview();$('referenceIntro').append(referenceReview.intro);}catch(e){$('referenceIntro').textContent=e.message;}
  try{await reviews.load();reviewReady=true;}catch(e){$('reviewError').textContent=e.message;}
  const params=new URLSearchParams(location.search);$('search').value=params.get('search')||'';selectGroup(params.get('tab'));
  const hash=decodeURIComponent(location.hash.slice(1));if(hash){const a=entries.find(a=>a.id===(remakeAliases.get(canonicalId(hash))||canonicalId(hash))&&curation.items[a.id]?.state!=='deleted');if(a){selectGroup(assetGroup(a));open(a);}}

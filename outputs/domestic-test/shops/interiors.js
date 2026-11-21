@@ -1,20 +1,22 @@
-import {prepareComicShopArtwork} from './comic-artwork.js?v=comicbatch1';
-import {prepareReferenceExteriors} from './reference-exteriors.js?v=comicbatch1';
+import {addInteriorFurniture} from './interior-furniture.js?v=shop50v1';
+import {prepareComicShopArtwork} from './comic-artwork.js?v=shop50v1';
+import {prepareReferenceExteriors} from './reference-exteriors.js?v=shop50v1';
 import * as T from 'three';
 
-export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe'];
+export const shopInteriorCategories=['convenience','salon','laundry','estate','food','cafe','alley'];
 const atlas=new T.Texture();atlas.colorSpace=T.SRGBColorSpace;atlas.name='ShopFurniture-v2';
 // One atlas belongs to the module, not to any individual shop's lifetime.
 atlas.userData.sharedShopInterior=true;
+const tradeAtlas=new T.Texture();tradeAtlas.colorSpace=T.SRGBColorSpace;tradeAtlas.name='ShopTradeSurfaces';tradeAtlas.userData.sharedShopInterior=true;
 let ready;
 export async function prepareShopInteriors(){
  await Promise.all([prepareReferenceExteriors(),prepareComicShopArtwork()]);
  if(typeof document==='undefined')return Promise.resolve();
- return ready??=new Promise((resolve,reject)=>{
-  const image=new Image();image.onload=()=>{atlas.image=image;atlas.needsUpdate=true;resolve();};
-  image.onerror=()=>{ready=null;reject(Error('가게 내부 텍스처를 불러오지 못했습니다. 새로고침해 주세요.'));};
-  image.src=new URL('./textures/furniture-v2.png',import.meta.url).href;
- });
+ return ready??=Promise.all([[atlas,'furniture-v2.png'],[tradeAtlas,'comic-interior/trade-surfaces.png']].map(([texture,file])=>new Promise((resolve,reject)=>{
+  const image=new Image();image.onload=()=>{texture.image=image;texture.needsUpdate=true;resolve();};
+  image.onerror=()=>reject(Error('가게 내부 텍스처를 불러오지 못했습니다: '+file));
+  image.src=new URL('./textures/'+file,import.meta.url).href;
+ }))).catch(e=>{ready=null;throw e;});
 }
 // Real rooms extend along local -Z, behind the facade. Each furnishing is
 // only a cuboid (chairs use seat/back cuboids), with detail painted on its face.
@@ -30,39 +32,30 @@ export function addShopInteriors(root,spec){
  for(const side of [-1,1])shell('InteriorSideWall',side*W/2,bottom+H/2,-depth/2,.08,H,depth);
  shell('InteriorFloor',0,bottom-.035,-depth/2,W,.07,depth);
  shell('InteriorCeiling',0,top+.035,-depth/2,W,.07,depth);
- const positions=[],normals=[],uvs=[],colors=[],unit=new T.BoxGeometry(1,1,1).toNonIndexed();let boxes=0;
- const box=(name,x,y,z,w,h,d,tile)=>{
+ const buffers=[{positions:[],normals:[],uvs:[],colors:[]},{positions:[],normals:[],uvs:[],colors:[]}],unit=new T.BoxGeometry(1,1,1).toNonIndexed();let boxes=0;
+ const box=(name,x,y,z,w,h,d,tile,paint)=>{
   // Dimension units are normalized to the shop width/depth; furniture stays inside.
   x*=W;w*=W;z*=depth;d*=depth;y+=bottom;
-  const p=unit.attributes.position,n=unit.attributes.normal,uv=unit.attributes.uv,c=tile%4,r=Math.floor(tile/4),pad=.003;
+  const trade=tile>=12,index=trade?tile-12:tile,rows=trade?4:3,{positions,normals,uvs,colors}=buffers[trade?1:0];
+  const p=unit.attributes.position,n=unit.attributes.normal,uv=unit.attributes.uv,c=index%4,r=Math.floor(index/4),pad=.008;
   for(let i=0;i<p.count;i++){
    positions.push(x+p.getX(i)*w,y+p.getY(i)*h,z+p.getZ(i)*d);normals.push(n.getX(i),n.getY(i),n.getZ(i));
    const front=n.getZ(i)>.5,u=front?uv.getX(i):.98,v=front?uv.getY(i):.02;
-   uvs.push((c+pad+u*(1-2*pad))/4,1-(r+1)/3+(pad+v*(1-2*pad))/3);
-   const tint=n.getY(i)>.5?.95:n.getX(i)!==0?.65:1;colors.push(tint,tint,tint);
+   uvs.push((c+pad+u*(1-2*pad))/4,1-(r+1)/rows+(pad+v*(1-2*pad))/rows);
+   const tint=n.getY(i)>.5?.95:n.getX(i)!==0?.65:1;const col=new T.Color(paint??0xffffff);colors.push(tint*col.r,tint*col.g,tint*col.b);
   }
   room.userData.furniture??=[];room.userData.furniture.push({name,center:[x,y,z],size:[w,h,d],tile});boxes++;
  };
- const chair=(x,z)=>{box('chair-base',x,.23,z,.08,.46,.11,5);box('chair-back',x,.78,z-.045,.08,.64,.035,5);};
- const counter=(tile=3)=>box('counter',-.23,.52,-.74,.4,1.04,.2,tile);
- if(spec.category==='convenience'){
-  box('refrigerator',.28,1.03,-.88,.34,2.06,.16,1);box('back-stock-shelf',-.25,1.02,-.88,.42,2.04,.16,0);
-  box('aisle-stock-shelf',-.20,.7,-.42,.35,1.4,.18,0);box('checkout',.3,.52,-.27,.23,1.04,.18,2);
- }else if(spec.category==='salon'){
-  for(const x of [-.25,.25]){box('wall-mirror',x,1.45,-.95,.25,1.1,.025,4);box('vanity',x,.52,-.8,.28,1.04,.16,3);chair(x,-.5);}
- }else if(spec.category==='laundry'){
-  box('garment-rack',-.18,1.1,-.87,.57,2.2,.2,6);box('folded-linen-cabinet',.3,.95,-.87,.25,1.9,.2,7);box('service-counter',-.12,.5,-.35,.52,1,.2,7);
- }else if(spec.category==='estate'){
-  box('property-board',0,1.6,-.97,.76,.85,.025,9);
-  for(const x of [-.24,.24]){box('desk',x,.39,-.62,.32,.78,.22,8);chair(x,-.32);}
- }else{
-  counter(spec.category==='cafe'?11:10);box('back-cabinet',.25,.65,-.85,.32,1.3,.2,spec.category==='cafe'?3:10);
-  for(const x of [-.26,.26]){box('table-base',x,.35,-.52,.12,.7,.12,3);box('table-top',x,.74,-.52,.25,.08,.22,3);chair(x,-.35);}
+ addInteriorFurniture(box,spec,W,depth);
+ unit.dispose();let furnitureMeshes=0;
+ for(const [index,{positions,normals,uvs,colors}]of buffers.entries()){
+  if(!positions.length)continue;
+  const g=new T.BufferGeometry();for(const [key,array,size]of [['position',positions,3],['normal',normals,3],['uv',uvs,2],['color',colors,3]])g.setAttribute(key,new T.Float32BufferAttribute(array,size));
+  const texture=index?tradeAtlas:atlas,material=new T.MeshStandardMaterial({color:0xffffff,vertexColors:true,map:texture,emissiveMap:texture,emissive:0xffffff,emissiveIntensity:.45,roughness:1});material.userData.shopInterior=true;
+  const mesh=new T.Mesh(g,material);mesh.name=index?'ShopInteriorTradeFurniture':'ShopInteriorFurniture';mesh.userData={shopInterior:true,storefrontLightRole:'interior',noPlacementCollision:true};mesh.castShadow=true;mesh.receiveShadow=true;room.add(mesh);furnitureMeshes++;
  }
- unit.dispose();const g=new T.BufferGeometry();for(const [key,array,size]of [['position',positions,3],['normal',normals,3],['uv',uvs,2],['color',colors,3]])g.setAttribute(key,new T.Float32BufferAttribute(array,size));
- const material=new T.MeshStandardMaterial({color:0xffffff,vertexColors:true,map:atlas,emissiveMap:atlas,emissive:0xffffff,emissiveIntensity:.45,roughness:1});material.userData.shopInterior=true;
- const mesh=new T.Mesh(g,material);mesh.name='ShopInteriorFurniture';mesh.userData={shopInterior:true,storefrontLightRole:'interior',noPlacementCollision:true};mesh.castShadow=true;mesh.receiveShadow=true;room.add(mesh);root.add(room);
- root.userData.interior={kind:'room-with-textured-cuboids',category:spec.category,depth,bottom,top,boxes,triangles:60+boxes*12,furnitureMeshes:1,atlas:'furniture-v2.png',source:'generated furniture surfaces; inferred trade layout'};
+ root.add(room);
+ root.userData.interior={kind:'room-with-textured-cuboids',category:spec.category,depth,bottom,top,boxes,triangles:60+boxes*12,furnitureMeshes,atlas:'furniture-v2.png',source:'generated furniture surfaces; inferred trade layout'};
 }
 export function applyInteriorEmission(material,{on,night,line=false}){
  if(!material.userData.shopInterior)return false;

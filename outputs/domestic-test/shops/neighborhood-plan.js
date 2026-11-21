@@ -1,5 +1,6 @@
+import {chooseAlleyPlacement,inferredAlleyPlaces,alleyTradeFor} from './alley-selection.js?v=shop50v1';
 import {withFacilityShops,referenceShop} from '../facilities/storefronts.js';
-import {stableHash,scheduleFor} from './storefront-hours.js?v=comicbatch1';
+import {stableHash,scheduleFor} from './storefront-hours.js?v=shop50v1';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const normalize=s=>(s||'').replace(/\s/g,'');
@@ -18,7 +19,7 @@ export function categoryFor(p){
  if(c.includes('부동산중개'))return 'estate';
  if(p.category_group_code==='CE7')return 'cafe';
  if(p.category_group_code==='FD6'&&!/카페|술집|제과|떡,한과/.test(c))return 'food';
- return null;
+ return alleyTradeFor(p)?'alley':null;
 }
 export function shopLocal(p,x,z){const dx=x-p.position[0],dz=z-p.position[2];return [dx*p.n[1]-dz*p.n[0],dx*p.n[0]+dz*p.n[1]];}
 export function inShopApproach(plans,x,z,pad=0){return plans.some(p=>{const [u,v]=shopLocal(p,x,z);return Math.abs(u)<p.width/2+.25+pad&&v>-.1-pad&&v<p.accessDepth+pad;});}
@@ -26,16 +27,17 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
  catalog=withFacilityShops(catalog);
  buildings=buildings.filter(b=>!b.facility);
  const placements=[],skipped=[],byOwner=new Map(),seen=new Set();
- const candidates=places.map(place=>({place,category:referenceShop(place)?.category||categoryFor(place),exact:catalog.assets.find(s=>s.source?.placeId&&String(s.source.placeId)===String(place.id))||referenceShop(place)})).sort((a,b)=>Number(!!b.exact)-Number(!!a.exact)||String(a.place.id).localeCompare(String(b.place.id)));
- for(const {place,category,exact} of candidates){
+ const candidates=[...places,...inferredAlleyPlaces(buildings,places)].map(place=>({place,category:place.inferredShop?'alley':referenceShop(place)?.category||categoryFor(place),exact:catalog.assets.find(s=>s.source?.placeId&&String(s.source.placeId)===String(place.id))||referenceShop(place)})).sort((a,b)=>Number(!!b.exact)-Number(!!a.exact)||String(a.place.id).localeCompare(String(b.place.id)));
+ for(const {place,category:initialCategory,exact} of candidates){
+  let category=initialCategory;
   const skip=reason=>skipped.push({id:place.id,name:place.place_name,reason});
   if(!category){skip('unsupported-category');continue;}
   if(seen.has(place.id))continue;seen.add(place.id);
-  const xy=xz([Number(place.x),Number(place.y)]),address=normalize(place.road_address_name);
-  const matches=buildings.filter(b=>b.address&&address.endsWith(normalize(b.address)));
+  const xy=place.localXY||xz([Number(place.x),Number(place.y)]),address=normalize(place.road_address_name);
+  const matches=buildings.filter(b=>place.inferredShop?b.seed===place.alleyOwner:b.address&&address.endsWith(normalize(b.address)));
   const containing=matches.filter(b=>inside(xy,b.points));
   if(matches.length!==1&&containing.length!==1){skip(matches.length?'ambiguous-building':'outside-or-unmatched-address');continue;}
-  const b=containing[0]||matches[0],count=byOwner.get(b.seed)||0;
+  const b=containing[0]||matches[0];if(!exact&&b.properties?.streetProfile?.grade===1&&alleyTradeFor(place))category='alley';if(category==='alley'&&b.properties?.streetProfile?.grade!==1){skip('new-trade-outside-alley');continue;}const count=byOwner.get(b.seed)||0;
   // A POI alone gives neither a shop floor nor a unit. Avoid inventing a mall row.
   const frontEdges=(arterial?.shopFrontages||[]).filter(f=>f.owner===b.seed);
   const frontPeers=candidates.filter(c=>c.category&&normalize(c.place.road_address_name).endsWith(normalize(b.address))).length;
@@ -49,7 +51,8 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
    const u=[(c[0]-a[0])/L,(c[1]-a[1])/L],n=[u[1]*sign,-u[0]*sign];
    const onArterial=frontEdges.some(f=>f.edge===edge);
    if(frontEdges.length&&!onArterial) return;
-   const assets=exact?[exact]:catalog.assets.filter(s=>!s.referenceOnly&&(onArterial?s.arterialOnly||!catalog.assets.some(a=>a.arterialOnly&&a.category===category):!s.arterialOnly)&&s.category===category&&s.height<4.6&&!(category==='salon'&&s.id==='salon-03')&&!(category==='laundry'&&s.id!=='laundry-02'));
+   if(place.inferredShop&&edge!==b.frontEdge)return;
+   const assets=exact?[exact]:catalog.assets.filter(s=>!s.referenceOnly&&(onArterial?s.arterialOnly||!catalog.assets.some(a=>a.arterialOnly&&a.category===category):!s.arterialOnly)&&s.category===category&&(!alleyTradeFor(place)||category!=='alley'||s.id===alleyTradeFor(place))&&s.height<4.6);
    for(const asset of assets){
     const grade=Math.abs(elevation(a[0]+n[0]*.3,a[1]+n[1]*.3)-elevation(c[0]+n[0]*.3,c[1]+n[1]*.3))/L;
     const width=Math.min(asset.width*(onArterial?1.7:1),L-.7,onArterial?Math.max(3.15,(L-.7)/Math.min(4,frontPeers)-.22):Infinity,onArterial&&grade>.15?1.7/grade:Infinity),sx=width/asset.width;if(sx<(onArterial?.52:.69))continue;
@@ -72,9 +75,10 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
     }
    }
   });
-  choices.sort((a,b)=>a.score-b.score);const chosen=choices[0];
+  choices.sort((a,b)=>a.score-b.score);const chosen=category==='alley'?chooseAlleyPlacement(choices,String(b.seed)+'|'+place.id):choices[0];
   if(!chosen){skip('no-clear-fitting-frontage');continue;}
   const base=catalog.assets.find(s=>s.id===chosen.assetId),spec=structuredClone(base);
+  if(place.inferredShop){chosen.name=spec.name;chosen.reference='inferred-alley-trade';chosen.match='commercial-ground-floor-rule';chosen.placeUrl=null;}
   // Keep the reviewed facade proportions. Only projecting objects yield to narrow streets.
   spec.props=(spec.props||[]).filter(p=>(p.z||.55)+(['freezer','cafeTable'].includes(p.type)?.8:.35)<chosen.clearance-.15);
   spec.steps=(spec.steps||[]).filter(s=>s.z+s.d/2<chosen.clearance-.10);
@@ -94,7 +98,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   const hours=scheduleFor({...spec,id:String(place.id)});hours.alwaysOpen=category==='convenience';chosen.hours=hours;
   b.storefronts??=[];b.storefronts.push(chosen);placements.push(chosen);byOwner.set(b.seed,count+1);
  }
- return {placements,skipped,qa:{sourcePlaces:places.length,placed:placements.length,arterial:placements.filter(p=>p.arterial).length,observed:placements.filter(p=>p.reference==='observed-local-frontage').length,inferred:placements.filter(p=>p.reference!=='observed-local-frontage').length,byCategory:Object.fromEntries(catalog.categories.map(c=>[c.id,placements.filter(p=>p.category===c.id).length])),skips:skipped.reduce((o,p)=>(o[p.reason]=(o[p.reason]||0)+1,o),{})}};
+ return {placements,skipped,qa:{sourcePlaces:places.length,inferredAlley:placements.filter(p=>p.reference==='inferred-alley-trade').length,placed:placements.length,arterial:placements.filter(p=>p.arterial).length,observed:placements.filter(p=>p.reference==='observed-local-frontage').length,inferred:placements.filter(p=>p.reference!=='observed-local-frontage').length,byCategory:Object.fromEntries(catalog.categories.map(c=>[c.id,placements.filter(p=>p.category===c.id).length])),skips:skipped.reduce((o,p)=>(o[p.reason]=(o[p.reason]||0)+1,o),{})}};
 }
 
 // Remove only synthesized residential fixtures crossing the commercial approach.

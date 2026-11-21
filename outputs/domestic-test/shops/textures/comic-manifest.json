@@ -1,13 +1,22 @@
 {
-  "version": 1,
+  "version": 2,
   "files": [
-    "comic-convenience/main-signs.png",
-    "comic-convenience/window-posters.png",
+    "comic-alley-a/atlas-1.png",
+    "comic-alley-a/atlas-2.png",
+    "comic-alley-a/atlas-3.png",
+    "comic-alley-b/signs-18-23.png",
+    "comic-alley-b/signs-24-29.png",
+    "comic-alley-b/signs-30-34.png",
+    "comic-alley-c/atlas-1.png",
+    "comic-alley-c/atlas-2.png",
+    "comic-alley-c/atlas-3.png",
+    "comic-alley-c/atlas-4.png",
     "comic-food-cafe/cafe-signs.png",
     "comic-food-cafe/food-signs.png",
     "comic-food-cafe/window-posters.png",
     "comic-services/laundry-signs.png",
-    "comic-services/salon-signs.png",
-    "comic-services/window-adverts.png"
+    "comic-services/window-adverts.png",
+    "comic-user/posters.png",
+    "comic-user/signs.png"
   ]
 }

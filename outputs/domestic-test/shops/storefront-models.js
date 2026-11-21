@@ -1,6 +1,6 @@
-import {addComicShopArtwork} from './comic-artwork.js?v=comicbatch1';
-import {buildReferenceExterior} from './reference-exteriors.js?v=comicbatch1';
-import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=comicbatch1';
+import {addComicShopArtwork} from './comic-artwork.js?v=shop50v1';
+import {buildReferenceExterior} from './reference-exteriors.js?v=shop50v1';
+import {addShopInteriors,shopInteriorCategories} from './interiors.js?v=shop50v1';
 import {createApprovedStorefront} from '../building-remakes/storefront-preview.js?v=replacements3';
 import {addSignText} from '../facilities/models.js';
 import * as T from 'three';
@@ -127,7 +127,15 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
   if(props)for(const p of spec.props||[]){
     const x=p.x,y=p.y||0,z=p.z||.55,scale=p.scale||1;
     const box=(xx,yy,zz,w,h,d,col)=>B(x+xx*scale,y+yy*scale,z+zz*scale,w*scale,h*scale,d*scale,col);
-    if(p.type==='ac'){
+    if(p.type==='rail'){
+      const w=p.w||1.5,h=p.h||.7;
+      for(const xx of [-w/2,0,w/2])box(xx,h/2,0,.035,h,.035,p.color||'#667571');
+      box(0,h,0,w,.035,.035,p.color||'#667571');
+      for(const side of [-1,1])R([x+side*w/2*scale,y+.07*scale,z],[x,y+(h-.10)*scale,z],.012*scale,p.color||'#667571');
+    }else if(p.type==='tallFridge'){
+      box(0,1.03,-.05,.82,2.06,.5,'#d9d9cf');box(0,1.04,.211,.67,1.87,.02,'#617775');
+      for(let k=0;k<4;k++){box(0,.29+k*.43,.245,.65,.035,.08,'#c3d1c2');for(let j=0;j<3;j++)box(-.22+j*.22,.44+k*.43,.25,.13,.25,.09,['#cfe0c5','#dbc6a3','#adbfcb'][j]);}
+    }else if(p.type==='ac'){
       const count=p.stack||1;
       for(const xx of [-.34,.34])box(xx,.025,0,.10,.05,.34,'#777e78');
       for(let k=0;k<count;k++){
@@ -138,7 +146,7 @@ export function buildStorefront(spec, {shell=true, props=true, attachment=false}
       }
       if(count>1)for(const xx of [-.51,.51])box(xx,count*.375,0,.035,count*.75,.48,'#535c56');
     }else if(p.type==='freezer'){
-      const w=p.w||1.55;box(0,.43,0,w,.78,.72,'#d9dbd2');box(0,.85,0,w+.04,.06,.75,'#9ba5a0');
+      const w=p.w||1.55;box(0,.43,0,w,.78,.72,p.color||'#d9dbd2');box(0,.85,0,w+.04,.06,.75,'#9ba5a0');
       for(const d of [-1,1]){box(d*w*.245,.889,0,w*.46,.015,.64,'#c4d3cd');box(d*w*.245,.90,.22,.18,.02,.035,'#6f7871');}
     }else if(p.type==='rack'){
       const w=p.w||1.15,h=p.h||1.55;

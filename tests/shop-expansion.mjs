@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {buildStorefront} from '../outputs/domestic-test/shops/storefront-models.js';
+import {chooseAlleyPlacement,inferredAlleyPlaces} from '../outputs/domestic-test/shops/alley-selection.js';
+import {planNeighborhoodShops} from '../outputs/domestic-test/shops/neighborhood-plan.js';
+const cat=JSON.parse(fs.readFileSync('outputs/domestic-test/shops/library/catalog.json')),assets=cat.assets.filter(a=>a.category==='alley');assert.equal(assets.length,50);
+const refs=JSON.parse(fs.readFileSync('outputs/domestic-test/asset-encyclopedia/shop-references.json')).items;
+for(const a of assets){assert(refs['shop:'+a.id].sourceUrl.startsWith('https://'));assert(a.comicArtwork.length);for(const depth of [.61,1.2,3.2]){const r=buildStorefront({...a,interiorDepth:depth}),room=r.getObjectByName('ShopInteriorRoom'),W=a.width-.24;for(const f of room.userData.furniture){const [x,y,z]=f.center,[w,h,d]=f.size;assert(x-w/2>=-W/2-.001&&x+w/2<=W/2+.001,a.id+' side '+f.name);assert(z-d/2>=-depth-.001&&z+d/2<=.001,a.id+' depth '+f.name);assert(y-h/2>=r.userData.interior.bottom-.001,a.id+' floor '+f.name);}}}
+const choices=assets.map(a=>({assetId:a.id,score:1})),counts={};for(let n=0;n<10000;n++){const c=chooseAlleyPlacement(choices,'building-'+n);counts[c.assetId]=(counts[c.assetId]||0)+1;assert.equal(c.assetId,chooseAlleyPlacement([...choices].reverse(),'building-'+n).assetId);}assert.equal(Object.keys(counts).length,50);assert(Math.max(...Object.values(counts))<350);assert(Math.min(...Object.values(counts))>100);
+const b=n=>({seed:n,address:'검사길 '+n,points:[[n*20,0],[n*20+10,0],[n*20+10,8],[n*20,8]],base:0,top:9,frontEdge:0,properties:{streetProfile:{grade:1,use:'mixed'}},levels:3});
+const buildings=Array.from({length:100},(_,i)=>b(i+1));
+const plan=()=>planNeighborhoodShops(structuredClone(buildings),[],cat,{xz:p=>p,elevation:()=>0,roadInfo:(x,z)=>z<-.3?{road:true}:null});
+const a=plan(),again=plan();assert.equal(a.placements.length,100);assert.deepEqual(a.placements.map(p=>p.assetId),again.placements.map(p=>p.assetId));assert(new Set(a.placements.map(p=>p.assetId)).size>30);assert(a.placements.every(p=>p.reference==='inferred-alley-trade'&&p.spec.interiorDepth>2));
+const protectedOnes=[{...b(1),manualAssetChoice:true},{...b(2),properties:{streetProfile:{grade:1,use:'residential'}}},{...b(3),properties:{streetProfile:{grade:2,use:'mixed'}}},{...b(4),properties:{streetProfile:{grade:1,use:'mixed',assetId:'home-0'}}}];assert.equal(inferredAlleyPlaces(protectedOnes,[]).length,0);assert.equal(inferredAlleyPlaces([b(5)],[{road_address_name:'검사길 5'}]).length,0);
+for(const id of ['convenience-01','convenience-02','convenience-03','salon-01','salon-02','salon-03']){const s=cat.assets.find(a=>a.id===id);assert(s.approvedReferenceId.startsWith('paste-'));assert.equal(s.approvedReferenceId,refs['shop:'+id].id);}
+console.log('50 real-source facades; 6 pasted-reference identities; all furniture bounded at shallow/deep rooms; 100 actual placements; stable diverse random selection; manual/residential/known-POI protection verified.');

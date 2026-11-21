@@ -11,12 +11,12 @@ for(const spec of assets){
  else for(const h of [0,6,12,21,22,23.999])assert.equal(lightingState(spec,h).interior,1);
  const root=buildStorefront(spec);const interiors=[];root.traverse(o=>{if(o.userData.shopInterior)interiors.push(o);});assert(interiors.length>0,spec.id+' missing interior');
  let triangles=0;for(const m of interiors){if(m.name==='ShopInteriorFurniture')assert(m.material.map&&m.material.emissiveMap===m.material.map);assert.equal(m.userData.storefrontLightRole,'interior');assert([...m.geometry.attributes.position.array].every(Number.isFinite));if(m.geometry.attributes.uv)assert([...m.geometry.attributes.uv.array].every(v=>v>=0&&v<=1));triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;}
- assert.equal(triangles,root.userData.interior.triangles);assert.equal(root.userData.interior.furnitureMeshes,1);assert(root.userData.interior.depth>=2);const room=root.getObjectByName('ShopInteriorRoom');assert(room.userData.furniture.length>=3);for(const f of room.userData.furniture)assert(f.center[2]+f.size[2]/2<0,'furniture must be behind facade');
+ assert.equal(triangles,root.userData.interior.triangles);assert(root.userData.interior.furnitureMeshes>=1&&root.userData.interior.furnitureMeshes<=2);assert(root.userData.interior.depth>=2);const room=root.getObjectByName('ShopInteriorRoom');assert(room.userData.furniture.length>=2,spec.id);for(const f of room.userData.furniture)assert(f.center[2]+f.size[2]/2<0,'furniture must be behind facade');
  const rig=createStorefrontLighting(root,spec);rig.update(12,0);assert(interiors.every(m=>m.material.emissiveIntensity>0));rig.update(23,1);assert(interiors.every(m=>(m.material.emissiveIntensity>0)===(spec.category==='convenience')));
 }
 // Explicit saved business hours remain authoritative.
 assert.equal(lightingState({id:'late',category:'food',hours:{openMinute:600,closeMinute:120,cleanupMinutes:0}},1).interior,1);
-console.log('18 shop interiors: recessed rooms, textured cuboid furniture, daytime lighting, exact 21–22h shutdown and 24h convenience stores verified.');
+console.log('68 shop interiors: recessed rooms, textured cuboid furniture, daytime lighting, exact 21–22h shutdown and 24h convenience stores verified.');
 
 const {createNeighborhoodShops}=await import('../outputs/domestic-test/shops/neighborhood-shops.js');
 const T=await import('three');
@@ -24,9 +24,9 @@ const placements=assets.map((spec,i)=>({spec,assetId:'shop:'+spec.id,placeId:Str
 const shops=createNeighborhoodShops({placements,qa:{}},{shadowMap:{}},{elevation:()=>0}),scene=new T.Scene();scene.add(shops.group,shops.lamps);
 shops.set(12,0,'color',scene);assert(shops.sources.every(s=>s.amount===1));
 shops.set(22,1,'color',scene);assert.equal(shops.sources.filter(s=>s.amount>0).length,3);
-for(const r of shops.records){const m=r.root.getObjectByName('ShopInteriorFurniture');assert(m);assert.equal(m.material.emissiveIntensity>0,r.p.category==='convenience');}
+for(const r of shops.records){const m=(r.root.getObjectByName('ShopInteriorFurniture')||r.root.getObjectByName('ShopInteriorTradeFurniture'));assert(m);assert.equal(m.material.emissiveIntensity>0,r.p.category==='convenience');}
 const unsupported=buildStorefront({...assets[0],category:'pharmacy'});let panes=0;unsupported.traverse(o=>{if(o.userData.storefrontLightRole==='interior')panes++;});assert(panes>0,'unsupported trades must retain original glazing');
-console.log('Actual neighborhood shop placement keeps all 18 boxes, switches emissions and spill sources, and preserves other trade glazing.');
+console.log('Actual neighborhood shop placement keeps all 68 rooms, switches emissions and spill sources, and preserves other trade glazing.');
 
 // A real opaque host shell must be opened, not hidden by drawing over its wall.
 const {createBuildingShellGeometry}=await import('../outputs/domestic-test/building-shell.js');
@@ -36,12 +36,12 @@ const fixture=createNeighborhoodShops({placements:[placement],qa:{}},{shadowMap:
 const cut=fixture.cutShells(host);assert.equal(cut.matchedWindows,first.openings.length);assert.equal(cut.blockedPanes,0);
 console.log('Real host wall aperture cut and all furniture positions behind the facade verified.');
 
-const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=comicbatch1');
-for(const spec of assets){const root=buildStorefront(spec),room=root.getObjectByName('ShopInteriorRoom');for(const f of room.userData.furniture.filter(f=>f.name==='chair-base'))assert(Math.abs(f.center[1]-f.size[1]/2-root.userData.interior.bottom)<1e-6);const original=root.getObjectByName('ShopInteriorFurniture').material,gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,original,'gray');assert.equal(gray.map,original.map);assert.equal(gray.emissiveMap,original.emissiveMap);const shader={fragmentShader:'#include <opaque_fragment>'};gray.onBeforeCompile(shader);assert(shader.fragmentShader.includes('dot(gl_FragColor.rgb'));applyInteriorEmission(gray,{on:1,night:1});assert.equal(gray.color.r,gray.color.g);}
+const {applyInteriorStyle,applyInteriorEmission}=await import('../outputs/domestic-test/shops/interiors.js?v=shop50v1');
+for(const spec of assets){const root=buildStorefront(spec),room=root.getObjectByName('ShopInteriorRoom');for(const f of room.userData.furniture.filter(f=>f.name==='chair-base'))assert(Math.abs(f.center[1]-f.size[1]/2-root.userData.interior.bottom)<1e-6);const original=(root.getObjectByName('ShopInteriorFurniture')||root.getObjectByName('ShopInteriorTradeFurniture')).material,gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,original,'gray');assert.equal(gray.map,original.map);assert.equal(gray.emissiveMap,original.emissiveMap);const shader={fragmentShader:'#include <opaque_fragment>'};gray.onBeforeCompile(shader);assert(shader.fragmentShader.includes('dot(gl_FragColor.rgb'));applyInteriorEmission(gray,{on:1,night:1});assert.equal(gray.color.r,gray.color.g);}
 console.log('Cuboid chair supports reach the floor and grayscale mode retains furniture textures.');
 
 // Architecture remains geometry; only generated signs and stickers have maps.
-const {referenceExteriors}=await import('../outputs/domestic-test/shops/reference-exteriors.js?v=comicbatch1');
+const {referenceExteriors}=await import('../outputs/domestic-test/shops/reference-exteriors.js?v=shop50v1');
 for(const id of Object.keys(referenceExteriors)){
  const spec=assets.find(s=>s.id===id),root=buildStorefront(spec);root.updateMatrixWorld(true);
  const sign=root.getObjectByName('MainSign');assert(sign.material.map);assert.equal(sign.material.emissiveMap,sign.material.map);
@@ -55,7 +55,7 @@ for(const id of Object.keys(referenceExteriors)){
 console.log('Three modeled facades retain geometric walls/frames/doors, comic decal maps and open views into actual rooms.');
 
 const comicProfiles=assets.filter(s=>s.comicProfile),manifest=JSON.parse(fs.readFileSync('outputs/domestic-test/shops/textures/comic-manifest.json'));
-assert.equal(comicProfiles.length,15);assert.equal(new Set(manifest.files).size,manifest.files.length);
+assert.equal(comicProfiles.length,65);assert.equal(new Set(manifest.files).size,manifest.files.length);
 for(const spec of comicProfiles){
  assert(!spec.source.placeId,spec.id+' retains stale exact POI');assert(spec.previousSource);
  const root=buildStorefront(spec),group=root.getObjectByName('ComicShopArtwork');assert(group,spec.id);assert.equal(group.children.length,spec.comicArtwork.length);
@@ -65,6 +65,6 @@ for(const spec of comicProfiles){
   if(a.role==='sign')assert.equal(m.material.emissiveMap,m.material.map);else assert.equal(m.material.emissiveMap,null);
   const gray=new T.MeshStandardMaterial();applyInteriorStyle(gray,m.material,'gray');assert.equal(gray.map,m.material.map);
  }
- assert(root.getObjectByName('ShopInteriorFurniture'));
+ assert(root.getObjectByName('ShopInteriorFurniture')||root.getObjectByName('ShopInteriorTradeFurniture'));
 }
-console.log('15 reference-matched facades: generated artwork paths/UV/materials, grayscale maps and real interiors verified.');
+console.log('65 reference-matched facades: generated artwork paths/UV/materials, grayscale maps and real interiors verified.');

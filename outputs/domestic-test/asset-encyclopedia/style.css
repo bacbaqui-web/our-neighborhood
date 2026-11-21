@@ -15,9 +15,9 @@ header{padding-top:24px;padding-bottom:24px}header h1{margin:0}#filters{margin-b
 .reference-intro{margin-block:1.5rem;padding-block:1rem;border-block:1px solid #b8cac4}
 .reference-intro h2{margin:0;font-size:1.3rem}.reference-intro p{margin-block:.5rem;max-width:75ch}
 .reference-summary{font-weight:700}.grid.road-references{grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))}
-.road-references .card-open{display:grid;grid-template-columns:6rem 1fr;align-items:center;text-align:left;width:100%}
-.road-references .thumb{height:5rem;aspect-ratio:auto}.road-references .thumb img{height:100%;object-fit:contain}.road-references .card-info{padding:.75rem}
-.reference-review{padding:1rem;border-top:1px solid #d7e0d9;display:flex;flex-direction:column;gap:.6rem}
+.road-references .card-open{display:block;text-align:left;width:100%}
+.road-references .thumb{height:18rem;aspect-ratio:auto}.road-references .thumb img{height:100%;object-fit:contain}.road-references .card-info{padding:.75rem}
+.reference-review{padding:1rem;border-top:1px solid #d7e0d9;display:block}
 .reference-review h3,.reference-review p{margin:0}.reference-review h3{font-size:1rem}
 .reference-image-link{display:flex;align-items:center;justify-content:center;background:white;min-height:16rem}
 .reference-image-link img{width:100%;height:20rem;object-fit:contain}.reference-status{font-weight:700}
@@ -29,3 +29,5 @@ header{padding-top:24px;padding-bottom:24px}header h1{margin:0}#filters{margin-b
 .reference-review :focus-visible,.reference-intro :focus-visible{outline:3px solid #216558;outline-offset:3px}
 
 .reference-lightbox{max-width:95vw;max-height:95dvh;padding:1rem}.reference-lightbox img{display:block;max-width:100%;height:auto;margin-top:.75rem}.reference-lightbox button{position:sticky;top:0;min-height:3rem}
+
+.reference-review>summary{cursor:pointer;font-size:.875rem;font-weight:600;min-height:2rem;align-content:center}.reference-content{display:flex;flex-direction:column;gap:.6rem;padding-top:1rem}.grid.road-references{align-items:start}@media(max-width:650px){.road-references .thumb{height:16rem}}

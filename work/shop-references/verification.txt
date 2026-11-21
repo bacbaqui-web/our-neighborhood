@@ -3,4 +3,6 @@
 범위: 건물 부품의 편의점·미용실·세탁소·부동산·음식점·카페 18개. 업종별 실제 국내 외관 후보 3개씩과 출처·관찰 내용·사진 제한을 등록했다. 모델링은 변경하지 않았다.
 기존 참고 이미지 검토 UI를 재사용하여 승인, 교체 요청, 클립보드 붙여넣기, 파일 선택, 처음 후보 복원, 검토 기록 내보내기를 제공한다. 저장은 해당 브라우저 IndexedDB이며 기기 간 자동 공유되지 않는다.
 검사: node tests/asset-references.mjs, node scripts/check-loading.mjs, pack.py --check 및 변경 JS 구문 검사 통과. Edge localhost에서 PNG 클립보드 붙여넣기 → 해당 가게에 직접 제공한 이미지 표시 → 새로고침 후 유지 → 다른 가게 원본 유지 → 처음 후보 복원 확인.
-공개 배포와 공개 사진 표시 확인은 후속 기록한다.
+공개 배포: source 966c8745d10471baad6667c16f42f2fda22b5e15, hosting dfacbef7e996eb9cc49e9d47059ee6730788f5bf. source CI 44913533398 및 hosting Pages 44913562316 성공.
+공개 Edge 확인: 18개 카드, 6업종 각각 사진 3개 모두 naturalWidth > 0. 각 업종 붙여넣기 버튼 3개 확인. 사진·출처·사용 범위·승인·붙여넣기·파일 입력 화면 확인. 공개 기록은 임의 승인하지 않았다.
+증빙: verification/shop-references/public.jpg. URL: https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?tab=part&search=shop%3A

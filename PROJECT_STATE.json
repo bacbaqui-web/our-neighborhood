@@ -5960,7 +5960,10 @@
   "shopReferenceReview20261121": {
     "date": "2026-11-21",
     "scope": "건물 부품 가게 6업종 18개 참고 이미지 및 기존 승인·클립보드 검토 UI",
-    "status": "implemented; local Edge paste persistence verified; public verification pending",
-    "report": "work/shop-references/verification.txt"
+    "status": "deployed; public Edge verified all 18 photos and clipboard controls",
+    "report": "work/shop-references/verification.txt",
+    "sourceCommit": "966c8745d10471baad6667c16f42f2fda22b5e15",
+    "hostingCommit": "dfacbef7e996eb9cc49e9d47059ee6730788f5bf",
+    "proof": "verification/shop-references/public.jpg"
   }
 }

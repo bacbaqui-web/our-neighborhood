@@ -1000,6 +1000,19 @@
       ],
       "steps": [],
       "source": {
+        "name": "목포시 목포BIZ · 사랑채부동산",
+        "placeUrl": "https://kid.mokpo.go.kr/biz/service?idx=85125&mode=view",
+        "image": "https://kid.mokpo.go.kr/build/images/1792/17923743/1792374351.jpg/1x338x85/1x338_1792374351.jpg",
+        "checkedOn": "2026-11-22",
+        "features": [
+          "전남 목포시 석현동 소재 중개사무소로 등록된 실제 외관입니다. 파란 가로 간판, 중앙 유리 출입문, 창 하부 색면과 매물표를 참고합니다. 페이지에 주소 두 개가 함께 적혀 있어 촬영 시점의 정확한 번지는 확정하지 않았습니다."
+        ],
+        "basis": "approved-photo-reference; trade example, not a matched local POI"
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-01",
+      "props": [],
+      "previousSource": {
         "name": "브리치부동산공인중개사사무소",
         "placeId": "496493472",
         "placeUrl": "https://place.map.kakao.com/496493472",
@@ -1014,10 +1027,7 @@
           "창 하부에 흰색 안내지 여러 장이 격자로 모여 있음",
           "차양 없는 전면. 가로수에 가려진 오른쪽 끝 상세는 단순 처리"
         ]
-      },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
-      "referenceExterior": "estate-01",
-      "props": []
+      }
     },
     {
       "id": "estate-02",
@@ -1049,6 +1059,19 @@
       ],
       "steps": [],
       "source": {
+        "name": "목포시 목포BIZ · 88부동산",
+        "placeUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=79551",
+        "image": "https://kid.mokpo.go.kr/build/images/1547/15476136/1547613608.jpg/1x338x85/1x338_1547613608.jpg",
+        "checkedOn": "2026-11-22",
+        "features": [
+          "전남 목포시 원산중앙로 106 상가동 104호에 등록된 부동산의 외관 사진입니다. 노랑·검정 전면, 매물 게시창과 넓은 문턱을 참고합니다. 앞쪽 적재물이 왼쪽 아래를 가리며 촬영일은 미확인입니다."
+        ],
+        "basis": "approved-photo-reference; trade example, not a matched local POI"
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-02",
+      "props": [],
+      "previousSource": {
         "name": "마포부동산114공인중개사사무소",
         "placeId": "1079404060",
         "placeUrl": "https://place.map.kakao.com/1079404060",
@@ -1063,10 +1086,7 @@
           "은색 샷시와 왼쪽 문, 얕고 접힌 검은 차양",
           "매장으로 올라가는 짙은 갈색 3단 계단"
         ]
-      },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
-      "referenceExterior": "estate-02",
-      "props": []
+      }
     },
     {
       "id": "estate-03",
@@ -1101,6 +1121,18 @@
       "props": [],
       "steps": [],
       "source": {
+        "name": "목포시 목포BIZ · 가이드공인중개사",
+        "placeUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=83456",
+        "image": "https://kid.mokpo.go.kr/build/images/1605/16050720/1605072092.jpg/1x338x85/1x338_1605072092.jpg",
+        "checkedOn": "2026-11-22",
+        "features": [
+          "전남 목포시 옥암로 150의 아파트 상가에 등록된 중개사무소 사진입니다. 큰 노란 간판, 세로 안내판, 매물표 격자창과 오른쪽 문을 참고합니다. 화단이 바닥 일부를 가리며 촬영일은 미확인입니다."
+        ],
+        "basis": "approved-photo-reference; trade example, not a matched local POI"
+      },
+      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
+      "referenceExterior": "estate-03",
+      "previousSource": {
         "name": "부자성북부동산공인중개사사무소",
         "placeId": "2022787104",
         "placeUrl": "https://place.map.kakao.com/2022787104",
@@ -1115,9 +1147,7 @@
           "짙은 유리, 흰색 매물 게시지, 오른쪽 좁은 출입문",
           "낮은 문턱과 유리 앞 흰 화분. 현재 등록명과 촬영 당시 간판명은 구분"
         ]
-      },
-      "reconstruction": "Observed frontage layout with estimated dimensions; no text or logo lettering; unseen interior not reconstructed.",
-      "referenceExterior": "estate-03"
+      }
     },
     {
       "id": "food-01",

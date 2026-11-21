@@ -5975,5 +5975,14 @@
     "hostingCommit": "3510cb272693bc3f7fb8493371971e11d6540df5",
     "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=shop%3A&tab=part",
     "verification": "verification/shop-interiors/public-salon-on.jpg"
+  },
+  "comicShopExteriors20261122": {
+    "status": "deployed and public Edge verified",
+    "scope": "estate-01/02/03; modeled architecture with generated comic sign and window-ad textures; no photo facade",
+    "sourceCommit": "d2a2621",
+    "hostingCommit": "2117c6b54054971a7a1605ef3aacadca602b6d08",
+    "report": "work/shop-interiors/exterior-report.txt",
+    "proof": "verification/shop-exteriors/public-comic-estate.jpg",
+    "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=shop%3Aestate&tab=part"
   }
 }

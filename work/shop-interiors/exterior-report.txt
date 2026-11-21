@@ -6,3 +6,8 @@
 Prompt set: signs.png — 3columns x4rows comic sign/window-vinyl atlas, flat Korean webtoon graphic artwork, reference top-row model style and bottom-row photo identity; 사랑채/88부동산/가이드공인중개사; main signs, lower vinyl, six listing papers, supplementary adverts. No facade/photo/reflection/shadow. vertical.png — 3vertical columns, warm yellow 부/동/산 and 신안군 토지전문, navy 땅/가/이/드/공인중개사/284-8924, yellow 부동산/매물접수/상담환영. main-signs.png — 3equal horizontal 6:1 signs, blue 사랑채 부동산 281·1007, yellow88 부동산279-1188, yellow/navy 가이드 공인중개사284-8924/010-8985-8188; flat comic colors, correct Hangul, no photographic surface.
 생성 결과 main-signs는 사랑채와88의 간판 비율 보정에 사용. 가이드는 signs의 첫행 사용. 광고 문구 구성은 사진을 참고해 단순화한 예시이며 완전한 실측 복제는 아님.
 검사:18종 내부/가구/조명/회색 모드 회귀,3종 건축재질에 사진map없음 및 별도 광고map, 실제 유리영역에서 실내 ray검사. 생성번들47개 최신 일치, 로딩검사 통과. 옛 서울POI 연결은 해제하고 previousSource에 원본이력 보존.
+
+최종 재검토: 독립 검토 및18종/3종 자동검사 통과. 공개에서20:00 점등과22:00 소등 확인. 이전 목록이 남는 캐시를 발견해 registry/catalog 및 shop catalog의 버전을 함께 갱신(d2a2621). 최종 공개 app.js?v=exteriors3,새 이름,3개 모델 확인 완료.
+Modern Web Guidance: map image textures / load WebGL texture 검색. HTML 효과·상호작용 자료만 반환되어 이 Three.js UV/기하 수정에 직접 적용한 가이드는 없음.
+
+공개 검증 완료: 소스 d2a2621, 호스팅2117c6b54054971a7a1605ef3aacadca602b6d08. CI44921386461 및 공개배포44921402191 성공. Edge에서3종 외관 확인, 사진증거 verification/shop-exteriors/public-comic-estate.jpg.

@@ -5646,7 +5646,7 @@
     ]
   },
   "sceneEditing20261121": {
-    "status": "implemented-local-verified-awaiting-public-deploy",
+    "status": "deployed-public-controls-verified",
     "features": [
       "Shift+도로 클릭: 1~4차 등급 수정 후 주변 자동 재생성",
       "Shift+건물 클릭: 디자인·연식·층수·용도·입구 면 편집",
@@ -5656,7 +5656,8 @@
       "Edge 실제 생성 장면: 도로 1→2차 저장·재생성, 수동 건물 6층/적벽돌/입구29 유지",
       "Edge 충돌 오류에서 기존 동네 유지, 다시 편집 가능",
       "Python scene edit tests 6 passed; view generation 9 passed",
-      "JS scene editor/building assets/empty streetlights/loading/browser-generation/VWorld passed"
+      "JS scene editor/building assets/empty streetlights/loading/browser-generation/VWorld passed",
+      "Edge 계산 취소 후 기존 동네·수동 설정 유지 확인; MultiPolygon 중정 면적과 팔레트 분류 회귀검사 통과"
     ],
     "limits": [
       "현재는 변경할 때 장면을 다시 계산하므로 완료까지 기다려야 함",
@@ -5664,6 +5665,15 @@
       "도로 폭·미확인 층수는 구현 기본값; 실제 건물 때문에 국소 폭이 줄 수 있음",
       "상가 출입구는 접근 공간이 확보된 면에만 생성; 모든 도로 풍경 세부 규칙의 완전 적용 아님"
     ],
-    "record": "docs/scene-editing.txt"
+    "record": "docs/scene-editing.txt",
+    "sourceCommit": "4e2100b",
+    "hostingCommit": "90d2d0b9a9233c6b2ee3311d2d932881110ef21f",
+    "deploymentRun": 44874663087,
+    "publicVerification": "Edge 공개 기존 동네에서 Shift+건물 정보/평면도, Shift+도로 1~4차 선택 확인. 공개 저장 장면은 바꾸지 않았으며 실제 재생성과 저장·취소 검사는 로컬 시험 장면에서 수행.",
+    "proof": [
+      "verification/scene-edit/local-building.jpg",
+      "verification/scene-edit/public-building.jpg",
+      "verification/scene-edit/public-road.jpg"
+    ]
   }
 }

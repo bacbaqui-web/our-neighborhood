@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import * as T from 'three';
 import {factories} from '../work/junction-assets/models.mjs';
@@ -19,3 +20,10 @@ for(const key of ['junction-alley-main','junction-small-t','junction-crossroads'
  const bb=new T.Box3().setFromObject(m);assert(bb.max.z<=18.01&&bb.min.z>=-18.01,key+' median stays within road');
 }
 console.log('crossing lips remain open and medians stay inside road ends');
+
+const root=new URL('../outputs/domestic-test/junction-assets/',import.meta.url).pathname;
+const manifest=JSON.parse(fs.readFileSync(root+'manifest.json'));
+for(const e of manifest){const b=fs.readFileSync(root+e.file);const j=JSON.parse(b.subarray(20,20+b.readUInt32LE(12)).toString());assert(j.nodes.some(n=>n.extras?.assetId===e.id),e.id);}
+const finalModel=factories['junction-crossroads']();finalModel.updateMatrixWorld(true);assert.equal(finalModel.userData.crossingOpenings.length,8);
+for(const p of finalModel.userData.crossingOpenings){assert.equal(p.width,2.4);for(const dx of [-1,0,1]){const local=new T.Vector3(dx,0,-.8).applyAxisAngle(new T.Vector3(0,1,0),p.angle);const hits=new T.Raycaster(new T.Vector3(p.x+local.x,3,p.z+local.z),new T.Vector3(0,-1,0)).intersectObject(finalModel,true);assert(hits.length);assert(hits[0].point.y<.12,JSON.stringify({p,dx,y:hits[0].point.y}));}}
+console.log('12 GLB IDs match manifest; all 8 rotated openings pass at left/center/right; width 2.4m');

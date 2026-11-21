@@ -1,0 +1,11 @@
+교차로 지침·에셋 공개 검증 / 2026-11-22 KST
+소스 커밋: 2148067738579dae0798cd59c003780daeb90321
+호스팅 커밋: 02d034514e629b47b86bd69a4edad72729319a5b
+공개 배포: https://github.com/bacbaqui-web/magamiscoming/actions/runs/44926416928 성공 (검사·빌드·Pages deploy).
+공개 목록: https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?search=교차로%20연결%20부품&tab=road
+실제 화면: 12개 목록, 다차로 사거리, 보도 있는 T자, 분리대 유지 접속의 GLB 렌더링 확인. public-list.jpg / public-crossroads.jpg / public-small-t.jpg / public-alley-main.jpg.
+확인 범위: 평지 기본 조명에서 접속 개구·곡선 연석·횡단부·점자블록·분리대 위치와 노면 표시의 외관 확인. 모든 경사나 모든 카메라 각도에서의 무결점 보장은 아님.
+최종 파일: 공개 GLB 12개 SHA256이 로컬 검사 파일과 일치(public-file-check.json). GLB 내부 ID와 manifest 일치. 사거리 8개 개구 각3점 레이 검사 통과. 횡단부/개구2.4m. 완전 무단차 아님(턱1.5cm).
+검사: 분리한 소스 커밋 snapshot에서 pack.py --check 통과. tests/junction-assets.mjs 통과. 공유 작업폴더의 전체 에셋 검사에는 타 작업의 미등록 GLB가 있어 이번 완료 근거로 쓰지 않았음.
+캐시: 최초 공개 화면은 이전 catalog 응답으로0개. HTTP 최신 카탈로그12개와 파일 일치 확인 후 검사용 탭의 캐시를 일시 비활성화하고 다시 읽어12개/모델 확인. 캐시 설정은 원복. 기존 응답 max-age600초에 따른 일시 지연이며 다른 작업의 미완성 registry/catalog 코드는 배포하지 않음.
+미적용: 동네 자동배치, 경사 지형 접합, 야간 검증. 사진 기반 개념 제작이며 실측/법정 규격 확정이 아님.

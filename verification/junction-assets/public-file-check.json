@@ -1,0 +1,62 @@
+[
+  {
+    "file": "curb-straight-v1.glb",
+    "sha256": "db67ed4945f05aaddf5bbb925de3fb49fe8db40b79139fae58f3e268e9e28739",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "curb-corner-v1.glb",
+    "sha256": "45b3096cac0f227e1ed6098784217fc33546a9eb7270169688a40576a36c523b",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "curb-ramp-v1.glb",
+    "sha256": "dde537f4f67f92a5b5ee1ff792e66827cc128a7a257960fa4e77fbb30b5902bd",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "tactile-warning-v1.glb",
+    "sha256": "e2789c39eb4c32d7b7b6a4c7ee2d74308afdd9aa3e9bb59328477e4339f402d2",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "tactile-guidance-v1.glb",
+    "sha256": "a5a20f68c8f993e4f13be7be721c29cec5eb6921793441b92f66b65e98d54287",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "crossing-stop-v1.glb",
+    "sha256": "48cb50c5d75e73ec9926209de1829c247f99a299f3948251b9d45f924d770b7b",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "median-end-v1.glb",
+    "sha256": "04f8abd45849f69dcbf52351e073046a0dd05d5ec6983f00eaf0a94680d3e685",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "edge-corner-v1.glb",
+    "sha256": "fd9a40f9a1193f1804a93ff53aac156c48032475f869daa97b639c362508d395",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "turn-guide-v1.glb",
+    "sha256": "d57e76a46a6403e13e20fe9dcc45650f3bc5ba5a35ec2974f1a7041c1ff51e88",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "junction-alley-main-v1.glb",
+    "sha256": "4a3aedffde3d5d84b0b2b2bc468cf8198e2cc62b0452fdee8567ebb64e6c465e",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "junction-small-t-v1.glb",
+    "sha256": "ede5053bd126c765aa8cda7e9eabb2c3b6b644411b4b94b8919c560d7564b0ec",
+    "publicMatchesLocal": true
+  },
+  {
+    "file": "junction-crossroads-v1.glb",
+    "sha256": "1385e1502c59036c7810f4b28d696be2259384ad222a01d2521fed5879afd491",
+    "publicMatchesLocal": true
+  }
+]

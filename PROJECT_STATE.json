@@ -6032,13 +6032,22 @@
     "publicScreenshot": "verification/alley-housing/public.jpg"
   },
   "junctionAssets20261122": {
-    "status": "guidelines finalized; 12 assets built and locally verified; public deployment pending",
+    "status": "guidelines finalized; 12 assets publicly deployed and visually verified",
     "date": "2026-11-22",
     "assets": 12,
     "parts": 9,
     "assemblies": 3,
     "automaticPlacement": false,
-    "evidence": "work/road-junction-survey-20261122/final-review.txt",
-    "production": "work/junction-assets/production.txt"
+    "sourceCommit": "2148067738579dae0798cd59c003780daeb90321",
+    "deploymentRun": "https://github.com/bacbaqui-web/magamiscoming/actions/runs/44926416928",
+    "evidence": "verification/junction-assets/public-verification.txt",
+    "review": "work/road-junction-survey-20261122/final-review.txt",
+    "production": "work/junction-assets/production.txt",
+    "limits": [
+      "estimated dimensions",
+      "flat assemblies only; terrain slopes not verified",
+      "1.5cm ramp road lip",
+      "existing catalog browser cache can retain old list for up to cache max-age 600 seconds"
+    ]
   }
 }

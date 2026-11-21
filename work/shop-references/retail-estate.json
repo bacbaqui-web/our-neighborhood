@@ -1,0 +1,50 @@
+{
+  "shop:convenience-01": {
+    "id": "shop-reference-convenience-01-20261121-v1",
+    "imageUrl": "https://t1.daumcdn.net/news/202607/07/kukminilbo/20260707060309047dhxh.jpg",
+    "sourceUrl": "https://v.daum.net/v/20260707060305337",
+    "sourceName": "국민일보 · 김승연 · 세븐일레븐 길동6호점",
+    "koreaEvidence": "서울 강동구 길동의 실제 편의점 외관입니다. 2026년 7월 기사 사진에서 긴 간판, 코너 유리창, 오른쪽 출입문과 낮은 문턱을 확인했습니다. 수목과 입간판이 하단 일부를 가립니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  },
+  "shop:convenience-02": {
+    "id": "shop-reference-convenience-02-20261121-v1",
+    "imageUrl": "https://mediahub.seoul.go.kr/wp-content/uploads/editor/images/000334/20200609_171356.jpg",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/1285693",
+    "sourceName": "서울시 내 손안에 서울 · 김진흥 · 돼지쌀슈퍼",
+    "koreaEvidence": "서울 마포구 손기정로 32의 동네 슈퍼를 찍은 2020년 사진입니다. 프랜차이즈 편의점 대신 일반 슈퍼 외관을 고를 수 있는 후보입니다. 주황 간판, 붉은 차양, 바깥 진열대를 참고합니다. 전신주가 모퉁이를 가리며 야간 사진입니다. 현재 영업 중인 매장으로 소개하는 자료가 아닙니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  },
+  "shop:convenience-03": {
+    "id": "shop-reference-convenience-03-20261121-v1",
+    "imageUrl": "https://origin.bgf.co.kr/assets/upload/image/editor/202601071009081331097871.png",
+    "sourceUrl": "https://origin.bgf.co.kr/bgflive/view/?categoryId=3&id=1794",
+    "sourceName": "BGF 공식 매거진 · CU 상계성원점",
+    "koreaEvidence": "서울 노원구 상계동 점포를 소개한 공식 2026년 1월 자료입니다. 위쪽 외관 사진의 보라색 간판·긴 차양·중앙 유리문·오른쪽 실외기를 참고합니다. 아래쪽 두 사진은 계절 장식 상세이며 건물 외관이 아닙니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  },
+  "shop:estate-01": {
+    "id": "shop-reference-estate-01-20261121-v1",
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1792/17923743/1792374351.jpg/1x338x85/1x338_1792374351.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service?idx=85125&mode=view",
+    "sourceName": "목포시 목포BIZ · 사랑채부동산",
+    "koreaEvidence": "전남 목포시 석현동 소재 중개사무소로 등록된 실제 외관입니다. 파란 가로 간판, 중앙 유리 출입문, 창 하부 색면과 매물표를 참고합니다. 페이지에 주소 두 개가 함께 적혀 있어 촬영 시점의 정확한 번지는 확정하지 않았습니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  },
+  "shop:estate-02": {
+    "id": "shop-reference-estate-02-20261121-v1",
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1547/15476136/1547613608.jpg/1x338x85/1x338_1547613608.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=79551",
+    "sourceName": "목포시 목포BIZ · 88부동산",
+    "koreaEvidence": "전남 목포시 원산중앙로 106 상가동 104호에 등록된 부동산의 외관 사진입니다. 노랑·검정 전면, 매물 게시창과 넓은 문턱을 참고합니다. 앞쪽 적재물이 왼쪽 아래를 가리며 촬영일은 미확인입니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  },
+  "shop:estate-03": {
+    "id": "shop-reference-estate-03-20261121-v1",
+    "imageUrl": "https://kid.mokpo.go.kr/build/images/1605/16050720/1605072092.jpg/1x338x85/1x338_1605072092.jpg",
+    "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=83456",
+    "sourceName": "목포시 목포BIZ · 가이드공인중개사",
+    "koreaEvidence": "전남 목포시 옥암로 150의 아파트 상가에 등록된 중개사무소 사진입니다. 큰 노란 간판, 세로 안내판, 매물표 격자창과 오른쪽 문을 참고합니다. 화단이 바닥 일부를 가리며 촬영일은 미확인입니다.",
+    "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+  }
+}

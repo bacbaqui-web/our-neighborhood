@@ -35,3 +35,20 @@ for(const [id,seed] of Object.entries(buildings.items)){
  assert(seed.koreaEvidence.length>20);assert(seed.sourceName);assert(seed.usageNote);
 }
 console.log('All 23 requested buildings have sources, start unapproved, preserve matching approvals and reset replaced candidates.');
+const shops=JSON.parse(fs.readFileSync(new URL('shop-references.json',base)));
+const shopIds=registry.entries.filter(a=>a.kind==='shop'&&registry.resolve(a.id)).map(a=>a.id);
+assert.deepEqual(Object.keys(shops.items).sort(),shopIds.sort());
+assert.equal(shopIds.length,18);
+assert.equal(new Set(Object.values(shops.items).map(s=>s.imageUrl)).size,18);
+for(const [id,seed] of Object.entries(shops.items)){
+ assert.equal(assetGroup(registry.resolve(id)),'part');
+ const pending=referenceRecord(id,seed);assert(!canModel(pending));
+ assert(seed.koreaEvidence.length>20&&seed.sourceName&&seed.sourceUrl&&seed.usageNote);
+ const approved=changeReference(pending,'approve');
+ assert.equal(referenceRecord(id,seed,approved).status,'approved');
+ const pasted=changeReference(approved,'image',{...seed,id:'paste-shop-fixture',imageUrl:'data:image/png;base64,YQ==',userProvided:true});
+ assert.equal(pasted.status,'pending');assert(!canModel(pasted));
+ assert.equal(referenceRecord(id,{...seed,id:'updated-candidate'},pasted).reference.id,'paste-shop-fixture');
+ assert.throws(()=>referenceRecord('shop:other',seed,pasted));
+}
+console.log('All 18 shop assets have distinct candidates; per-asset paste records survive seed updates without inheriting approval.');

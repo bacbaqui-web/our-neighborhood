@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "items": {
+    "shop:convenience-01": {
+      "id": "shop-reference-convenience-01-20261121-v1",
+      "imageUrl": "https://t1.daumcdn.net/news/202607/07/kukminilbo/20260707060309047dhxh.jpg",
+      "sourceUrl": "https://v.daum.net/v/20260707060305337",
+      "sourceName": "국민일보 · 김승연 · 세븐일레븐 길동6호점",
+      "koreaEvidence": "서울 강동구 길동의 실제 편의점 외관입니다. 2026년 7월 기사 사진에서 긴 간판, 코너 유리창, 오른쪽 출입문과 낮은 문턱을 확인했습니다. 수목과 입간판이 하단 일부를 가립니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:convenience-02": {
+      "id": "shop-reference-convenience-02-20261121-v1",
+      "imageUrl": "https://mediahub.seoul.go.kr/wp-content/uploads/editor/images/000334/20200609_171356.jpg",
+      "sourceUrl": "https://mediahub.seoul.go.kr/archives/1285693",
+      "sourceName": "서울시 내 손안에 서울 · 김진흥 · 돼지쌀슈퍼",
+      "koreaEvidence": "서울 마포구 손기정로 32의 동네 슈퍼를 찍은 2020년 사진입니다. 프랜차이즈 편의점 대신 일반 슈퍼 외관을 고를 수 있는 후보입니다. 주황 간판, 붉은 차양, 바깥 진열대를 참고합니다. 전신주가 모퉁이를 가리며 야간 사진입니다. 현재 영업 중인 매장으로 소개하는 자료가 아닙니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:convenience-03": {
+      "id": "shop-reference-convenience-03-20261121-v1",
+      "imageUrl": "https://origin.bgf.co.kr/assets/upload/image/editor/202601071009081331097871.png",
+      "sourceUrl": "https://origin.bgf.co.kr/bgflive/view/?categoryId=3&id=1794",
+      "sourceName": "BGF 공식 매거진 · CU 상계성원점",
+      "koreaEvidence": "서울 노원구 상계동 점포를 소개한 공식 2026년 1월 자료입니다. 위쪽 외관 사진의 보라색 간판·긴 차양·중앙 유리문·오른쪽 실외기를 참고합니다. 아래쪽 두 사진은 계절 장식 상세이며 건물 외관이 아닙니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:salon-01": {
+      "id": "shop-reference-salon-01-20261121-v2",
+      "imageUrl": "https://kid.mokpo.go.kr/build/images/1603/16038474/1603847463.jpg/1x338x85/1x338_1603847463.jpg",
+      "sourceUrl": "https://kid.mokpo.go.kr/biz/service/beauty?mode=view&idx=74998",
+      "sourceName": "목포시 목포BIZ — 5시즌스헤어",
+      "koreaEvidence": "목포시 공식 상가 안내가 주소를 목포시 장미로 28(상동)으로 명시합니다. 실제 사진에서 작은 간판, 유리문·쇼윈도, 중앙 계단과 외부 의자를 확인했습니다.",
+      "usageNote": "전면 전체와 바닥 연결을 참고합니다. 상호의 가맹 여부와 현재 영업 여부는 미확인입니다. 외부 원본 링크이며 사진 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:salon-02": {
+      "id": "shop-reference-salon-02-20261121-v1",
+      "imageUrl": "https://media.timeout.com/images/103258668/750/562/image.jpg",
+      "sourceUrl": "https://www.timeout.com/seoul/things-to-do/gye-dong-the-road-not-taken",
+      "sourceName": "Time Out Seoul — 계동 진미용실",
+      "koreaEvidence": "서울 계동을 소개한 2016년 기사에 실린 진미용실 사진입니다. 한글 간판, 중앙 유리문과 흰 벽돌 정면을 직접 확인했습니다.",
+      "usageNote": "낮고 넓은 간판과 불균등한 창·문 구성을 참고합니다. 촬영 당시 모습이며 현재 영업 여부는 확인하지 않았습니다. 외부 원본 링크이며 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:salon-03": {
+      "id": "shop-reference-salon-03-20261121-v1",
+      "imageUrl": "https://dnvefa72aowie.cloudfront.net/capri/bizPlatform/profile/13962101/1698376017552/MzU5YjQwNGUwNGU0YzMzNjcxNWYwY2E3NjViNGQ2NjAwMTkwNWViODEzZGU0ZTZhY2Q5N2MyNTQ2MzE4OGIwM18wLmpwZWc%3D.jpeg?q=95&s=1440x1440&t=inside",
+      "sourceUrl": "https://www.daangn.com/kr/local-profile/도헤어-북가좌점-absaa87513ov/",
+      "sourceName": "당근 동네 업체 — 도헤어 북가좌점",
+      "koreaEvidence": "검색 자료가 서울 서대문구 북가좌동 미용실로 명시합니다. 원본 사진에서 파란 정면, 유리 출입문, 작은 외부 탁자와 한글 메뉴판을 확인했습니다. 출처 페이지 직접 열기는 403 응답으로 본문 확인에 제한이 있습니다.",
+      "usageNote": "작은 지역 미용실 지점 사례입니다. 독립 단일 매장은 아닙니다. 길 앞 난간이 하단을 가립니다. 외부 원본 링크이며 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:laundry-01": {
+      "id": "shop-reference-laundry-01-20261121-v1",
+      "imageUrl": "https://cdn.imweb.me/upload/S202402281377c146aa000/86003535e8187.jpg",
+      "sourceUrl": "https://jongnomaja.kr/writing/?bmode=view&idx=22239255",
+      "sourceName": "종로구주민소통센터 — 원서동 럭키컴퓨터크리닝",
+      "koreaEvidence": "2024년 종로 마을 기록이 원서동 럭키컴퓨터크리닝 세탁소를 명시하고 해당 외관 사진을 싣고 있습니다. 모퉁이 출입문과 양쪽 세탁 간판을 확인했습니다.",
+      "usageNote": "모퉁이 간판과 녹색 고정 차양을 참고합니다. 같은 외관에 부동산 간판도 있어 세탁소 단독 외관으로 해석하지 않습니다. 외부 원본 링크이며 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:laundry-02": {
+      "id": "shop-reference-laundry-02-20261121-v1",
+      "imageUrl": "https://cdn.imweb.me/upload/S202001067fd13fb34339a/b56f0820b1007.jpg",
+      "sourceUrl": "https://ecardvan.co.kr/37/?bmode=view&idx=4306569",
+      "sourceName": "이카드밴 — 서울 전원세탁 단말기 설치 후기",
+      "koreaEvidence": "2020년 7월 23일 서울 세탁소 설치 후기에 실제 방문 외관으로 게재된 사진입니다. 전원세탁 간판, 파란 차양, 비닐로 싼 옷걸이대를 확인했습니다.",
+      "usageNote": "좁은 세탁소의 차양·유리문·이동 옷걸이 구성을 참고합니다. 세부 주소와 현재 영업 여부는 미확인입니다. 외부 원본 링크이며 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:laundry-03": {
+      "id": "shop-reference-laundry-03-20261121-v2",
+      "imageUrl": "https://kid.mokpo.go.kr/build/images/1547/15474473/1547447377.jpg/1x338x85/1x338_1547447377.jpg",
+      "sourceUrl": "https://kid.mokpo.go.kr/biz/service/laundry?mode=view&idx=79436",
+      "sourceName": "목포시 목포BIZ — 굿모닝세탁소",
+      "koreaEvidence": "목포시 공식 상가 안내가 주소를 목포시 양을로 90(산정동)으로 명시합니다. 실제 사진에서 가로 간판, 중앙 유리문, 창문 안내문, 외부 옷걸이대와 낮은 턱을 확인했습니다.",
+      "usageNote": "가게 앞면과 출입구 아래까지 보이는 사진입니다. 오른쪽 입간판이 창 일부를 가립니다. 촬영일과 현재 영업 여부는 미확인입니다. 외부 원본 링크이며 사진 재배포 허락은 미확인입니다. 사용자 승인 전 모델링하지 않습니다."
+    },
+    "shop:estate-01": {
+      "id": "shop-reference-estate-01-20261121-v1",
+      "imageUrl": "https://kid.mokpo.go.kr/build/images/1792/17923743/1792374351.jpg/1x338x85/1x338_1792374351.jpg",
+      "sourceUrl": "https://kid.mokpo.go.kr/biz/service?idx=85125&mode=view",
+      "sourceName": "목포시 목포BIZ · 사랑채부동산",
+      "koreaEvidence": "전남 목포시 석현동 소재 중개사무소로 등록된 실제 외관입니다. 파란 가로 간판, 중앙 유리 출입문, 창 하부 색면과 매물표를 참고합니다. 페이지에 주소 두 개가 함께 적혀 있어 촬영 시점의 정확한 번지는 확정하지 않았습니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:estate-02": {
+      "id": "shop-reference-estate-02-20261121-v1",
+      "imageUrl": "https://kid.mokpo.go.kr/build/images/1547/15476136/1547613608.jpg/1x338x85/1x338_1547613608.jpg",
+      "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=79551",
+      "sourceName": "목포시 목포BIZ · 88부동산",
+      "koreaEvidence": "전남 목포시 원산중앙로 106 상가동 104호에 등록된 부동산의 외관 사진입니다. 노랑·검정 전면, 매물 게시창과 넓은 문턱을 참고합니다. 앞쪽 적재물이 왼쪽 아래를 가리며 촬영일은 미확인입니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:estate-03": {
+      "id": "shop-reference-estate-03-20261121-v1",
+      "imageUrl": "https://kid.mokpo.go.kr/build/images/1605/16050720/1605072092.jpg/1x338x85/1x338_1605072092.jpg",
+      "sourceUrl": "https://kid.mokpo.go.kr/biz/service/property?mode=view&idx=83456",
+      "sourceName": "목포시 목포BIZ · 가이드공인중개사",
+      "koreaEvidence": "전남 목포시 옥암로 150의 아파트 상가에 등록된 중개사무소 사진입니다. 큰 노란 간판, 세로 안내판, 매물표 격자창과 오른쪽 문을 참고합니다. 화단이 바닥 일부를 가리며 촬영일은 미확인입니다.",
+      "usageNote": "외부 원본을 연결한 외관 참고용입니다. 사진 재배포·텍스처 사용 허가는 확인하지 않았습니다. 참고 이미지 승인 전에는 모델링하지 않습니다."
+    },
+    "shop:food-01": {
+      "id": "shop-reference-food-01-20261121-v1",
+      "imageUrl": "https://images.thanksqr.com/stores/detail/73429/d3aa0a1c393bbbbdb9504.jpg?h=400&w=400",
+      "sourceUrl": "https://gajaseoul.com/ko/store/bomulseom_gimbap",
+      "sourceName": "GAJA SEOUL · 보물섬김밥",
+      "koreaEvidence": "출처에 서울 마포구 월드컵로13길 50과 분식점으로 표시되어 있습니다. 사진에서 김밥 간판·줄무늬 차양·포장 창구를 확인했습니다.",
+      "usageNote": "외부 연결 참고 사진입니다. 사진 재배포 허가는 미확인입니다. 오른쪽 차량이 일부를 가리고 있으며 실제 크기와 옆면은 확인되지 않았습니다. 참고 이미지 승인 후에만 모델링합니다."
+    },
+    "shop:food-02": {
+      "id": "shop-reference-food-02-20261121-v1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/%ED%96%89%EB%B3%B5%ED%95%9C%EC%A7%91%EB%B0%A5_%EC%99%B8%EB%B6%80_%EC%A0%84%EA%B2%BD_Happy_Home_Meal_exterior_view_IMG_0237.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:행복한집밥_외부_전경_Happy_Home_Meal_exterior_view_IMG_0237.jpg",
+      "sourceName": "Wikimedia Commons · Choikwangmo9 · 행복한집밥",
+      "koreaEvidence": "출처에 국내 촬영 좌표 37.331933, 127.945717이 기록되어 있습니다. 사진에서 한글 집밥 간판과 찌개·제육볶음 메뉴가 있는 가게 정면을 확인했습니다.",
+      "usageNote": "CC0 1.0으로 공개된 사진입니다. 2020년 야간 사진이며 나무가 정면 일부를 가립니다. 현재 영업 상태나 정확한 치수는 확인하지 않았습니다. 참고 이미지 승인 후에만 모델링합니다."
+    },
+    "shop:cafe-01": {
+      "id": "shop-reference-cafe-01-20261121-v1",
+      "imageUrl": "https://images.pexels.com/photos/31872707/pexels-photo-31872707.jpeg?auto=compress&w=1200",
+      "sourceUrl": "https://www.pexels.com/photo/cozy-hand-drip-coffee-shop-in-seoul-s-streets-31872707/",
+      "sourceName": "Pexels · Theodore Nguyen · 커피집",
+      "koreaEvidence": "출처가 촬영지를 서울, 대한민국으로 표시합니다. 사진에서 커피집 한글 간판, 작은 1층 점포, 파란 차양·유리문·앞 화분을 확인했습니다.",
+      "usageNote": "Pexels 라이선스의 외부 연결 사진입니다. 간판·상표 사용 권리까지 뜻하지 않습니다. 정확한 주소와 독립 운영 여부는 미확인입니다. 참고 이미지 승인 후에만 모델링합니다."
+    },
+    "shop:cafe-02": {
+      "id": "shop-reference-cafe-02-20261121-v1",
+      "imageUrl": "https://images.unsplash.com/photo-1772331274672-a5eecb4c6498?auto=format&w=1200",
+      "sourceUrl": "https://unsplash.com/photos/a-storefront-with-large-windows-and-wooden-doors-GYXy7F92DUY",
+      "sourceName": "Unsplash · chansu shin · 에디션덴마크",
+      "koreaEvidence": "출처에 서울 종로구 통의동 서촌 한옥마을로 표시되어 있습니다. 사진에서 자하문로9길 표지판, CAFE 및 SHOP 표시, 흰 차양과 전면창을 확인했습니다.",
+      "usageNote": "Unsplash 라이선스의 외부 연결 사진입니다. 카페와 쇼룸을 함께 운영하는 점포의 외관 후보입니다. 브랜드 복제 승인을 뜻하지 않으며 정확한 치수는 미확인입니다. 참고 이미지 승인 후에만 모델링합니다."
+    },
+    "shop:cafe-03": {
+      "id": "shop-reference-cafe-03-20261121-v1",
+      "imageUrl": "https://images.unsplash.com/photo-1769672085948-2df5861ea01e?auto=format&w=1200",
+      "sourceUrl": "https://unsplash.com/photos/modern-storefront-with-glass-windows-and-wooden-door-kW6h8Cz_Sto",
+      "sourceName": "Unsplash · Pansy Lau · ONGROUND",
+      "koreaEvidence": "출처가 서울특별시, 대한민국으로 표시합니다. 사진에서 ONGROUND·COFFEE TEA 표시와 목재 출입문, 큰 유리창, 보도 앞 의자를 확인했습니다.",
+      "usageNote": "Unsplash 라이선스의 외부 연결 사진입니다. 정확한 주소와 독립 운영 여부는 미확인입니다. 앞 보행자 난간과 화분이 정면 일부를 가립니다. 참고 이미지 승인 후에만 모델링합니다."
+    },
+    "shop:food-03": {
+      "id": "shop-reference-food-03-20261121-v1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/%E4%B8%AD%E8%8F%AF%E6%96%99%E7%90%86_%28821158185%29.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:中華料理_(821158185).jpg",
+      "sourceName": "Wikimedia Commons · emailer · 소림사반점",
+      "koreaEvidence": "대한민국 음식점 분류에 등록된 사진입니다. 사진에서 한글 소림사반점 간판과 국내 도로명 주소판, 벽돌 정면과 출입문을 확인했습니다. 정확한 도시는 미확인입니다.",
+      "usageNote": "CC BY-SA 2.0 사진입니다. 저자 emailer와 출처·라이선스 표시가 필요합니다. 2007년 사진으로 현재 외관과 같다고 보장하지 않습니다. 참고 이미지 승인 후에만 모델링합니다."
+    }
+  }
+}

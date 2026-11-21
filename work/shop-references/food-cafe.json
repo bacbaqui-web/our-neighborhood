@@ -1,0 +1,50 @@
+{
+  "shop:food-01": {
+    "id": "shop-reference-food-01-20261121-v1",
+    "imageUrl": "https://images.thanksqr.com/stores/detail/73429/d3aa0a1c393bbbbdb9504.jpg?h=400&w=400",
+    "sourceUrl": "https://gajaseoul.com/ko/store/bomulseom_gimbap",
+    "sourceName": "GAJA SEOUL · 보물섬김밥",
+    "koreaEvidence": "출처에 서울 마포구 월드컵로13길 50과 분식점으로 표시되어 있습니다. 사진에서 김밥 간판·줄무늬 차양·포장 창구를 확인했습니다.",
+    "usageNote": "외부 연결 참고 사진입니다. 사진 재배포 허가는 미확인입니다. 오른쪽 차량이 일부를 가리고 있으며 실제 크기와 옆면은 확인되지 않았습니다. 참고 이미지 승인 후에만 모델링합니다."
+  },
+  "shop:food-02": {
+    "id": "shop-reference-food-02-20261121-v1",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/%ED%96%89%EB%B3%B5%ED%95%9C%EC%A7%91%EB%B0%A5_%EC%99%B8%EB%B6%80_%EC%A0%84%EA%B2%BD_Happy_Home_Meal_exterior_view_IMG_0237.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:행복한집밥_외부_전경_Happy_Home_Meal_exterior_view_IMG_0237.jpg",
+    "sourceName": "Wikimedia Commons · Choikwangmo9 · 행복한집밥",
+    "koreaEvidence": "출처에 국내 촬영 좌표 37.331933, 127.945717이 기록되어 있습니다. 사진에서 한글 집밥 간판과 찌개·제육볶음 메뉴가 있는 가게 정면을 확인했습니다.",
+    "usageNote": "CC0 1.0으로 공개된 사진입니다. 2020년 야간 사진이며 나무가 정면 일부를 가립니다. 현재 영업 상태나 정확한 치수는 확인하지 않았습니다. 참고 이미지 승인 후에만 모델링합니다."
+  },
+  "shop:food-03": {
+    "id": "shop-reference-food-03-20261121-v1",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/%E4%B8%AD%E8%8F%AF%E6%96%99%E7%90%86_%28821158185%29.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:中華料理_(821158185).jpg",
+    "sourceName": "Wikimedia Commons · emailer · 소림사반점",
+    "koreaEvidence": "대한민국 음식점 분류에 등록된 사진입니다. 사진에서 한글 소림사반점 간판과 국내 도로명 주소판, 벽돌 정면과 출입문을 확인했습니다. 정확한 도시는 미확인입니다.",
+    "usageNote": "CC BY-SA 2.0 사진입니다. 저자 emailer와 출처·라이선스 표시가 필요합니다. 2007년 사진으로 현재 외관과 같다고 보장하지 않습니다. 참고 이미지 승인 후에만 모델링합니다."
+  },
+  "shop:cafe-01": {
+    "id": "shop-reference-cafe-01-20261121-v1",
+    "imageUrl": "https://images.pexels.com/photos/31872707/pexels-photo-31872707.jpeg?auto=compress&w=1200",
+    "sourceUrl": "https://www.pexels.com/photo/cozy-hand-drip-coffee-shop-in-seoul-s-streets-31872707/",
+    "sourceName": "Pexels · Theodore Nguyen · 커피집",
+    "koreaEvidence": "출처가 촬영지를 서울, 대한민국으로 표시합니다. 사진에서 커피집 한글 간판, 작은 1층 점포, 파란 차양·유리문·앞 화분을 확인했습니다.",
+    "usageNote": "Pexels 라이선스의 외부 연결 사진입니다. 간판·상표 사용 권리까지 뜻하지 않습니다. 정확한 주소와 독립 운영 여부는 미확인입니다. 참고 이미지 승인 후에만 모델링합니다."
+  },
+  "shop:cafe-02": {
+    "id": "shop-reference-cafe-02-20261121-v1",
+    "imageUrl": "https://images.unsplash.com/photo-1772331274672-a5eecb4c6498?auto=format&w=1200",
+    "sourceUrl": "https://unsplash.com/photos/a-storefront-with-large-windows-and-wooden-doors-GYXy7F92DUY",
+    "sourceName": "Unsplash · chansu shin · 에디션덴마크",
+    "koreaEvidence": "출처에 서울 종로구 통의동 서촌 한옥마을로 표시되어 있습니다. 사진에서 자하문로9길 표지판, CAFE 및 SHOP 표시, 흰 차양과 전면창을 확인했습니다.",
+    "usageNote": "Unsplash 라이선스의 외부 연결 사진입니다. 카페와 쇼룸을 함께 운영하는 점포의 외관 후보입니다. 브랜드 복제 승인을 뜻하지 않으며 정확한 치수는 미확인입니다. 참고 이미지 승인 후에만 모델링합니다."
+  },
+  "shop:cafe-03": {
+    "id": "shop-reference-cafe-03-20261121-v1",
+    "imageUrl": "https://images.unsplash.com/photo-1769672085948-2df5861ea01e?auto=format&w=1200",
+    "sourceUrl": "https://unsplash.com/photos/modern-storefront-with-glass-windows-and-wooden-door-kW6h8Cz_Sto",
+    "sourceName": "Unsplash · Pansy Lau · ONGROUND",
+    "koreaEvidence": "출처가 서울특별시, 대한민국으로 표시합니다. 사진에서 ONGROUND·COFFEE TEA 표시와 목재 출입문, 큰 유리창, 보도 앞 의자를 확인했습니다.",
+    "usageNote": "Unsplash 라이선스의 외부 연결 사진입니다. 정확한 주소와 독립 운영 여부는 미확인입니다. 앞 보행자 난간과 화분이 정면 일부를 가립니다. 참고 이미지 승인 후에만 모델링합니다."
+  }
+}

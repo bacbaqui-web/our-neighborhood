@@ -5956,5 +5956,11 @@
     "sourceRun": 44912010411,
     "hostingRun": 44912018526,
     "publicChecks": 12
+  },
+  "shopReferenceReview20261121": {
+    "date": "2026-11-21",
+    "scope": "건물 부품 가게 6업종 18개 참고 이미지 및 기존 승인·클립보드 검토 UI",
+    "status": "implemented; local Edge paste persistence verified; public verification pending",
+    "report": "work/shop-references/verification.txt"
   }
 }

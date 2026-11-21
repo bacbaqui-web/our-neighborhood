@@ -5443,7 +5443,7 @@
   },
   "streetEndContext": {
     "date": "2026-11-21",
-    "status": "implemented; local generation rendered; final public verification pending",
+    "status": "deployed; fresh public generation and day/night street view verified in Edge",
     "policy": "real-footprint background beyond detailed visibility radius",
     "queryRadius": "max(200, detailRadius+150) metres; same paginated building query",
     "maxBuildings": 256,
@@ -5451,21 +5451,42 @@
     "extraBuildingQueryPasses": 0,
     "renderer": "two merged meshes; no windows, props or new textures",
     "tests": [
-      "Python context 4 tests passed",
-      "renderer footprint/holes/ground overlap passed",
-      "VWorld bounds passed",
-      "browser bundle current",
-      "loading/budget/full-detail/circular-background passed"
+      "7 Python context tests passed",
+      "renderer shape, holes, real ground overlap, disposal and material tests passed",
+      "VWorld bounds, errors and paging passed",
+      "loading, browser generation, full-detail, scene budget and existing circular-background passed",
+      "generation scope and VWorld Python tests passed",
+      "pack --check and build passed"
     ],
     "localScene": "61ce65488f210b03",
     "localGenerationMilliseconds": 46637,
     "baselinePublicGenerationMilliseconds": 50534,
-    "timingCaveat": "same address and settings, different run/cache state; not a controlled speedup comparison",
+    "timingCaveat": "Context processing excludes network and rendering. Public 16.456s generation used existing browser caches; baseline50.534s is not a controlled speedup comparison. Local runs46.637s/90.409s show environment variance.",
     "reviewFixes": [
       "terrain included in horizon",
       "target rays for narrow facades",
       "near road widths carried to context",
       "foreground road overlap samples actual ground"
-    ]
+    ],
+    "publicSourceCommit": "8c0df99",
+    "hostingCommit": "42a4d3a98e5b4cce62f8b5c651a5a4e6e9e5b660",
+    "hostingRun": "44855514003",
+    "publicVerification": {
+      "sceneId": "61ce65488f210b03",
+      "radius": 50,
+      "contextRadius": 200,
+      "detailedBuildings": 14,
+      "backgroundBuildings": 5,
+      "backgroundTriangles": 7214,
+      "backgroundDrawCalls": 2,
+      "contextProcessingMs": 629.7,
+      "generationMilliseconds": 16456,
+      "timeChecked": [
+        12,
+        22
+      ],
+      "sourceFilesMatchPublishedCommit": true,
+      "screenshot": "verification/street-end-context/public-after-day.png"
+    }
   }
 }

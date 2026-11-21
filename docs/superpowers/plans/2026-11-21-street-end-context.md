@@ -1,6 +1,6 @@
 # Street-end context Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 실제 건물 윤곽으로 길 끝의 빈 공간을 채우고 추가 로딩을 제한한다.
 **Architecture:** 단일 건물 조회의 범위를 제한적으로 넓히고 상세 선택 전에 원본을 보관한다. 원경 전용 가벼운 선택과 면 생성으로 상세 배치 비용을 늘리지 않는다.
@@ -21,14 +21,24 @@
 
 ### Task 1: 원경 자료 생성
 Files: work/street_end_context.py, work/browser-generation/entry.py, pack.py, browser-generation/vworld.js, client.js, generation/build-environment.py, tests/test_street_end_context.py.
-- [ ] 합성 지도 회귀 검사 작성 후 실패 확인.
-- [ ] build_context(collection, roads, origin, radius, view, detailed) 구현. 원경 건물/도로 폴리곤 반환, 네트워크 호출 없음.
-- [ ] 단일 자료 조회 범위 확장, 원경 저장, 캐시 구분 연결.
-- [ ] Python/기존 건물 조회 검사, pack 갱신 및 check.
+- [x] 합성 지도 회귀 검사 작성 후 실패 확인.
+- [x] build_context(collection, roads, origin, radius, view, detailed) 구현. 원경 건물/도로 폴리곤 반환, 네트워크 호출 없음.
+- [x] 단일 자료 조회 범위 확장, 원경 저장, 캐시 구분 연결.
+- [x] Python/기존 건물 조회 검사, pack 갱신 및 check.
 
 ### Task 2: 화면 연결과 확인
 Files: outputs/domestic-test/street-end-context.js, atmosphere.js, tests/street-end-context.mjs.
-- [ ] 실제 윤곽과 구멍, 접지, 중복, 삼각형 검사 실패 확인.
-- [ ] 건물 면과 이어지는 도로를 각각 합친 메시로 생성하고 기존 조명을 받도록 연결.
-- [ ] 기존 원경 검사와 생성 검사, Edge 새 지도 화면·낮밤 확인.
-- [ ] 변경 검토, PROJECT_STATE와 검증 기록 갱신. 검증한 변경만 공개 반영.
+- [x] 실제 윤곽과 구멍, 접지, 중복, 삼각형 검사 실패 확인.
+- [x] 건물 면과 이어지는 도로를 각각 합친 메시로 생성하고 기존 조명을 받도록 연결.
+- [x] 기존 원경 검사와 생성 검사, Edge 새 지도 화면·낮밤 확인.
+- [x] 변경 검토, PROJECT_STATE와 검증 기록 갱신. 검증한 변경만 공개 반영.
+
+
+## 검증 기록
+- Python 7개 검사, 원경 렌더러와 기존 원경/상세/예산/브라우저 생성 검사 통과.
+- 별도 검토자의 지형 높이·좁은 건물 누락·도로 폭 지적을 반영했습니다.
+- 연결부는 반경 대신 실제 상세 도로 면을 기준으로 잘라 기존 노면 표시를 보존합니다.
+- 길 보정으로 중심이 바뀌는 경우에는 상세 건물 ID를 제외 기준으로 써 빈 띠를 없앴습니다.
+- 공개 배포44855514003 성공. 실제 Edge 생성 및 낮밤 확인. 상세14동, 원경5동, 원경 계산629.7ms, 추가 렌더2묶음/7,214삼각형.
+- 기존 상세 범위 유지. 전체 생성16.456초는 캐시·실행 환경 차이가 있어 기존50.534초와 직접 속도 개선 비교하지 않습니다.
+- Modern Web Guidance에서 3D 렌더링/그리기 호출 감소를 검색했으나 이 메시 생성에 직접 해당하는 지침은 없었습니다. 기존 Three.js 경로를 사용했습니다.

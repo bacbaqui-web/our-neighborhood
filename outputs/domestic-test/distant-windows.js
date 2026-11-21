@@ -25,7 +25,7 @@ export function installDistantWindows(material,environment={}){
    float windowFrame=windowOuter.x*windowOuter.y*windowVisibility;
    float windowPane=windowInner.x*windowInner.y*windowVisibility*smoothstep(.008,.008+windowAA.x,windowDistance.x);
    float windowRandom=fract(sin(dot(floor(vFacadeUv.xy),vec2(12.9898,78.233))+vFacadeUv.w*37.719)*43758.5453);
-   float windowLit=step(fract(windowRandom+farWindowPattern/16.),farWindowChance)*farWindowNight;
+   float windowLit=(1.-step(farWindowChance,fract(windowRandom+farWindowPattern/16.)))*farWindowNight;
    diffuseColor.rgb=mix(diffuseColor.rgb,vFacadeFrame,windowFrame);
    diffuseColor.rgb=mix(diffuseColor.rgb,mix(farWindowGlass,vec3(.55,.39,.18),windowLit),windowPane);
   `);

@@ -12,16 +12,18 @@
 - T/X 교차로, 입체교차, 차로 변화, 취소/조회 실패, 기존 건물 수동 지정 보존을 검사합니다.
 
 ### 1. 도로 구간
-- [ ] tests/test_road_sections.py에 연결·교차·구조변화·입체교차 검사를 작성하고 실패 확인.
-- [ ] work/road_sections.py의 group_road_sections(roads) 구현. 원본 변경 없이 교차로 사이 LineString 목록 반환.
-- [ ] 검사 통과 후 entry.py의 prepare_roads와 worker의 roads 응답 연결, pack.py 갱신.
+- [x] tests/test_road_sections.py에 연결·교차·구조변화·입체교차 검사를 작성하고 실패 확인.
+- [x] work/road_sections.py의 group_road_sections(roads) 구현. 원본 변경 없이 교차로 사이 LineString 목록 반환.
+- [x] 검사 통과 후 entry.py의 prepare_roads와 worker의 roads 응답 연결, pack.py 갱신.
 
 ### 2. 선택과 생성
-- [ ] map-picker.js를 붉은 점과 다음 단계 버튼으로 단순화.
-- [ ] road-setup.js에서 도로 조회·선택·등급 수정·취소 처리. confirm 전 건물 조회 금지.
-- [ ] progress/client에 sourceRoads와 sceneEdits 전달, 기존 건물 수동값 보존.
-- [ ] 실제 브라우저에서 선택→수정→생성 및 취소 확인.
+- [x] map-picker.js를 붉은 점과 다음 단계 버튼으로 단순화.
+- [x] road-setup.js에서 도로 조회·선택·등급 수정·취소 처리. confirm 전 건물 조회 금지.
+- [x] progress/client에 sourceRoads와 sceneEdits 전달, 기존 건물 수동값 보존.
+- [x] 실제 브라우저에서 선택→수정→생성 및 취소 확인.
 
 ### 3. 공개 반영
-- [ ] 관련 검사·묶음 검사·변경 검토. 독립 코드 리뷰.
-- [ ] 해당 변경만 커밋·공개 배포, 공개 화면 흐름 확인 후 상태 기록.
+- [x] 관련 검사·묶음 검사·변경 검토. 독립 코드 리뷰.
+- [x] 해당 변경만 커밋·공개 배포, 공개 화면 흐름 확인 후 상태 기록.
+
+검사 기록: PROJECT_STATE.json의 roadFirstSetup20261121. 원본 변경 외의 작업과 수동 편집은 보존했습니다.

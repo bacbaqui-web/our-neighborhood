@@ -5725,5 +5725,28 @@
       "verification/scene-edit/public-road-map.jpg"
     ],
     "record": "docs/scene-editing.txt"
+  },
+  "roadFirstSetup20261121": {
+    "status": "public-verified",
+    "sourceCommit": "91911bc03138b99fa815d3e98ef4319fe4486163",
+    "hostingCommit": "033c4c076e1201f5862525b2ccdb7def20d9733e",
+    "deploymentRun": "44884027601",
+    "features": [
+      "red origin dot without heading controls",
+      "road setup before building lookup",
+      "connected sections between junctions with lane/layer/manual boundaries",
+      "grades 1-4 with confirmed roads passed to generation"
+    ],
+    "checks": [
+      "9 road section tests",
+      "6 scene edits tests",
+      "11 view generation tests",
+      "browser generation and road map contracts",
+      "required deployment checks and public build",
+      "local cancel, grade 2 generation and saved grade readback",
+      "public red dot, section click, independent grade changes, generation and saved grade readback"
+    ],
+    "publicScene": "d52fa91caaa507fa",
+    "screenshot": "verification/scene-edit/public-road-first.jpg"
   }
 }

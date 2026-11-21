@@ -39,6 +39,7 @@ import {createPrecipitation} from './precipitation.js?v=151';
 import {createContactSurfaceSampler} from './contact-shadows.js?v=151';
 import {createBillboardLightField} from './billboard-lighting.js?v=151';
 import {createAtmosphere} from './atmosphere.js?v=windows-grounds1';
+import {createVehicleLighting} from './vehicle-lighting.js?v=1';
 import {createStreetlights} from './streetlights.js?v=scene-edit1';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
 import {loadVegetationAssets} from './vegetation.js?v=view3c';
@@ -94,6 +95,7 @@ const illustrationShading=createIllustrationShading();
 setupSettingsDialog($('settings'),$('optimizationDialog'),$('closeSettings'));
 const setWindowValue=setupNumberScrub($('windowPercent'),()=>{automaticWindows=false;applyEnvironment();});
 const scene=new T.Scene();scene.background=null;
+const vehicleLighting=createVehicleLighting(scene,()=>{renderer.shadowMap.needsUpdate=true;});
 const camera=new T.PerspectiveCamera(43,1,.1,3000);camera.position.set(detailRadius*.95,detailRadius*1.05,detailRadius*1.15);
 const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=T.SRGBColorSpace;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;host.prepend(renderer.domElement);
 const illustrationRenderer=createIllustrationRenderer(renderer);
@@ -314,6 +316,7 @@ function applyEnvironment(options={}){
  let lit=0;for(const [band,count] of (detailGroup?.userData.windowBands||[]).entries())if(windowIsLit((band+windowPattern)%16,chance))lit+=count;
  const activeWindowMaterials=new Set(),litWindowMaterials=new Set();
  scene.traverse(o=>{const active=new Set(Array.isArray(o.material)?o.material:o.material?[o.material]:[]);const materials=new Set([...(Array.isArray(o.material)?o.material:o.material?[o.material]:[]),...(o._originalMaterial?(Array.isArray(o._originalMaterial)?o._originalMaterial:[o._originalMaterial]):[])]);for(const m of materials){const band=m.userData.nightWindowBand;if(band===undefined||!m.emissive)continue;const warm=(band+windowPattern)%5!==0;m.emissive.set(warm?'#ffd18b':'#cce4ed');m.emissiveIntensity=windowIsLit((band+windowPattern)%16,chance)?profile.windowIntensity:0;if(active.has(m)){activeWindowMaterials.add(m);if(m.emissiveIntensity>0)litWindowMaterials.add(m);}}});
+ vehicleLighting.set(profile.night,renderStyle);
  streetlights?.set(profile.night,true,renderStyle,chance,windowPattern);renderer.shadowMap.needsUpdate=options.rebake!==false||shadowsWereDirty||shadowsWereEnabled!==renderer.shadowMap.enabled;
  $('environmentControls').dataset.state=JSON.stringify({shops:shops?.stats(),season,foliage:vegetationSystem?.group.userData.foliage,hour,time:profile.label,date:profile.date,utcOffset:profile.utcOffset,solar:{azimuth:profile.azimuth,elevation:profile.elevation},renderedSun:{azimuth:profile.azimuth,elevation:profile.renderElevation,model:profile.lightingModel,color:profile.sun,skyLight:profile.skyLight},sunPosition:sun.position.toArray(),sunTarget:sun.target.position.toArray(),sunIntensity:sun.intensity,ambient:hemisphere.intensity,dayClarity:profile.dayClarity,night:profile.night,castsSunShadow:sun.castShadow&&renderer.shadowMap.enabled,shadowsEnabled:renderer.shadowMap.enabled,appearance:{...appearance},automaticWindows,weather,windowChance:chance,litWindows:lit,activeWindowMaterials:activeWindowMaterials.size,litWindowMaterials:litWindowMaterials.size,streetlights:streetlightPlan?.lights.length??0,lampsOn:profile.night>.01,background:{...atmosphere?.stats,windowChance:chance,night:profile.night},distant:true,windowPattern});
  requestRender();
@@ -324,6 +327,7 @@ function updateEnvironmentCamera(){
  const eyeAboveGround=camera.position.y-elevation(camera.position.x,camera.position.z);
  const near=Math.max(.1,Math.min(2,eyeAboveGround/100));
  if(Math.abs(camera.near-near)>.001){camera.near=near;camera.updateProjectionMatrix();}
+ vehicleLighting.update(camera);$('environmentControls').dataset.vehicleLights=JSON.stringify(vehicleLighting.stats());
  const count=streetlights?.update(camera)??0;shops?.update(camera);const signature=streetlights?.getBillboardSignature()+'|'+(shops?.activeIds||[]).join(',');if(signature!==lastBillboardSources){lastBillboardSources=signature;refreshBillboardLighting();}const dir=new T.Vector3();camera.getWorldDirection(dir);const bearing=(Math.atan2(dir.x,-dir.z)*180/Math.PI+360)%360,names=['북','북동','동','남동','남','남서','서','북서'];
  $('environmentHeading').textContent=`${names[Math.round(bearing/45)%8]} ${Math.round(bearing)}° · ${environmentProfile(hour,weather,solarContext).label}`;
  $('environmentControls').dataset.activeShadowLights=count;

@@ -1,0 +1,82 @@
+import * as T from 'three';
+
+// Normalized registered vehicles face +Z. Fractions refer to their original
+// body bounds; attachment depth is sampled from the actual GLB surface.
+export const LAMP_LAYOUTS={
+ 'city-bus':{front:[.34,.19,.14,.11],rear:[.43,.31,.13,.22]},
+ porter2:{front:[.37,.37,.17,.18],rear:[.37,.18,.18,.09]},
+ 'porter2-delivery':{front:[.36,.25,.18,.11],rear:[.38,.10,.19,.07]},
+ 'sonata-dn8':{front:[.35,.51,.22,.065],rear:[.32,.65,.22,.055]},
+ ray:{front:[.38,.47,.13,.17],rear:[.43,.53,.10,.19]},
+ 'carnival-ka4':{front:[.37,.49,.24,.07],rear:[.39,.64,.25,.06]},
+ 'grandeur-ig':{front:[.36,.46,.24,.09],rear:[.37,.61,.26,.07]},
+ 'spark-m400':{front:[.35,.48,.17,.12],rear:[.40,.55,.12,.18]},
+ 'grand-starex-school':{front:[.39,.36,.15,.19],rear:[.43,.43,.10,.23]},
+};
+const visibleInScene=o=>{for(let p=o;p;p=p.parent)if(!p.visible)return false;return true;};
+export function createVehicleLighting(scene,onShadowChange=()=>{}){
+ const rigs=new Map(),geometry=new T.CircleGeometry(.5,12),frontMaterial=new T.MeshBasicMaterial({color:0xfff1cc,toneMapped:false,side:T.FrontSide}),rearMaterial=new T.MeshBasicMaterial({color:0xff1810,toneMapped:false,side:T.FrontSide});
+ const pool=Array.from({length:2},()=>{
+  const light=new T.SpotLight(0xffefd4,0,24,Math.PI/7,.72,2);
+  light.castShadow=true;light.shadow.mapSize.set(512,512);light.shadow.bias=-.00008;light.shadow.normalBias=.025;light.shadow.camera.near=.1;light.shadow.camera.far=24;
+  light.userData.environmentOwned=true;scene.add(light,light.target);return light;
+ });
+ let strength=0;
+ function attach(root){
+  const layout=LAMP_LAYOUTS[root.userData.vehicleFamily],size=root.userData.dimensions;if(!layout||!size)return;
+  const [w,h,l]=size,group=new T.Group();group.name='차량 전조등·미등';group.userData.environmentOwned=true;
+  root.updateWorldMatrix(true,true);
+  const body=[];root.traverse(o=>{if(o.isMesh&&!o.userData.environmentOwned)body.push(o);});
+  const ray=new T.Raycaster(),anchors=[];
+  for(const [kind,sign] of [['front',1],['rear',-1]]){
+   const [x,y,width,height]=layout[kind];
+   for(const side of [-1,1]){
+    const origin=root.localToWorld(new T.Vector3(side*w*x,h*y,sign*(l/2+1)));
+    const direction=new T.Vector3(0,0,-sign).transformDirection(root.matrixWorld);ray.set(origin,direction);
+    const hit=ray.intersectObjects(body,false)[0];
+    // No guessed floating lamps when a model has no surface at this anchor.
+    if(!hit)continue;
+    const normal=hit.face.normal.clone().transformDirection(hit.object.matrixWorld);
+    const local=root.worldToLocal(hit.point.clone().addScaledVector(normal,.014));
+    const localNormal=normal.transformDirection(root.matrixWorld.clone().invert());
+    const lens=new T.Mesh(geometry,kind==='front'?frontMaterial:rearMaterial);lens.position.copy(local);lens.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),localNormal);lens.scale.set(width,height,1);lens.userData={environmentOwned:true,noInk:true,vehicleLamp:kind};group.add(lens);
+    if(kind==='front')anchors.push(local);
+   }
+  }
+  root.add(group);group.visible=strength>.01;
+  const origin=anchors.length?anchors.reduce((a,b)=>a.add(b),new T.Vector3()).multiplyScalar(1/anchors.length):null;
+  if(origin)origin.z=l/2+.06;
+  rigs.set(root,{group,origin});
+ }
+ function sync(){
+  const found=new Set();scene.traverse(o=>{if(o.userData.memoVehicle&&o.userData.dimensions)found.add(o);});
+  for(const [root,rig]of rigs)if(!found.has(root)){root.remove(rig.group);rigs.delete(root);}
+  for(const root of found)if(!rigs.has(root))attach(root);
+ }
+ function set(night,style='color'){
+  strength=style==='line'?0:T.MathUtils.clamp(night,0,1);sync();
+  for(const {group}of rigs.values())group.visible=strength>.01;
+  frontMaterial.color.setRGB(1,.93,.76).multiplyScalar(.45+strength*.55);
+  rearMaterial.color.setRGB(1,.025,.012).multiplyScalar(.35+strength*.65);
+  if(strength<=.01)for(const light of pool)light.intensity=0;
+ }
+ function update(camera){
+  const candidates=[];
+  if(strength>.01)for(const [root,rig]of rigs){
+   if(!rig.origin||!visibleInScene(root))continue;
+   root.updateWorldMatrix(true,false);const origin=root.localToWorld(rig.origin.clone());
+   const distance=origin.distanceToSquared(camera.position);if(distance<38*38)candidates.push({root,origin,distance,rig});
+  }
+  candidates.sort((a,b)=>a.distance-b.distance);
+  let changed=false;
+  pool.forEach((light,i)=>{
+   const previous=light.userData.pose;
+   const selected=candidates[i];light.intensity=selected?65*strength:0;
+   if(!selected){if(previous!=='off')changed=true;light.userData.pose='off';return;}
+   light.position.copy(selected.origin);light.target.position.copy(selected.root.localToWorld(selected.rig.origin.clone().add(new T.Vector3(0,-.65,10))));light.target.updateMatrixWorld();const pose=[light.intensity,...light.position.toArray(),...light.target.position.toArray()].join(',');if(previous!==pose){changed=true;light.shadow.needsUpdate=true;}light.userData.pose=pose;
+  });
+  if(changed)onShadowChange();
+  return Math.min(pool.length,candidates.length);
+ }
+ return {set,update,stats:()=>({vehicles:rigs.size,night:strength,activeLights:pool.filter(l=>l.intensity>0).length}),dispose(){for(const[root,{group}]of rigs)root.remove(group);rigs.clear();for(const light of pool){scene.remove(light,light.target);light.dispose();}geometry.dispose();frontMaterial.dispose();rearMaterial.dispose();}};
+}

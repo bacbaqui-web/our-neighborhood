@@ -1,0 +1,19 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const three=new URL('../outputs/domestic-test/vendor/three.module.js',import.meta.url).href;
+const T=await import(three);
+const source=(await readFile(new URL('../outputs/domestic-test/vehicle-lighting.js',import.meta.url),'utf8')).replace("from 'three'",`from '${three}'`);
+const {createVehicleLighting}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const scene=new T.Scene(),camera=new T.PerspectiveCamera();camera.position.set(0,3,7);
+function car(x=0){const root=new T.Group();root.userData={memoVehicle:'test',vehicleFamily:'sonata-dn8',dimensions:[2,1.5,5]};const body=new T.Mesh(new T.BoxGeometry(2,1.5,5),new T.MeshStandardMaterial());body.position.y=.75;root.add(body);root.position.x=x;scene.add(root);return root;}
+const a=car(),b=car(4),c=car(8),system=createVehicleLighting(scene);
+system.set(1);assert.equal(system.stats().vehicles,3);assert.equal(a.children[1].children.length,4);assert.equal(system.update(camera),2);
+assert.equal(scene.children.filter(o=>o.isSpotLight).length,2);
+let lights=scene.children.filter(o=>o.isSpotLight);assert(lights[0].target.position.z>lights[0].position.z);
+b.visible=c.visible=false;a.rotation.y=Math.PI;a.rotation.x=.15;system.update(camera);assert(lights[0].target.position.z<lights[0].position.z);b.visible=c.visible=true;
+system.set(0);assert.equal(system.update(camera),0);assert.equal(a.children[1].visible,false);
+system.set(1,'line');assert.equal(system.update(camera),0);
+system.set(1);system.set(1);assert.equal(a.children.length,2);a.visible=false;system.update(camera);assert.equal(system.stats().activeLights,2);
+scene.remove(b,c);system.set(1);assert.equal(system.stats().vehicles,1);assert.equal(system.update(camera),0);assert.equal(b.children.length,1);
+car(2);system.set(1);assert.equal(system.stats().vehicles,2);assert.equal(system.update(camera),1);
+system.dispose();assert.equal(scene.children.filter(o=>o.isSpotLight).length,0);console.log('PASS: day/night, rear/front, rotated/sloped vehicles, bounded lights, hidden/removed/new vehicles, cleanup');

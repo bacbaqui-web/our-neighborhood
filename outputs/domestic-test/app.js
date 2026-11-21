@@ -1,3 +1,4 @@
+import {shopFocusView} from './shops/focus-view.js?v=shop-focus1';
 import {prepareShopInteriors,applyInteriorStyle} from './shops/interiors.js?v=shop50v3';
 import {prepareBuildingIdentity} from './building-remakes/identity.js?v=replacements3';
 import {approvedBuildingId,approvedBuildingProfiles} from './building-remakes/models.js?v=replacements3';
@@ -46,7 +47,7 @@ import {loadVegetationAssets} from './vegetation.js?v=view3c';
 import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=view3c';
 import {loadSpeciesTextures} from './hybrid-tree.js?v=view3c';
 let canopyTexture=null,finishedGround=null;
-let shops=null,shopCatalog=null,shopPlaces=null,shopPlan=null;
+let shops=null,shopCatalog=null,shopPlaces=null,shopPlan=null,shopViewBuildings=[];
 import {createBuildingShellGeometry} from './building-shell.js?v=recess22';
 import {createVisibilityOptimizer} from './visibility.js?v=151';
 import {createPedestrians,loadPedestrianAssets} from './pedestrians.js?v=umbrella1';
@@ -159,6 +160,7 @@ specs.push({properties:pr,address:`${pr.street_name} ${pr.house_number}`,inkObje
 mesh.add(new T.LineSegments(new T.EdgesGeometry(geo,30),new T.LineBasicMaterial({color:isHome?0x994821:0x426c79,transparent:true,opacity:.55})));buildingGroup.add(mesh);meshes.push(mesh);if(isHome)targetMesh=mesh;if(arterialPlan?.mappedKiosks?.includes(Number(pr.objectid)))mesh.visible=false;
 }}
 for(const b of specs){b.arterialFacades=(arterialPlan?.commercialFacades||[]).filter(f=>f.owner===b.seed);b.arterialKiosk=arterialPlan?.mappedKiosks?.includes(b.seed);}
+shopViewBuildings=specs;
 planFrontages(specs,roadInfo);
 host.dataset.facilityPlan=JSON.stringify(planFacilities(specs,shopPlaces.places,{xz}));
 for(const b of specs)if(b.facility?.id==='apartment')b.apartment=chooseApartment(b);
@@ -337,9 +339,11 @@ function updateEnvironmentCamera(){
 }
 $('shopView').onchange=()=>{
  const p=shopPlan?.placements.find(p=>String(p.placeId)===$('shopView').value);if(!p)return;
+ const view=shopFocusView(p,shopViewBuildings,{roadInfo,elevation});
+ if(!view){$('status').textContent='이 가게 앞에 시점을 놓을 공간이 없습니다. 가까운 길에서 직접 이동해 확인해 주세요.';return;}
  if(walking?.isActive())walking.exit();
- const [x,y,z]=p.position,[nx,nz]=p.n,d=Math.max(8,p.width*1.35);
- cam([x+nx*d,y+3.1,z+nz*d],[x,y+1.9,z]);
+ cam(view.position,view.target);
+ host.dataset.shopFocus=JSON.stringify({placeId:p.placeId,position:view.position,target:view.target});
  $('status').textContent=`${p.name} · ${p.address} · ${p.reference==='observed-local-frontage'?'로드뷰 확인 전면':p.reference==='reference-derived-brand'?'사진·로드뷰를 반영한 매장 외관':'업종 참고 디자인'} · 영업시간은 연출용`;
 };
 $('timeOfDay').onchange=()=>{hour=Number($('timeOfDay').value);applyEnvironment();};

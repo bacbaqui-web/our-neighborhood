@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {shopFocusView} from '../outputs/domestic-test/shops/focus-view.js';
+const shop={position:[0,0,0],n:[0,1],width:4.4,height:3.5};
+const host={points:[[-4,-5],[4,-5],[4,0],[-4,0]]};
+const opposite={points:[[-20,4],[20,4],[20,15],[-20,15]]};
+const narrow=shopFocusView(shop,[host,opposite],{roadInfo:(x,z)=>z>.2&&z<3.8,elevation:()=>0});
+assert(narrow);assert(narrow.position[2]>.3&&narrow.position[2]<3.8,'narrow street camera must stay out of opposite building');
+const open=shopFocusView(shop,[host],{roadInfo:(x,z)=>z>0,elevation:()=>0});assert(open.position[2]>6,'wide street keeps whole facade view');
+const sealed=shopFocusView(shop,[host,{points:[[-20,.3],[20,.3],[20,20],[-20,20]]}],{roadInfo:()=>true,elevation:()=>0});assert.equal(sealed,null,'no unobstructed view must not move camera into a wall');
+console.log('Shop camera: narrow street, wide street, and blocked frontage passed.');
+const {readFileSync}=await import('node:fs');const actual=JSON.parse(readFileSync(new URL('./fixtures/yeonnam-shop-focus.json',import.meta.url)));
+const inside=([x,z],r)=>{let v=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if((a[1]>z)!==(b[1]>z)&&x<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])v=!v;}return v;};
+const blocked=pos=>actual.buildings.some(b=>inside([pos[0],pos[2]],b.points));
+const old=actual.shop.position.map((v,i)=>v+(i===0?actual.shop.n[0]*8:i===2?actual.shop.n[1]*8:3.1));assert(blocked(old),'actual previous 8m focus reproduces opposite-building collision');
+const roads=(x,z)=>actual.roadTriangles.some(t=>inside([x,z],t));
+const fixed=shopFocusView(actual.shop,actual.buildings,{roadInfo:roads,elevation:()=>0});assert(fixed);assert(!blocked(fixed.position));assert(roads(fixed.position[0],fixed.position[2]));console.log('Actual Yeonnam fixture: old camera inside wall; new camera on road.',fixed.position);

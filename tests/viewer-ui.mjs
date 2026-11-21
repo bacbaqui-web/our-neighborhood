@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {DEFAULT_APPEARANCE,normalizeAppearance} from '../outputs/domestic-test/illustration-settings.js';
+const html=fs.readFileSync('outputs/domestic-test/index.html','utf8');
+for(const id of ['detailRadius','locationHistory','export','color','line','tone'])assert(!new RegExp(`id="${id}"`).test(html),`${id} retired`);
+for(const id of ['address','addresses','closeScene','image','settings','environmentControls'])assert(html.includes(`id="${id}"`));
+assert.deepEqual(Object.fromEntries(['outerWidth','outerBrightness','outerSaturation','minDistance','innerWidth','innerAngle','innerBrightness','innerSaturation','brightness','density'].map(k=>[k,DEFAULT_APPEARANCE[k]])),{outerWidth:2,outerBrightness:50,outerSaturation:110,minDistance:1,innerWidth:2,innerAngle:21,innerBrightness:90,innerSaturation:150,brightness:100,density:70});
+assert.equal(normalizeAppearance({innerAngle:25}).innerAngle,25);
+const walk=fs.readFileSync('outputs/domestic-test/walk.js','utf8');
+for(const id of ['walkPad','walkExit','walkEyeReset','walkHelp','walkTitle'])assert(!walk.includes(id),id);
+for(const code of ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'])assert(walk.includes(code));
+const map=fs.readFileSync('outputs/domestic-test/map-picker.js','utf8');assert(!map.includes('aria-label="생성 반경"'));
+console.log('Viewer UI structure and defaults passed');

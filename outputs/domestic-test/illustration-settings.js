@@ -1,7 +1,7 @@
 export const DEFAULT_APPEARANCE = Object.freeze({
-  lines:true, outerWidth:2, outerFace:true, outerBrightness:51, outerSaturation:110,
-  minDistance:0, acrossObjects:true, innerWidth:1, innerFace:true,
-  innerAngle:2*Math.asin(.18)*180/Math.PI, innerBrightness:90, innerSaturation:110, shading:true, brightness:100,
+  lines:true, outerWidth:2, outerFace:true, outerBrightness:50, outerSaturation:110,
+  minDistance:1, acrossObjects:true, innerWidth:2, innerFace:true,
+  innerAngle:21, innerBrightness:90, innerSaturation:150, shading:true, brightness:100,
   density:70, shadows:true, shadingMode:'smooth', antialias:'msaa',
 });
 export function normalizeAppearance(value={}) {
@@ -13,5 +13,5 @@ export function normalizeAppearance(value={}) {
   if(['off','fxaa','msaa'].includes(value.antialias))out.antialias=value.antialias;
   return out;
 }
-export function loadAppearance(){try{return normalizeAppearance(JSON.parse(localStorage.getItem('neighborhood-appearance-v37')||'{}'));}catch{return normalizeAppearance();}}
-export function saveAppearance(value){try{localStorage.setItem('neighborhood-appearance-v37',JSON.stringify(value));}catch{/* Rendering also works when storage is unavailable. */}}
+export function loadAppearance(){try{return normalizeAppearance(JSON.parse(localStorage.getItem('neighborhood-appearance-v38')||'{}'));}catch{return normalizeAppearance();}}
+export function saveAppearance(value){try{localStorage.setItem('neighborhood-appearance-v38',JSON.stringify(value));}catch{/* Rendering also works when storage is unavailable. */}}

@@ -1,3 +1,5 @@
+// Internal lookup budget; only ray-visible details are generated.
+export const AUTO_VIEW_RADIUS=100;
 let sdkPromise;
 export async function loadSDK(){
  if(window.kakao?.maps?.Map)return;
@@ -17,13 +19,13 @@ export async function loadSDK(){
  })().catch(error=>{sdkPromise=null;throw error;});
  return sdkPromise;
 }
-export function chooseMapPoint({query,origin,radius=100}){
+export function chooseMapPoint({query,origin,radius=AUTO_VIEW_RADIUS}){
  if(location.hostname.endsWith('github.io')){location.assign('https://magamiscom.ing/neighborhood/');return Promise.resolve(null);}
  return new Promise(resolve=>{
   const dialog=document.createElement('dialog');dialog.className='map-picker';
-  dialog.innerHTML=`<header><h2>지도에서 생성할 위치 선택</h2><button type="button" data-close aria-label="닫기">닫기</button></header><form class="map-search"><input aria-label="주소 또는 장소 검색" placeholder="주소나 장소 이름을 검색하세요"><button>검색</button></form><p class="map-message" role="status">카카오지도를 불러오는 중…</p><div class="map-picker-body"><div class="map-results"></div><div class="map-canvas"></div></div><footer><label>만들 범위 <select data-mode aria-label="만들 범위"><option value="view">360도 보이는 곳</option></select></label><label>처음 볼 방향 <input data-heading aria-label="처음 볼 방향" title="0도 북쪽 · 90도 동쪽 · 180도 남쪽 · 270도 서쪽" type="number" min="0" max="359" step="15" value="0">°</label><button type="button" data-aim>지도에서 방향 찍기</button><label>시야 거리 <input type="number" min="50" max="300" step="50" value="100" aria-label="생성 반경"> m</label><span class="map-selection">지도에서 중심점을 찍어 주세요.</span><button data-confirm disabled>이 위치로 동네 만들기</button></footer>`;
+  dialog.innerHTML=`<header><h2>지도에서 생성할 위치 선택</h2><button type="button" data-close aria-label="닫기">닫기</button></header><form class="map-search"><input aria-label="주소 또는 장소 검색" placeholder="주소나 장소 이름을 검색하세요"><button>검색</button></form><p class="map-message" role="status">카카오지도를 불러오는 중…</p><div class="map-picker-body"><div class="map-results"></div><div class="map-canvas"></div></div><footer><label>처음 볼 방향 <input data-heading aria-label="처음 볼 방향" title="0도 북쪽 · 90도 동쪽 · 180도 남쪽 · 270도 서쪽" type="number" min="0" max="359" step="15" value="0">°</label><button type="button" data-aim>지도에서 방향 찍기</button><span class="map-selection">지도에서 중심점을 찍어 주세요.</span><button data-confirm disabled>이 위치로 동네 만들기</button></footer>`;
   document.body.append(dialog);dialog.showModal();
-  const $=s=>dialog.querySelector(s),message=$('.map-message'),confirm=$('[data-confirm]'),range=$('input[aria-label="생성 반경"]'),mode=$('[data-mode]'),heading=$('[data-heading]');
+  const $=s=>dialog.querySelector(s),message=$('.map-message'),confirm=$('[data-confirm]'),range={value:radius},mode={value:'view'},heading=$('[data-heading]');
   $('.map-search').onsubmit=event=>event.preventDefault();
   $('.map-search input').value=query;range.value=radius;
   let selection=null,map,marker,circle,geocoder,sequence=0,sector,person,aiming=false;
@@ -45,10 +47,10 @@ export function chooseMapPoint({query,origin,radius=100}){
     sector=new kakao.maps.Polygon({map,path,strokeWeight:2,strokeColor:'#326bea',fillColor:'#326bea',fillOpacity:.22});
    }
    marker.setMap(mode.value==='circle'?map:null);
-   circle.setMap(map);
+   circle.setMap(null);
    confirm.textContent=mode.value==='view'?'보이는 곳 만들기':'이 위치로 동네 만들기';
    circle.setPosition(new kakao.maps.LatLng(lat,lon));circle.setRadius(r);
-   $('.map-selection').textContent=`${selection.address} · ${mode.value==='view'?'360도 · 처음 '+heading.value+'°':'주변 전체'} · ${r}m`;
+   $('.map-selection').textContent=`${selection.address} · ${mode.value==='view'?'360도 · 처음 '+heading.value+'°':'주변 전체'}`;
   }
   range.onchange=draw;
   function select(point,label){
@@ -64,7 +66,7 @@ export function chooseMapPoint({query,origin,radius=100}){
   loadSDK().then(()=>{
    if(!dialog.isConnected)return;
    map=new kakao.maps.Map($('.map-canvas'),{center:new kakao.maps.LatLng(...origin),level:3});
-   marker=new kakao.maps.Marker();circle=new kakao.maps.Circle({map,center:new kakao.maps.LatLng(...origin),radius:Number(range.value),strokeWeight:2,strokeColor:'#326bea',fillColor:'#326bea',fillOpacity:.15});
+   marker=new kakao.maps.Marker();circle=new kakao.maps.Circle({center:new kakao.maps.LatLng(...origin),radius:Number(range.value),strokeWeight:2,strokeColor:'#326bea',fillColor:'#326bea',fillOpacity:.15});
    geocoder=new kakao.maps.services.Geocoder();const places=new kakao.maps.services.Places();
    kakao.maps.event.addListener(map,'click',event=>{
     if(aiming&&selection){const [lat,lon]=selection.center;const x=(event.latLng.getLng()-lon)*Math.cos(lat*Math.PI/180),north=event.latLng.getLat()-lat;heading.value=Math.round((Math.atan2(x,north)*180/Math.PI+360)%360)%360;aiming=false;draw();message.textContent='화살표는 처음 바라볼 방향입니다. 주변 360도를 검사합니다.';}else select(event.latLng);

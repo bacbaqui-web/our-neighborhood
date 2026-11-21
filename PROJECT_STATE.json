@@ -5488,5 +5488,33 @@
       "sourceFilesMatchPublishedCommit": true,
       "screenshot": "verification/street-end-context/public-after-day.png"
     }
+  },
+  "viewerUi20261121": {
+    "status": "local-verified-public-pending",
+    "scope": "compact header; search and saved scenes; close to map; PNG only; bottom minimap/walk/environment; compact appearance defaults",
+    "defaults": {
+      "outerWidth": 2,
+      "outerBrightness": 50,
+      "outerSaturation": 110,
+      "minDistanceCm": 1,
+      "innerWidth": 2,
+      "innerAngle": 21,
+      "innerBrightness": 90,
+      "innerSaturation": 150,
+      "brightness": 100,
+      "density": 70
+    },
+    "lookup": "No radius UI; internal 100m new-scene lookup budget retained; saved scene extent comes from manifest. Visible360 details and distant context unchanged.",
+    "verified": [
+      "Edge map search and full generation d52fa91caaa507fa",
+      "height 1.65 to 2m",
+      "time12 to19 to12",
+      "ArrowDown moves camera",
+      "PNG2400x1866 saved",
+      "settings dialog",
+      "close opens map",
+      "narrow-screen controls do not overlap"
+    ],
+    "public": false
   }
 }

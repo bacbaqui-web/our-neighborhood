@@ -82,6 +82,7 @@ export async function installSimReadyPreview(ctx){
  const summary={count:records.length,byType:Object.fromEntries(Object.keys(templates).map(id=>[id,records.filter(p=>p.id===id).length])),triangles:records.reduce((n,p)=>n+triangleCounts[p.id],0),draws:root.children.length,placements:records,rejected};
  document.getElementById('view').dataset.representatives=JSON.stringify(representativeAudit());
  document.getElementById('view').dataset.simready=JSON.stringify(summary);
+ if(ctx.showControls===false){applyStyle('color');renderer.shadowMap.needsUpdate=true;requestRender();return{root,summary};}
  const section=document.createElement('section');section.style.cssText='padding:12px;border:1px solid #b3c7c8;border-radius:10px;margin:12px 0;font-size:13px';
  section.innerHTML=`<b>가게 앞 생활 소품</b><p>${summary.count}개 · ${summary.triangles.toLocaleString()} 삼각형 · ${summary.draws}개 묶음</p><label><input id="lifeVisible" type="checkbox" checked> 생활 소품 표시</label><p><select id="lifeLocation" aria-label="생활 소품 위치"></select></p><button id="lifeBenchmark">추가 전후 성능 비교</button><p id="lifeResult" role="status">로드뷰에서 확인한 종류를 후보로 삼고 통행·경사 검사를 통과한 소품만 배치했습니다. 위치·치수는 추정입니다.</p><small>NVIDIA · <a href="./simready/CREDITS.txt">소재 출처·변경 사항</a> · CC BY 4.0</small>`;
  document.getElementById('environmentControls').append(section);

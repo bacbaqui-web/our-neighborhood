@@ -147,6 +147,19 @@ def cut_positions(values,mask):
     out.extend([x,u*a[1]+v*b[1]+(1-u-v)*c[1],z])
  return out
 
+def draped_positions(g,surface,lift):
+ """Paint shares the final ground's triangle planes, including seam blending."""
+ out=[]
+ for i in range(0,len(surface),9):
+  a,b,c=[surface[i+j:i+j+3] for j in (0,3,6)];poly=Polygon([(v[0],v[2]) for v in (a,b,c)])
+  if poly.area<1e-9 or not poly.intersects(g):continue
+  d=(b[2]-c[2])*(a[0]-c[0])+(c[0]-b[0])*(a[2]-c[2])
+  for tri in triangles(poly.intersection(g)):
+   for x,z in tri:
+    u=((b[2]-c[2])*(x-c[0])+(c[0]-b[0])*(z-c[2]))/d;v=((c[2]-a[2])*(x-c[0])+(a[0]-c[0])*(z-c[2]))/d
+    out.extend([x,u*a[1]+v*b[1]+(1-u-v)*c[1]+lift,z])
+ return out
+
 def surface_positions(g,height,offset=0):
  result=[]
  if g.is_empty:return result
@@ -182,12 +195,13 @@ def build(root,roads=None,terrain=None):
  if zone.is_empty:
   write('junction-plan.json',plan);manifest=read('manifest.json');manifest['junctions']={'version':1,'qa':plan['qa'],'plan':'junction-plan.json'};write('manifest.json',manifest);return plan['qa']
  # Blend into existing surface datum at patch edges, including legacy flat sidewalks.
- original={k:list(v) for k,v in rc['positions'].items()};cells={}
+ original={k:list(v) for k,v in rc['positions'].items()};cells={};seam_polys=[];seam_band=feather_boundary.buffer(2).intersection(zone)
  for kind,values in original.items():
   for i in range(0,len(values),9):
    vs=[values[i+j:i+j+3] for j in (0,3,6)];p=Polygon([(v[0],v[2]) for v in vs])
    if p.area<1e-9 or not p.intersects(zone.buffer(.1)):continue
    a,b,c=vs;den=(b[2]-c[2])*(a[0]-c[0])+(c[0]-b[0])*(a[2]-c[2]);x0,z0,x1,z1=p.bounds
+   if p.intersects(seam_band):seam_polys.append((p,a,b,c,den))
    for x in range(math.floor(x0/5),math.floor(x1/5)+1):
     for z in range(math.floor(z0/5),math.floor(z1/5)+1):cells.setdefault((x,z),[]).append((a,b,c,den))
  def old_offset(x,z):
@@ -199,18 +213,34 @@ def build(root,roads=None,terrain=None):
   f=min(1,feather_boundary.distance(Point(x,z))/2);return old_offset(x,z)*(1-f)+target*f
  def asphalt(x,z):return offset(x,z,.035)
  def walk(x,z):return offset(x,z,.185)
+ def connected_surface(g,target,lift=0):
+  # Keep the original triangle edges AND its own plane at the patch boundary.
+  # A global point lookup is ambiguous where old surface triangles touch/overlap.
+  datum=lambda x,z:offset(x,z,target)+lift
+  band=g.intersection(seam_band);out=surface_positions(g.difference(seam_band),height,datum)
+  for poly,a,b,c,d in seam_polys:
+   piece=band.intersection(poly)
+   if piece.is_empty:continue
+   def plane_datum(x,z):
+    u=((b[2]-c[2])*(x-c[0])+(c[0]-b[0])*(z-c[2]))/d;v=((c[2]-a[2])*(x-c[0])+(a[0]-c[0])*(z-c[2]))/d
+    old=u*a[1]+v*b[1]+(1-u-v)*c[1]-height(x,z);f=min(1,feather_boundary.distance(Point(x,z))/2)
+    return old*(1-f)+target*f+lift
+   out+=surface_positions(piece,height,plane_datum);band=band.difference(poly)
+  out+=surface_positions(band,height,datum)
+  return out
  ramps=[r for r in plan['ramps'] if zone.covers(shape(r['footprint']))];rm=unary_union([shape(r['footprint']) for r in ramps])
  for k,v in rc['positions'].items():rc['positions'][k]=cut_positions(v,zone)
  rc['normals']={}
- rc['positions'].setdefault('asphalt',[]);rc['positions']['asphalt']+=surface_positions(shape(plan['road']).intersection(zone),height,asphalt)
- rc['positions'].setdefault('sidewalk',[]);rc['positions']['sidewalk']+=surface_positions(shape(plan['sidewalk']).intersection(zone).difference(rm),height,walk)
+ road_surface=connected_surface(shape(plan['road']).intersection(zone),.035)
+ rc['positions'].setdefault('asphalt',[]);rc['positions']['asphalt']+=road_surface
+ rc['positions'].setdefault('sidewalk',[]);rc['positions']['sidewalk']+=connected_surface(shape(plan['sidewalk']).intersection(zone).difference(rm),.185)
  # Existing wear and large-road overlays relinquish this exact region.
  for k,v in rc.get('wear',{}).get('positions',{}).items():rc['wear']['positions'][k]=cut_positions(v,zone)
  geometry={'white':[],'yellow':[],'curb':[],'ramp':[]}
  # Confirmed bus-lane boundaries retain their colour and alignment through minor junctions.
  blue=(arterial or {}).get('decals',{}).get('blue',[])
  blue_area=unary_union([Polygon([(blue[i+j],blue[i+j+2]) for j in (0,3,6)]) for i in range(0,len(blue),9)])
- for k,g in plan['marks'].items():geometry[k]=surface_positions(shape(g).intersection(zone).difference(rm).difference(blue_area.buffer(.15)),height,lambda x,z:asphalt(x,z)+.008)
+ for k,g in plan['marks'].items():geometry[k]=draped_positions(shape(g).intersection(zone).difference(rm).difference(blue_area.buffer(.15)),road_surface,.008)
  for r in ramps:
   c=r['center'];n=r['out'];d=r['depth']
   def ry(x,z):
@@ -235,7 +265,7 @@ def build(root,roads=None,terrain=None):
    if k=='blue':
     clear=unary_union([shape(c['footprint']) for c in plan['crossings']])
     inside=blue_area.intersection(zone).difference(clear)
-    arterial['decals'][k]=cut_positions(values,zone)+surface_positions(inside,height,lambda x,z:asphalt(x,z)+.009)
+    arterial['decals'][k]=cut_positions(values,zone)+draped_positions(inside,road_surface,.009)
    else:arterial['decals'][k]=cut_positions(values,zone)
   for key in ['curbs']:
    arterial[key]=[p for p in arterial.get(key,[]) if not LineString([p['a'],p['b']]).intersects(zone)]

@@ -1,7 +1,7 @@
 import sys,unittest,tempfile,math,json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'work'))
-from shapely.geometry import LineString,mapping,shape,Point,Polygon
+from shapely.geometry import LineString,mapping,shape,Point,Polygon,box
 from shapely.ops import unary_union
 from junction_generation import plan_junctions,build,surface_positions
 
@@ -73,6 +73,30 @@ class Junctions(unittest.TestCase):
    offsets=[values[i+1]-terrain.mesh_height(values[i],values[i+2]) for i in range(0,len(values),3)]
    self.assertAlmostEqual(min(offsets),.035);self.assertAlmostEqual(max(offsets),.185)
    for a in out['junctions']['assets']:self.assertAlmostEqual(a['position'][1]-terrain.mesh_height(a['position'][0],a['position'][2]),.185)
+ def test_patch_boundary_preserves_old_height_hinge(self):
+  from junction_generation import parts
+  rs=[road([[-50,0],[50,0]],3),road([[0,-50],[0,50]],2)]
+  r=unary_union([shape(x['geometry']).buffer(x['width']/2,cap_style=2) for x in rs]);public=unary_union([shape(x['geometry']).buffer(x['width']/2+x['sidewalkEachSide'],cap_style=2) for x in rs])
+  class Terrain:
+   def mesh_height(self,x,z):return 0
+  def original(g):return sum([surface_positions(g.intersection(b),lambda x,z:.02*abs(x-2.23),.026) for b in [box(-100,-100,2.23,100),box(2.23,-100,100,100)]],[])
+  with tempfile.TemporaryDirectory() as f:
+   root=Path(f)
+   def write(n,x):(root/n).write_text(json.dumps(x))
+   write('location.json',{'origin':[37.6,127]});write('manifest.json',{})
+   write('road-reservation.json',{'surfaces':{'carriageway':mapping(r),'shared':mapping(Polygon()),'sidewalk':mapping(public.difference(r))}})
+   write('road-context.json',{'positions':{'asphalt':original(r),'sidewalk':original(public.difference(r))}})
+   build(root,rs,Terrain());out=json.loads((root/'road-context.json').read_text());plan=json.loads((root/'junction-plan.json').read_text())
+   points=parts(shape(plan['zone']).boundary.intersection(LineString([[2.23,-50],[2.23,50]])),'Point')
+   self.assertTrue(points)
+   for point in points:
+    ys=[]
+    for values in out['positions'].values():
+     for i in range(0,len(values),9):
+      a,b,c=[values[i+j:i+j+3] for j in (0,3,6)];poly=Polygon([(p[0],p[2]) for p in [a,b,c]])
+      if poly.area<1e-9 or not poly.buffer(1e-7).covers(point):continue
+      x,z=point.x,point.y;den=(b[2]-c[2])*(a[0]-c[0])+(c[0]-b[0])*(a[2]-c[2]);u=((b[2]-c[2])*(x-c[0])+(c[0]-b[0])*(z-c[2]))/den;v=((c[2]-a[2])*(x-c[0])+(a[0]-c[0])*(z-c[2]))/den;ys.append(u*a[1]+v*b[1]+(1-u-v)*c[1])
+    self.assertTrue(ys);self.assertLess(max(ys)-min(ys),1e-6)
  def test_shallow_crossing_is_skipped_whole(self):
   p=plan([road([[-80,0],[80,0]],4),road([[0,0],[70,30]],2)])
   for c in p['crossings']:self.assertLess(shape(c['footprint']).difference(shape(p['zone'])).area,1e-6)

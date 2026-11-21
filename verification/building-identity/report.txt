@@ -1,0 +1,13 @@
+2026-11-21 approved building identity remake
+Source code: 744c2a50499d58834b35fed6f9dc29b4fb4dd5c8
+Scope: 12 approved references, unchanged approval IDs. Rejected reference candidates are not newly approved.
+
+Restored original image-backed logos: Costco, Homeplus, GS25, Starbucks wordmark and siren, police emblem.
+Reconstructed source lettering: THE TOWN MALL and four-color symbol, TRADERS, 7-ELEVEN, emart24, Korean local storefront and Hanshin identification.
+GS25 facade variant uses white GS with cyan 25, matching its approved dark sign. The original source SVG is retained.
+Facade changes: long three-floor tiled commercial block; bronze/blue five-floor commercial block; mint Hanshin balconies; orange police spandrels and green roof; brown Town Mall ribs/arcade and shallow convex bow; beige Homeplus panels/red canopy; white Costco/red belt and raised billboard; lime Traders tower; original convenience/cafe fascia colors and window framing.
+
+Local verification passed: building-identity, building-identity-preload, approved-buildings, building-preview-model, facility-placement, building-assets, asset-references, check-loading, browser-generation pack --check. Browser compared all 12 models with approved originals; storefront night view checked; no browser console errors.
+Known baseline issue from previous work: asset-encyclopedia raw catalog test references approved-road/barrier-approved-v1.glb outside the raw catalog; unrelated to these building changes.
+Limits: map footprints and actual floors still govern generated neighborhoods. Unseen sides/roof equipment are inferred. Tiny illegible photo lettering is simplified; this is not a surveyed or photogrammetric reproduction. Exterior glass uses the project's stylized opaque window rendering.
+Public deployment verified: source CI 44905510396 and hosting CI 44905545324 succeeded. Hosting commit 4f4a60f2f75d3ff3c9c324669b1941a47d49ed7d pins source 744c2a5. Public asset encyclopedia opened all 12 detail previews with triangle statistics and no detail error. Public emart24 and Starbucks screenshots saved.

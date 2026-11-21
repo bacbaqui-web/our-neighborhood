@@ -5890,10 +5890,14 @@
   },
   "buildingIdentity20261121": {
     "date": "2026-11-21",
-    "status": "implemented and locally verified; public verification pending",
+    "status": "deployed and public 12-model previews verified",
     "scope": "12 approved building remakes: original brand textures, facade colors, windows and proportions",
     "verification": "verification/building-identity",
-    "notes": "Unseen elevations inferred; illegible tiny photo details simplified. Rejected reference candidates remain pending."
+    "notes": "Unseen elevations inferred; illegible tiny photo details simplified. Rejected reference candidates remain pending.",
+    "sourceCommit": "744c2a50499d58834b35fed6f9dc29b4fb4dd5c8",
+    "hostingCommit": "4f4a60f2f75d3ff3c9c324669b1941a47d49ed7d",
+    "sourceRun": 44905510396,
+    "hostingRun": 44905545324
   },
   "boundedRoadBuildingPush20261121": {
     "status": "deployed-and-public-regeneration-verified",

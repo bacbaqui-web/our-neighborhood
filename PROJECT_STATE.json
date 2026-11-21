@@ -5824,5 +5824,44 @@
       "local 100m full generation completed with main-road grade 2 group preserved and genuine source-conflict warning visible"
     ],
     "proof": "verification/scene-edit/public-road-overlap-fixed.jpg"
+  },
+  "confirmedRoadFirstBuildings20261121": {
+    "status": "deployed-and-public-regeneration-verified",
+    "sourceCommit": "df45aa490e6eabd2ab03577e05c417eabfab4486",
+    "hostingCommit": "4bae6f8740facca6cb7abd8a7017e39eb9ea3ee9",
+    "hostingRun": 44901567827,
+    "sourceCIRun": 44901535341,
+    "policy": "Keep confirmed roads and sidewalks; move buildings first, trim if needed, omit with notice only when no viable footprint remains. Retain raw source and manual building properties.",
+    "tests": [
+      "30 Python road tests passed",
+      "6 scene-edit tests passed",
+      "Required JS and generation scope checks passed",
+      "Python bundle check passed (47 sources)",
+      "Source CI and hosting build passed"
+    ],
+    "localRegeneration": {
+      "grade3Adjusted": 31,
+      "grade2Adjusted": 30,
+      "overlapM2": 0,
+      "omitted": 0
+    },
+    "publicRegeneration": {
+      "scene": "61ce65488f210b03",
+      "radius": 50,
+      "mainRoadSegments": 2,
+      "grade": 3,
+      "groupPreserved": true,
+      "adjustedBuildings": 11,
+      "omittedBuildings": 0,
+      "roadBuildingOverlapM2": 0,
+      "sidewalkBuildingOverlapM2": 0,
+      "inferredSurfaceTrimmedM2": 0
+    },
+    "proof": "verification/scene-edit/public-road-first-buildings.jpg",
+    "limitations": [
+      "Existing saved scenes adopt this behavior when regenerated or roads edited.",
+      "Local build interrupted by iCloud-offloaded dist directory; clean public CI build passed.",
+      "Initial public load failed transiently; reload then regeneration completed."
+    ]
   }
 }

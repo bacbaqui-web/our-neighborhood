@@ -24,7 +24,7 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 changes={old:(new,digest) for old,new,digest in converted}
 def rewrite(value):
     if isinstance(value,dict):
-        result={k:rewrite(v) for k,v in value.items()}
+        result={rewrite(k):rewrite(v) for k,v in value.items()}
         if value.get('image') in changes and 'sha256' in value:result['sha256']=changes[value['image']][1]
         return result
     if isinstance(value,list):return [rewrite(v) for v in value]
@@ -32,6 +32,6 @@ def rewrite(value):
         for prefix in ['', 'people/', '../people/']:
             if value.startswith(prefix) and value[len(prefix):] in changes:return prefix+changes[value[len(prefix):]][0]
     return value
-for path in list(people.glob('*.json'))+[ROOT/'domestic-test/asset-encyclopedia/catalog.json']:
+for path in list(people.glob('*.json'))+[ROOT/'domestic-test/asset-encyclopedia/catalog.json',* (ROOT/'domestic-test/asset-encyclopedia/categories').glob('*/catalog.json')]:
     data=json.loads(path.read_text());path.write_text(json.dumps(rewrite(data),ensure_ascii=False,separators=(',',':')))
 print(f'Public people: {len(converted)} lossless WebP images; alpha and every visible RGB pixel verified.')

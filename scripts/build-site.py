@@ -69,6 +69,7 @@ target.hash=location.hash;location.replace(target.href);</script>
 subprocess.run(['python3', str(ROOT / 'scripts/optimize-people-site.py')], check=True)
 subprocess.run(['python3', str(ROOT / 'scripts/optimize-shop-site.py')], check=True)
 subprocess.run(['node', '--experimental-loader', './tests/three-loader.mjs', 'tests/shop-publication.mjs', str(OUT)], cwd=ROOT, check=True)
+subprocess.run(['node', '--no-warnings', '--loader', './tests/three-loader.mjs', 'tests/asset-publication.mjs', str(OUT)], cwd=ROOT, check=True)
 total = sum(path.stat().st_size for path in OUT.rglob('*') if path.is_file())
 if total >= 1_000_000_000:
     raise ValueError('Site exceeds the Pages size budget.')

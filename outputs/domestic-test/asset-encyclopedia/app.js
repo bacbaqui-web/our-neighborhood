@@ -2,7 +2,7 @@ import {environmentProfile} from '../environment-policy.js?v=151';
 import {clockText} from '../shops/storefront-hours.js?v=shop50v3';
 import {createReferenceReview} from './reference-review.js?v=shoprefs1';
 import {remakeAliases} from './remakes.js?v=replacements3';
-import {loadAssetRegistry} from './registry.js?v=category-ownership1';
+import {loadAssetRegistry} from './registry.js?v=category-ownership2';
 import {createIllustrationRenderer} from '../illustration-renderer.js';
 import {CATALOG_LINES,mountLineOptions} from './line-options.js';
 import {createPersonPreview} from './person-preview.js?v=umbrella1';

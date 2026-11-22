@@ -1,6 +1,6 @@
 import {installAssemblyDiagnostics} from './assembly-diagnostics.js?v=assembly1';
 import {createCommercialNeighborhood} from './sungshin-commercial/placement.js?v=placement2';
-import {loadAssetRegistry} from './asset-encyclopedia/registry.js?v=category-ownership1';
+import {loadAssetRegistry} from './asset-encyclopedia/registry.js?v=category-ownership2';
 let commercialNeighborhood=null;
 import {shopFocusView} from './shops/focus-view.js?v=shop-focus1';
 import {prepareShopInteriors,applyInteriorStyle} from './shops/interiors.js?v=shop50v3';

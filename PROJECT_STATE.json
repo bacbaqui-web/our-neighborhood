@@ -2,11 +2,20 @@
   "refactorFollowup20261122": {
     "date": "2026-11-22",
     "report": "docs/refactor-followup-20261122.md",
-    "implementation": "tasks-1-6-and-cache-complete",
+    "implementation": "tasks-1-7-and-cache-complete",
     "localVerification": "parent-reviewed; 31 integration commands passed; geometry byte equality confirmed",
-    "publication": "pending",
-    "publicScreenVerification": "pending",
-    "historicalRecords": "Older dated entries retain their original status; use this report for the followup refactor."
+    "publication": "complete",
+    "publicScreenVerification": "complete with first-open failure recorded",
+    "historicalRecords": "Older dated entries retain their original status; use this report for the followup refactor.",
+    "sourceCommit": "d0d319741cee82721d9f2bcd9efd1f3034de0b45",
+    "hostingCommit": "fc99cd487097dcace3f709c5c0e341b7d7c523a6",
+    "sourceRun": "45031412124",
+    "hostingRun": "45031456209",
+    "publicUrl": "https://magamiscom.ing/neighborhood/",
+    "remaining": [
+      "First-open Event occurred once; resource URL and cause unconfirmed; reload and edit/save/reopen passed.",
+      "Two legacy catalog expectation tests remain failing; inputs unchanged."
+    ]
   },
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
   "state": "canonical-visible360-public",

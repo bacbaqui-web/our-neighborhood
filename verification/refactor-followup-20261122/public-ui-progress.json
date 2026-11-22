@@ -1,0 +1,41 @@
+{
+  "existingScene": {
+    "id": "ce8f92284fef849c",
+    "reload": true,
+    "roadEditorOpenClose": true,
+    "assemblyConnected": 3261,
+    "placementExclusions": 134,
+    "errors": []
+  },
+  "encyclopedia": {
+    "rapidCategorySwitch": true,
+    "windowDetailOpenCloseReopen": true,
+    "windowTriangles": 88,
+    "treeDetail": true,
+    "treeTriangles": 2572,
+    "natureThumbnails": 10,
+    "errors": []
+  },
+  "newScene": {
+    "id": "fe5870f9c8552979",
+    "address": "서울 종로구 계동 147-2",
+    "radius": 100,
+    "generationAndStorage": "passed",
+    "firstOpen": "failed: image-like Event, undefined message; resource URL not captured",
+    "reloadWithoutCodeChanges": "passed",
+    "assemblyConnected": 2091,
+    "placementExclusions": 37,
+    "firstFailureCause": "unconfirmed"
+  },
+  "editSaveReopen": {
+    "status": "passed",
+    "road": "8",
+    "from": 1,
+    "to": 2,
+    "afterSaveReloadSelectedValue": "2",
+    "afterSaveReloadSelectedLabel": "2차도로 · 왕복 2차선과 인도",
+    "finalReady": true,
+    "finalStatus": "",
+    "finalErrors": []
+  }
+}

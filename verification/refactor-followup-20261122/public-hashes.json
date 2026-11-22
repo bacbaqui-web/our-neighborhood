@@ -1,0 +1,35 @@
+[
+  {
+    "path": "domestic-test/app.js",
+    "match": true,
+    "sha256": "a983d29bfe7b51dfd3a097045d5a6df33349c1bd7c9cdfebdc14fd32b648fd8e",
+    "matchesPublishedBuild": true
+  },
+  {
+    "path": "domestic-test/browser-generation/generation-task.js",
+    "match": true,
+    "sha256": "ee0d8184e066244accf6f0f99d9ff509cee99050dc6d26c7b6d6c30d51bc0146",
+    "matchesPublishedBuild": true
+  },
+  {
+    "path": "domestic-test/browser-generation/prepare-scene.js",
+    "match": true,
+    "sha256": "5770480e0bbaa52a00fadc1bfec7d538687aeaa16d22729a34bcd886598f311c",
+    "matchesPublishedBuild": true
+  },
+  {
+    "path": "domestic-test/browser-generation/sources.json",
+    "match": false,
+    "sha256": "50e407b87f478a794e56a49792788f08d50405b56da64a651aee7494248c7fb4",
+    "sourceSemanticMatch": false,
+    "builtByteMatch": true,
+    "note": "Published sources equal the fully built output. Only packed shop catalog texture filenames change from PNG to lossless WebP during the existing publication optimization.",
+    "matchesPublishedBuild": true
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/preview-engine.js",
+    "match": true,
+    "sha256": "e9411b96c8812ece2534f0ef21990f7ddabebd09694bf62746956920fc35c632",
+    "matchesPublishedBuild": true
+  }
+]

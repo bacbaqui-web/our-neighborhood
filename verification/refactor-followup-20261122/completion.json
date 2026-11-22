@@ -1,0 +1,41 @@
+{
+  "status": "completed-with-recorded-limitations",
+  "sourceCommit": "d0d319741cee82721d9f2bcd9efd1f3034de0b45",
+  "hostingCommit": "fc99cd487097dcace3f709c5c0e341b7d7c523a6",
+  "sourceRun": "45031412124",
+  "hostingRun": "45031456209",
+  "publicUrl": "https://magamiscom.ing/neighborhood/",
+  "deployment": "success",
+  "publicScreen": "verified",
+  "newScene": "fe5870f9c8552979",
+  "editSaveReopen": {
+    "status": "passed",
+    "road": "8",
+    "from": 1,
+    "to": 2,
+    "afterSaveReloadSelectedValue": "2",
+    "afterSaveReloadSelectedLabel": "2차도로 · 왕복 2차선과 인도",
+    "finalReady": true,
+    "finalStatus": "",
+    "finalErrors": []
+  },
+  "finalUI": {
+    "url": "https://magamiscom.ing/neighborhood/domestic-test/?location=fe5870f9c8552979&radius=100",
+    "ready": "true",
+    "status": "",
+    "errors": []
+  },
+  "assemblyConnectedAfterEdit": 2090,
+  "placementExclusions": 37,
+  "remaining": [
+    "First-open Event once: cause and failed URL unconfirmed; no code fix; reload and subsequent edit/save/reopen passed.",
+    "Legacy asset-encyclopedia GLB coverage and asset-encyclopedia-lines expected18/actual55 fail; unchanged inputs."
+  ],
+  "evidence": [
+    "deployment.json",
+    "public-ui-progress.json",
+    "public-final-ui.json",
+    "public-first-open-investigation.json",
+    "public-hashes.json"
+  ]
+}

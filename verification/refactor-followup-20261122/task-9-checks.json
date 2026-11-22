@@ -1,0 +1,43 @@
+[
+  {
+    "check": "JSON parse PROJECT_STATE.json",
+    "passed": true
+  },
+  {
+    "check": "JSON parse verification/refactor-followup-20261122/selected/PROJECT_STATE.json",
+    "passed": true
+  },
+  {
+    "check": "JSON parse verification/refactor-followup-20261122/completion.json",
+    "passed": true
+  },
+  {
+    "check": "staged13 baseline patch exact",
+    "passed": true
+  },
+  {
+    "check": "git diff --check",
+    "passed": true
+  },
+  {
+    "check": "foreign guidelines exact baseline",
+    "passed": true
+  },
+  {
+    "check": "Task9 plus Task7 reverse working/selected to original baseline and original HEAD",
+    "passed": true,
+    "evidence": "task-9-preservation.json"
+  },
+  {
+    "check": "Published hashes compared to built output; packed catalog WebP optimization intentionally differs from source",
+    "passed": true
+  },
+  {
+    "check": "Parent review correction: current deployment wording, observed-once error wording, priorities1\u20137 and separate cache note; refreshed hash and diff check",
+    "passed": true
+  },
+  {
+    "check": "Shared current summaries priorities1\u20137 and observed-once Event; updated replacement reverse exact baseline/e114779; staged patch preserved; diff check",
+    "passed": true
+  }
+]

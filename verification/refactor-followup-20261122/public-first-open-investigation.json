@@ -1,0 +1,16 @@
+{
+  "sceneId": "fe5870f9c8552979",
+  "observedError": "불러오기 실패: undefined",
+  "console": "Event",
+  "timestamp": "2026-11-22T14:27:33.285Z",
+  "reproduction": "Same stored scene reloaded without code changes and rendered successfully",
+  "cause": "unconfirmed",
+  "failedResourceUrl": "not captured on first open",
+  "investigation": [
+    "Raw image error Event is consistent with existing TextureLoader rejection paths; not a confirmed cause.",
+    "New prepareScene bundle reads GLB and writes reports; no GLB image re-encoding.",
+    "Reload captured no Network.loadingFailed or console error."
+  ],
+  "codeChange": "none; no speculative fix",
+  "screenshot": "public-new-failure.jpg"
+}

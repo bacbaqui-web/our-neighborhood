@@ -46,12 +46,16 @@ def stage_base():
  all_buildings=source.acquire_buildings(root,source_loc if view else loc)
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  all_roads=params.get('sourceRoads') or source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
- from scene_edits import classify_roads,apply_building_rules,validate_road_groups
+ from scene_edits import classify_roads,apply_building_rules,validate_road_groups,active_roads
  edits=json.loads(json.dumps(params.get('sceneEdits') or {'roads':{},'buildings':{}}))
  from scene_edits import remap_building_edits
  building_edits=remap_building_edits(edits.get('buildings',{}),params.get('editBuildingCollection') or params.get('buildingCollection',{}),all_buildings,loc['origin'])
  classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
  validate_road_groups(all_roads,edits.get('roadGroups',[]))
+ original_roads=json.loads(json.dumps(all_roads))
+ all_roads=active_roads(all_roads,edits)
+ if not all_roads:raise ValueError('동네를 만들 도로를 하나 이상 남겨 주세요.')
+ classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
  apply_building_rules(all_buildings,all_roads,building_edits,loc['origin'])
  from road_priority import reserve
  original_buildings=json.loads(json.dumps(all_buildings))
@@ -62,7 +66,7 @@ def stage_base():
  loc['buildingRoadFit']=initial_reservation['qa']
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  write('scene-edits.json',edits)
- write('generation-input.json',{**input_snapshot,'sceneId':key,'sourceRoads':all_roads,'sceneEdits':edits,'sourceBuildingCollection':input_snapshot.get('sourceBuildingCollection') or input_snapshot['buildingCollection'],'buildingCollection':all_buildings})
+ write('generation-input.json',{**input_snapshot,'sceneId':key,'sourceRoads':original_roads,'sceneEdits':edits,'sourceBuildingCollection':input_snapshot.get('sourceBuildingCollection') or input_snapshot['buildingCollection'],'buildingCollection':all_buildings})
  from shapely.geometry import box,shape,mapping
  road_limit=box(-radius-35,-radius-35,radius+35,radius+35)
  roads=[]

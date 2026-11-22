@@ -164,3 +164,13 @@ def remap_building_edits(edits,before,after,origin):
   choices=[j for j in range(len(target)-1) if LineString(target[j:j+2]).length>2.4]
   if choices:edit['frontEdge']=min(choices,key=lambda j:min(start.distance(Point(target[j]))+end.distance(Point(target[j+1])),end.distance(Point(target[j]))+start.distance(Point(target[j+1]))))
  return result
+
+
+def active_roads(roads,edits):
+ """Exclude user-deleted segments without discarding the original snapshot."""
+ ids=edits.get('excludedRoads',[])
+ known={r['editId'] for r in roads}
+ if not isinstance(ids,list) or any(not isinstance(i,str) or i not in known for i in ids) or len(set(ids))!=len(ids):
+  raise ValueError('삭제한 도로 정보를 읽지 못했습니다.')
+ excluded=set(ids)
+ return [r for r in roads if r['editId'] not in excluded]

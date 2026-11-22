@@ -51,6 +51,7 @@ jobs:
           python3 -m unittest discover -s tests -p test_generation_scope.py
           python3 -m unittest discover -s tests -p test_generation_module_boundary.py
           python3 -m unittest discover -s tests -p test_scene_edits.py
+          python3 -m unittest discover -s tests -p test_arterial_crosswalks.py
           python3 tests/build_alley_fixture.py /tmp/neighborhood-alley-first
           python3 tests/build_alley_fixture.py /tmp/neighborhood-alley-second
           cmp /tmp/neighborhood-alley-first/package.json /tmp/neighborhood-alley-second/package.json

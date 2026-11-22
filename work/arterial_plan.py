@@ -182,7 +182,7 @@ def build(root):
   reservations.append(fp);road=road.difference(fp)
  # Reserve a continuous curb-to-curb crossing before furniture and vehicles.
  # The platform-access relationship is observed; exact stripe positions are inferred.
- crosswalks=[]
+ crosswalks=[];skippedCrosswalks=[]
  crossingSources=[{'id':s['id'],'t':s['t']-s['length']/2-3,'platform':s['id']} for s in platforms]
  for j,t in enumerate(junctionTs):
   for side in [-1,1]:
@@ -195,8 +195,14 @@ def build(root):
   if any(corridor.intersects(Polygon(e['footprint'])) for e in exits):continue
   if any(corridor.intersection(Polygon(s['footprint'])).area>.01 for s in platforms):continue
   if any(abs(c['t']-t)<12 for c in crosswalks):continue
+  footprint=corridor.intersection(public)
+  # A single outline cannot represent disconnected pieces or holes. Do not fill
+  # those gaps or publish a partial crossing as a continuous pedestrian route.
+  if footprint.is_empty or footprint.geom_type!='Polygon' or footprint.interiors:
+   skippedCrosswalks.append({'id':'crossing-'+str(stop['id']),'reason':'disconnected-public-crossing','geometryType':footprint.geom_type,'empty':footprint.is_empty})
+   continue
   p=xy(t)
-  crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(corridor.intersection(public).exterior.coords),'source':'mapped-junction-roadview-form' if stop['platform'] is None else 'roadview-form-platform-access-inferred','platform':stop['platform']})
+  crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(footprint.exterior.coords),'source':'mapped-junction-roadview-form' if stop['platform'] is None else 'roadview-form-platform-access-inferred','platform':stop['platform']})
   reservations.append(corridor.intersection(sidewalks).buffer(.4))
   # Recess only the curb approach; triangulation is shared by paint, feet and walking.
   for side in [-1,1]:
@@ -491,7 +497,7 @@ def build(root):
    ray=LineString([mid+normal*.35,center(t)+n*np.sign(d)*(half(t,1 if d>0 else -1)+.4)])
    if ray.intersection(built).length>.1:continue
    frontages.append({'owner':owner,'edge':i,'length':float(L),'t':t,'side':1 if d>0 else -1})
- qa={'version':82,'roadPriority':reservation['qa'] if reservation else None,'junctionArms':len(branches),'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks)+branchCrosswalks,'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
+ qa={'version':82,'roadPriority':reservation['qa'] if reservation else None,'junctionArms':len(branches),'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks)+branchCrosswalks,'skippedCrosswalks':skippedCrosswalks,'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
  if qa['footprintBuildingOverlapM2']>.01:raise ValueError('Arterial footprint/building intersection')
  storefrontOverrides=json.loads((WORK/'arterial-v77/frontage-references.json').read_text()) if root.parent.name=='f20b139277e4d2a5' else []
  extent=int(loc.get('sizeMetres',300)/2)+20

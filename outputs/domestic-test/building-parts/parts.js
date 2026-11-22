@@ -2,6 +2,7 @@ import * as T from 'three';
 import {facadeTextureCatalog,applyWallTexture} from '../facade-textures.js?v=masonry19';
 import {FacadeBatch, facadeStyles, windowCatalog, createWindowAsset, emitAircon} from '../korean-facades.js?v=masonry19';
 import {createDetails} from '../site-layout-models/piloti-details.js?v=masonry19';
+import {emitHouseDoor} from '../asset-encyclopedia/categories/house/components.js';
 import {createGroundFloors} from '../site-layout-models/ground-floor-models.js?v=masonry19';
 import {createPiloti} from '../site-layout-models/piloti-models.js';
 import {createBoundaryDetails} from '../site-layout-models/boundary-models.js?v=masonry19';
@@ -48,8 +49,8 @@ for(const [id,name,note,config] of [
  add('window-assembly-'+id,'window-assemblies',name,note,()=>createWindowAssembly(config),['windows','facade','textures'],'조합 예시');
  Object.assign(rows.at(-1),{windowConfig:config,compose:createWindowAssembly});
 }
-function oldDoor(levels){const b={...spec(5,levels),hasEntry:true};return createDetails([b],()=>0,{structures:[]},{wallTextures:false});}
-add('original-steel-door','doors','기본 주택 철문','원본 주택에서 쓰는 철문입니다. 문틀·손잡이·문턱·초인종을 포함합니다.',()=>oldDoor(1),['details'],'원본 현관','front');
+function oldDoor(levels){const batch=new FacadeBatch();emitHouseDoor(batch.writer(),levels>2?'original-glass-door':'original-steel-door',{u:0,g:0});return batch.finish();}
+add('original-steel-door','doors','기본 주택 철문','원본 주택에서 쓰는 철문입니다. 문틀과 손잡이를 포함하며 문턱·초인종은 배치할 때 따로 붙입니다.',()=>oldDoor(1),['details'],'원본 현관','front');
 add('original-glass-door','doors','기본 공동현관','원본 다세대 건물에서 쓰는 유리 현관문입니다.',()=>oldDoor(3),['details'],'원본 현관','front');
 function ground(kind){const gate=kind.startsWith('gate'),shop=kind.startsWith('shop');const L=shop?7.4:gate?6:4.8,w=shop?6.2:2.3,depth=kind==='lobby-steps'?1.6:kind==='lobby-side'?1.6:.65;
  const p={id:1,kind,origin:[-L/2,0],u:[1,0],n:[0,1],length:L,opening:[kind==='lobby-side'?.6:(L-w)/2,w,depth],skipWindows:true};

@@ -1,0 +1,1555 @@
+{
+  "schemaVersion": 1,
+  "domain": "person",
+  "entries": [
+    {
+      "id": "legacy:57",
+      "key": 57,
+      "name": "세로살 보행자 대문",
+      "category": "담장·출입구",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 2948,
+      "note": "관찰 요소 확장",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "담장·출입구",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A57",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:201",
+      "key": 201,
+      "name": "가방 든 보행자",
+      "category": "주민",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1040,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주민",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A201",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:202",
+      "key": 202,
+      "name": "장바구니 든 주민",
+      "category": "주민",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1040,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주민",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A202",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:203",
+      "key": 203,
+      "name": "대화 중인 두 사람",
+      "category": "주민",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1988,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주민",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A203",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:204",
+      "key": 204,
+      "name": "벤치에 앉은 주민",
+      "category": "주민",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 892,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주민",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A204",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:205",
+      "key": 205,
+      "name": "작업복 입은 주민",
+      "category": "주민",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1224,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주민",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A205",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "road:a70",
+      "name": "U자 보행자 보호대",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a70.glb",
+      "triangles": 216,
+      "note": "차도와 보행 공간의 경계를 표현합니다.",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../roadview50/a70.glb"
+        ],
+        "preview": "./?asset=road%3Aa70",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a70.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:legacy-57",
+      "name": "세로살 보행자 대문",
+      "category": "생활 소품",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../memo-131/legacy-57.glb",
+      "note": "사용자 수정 의견 반영",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "생활 소품",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../memo-131/legacy-57.glb"
+        ],
+        "preview": "./?asset=representative%3Alegacy-57",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../memo-131/legacy-57.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a70",
+      "name": "U자 보행자 보호대",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../memo-131/a70.glb",
+      "note": "사용자 수정 의견 반영",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../memo-131/a70.glb"
+        ],
+        "preview": "./?asset=representative%3Aa70",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../memo-131/a70.glb": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/woman-cardigan.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/woman-cardigan.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/woman-cardigan-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/woman-cardigan-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/woman-cardigan-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-cardigan-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-cardigan-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-cardigan-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/woman-cardigan-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-cardigan-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-cardigan-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-cardigan-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/woman-cardigan-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-cardigan-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-cardigan-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-cardigan-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:woman-cardigan",
+      "name": "아이보리 가디건 여성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/woman-cardigan.png",
+      "rect": [
+        121,
+        17,
+        160,
+        487
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.65m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [
+          "아이보리"
+        ],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/woman-cardigan.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/woman-cardigan.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/man-jacket.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/man-jacket.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/man-jacket-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/man-jacket-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/man-jacket-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-jacket-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-jacket-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-jacket-summer-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/man-jacket-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-jacket-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-jacket-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-jacket-winter-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/man-jacket-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-jacket-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-jacket-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-jacket-autumn-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:man-jacket",
+      "name": "회녹색 재킷 남성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/man-jacket.png",
+      "rect": [
+        111,
+        17,
+        174,
+        490
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.76m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/man-jacket.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/man-jacket.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/woman-vest.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/woman-vest.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/woman-vest-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/woman-vest-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/woman-vest-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-vest-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-vest-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-vest-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/woman-vest-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-vest-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-vest-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-vest-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/woman-vest-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-vest-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-vest-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-vest-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:woman-vest",
+      "name": "자주색 조끼 중년 여성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/woman-vest.png",
+      "rect": [
+        112,
+        23,
+        175,
+        478
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.59m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/woman-vest.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/woman-vest.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/man-senior.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/man-senior.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/man-senior-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/man-senior-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/man-senior-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-senior-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-senior-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-senior-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/man-senior-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-senior-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-senior-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-senior-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/man-senior-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-senior-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-senior-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-senior-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:man-senior",
+      "name": "베이지 점퍼 노년 남성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/man-senior.png",
+      "rect": [
+        115,
+        19,
+        171,
+        480
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.68m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [
+          "베이지"
+        ],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/man-senior.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/man-senior.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/man-backpack.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/man-backpack.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/man-backpack-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/man-backpack-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/man-backpack-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-backpack-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-backpack-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-backpack-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/man-backpack-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-backpack-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-backpack-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-backpack-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/man-backpack-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-backpack-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-backpack-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-backpack-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:man-backpack",
+      "name": "남색 후드 청년",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/man-backpack.png",
+      "rect": [
+        115,
+        16,
+        172,
+        489
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.78m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/man-backpack.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/man-backpack.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/woman-coat.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/woman-coat.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/woman-coat-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/woman-coat-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/woman-coat-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-coat-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-coat-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-coat-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/woman-coat-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-coat-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-coat-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-coat-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/woman-coat-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-coat-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-coat-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-coat-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:woman-coat",
+      "name": "세이지색 코트 여성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/woman-coat.png",
+      "rect": [
+        111,
+        20,
+        169,
+        486
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.66m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/woman-coat.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/woman-coat.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/man-sweatshirt.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/man-sweatshirt.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/man-sweatshirt-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/man-sweatshirt-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/man-sweatshirt-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-sweatshirt-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-sweatshirt-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-sweatshirt-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/man-sweatshirt-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-sweatshirt-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-sweatshirt-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-sweatshirt-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/man-sweatshirt-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-sweatshirt-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-sweatshirt-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-sweatshirt-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:man-sweatshirt",
+      "name": "회색 후드·조거팬츠 남성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/man-sweatshirt.png",
+      "rect": [
+        106,
+        16,
+        189,
+        487
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.75m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [
+          "회색"
+        ],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/man-sweatshirt.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/man-sweatshirt.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/woman-skirt.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/woman-skirt.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/woman-skirt-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/woman-skirt-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/woman-skirt-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-skirt-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-skirt-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-skirt-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/woman-skirt-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-skirt-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-skirt-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-skirt-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/woman-skirt-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-skirt-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-skirt-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-skirt-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:woman-skirt",
+      "name": "살구 니트·긴 치마 여성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/woman-skirt.png",
+      "rect": [
+        119,
+        17,
+        164,
+        486
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.63m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/woman-skirt.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/woman-skirt.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/woman-sweater.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/woman-sweater.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/woman-sweater-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/woman-sweater-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/woman-sweater-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-sweater-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-sweater-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-sweater-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/woman-sweater-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-sweater-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-sweater-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-sweater-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/woman-sweater-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/woman-sweater-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/woman-sweater-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/woman-sweater-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:woman-sweater",
+      "name": "연보라 스웨터 중년 여성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/woman-sweater.png",
+      "rect": [
+        112,
+        17,
+        174,
+        482
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.56m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/woman-sweater.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/woman-sweater.png": "public-required"
+        }
+      }
+    },
+    {
+      "seasons": {
+        "spring": {
+          "file": "../people/man-shirt.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/man-shirt.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/man-shirt-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/man-shirt-e60.png"
+            }
+          ]
+        },
+        "summer": {
+          "file": "../people/seasons/man-shirt-summer.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-shirt-summer.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-shirt-summer-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-shirt-summer-e60.png"
+            }
+          ]
+        },
+        "autumn": {
+          "file": "../people/seasons/man-shirt-autumn.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-shirt-autumn.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-shirt-autumn-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-shirt-autumn-e60.png"
+            }
+          ]
+        },
+        "winter": {
+          "file": "../people/seasons/man-shirt-winter.png",
+          "elevations": [
+            {
+              "pitch": 0,
+              "file": "../people/seasons/man-shirt-winter.png"
+            },
+            {
+              "pitch": 30,
+              "file": "../people/seasons/man-shirt-winter-e30.png"
+            },
+            {
+              "pitch": 60,
+              "file": "../people/seasons/man-shirt-winter-e60.png"
+            }
+          ]
+        }
+      },
+      "id": "person:man-shirt",
+      "name": "하늘색 셔츠·면바지 남성",
+      "category": "사람",
+      "collection": "사람 빌보드",
+      "kind": "image",
+      "file": "../people/man-shirt.png",
+      "rect": [
+        118,
+        12,
+        165,
+        494
+      ],
+      "note": "방향별 원본 이미지 · 높이 1.8m",
+      "link": "../people.html",
+      "taxonomy": {
+        "domain": "person",
+        "role": "pedestrian",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "사람",
+          "사람 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "person",
+        "manifest": "categories/person/catalog.json",
+        "sources": [
+          "../people/man-shirt.png"
+        ],
+        "preview": "../people.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../people/man-shirt.png": "public-required"
+        }
+      }
+    }
+  ]
+}

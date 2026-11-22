@@ -1,5 +1,7 @@
 import {WINDOW_RECESS,windowOpening,cutBuildingWindows,auditWindowOpenings} from './window-recess.js?v=recess22';
-import {emitFacadeTexture} from './facade-textures.js?v=masonry19';
+import {emitFacadeTexture,facadeTextureCatalog,facadeStyles,windowCatalog,emitWindow} from './asset-encyclopedia/categories/house/generators.js';
+import {emitHouseDoor} from './asset-encyclopedia/categories/house/components.js';
+import {resolveHouseComponent,createAssemblyReport,recordAssemblyDecision,emitAssemblyError} from './assembly-rules/house.js';
 import {emitFacility,addFacilityLabels} from './facilities/models.js?v=replacements3';
 import {planGasNetwork,emitGasNetwork} from './gas-network.js?v=151';
 import * as T from 'three';
@@ -8,8 +10,9 @@ import {footprintHeights} from './support-geometry.js?v=151';
 import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=151';
 import {emitRooftop} from './rooftops.js?v=masonry19';
 import {windowLightBand} from './environment-policy.js?v=151';
-import {FacadeBatch,facadeStyles,windowCatalog,emitWindow,emitAircon} from './korean-facades.js?v=recess22';
+import {FacadeBatch,emitAircon} from './korean-facades.js?v=recess22';
 export function createDetails(buildings,elevation,architecture={structures:[]},options={}){
+ const assemblyReport=createAssemblyReport();
  const recessed=!!options.shells&&options.recessedWindows!==false,windowOpenings=[];
  const gasNetworks=[],nightWindowSources=[],windowBands=Array(16).fill(0),batch=new FacadeBatch(options.minimumLOD||0),spots=[],placementProxies=[],windowTypes={},counts={windows:0,skippedNarrowWindows:0,doors:0,roofs:0,aircons:0,downpipes:0,guardWindows:0,doorCanopies:0,shelteredDoors:0};
  // Opt-in ownership for ground-floor replacement. Ordinary callers are unchanged.
@@ -40,6 +43,8 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
   if(b.facility){counts.windows+=emitFacility(batch,b,buildings,elevation,recessed?{windowOpenings}:{}).windows;continue;}
   const gasFaces=[];
   const {points,top,base,floor,levels,seed,holes}=b,style=facadeStyles[b.styleIndex??Math.abs(seed)%6],covers=architecture.structures.filter(s=>s.owner===seed&&s.roofKind!=='none'),annexes=architecture.structures.filter(s=>s.owner===seed&&['shed','workshop'].includes(s.type));styleCounts[Math.abs(seed)%6]++;
+  const styleIndex=b.styleIndex??Math.abs(seed)%6;
+  const choose=(role,requestedId,width,height,position,circumstances={})=>options.assetRegistry?recordAssemblyDecision(assemblyReport,resolveHouseComponent(options.assetRegistry,{role,requestedId,width,height,position,styleIndex:role==='wall'&&[b.wallTexture,b.groundWallTexture].some(id=>id&&facadeTextureCatalog[Number(requestedId.split('wall-')[1])]?.id===id)?facadeTextureCatalog[Number(requestedId.split('wall-')[1])].style:styleIndex,owner:seed,seed,attachment:'facade',circumstances})):null;
   let signed=0;for(let i=0;i<points.length;i++){const a=points[i],c=points[(i+1)%points.length];signed+=a[0]*c[1]-c[0]*a[1]}const sign=signed>=0?1:-1;
   const front=Number.isInteger(b.frontEdge)?b.frontEdge:points.reduce((k,p,i)=>Math.hypot(points[(i+1)%points.length][0]-p[0],points[(i+1)%points.length][1]-p[1])>Math.hypot(points[(k+1)%points.length][0]-points[k][0],points[(k+1)%points.length][1]-points[k][1])?i:k,0);
   for(let i=0;i<points.length;i++){
@@ -126,7 +131,8 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
      // Short footprint steps are wall returns, not another full window bay.
      // Keep both jambs on the owning wall, with enough room for the frame.
      const minWidth=isStair?.60:wet?.55:.85,cornerMargin=id==='bay'?.42:.18;
-     if(w<minWidth||u-w/2<cornerMargin||u+w/2>L-cornerMargin){counts.skippedNarrowWindows++;continue;}
+     if(w<minWidth||u-w/2<cornerMargin||u+w/2>L-cornerMargin){counts.skippedNarrowWindows++;
+      if(options.assetRegistry)recordAssemblyDecision(assemblyReport,{owner:seed,role:'window',position:[a[0]+ux*u,fy+1.5,a[1]+uz*u],requestedId:'part:'+id,selectedId:null,status:'excluded',required:{width:w,height:h,styleIndex,attachment:'facade'},rejected:[],reason:'창틀과 양쪽 벽 여유 공간을 확보할 수 없는 짧은 벽 구간입니다. 원래 창 배치 대상이 아니므로 창과 오류 표식을 놓지 않습니다.',collider:false});continue;}
      if((id==='bay'&&w<1.5)||(id==='veranda'&&w<2)||(id==='wide-slider'&&w<1.8))id='white-slider';
      const y=fy+(isStair?.48:wet?1.7:veranda?.6:.92)+h/2;
      const wx=a[0]+ux*u,wz=a[1]+uz*u,ground=groundAt(u);
@@ -135,13 +141,16 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
      if(f===0&&annexes.some(s=>inside(wx+nx*.25,wz+nz*.25,s.footprint)&&y-h/2<Math.max(...s.footprint.map(p=>elevation(...p)))+(s.roofHeight??2.7)+.2))continue;
      if(id==='awning'&&(sheltered(u)||levels>=4))id='guard';
      if(id==='bay'&&!facadeClear(u,.65))id='white-slider';
+     const windowDecision=choose('window','part:'+id,w,h,[wx,y,wz],{sheltered:sheltered(u),projectionClear:facadeClear(u,.65)});
+     if(windowDecision?.status==='error'){emitAssemblyError(out.at(u,y,0),w,h);continue;}
+     if(windowDecision)id=windowDecision.model;
      if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],u,y,w,h,style.wall));
      openings.push([u-w/2-.13,u+w/2+.13,y-h/2-.17,y+h/2+.16]);emitWindow(out.at(u,y,0),id,w,h,Math.abs(seed)+k+f,style.frame,seed*997+i*131+f*31+k,recessed?{recess:WINDOW_RECESS}:{});windowBands[windowLightBand(seed*997+i*131+f*31+k)]++;proxy(u,y,id==='bay'?.28:.23,w+.18,h+.18,id==='awning'?.8:id==='bay'?.6:.48);counts.windows++;windowTypes[id]=(windowTypes[id]||0)+1;if(id==='guard')counts.guardWindows++;
      if(f===1&&!wet&&!isStair&&(seed+k+i)%3===0&&facadeClear(u,.75)&&!shopHits(u-.85,u+.85,fy-.4,fy+.8)){
       emitAircon(out,u,fy+.40,seed+k);proxy(u,fy+.2,.30,1.45,1.2,.6);counts.aircons++;openings.push([u-.85,u+.85,fy-.4,fy+.75]);
      }
      if(f===0&&b.basementLevels>0&&!wet&&!isStair&&y-h/2-ground>1.0&&(seed+k)%2===0){
-      const bh=.64,bw=Math.min(1.48,w),by=ground+.43;if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],u,by,bw,bh,style.wall));emitWindow(out.at(u,by,0),'basement',bw,bh,seed,style.frame,seed*991+i*137+k,recessed?{recess:WINDOW_RECESS}:{});windowBands[windowLightBand(seed*991+i*137+k)]++;openings.push([u-bw/2-.14,u+bw/2+.14,ground+.03,by+bh/2+.15]);proxy(u,by,.2,bw+.18,bh+.18,.4);counts.windows++;counts.guardWindows++;windowTypes.basement=(windowTypes.basement||0)+1;
+      const bh=.64,bw=Math.min(1.48,w),by=ground+.43,basementDecision=choose('window','part:basement',bw,bh,[wx,by,wz]);if(basementDecision?.status==='error'){emitAssemblyError(out.at(u,by,0),bw,bh);}else{if(recessed)windowCuts.push(windowOpening(out,windowOpenings,b,i,a,[ux,uz],[nx,nz],u,by,bw,bh,style.wall));emitWindow(out.at(u,by,0),basementDecision?.model||'basement',bw,bh,seed,style.frame,seed*991+i*137+k,recessed?{recess:WINDOW_RECESS}:{});windowBands[windowLightBand(seed*991+i*137+k)]++;openings.push([u-bw/2-.14,u+bw/2+.14,ground+.03,by+bh/2+.15]);proxy(u,by,.2,bw+.18,bh+.18,.4);counts.windows++;counts.guardWindows++;windowTypes.basement=(windowTypes.basement||0)+1;}
      }
      if(y-ground<4.5)nightWindowSources.push({position:[wx+nx*(id==='bay'?.46:.20),y,wz+nz*(id==='bay'?.46:.20)],normal:[nx,nz],band:windowLightBand(seed*997+i*131+f*31+k),heightAboveGround:y-ground});
      if(isFront&&f<=1&&!wet)spots.push({owner:seed,id,style:style.name,x:wx,z:wz,y,nx,nz,ux,uz,w,h,ground});
@@ -149,9 +158,9 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
    }
    if(b.hasEntry!==false&&!b.openGround&&!arterialFace&&isFront&&L>2.4&&facadeClear(entry)&&!shopHits(entry-1,entry+1,groundAt(entry),groundAt(entry)+2.6)){
     const w=1.34,h=2.12,u=Math.max(.85,Math.min(L-.85,entry)),world=(du,v)=>[a[0]+ux*(u+du)+nx*v,a[1]+uz*(u+du)+nz*v],g=footprintHeights((du,dv)=>world(du,.26+dv),w+.28,.45,elevation).high;
-    B(u,g+h/2+.1,.06,w+.16,h+.18,.15,0x9b9f93,true);B(u,g+h/2+.1,.16,w,h,.065,levels>2?0x757c71:0x41584d,true);
-    if(levels>2){B(u,g+1.48,.202,w-.18,1.05,.025,0x5c7976,false);B(u,g+1.05,.23,.035,1.98,.032,0xb1b7ac,false);}else for(let j=0;j<5;j++)B(u,g+.32+j*.34,.205,w-.18,.23,.024,0x334a42,false);
-    B(u+w*.33,g+1.03,.255,.025,.28,.035,0xd1d1bc,false);addBoundaryRibbon(batch,[world(-(w+.28)/2,.26),world((w+.28)/2,.26)],.45,(x,z)=>elevation(x,z)-.04,()=>g+.10,0xaaa996,{ink:true,step:.12});
+    const doorDecision=choose('door','part:'+(levels>2?'original-glass-door':'original-steel-door'),w,h,[a[0]+ux*u,g+h/2,a[1]+uz*u]);
+    if(doorDecision?.status==='error'){emitAssemblyError(out.at(u,g+h/2,0));}else{
+    emitHouseDoor(out,doorDecision?.model||(levels>2?'original-glass-door':'original-steel-door'),{u,g,w,h});addBoundaryRibbon(batch,[world(-(w+.28)/2,.26),world((w+.28)/2,.26)],.45,(x,z)=>elevation(x,z)-.04,()=>g+.10,0xaaa996,{ink:true,step:.12});
     const household=households.get(seed),hasCover=sheltered(u),hasSetback=(b.frontage?.mean??0)>1.1;
     const doorRoof=!hasCover&&hasSetback&&(levels<=3||['stone-gate','rendered'].includes(household?.wallStyle));
     if(hasCover)counts.shelteredDoors++;
@@ -169,13 +178,19 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
     // Unlettered blue address plaque: no invented real-world name or address.
     B(u-w/2-.22,g+1.94,.12,.23,.17,.025,0x3d6f8c,false);B(u-w/2-.22,g+1.94,.137,.14,.015,.003,0xe0e2d9,false);
     openings.push([u-w/2-.45,u+w/2+.4,g,g+2.5]);proxy(u,g+1.2,.15,w+.2,2.4,.31);counts.doors++;
+    }
    }
    // Surface-only joints are omitted from physical collision indexing.
    const bottom=Math.max(base+.10,Math.min(groundAt(.15),groundAt(L-.15))+.10),rise=top-bottom;
    if(!arterialFace&&rise>0&&options.wallTextures!==false){
     const wallBottom=Math.max(base,Math.min(groundAt(.15),groundAt(L-.15))),cuts=[...shopRects,...windowCuts],floorTop=(b.groundOpeningBase??base)+3;
-    if(b.groundWallTexture){emitFacadeTexture(batch,out,{width:L,bottom:wallBottom,top:Math.min(floorTop,top),id:b.groundWallTexture,cuts});if(top>floorTop)emitFacadeTexture(batch,out,{width:L,bottom:floorTop,top,id:b.wallTexture||style.textureId,cuts});}
-    else emitFacadeTexture(batch,out,{width:L,bottom:wallBottom,top,id:b.wallTexture||style.textureId,cuts});
+    const emitRegisteredWall=(bottom,wallTop,id)=>{
+     const index=facadeTextureCatalog.findIndex(t=>t.id===id),decision=choose('wall','part:wall-'+index,L,wallTop-bottom,[a[0]+ux*L/2,(bottom+wallTop)/2,a[1]+uz*L/2]);
+     if(decision?.status==='error'){emitAssemblyError(out.at(L/2,(bottom+wallTop)/2,0));return;}
+     emitFacadeTexture(batch,out,{width:L,bottom,top:wallTop,id:decision?facadeTextureCatalog[decision.model].id:id,cuts});
+    };
+    if(b.groundWallTexture){emitRegisteredWall(wallBottom,Math.min(floorTop,top),b.groundWallTexture);if(top>floorTop)emitRegisteredWall(floorTop,top,b.wallTexture||style.textureId);}
+    else emitRegisteredWall(wallBottom,top,b.wallTexture||style.textureId);
    }
    if(options.wallTextures===false&&!arterialFace&&style.pattern!=='render'&&rise>0){
     const rh=style.pattern==='brick'?.17:style.pattern==='tile'?.26:.48,cw=style.pattern==='brick'?.39:style.pattern==='tile'?.52:.95,thick=style.pattern==='brick'?.008:.009;
@@ -203,5 +218,5 @@ export function createDetails(buildings,elevation,architecture={structures:[]},o
  }
  const recessQA=recessed?cutBuildingWindows(options.shells,windowOpenings):null;
  if(recessQA&&options.auditWindows)Object.assign(recessQA,auditWindowOpenings(options.shells,windowOpenings));
- const group=batch.finish();addFacilityLabels(group,buildings.filter(b=>!options.owners||options.owners.has(b.seed)));let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={windowOpenings,recessQA,gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!buildings[p.buildingIndex]?.facility).filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
+ const group=batch.finish();addFacilityLabels(group,buildings.filter(b=>!options.owners||options.owners.has(b.seed)));let triangles=0,finite=true;group.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;for(const v of o.geometry.attributes.position.array)if(!Number.isFinite(v))finite=false});if(!finite)throw Error('외관 메쉬 좌표 오류');group.userData={assemblyReport,windowOpenings,recessQA,gasNetworks,rooftopPlans:rooftopPlans.filter(p=>!buildings[p.buildingIndex]?.facility).filter(p=>!options.owners||options.owners.has(buildings[p.buildingIndex]?.seed)),rooftopTypes:rooftopCatalog.map(r=>({id:r.id,name:r.name,count:rooftopPlans.filter(p=>p.kind===r.id).length})),nightWindowSources,windowBands,meshValidation:{triangles,finite},...counts,styles:facadeStyles.map((s,i)=>({name:s.name,count:styleCounts[i]})),windowTypes:windowCatalog.map(t=>({id:t.id,name:t.name,count:windowTypes[t.id]||0})),facadeSpots:spots,placementProxies,procedural:true,version:41};return group;
 }

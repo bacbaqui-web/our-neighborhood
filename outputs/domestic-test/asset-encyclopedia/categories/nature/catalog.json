@@ -1,0 +1,2405 @@
+{
+  "schemaVersion": 1,
+  "domain": "nature",
+  "entries": [
+    {
+      "id": "legacy:151",
+      "key": 151,
+      "name": "꽃나무 대형 화분",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1736,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A151",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:152",
+      "key": 152,
+      "name": "높이가 다른 화분 선반",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 3220,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A152",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:153",
+      "key": 153,
+      "name": "덩굴 격자와 긴 화분",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 3260,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A153",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:154",
+      "key": 154,
+      "name": "가지 벌어진 골목 나무",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 3824,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A154",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:155",
+      "key": 155,
+      "name": "좁은 틈 대나무 군락",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 22320,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A155",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:196",
+      "key": 196,
+      "name": "긴 담장 덩굴 군락",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 5688,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A196",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:197",
+      "key": 197,
+      "name": "하부 잡초와 돌무더기",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 864,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A197",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:198",
+      "key": 198,
+      "name": "과실 화분과 지지목",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1680,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A198",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:199",
+      "key": 199,
+      "name": "다층 채소 재배 선반",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 7012,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A199",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:200",
+      "key": 200,
+      "name": "키 큰 생울타리 덤불",
+      "category": "식재 군집",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 5952,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "식재 군집",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A200",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "road:a01",
+      "name": "골이 있는 원형 화분",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a01.glb",
+      "triangles": 360,
+      "note": "화분을 낮은 벽과 창가에 모아 주택의 생활감을 표현합니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a01.glb"
+        ],
+        "preview": "./?asset=road%3Aa01",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a01.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a02",
+      "name": "직사각 테라스 화분",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a02.glb",
+      "triangles": 164,
+      "note": "긴 벽 아래에 작은 식재 공간을 만들기 위해 제작했습니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a02.glb"
+        ],
+        "preview": "./?asset=road%3Aa02",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a02.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a03",
+      "name": "낮은 꽃 대야",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a03.glb",
+      "triangles": 264,
+      "note": "높은 화분만 반복되는 모습을 피할 낮은 식물 받침입니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a03.glb"
+        ],
+        "preview": "./?asset=road%3Aa03",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a03.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a04",
+      "name": "키 큰 항아리 화분",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a04.glb",
+      "triangles": 176,
+      "note": "집수리 가게 주변의 둥근 생활 용기 형태를 정원 소품으로 활용합니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a04.glb"
+        ],
+        "preview": "./?asset=road%3Aa04",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a04.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a05",
+      "name": "흰 양동이 재활용 화분",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a05.glb",
+      "triangles": 256,
+      "note": "새 화분보다 생활용기를 재활용한 동네 느낌을 담습니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a05.glb"
+        ],
+        "preview": "./?asset=road%3Aa05",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a05.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a06",
+      "name": "빈 모종 화분 포개기",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a06.glb",
+      "triangles": 480,
+      "note": "식물 관리 공간에 보관 중인 빈 화분을 더하는 용도입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a06.glb"
+        ],
+        "preview": "./?asset=road%3Aa06",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a06.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a07",
+      "name": "벽걸이 식물 바구니",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a07.glb",
+      "triangles": 296,
+      "note": "바닥 공간을 쓰지 않는 식물 장식 변형입니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a07.glb"
+        ],
+        "preview": "./?asset=road%3Aa07",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a07.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a08",
+      "name": "철제 화분 받침대",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a08.glb",
+      "triangles": 420,
+      "note": "여러 화분을 한 덩어리로 정리해 배치하기 위한 선반입니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [
+          "철제"
+        ],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a08.glb"
+        ],
+        "preview": "./?asset=road%3Aa08",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a08.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a09",
+      "name": "지지대 있는 작은 묘목",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a09.glb",
+      "triangles": 212,
+      "note": "작은 화분들과 다른 높이의 식물 실루엣을 제공합니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a09.glb"
+        ],
+        "preview": "./?asset=road%3Aa09",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a09.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a10",
+      "name": "다육식물 모둠 트레이",
+      "category": "화분·식물",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a10.glb",
+      "triangles": 996,
+      "note": "창가의 작은 녹색 덩어리를 가까운 컷에서도 표현합니다. 잎은 기존 나무와 같은 투명 잎 아틀라스를 사용합니다. 우리동네에서는 시점·계절·조명을 따라 표현하고, 다운로드 GLB는 고정된 잎 카드입니다.",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../roadview50/a10.glb"
+        ],
+        "preview": "./?asset=road%3Aa10",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a10.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a09",
+      "name": "지지대 있는 작은 묘목",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a09.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a09.glb"
+        ],
+        "preview": "./?asset=representative%3Aa09",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a09.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a05",
+      "name": "흰 양동이 재활용 화분",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a05.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a05.glb"
+        ],
+        "preview": "./?asset=representative%3Aa05",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a05.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a06",
+      "name": "빈 모종 화분 포개기",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a06.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a06.glb"
+        ],
+        "preview": "./?asset=representative%3Aa06",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a06.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a08",
+      "name": "철제 화분 받침대",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a08.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [
+          "철제"
+        ],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a08.glb"
+        ],
+        "preview": "./?asset=representative%3Aa08",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a08.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a04",
+      "name": "키 큰 항아리 화분",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a04.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a04.glb"
+        ],
+        "preview": "./?asset=representative%3Aa04",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a04.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a03",
+      "name": "낮은 꽃 대야",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a03.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a03.glb"
+        ],
+        "preview": "./?asset=representative%3Aa03",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a03.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a10",
+      "name": "다육식물 모둠 트레이",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a10.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a10.glb"
+        ],
+        "preview": "./?asset=representative%3Aa10",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a10.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a01",
+      "name": "골이 있는 원형 화분",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a01.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a01.glb"
+        ],
+        "preview": "./?asset=representative%3Aa01",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a01.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a07",
+      "name": "벽걸이 식물 바구니",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a07.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a07.glb"
+        ],
+        "preview": "./?asset=representative%3Aa07",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a07.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a02",
+      "name": "직사각 테라스 화분",
+      "category": "화분·식물",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a02.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "화분·식물",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../representatives/a02.glb"
+        ],
+        "preview": "./?asset=representative%3Aa02",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a02.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:pine",
+      "key": "pine",
+      "name": "소나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          12,
+          18
+        ],
+        "uses": [
+          "street",
+          "yard"
+        ],
+        "defaultHeightM": 15,
+        "yardHeightM": 8,
+        "source": "https://plants.ces.ncsu.edu/plants/pinus-densiflora/"
+      },
+      "note": "붉은 줄기와 수평 가지 · 사계절 바늘잎",
+      "link": "../tree-growth.html?species=pine",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=pine",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:ginkgo",
+      "key": "ginkgo",
+      "name": "은행나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          15,
+          24
+        ],
+        "uses": [
+          "street"
+        ],
+        "defaultHeightM": 19.5,
+        "yardHeightM": null,
+        "source": "https://plants.ces.ncsu.edu/plants/ginkgo-biloba/"
+      },
+      "note": "부채꼴 잎 · 가을 노란 단풍",
+      "link": "../tree-growth.html?species=ginkgo",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=ginkgo",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:maple",
+      "key": "maple",
+      "name": "단풍나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          5,
+          8
+        ],
+        "uses": [
+          "street",
+          "yard"
+        ],
+        "defaultHeightM": 6.5,
+        "yardHeightM": 5,
+        "source": "https://plants.ces.ncsu.edu/plants/acer-palmatum/"
+      },
+      "note": "가늘게 갈라진 손바닥 잎 · 가을 붉은 단풍",
+      "link": "../tree-growth.html?species=maple",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=maple",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:cherry",
+      "key": "cherry",
+      "name": "왕벚나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          9,
+          12
+        ],
+        "uses": [
+          "street",
+          "yard"
+        ],
+        "defaultHeightM": 10.5,
+        "yardHeightM": 9,
+        "source": "https://plants.ces.ncsu.edu/plants/prunus-x-yedoensis/"
+      },
+      "note": "봄의 연분홍 꽃 · 여름의 잎 무리",
+      "link": "../tree-growth.html?species=cherry",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=cherry",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:zelkova",
+      "key": "zelkova",
+      "name": "느티나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          15,
+          24
+        ],
+        "uses": [
+          "street"
+        ],
+        "defaultHeightM": 19.5,
+        "yardHeightM": null,
+        "source": "https://plants.ces.ncsu.edu/plants/zelkova-serrata/"
+      },
+      "note": "굵은 갈래가지 · 작은 톱니 잎",
+      "link": "../tree-growth.html?species=zelkova",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=zelkova",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:fringe",
+      "key": "fringe",
+      "name": "이팝나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          3,
+          6
+        ],
+        "uses": [
+          "street",
+          "yard"
+        ],
+        "defaultHeightM": 4.5,
+        "yardHeightM": 4.5,
+        "source": "https://plants.ces.ncsu.edu/plants/chionanthus-retusus/"
+      },
+      "note": "봄의 하얀 술꽃 · 여름의 타원형 잎",
+      "link": "../tree-growth.html?species=fringe",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=fringe",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:magnolia",
+      "key": "magnolia",
+      "name": "백목련",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          9,
+          12
+        ],
+        "uses": [
+          "yard"
+        ],
+        "defaultHeightM": 10.5,
+        "yardHeightM": 9,
+        "source": "https://plants.ces.ncsu.edu/plants/magnolia-denudata/"
+      },
+      "note": "봄의 큰 흰 꽃 · 넓고 매끈한 잎",
+      "link": "../tree-growth.html?species=magnolia",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=magnolia",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:persimmon",
+      "key": "persimmon",
+      "name": "감나무",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          6,
+          9
+        ],
+        "uses": [
+          "yard"
+        ],
+        "defaultHeightM": 7.5,
+        "yardHeightM": 6,
+        "source": "https://plants.ces.ncsu.edu/plants/diospyros-kaki/"
+      },
+      "note": "넓은 잎과 가을의 주황색 감",
+      "link": "../tree-growth.html?species=persimmon",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=persimmon",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:metasequoia",
+      "key": "metasequoia",
+      "name": "메타세쿼이아",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          19,
+          30
+        ],
+        "uses": [
+          "street"
+        ],
+        "defaultHeightM": 24.5,
+        "yardHeightM": null,
+        "source": "https://plants.ces.ncsu.edu/plants/metasequoia-glyptostroboides/"
+      },
+      "note": "깃털 모양 잎 · 가을 구릿빛 · 겨울 낙엽",
+      "link": "../tree-growth.html?species=metasequoia",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=metasequoia",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "tree:plane",
+      "key": "plane",
+      "name": "플라타너스",
+      "category": "나무·식물",
+      "collection": "입체 나무",
+      "kind": "tree",
+      "treeProfile": {
+        "matureHeightM": [
+          21,
+          30
+        ],
+        "uses": [
+          "street"
+        ],
+        "defaultHeightM": 25.5,
+        "yardHeightM": null,
+        "source": "https://plants.ces.ncsu.edu/plants/platanus-x-acerifolia/"
+      },
+      "note": "큰 손바닥 잎 · 얼룩무늬 밝은 줄기",
+      "link": "../tree-growth.html?species=plane",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "tree",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "입체 나무"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../tree-species.js"
+        ],
+        "preview": "../tree-growth.html?species=plane",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../tree-species.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../tree-species.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:persimmon",
+      "name": "감나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/persimmon.png",
+      "rect": [
+        26,
+        23,
+        246,
+        243
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/persimmon.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/persimmon.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:jujube",
+      "name": "대추나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/jujube.png",
+      "rect": [
+        25,
+        23,
+        248,
+        239
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/jujube.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/jujube.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:magnolia",
+      "name": "목련",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/magnolia.png",
+      "rect": [
+        24,
+        17,
+        247,
+        234
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/magnolia.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/magnolia.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:maple",
+      "name": "청단풍나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/maple.png",
+      "rect": [
+        19,
+        38,
+        257,
+        229
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/maple.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/maple.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:pine",
+      "name": "소나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/pine.png",
+      "rect": [
+        23,
+        40,
+        255,
+        228
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/pine.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/pine.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:juniper",
+      "name": "향나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/juniper.png",
+      "rect": [
+        45,
+        28,
+        244,
+        243
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/juniper.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/juniper.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:lilac",
+      "name": "라일락",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/lilac.png",
+      "rect": [
+        32,
+        46,
+        250,
+        217
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/lilac.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/lilac.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:cornelian",
+      "name": "산수유",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/cornelian.png",
+      "rect": [
+        22,
+        27,
+        260,
+        223
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/cornelian.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/cornelian.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:crape-myrtle",
+      "name": "배롱나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/crape-myrtle.png",
+      "rect": [
+        24,
+        20,
+        245,
+        247
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/crape-myrtle.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/crape-myrtle.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:ginkgo",
+      "name": "은행나무",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/ginkgo.png",
+      "rect": [
+        32,
+        24,
+        233,
+        247
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/ginkgo.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/ginkgo.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:leafy-herb",
+      "name": "초록 잎 화분 식물",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/leafy-herb.png",
+      "rect": [
+        36,
+        46,
+        324,
+        329
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/leafy-herb.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/leafy-herb.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:hydrangea",
+      "name": "수국 화분 식물",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/hydrangea.png",
+      "rect": [
+        31,
+        47,
+        341,
+        289
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/hydrangea.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/hydrangea.png": "public-required"
+        }
+      }
+    },
+    {
+      "id": "plant:pepper",
+      "name": "고추 화분 식물",
+      "category": "나무·식물",
+      "collection": "초기 식물 빌보드",
+      "kind": "image",
+      "file": "../vegetation/sources/pepper.png",
+      "rect": [
+        43,
+        25,
+        308,
+        397
+      ],
+      "note": "초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.",
+      "link": "../vegetation.html",
+      "taxonomy": {
+        "domain": "nature",
+        "role": "plant",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "나무·식물",
+          "초기 식물 빌보드"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "nature",
+        "manifest": "categories/nature/catalog.json",
+        "sources": [
+          "../vegetation/sources/pepper.png"
+        ],
+        "preview": "../vegetation.html",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vegetation/sources/pepper.png": "public-required"
+        }
+      }
+    }
+  ]
+}

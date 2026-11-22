@@ -33,3 +33,22 @@ header{padding-top:24px;padding-bottom:24px}header h1{margin:0}#filters{margin-b
 .reference-review>summary{cursor:pointer;font-size:.875rem;font-weight:600;min-height:2rem;align-content:center}.reference-content{display:flex;flex-direction:column;gap:.6rem;padding-top:1rem}.grid.road-references{align-items:start}@media(max-width:650px){.road-references .thumb{height:16rem}}
 
 .reference-intro>summary{cursor:pointer;font-size:.875rem;font-weight:600;min-height:2rem;align-content:center}.reference-intro[open]>summary{margin-bottom:.75rem}
+
+/* Two navigation levels stay separate; facet controls describe cumulative choices. */
+#roleTabs{display:flex;gap:.35rem;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #c9d7ce;margin-block:0 1rem;padding-block:.2rem;scroll-padding-inline:.5rem}
+#roleTabs button{position:relative;flex:none;border:0;border-radius:0;background:transparent;padding:.65rem 1rem;font-size:.9rem}
+#roleTabs [aria-selected=true]{color:#193b40;background:#e2ebe4}
+#roleTabs [aria-selected=true]::after{content:"";position:absolute;inset:auto .7rem 0;border-bottom:3px solid currentColor}
+#roleTabs button:focus-visible{outline-offset:-3px}
+#facetFilters{display:grid;gap:.8rem;background:#fff;border:1px solid #d7e0d9;border-radius:10px;padding:1rem}
+#clearFilters{justify-self:start;background:#f0f3ef}
+.facet-row{display:grid;min-width:0;border:0;padding:0;margin:0}.facet-row legend{font-size:.8rem;font-weight:600;padding:0;margin-bottom:.35rem}.facet-buttons{display:flex;gap:.4rem;overflow-x:auto;white-space:nowrap;padding:.2rem;scroll-padding-inline:.4rem}.facet-buttons button{position:relative;display:inline-flex;align-items:center;gap:.45rem;flex:none;padding:.5rem .8rem;font-size:.9rem}.facet-buttons [aria-pressed=true]{background:#e2ebe4;border-color:#466c5c}.facet-buttons [aria-pressed=true]::after{content:"";position:absolute;inset:auto .65rem .15rem;border-bottom:2px solid currentColor}.color-swatch{display:inline-block;width:1rem;height:1rem;border:1px solid #6b7d75;border-radius:50%;flex:none}
+#activeFilters{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:.7rem}#activeFilters:empty{display:none}
+#activeFilters button{padding:.4rem .7rem;background:#e2ebe4;font-size:.85rem;border-color:#b8cac4}
+#treeUseFilter{max-width:16rem;margin-block:1rem}#status{font-size:.9rem;color:#526b64;margin-block:1.25rem}
+#empty{border:1px dashed #b8cac4;border-radius:10px;background:#fff;padding:2.5rem 1rem}#empty h2{font-size:1.2rem;margin-bottom:.5rem}#empty p{margin-block:.5rem 1rem}
+.asset-facts{margin-block:1rem;padding:1rem;background:#f0f3ef;border:1px solid #d7e0d9;border-radius:10px}.asset-facts h3{margin:0 0 .75rem;font-size:1rem}
+#assetFacts{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:.45rem 1rem;margin:0;font-size:.9rem}#assetFacts dt{font-weight:600}#assetFacts dd{margin:0;overflow-wrap:anywhere}
+#assemblyRules{border-top:1px solid #c9d7ce;margin-top:1rem;padding-top:.7rem}#assemblyRules summary{cursor:pointer;font-weight:600;min-height:2.75rem;align-content:center}#ruleDescriptions p{font-size:.9rem;margin:.5rem 0}
+@media(max-width:650px){#tabs button{padding-inline:1rem}#roleTabs button{padding-inline:.8rem}#facetFilters{gap:.6rem;padding:.75rem}#clearFilters{justify-self:start}#assetFacts{grid-template-columns:5.5rem minmax(0,1fr);gap:.5rem}.asset-facts{padding:.75rem}}
+@media(forced-colors:active){#tabs [aria-selected=true]::after,#roleTabs [aria-selected=true]::after{border-color:Highlight}}

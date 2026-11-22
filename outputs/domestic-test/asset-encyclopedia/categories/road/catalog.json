@@ -1,0 +1,2550 @@
+{
+  "schemaVersion": 1,
+  "domain": "road",
+  "entries": [
+    {
+      "id": "legacy:31",
+      "key": 31,
+      "name": "주차된 생활 자전거",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 4700,
+      "note": "로드뷰 형태 참고",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A31",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:32",
+      "key": 32,
+      "name": "바구니 자전거",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 5540,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A32",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:33",
+      "key": 33,
+      "name": "자전거 거치대",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1536,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A33",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:34",
+      "key": 34,
+      "name": "주차금지 입간판",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 772,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A34",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:35",
+      "key": 35,
+      "name": "라바콘",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 316,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A35",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:36",
+      "key": 36,
+      "name": "주차 방지 볼라드",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 296,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A36",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:37",
+      "key": 37,
+      "name": "주차 바퀴 멈춤턱",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 564,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A37",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:38",
+      "key": 38,
+      "name": "골목 반사경",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 400,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A38",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:39",
+      "key": 39,
+      "name": "빗물 배수구",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 2444,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A39",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:40",
+      "key": 40,
+      "name": "원형 맨홀",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1380,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-library-50.glb"
+        ],
+        "preview": "./?asset=legacy%3A40",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-library-50.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:101",
+      "key": 101,
+      "name": "접이식 소형 자전거",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 5076,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A101",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:102",
+      "key": 102,
+      "name": "어린이 보조바퀴 자전거",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 7144,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A102",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:103",
+      "key": 103,
+      "name": "짐받이 운반 자전거",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 9676,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A103",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:104",
+      "key": 104,
+      "name": "배달 상자 스쿠터",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 3668,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A104",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:105",
+      "key": 105,
+      "name": "발판형 킥보드",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 2484,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A105",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:106",
+      "key": 106,
+      "name": "체인 연결 주차 기둥",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 7168,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A106",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:107",
+      "key": 107,
+      "name": "물통형 주차 차단봉",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 700,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A107",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:108",
+      "key": 108,
+      "name": "고리형 잠금 주차대",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1076,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A108",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:109",
+      "key": 109,
+      "name": "고무 케이블 보호턱",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 1880,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A109",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:110",
+      "key": 110,
+      "name": "노면 배수 트렌치",
+      "category": "주차·도로",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 5076,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "주차·도로",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-100.glb"
+        ],
+        "preview": "./?asset=legacy%3A110",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-100.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:191",
+      "key": 191,
+      "name": "주차 방지 체인과 기둥",
+      "category": "골목 시설",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 3360,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "골목 시설",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A191",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:192",
+      "key": 192,
+      "name": "코너 반사경과 주의판",
+      "category": "골목 시설",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 656,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "골목 시설",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A192",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:193",
+      "key": 193,
+      "name": "모서리 충격 방지 기둥",
+      "category": "골목 시설",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 552,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "골목 시설",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A193",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:194",
+      "key": 194,
+      "name": "빗물받이와 낙엽",
+      "category": "골목 시설",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 2008,
+      "note": "로드뷰 관찰 재구성",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "골목 시설",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A194",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "legacy:195",
+      "key": 195,
+      "name": "낡은 보도 경계석 묶음",
+      "category": "골목 시설",
+      "collection": "초기 골목 소품",
+      "kind": "legacy",
+      "triangles": 968,
+      "note": "골목 보완 제안",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "골목 시설",
+          "초기 골목 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../../alley-library/alley-additional-60-v17.glb"
+        ],
+        "preview": "./?asset=legacy%3A195",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "road:a67",
+      "name": "제한속도 표지판",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a67.glb",
+      "triangles": 256,
+      "note": "낮은 속도로 다니는 생활도로를 표현합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a67.glb"
+        ],
+        "preview": "./?asset=road%3Aa67",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a67.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a68",
+      "name": "버스정류장 시간표 기둥",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a68.glb",
+      "triangles": 132,
+      "note": "마을버스 정차 지점을 표시합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a68.glb",
+          "../approved-road/bus-approved-v4.glb"
+        ],
+        "preview": "./?asset=road%3Aa68",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a68.glb": "public-required",
+          "../approved-road/bus-approved-v4.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/bus-approved-v4.glb",
+        "triangles": 4402,
+        "note": "승인한 참고 이미지로 새로 제작했습니다. 승인 사진의 이중 기둥·둥근 프레임·상하 안내판 구조 반영. 다른 지역에서도 사용할 수 있게 한글 문구를 제외하고 버스·금연 그림, 노선도와 숫자만 유지. 뒷면 체결 구조와 크기는 추정. 치수 표기가 없는 부분은 추정 크기입니다.",
+        "originalFile": "../roadview50/a68.glb",
+        "remade": true,
+        "approvedReferenceId": "paste-69bdd4cd-583b-4829-aee5-aa30f2bdf659",
+        "link": null
+      }
+    },
+    {
+      "id": "road:a69",
+      "name": "전봇대 부착 전기함",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a69.glb",
+      "triangles": 316,
+      "note": "전봇대의 생활 설비를 보강합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a69.glb"
+        ],
+        "preview": "./?asset=road%3Aa69",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a69.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a71",
+      "name": "반사띠 볼라드",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a71.glb",
+      "triangles": 192,
+      "note": "자동차 진입을 제한하는 작은 경계물을 만듭니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a71.glb"
+        ],
+        "preview": "./?asset=road%3Aa71",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a71.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a72",
+      "name": "접이식 공사바리케이드",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a72.glb",
+      "triangles": 228,
+      "note": "잠시 공사 중인 작업 구역을 표현합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a72.glb",
+          "../approved-road/barrier-approved-v1.glb"
+        ],
+        "preview": "./?asset=road%3Aa72",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a72.glb": "public-required",
+          "../approved-road/barrier-approved-v1.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/barrier-approved-v1.glb",
+        "triangles": 13964,
+        "note": "승인한 참고 이미지로 새로 제작했습니다.  치수 표기가 없는 부분은 추정 크기입니다.",
+        "originalFile": "../roadview50/a72.glb",
+        "remade": true,
+        "approvedReferenceId": "barrier-kr-1",
+        "link": null
+      }
+    },
+    {
+      "id": "road:a73",
+      "name": "골목 반사경",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a73.glb",
+      "triangles": 184,
+      "note": "시야가 가려지는 골목 모퉁이를 보완합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a73.glb"
+        ],
+        "preview": "./?asset=road%3Aa73",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a73.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a74",
+      "name": "길쭉한 도로 배수구",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a74.glb",
+      "triangles": 264,
+      "note": "도로 가장자리의 물길을 연결합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a74.glb"
+        ],
+        "preview": "./?asset=road%3Aa74",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a74.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a75",
+      "name": "원형 맨홀뚜껑",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a75.glb",
+      "triangles": 348,
+      "note": "아스팔트 위 설비 점검 지점을 표현합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a75.glb",
+          "../approved-road/manhole-approved-v1.glb"
+        ],
+        "preview": "./?asset=road%3Aa75",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a75.glb": "public-required",
+          "../approved-road/manhole-approved-v1.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/manhole-approved-v1.glb",
+        "triangles": 3968,
+        "note": "승인한 참고 이미지로 새로 제작했습니다.  치수 표기가 없는 부분은 추정 크기입니다.",
+        "originalFile": "../roadview50/a75.glb",
+        "remade": true,
+        "approvedReferenceId": "manhole-kr-1",
+        "link": null
+      }
+    },
+    {
+      "id": "road:a76",
+      "name": "점자블록 패널",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a76.glb",
+      "triangles": 512,
+      "note": "보도와 교차부의 안내 시설을 구성합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a76.glb"
+        ],
+        "preview": "./?asset=road%3Aa76",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a76.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a77",
+      "name": "전봇대 하단 보호커버",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a77.glb",
+      "triangles": 284,
+      "note": "전봇대 하단을 구분하는 보호 장치를 만듭니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a77.glb"
+        ],
+        "preview": "./?asset=road%3Aa77",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a77.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "road:a78",
+      "name": "벽부착 CCTV",
+      "category": "도로·안전",
+      "collection": "로드뷰 참고 소품",
+      "kind": "glb",
+      "file": "../roadview50/a78.glb",
+      "triangles": 196,
+      "note": "건물 모서리의 보안 설비를 표현합니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "로드뷰 참고 소품"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../roadview50/a78.glb"
+        ],
+        "preview": "./?asset=road%3Aa78",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../roadview50/a78.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a69",
+      "name": "전봇대 부착 전기함",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a69.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a69.glb"
+        ],
+        "preview": "./?asset=representative%3Aa69",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a69.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a75",
+      "name": "원형 맨홀뚜껑",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../memo-131/a75.glb",
+      "note": "사용자 수정 의견 반영",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../memo-131/a75.glb"
+        ],
+        "preview": "./?asset=representative%3Aa75",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../memo-131/a75.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a74",
+      "name": "길쭉한 도로 배수구",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a74.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a74.glb",
+          "../approved-road/grating-approved-v1.glb"
+        ],
+        "preview": "./?asset=representative%3Aa74",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a74.glb": "public-required",
+          "../approved-road/grating-approved-v1.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/grating-approved-v1.glb",
+        "note": "승인한 참고 이미지로 새로 제작했습니다.  치수 표기가 없는 부분은 추정 크기입니다.",
+        "triangles": 1020,
+        "originalFile": "../representatives/a74.glb",
+        "remade": true,
+        "approvedReferenceId": "grating-kr-1",
+        "link": null
+      }
+    },
+    {
+      "id": "representative:a68",
+      "name": "버스정류장 시간표 기둥",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a68.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a68.glb"
+        ],
+        "preview": "./?asset=representative%3Aa68",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a68.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a76",
+      "name": "점자블록 패널",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a76.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a76.glb"
+        ],
+        "preview": "./?asset=representative%3Aa76",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a76.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a71",
+      "name": "반사띠 볼라드",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a71.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a71.glb"
+        ],
+        "preview": "./?asset=representative%3Aa71",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a71.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a73",
+      "name": "골목 반사경",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a73.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a73.glb"
+        ],
+        "preview": "./?asset=representative%3Aa73",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a73.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a72",
+      "name": "접이식 공사바리케이드",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../memo-131/a72.glb",
+      "note": "사용자 수정 의견 반영",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../memo-131/a72.glb"
+        ],
+        "preview": "./?asset=representative%3Aa72",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../memo-131/a72.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "representative:a67",
+      "name": "제한속도 표지판",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a67.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a67.glb",
+          "../approved-road/speed-approved-v3.glb"
+        ],
+        "preview": "./?asset=representative%3Aa67",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a67.glb": "public-required",
+          "../approved-road/speed-approved-v3.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/speed-approved-v3.glb",
+        "note": "승인한 참고 이미지로 새로 제작했습니다. 사용자 요청: 제한속도 50 표기. 당시 해제 보조판은 생략 치수 표기가 없는 부분은 추정 크기입니다.",
+        "triangles": 978,
+        "originalFile": "../representatives/a67.glb",
+        "remade": true,
+        "approvedReferenceId": "speed-seoul-1",
+        "link": null
+      }
+    },
+    {
+      "id": "representative:a77",
+      "name": "전봇대 하단 보호커버",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../representatives/a77.glb",
+      "note": "통합 대표 모델",
+      "taxonomy": {
+        "domain": "road",
+        "role": "utility",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../representatives/a77.glb",
+          "../approved-road/pole-approved-v1.glb"
+        ],
+        "preview": "./?asset=representative%3Aa77",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../representatives/a77.glb": "public-required",
+          "../approved-road/pole-approved-v1.glb": "public-required"
+        }
+      },
+      "revision": {
+        "file": "../approved-road/pole-approved-v1.glb",
+        "note": "승인한 참고 이미지로 새로 제작했습니다. 전주 미포함, 뒷면 고정 밴드3개 치수 표기가 없는 부분은 추정 크기입니다.",
+        "triangles": 672,
+        "originalFile": "../representatives/a77.glb",
+        "remade": true,
+        "approvedReferenceId": "pole-kr-1",
+        "link": null
+      }
+    },
+    {
+      "id": "representative:a78",
+      "name": "벽부착 CCTV",
+      "category": "도로·안전",
+      "collection": "통합 수정본",
+      "kind": "glb",
+      "file": "../memo-131/a78.glb",
+      "note": "사용자 수정 의견 반영",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "통합 수정본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../memo-131/a78.glb"
+        ],
+        "preview": "./?asset=representative%3Aa78",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../memo-131/a78.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "prototype:barrier-v1",
+      "name": "접이식 바리케이드 · 교체안",
+      "category": "도로·안전",
+      "collection": "교체 검토안",
+      "kind": "glb",
+      "file": "../prop-remakes/barrier-v1.glb",
+      "triangles": 1392,
+      "note": "road:a72 교체 후보. 검토용이며 동네에는 미적용.",
+      "link": "../prop-remakes/",
+      "taxonomy": {
+        "domain": "road",
+        "role": "safety",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교체 검토안"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../prop-remakes/barrier-v1.glb"
+        ],
+        "preview": "../prop-remakes/",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../prop-remakes/barrier-v1.glb": "public-required"
+        }
+      },
+      "registryHidden": true
+    },
+    {
+      "id": "junction:curb-straight",
+      "name": "직선 연석 · 접속 부품",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-straight-v1.glb",
+      "triangles": 48,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 자동 생성 연결: parametric-curb; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/curb-straight-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Acurb-straight",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/curb-straight-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:curb-corner",
+      "name": "곡선 연석 · 모퉁이",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-corner-v1.glb",
+      "triangles": 336,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/curb-corner-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Acurb-corner",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/curb-corner-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:curb-ramp",
+      "name": "보도 턱낮춤 · 점자블록 연결",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/curb-ramp-v1.glb",
+      "triangles": 4888,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 자동 생성 연결: parametric-ramp; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/curb-ramp-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Acurb-ramp",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/curb-ramp-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:tactile-warning",
+      "name": "점형 점자블록 · 경고 띠",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/tactile-warning-v1.glb",
+      "triangles": 3248,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 자동 생성 연결: fixed-dimension-warning-block; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/tactile-warning-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Atactile-warning",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/tactile-warning-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:tactile-guidance",
+      "name": "선형 점자블록 · 보행 연결",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/tactile-guidance-v1.glb",
+      "triangles": 240,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/tactile-guidance-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Atactile-guidance",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/tactile-guidance-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:crossing-stop",
+      "name": "횡단보도와 정지선 · 표시 부품",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/crossing-stop-v1.glb",
+      "triangles": 120,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 자동 생성 연결: parametric-crossing; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/crossing-stop-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Acrossing-stop",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/crossing-stop-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:median-end",
+      "name": "중앙분리대 · 둥근 끝단",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/median-end-v1.glb",
+      "triangles": 364,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/median-end-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Amedian-end",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/median-end-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:edge-corner",
+      "name": "노란 가장자리선 · 곡선",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/edge-corner-v1.glb",
+      "triangles": 288,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 자동 생성 연결: parametric-edge-mark; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [
+          "노란"
+        ],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/edge-corner-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Aedge-corner",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/edge-corner-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:turn-guide",
+      "name": "회전 유도 점선 · 연결 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/turn-guide-v1.glb",
+      "triangles": 576,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/turn-guide-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Aturn-guide",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/turn-guide-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:junction-alley-main",
+      "name": "좁은 길과 큰길 · 분리대 유지 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-alley-main-v1.glb",
+      "triangles": 13040,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/junction-alley-main-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Ajunction-alley-main",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/junction-alley-main-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:junction-small-t",
+      "name": "보도 있는 T자 접속 · 조립 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-small-t-v1.glb",
+      "triangles": 12644,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/junction-small-t-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Ajunction-small-t",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/junction-small-t-v1.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "junction:junction-crossroads",
+      "name": "다차로 사거리 · 조립 예시",
+      "category": "도로·안전",
+      "collection": "교차로 연결 부품",
+      "kind": "glb",
+      "file": "../junction-assets/junction-crossroads-v1.glb",
+      "triangles": 44012,
+      "note": "로드뷰 관찰 기반 제작. 치수는 추정. 백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+      "taxonomy": {
+        "domain": "road",
+        "role": "junction",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "도로·안전",
+          "교차로 연결 부품"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "road",
+        "manifest": "categories/road/catalog.json",
+        "sources": [
+          "../junction-assets/junction-crossroads-v1.glb"
+        ],
+        "preview": "./?asset=junction%3Ajunction-crossroads",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../junction-assets/junction-crossroads-v1.glb": "public-required"
+        }
+      }
+    }
+  ]
+}

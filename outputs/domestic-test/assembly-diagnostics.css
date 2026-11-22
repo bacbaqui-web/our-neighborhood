@@ -1,0 +1,12 @@
+.assembly-diagnostics{margin:1rem 0;padding:.75rem;border:1px solid #c7d4cd;border-radius:.6rem;background:#f7faf7;color:#273e34;font-size:.85rem}
+.assembly-diagnostics>summary{cursor:pointer;font-weight:700;line-height:1.5}
+.assembly-diagnostics p{line-height:1.5;margin:.5rem 0}
+.assembly-diagnostics select{max-width:100%}
+.assembly-decisions{list-style:none;padding:0;margin:.6rem 0;max-height:50vh;overflow:auto}
+.assembly-decisions li{padding:.75rem .5rem;border-top:1px solid #c7d4cd;overflow-wrap:anywhere}
+.assembly-decisions li[data-assembly-status=fallback]{border-inline-start:3px solid #9b650d}
+.assembly-decisions li[data-assembly-status=error]{border-inline-start:3px solid #b72c65}
+.assembly-decisions pre{font:inherit;white-space:pre-wrap;overflow-wrap:anywhere}
+.assembly-ids{font-size:.75rem}
+.assembly-decisions button,.assembly-decisions a{display:inline-block;margin:.4rem .4rem .2rem 0}
+.assembly-diagnostics :focus-visible{outline:3px solid #216e52;outline-offset:3px}

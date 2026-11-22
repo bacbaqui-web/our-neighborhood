@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as T from 'three';
 import {designs,commercialEntries} from '../outputs/domestic-test/sungshin-commercial/designs.js';
+import {assetPolicies} from '../outputs/domestic-test/assembly-rules/asset-policies.js';
 import {elevations} from '../outputs/domestic-test/sungshin-commercial/elevations.js';
 import {buildCommercial,artworkFor} from '../outputs/domestic-test/sungshin-commercial/model.js';
 
@@ -9,7 +10,9 @@ const library=new URL('../outputs/domestic-test/sungshin-commercial/',import.met
 const catalog=JSON.parse(fs.readFileSync(new URL('../asset-encyclopedia/catalog.json',library))).entries;
 assert.equal(designs.length,50);
 assert.equal(new Set(designs.map(a=>a.id)).size,50);
-assert.deepEqual(catalog.filter(a=>a.pack==='sungshin-commercial'),commercialEntries);
+const commercialCatalog=catalog.filter(a=>a.pack==='sungshin-commercial');
+assert.deepEqual(commercialCatalog.map(({taxonomy,assembly,ownership,...a})=>a),commercialEntries);
+for(const a of commercialCatalog){assert.equal(a.taxonomy.domain,'commerce');assert.equal(a.assembly.kind,'complete');assert.equal(assetPolicies[a.id].placement.status,'automatic-conditional');assert.equal(assetPolicies[a.id].placement.automatic,true);assert(!('placement' in a));}
 
 const artFiles={poster:'posters',fidelity:'fidelity-signs',yard:'fidelity-signs-01-09',south:'fidelity-south',mid:'fidelity-mid',north:'fidelity-north',corners:'fidelity-corners',small:'fidelity-small',menji:'menji'};
 const dummy=file=>{

@@ -1,0 +1,2260 @@
+{
+  "schemaVersion": 1,
+  "domain": "vehicle",
+  "entries": [
+    {
+      "id": "korean:213",
+      "key": 213,
+      "name": "한국형 1톤 카고 트럭",
+      "category": "차량",
+      "collection": "초기 차량 모델",
+      "kind": "korean",
+      "note": "포터 II 외형 참고 · 직접 제작",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "truck",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "초기 차량 모델"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "preview": "./?asset=korean%3A213",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/korean-vehicles.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "korean:214",
+      "key": 214,
+      "name": "한국형 냉동 탑차",
+      "category": "차량",
+      "collection": "초기 차량 모델",
+      "kind": "korean",
+      "note": "봉고 외형 참고 · 직접 제작",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "초기 차량 모델"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "preview": "./?asset=korean%3A214",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/korean-vehicles.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "korean:215",
+      "key": 215,
+      "name": "한국형 마을버스",
+      "category": "차량",
+      "collection": "초기 차량 모델",
+      "kind": "korean",
+      "note": "카운티 외형 참고 · 직접 제작",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "bus",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "초기 차량 모델"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "preview": "./?asset=korean%3A215",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [
+          "../../alley-library/korean-vehicles.js"
+        ],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../../alley-library/korean-vehicles.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:bus-blue",
+      "name": "시내버스 · 파랑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/bus-blue/model-front-repaired.glb",
+      "triangles": 5379,
+      "note": "원본 기반으로 앞면 돌출부만 축소. 문틀·측면 텍스처 유지, 양쪽 후사경 지지대 연결. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "bus",
+        "era": [],
+        "colors": [
+          "#2869b0",
+          "파랑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-blue/model-front-repaired.glb"
+        ],
+        "preview": "./?asset=vehicle%3Abus-blue",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-blue/model-front-repaired.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:bus-green",
+      "name": "시내버스 · 초록",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/bus-green/model-front-repaired.glb",
+      "triangles": 5379,
+      "note": "원본 기반으로 앞면 돌출부만 축소. 문틀·측면 텍스처 유지, 양쪽 후사경 지지대 연결. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "bus",
+        "era": [],
+        "colors": [
+          "#4c9d39",
+          "초록"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-green/model-front-repaired.glb"
+        ],
+        "preview": "./?asset=vehicle%3Abus-green",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-green/model-front-repaired.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:bus-red",
+      "name": "시내버스 · 빨강",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/bus-red/model-front-repaired.glb",
+      "triangles": 5379,
+      "note": "원본 기반으로 앞면 돌출부만 축소. 문틀·측면 텍스처 유지, 양쪽 후사경 지지대 연결. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "bus",
+        "era": [],
+        "colors": [
+          "#bd3838",
+          "빨강"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-red/model-front-repaired.glb"
+        ],
+        "preview": "./?asset=vehicle%3Abus-red",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-red/model-front-repaired.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2",
+      "name": "포터2 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2/model-glass.glb",
+      "triangles": 1907,
+      "note": "원본 텍스처의 창문 영역에 공통 유리색·옅은 사선 적용. 별도 유리 면·실시간 반사 없음. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eee9dc",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2/model-glass.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2/model-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-dn8",
+      "name": "쏘나타 DN8 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8/model-glass.glb",
+      "triangles": 4824,
+      "note": "원본 텍스처의 창문 영역에 공통 유리색·옅은 사선 적용. 별도 유리 면·실시간 반사 없음. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#f2f1e9",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8/model-glass.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-dn8",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8/model-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:ray",
+      "name": "기아 레이 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/ray/model-painted-glass.glb",
+      "triangles": 5673,
+      "note": "유리 안에 옅은 사선 하이라이트를 그린 텍스처. 실시간 환경 반사 제거. 차체·창틀·문선 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eeeeed",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/ray/model-painted-glass.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aray",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/ray/model-painted-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:carnival-ka4",
+      "name": "기아 카니발 KA4 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/carnival-ka4/model.glb",
+      "triangles": 5248,
+      "note": "원본 형태·UV 유지. 창문 텍스처에 공통 청회색·옅은 사선 적용. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eeede5",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/carnival-ka4/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Acarnival-ka4",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/carnival-ka4/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:grandeur-ig",
+      "name": "현대 그랜저 IG · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/grandeur-ig/model.glb",
+      "triangles": 5097,
+      "note": "원본 형태·UV 유지. 창문 텍스처에 공통 청회색·옅은 사선 적용. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eeede5",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/grandeur-ig/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Agrandeur-ig",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/grandeur-ig/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2-delivery",
+      "name": "포터2 택배 탑차 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2-delivery/model.glb",
+      "triangles": 4835,
+      "note": "원본 형태·UV 유지. 창문 텍스처에 공통 청회색·옅은 사선 적용. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eeede5",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2-delivery/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2-delivery",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2-delivery/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:spark-m400",
+      "name": "쉐보레 스파크 M400 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/spark-m400/model.glb",
+      "triangles": 5632,
+      "note": "원본 형태·UV 유지. 창문 텍스처에 공통 청회색·옅은 사선 적용. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#eeede5",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/spark-m400/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aspark-m400",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/spark-m400/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:grand-starex-school",
+      "name": "그랜드 스타렉스 학원차 · 노랑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/grand-starex-school/model.glb",
+      "triangles": 5443,
+      "note": "원본 형태·UV 유지. 뒤쪽 문구·정지 표지 정리, 띠무늬 정렬 및 문 경계 보완. 앞유리·양옆 학원 문구 없음. 공통 청회색 유리·옅은 사선 적용. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#ffc000",
+          "노랑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/grand-starex-school/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Agrand-starex-school",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/grand-starex-school/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-taxi",
+      "name": "쏘나타 DN8 택시 · 꽃담황토색 택시",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-taxi/model.glb",
+      "triangles": 4972,
+      "note": "원본 차체 형태 유지. 지붕에 맞춘 받침대와 앞뒤 TAXI 표시등, 양쪽 문 택시 그림. 공통 청회색 유리·사선. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#d16f15",
+          "꽃담황토색 택시"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-taxi/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-taxi",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-taxi/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:carnival-ka4-black",
+      "name": "기아 카니발 KA4 · 검정",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/carnival-ka4-black/model.glb",
+      "triangles": 5248,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#34383d",
+          "검정"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/carnival-ka4-black/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Acarnival-ka4-black",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/carnival-ka4-black/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:carnival-ka4-silver",
+      "name": "기아 카니발 KA4 · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/carnival-ka4-silver/model.glb",
+      "triangles": 5248,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b4b6b1",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/carnival-ka4-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Acarnival-ka4-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/carnival-ka4-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:grandeur-ig-black",
+      "name": "현대 그랜저 IG · 검정",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/grandeur-ig-black/model.glb",
+      "triangles": 5097,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#303438",
+          "검정"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/grandeur-ig-black/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Agrandeur-ig-black",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/grandeur-ig-black/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:grandeur-ig-silver",
+      "name": "현대 그랜저 IG · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/grandeur-ig-silver/model.glb",
+      "triangles": 5097,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#aeb5ba",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/grandeur-ig-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Agrandeur-ig-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/grandeur-ig-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2-blue",
+      "name": "포터2 · 파랑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2-blue/model.glb",
+      "triangles": 1907,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#315a80",
+          "파랑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2-blue/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2-blue",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2-blue/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2-delivery-blue",
+      "name": "포터2 택배 탑차 · 파랑 운전석·흰 탑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2-delivery-blue/model.glb",
+      "triangles": 4835,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#315a80",
+          "파랑 운전석·흰 탑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2-delivery-blue/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2-delivery-blue",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2-delivery-blue/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2-delivery-silver",
+      "name": "포터2 택배 탑차 · 은색 운전석·흰 탑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2-delivery-silver/model.glb",
+      "triangles": 4835,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b8bdbe",
+          "은색 운전석·흰 탑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2-delivery-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2-delivery-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2-delivery-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:porter2-silver",
+      "name": "포터2 · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/porter2-silver/model.glb",
+      "triangles": 1907,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b8bdbe",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aporter2-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:ray-beige",
+      "name": "기아 레이 · 베이지",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/ray-beige/model.glb",
+      "triangles": 5673,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "베이지",
+          "#d4c8af"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/ray-beige/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aray-beige",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/ray-beige/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:ray-blue",
+      "name": "기아 레이 · 연한 파랑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/ray-blue/model.glb",
+      "triangles": 5673,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#93b7be",
+          "연한 파랑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/ray-blue/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aray-blue",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/ray-blue/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:ray-gray",
+      "name": "기아 레이 · 연회색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/ray-gray/model.glb",
+      "triangles": 5673,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "회색",
+          "#a6afb0",
+          "연회색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/ray-gray/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aray-gray",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/ray-gray/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-dn8-black",
+      "name": "쏘나타 DN8 · 검정",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8-black/model.glb",
+      "triangles": 4824,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#34383d",
+          "검정"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8-black/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-dn8-black",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8-black/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-dn8-navy",
+      "name": "쏘나타 DN8 · 짙은 남색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8-navy/model.glb",
+      "triangles": 4824,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#344653",
+          "짙은 남색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8-navy/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-dn8-navy",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8-navy/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-dn8-silver",
+      "name": "쏘나타 DN8 · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8-silver/model.glb",
+      "triangles": 4824,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b8bfc3",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-dn8-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-personal-silver",
+      "name": "쏘나타 DN8 개인택시 · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-personal-silver/model.glb",
+      "triangles": 4972,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b6bcc0",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-personal-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-personal-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-personal-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:sonata-personal-white",
+      "name": "쏘나타 DN8 개인택시 · 흰색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/sonata-personal-white/model.glb",
+      "triangles": 4972,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#efefea",
+          "흰색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-personal-white/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Asonata-personal-white",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-personal-white/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:spark-m400-blue",
+      "name": "쉐보레 스파크 M400 · 파랑",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/spark-m400-blue/model.glb",
+      "triangles": 5632,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#5689a8",
+          "파랑"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/spark-m400-blue/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aspark-m400-blue",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/spark-m400-blue/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:spark-m400-red",
+      "name": "쉐보레 스파크 M400 · 빨강",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/spark-m400-red/model.glb",
+      "triangles": 5632,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#ad3b3d",
+          "빨강"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/spark-m400-red/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aspark-m400-red",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/spark-m400-red/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "vehicle:spark-m400-silver",
+      "name": "쉐보레 스파크 M400 · 은색",
+      "category": "차량",
+      "collection": "차량 등록본",
+      "kind": "glb",
+      "file": "../vehicles/spark-m400-silver/model.glb",
+      "triangles": 5632,
+      "note": "원본 UV 텍스처의 차체 픽셀 직접 수정. 유리·문 경계·손잡이 유지. 외부선 ON / 내부선 OFF.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "car",
+        "era": [],
+        "colors": [
+          "#b7bdc0",
+          "은색"
+        ],
+        "materials": [],
+        "tags": [
+          "차량",
+          "차량 등록본"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/spark-m400-silver/model.glb"
+        ],
+        "preview": "./?asset=vehicle%3Aspark-m400-silver",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/spark-m400-silver/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/cars/avante-cn7-mesh-v89/avante-cn7.glb",
+      "name": "avante-cn7",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../cars/avante-cn7-mesh-v89/avante-cn7.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../cars/avante-cn7-mesh-v89/avante-cn7.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v89%2Favante-cn7.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../cars/avante-cn7-mesh-v89/avante-cn7.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "file:domestic-test/cars/avante-cn7-mesh-v90/avante-cn7.glb",
+      "name": "avante-cn7",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../cars/avante-cn7-mesh-v90/avante-cn7.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../cars/avante-cn7-mesh-v90/avante-cn7.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v90%2Favante-cn7.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../cars/avante-cn7-mesh-v90/avante-cn7.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "file:domestic-test/cars/avante-cn7-mesh-v91/avante-cn7.glb",
+      "name": "avante-cn7",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../cars/avante-cn7-mesh-v91/avante-cn7.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../cars/avante-cn7-mesh-v91/avante-cn7.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v91%2Favante-cn7.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../cars/avante-cn7-mesh-v91/avante-cn7.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/cars/avante-cn7-mesh-v92/avante-cn7.glb",
+      "name": "avante-cn7",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../cars/avante-cn7-mesh-v92/avante-cn7.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../cars/avante-cn7-mesh-v92/avante-cn7.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v92%2Favante-cn7.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../cars/avante-cn7-mesh-v92/avante-cn7.glb": "local-archive"
+        },
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/avante-cn7/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/avante-cn7/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/avante-cn7/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Favante-cn7%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/avante-cn7/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-blue/model-front-fixed.glb",
+      "name": "model-front-fixed",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-blue/model-front-fixed.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-blue/model-front-fixed.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel-front-fixed.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-blue/model-front-fixed.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-blue/model-glass.glb",
+      "name": "model-glass",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-blue/model-glass.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-blue/model-glass.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel-glass.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-blue/model-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-blue/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-blue/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-blue/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-blue/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-green/model-front-fixed.glb",
+      "name": "model-front-fixed",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-green/model-front-fixed.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-green/model-front-fixed.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel-front-fixed.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-green/model-front-fixed.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-green/model-glass.glb",
+      "name": "model-glass",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-green/model-glass.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-green/model-glass.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel-glass.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-green/model-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-green/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-green/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-green/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-green/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-red/model-front-fixed.glb",
+      "name": "model-front-fixed",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-red/model-front-fixed.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-red/model-front-fixed.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel-front-fixed.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-red/model-front-fixed.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-red/model-glass.glb",
+      "name": "model-glass",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-red/model-glass.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-red/model-glass.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel-glass.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-red/model-glass.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/bus-red/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/bus-red/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/bus-red/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/bus-red/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/porter2/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/porter2/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/porter2/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fporter2%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/porter2/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/ray/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/ray/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/ray/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fray%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/ray/model.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/sonata-dn8/model-detail.glb",
+      "name": "model-detail",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8/model-detail.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8/model-detail.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel-detail.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8/model-detail.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/sonata-dn8/model-original.glb",
+      "name": "model-original",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8/model-original.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8/model-original.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel-original.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8/model-original.glb": "public-required"
+        }
+      }
+    },
+    {
+      "id": "file:domestic-test/vehicles/sonata-dn8/model.glb",
+      "name": "model",
+      "category": "차량",
+      "collection": "보관 모델·이전 버전",
+      "kind": "glb",
+      "file": "../vehicles/sonata-dn8/model.glb",
+      "note": "개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.",
+      "taxonomy": {
+        "domain": "vehicle",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "차량",
+          "보관 모델·이전 버전"
+        ]
+      },
+      "assembly": {
+        "kind": "legacy",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "기존 등록 항목의 이름·분류·원본 연결. 시대·재질·치수 미기록은 빈 값."
+      },
+      "ownership": {
+        "domain": "vehicle",
+        "manifest": "categories/vehicle/catalog.json",
+        "sources": [
+          "../vehicles/sonata-dn8/model.glb"
+        ],
+        "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel.glb",
+        "physicalPaths": "compatibility-preserved",
+        "sharedDependencies": [],
+        "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
+        "sourceAvailability": {
+          "../vehicles/sonata-dn8/model.glb": "public-required"
+        }
+      }
+    }
+  ]
+}

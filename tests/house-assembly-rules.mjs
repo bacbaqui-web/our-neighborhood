@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {resolveHouseComponent} from '../outputs/domestic-test/assembly-rules/house.js';
+const ids=['part:wall-0','part:wall-1','part:white-slider','part:brown-slider','part:original-steel-door'];
+const registry={resolve:id=>ids.includes(id)?Object.freeze({id,assembly:{kind:'component'}}):null};
+const request={role:'window',styleIndex:0,width:1.9,height:1.35,attachment:'facade',requestedId:'part:white-slider',seed:12};
+assert.equal(resolveHouseComponent(registry,request).status,'exact');
+const fallback=resolveHouseComponent(registry,{...request,requestedId:'part:missing'});
+assert.equal(fallback.status,'fallback');assert.equal(fallback.selectedId,'part:white-slider');assert.ok(fallback.rejected[0].reasons.length);
+assert.equal(resolveHouseComponent({resolve:()=>null},request).status,'error');
+assert.equal(resolveHouseComponent(registry,{...request,width:.1}).status,'error');
+assert.equal(resolveHouseComponent(registry,{...request,width:NaN}).status,'error');
+assert.equal(resolveHouseComponent(registry,{...request,requestedId:'part:brown-slider'}).selectedId,'part:white-slider');
+assert.equal(resolveHouseComponent(registry,{...request,role:'wall',requestedId:'part:wall-1'}).selectedId,'part:wall-0');
+assert.equal(resolveHouseComponent(registry,{...request,role:'door',requestedId:'part:original-steel-door',width:1.34,height:2.12}).status,'exact');
+assert.deepEqual(resolveHouseComponent(registry,request),resolveHouseComponent(registry,request));
+console.log('house assembly rules passed');
+const {assetPolicies,getAssemblyRuleDescriptions}=await import('../outputs/domestic-test/assembly-rules/asset-policies.js');
+assert.equal(Object.keys(assetPolicies).length,68);
+assert(Object.isFrozen(assetPolicies['building:sungshin-01'].placement));
+assert.equal(getAssemblyRuleDescriptions({id:'example:housing-courtyard'})[0].automatic,false);
+assert.equal(getAssemblyRuleDescriptions({id:'unknown',taxonomy:{domain:'prop',role:'seating'},assembly:{kind:'legacy'}})[0].automatic,false);
+assert.equal(getAssemblyRuleDescriptions({id:'unknown',taxonomy:{domain:'prop',role:'seating'}})[0].status,'unverified');
+assert.equal(resolveHouseComponent({resolve:id=>({id:'replacement:'+id})},request).status,'error');
+
+assert.equal(resolveHouseComponent({resolve:id=>({id,assembly:{kind:'complete'}})},request).status,'error','whole models cannot be used as independent components');

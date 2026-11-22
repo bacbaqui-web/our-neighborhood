@@ -6366,5 +6366,39 @@
     "hostingCommit": "06d4bfea306498a93ba9bfd465320056ddeee8bc",
     "hostingRun": 44993565437,
     "evidence": "verification/asset-integration-20261122/completion.json"
+  },
+  "assetArchitecture20261122": {
+    "status": "implemented-local-verified-publication-pending",
+    "date": "2026-11-22",
+    "sourceOfTruth": "outputs/domestic-test/asset-encyclopedia/categories/*/catalog.json",
+    "registry": "outputs/domestic-test/asset-encyclopedia/registry.js",
+    "rules": "outputs/domestic-test/assembly-rules",
+    "categories": 7,
+    "registeredStableIDs": 1045,
+    "effectiveEntries": 1023,
+    "visibleCuratedEntries": 393,
+    "houseComponents": 30,
+    "migratedPolicies": 68,
+    "behavior": [
+      "read-only asset facts",
+      "house wall/window/door compatibility and fallback",
+      "visible error markers and reasons",
+      "final safety exclusions distinguished",
+      "domain/role/era/color/material cumulative filters"
+    ],
+    "localScene": {
+      "id": "87956683bb5545f2",
+      "exact": 2456,
+      "fallback": 0,
+      "error": 0,
+      "excluded": 246
+    },
+    "limits": [
+      "Existing binary paths retained for saved links; category manifests own them. Shared generator changes still require coordination.",
+      "Unrecorded dimensions/era/material facts remain unknown; not all legacy assets have verified composition rules.",
+      "Complete and reference assets are not decomposed into independent components."
+    ],
+    "checks": "work/asset-architecture-20261122/checks.json",
+    "guidelines": "docs/project-guidelines.txt section 4-1"
   }
 }

@@ -5,4 +5,7 @@ import '@astryxdesign/core/astryx.css';
 import {Theme} from '@astryxdesign/core/theme';
 import {themes,defaultThemeSlug} from './astryx-themes';
 import Report from './Report';
-createRoot(document.getElementById('root')!).render(<Theme theme={themes[defaultThemeSlug]}><Report/></Theme>);
+import GuidelineReview from './GuidelineReview';
+const showGuidelines=new URLSearchParams(window.location.search).get('view')==='guidelines';
+document.title=showGuidelines?'교차로 지침 검토 결과 · 우리동네':'교차로 에셋 제작 목록 · 우리동네';
+createRoot(document.getElementById('root')!).render(<Theme theme={themes[defaultThemeSlug]}>{showGuidelines?<GuidelineReview/>:<Report/>}</Theme>);

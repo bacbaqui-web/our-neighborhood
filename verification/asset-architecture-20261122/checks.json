@@ -1,0 +1,137 @@
+[
+  {
+    "test": "asset-integration-audit",
+    "exit": 0,
+    "seconds": 0.11
+  },
+  {
+    "test": "asset-catalog-rebuild",
+    "exit": 0,
+    "seconds": 0.21
+  },
+  {
+    "test": "assembly-exclusions",
+    "exit": 0,
+    "seconds": 0.08
+  },
+  {
+    "test": "browser-generation",
+    "exit": 0,
+    "seconds": 0.06
+  },
+  {
+    "test": "vworld-browser",
+    "exit": 0,
+    "seconds": 0.05
+  },
+  {
+    "test": "visible-horizon",
+    "exit": 0,
+    "seconds": 0.05
+  },
+  {
+    "test": "visible-horizon-worker",
+    "exit": 0,
+    "seconds": 0.12
+  },
+  {
+    "test": "street-end-context",
+    "exit": 0,
+    "seconds": 0.09
+  },
+  {
+    "test": "scene-budget",
+    "exit": 0,
+    "seconds": 0.14
+  },
+  {
+    "test": "circular-background",
+    "exit": 0,
+    "seconds": 0.29
+  },
+  {
+    "test": "full-detail",
+    "exit": 0,
+    "seconds": 0.09
+  },
+  {
+    "test": "shop-interiors",
+    "exit": 0,
+    "seconds": 0.43
+  },
+  {
+    "test": "shop-expansion",
+    "exit": 0,
+    "seconds": 1.55
+  },
+  {
+    "test": "sungshin-commercial-interiors",
+    "exit": 0,
+    "seconds": 0.36
+  },
+  {
+    "test": "sungshin-lettering",
+    "exit": 0,
+    "seconds": 0.11
+  },
+  {
+    "test": "sungshin-placement",
+    "exit": 0,
+    "seconds": 0.77
+  },
+  {
+    "test": "shop-publication",
+    "exit": 0,
+    "seconds": 0.09
+  },
+  {
+    "test": "window-parts",
+    "exit": 0,
+    "seconds": 0.59
+  },
+  {
+    "test": "neighborhood-window-recess",
+    "exit": 0,
+    "seconds": 4.87
+  },
+  {
+    "test": "facade-textures",
+    "exit": 0,
+    "seconds": 0.59
+  },
+  {
+    "test": "sungshin-commercial",
+    "exit": 0,
+    "seconds": 0.25
+  },
+  {
+    "test": "house-assembly-rendering",
+    "exit": 0,
+    "seconds": 0.15
+  },
+  {
+    "test": "house-assembly-rules",
+    "exit": 0,
+    "seconds": 0.04
+  },
+  {
+    "test": "assembly-diagnostics",
+    "exit": 0,
+    "seconds": 0.04
+  },
+  {
+    "test": "asset-category-ownership",
+    "exit": 0,
+    "seconds": 0.1
+  },
+  {
+    "test": "asset-category-generator",
+    "exit": 0,
+    "seconds": 0.67
+  },
+  {
+    "test": "asset-filter-state",
+    "exit": 0,
+    "seconds": 0.08
+  }
+]

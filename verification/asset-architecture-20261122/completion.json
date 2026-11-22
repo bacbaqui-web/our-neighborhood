@@ -1,0 +1,63 @@
+{
+  "status": "implemented-tested-deployed-public-verified",
+  "date": "2026-11-22",
+  "source": "9f2f24d6ae569859cca602aedfdd8d714c4aa6e7",
+  "architectureSource": "db64dfe787fce99e893036999c43755501dae8db",
+  "hosting": "cb6309b32ed5e094ebfb8501f3e773326c1907ff",
+  "sourceRun": 44997380328,
+  "hostingRun": 44997390676,
+  "publicURL": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/",
+  "publicScene": "87956683bb5545f2",
+  "publicAssembly": {
+    "exact": 2452,
+    "fallback": 0,
+    "error": 0,
+    "excluded": 245
+  },
+  "publicSungshin": {
+    "registered": 50,
+    "placed": "building:sungshin-34",
+    "owner": 1100784389
+  },
+  "publicFileMatches": 14,
+  "publicConsoleErrors": 0,
+  "localTests": 27,
+  "additionalChecks": [
+    "loading",
+    "generation scope 2 tests",
+    "housing encyclopedia",
+    "post-optimization registry and required model paths",
+    "clean publication build"
+  ],
+  "localFailureRendering": {
+    "missingRequestedWindow": {
+      "fallback": 2,
+      "error": 0
+    },
+    "allCandidatesMissing": {
+      "markers": 23,
+      "colliders": 0
+    }
+  },
+  "browserChecks": [
+    "house/wall/red/brick cumulative selection",
+    "window category renders actual thumbnails",
+    "asset detail attachment and shared consumer rule",
+    "excluded reason and camera focus",
+    "normal registered window and camera focus"
+  ],
+  "buildMB": 953.8,
+  "knownLimits": [
+    "Existing binary paths retained for saved-link compatibility; category manifests are the ownership boundary.",
+    "Unrecorded dimensions/era and unverified composition conditions remain explicit; complete/reference assets are not falsely decomposed.",
+    "390px viewport override did not take effect in Edge; only default viewport visually verified."
+  ],
+  "screenshots": [
+    "public-encyclopedia.jpg",
+    "public-assembly.jpg",
+    "public-diagnostics.jpg",
+    "local-missing.jpg",
+    "local-fallback.jpg"
+  ],
+  "releaseFix": "Public optimization changed image path values but not sourceAvailability keys. Updated key conversion and added post-optimization registry validation before republishing."
+}

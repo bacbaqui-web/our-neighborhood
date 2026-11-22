@@ -6368,7 +6368,7 @@
     "evidence": "verification/asset-integration-20261122/completion.json"
   },
   "assetArchitecture20261122": {
-    "status": "implemented-local-verified-publication-pending",
+    "status": "implemented-tested-deployed-public-verified",
     "date": "2026-11-22",
     "sourceOfTruth": "outputs/domestic-test/asset-encyclopedia/categories/*/catalog.json",
     "registry": "outputs/domestic-test/asset-encyclopedia/registry.js",
@@ -6398,7 +6398,20 @@
       "Unrecorded dimensions/era/material facts remain unknown; not all legacy assets have verified composition rules.",
       "Complete and reference assets are not decomposed into independent components."
     ],
-    "checks": "work/asset-architecture-20261122/checks.json",
-    "guidelines": "docs/project-guidelines.txt section 4-1"
+    "checks": "verification/asset-architecture-20261122/checks.json",
+    "guidelines": "docs/project-guidelines.txt section 4-1",
+    "sourceCommit": "9f2f24d6ae569859cca602aedfdd8d714c4aa6e7",
+    "hostingCommit": "cb6309b32ed5e094ebfb8501f3e773326c1907ff",
+    "sourceRun": 44997380328,
+    "hostingRun": 44997390676,
+    "publicAssembly": {
+      "exact": 2452,
+      "fallback": 0,
+      "error": 0,
+      "excluded": 245
+    },
+    "publicURL": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/",
+    "publicFileMatches": 14,
+    "evidence": "verification/asset-architecture-20261122/completion.json"
   }
 }

@@ -1,0 +1,72 @@
+[
+  {
+    "path": "domestic-test/index.html",
+    "matches": true,
+    "sha256": "35c6331f867855d2a7880460b3a1abec041c179268181048f44e10cb14cef80e"
+  },
+  {
+    "path": "domestic-test/app.js",
+    "matches": true,
+    "sha256": "a77169dfd6ca01bea65ca16b75a847911cba0e272495903eb26053ea5310cb70"
+  },
+  {
+    "path": "domestic-test/details.js",
+    "matches": true,
+    "sha256": "a8d45f1f2ccd919c859e93d2ae4871e73aa2b4a5ca238ccf701a3e3ddc981a26"
+  },
+  {
+    "path": "domestic-test/site-layout27.js",
+    "matches": true,
+    "sha256": "702eeaf34af5b1b5e6791146d3ebc791c20e39801d3064fe28e9eeffcd165922"
+  },
+  {
+    "path": "domestic-test/assembly-diagnostics.js",
+    "matches": true,
+    "sha256": "326d2fc9427115c5c9b1b72c24c643475b49d53b96241dec888ca6ef369d64bd"
+  },
+  {
+    "path": "domestic-test/assembly-rules/house.js",
+    "matches": true,
+    "sha256": "d84c9daa1e1bc7528ee79390e71bfb77a2563d77ca1d0f62ea9168cb2de57cbe"
+  },
+  {
+    "path": "domestic-test/assembly-rules/asset-policies.js",
+    "matches": true,
+    "sha256": "75d2a848ceaafe0f0ae2eea555c5715ca666ceed7508fe899a3d855658b70d5c"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/index.html",
+    "matches": true,
+    "sha256": "fae8c7e4110625215ecb62f31d1bf1eac87c7ca55f0c08aad28d667544a1c5c2"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/app.js",
+    "matches": true,
+    "sha256": "2ed3a5a8787f37c409329b2ec1b16eabade85fc71dad8aa34e91e640150694d3"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/style.css",
+    "matches": true,
+    "sha256": "9c130e4d00e82f48e54d9596ac8f2904f39dd6e856b3a9e6f85a36aa84f454f9"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/catalog.json",
+    "matches": true,
+    "sha256": "1a9ef5c5c56b3ddee72f21d38f6c392aa1dc337f167d5d78a65609a26ad49067"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/registry.js",
+    "matches": true,
+    "sha256": "ad828ce62d90ba94a8606750334976ba2517aa840dc0d758350a1271a888766a"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/filter-state.js",
+    "matches": true,
+    "sha256": "9e91bcbbb44b02395eef859fcf0a39a9d25005eb9d6566395e7060bd41c5a5fc"
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/category-metadata.js",
+    "matches": true,
+    "sha256": "146e89025fa8410ed4041ba0458a4b59644e31b1f2bc9efde94ed337e5963260"
+  }
+]

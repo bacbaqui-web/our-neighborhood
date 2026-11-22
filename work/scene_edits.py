@@ -29,7 +29,7 @@ def classify_roads(roads,edits,origin=None):
    coords=list(map(list,r['geometry']['coordinates']));canonical=min(coords,list(reversed(coords)))
    r['editId']=hashlib.sha256(json.dumps(canonical,separators=(',',':')).encode()).hexdigest()[:16]
   p=r['properties'];kind=p.get('class','minor');sub=p.get('subclass','')
-  pedestrian=kind in ('path','pedestrian') or sub in ('footway','pedestrian','steps','cycleway') or p.get('vehicle')=='no' or p.get('motor_vehicle')=='no'
+  pedestrian=kind in ('path','pedestrian') or sub in ('footway','sidewalk','pedestrian','steps','cycleway') or p.get('footway')=='sidewalk' or p.get('vehicle')=='no' or p.get('motor_vehicle')=='no'
   grade=0 if pedestrian else 2 if kind=='tertiary' else 3 if kind in ('primary','secondary','trunk','motorway') else 1
   raw=p.get('lanes')
   try:
@@ -48,12 +48,14 @@ def classify_roads(roads,edits,origin=None):
    if actual is not None:r['width']=actual
    p['sceneGrade']=grade
   else:
+   r['width']=measured_width(p) or 2.2
    r['sidewalkEachSide']=0;p.pop('sceneGrade',None)
  from road_geometry import pair_and_taper
  pair_and_taper(roads)
  for r in roads:
   if r.get('grade') and measured_width(r['properties']) is not None:r['widthSource']='source-width'
- return roads
+ from road_sidewalks import attach_sidewalks
+ return attach_sidewalks(roads)
 
 def apply_building_rules(collection,roads,edits,origin=None,local=False):
  from road_priority import scales

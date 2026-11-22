@@ -22,6 +22,7 @@ def group_road_sections(roads):
   return -1 if value=='-1' else 1 if value in ('1','true','yes') else 0
  def compatible(a,b):
   if (a.get('grade')==0)!=(b.get('grade')==0):return False
+  if a.get('grade')==0 and any(a['properties'].get(k)!=b['properties'].get(k) for k in ('subclass','footway')):return False
   # Do not silently expand a user's old correction into previously automatic roads.
   if manual(a)!=manual(b):return False
   if a['properties'].get('width')!=b['properties'].get('width'):return False

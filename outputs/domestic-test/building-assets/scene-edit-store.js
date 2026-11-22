@@ -1,3 +1,4 @@
+import {attachSidewalks} from './road-sidewalks.js';
 import {validateRoadGroups} from './road-selection.js';
 import {assetById} from './catalog.js?v=scene-edit1';
 import {getScene,saveScene} from '../browser-generation/storage.js';
@@ -33,6 +34,8 @@ export async function readEditorSource(context,load){
  const roads=await read('roads-source.json');
  for(const [i,r] of roads.roads.entries())r.editId ||= 'saved-segment-'+i;
  if(!input.sourceRoads?.every(r=>r.editId))input.sourceRoads=structuredClone(roads.roads);
+ input.sourceRoads=attachSidewalks(input.sourceRoads.map(r=>({...r,...(edits.roads[r.editId]?{grade:edits.roads[r.editId].grade,gradeSource:'user'}:{})})));
+ roads.roads=attachSidewalks(roads.roads);
  return {input:{...input,sceneId:context.id},edits:structuredClone(edits),roads:roads.roads};
 }
 export function rebuildEditedScene(source,edits,onProgress,{signal}={}){
@@ -67,7 +70,7 @@ export function nearestRoad(roads,point){
    if(distance<=(road.width||5)/2+.5&&(!best||distance<best.distance))best={road,distance};
   }
  }
- return best?.road||null;
+ const picked=best?.road;if(picked?.sidewalkParents)return roads.find(r=>picked.sidewalkParents.includes(r.editId))||null;return picked||null;
 }
 
 export function primaryBuildingRing(geometry){

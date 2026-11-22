@@ -10,13 +10,13 @@ export function roadMapData(source,context){
  const radius=Math.max(50,Number(context.detailRadius||source.input.radius||100))+30;
  const overlaps=ps=>Math.min(...ps.map(p=>p[0]))<=radius&&Math.max(...ps.map(p=>p[0]))>=-radius&&Math.min(...ps.map(p=>p[1]))<=radius&&Math.max(...ps.map(p=>p[1]))>=-radius;
  const current=new Map(source.roads.map(r=>[r.editId,r]));
- const roads=source.input.sourceRoads.filter(r=>overlaps(r.geometry.coordinates)).map(r=>({...r,grade:source.edits.roads[r.editId]?.grade??current.get(r.editId)?.grade??roadGrade(r)}));
+ const roads=source.input.sourceRoads.filter(r=>!r.sidewalkParents&&overlaps(r.geometry.coordinates)).map(r=>({...r,grade:source.edits.roads[r.editId]?.grade??current.get(r.editId)?.grade??roadGrade(r)}));
  const buildings=source.input.buildingCollection.features.flatMap(f=>localPolygons(f,context.origin)).filter(p=>overlaps(p[0]));
  return {radius,roads,buildings,position:context.view?.position||[0,0]};
 }
 export function closestMapRoad(roads,point,tolerance,grades={}){
  let best=null;
- for(const road of roads){const ps=road.geometry.coordinates;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dz=b[1]-a[1],den=dx*dx+dz*dz;if(!den)continue;const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dz)/den)),distance=Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dz);if(distance<=Math.max(tolerance,displayedRoadWidth(road,grades[road.editId]?.grade??roadGrade(road))/2)&&(!best||distance<best.distance))best={road,distance};}}
+ for(const road of roads){if(road.sidewalkParents)continue;const ps=road.geometry.coordinates;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dz=b[1]-a[1],den=dx*dx+dz*dz;if(!den)continue;const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dz)/den)),distance=Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dz);if(distance<=Math.max(tolerance,displayedRoadWidth(road,grades[road.editId]?.grade??roadGrade(road))/2)&&(!best||distance<best.distance))best={road,distance};}}
  return best?.road||null;
 }
 export function focusedRoads(roads,radius){return roads.filter(r=>closestMapRoad([r],[0,0],radius));}

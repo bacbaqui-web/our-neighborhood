@@ -102,7 +102,7 @@ def reserve(root,location,roads,buildings):
     if max(map(abs,p))<radius:hasbus=True;break
  paths=[];majorPaths=[];public=[];servicePaths=[];entries=[];byType={k:[] for k in ['carriageway','sidewalk','shared','pedestrian']}
  for r in roads:
-  kind=r['properties'].get('class','minor');line=shape(r['geometry']);width=float(r['width']);sidewalk=0;usage=street_type(r['properties'])
+  kind=r['properties'].get('class','minor');line=shape(r['geometry']);width=float(r['width']);sidewalk=0;usage='sidewalk' if r.get('sidewalkParents') else street_type(r['properties'])
   if r.get('grade'):
    sidewalk=r.get('sidewalkEachSide',0)
   elif usage=='carriageway':
@@ -112,7 +112,9 @@ def reserve(root,location,roads,buildings):
    if hasbus and kind!='tertiary':sidewalk+=2.4
   width=max(1.6,width);r['width']=width;r['streetType']=usage
   pavement=road_pavement(r).intersection(extent)
-  paths.append(pavement);byType[usage].append(pavement)
+  if r.get('sidewalkParents'):public.append(pavement)
+  else:paths.append(pavement)
+  byType[usage].append(pavement)
   if sidewalk:
    majorPaths.append(pavement);public.append(road_pavement(r,sidewalk,outer=True).intersection(extent))
   if usage=='shared':servicePaths.append(line.buffer(width/2+.8,cap_style=2,join_style=2).intersection(extent))

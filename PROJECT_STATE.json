@@ -6427,5 +6427,43 @@
     "generatorChanged": false,
     "sourceCommit": "b3dfaa1a2d2113a652a8263ad1fc9d1d3f0e4ec8",
     "hostingCommit": "3f6b8458309d79be20b8559859d0830da10ba2b4"
+  },
+  "fileRefactor20261122": {
+    "date": "2026-11-22",
+    "status": "published-and-publicly-verified",
+    "report": "docs/refactor-20261122.md",
+    "deletedFiles": 1114,
+    "deletedBytes": 372285206,
+    "generationModules": 13,
+    "modelSourceModules": 69,
+    "assetDomains": 7,
+    "publicationInputs": 1594,
+    "checkedReferences": 2183,
+    "remaining": [],
+    "evidence": "verification/refactor-20261122/progress.md",
+    "optimizedBuildBytes": 956654810,
+    "optimizedBuildFiles": 1597,
+    "optimizedBuild": "passed locally and in both clean remote workflows",
+    "workspaceLogicalBytes": 9715623314,
+    "inventoryCompressionSavedBytes": 49060731,
+    "publicCommit": "bce9d8ce9e923f89101e50db7039c049866a6c77",
+    "hostingCommit": "85218cd6c7256c19b6fe152e81a9db98ac3641a8",
+    "sourceRun": 45024603732,
+    "publicRun": 45024612963,
+    "completion": "verification/refactor-20261122/completion.json",
+    "actualGeometry": "passed: baseline/canonical output SHA256 identical",
+    "publicValidation": {
+      "newScene": "ce8f92284fef849c",
+      "reopened": true,
+      "savedScene": "760de79fc4234e79",
+      "previewIds": [
+        "part:white-slider",
+        "tree:pine",
+        "building:home-0"
+      ],
+      "errorsAfterFix": 0,
+      "distantLookup": "asynchronous; not claimed complete"
+    },
+    "followupFix": "Existing arterial MultiPolygon crash reproduced and fixed in bce9d8c; skipped crossing reasons recorded"
   }
 }

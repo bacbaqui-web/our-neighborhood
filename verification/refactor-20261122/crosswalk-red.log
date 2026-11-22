@@ -1,0 +1,20 @@
+.E
+======================================================================
+ERROR: test_disconnected_crossing_is_reported_without_bridging_gap (__main__.CrosswalkGeometry.test_disconnected_crossing_is_reported_without_bridging_gap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bacbaqui/Desktop/code/13_our_neighborhood/tests/test_arterial_crosswalks.py", line 53, in test_disconnected_crossing_is_reported_without_bridging_gap
+    plan=self.generate(public)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bacbaqui/Desktop/code/13_our_neighborhood/tests/test_arterial_crosswalks.py", line 48, in generate
+    arterial.build(root)
+  File "/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/arterial_plan.py", line 199, in build
+    crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(corridor.intersection(public).exterior.coords),'source':'mapped-junction-roadview-form' if stop['platform'] is None else 'roadview-form-platform-access-inferred','platform':stop['platform']})
+                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MultiPolygon' object has no attribute 'exterior'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.782s
+
+FAILED (errors=1)
+{"version": 82, "roadPriority": {}, "junctionArms": 1, "lanes": 4, "busLanes": 0, "platforms": 0, "subwayExits": 0, "streetTrees": 8, "streetlights": 4, "transitLights": 0, "vehicles": 0, "sideStreetMouths": 0, "roadBuildingOverlapM2": 0.0, "sidewalkBuildingOverlapM2": 0.0, "footprintBuildingOverlapM2": 0.0, "undergroundBuildingFootprintsExcluded": 0, "originalDataPreserved": true, "reviewedFurniture": [], "commercialFacades": 0, "crosswalks": 3, "crossingSignals": 4, "shopFacingEdges": 0}

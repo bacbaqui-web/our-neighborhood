@@ -329,3 +329,5 @@ asset-encyclopedia/filter-state.js: 종류/부품/시대/색상/재료 탐색 �
 검사 및 공개 반영 상태는 PROJECT_STATE.json의 assetArchitecture20261122를 확인합니다.
 
 2026-11-22 교차로 지침 3개 독립 검토 취합: 통합 지침 J01~J11이 수정 원본입니다. docs/junction-guideline-review-20261122.txt는 검토 증거이며, work/junction-asset-report/src/review.json은 세 검토와 12개 반영 결정입니다. sync-guidelines.py가 원문 발췌를 생성하고 기존 공개 보고서의 ?view=guidelines에서 표시합니다. 생성기와 모델 변경은 없습니다.
+
+2026-11-22 리팩토링 공개 완료: e1a3b15 선택 변경 및 bce9d8c 기존 횡단부 다중 도형 오류 수정. 호스팅85218cd, CI45024603732/45024612963 성공. 실제Python기하·공개 신규생성/재열기·기존저장동네·백과미리보기 확인. docs/refactor-20261122.md, verification/refactor-20261122/completion.json 참조.

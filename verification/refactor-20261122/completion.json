@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-22",
+  "status": "completed",
+  "refactorCommit": "e1a3b1556a9e60f5eb6f1704f131e2b1179969cc",
+  "releaseCommit": "bce9d8ce9e923f89101e50db7039c049866a6c77",
+  "hostingCommit": "85218cd6c7256c19b6fe152e81a9db98ac3641a8",
+  "sourceRun": 45024603732,
+  "publicRun": 45024612963,
+  "publicUrl": "https://magamiscom.ing/neighborhood/",
+  "pythonGeometry": "baseline and two canonical runs identical SHA256",
+  "regressionCommands": 28,
+  "browser": {
+    "url": "https://magamiscom.ing/neighborhood/domestic-test/?location=ce8f92284fef849c&radius=100",
+    "retryStart": "2026-11-22T12:57:58.938Z",
+    "reopened": true,
+    "errors": [],
+    "assetErrors": []
+  },
+  "newScene": {
+    "id": "ce8f92284fef849c",
+    "normalAssemblies": 3261,
+    "placementExclusions": 134,
+    "omittedBuildings": 1
+  },
+  "savedScene": {
+    "id": "760de79fc4234e79",
+    "normalAssemblies": 1340,
+    "placementExclusions": 274
+  },
+  "previewIds": [
+    "part:white-slider",
+    "tree:pine",
+    "building:home-0"
+  ],
+  "limits": [
+    "Distant-building asynchronous lookup was still in progress in the screenshot.",
+    "Representative scenes and previews checked, not every location or asset."
+  ]
+}

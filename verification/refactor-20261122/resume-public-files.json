@@ -1,0 +1,40 @@
+[
+  {
+    "path": "domestic-test/browser-generation/sources.json",
+    "bytes": 2519614,
+    "sha256": "40b6b221037ed9538b8043c7c38c21b5c6d0e8413a598a7d544c49fe70c73862",
+    "matchesCommit": false,
+    "matchesOptimizedBuild": true,
+    "note": "Build optimizers rewrite published image paths inside the bundle; compare with verified dist."
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/models.js",
+    "bytes": 775,
+    "sha256": "42c50a23968706900f2174c07443e2523acaac7b9295c65f028e78fc28050e73",
+    "matchesCommit": true
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/categories/house/korean-facades.js",
+    "bytes": 11488,
+    "sha256": "8767bd88161eb88a0ff007ea1798a886edd5ddeac34474c3245990cd1c86968a",
+    "matchesCommit": true
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+    "bytes": 14835,
+    "sha256": "d8bdf2edd57b832dae89be08219965ccd580312df7970216028357caf0d5bd3a",
+    "matchesCommit": true
+  },
+  {
+    "path": "domestic-test/app.js",
+    "bytes": 76154,
+    "sha256": "a77169dfd6ca01bea65ca16b75a847911cba0e272495903eb26053ea5310cb70",
+    "matchesCommit": true
+  },
+  {
+    "path": "domestic-test/start.html",
+    "bytes": 4026,
+    "sha256": "0cb98efd5553f11bcb17d0163b11986f698d280fb8d46dc0e368bcf81e9f4458",
+    "matchesCommit": true
+  }
+]

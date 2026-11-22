@@ -1,0 +1,142 @@
+- banner:
+  - heading "우리동네 웹툰배경" [level=1]
+  - search:
+    - combobox "생성할 동네 주소": 서울특별시 종로구 율곡로 지하 62
+    - button "지도에서 위치 선택":
+    - link "장면 닫고 지도 선택":
+      - /url: ./start.html?selectPoint=1
+  - button "도로 수정"
+  - link "에셋 백과":
+    - /url: ./asset-encyclopedia/
+  - button "PNG 저장"
+  - button "렌더링 최적화 설정":
+- main "동네 3D 장면":
+  - group "하늘과 조명":
+    - generic: 하늘과 조명
+    - heading "하늘 · 시간 · 골목 조명" [level=2]
+    - combobox "계절":
+      - option "봄"
+      - option "여름" [selected]
+      - option "가을"
+      - option "겨울"
+    - combobox "날씨":
+      - option "맑음" [selected]
+      - option "흐림"
+      - option "비"
+      - option "눈"
+    - combobox "시간":
+      - option "00:00"
+      - option "01:00"
+      - option "02:00"
+      - option "03:00"
+      - option "04:00"
+      - option "05:00"
+      - option "06:00"
+      - option "07:00"
+      - option "08:00"
+      - option "09:00"
+      - option "10:00"
+      - option "11:00"
+      - option "12:00" [selected]
+      - option "13:00"
+      - option "14:00"
+      - option "15:00"
+      - option "16:00"
+      - option "17:00"
+      - option "18:00"
+      - option "19:00"
+      - option "20:00"
+      - option "21:00"
+      - option "22:00"
+      - option "23:00"
+    - generic: 켜진 창문
+    - button "창문 자동 조절" [pressed]: 자동
+    - spinbutton "켜진 창문 비율": "1"
+    - generic: "%"
+    - button "창문 조합 바꾸기"
+  - status: 도로의 가운데를 선택해 주세요.
+  - status: 확정한 도로 밖에 배치할 공간이 없는 건물 1동은 생성에서 제외했습니다.
+  - img "동네 미니맵. 주황색 점은 처음 선택한 생성 기준점, 화살표는 현재 위치입니다."
+  - generic: 북 ↑ · ● 기준점 · ▲ 현재 위치
+  - spinbutton "카메라 높이": "1.65"
+  - generic: m
+  - button "위에서 위치 고르기":
+  - status: 먼 건물 33동 · 주변 확인 중…
+- complementary "장면 설정":
+  - heading "그림 표현" [level=2]
+  - generic "선 외부선 · 내부선"
+  - checkbox "선 표시" [checked]
+  - text: 선 표시
+  - button "선 설정 초기화": ↺
+  - heading "외부선" [level=3]
+  - generic: 외부선 두께
+  - slider "외부선 두께 슬라이더": "2"
+  - spinbutton "외부선 두께": "2"
+  - generic: px
+  - checkbox "외부선에 면색 적용" [checked]
+  - text: 외부선에 면색 적용
+  - generic: 외부선 명도
+  - slider "외부선 명도 슬라이더": "60"
+  - spinbutton "외부선 명도": "60"
+  - generic: "%"
+  - generic: 외부선 채도
+  - slider "외부선 채도 슬라이더": "110"
+  - spinbutton "외부선 채도": "110"
+  - generic: "%"
+  - generic: 최소 거리
+  - slider "최소 거리 슬라이더": "0"
+  - spinbutton "최소 거리": "0"
+  - generic: cm
+  - checkbox "다른 오브젝트 사이에도 적용"
+  - text: 다른 오브젝트 사이에도 적용
+  - heading "내부선" [level=3]
+  - generic: 내부선 두께
+  - slider "내부선 두께 슬라이더": "1"
+  - spinbutton "내부선 두께": "1"
+  - generic: px
+  - generic: 내부선 각도
+  - slider "내부선 각도 슬라이더": "40"
+  - spinbutton "내부선 각도": "40"
+  - generic: °
+  - checkbox "내부선에 면색 적용" [checked]
+  - text: 내부선에 면색 적용
+  - generic: 내부선 명도
+  - slider "내부선 명도 슬라이더": "80"
+  - spinbutton "내부선 명도": "80"
+  - generic: "%"
+  - generic: 내부선 채도
+  - slider "내부선 채도 슬라이더": "150"
+  - spinbutton "내부선 채도": "150"
+  - generic: "%"
+  - generic "명암 시간에 따른 자연광"
+  - checkbox "명암 표시" [checked]
+  - text: 명암 표시
+  - button "명암 설정 초기화": ↺
+  - combobox "명암 표현":
+    - option "그라데이션" [selected]
+    - option "1도 명암"
+    - option "2도 명암"
+  - generic: 빛 밝기
+  - slider "빛 밝기 슬라이더": "173"
+  - spinbutton "빛 밝기": "173"
+  - generic: "%"
+  - generic: 명암 농도
+  - slider "명암 농도 슬라이더": "85"
+  - spinbutton "명암 농도": "85"
+  - generic: "%"
+  - checkbox "그림자 표시" [checked]
+  - text: 그림자 표시
+  - text: 안티앨리어싱
+  - combobox "안티앨리어싱":
+    - option "끔"
+    - option "표준 · FXAA"
+    - option "고품질 · 4× + FXAA" [selected]
+  - text: 가게 보기
+  - combobox "가게 보기":
+    - option "가게 선택" [selected]
+    - option "궁궐가는길찌개"
+    - option "투썸플레이스 투썸2.0안국점"
+  - generic "조립 · 3261개 정상 연결 · 배치 제외 134곳"
+  - option "대체·문제만" [selected]
+  - option "배치 제외"
+  - option "전체 연결"

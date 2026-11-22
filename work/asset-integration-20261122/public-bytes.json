@@ -1,0 +1,30 @@
+{
+  "index.html": {
+    "matches": true,
+    "sha256": "757846fb35fce3328c7aa5f948e3b032f32fac91d491cd6903dd0f29beb2cb92"
+  },
+  "app.js": {
+    "matches": true,
+    "sha256": "5441575a8767710b8237a489f89ab6fdb76c658a5fbe7d8106a6f45c370ef26c"
+  },
+  "site-layout.js": {
+    "matches": true,
+    "sha256": "a83ebff5a6a539b922b8c2e9b633fbfbe32225dd3037a9019c0730dd837e1f55"
+  },
+  "sungshin-commercial/placement.js": {
+    "matches": true,
+    "sha256": "8865232aa98bd7d746146d77a19e674b46a09d747e76c5995d65e8d58b64550a"
+  },
+  "asset-encyclopedia/index.html": {
+    "matches": true,
+    "sha256": "988942200c1434216968e89d144025d0ad97a27959f00ac02afdda0abf2fb470"
+  },
+  "asset-encyclopedia/catalog.json": {
+    "matches": true,
+    "sha256": "5bc3a0462d1743b11e2f5e8a6783cb9712187f680a773677e7fb8e6ba5f9a64d"
+  },
+  "grade1-housing-report/encyclopedia.js": {
+    "matches": true,
+    "sha256": "1b99cb6dc59a07a572cca785a259f7d021b8ef100bc9f39584295cf28e4aa92b"
+  }
+}

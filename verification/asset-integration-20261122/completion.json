@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-22",
+  "status": "public-verified",
+  "sourceCommit": "07cbb1c56f693cbc0d40258a79deb10201a7c5b0",
+  "hostingCommit": "06d4bfea306498a93ba9bfd465320056ddeee8bc",
+  "hostingRun": 44993565437,
+  "sourceChecksRun": 44993225547,
+  "publicUrl": "https://magamiscom.ing/neighborhood/",
+  "scene": "87956683bb5545f2",
+  "registeredCandidates": 50,
+  "publicPlacedAssets": [
+    "building:sungshin-34"
+  ],
+  "automaticParkingExcluded": 4,
+  "registryAudit": {
+    "grade1": 8,
+    "junction": 12,
+    "shops": 68,
+    "sungshin": 50,
+    "vehicles": 31,
+    "housingExamples": 6
+  },
+  "referenceOnly": {
+    "junction": 7,
+    "housingExamples": 6
+  },
+  "proof": [
+    "public-placement.json",
+    "public-sungshin.jpg",
+    "public-housing-example.jpg"
+  ],
+  "limits": [
+    "50 models passed fitting tests; one model was verified in an actual public saved scene",
+    "Placement is conditional on use, floor count, footprint, terrain, POI/manual preservation and access",
+    "Reference examples are discoverable in the encyclopedia, not randomly placed"
+  ]
+}

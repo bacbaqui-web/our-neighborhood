@@ -317,3 +317,5 @@ docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
 2026-11-22 주택·담장 사진 비교 보고서: outputs/domestic-test/grade1-housing-report/ — 미아동·연남동 관찰 화면12장과 3D 배치6종. 관찰·지침·가정을 구분하고 담장 높이/경사/통로/셔터를 비교합니다. 자동 생성기 변경 없음. 소스83a130f, 공개44986590187 및 실화면 확인. 증거 verification/grade1-housing-report/.
 
 2026-11-22 에셋 연결 통합: sungshin-commercial/placement.js가 백과 building:sungshin-01~50에서 실제 건물 조건에 맞는 상가를 선택합니다. shops/neighborhood-plan.js와 streetlights.js도 백과 제외 상태를 따릅니다. grade1-housing-report/encyclopedia.js는 보고서 조립 예시 6종을 참고 전용으로 등록합니다. scripts/build-asset-encyclopedia.mjs가 교차로 고정 ID·가게 제작 근거를 보존하며, scripts/build-site.py가 등록/재생성 검사를 배포 전에 실행합니다. 적용 기준은 docs/project-guidelines.txt 4·8·11절, 공개 확인 상태는 PROJECT_STATE.json의 assetIntegration20261122를 따릅니다.
+
+2026-11-22 에셋 연결 공개 확인 완료: 소스07cbb1c, 호스팅06d4bfe, 배포44993565437. 성신50종 후보 검사 및 공개 도봉로 저장동네34번1동 실화면, 겹친 자동 주차4개 제외, 백과 조사 예시6개와 실제 미리보기 확인. verification/asset-integration-20261122/completion.json 참조.

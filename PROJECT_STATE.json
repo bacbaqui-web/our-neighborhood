@@ -6336,7 +6336,7 @@
     ]
   },
   "assetIntegration20261122": {
-    "status": "implemented-awaiting-public-verification",
+    "status": "public-verified",
     "scope": [
       "sungshin-commercial-50 automatic placement through encyclopedia IDs",
       "shop registry deletion policy",
@@ -6351,6 +6351,20 @@
       "Actual POI and manual edits take priority",
       "Only compatible footprint, floor count, frontage, ground and road access are eligible",
       "Junction 7 reference examples and housing 6 examples are reference-only"
-    ]
+    ],
+    "publicVerification": {
+      "scene": "87956683bb5545f2",
+      "registeredCandidates": 50,
+      "selectedAsset": "building:sungshin-34",
+      "owner": 1100784389,
+      "publicHousingExampleCount": 6,
+      "screenshot": "verification/asset-integration-20261122/public-sungshin.jpg",
+      "parkingFollowup": "Public rendered scene verified; overlapping automatic vehicles no longer appear inside the commercial model",
+      "automaticParkingExcluded": 4
+    },
+    "sourceCommit": "07cbb1c56f693cbc0d40258a79deb10201a7c5b0",
+    "hostingCommit": "06d4bfea306498a93ba9bfd465320056ddeee8bc",
+    "hostingRun": 44993565437,
+    "evidence": "verification/asset-integration-20261122/completion.json"
   }
 }

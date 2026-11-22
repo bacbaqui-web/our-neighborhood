@@ -1396,6 +1396,7 @@
     "outputs/domestic-test/support-geometry.js",
     "outputs/domestic-test/surface-policy.js",
     "outputs/domestic-test/terrain-fit.js",
+    "outputs/domestic-test/texture-loading.js",
     "outputs/domestic-test/tree-growth.html",
     "outputs/domestic-test/tree-growth.js",
     "outputs/domestic-test/tree-library.html",

@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {loadTexture,settleTextureBatch} from '../../../texture-loading.js';
 import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from '../../../tree-species.js?v=151';
 import {createCanopyLayers} from '../../../canopy-layers.js?v=151';
 import {createWinterLeaves} from '../../../winter-leaves.js?v=151';
@@ -7,12 +8,12 @@ import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injec
 import {canopyAtlasRect} from '../../../canopy-atlas.js?v=151';
 import {bearingVector} from '../../../environment-policy.js?v=151';
 export async function loadCanopyTexture(id=null){
- const species=speciesById(id),texture=await new T.TextureLoader().loadAsync(new URL(species?.atlas||'./vegetation/clusters/broadleaf-flat-v46.png',new URL('../../../',import.meta.url)).href);
+ const species=speciesById(id),texture=await loadTexture(new T.TextureLoader(),new URL(species?.atlas||'./vegetation/clusters/broadleaf-flat-v46.png',new URL('../../../',import.meta.url)).href);
  texture.colorSpace=T.SRGBColorSpace;texture.anisotropy=4;texture.generateMipmaps=false;texture.minFilter=T.LinearFilter;
- if(species){const response=await fetch(new URL('../../../vegetation/species-v65/frames.json',import.meta.url));if(!response.ok)throw new Error('나무 잎 영역 정보를 불러오지 못했습니다.');texture.userData.frames=(await response.json())[species.id].frames;texture.userData.species=species.id;texture.userData.foliageVersion=65;}
+ try{if(species){const response=await fetch(new URL('../../../vegetation/species-v65/frames.json',import.meta.url));if(!response.ok)throw new Error('나무 잎 영역 정보를 불러오지 못했습니다.');texture.userData.frames=(await response.json())[species.id].frames;texture.userData.species=species.id;texture.userData.foliageVersion=65;}}catch(error){texture.dispose();throw error;}
  return texture;
 }
-export async function loadSpeciesTextures(){return new Map(await Promise.all(TREE_SPECIES.map(async s=>[s.id,await loadCanopyTexture(s.id)])));}
+export async function loadSpeciesTextures(){return new Map(await settleTextureBatch(TREE_SPECIES.map(async s=>[s.id,await loadCanopyTexture(s.id)]),entry=>entry[1].dispose()));}
 // One atlas batch per species: shared geometry/material within each species.
 export function createHybridTrees(plans,texture,overrides=new Map()){
  if(!(texture instanceof Map))return createHybridTreeBatch(plans,texture);

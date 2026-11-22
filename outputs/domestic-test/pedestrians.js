@@ -1,5 +1,6 @@
 import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
+import {loadTexture} from './texture-loading.js';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
 import {createContactShadows} from './contact-shadows.js?v=151';
 import {directionalFrame,elevationTier,projectedHeight,pedestrianView,FRAME_LABELS} from './pedestrian-math.js?v=151';
@@ -7,7 +8,7 @@ export async function loadPedestrianAssets(catalog){
  const loader=new T.TextureLoader(),assets=new Map(),textures=[];
  const results=await Promise.allSettled(catalog.people.map(async p=>{
   const results=await Promise.allSettled((p.elevations||[{pitch:0,image:p.image,imageWidth:p.imageWidth,imageHeight:p.imageHeight,frames:p.frames}]).map(async tier=>{
-   const imageURL=new URL('./people/'+tier.image,import.meta.url);if(tier.sha256)imageURL.searchParams.set('v',tier.sha256.slice(0,12));const texture=await loader.loadAsync(imageURL.href);textures.push(texture);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
+   const imageURL=new URL('./people/'+tier.image,import.meta.url);if(tier.sha256)imageURL.searchParams.set('v',tier.sha256.slice(0,12));const texture=await loadTexture(loader,imageURL.href);textures.push(texture);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.LinearMipmapLinearFilter;texture.magFilter=T.LinearFilter;texture.anisotropy=4;return{...tier,texture};
   }));const failed=results.find(r=>r.status==='rejected');if(failed)throw failed.reason;const tiers=results.map(r=>r.value);assets.set(p.id,{...p,tiers,texture:tiers[0].texture});
  }));const failed=results.find(r=>r.status==='rejected');if(failed){textures.forEach(t=>t.dispose());throw failed.reason;}assets.season=catalog.season||'spring';assets.action=catalog.action||'walk';return assets;
 }

@@ -50,14 +50,14 @@ import {createAtmosphere} from './atmosphere.js?v=windows-grounds1';
 import {createVehicleLighting} from './vehicle-lighting.js?v=7';
 import {createStreetlights} from './streetlights.js?v=scene-edit1';
 import {environmentProfile,windowIsLit,bearingVector,SOLAR_CONTEXT} from './environment-policy.js?v=151';
-import {loadVegetationAssets} from './vegetation.js?v=view3c';
+import {loadVegetationAssets} from './vegetation.js?v=texture-load1';
 import {createNeighborhoodVegetation} from './neighborhood-canopies.js?v=view3c';
-import {loadSpeciesTextures} from './hybrid-tree.js?v=view3c';
+import {loadSpeciesTextures} from './hybrid-tree.js?v=texture-load1';
 let canopyTexture=null,finishedGround=null;
 let shops=null,shopCatalog=null,shopPlaces=null,shopPlan=null,shopViewBuildings=[],shopViewPlacements=[];
 import {createBuildingShellGeometry} from './building-shell.js?v=recess22';
 import {createVisibilityOptimizer} from './visibility.js?v=151';
-import {createPedestrians,loadPedestrianAssets} from './pedestrians.js?v=umbrella1';
+import {createPedestrians,loadPedestrianAssets} from './pedestrians.js?v=texture-load1';
 import {PEOPLE_SEASON_NAMES} from './pedestrian-seasons.js?v=elevated2';
 import {createPedestrianVariantLoader,peopleActionForWeather} from './pedestrian-actions.js?v=umbrella1';
 import {createUtilityNetwork} from './utility-network.js?v=155';
@@ -71,6 +71,7 @@ import {createDetails} from './details.js?v=assembly1';
 import * as T from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
+import {loadingErrorMessage} from './texture-loading.js';
 let billboardLightField=null,lastBillboardSources='';
 let precipitation=null;
 let horizonEpoch=0;
@@ -238,7 +239,7 @@ try{if(locationContext.error)throw locationContext.error;const [g,d,pd,ap,sp,up,
  $('status').textContent='공용 에셋 불러오는 중…';await Promise.all([loadMemoScene(),loadRoadview50(),loadRepresentatives()]);$('status').textContent='동네 배치·접지 계산 중…';await build();host.dataset.representatives=JSON.stringify(representativeAudit());host.dataset.roadview50=JSON.stringify(alleyGroup.userData.roadview50);host.dataset.allPlacements=JSON.stringify(alleyGroup.userData.placements);host.dataset.livingContext=JSON.stringify(alleyGroup.userData.livingContext);host.dataset.courtyardRepair=JSON.stringify({boundaries:alleyGroup.userData.courtyardRepair,pockets:alleyGroup.userData.courtyardPockets});host.dataset.attachedAssets=JSON.stringify(alleyGroup.userData.attachedAssetPlacements);host.dataset.foliageExtraction=JSON.stringify(alleyGroup.userData.foliageExtraction);loaded=true;if(locationContext.view){const v=locationContext.view,a=v.heading*Math.PI/180,[vx,vz]=v.position||[0,0],y=(finishedGround||elevation)(vx,vz)+v.eyeHeight;camera.position.set(vx,y,vz);controls.target.set(vx+Math.sin(a)*10,y,vz-Math.cos(a)*10);camera.fov=Math.min(90,2*Math.atan(Math.tan(v.fov*Math.PI/360)/camera.aspect)*180/Math.PI);camera.updateProjectionMatrix();controls.update();host.dataset.viewSelection=JSON.stringify(locationContext.viewQA);}host.dataset.viewObjects=JSON.stringify(viewVisibilityStats());host.dataset.ready='true';host.dataset.buildingRoadFit=JSON.stringify(locationContext.buildingRoadFit||null);host.dataset.generationSummary=JSON.stringify({id:locationContext.id,terrainMode:locationContext.terrainMode,generationMilliseconds:locationContext.generationMilliseconds,generationTimings:locationContext.generationTimings,mapCacheStats:locationContext.mapCacheStats,buildings:data.features.length});if(locationContext.roadWarning){const notice=document.createElement('p');notice.id='roadSourceWarning';notice.setAttribute('role','status');notice.textContent=locationContext.roadWarning;notice.style.cssText='position:absolute;top:64px;left:14px;max-width:min(520px,calc(100% - 28px));padding:10px 14px;margin:0;background:#fff3cf;color:#583d13;border:1px solid #ba914b;border-radius:8px;font:13px/1.5 system-ui;z-index:4;pointer-events:none';host.append(notice);}rememberLocation(locationContext);$('address').value=locationContext.address;$('locationDataNote').textContent=`${locationContext.address} 중심 반경 ${detailRadius}m (길 위 관찰 지점의 360도 시야) · 국내 건물 ${data.features.length}개 · 도로 폭과 외관·소품은 추정 생성`+(locationContext.roadWarning?' · '+locationContext.roadWarning:'');for(const id of ['sceneControls','address','findAddress','walk','image','environmentControls'])$(id).disabled=false;
 const addresses=[...new Set(meshes.map(m=>`${m.userData.street_name} ${m.userData.house_number}`))].sort((a,b)=>a.localeCompare(b,'ko'));for(const address of addresses){const option=document.createElement('option');option.value=address;$('addresses').append(option);}
 $('status').textContent='';}
-catch(e){host.dataset.ready='error';$('status').replaceChildren(document.createTextNode('불러오기 실패: '+e.message+' '));const retry=document.createElement('button');retry.type='button';retry.textContent='다시 불러오기';retry.onclick=()=>location.reload();$('status').append(retry);console.error(e)}
+catch(e){host.dataset.ready='error';$('status').replaceChildren(document.createTextNode('불러오기 실패: '+loadingErrorMessage(e)+' '));const retry=document.createElement('button');retry.type='button';retry.textContent='다시 불러오기';retry.onclick=()=>location.reload();$('status').append(retry);console.error(e)}
 function cam(pos,at){camera.fov=43;camera.updateProjectionMatrix();camera.position.set(...pos);controls.target.set(...at);controls.update()}
 let down;renderer.domElement.addEventListener('pointerdown',e=>down=[e.clientX,e.clientY]);renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const r=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects(meshes,false)[0];if(hit)showInfo(hit.object)});
 async function prepareVisibleExport(){

@@ -416,6 +416,12 @@
       ],
       "role": "shared-rendering-or-geometry"
     },
+    "domestic-test/texture-loading.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
     "domestic-test/tree-profiles.js": {
       "domains": [
         "nature"

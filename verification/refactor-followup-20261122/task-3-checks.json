@@ -1,0 +1,84 @@
+[
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_generation_module_boundary.py"
+    ],
+    "exit": 0,
+    "output": "..../Users/bacbaqui/Desktop/code/13_our_neighborhood/outputs/domestic-test/generation/site_geometry.py:15: ResourceWarning: unclosed file <_io.TextIOWrapper name='/private/var/folders/5t/g2pjz0k10cd_95_c1wg284m80000gn/T/tmpnfvevwf3/a/buildings.geojson' mode='r' encoding='UTF-8'>\n  for f in json.load(open(self.root/'buildings.geojson'))['features']:\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/outputs/domestic-test/generation/site_geometry.py:15: ResourceWarning: unclosed file <_io.TextIOWrapper name='/private/var/folders/5t/g2pjz0k10cd_95_c1wg284m80000gn/T/tmpnfvevwf3/b/buildings.geojson' mode='r' encoding='UTF-8'>\n  for f in json.load(open(self.root/'buildings.geojson'))['features']:\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n.\n----------------------------------------------------------------------\nRan 5 tests in 25.248s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_generation_scope.py"
+    ],
+    "exit": 0,
+    "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_scene_edits.py"
+    ],
+    "exit": 0,
+    "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.004s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_alley_housing.py"
+    ],
+    "exit": 0,
+    "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.007s\n\nOK\n"
+  },
+  {
+    "command": [
+      "python3",
+      "work/browser-generation/pack.py",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "Public source bundle is current: 57 files\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

@@ -1,4 +1,13 @@
 {
+  "refactorFollowup20261122": {
+    "date": "2026-11-22",
+    "report": "docs/refactor-followup-20261122.md",
+    "implementation": "tasks-1-6-and-cache-complete",
+    "localVerification": "parent-reviewed; 31 integration commands passed; geometry byte equality confirmed",
+    "publication": "pending",
+    "publicScreenVerification": "pending",
+    "historicalRecords": "Older dated entries retain their original status; use this report for the followup refactor."
+  },
   "canonicalRoot": "/Users/bacbaqui/Desktop/code/13_our_neighborhood",
   "state": "canonical-visible360-public",
   "publicCommit": "2cbd1945a73411d4192c4b04d3e491c2dcb8fb84",

@@ -1,0 +1,17 @@
+import * as T from 'three';
+import {OrbitControls} from '../vendor/OrbitControls.js';
+import {environmentProfile} from '../environment-policy.js?v=151';
+import {createIllustrationRenderer} from '../illustration-renderer.js';
+import {CATALOG_LINES} from './line-options.js';
+import {release} from './models.js?v=providers1';
+export function createPreviewEngine(host=null,{createRenderer=()=>new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}),Controls=OrbitControls,ResizeObserverClass=globalThis.ResizeObserver,createInk=createIllustrationRenderer,releaseModel=release}={}){const renderer=createRenderer();renderer.setPixelRatio(1);renderer.setSize(400,300);const scene=new T.Scene();scene.background=new T.Color('#e5eae2');const sky=new T.HemisphereLight(0xffffff,0x8b9b86,2.4);scene.add(sky);const sun=new T.DirectionalLight(0xffffff,2.4);sun.position.set(-5,12,10);scene.add(sun);const camera=new T.PerspectiveCamera(36,4/3,.01,10000);let model,controls,observer,disposed=false;let ink=createInk(renderer),lineSettings={...CATALOG_LINES};
+ const draw=()=>{if(disposed)return;model?.updatePreview?.(camera);ink.render(scene,camera,()=>renderer.render(scene,camera),lineSettings);};
+ function frame(){if(disposed)return;const box=new T.Box3().setFromObject(model),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3());if(box.isEmpty()||!size.toArray().every(Number.isFinite))throw Error('모델 좌표를 확인해야 합니다.');const d=Math.max(size.y,size.x/camera.aspect,size.z,.1)*2.3;camera.near=Math.max(.001,d/10000);camera.far=d*30+50;camera.position.copy(center).addScaledVector(new T.Vector3(...(model.userData.interior?[.38,.14,1]:[.75,.55,1])).normalize(),d);camera.lookAt(center);camera.updateProjectionMatrix();if(controls){controls.target.copy(center);controls.update();}draw();return size;}
+ if(host){host.append(renderer.domElement);renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();controls=new Controls(camera,renderer.domElement);controls.addEventListener('change',draw);observer=new ResizeObserverClass(()=>{if(disposed)return;const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();draw();});observer.observe(host);}
+ function setHour(hour){
+  if(disposed||!model?.updateShopTime)return;
+  const p=environmentProfile(hour);scene.background.set(p.night>.6?'#192738':p.horizon);sky.intensity=p.night>.6?.28:2.4;sun.intensity=p.sunIntensity;sun.color.set(p.sun);
+  const state=model.updateShopTime(hour,p.night);draw();return state;
+ }
+ return {setHour,setLines(settings){lineSettings={...settings};draw();},show(m){if(disposed){releaseModel(m);return;}if(model){scene.remove(model);releaseModel(model);ink.dispose();ink=createInk(renderer);}model=m;scene.background.set('#e5eae2');sky.intensity=2.4;sun.intensity=2.4;sun.color.set(0xffffff);scene.add(m);m.updateMatrixWorld(true);const size=frame();let triangles=0;model.traverse(o=>{if(o.isMesh)triangles+=(o.geometry.index?.count??o.geometry.attributes.position?.count??0)/3*(o.isInstancedMesh?o.count:Number.isFinite(o.geometry.instanceCount)?o.geometry.instanceCount:1);});return {size,triangles};},frame,photo:()=>renderer.domElement.toDataURL('image/webp',.85),dispose(){if(disposed)return;disposed=true;observer?.disconnect();controls?.removeEventListener('change',draw);controls?.dispose();if(model)releaseModel(model);ink.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();}};
+}

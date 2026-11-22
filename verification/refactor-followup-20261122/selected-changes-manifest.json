@@ -1,0 +1,351 @@
+{
+  "base": "e114779208625dd31d1cc28537d865d218c8ca9b",
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "615b5fe295ddb16aa7586780d556e945bd4c67eeffb151d9b33dbbc19e5c4655",
+      "separatelySelected": false
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "193b2eaa87b9a929579174bf8c6f1304d485a8541c4d6cdb7ad451c04c12e323",
+      "separatelySelected": false
+    },
+    {
+      "path": "PROJECT_STATE.json",
+      "sha256": "db84f14a65724762afa2483923f61ff407e9abccba56d2949afb29af2be227f2",
+      "separatelySelected": true
+    },
+    {
+      "path": "config/publication-files.json",
+      "sha256": "16c52a13836a72bd6584c5c08424be68788f4b9c11b324dbe5acd63ac3e60269",
+      "separatelySelected": false
+    },
+    {
+      "path": "docs/project-layout.txt",
+      "sha256": "01ddac767fd90f3d5d062555831383b9e492a810f7b312f824b67310697b70c8",
+      "separatelySelected": true
+    },
+    {
+      "path": "docs/refactor-followup-20261122.md",
+      "sha256": "f218cad3e08a0ad62a988fc32fcf097ea25d9e5a616f49b596d3286205f3a66a",
+      "separatelySelected": false
+    },
+    {
+      "path": "docs/runtime-architecture.md",
+      "sha256": "577b14b0c37487f4743877fd9d16480a540fd68de003dec5a5293cfdf79f8a15",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/app.js",
+      "sha256": "a983d29bfe7b51dfd3a097045d5a6df33349c1bd7c9cdfebdc14fd32b648fd8e",
+      "separatelySelected": true
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/app.js",
+      "sha256": "95167e25e2cb54ad8bd0972b213255536a8b0999536e4ce1f8a6b6bb2bc20df0",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/index.html",
+      "sha256": "75ecdc6bab1e3791171fe0d5517ececd608cbcf2c1110f4c95d054b3f7930db8",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/preview-engine.js",
+      "sha256": "e9411b96c8812ece2534f0ef21990f7ddabebd09694bf62746956920fc35c632",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/thumbnail-queue.js",
+      "sha256": "ea7a9a028f7c221ef5d0423e69451f5934257301a4e5f39790034e7db719e0d8",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/client.js",
+      "sha256": "9bccabe5dba254fef124d290f18123531bbf476698f732a269a8dfd646c6e47e",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/generation-task.js",
+      "sha256": "ee0d8184e066244accf6f0f99d9ff509cee99050dc6d26c7b6d6c30d51bc0146",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/prepare-scene.js",
+      "sha256": "5770480e0bbaa52a00fadc1bfec7d538687aeaa16d22729a34bcd886598f311c",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/progress.js",
+      "sha256": "acddba1a6df42cf438a2f760d705ba3a8015e8610327c37dfcf77ab0b8cfdec2",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/sources.json",
+      "sha256": "d4294dd171ddbf6483fbe36d295021171e6f06ec6ba596fca80f6f351a141869",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/worker.js",
+      "sha256": "a6c9f5678ac2aeadcf43e5127421884fea4bdde2e48b043c2c22c7d4f3643cf3",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/building-assets/editor.js",
+      "sha256": "3786b7aad58d3310d7cf1d9854e83de56366b1c0c6bfead86ecef3cac311c76f",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/building-assets/scene-edit-store.js",
+      "sha256": "ef6010aacb23725cc0313900bd29f8db036300c7dc6c455ff0eaca1cbeea6208",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/index.html",
+      "sha256": "b87f23aedd878c1a5eb9a16e49df59714be531ea7d8ff0a0a84ce33d5048eb00",
+      "separatelySelected": true
+    },
+    {
+      "path": "outputs/domestic-test/location-loader.js",
+      "sha256": "9283e173dbce162f2c873a514c5c3c5c69ae387c449ea7ed32306479803043e3",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/start.html",
+      "sha256": "e1ec863ce19b9c9a0fac0635a546b350dd7b7bb505d1b5afbe9812a8755c1bd2",
+      "separatelySelected": true
+    },
+    {
+      "path": "outputs/domestic-test/viewer/render-loop.js",
+      "sha256": "cee245347a9e2734ad69a886452fc6d3be5d114a0175ea0ae80a1635a67970ca",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/viewer/scene-resources.js",
+      "sha256": "f6080d1b18d3ea87add77929790b37521a331bb5a9f90c2cad94c441146a02c3",
+      "separatelySelected": false
+    },
+    {
+      "path": "outputs/domestic-test/viewer/terrain-index.js",
+      "sha256": "14924b8ffed777140edf4604b9ecc9f4f6caf200a610ed0647b41dd9a099b81a",
+      "separatelySelected": false
+    },
+    {
+      "path": "scripts/build-browser-generation.mjs",
+      "sha256": "9b0cc9b9c113db15ccc95d321271cd3d99b084e21374229dd3291b889acbdf4e",
+      "separatelySelected": false
+    },
+    {
+      "path": "scripts/build-site.py",
+      "sha256": "c2d1f1c9d4e0462aa1d31238603afe7d8c4d11ed63771776b760f8bffdad0acc",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/browser-generation-build.mjs",
+      "sha256": "c7f903ea47c734ca9f16f249851653705c8d3675390609085430ac890ee37726",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/build_alley_fixture.py",
+      "sha256": "b49b6dddc3b39faa749fd7ab9614de52bfd4e549526602fef29b8a4d864e9482",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/encyclopedia-lifecycle.mjs",
+      "sha256": "5d2f34399301f43ed3adb11a9a7f1ab8861ff643b468c1dc50f384ace1c513ac",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/generation-task.mjs",
+      "sha256": "461b54bcae1c64fac59f1b948881ebdf30849e188d445da910eff242a3e53a9b",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/test_arterial_crosswalks.py",
+      "sha256": "9ecb075ac30d196f07194a12c87cbc9bf80972abe870d5a2f5c6d180f4561db2",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/test_arterial_landings.py",
+      "sha256": "0963daeee98d77573687b8080773456515912a5fc98b62372dc456a0406f6e39",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/test_generation_module_boundary.py",
+      "sha256": "22cfd1ffa0c2846822f625f110a041dba7328f1d9525cbdd3079c88c506aabaf",
+      "separatelySelected": false
+    },
+    {
+      "path": "tests/viewer-lifecycle.mjs",
+      "sha256": "c24055ea3a17b83dcf22381fa4c514633296ef5eed66d98ebd347b0770fceea2",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/arterial_crossings.py",
+      "sha256": "34cf64c7ae1ec2f17e54a384f2af82b939d374e52e0aeab6b211b2777be641ea",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/arterial_plan.py",
+      "sha256": "ada1aaa4bfd976f8bf84facc119af5e1fbc16ab43f7dbae693bc8ea28895726d",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/browser-generation/pack.py",
+      "sha256": "3c88d35836a34996a98676c9e938d7dba46f010bb4322eedc8c733dbc859943e",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/browser-generation/package-lock.json",
+      "sha256": "9e3545e44af2520bf5ae325d255f05d11189489efd2f1cddcc247d0d03d8528d",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/browser-generation/package.json",
+      "sha256": "e822c315f22793c0d08c8857fcf220220b7a86993ca75e36bcf7751054396dbd",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/access_routes.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/build.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/enrich_sites.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/gaps.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/ground_floors.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/infill.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/parking.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/piloti.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/refine.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/straight_plots.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/street_front.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/street_rules.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/house-plots-test/wall_connections.py",
+      "sha256": "5db151ae130a9730dc88a5f7977bd86bffe2cd0ef623544c4ef03e880da08887",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/build.py",
+      "sha256": "bee1854311137625183f8558adac1e06e4deb0f5e1db9248cf9d879a05959cce",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/context.py",
+      "sha256": "40be6c181e99842c8a655b2a0a85c9ebcd84a257e17006e04160ce2a4540fa5c",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/enrich_sites.py",
+      "sha256": "66a6bccdecb69db7a189840e88c7c365d127046c4ab31810bf7f5418c70aa2c4",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/gaps.py",
+      "sha256": "1d6d244a81ca9bfb92cc8ac0faa3f626bbf44469ee1a5c784bb10e167f0f63df",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/ground_floors.py",
+      "sha256": "e54dc6c1d4f5c482852da40298c5e1ec65af515e4f0e72e797bf7ecbe84ae3f5",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/infill.py",
+      "sha256": "9f86cadfa4043d29e6f72890a8fae6bd76904ae217462e24ef1a5fa1f335b162",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/legacy.py",
+      "sha256": "439ec27ccba06664398bc329036248c0cb0c95f71c6cbec75f10126dabe0264a",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/piloti.py",
+      "sha256": "48fb2afc2e69082a546d905bc7c3ada615590330e4abd3dbac5be55653637d9e",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/pipeline.py",
+      "sha256": "62f4f32b9391ae7ebe734201337e037384c198d78f3e80c5df07deafa11281bd",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/refine.py",
+      "sha256": "fed82c81aa9aabf7f7313a9f6369df2a1f1b6e1589950a7636121c8ba4aa9e01",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/straight_plots.py",
+      "sha256": "fbf88395359f5f1022bbf3ea10b52d44084d19b0dd04233b0d7e539bf96d1590",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/street_front.py",
+      "sha256": "cdf5a5c9e9407f1a99e99b90f6e15beb99daf46c66f75206bd94963b3c85d661",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood-generation/street_rules.py",
+      "sha256": "4743adcf8539ca3acf0c19f6dafe58fc0e4f1090a24e02cdaf47dbf8c734b661",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/neighborhood_generation/__init__.py",
+      "sha256": "e9de2043a17363d520621abba12a06e598d7eb66c7990d3897fd5a578bb7688a",
+      "separatelySelected": false
+    },
+    {
+      "path": "work/site_layout.py",
+      "sha256": "6800f1b3011d6ee27f2f121e794519d478c3bb2e3da08fba1c4da83f18982bc9",
+      "separatelySelected": false
+    }
+  ],
+  "excluded": "Other-chat staged files and shared-file contributions are preserved locally, excluded from this commit."
+}

@@ -1,12 +1,16 @@
-import os
 """Road-connected pedestrian gaps and frontage closures; inferred local test only."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,math,sys
-sys.path.insert(0,str(__import__("pathlib").Path(__file__).resolve().parent))
 from pathlib import Path
 from shapely.geometry import shape,Point,LineString,mapping
 from shapely.ops import unary_union,nearest_points
-O=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(Path(__file__).resolve().parents[2]/'outputs/domestic-test/house-plots-test')))
-def build():
+def build(context):
+ O=context.output
  d=json.loads((O/'enriched-infill.json').read_text());base=json.loads((O/'infill-plots.json').read_text());bs=[shape(b['building']) for b in base['buildings']];houses=unary_union(bs);road=shape(base['road']);protected=unary_union([shape(b['footprint']) for b in d['bays']]+[shape(b['entrance']) for b in d['bays'] if b.get('entrance')]+[shape(p['access']) for p in json.loads((O/'ground-floors.json').read_text())['plans']]+[shape(a) for p in json.loads((O/'piloti.json').read_text())['plans'] for a in p['access']]);gaps=[];used=[]
  for i,a in enumerate(bs):
   for j in range(i+1,len(bs)):
@@ -38,6 +42,8 @@ def build():
  d['siteDetails']['fences']=[f for f in d['siteDetails']['fences'] if not LineString([f['a'],f['b']]).intersects(clear)]
  d['qa']['plants']=len(d['plants']);d['gaps']=gaps;qa={k:sum(g['kind']==k for g in gaps) for k in ['passage','wall','shutter']};qa['protectedOverlap']=sum(shape(g['geometry']).intersection(protected).area for g in gaps);assert qa['protectedOverlap']<.01
  (O/'gaps-infill.json').write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));(O/'gaps-qa.json').write_text(json.dumps(qa,indent=2));print(qa)
- import importlib.util
- spec=importlib.util.spec_from_file_location('frontage_refine',Path(__file__).with_name('refine.py'));module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);module.build()
-if __name__=='__main__':build()
+ return qa
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('gaps')

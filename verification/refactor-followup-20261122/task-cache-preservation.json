@@ -1,0 +1,22 @@
+[
+  {
+    "path": "outputs/domestic-test/start.html",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  },
+  {
+    "path": "outputs/domestic-test/location-loader.js",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  },
+  {
+    "path": "outputs/domestic-test/app.js",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  },
+  {
+    "path": "outputs/domestic-test/building-assets/editor.js",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "command": [
+      "node",
+      "tests/browser-generation-build.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser bundle: reproducible bytes, source/output drift, shared module state and source-relative URLs passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-browser-generation.mjs",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "Browser JavaScript bundle is current: 79 modules, esbuild 0.25.12.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/visible-horizon-worker.mjs"
+    ],
+    "exit": 0,
+    "output": "Worker transport, initial geometry, explicit source failure and cancellation passed\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-loading.mjs"
+    ],
+    "exit": 0,
+    "output": "Loading checks passed: CDN compression, complete GLB, retries, subpath URLs.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/house-assembly-rendering.mjs"
+    ],
+    "exit": 0,
+    "output": "house assembly rendering passed { exact: 23, fallback: 0, error: 0, excluded: 0 }\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/scene-budget.mjs"
+    ],
+    "exit": 0,
+    "output": "{\"passed\":true,\"fullTriangles\":6760,\"distantTriangles\":302}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "work/browser-generation/pack.py",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "Public source bundle is current: 52 files\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

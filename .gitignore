@@ -38,6 +38,7 @@ dist/
 !/work/generate-neighborhood.py
 !/work/neighborhood_sources.py
 !/work/arterial_plan.py
+!/work/arterial_crossings.py
 !/work/canopy-v54/
 /work/canopy-v54/*
 !/work/canopy-v54/three-loader.mjs
@@ -110,3 +111,6 @@ dist/
 
 # Maintained parcel-generation sources, separated from historical experiments.
 !/work/neighborhood-generation/
+
+# Stable namespaced Python generation API.
+!/work/neighborhood_generation/

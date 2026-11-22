@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    "outputs/domestic-test/approved-road/catalog.js",
+    "outputs/domestic-test/asset-encyclopedia/catalog.json",
+    "outputs/domestic-test/asset-encyclopedia/curation-data.js",
+    "outputs/domestic-test/asset-encyclopedia/curation.js",
+    "outputs/domestic-test/asset-encyclopedia/line-options.js",
+    "outputs/domestic-test/asset-encyclopedia/remakes.js",
+    "outputs/domestic-test/building-remakes/profiles.js",
+    "outputs/domestic-test/grade1-street/catalog.js",
+    "outputs/domestic-test/illustration-settings.js",
+    "outputs/domestic-test/prop-remakes/catalog.js",
+    "tests/asset-encyclopedia-lines.mjs",
+    "tests/asset-encyclopedia.mjs"
+  ],
+  "gitDiffHEAD": "",
+  "importsChangedRuntime": false,
+  "note": "asset-encyclopedia also traverses existing GLB files; Task6 does not change any GLB, catalog, remakes or policies."
+}

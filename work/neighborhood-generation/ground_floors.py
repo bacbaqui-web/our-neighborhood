@@ -1,12 +1,17 @@
-import os
 """Deterministic per-building ground-floor variants; inferred use, geometry constrained."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,math,random
 from pathlib import Path
 from shapely.geometry import shape,Point,Polygon,LineString,mapping
 from shapely.ops import unary_union
-ROOT=Path(__file__).resolve().parents[2];OUT=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(ROOT/'outputs/domestic-test/house-plots-test')))
 LABELS={'gate-solid':'높은 담장과 대문','gate-rail':'낮은 담장과 철제 울타리','lobby-center':'가운데 현관','lobby-side':'옆으로 들어간 현관','lobby-steps':'계단식 현관','shop-single':'통유리 점포','shop-pair':'두 점포와 공용 입구','shop-shutter':'셔터와 점포','basement-ramp':'지하주차장 진입로'}
-def build():
+def build(context):
+ OUT=context.output
  d=json.loads((OUT/'infill-plots.json').read_text());inf=json.loads((OUT/'piloti-infill.json').read_text());pil=json.loads((OUT/'piloti.json').read_text());ids={v['id'] for v in pil['plans']};road=shape(d['road']);rc=road.buffer(-.35);plans=[]
  for b in d['buildings']:
   if b['id'] in ids:continue
@@ -71,6 +76,8 @@ def build():
  assert qa['lowerRoadOverlap']<1e-6 and qa['wallAcrossEntry']<1e-6 and qa['duplicateOwners']==0,qa
  (OUT/'ground-floor-qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2))
  (OUT/'ground-floors.json').write_text(json.dumps({'plans':plans,'qa':qa},ensure_ascii=False,separators=(',',':')));(OUT/'ground-infill.json').write_text(json.dumps(inf,ensure_ascii=False,separators=(',',':')));print(qa)
- from enrich_sites import build as enrich
- enrich()
-if __name__=='__main__':build()
+ return qa
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('ground_floors')

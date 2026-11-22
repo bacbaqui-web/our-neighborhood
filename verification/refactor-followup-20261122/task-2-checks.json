@@ -1,0 +1,109 @@
+[
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_arterial_landings.py"
+    ],
+    "exit": 0,
+    "output": "{\"version\": 82, \"roadPriority\": {}, \"junctionArms\": 1, \"lanes\": 4, \"busLanes\": 0, \"platforms\": 0, \"subwayExits\": 1, \"streetTrees\": 7, \"streetlights\": 4, \"transitLights\": 2, \"vehicles\": 0, \"sideStreetMouths\": 0, \"roadBuildingOverlapM2\": 0.0, \"sidewalkBuildingOverlapM2\": 0.0, \"footprintBuildingOverlapM2\": 0.0, \"undergroundBuildingFootprintsExcluded\": 0, \"originalDataPreserved\": true, \"reviewedFurniture\": [], \"commercialFacades\": 0, \"crosswalks\": 3, \"skippedCrosswalks\": [], \"crossingSignals\": 4, \"shopFacingEdges\": 0, \"skippedLandings\": [{\"id\": \"fixture-exit\", \"reason\": \"disconnected-exit-landing\", \"geometryType\": \"GeometryCollection\", \"empty\": false}]}\n....\n----------------------------------------------------------------------\nRan 4 tests in 0.713s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_arterial_crosswalks.py"
+    ],
+    "exit": 0,
+    "output": "{\"version\": 82, \"roadPriority\": {}, \"junctionArms\": 1, \"lanes\": 4, \"busLanes\": 0, \"platforms\": 0, \"subwayExits\": 0, \"streetTrees\": 8, \"streetlights\": 4, \"transitLights\": 0, \"vehicles\": 0, \"sideStreetMouths\": 0, \"roadBuildingOverlapM2\": 0.0, \"sidewalkBuildingOverlapM2\": 0.0, \"footprintBuildingOverlapM2\": 0.0, \"undergroundBuildingFootprintsExcluded\": 0, \"originalDataPreserved\": true, \"reviewedFurniture\": [], \"commercialFacades\": 0, \"crosswalks\": 3, \"skippedCrosswalks\": [], \"crossingSignals\": 4, \"shopFacingEdges\": 0}\n{\"version\": 82, \"roadPriority\": {}, \"junctionArms\": 1, \"lanes\": 4, \"busLanes\": 0, \"platforms\": 0, \"subwayExits\": 0, \"streetTrees\": 8, \"streetlights\": 4, \"transitLights\": 0, \"vehicles\": 4, \"sideStreetMouths\": 0, \"roadBuildingOverlapM2\": 0.0, \"sidewalkBuildingOverlapM2\": 0.0, \"footprintBuildingOverlapM2\": 0.0, \"undergroundBuildingFootprintsExcluded\": 0, \"originalDataPreserved\": true, \"reviewedFurniture\": [], \"commercialFacades\": 0, \"crosswalks\": 1, \"skippedCrosswalks\": [{\"id\": \"crossing-junction-0--1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"MultiPolygon\", \"empty\": false}, {\"id\": \"crossing-junction-0-1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"MultiPolygon\", \"empty\": false}], \"crossingSignals\": 0, \"shopFacingEdges\": 0}\n{\"version\": 82, \"roadPriority\": {}, \"junctionArms\": 1, \"lanes\": 4, \"busLanes\": 0, \"platforms\": 0, \"subwayExits\": 0, \"streetTrees\": 0, \"streetlights\": 0, \"transitLights\": 0, \"vehicles\": 0, \"sideStreetMouths\": 0, \"roadBuildingOverlapM2\": 0.0, \"sidewalkBuildingOverlapM2\": 0.0, \"footprintBuildingOverlapM2\": 0, \"undergroundBuildingFootprintsExcluded\": 0, \"originalDataPreserved\": true, \"reviewedFurniture\": [], \"commercialFacades\": 0, \"crosswalks\": 1, \"skippedCrosswalks\": [{\"id\": \"crossing-junction-0--1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"Polygon\", \"empty\": true}, {\"id\": \"crossing-junction-0-1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"Polygon\", \"empty\": true}], \"crossingSignals\": 0, \"shopFacingEdges\": 0}\n{\"version\": 82, \"roadPriority\": {}, \"junctionArms\": 1, \"lanes\": 4, \"busLanes\": 0, \"platforms\": 0, \"subwayExits\": 0, \"streetTrees\": 8, \"streetlights\": 4, \"transitLights\": 0, \"vehicles\": 2, \"sideStreetMouths\": 0, \"roadBuildingOverlapM2\": 0.0, \"sidewalkBuildingOverlapM2\": 0.0, \"footprintBuildingOverlapM2\": 0.0, \"undergroundBuildingFootprintsExcluded\": 0, \"originalDataPreserved\": true, \"reviewedFurniture\": [], \"commercialFacades\": 0, \"crosswalks\": 1, \"skippedCrosswalks\": [{\"id\": \"crossing-junction-0--1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"Polygon\", \"empty\": false}, {\"id\": \"crossing-junction-0-1\", \"reason\": \"disconnected-public-crossing\", \"geometryType\": \"Polygon\", \"empty\": false}], \"crossingSignals\": 0, \"shopFacingEdges\": 0}\n...\n----------------------------------------------------------------------\nRan 3 tests in 1.117s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_junction_generation.py"
+    ],
+    "exit": 0,
+    "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.526s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_road_first_buildings.py"
+    ],
+    "exit": 0,
+    "output": "/Users/bacbaqui/Desktop/code/13_our_neighborhood/tests/test_road_first_buildings.py:12: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  buildings={'features':[{'properties':{'objectid':i,'gro_flo_co':4},'geometry':mapping(transform(lambda x,y:(lon+x/sx,lat-y/sy),p))} for i,p in enumerate(polys)]}\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/scene_edits.py:63: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  def geometry(f):return shape(f['geometry']) if local else transform(lambda x,y:((x-origin[1])*sx,(origin[0]-y)*sy),shape(f['geometry']))\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/road_priority.py:27: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  polygons=[S.make_valid(transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry']))) for f in buildings['features']]\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/road_priority.py:90: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  f['geometry']=mapping(transform(lambda x,y:(lon+x/sx,lat-y/sy),fitted));out.append(f);placed.append(fitted)\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/road_priority.py:137: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  built=unary_union([transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']])\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/tests/test_road_first_buildings.py:19: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  fitted=[transform(lambda x,y:((x-lon)*sx,(lat-y)*sy),shape(f['geometry'])) for f in buildings['features']]\n.../Users/bacbaqui/Desktop/code/13_our_neighborhood/tests/test_road_first_buildings.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  def collection(points,offset):return {'features':[{'properties':{'objectid':1,'roadFit':{'offset':offset}},'geometry':mapping(transform(lambda x,y:(lon+x/sx,lat-y/sy),Polygon(points)))}]}\n/Users/bacbaqui/Desktop/code/13_our_neighborhood/work/scene_edits.py:158: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  p=transform(lambda x,y:((x-origin[1])*sx,(origin[0]-y)*sy),shape(f['geometry']))\n...\n----------------------------------------------------------------------\nRan 6 tests in 0.078s\n\nOK\n"
+  },
+  {
+    "command": [
+      "/tmp/neighborhood-followup-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_generation_module_boundary.py"
+    ],
+    "exit": 0,
+    "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.028s\n\nOK\n"
+  },
+  {
+    "command": [
+      "python3",
+      "work/browser-generation/pack.py",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "Public source bundle is current: 53 files\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/junction-placement.mjs"
+    ],
+    "exit": 0,
+    "output": "Junction renderer uses reviewed rigid tactile part and terrain-normal orientation without stretching.\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

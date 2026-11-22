@@ -1,0 +1,14 @@
+{
+  "outputs/domestic-test/app.js": {
+    "worktreeReversedEqualsBaseline": true,
+    "selectedReversedEqualsHead": true,
+    "foreignPatchAppliedToSelectedEqualsWorktree": false,
+    "foreignPatchNote": "Context moved by own extraction; exact reverse checks prove preservation."
+  },
+  "outputs/domestic-test/index.html": {
+    "worktreeReversedEqualsBaseline": true,
+    "selectedReversedEqualsHead": true,
+    "foreignPatchAppliedToSelectedEqualsWorktree": true
+  },
+  "untouchedForeignFiles": true
+}

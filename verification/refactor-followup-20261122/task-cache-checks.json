@@ -1,0 +1,50 @@
+[
+  {
+    "command": "python3 verification/refactor-followup-20261122/apply-task-cache.py",
+    "exitCode": 0,
+    "stdout": "All four cache changes applied; combined reverse transformations match original working and HEAD bytes.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/scene-editor.mjs",
+    "exitCode": 0,
+    "stdout": "Scene editor: input validation and road hit testing passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser-generation.mjs",
+    "exitCode": 0,
+    "stdout": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/generation-task.mjs",
+    "exitCode": 0,
+    "stdout": "Generation task: one settlement/cleanup, abort/error boundaries, both real consumers, preparation/save distinction and atomic previous-scene preservation passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node --check outputs/domestic-test/location-loader.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "node --check outputs/domestic-test/building-assets/editor.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "node --check verification/refactor-followup-20261122/selected/outputs/domestic-test/app.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

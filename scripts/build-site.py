@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist'
 files = publication_files()
+subprocess.run(['node', str(ROOT / 'scripts/build-browser-generation.mjs'), '--check'], cwd=ROOT, check=True)
 subprocess.run(['python3', 'tests/test_publication_manifest.py'], cwd=ROOT, check=True)
 subprocess.run(['node', 'tests/publication-references.mjs'], cwd=ROOT, check=True)
 subprocess.run(['python3', str(ROOT / 'work/browser-generation/pack.py'), '--check'], cwd=ROOT, check=True)

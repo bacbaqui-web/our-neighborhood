@@ -4,7 +4,7 @@ import {roadMapData,drawRoadMap,roadGrade} from './road-map.js?v=road-groups1';
 import * as T from 'three';
 import {categories,assetById,inferCategory,readPalette,readEdits,chooseBuildingAsset} from './catalog.js?v=scene-edit1';
 import {createPreview} from './preview.js?v=context-preview1';
-import {readEditorSource,rebuildEditedScene,nearestRoad} from './scene-edit-store.js?v=road-groups1';
+import {readEditorSource,rebuildEditedScene,nearestRoad} from './scene-edit-store.js?v=refactor-followup1';
 import {localPolygons,editorContext,previewSpecs,eraStyle} from './preview-data.js';
 import {drawContextMap} from './context-map.js';
 const CAMERA='neighborhood-building-edit-camera-v1';

@@ -1,0 +1,12 @@
+[
+  {
+    "path": "PROJECT_STATE.json",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  },
+  {
+    "path": "docs/project-layout.txt",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  }
+]

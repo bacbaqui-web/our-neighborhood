@@ -1,0 +1,12 @@
+{
+  "buildExit": 0,
+  "files": 1600,
+  "megabytes": 956.7,
+  "cacheOnlyEntrypointSync": [
+    "outputs/domestic-test/app.js",
+    "outputs/domestic-test/start.html",
+    "outputs/domestic-test/location-loader.js",
+    "outputs/domestic-test/building-assets/editor.js"
+  ],
+  "note": "Full build passed; four query-only entrypoint changes copied byte-for-byte after build. Source CI will rebuild exact final commit."
+}

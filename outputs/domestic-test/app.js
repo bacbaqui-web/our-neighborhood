@@ -1,3 +1,6 @@
+import {createRenderLoop} from './viewer/render-loop.js';
+import {createMapProjection,createTerrainIndex} from './viewer/terrain-index.js';
+import {disposeSceneResource,disposeSceneGroup,clearBuildingMeshes} from './viewer/scene-resources.js';
 import {installAssemblyDiagnostics} from './assembly-diagnostics.js?v=assembly1';
 import {createCommercialNeighborhood} from './sungshin-commercial/placement.js?v=placement2';
 import {loadAssetRegistry} from './asset-encyclopedia/registry.js?v=category-ownership2';
@@ -9,7 +12,7 @@ import {approvedBuildingId,approvedBuildingProfiles} from './building-remakes/mo
 import {rebaseArterialHeights,rebaseMountedLights} from './terrain-fit.js?v=height-audit2';
 import {readPalette,readEdits,chooseBuildingAsset,assetById} from './building-assets/catalog.js?v=scene-edit1';
 import {applyAssetToSpec,assetColors} from './building-assets/model.js?v=replacements3';
-import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=road-fit1';
+import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.js?v=refactor-followup1';
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=assembly1';
 import {installWindowInspection} from './window-inspection.js?v=recess22';
@@ -31,7 +34,7 @@ import {loadRoadview50,installRoadview50Controls} from './roadview50-loader.js?v
 import {arterialShopInputs} from './shops/arterial-catalog.js?v=151';
 import {createArterial,applyArterialTerrain,inArterial} from './arterial.js?v=151';
 let arterialPlan=null,arterial=null;
-import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=replacements3';
+import {readLocation,dataUrl,rememberLocation,setupLocationSearch} from './location-loader.js?v=refactor-followup1';
 import {planNeighborhoodShops,reserveShopApproaches} from './shops/neighborhood-plan.js?v=shop-registry1';
 import {createNeighborhoodShops} from './shops/neighborhood-shops.js?v=shop50v3';
 import {loadData} from './load-data.js?v=151';
@@ -76,7 +79,7 @@ const locationContext=await readLocation().catch(error=>({error,origin:[37.62646
 const detailRadius=selectedRadius(locationContext);
 const streamedPlants=new Set();
 let courtyardTour=null;
-let viewStreamer=null,streamStats={},lastStreamCheck=-Infinity;
+let viewStreamer=null,streamStats={};
 const solarContext={...SOLAR_CONTEXT,latitude:locationContext.origin[0],longitude:locationContext.origin[1]};
 const siteData=(name,kind)=>loadData(dataUrl(locationContext,name),kind);
 const seasonKey='webtoon-neighborhood-season-v1',seasons=['spring','summer','autumn','winter'];
@@ -89,8 +92,9 @@ let vegetationSystem=null,vegetationCatalog=null,vegetationPlan=null,vegetationA
 let streetGroup=null,alleyGroup=null,parcelData=null,attachedPlan=null,streetscapePlan=null;
 let detailGroup=null,renderStyle='color';
 let streetLifeRoot=null,benchmarkFrame=0;
-let visibility=null,renderRequested=true,lastRender=0,renderCount=0,lastStats=null,benchmarking=false;
-const requestRender=()=>{renderRequested=true;};
+let visibility=null,renderCount=0,lastStats=null,benchmarking=false,renderLoop=null;
+// The controller starts requested, so invalidations before installation are retained.
+const requestRender=()=>renderLoop?.requestRender();
 const $=id=>document.getElementById(id),host=$('view');
 $('season').value=season;
 setupLocationSearch(locationContext,()=>hour);
@@ -115,13 +119,8 @@ const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
 const illustrationRenderer=createIllustrationRenderer(renderer);
 const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,3,0);controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.48;
 const hemisphere=new T.HemisphereLight(0xffffff,0x617179,2.5);scene.add(hemisphere);const sun=new T.DirectionalLight(0xfff2df,2.5);sun.position.set(-140,220,100);scene.add(sun);sun.castShadow=true;sun.shadow.mapSize.set(4096,4096);Object.assign(sun.shadow.camera,{left:-260,right:260,top:260,bottom:-260,near:1,far:1400});sun.shadow.bias=-.000005;sun.shadow.normalBias=.12;sun.shadow.camera.updateProjectionMatrix();
-new ResizeObserver(()=>{let w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();requestRender()}).observe(host);
 let walking=null;
 let navigation=null;
-const lastCamera=new T.Matrix4();let lastProjection='';
-controls.addEventListener('change',requestRender);
-for(const event of ['click','input','change'])document.addEventListener(event,requestRender);
-document.addEventListener('visibilitychange',requestRender);
 function renderSettings(){return {enabled:$('optimize').checked,occlusion:$('occlusion').checked,lod:false,lodMode:'0'};}
 function drawRawScene(){const previous=atmosphere?.render(renderer,camera);renderer.render(scene,camera);if(previous!==undefined)renderer.autoClear=previous;}
 function drawScene(cssScale=renderer.getPixelRatio(),metadataKey=null){illustrationRenderer.render(scene,camera,drawRawScene,appearance,cssScale,metadataKey);}
@@ -141,26 +140,23 @@ function renderScene(settings=renderSettings()){
  e.textContent=`그리기 ${lastStats.calls.toLocaleString()}회 · 삼각형 ${lastStats.triangles.toLocaleString()}개`;
  $('cullStats').textContent=settings.enabled?`화면 밖 ${stats?.screenCulled??0} · 건물 뒤 ${stats?.occluded??0} 구역/건물 제외`:'비교용: 기존 방식으로 그리는 중';
 }
-renderer.setAnimationLoop(now=>{
- if(document.hidden||benchmarking)return;
- walking?.update(now);navigation?.update(now);if(!walking?.isActive())controls.update();
- camera.updateMatrixWorld();const projection=camera.projectionMatrix.elements.join(',');
- if(!lastCamera.equals(camera.matrixWorld)||projection!==lastProjection){renderRequested=true;lastCamera.copy(camera.matrixWorld);lastProjection=projection;}
- const weatherChanged=precipitation?.update(now,$('weatherMotion').checked,host.clientHeight);
- if(weatherChanged&&now-lastRender>=1000/24)renderRequested=true;
- if(loaded&&viewStreamer&&now-lastStreamCheck>80){lastStreamCheck=now;streamStats=viewStreamer.update(now);host.dataset.streaming=JSON.stringify(streamStats);}
- if(!renderRequested){if(now-lastRender>220&&$('renderState').textContent!=='정지 화면 · 재그리기 대기')$('renderState').textContent='정지 화면 · 재그리기 대기';return;}
- pedestrianSystem?.update(camera);vegetationSystem?.update(camera);siteLayoutView?.update(camera);apartmentGrounds?.foliage.update(camera);for(const plants of streamedPlants)plants.update(camera);if(pedestrianSystem)illustrationShading.install(pedestrianSystem.group);renderScene();lastRender=now;renderRequested=false;$('renderState').textContent='화면 갱신 중';
+renderLoop=createRenderLoop({renderer,camera,controls,host,isPaused:()=>benchmarking,
+ updateNavigation:now=>{walking?.update(now);navigation?.update(now);if(!walking?.isActive())controls.update();},
+ updateWeather:now=>precipitation?.update(now,$('weatherMotion').checked,host.clientHeight),
+ canStream:()=>loaded&&viewStreamer,
+ updateStream:now=>{streamStats=viewStreamer.update(now);host.dataset.streaming=JSON.stringify(streamStats);},
+ beforeRender:()=>{pedestrianSystem?.update(camera);vegetationSystem?.update(camera);siteLayoutView?.update(camera);apartmentGrounds?.foliage.update(camera);for(const plants of streamedPlants)plants.update(camera);if(pedestrianSystem)illustrationShading.install(pedestrianSystem.group);},
+ render:()=>renderScene(),
+ onState:active=>{const text=active?'화면 갱신 중':'정지 화면 · 재그리기 대기';if($('renderState').textContent!==text)$('renderState').textContent=text;},
 });
+window.addEventListener('pagehide',event=>{if(!event.persisted)renderLoop.dispose();});
 const ray=new T.Raycaster(),mouse=new T.Vector2();let data,oldRoot,ground=[],oldBuildings=[],props=[],buildingGroup=new T.Group(),meshes=[],targetMesh,loaded=false;buildingGroup.name='DomesticBuildings';scene.add(buildingGroup);
-const [lat0,lon0]=locationContext.origin;const p=lat0*Math.PI/180,mLat=111132.92-559.82*Math.cos(2*p)+1.175*Math.cos(4*p)-.0023*Math.cos(6*p),mLon=111412.84*Math.cos(p)-93.5*Math.cos(3*p)+.118*Math.cos(5*p);
-function xz(c){return [(c[0]-lon0)*mLon,-(c[1]-lat0)*mLat]}
-const terrainCells=new Map();
-function indexTerrain(){terrainCells.clear();oldRoot.updateMatrixWorld(true);for(const mesh of ground){const pos=mesh.geometry.attributes.position,ix=mesh.geometry.index;const n=ix?ix.count:pos.count;for(let i=0;i<n;i+=3){const vs=[0,1,2].map(k=>new T.Vector3().fromBufferAttribute(pos,ix?ix.getX(i+k):i+k).applyMatrix4(mesh.matrixWorld));const [a,b,c]=vs;const den=(b.z-c.z)*(a.x-c.x)+(c.x-b.x)*(a.z-c.z);if(Math.abs(den)<1e-8)continue;const edges=[[a,b],[b,c],[c,a]].sort((p,q)=>q[0].distanceToSquared(q[1])-p[0].distanceToSquared(p[1]));const dx=edges[0][1].x-edges[0][0].x,dz=edges[0][1].z-edges[0][0].z,L=Math.hypot(dx,dz)||1;const tri={a,b,c,den,road:mesh.name==='road'||mesh.name==='path',roadClass:mesh.userData.roadClass||'asphalt',ux:dx/L,uz:dz/L};for(let x=Math.floor(Math.min(a.x,b.x,c.x)/5);x<=Math.floor(Math.max(a.x,b.x,c.x)/5);x++)for(let z=Math.floor(Math.min(a.z,b.z,c.z)/5);z<=Math.floor(Math.max(a.z,b.z,c.z)/5);z++){const k=x+','+z;if(!terrainCells.has(k))terrainCells.set(k,[]);terrainCells.get(k).push(tri)}}}}
-function elevation(x,z,fallback){let y=-Infinity;for(const {a,b,c,den} of terrainCells.get(Math.floor(x/5)+','+Math.floor(z/5))||[]){const u=((b.z-c.z)*(x-c.x)+(c.x-b.x)*(z-c.z))/den,v=((c.z-a.z)*(x-c.x)+(a.x-c.x)*(z-c.z))/den,w=1-u-v;if(u>=-1e-6&&v>=-1e-6&&w>=-1e-6)y=Math.max(y,u*a.y+v*b.y+w*c.y)}return Number.isFinite(y)?y:(fallback===undefined?(atmosphere?.heightAt(x,z)??0):fallback)}
-function roadInfo(x,z){for(const t of terrainCells.get(Math.floor(x/5)+','+Math.floor(z/5))||[]){if(!t.road)continue;const {a,b,c,den}=t,u=((b.z-c.z)*(x-c.x)+(c.x-b.x)*(z-c.z))/den,v=((c.z-a.z)*(x-c.x)+(a.x-c.x)*(z-c.z))/den;if(u>=-1e-6&&v>=-1e-6&&1-u-v>=-1e-6)return t}return null}
+const xz=createMapProjection(locationContext.origin);
+const terrainIndex=createTerrainIndex({fallbackHeight:(x,z)=>atmosphere?.heightAt(x,z)??0});
+const {elevation,roadInfo}=terrainIndex;
+const indexTerrain=()=>terrainIndex.index(oldRoot,ground);
 function showInfo(m){const p=m.userData;$('address').value=`${p.street_name} ${p.house_number}`;assemblyDiagnostics.selectOwner(p.objectid);}
-async function build(){if(commercialNeighborhood){scene.remove(commercialNeighborhood.group);commercialNeighborhood.dispose();commercialNeighborhood=null;}const sharedAssetRegistry=await loadAssetRegistry();await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);const assetPalette=readPalette(),assetEdits=readEdits();configureViewVisibility(locationContext.view,locationContext.viewQA);apartmentGrounds=null;viewStreamer?.dispose();streamedPlants.clear();viewStreamer=null;if(shops){scene.remove(shops.group,shops.lamps);shops.dispose();shops=null;}if(streetlights){scene.remove(streetlights.group);streetlights.dispose();streetlights=null;}visibility?.dispose();visibility=null;pedestrianSystem=null;vegetationSystem=null;if(streetGroup){scene.remove(streetGroup);streetGroup.traverse(o=>{o.geometry?.dispose();o.material?.dispose()});streetGroup=null;}if(detailGroup){scene.remove(detailGroup);detailGroup.traverse(o=>{o.geometry?.dispose();o.material?.dispose()});detailGroup=null;}const specs=[];for(const m of meshes){m.geometry.dispose();m.material.dispose();for(const c of m.children){c.geometry.dispose();c.material.dispose()}}buildingGroup.clear();meshes=[];targetMesh=null;const floor=3;
+async function build(){commercialNeighborhood=disposeSceneResource(scene,commercialNeighborhood);const sharedAssetRegistry=await loadAssetRegistry();await Promise.all([prepareBuildingIdentity(),prepareShopInteriors()]);const assetPalette=readPalette(),assetEdits=readEdits();configureViewVisibility(locationContext.view,locationContext.viewQA);apartmentGrounds=null;viewStreamer?.dispose();streamedPlants.clear();viewStreamer=null;shops=disposeSceneResource(scene,shops);streetlights=disposeSceneResource(scene,streetlights);visibility?.dispose();visibility=null;pedestrianSystem=null;vegetationSystem=null;streetGroup=disposeSceneGroup(scene,streetGroup);detailGroup=disposeSceneGroup(scene,detailGroup);const specs=[];clearBuildingMeshes(buildingGroup,meshes);meshes=[];targetMesh=null;const floor=3;
 for(const f of data.features){const pr=f.properties;const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;for(const rings of polygons){const points=rings[0].slice(0,-1).map(xz);if(points.length<3||(!locationContext.view&&!withinScope(points,detailRadius)))continue;const cx=points.reduce((a,c)=>a+c[0],0)/points.length,cz=points.reduce((a,c)=>a+c[1],0)/points.length;
 const shape=new T.Shape(points.map(v=>new T.Vector2(v[0],-v[1])));for(const ring of rings.slice(1)){const path=new T.Path(ring.slice(0,-1).map(c=>{const v=xz(c);return new T.Vector2(v[0],-v[1])}));shape.holes.push(path)}
 const base=Math.min(...points.map(v=>elevation(v[0],v[1])),elevation(cx,cz))-.1;const top=elevation(cx,cz)+Math.max(1,pr.gro_flo_co)*floor;

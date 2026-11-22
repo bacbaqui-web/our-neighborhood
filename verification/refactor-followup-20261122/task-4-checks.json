@@ -1,0 +1,100 @@
+[
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/viewer-lifecycle.mjs"
+    ],
+    "exit": 0,
+    "output": "Viewer lifecycle: frame order, weather/stream cadence, pause/resume, invalidation/disposal, terrain and resource ownership passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/scene-budget.mjs"
+    ],
+    "exit": 0,
+    "output": "{\"passed\":true,\"fullTriangles\":6760,\"distantTriangles\":302}\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/view-generation-visibility.mjs"
+    ],
+    "exit": 0,
+    "output": "360-degree prop visibility and start clearance passed\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/full-detail.mjs"
+    ],
+    "exit": 0,
+    "output": "Full detail and textured vehicle visibility passed\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/scene-editor.mjs"
+    ],
+    "exit": 0,
+    "output": "Scene editor: input validation and road hit testing passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-loading.mjs"
+    ],
+    "exit": 0,
+    "output": "Loading checks passed: CDN compression, complete GLB, retries, subpath URLs.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--check",
+      "outputs/domestic-test/app.js"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "node",
+      "--check",
+      "verification/refactor-followup-20261122/selected/outputs/domestic-test/app.js"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

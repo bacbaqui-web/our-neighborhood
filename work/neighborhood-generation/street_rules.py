@@ -1,16 +1,19 @@
-import os
 """30 roadview-derived rules. Local test; placements are inferred, never official allocations."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,math
 from pathlib import Path
 from shapely.geometry import shape,mapping,Point,LineString,Polygon
 from shapely.ops import unary_union,nearest_points
 from shapely.strtree import STRtree
-O=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(Path(__file__).resolve().parents[2]/'outputs/domestic-test/house-plots-test')))
 def parts(g,kind='LineString'):
  if g.is_empty:return []
  if g.geom_type==kind or kind=='LineString' and g.geom_type=='LinearRing':return [g]
  return [a for c in getattr(g,'geoms',[]) for a in parts(c,kind)]
-def read(n):return json.loads((O/n).read_text())
 def plan_parking(road,noPark,boundaries):
  claimed=[];marked=[];unmarked=[];rows=[]
  def candidate(ring,t,length,width,clear=2.8):
@@ -62,7 +65,9 @@ def plan_parking(road,noPark,boundaries):
    if any(Point(b['point']).distance(Point(a['point']))<13 for a in unmarked+marked):continue
    b.update(occupied=True,marked=False,carModel=len(unmarked)%2*2,label='선 없는 추정 주차');unmarked.append(b);claimed.append(shape(b['footprint']))
  return marked,unmarked
-def build():
+def build(context):
+ O=context.output
+ def read(n):return json.loads((O/n).read_text())
  d=read('refined-infill.json');base=read('infill-plots.json');front=read('frontages.json')['buildings'];gf=read('ground-floors.json')['plans'];piloti=read('piloti.json')['plans']
  road=shape(base['road']);bs=base['buildings'];polys=[shape(front[str(b['id'])]['renderBuilding']) for b in bs];houses=unary_union(polys);ht=STRtree(polys);inner=houses.buffer(-.08)
  vehicle=[shape(p['access']) for p in gf if p['kind']=='basement-ramp']+[shape(a) for p in piloti for a in p['access']]
@@ -140,7 +145,7 @@ def build():
      new.append(dict(a=list(seg.coords[0]),b=list(seg.coords[-1]),height=1.4,kind='frontage',role='front',styleIndex=f['styleIndex'],owner=b['id'],cap=True,posts=True,rail=False,baseA=0,baseB=0))
      seen=seen.union(seg.buffer(.22))
  walls+=new
- from wall_connections import refine as connect_walls
+ from .wall_connections import refine as connect_walls
  walls,connectionQA=connect_walls(walls,d['gaps'],houses,protected,road)
  new=[w for w in walls if w.get('role') in ('front','return')]
  d['walls']=walls;d['wallConnectionQA']=connectionQA
@@ -171,4 +176,8 @@ def build():
  assert qa['roadBayOutside']<1e-6 and qa['roadBayAccessOverlap']<1e-6 and qa['frontageAccessOverlap']<1e-6,qa
  d['streetQA']=qa;d['qa']['parkingBays']=len(d['bays'])-len(unmarked)
  (O/'street-infill.json').write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));(O/'street-front-qa.json').write_text(json.dumps(qa,indent=2));print(qa)
-if __name__=='__main__':build()
+ return qa
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('street_rules')

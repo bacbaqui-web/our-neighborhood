@@ -1,5 +1,6 @@
 """Generate the shared roadview-derived parcel package for the main application."""
-import json,os,runpy,sys
+import json
+from neighborhood_generation import GenerationContext,generate
 from pathlib import Path
 
 def protect_public_surfaces(package,root):
@@ -71,35 +72,22 @@ def align_road_paint(package,root):
 
 def build(root,origin,radius,roads=None):
  root=Path(root).resolve(); out=root/'site-layout';out.mkdir(parents=True,exist_ok=True)
- source=Path(__file__).resolve().parent/'neighborhood-generation'
  if not json.loads((root/'buildings.geojson').read_text()).get('features'):
   (root/'site-layout.json').write_text(json.dumps({'version':1,'origin':origin,'radius':radius,'plots':{'buildings':[]},'reason':'no mapped buildings'}))
   return {'buildings':0}
- keys={'NEIGHBORHOOD_DATA':str(root),'NEIGHBORHOOD_ORIGIN':json.dumps(origin),'NEIGHBORHOOD_LAYOUT_OUTPUT':str(out),'NEIGHBORHOOD_LAYOUT_RADIUS':str(radius)}
- previous={k:os.environ.get(k) for k in keys}; oldpath=sys.path[:]
- try:
-  os.environ.update(keys);sys.path.insert(0,str(source))
-  # Each call must use this scene's output directory, including repeated local builds.
-  for name in ['build', 'infill', 'parking', 'straight_plots', 'piloti', 'ground_floors', 'enrich_sites', 'gaps', 'refine', 'access_routes', 'street_front', 'street_rules', 'wall_connections']:
-   sys.modules.pop(name,None)
-  runpy.run_path(str(source/'build.py'),run_name='__main__')
-  package={'version':1,'source':'roadview-derived; inferred parcels and uses','origin':origin,'radius':radius}
-  for key,file in [('plots','infill-plots'),('frontages','frontages'),('piloti','piloti'),('groundFloors','ground-floors'),('infill','street-infill')]:
-   package[key]=json.loads((out/(file+'.json')).read_text())
-  from alley_housing import decorate
-  decorate(package)
-  surfaces=align_road_paint(package,root)
-  public=protect_public_surfaces(package,root)
-  if roads and surfaces:
-   from grade1_poles import apply_alley_poles
-   apply_alley_poles(package,roads,surfaces,public)
-  (root/'site-layout.json').write_text(json.dumps(package,ensure_ascii=False,separators=(',',':')))
-  return package['plots']['qa']
- finally:
-  sys.path[:]=oldpath
-  for k,v in previous.items():
-   if v is None:os.environ.pop(k,None)
-   else:os.environ[k]=v
+ generate(GenerationContext(root,out,origin,radius))
+ package={'version':1,'source':'roadview-derived; inferred parcels and uses','origin':origin,'radius':radius}
+ for key,file in [('plots','infill-plots'),('frontages','frontages'),('piloti','piloti'),('groundFloors','ground-floors'),('infill','street-infill')]:
+  package[key]=json.loads((out/(file+'.json')).read_text())
+ from alley_housing import decorate
+ decorate(package)
+ surfaces=align_road_paint(package,root)
+ public=protect_public_surfaces(package,root)
+ if roads and surfaces:
+  from grade1_poles import apply_alley_poles
+  apply_alley_poles(package,roads,surfaces,public)
+ (root/'site-layout.json').write_text(json.dumps(package,ensure_ascii=False,separators=(',',':')))
+ return package['plots']['qa']
 if __name__=='__main__':
  import argparse
  p=argparse.ArgumentParser();p.add_argument('--root',default='outputs/domestic-test');p.add_argument('--radius',type=float,default=150);p.add_argument('--origin',default='37.626469,127.015677');a=p.parse_args()

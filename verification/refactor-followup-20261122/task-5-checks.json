@@ -1,0 +1,99 @@
+[
+  {
+    "command": [
+      "node",
+      "tests/generation-task.mjs"
+    ],
+    "exit": 0,
+    "output": "Generation task: one settlement/cleanup, abort/error boundaries, both real consumers, preparation/save distinction and atomic previous-scene preservation passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--no-warnings",
+      "--loader",
+      "./tests/three-loader.mjs",
+      "tests/scene-editor.mjs"
+    ],
+    "exit": 0,
+    "output": "Scene editor: input validation and road hit testing passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/visible-horizon-worker.mjs"
+    ],
+    "exit": 0,
+    "output": "Worker transport, initial geometry, explicit source failure and cancellation passed\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-loading.mjs"
+    ],
+    "exit": 0,
+    "output": "Loading checks passed: CDN compression, complete GLB, retries, subpath URLs.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation-build.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser bundle: reproducible bytes, source/output drift, shared module state and source-relative URLs passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "--check",
+      "outputs/domestic-test/browser-generation/progress.js"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "node",
+      "tests/generation-task.mjs"
+    ],
+    "exit": 0,
+    "output": "Generation task: one settlement/cleanup, abort/error boundaries, both real consumers, preparation/save distinction and atomic previous-scene preservation passed.\n",
+    "phase": "parent-review-fix"
+  },
+  {
+    "command": [
+      "node",
+      "tests/browser-generation.mjs"
+    ],
+    "exit": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n",
+    "phase": "parent-review-fix"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "",
+    "phase": "parent-review-fix"
+  }
+]

@@ -1,0 +1,15 @@
+import * as T from 'three';
+
+export function createMapProjection(origin){
+const [lat0,lon0]=origin;const p=lat0*Math.PI/180,mLat=111132.92-559.82*Math.cos(2*p)+1.175*Math.cos(4*p)-.0023*Math.cos(6*p),mLon=111412.84*Math.cos(p)-93.5*Math.cos(3*p)+.118*Math.cos(5*p);
+function xz(c){return [(c[0]-lon0)*mLon,-(c[1]-lat0)*mLat]}
+return xz;
+}
+
+export function createTerrainIndex({fallbackHeight=()=>0}={}){
+const terrainCells=new Map();
+function index(root,ground){terrainCells.clear();root.updateMatrixWorld(true);for(const mesh of ground){const pos=mesh.geometry.attributes.position,ix=mesh.geometry.index;const n=ix?ix.count:pos.count;for(let i=0;i<n;i+=3){const vs=[0,1,2].map(k=>new T.Vector3().fromBufferAttribute(pos,ix?ix.getX(i+k):i+k).applyMatrix4(mesh.matrixWorld));const [a,b,c]=vs;const den=(b.z-c.z)*(a.x-c.x)+(c.x-b.x)*(a.z-c.z);if(Math.abs(den)<1e-8)continue;const edges=[[a,b],[b,c],[c,a]].sort((p,q)=>q[0].distanceToSquared(q[1])-p[0].distanceToSquared(p[1]));const dx=edges[0][1].x-edges[0][0].x,dz=edges[0][1].z-edges[0][0].z,L=Math.hypot(dx,dz)||1;const tri={a,b,c,den,road:mesh.name==='road'||mesh.name==='path',roadClass:mesh.userData.roadClass||'asphalt',ux:dx/L,uz:dz/L};for(let x=Math.floor(Math.min(a.x,b.x,c.x)/5);x<=Math.floor(Math.max(a.x,b.x,c.x)/5);x++)for(let z=Math.floor(Math.min(a.z,b.z,c.z)/5);z<=Math.floor(Math.max(a.z,b.z,c.z)/5);z++){const k=x+','+z;if(!terrainCells.has(k))terrainCells.set(k,[]);terrainCells.get(k).push(tri)}}}}
+function elevation(x,z,fallback){let y=-Infinity;for(const {a,b,c,den} of terrainCells.get(Math.floor(x/5)+','+Math.floor(z/5))||[]){const u=((b.z-c.z)*(x-c.x)+(c.x-b.x)*(z-c.z))/den,v=((c.z-a.z)*(x-c.x)+(a.x-c.x)*(z-c.z))/den,w=1-u-v;if(u>=-1e-6&&v>=-1e-6&&w>=-1e-6)y=Math.max(y,u*a.y+v*b.y+w*c.y)}return Number.isFinite(y)?y:(fallback===undefined?fallbackHeight(x,z):fallback)}
+function roadInfo(x,z){for(const t of terrainCells.get(Math.floor(x/5)+','+Math.floor(z/5))||[]){if(!t.road)continue;const {a,b,c,den}=t,u=((b.z-c.z)*(x-c.x)+(c.x-b.x)*(z-c.z))/den,v=((c.z-a.z)*(x-c.x)+(a.x-c.x)*(z-c.z))/den;if(u>=-1e-6&&v>=-1e-6&&1-u-v>=-1e-6)return t}return null}
+return {index,elevation,roadInfo};
+}

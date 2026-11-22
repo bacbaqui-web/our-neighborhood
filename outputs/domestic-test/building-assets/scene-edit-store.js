@@ -1,3 +1,4 @@
+import {runGenerationTask,saveGenerationResult,throwIfGenerationAborted} from '../browser-generation/generation-task.js';
 import {attachSidewalks} from './road-sidewalks.js';
 import {validateRoadGroups,validateExcludedRoads} from './road-selection.js';
 import {assetById} from './catalog.js?v=scene-edit1';
@@ -38,26 +39,16 @@ export async function readEditorSource(context,load){
  roads.roads=attachSidewalks(roads.roads);
  return {input:{...input,sceneId:context.id},edits:structuredClone(edits),roads:roads.roads};
 }
-export function rebuildEditedScene(source,edits,onProgress,{signal}={}){
+export async function rebuildEditedScene(source,edits,onProgress,{signal}={}){
+ throwIfGenerationAborted(signal,'수정을 취소했습니다. 이전 동네를 유지합니다.');
  validateSceneEdits(edits);
- return new Promise((resolve,reject)=>{
-  const worker=new Worker(new URL('../browser-generation/worker.js?v=scene-edit1',import.meta.url),{type:'module'});
-  const finish=()=>{worker.terminate();signal?.removeEventListener('abort',abort);};
-  const abort=()=>{finish();reject(new DOMException('수정을 취소했습니다. 이전 동네를 유지합니다.','AbortError'));};
-  signal?.addEventListener('abort',abort,{once:true});if(signal?.aborted)return abort();
-  worker.onerror=e=>{finish();reject(Error(e.message||'동네를 다시 계산하지 못했습니다.'));};
-  worker.onmessage=async({data})=>{
-   if(data.type==='progress')onProgress(data.message,data.percent);
-   if(data.type==='error'){finish();reject(Error(data.message));}
-   if(data.type==='complete'){
-    onProgress('계산이 끝나 수정 결과를 저장하고 있습니다…',99,{saving:true});finish();try{
-     data.files['visibility-source.json']=new TextEncoder().encode(JSON.stringify(source.input.buildingCollection));
-     data.manifest.visibilitySource=true;data.manifest.sceneEditVersion=1;
-     await saveScene(data.manifest,data.files);resolve(data.manifest);
-    }catch(e){reject(Error('수정 결과를 저장하지 못했습니다. 이전 동네는 유지됩니다. '+e.message));}
-   }
-  };
-  worker.postMessage({...structuredClone(source.input),sceneEdits:edits});
+ const result=await runGenerationTask({...structuredClone(source.input),sceneEdits:edits},onProgress,{signal,abortMessage:'수정을 취소했습니다. 이전 동네를 유지합니다.'});
+ return saveGenerationResult(result,{signal,onProgress,save:saveScene,
+  message:'계산이 끝나 수정 결과를 저장하고 있습니다…',failureMessage:'수정 결과를 저장하지 못했습니다. 이전 동네는 유지됩니다.',
+  prepare:({manifest,files})=>{
+   if(source.input.buildingCollection?.type!=='FeatureCollection'||!Array.isArray(source.input.buildingCollection.features))throw Error('수정 전 원본 건물 정보가 없습니다.');
+   return {manifest:{...manifest,visibilitySource:true,sceneEditVersion:1},files:{...files,'visibility-source.json':new TextEncoder().encode(JSON.stringify(source.input.buildingCollection))}};
+  },
  });
 }
 export function nearestRoad(roads,point){

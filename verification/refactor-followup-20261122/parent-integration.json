@@ -1,0 +1,157 @@
+[
+  {
+    "command": "node tests/browser-generation-build.mjs",
+    "exit": 0,
+    "seconds": 0.9
+  },
+  {
+    "command": "node tests/generation-task.mjs",
+    "exit": 0,
+    "seconds": 0.03
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/viewer-lifecycle.mjs",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "node scripts/check-loading.mjs",
+    "exit": 0,
+    "seconds": 0.04
+  },
+  {
+    "command": "node tests/browser-generation.mjs",
+    "exit": 0,
+    "seconds": 0.04
+  },
+  {
+    "command": "node tests/vworld-browser.mjs",
+    "exit": 0,
+    "seconds": 0.03
+  },
+  {
+    "command": "node tests/visible-horizon.mjs",
+    "exit": 0,
+    "seconds": 0.03
+  },
+  {
+    "command": "node tests/visible-horizon-worker.mjs",
+    "exit": 0,
+    "seconds": 0.06
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/asset-references.mjs",
+    "exit": 0,
+    "seconds": 0.09
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/street-end-context.mjs",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs",
+    "exit": 0,
+    "seconds": 0.11
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/circular-background.mjs",
+    "exit": 0,
+    "seconds": 0.22
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/full-detail.mjs",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-interiors.mjs",
+    "exit": 0,
+    "seconds": 0.24
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-expansion.mjs",
+    "exit": 0,
+    "seconds": 1.19
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial.mjs",
+    "exit": 0,
+    "seconds": 0.21
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial-interiors.mjs",
+    "exit": 0,
+    "seconds": 0.22
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-lettering.mjs",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-placement.mjs",
+    "exit": 0,
+    "seconds": 0.58
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-publication.mjs",
+    "exit": 0,
+    "seconds": 0.06
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_generation_scope.py",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_generation_module_boundary.py",
+    "exit": 0,
+    "seconds": 26.02
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_scene_edits.py",
+    "exit": 0,
+    "seconds": 0.07
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_arterial_crosswalks.py",
+    "exit": 0,
+    "seconds": 1.22
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_arterial_landings.py",
+    "exit": 0,
+    "seconds": 0.77
+  },
+  {
+    "command": "python3 tests/build_alley_fixture.py /tmp/neighborhood-followup-ci-first",
+    "exit": 0,
+    "seconds": 0.11
+  },
+  {
+    "command": "python3 tests/build_alley_fixture.py /tmp/neighborhood-followup-ci-second",
+    "exit": 0,
+    "seconds": 0.11
+  },
+  {
+    "command": "cmp /tmp/neighborhood-followup-ci-first/package.json /tmp/neighborhood-followup-ci-second/package.json",
+    "exit": 0,
+    "seconds": 0.01
+  },
+  {
+    "command": "node tests/publication-references.mjs",
+    "exit": 0,
+    "seconds": 0.14
+  },
+  {
+    "command": "python3 tests/test_publication_manifest.py",
+    "exit": 0,
+    "seconds": 0.1
+  },
+  {
+    "command": "python3 work/browser-generation/pack.py --check",
+    "exit": 0,
+    "seconds": 0.05
+  }
+]

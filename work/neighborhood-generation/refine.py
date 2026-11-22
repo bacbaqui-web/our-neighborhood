@@ -1,11 +1,16 @@
-import os
 """Final local street-front refinement. Inferred access, never surveyed parcels."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,math
 from pathlib import Path
 from shapely.geometry import shape,mapping,Point,LineString,box
 from shapely.ops import unary_union,nearest_points
-O=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(Path(__file__).resolve().parents[2]/'outputs/domestic-test/house-plots-test')))
-def build():
+def build(context):
+ O=context.output
  d=json.loads((O/'gaps-infill.json').read_text());base=json.loads((O/'infill-plots.json').read_text());bs=base['buildings'];road=shape(base['road']);houses=unary_union([shape(b['building']) for b in bs]);pm={p['id']:p for p in json.loads((O/'piloti.json').read_text())['plans']};gm={p['id']:p for p in json.loads((O/'ground-floors.json').read_text())['plans']};fronts={};parapets=[]
  simplified=0
  for b in bs:
@@ -104,7 +109,7 @@ def build():
    q=edge.boundary.interpolate(t);r=2.7
    if q.distance(road)<2 and q.distance(houses)>r and p.covers(q.buffer(.22)) and all(q.distance(Point(v['point']))>2 for v in added):added.append(dict(point=[q.x,q.y],radius=r,height=8,kind='tree',zone=zi,dense=True,overhang=True))
  d['plants']+=added
- from access_routes import route
+ from .access_routes import route
  route_count=route(d,bs,fronts,road,houses)
  # Original wire span policy: nearby poles, sagging three wires, no building crossings.
  links=[]
@@ -117,6 +122,8 @@ def build():
  d['qa']['simplifiedFootprints']=simplified;d['qa']['newAccessPaths']=route_count;d['qa']['poles']=len(d['poles']);d['poleLinks']=links;d['qa'].update(parkingBays=len(d['bays']),plants=len(d['plants']),modernPiloti=len(pm),barredGates=sum(g['kind']=='gate' for g in d['gaps']),entries=len(d['entries']),booths=len(d['siteDetails']['booths']),canopyOverhangTrees=len(added),wireSpans=len(links),frontageUnresolved=[k for k,v in fronts.items() if not v['verifiedAccess']])
  d['qa']['occupiedBays']=sum(v['occupied'] for v in d['bays']);d['qa']['walls']=len(d['walls']);d['qa']['plantRoadOverlap']='canopy overhang allowed; trunks checked';d['qa']['trunkRoadOverlap']=sum(Point(v['point']).buffer(.12).intersection(road).area for v in d['plants'] if v['kind']=='tree')
  (O/'refined-infill.json').write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));(O/'frontages.json').write_text(json.dumps(dict(buildings=fronts,parapets=parapets),separators=(',',':')));(O/'refinement-qa.json').write_text(json.dumps(d['qa'],indent=2));print(d['qa'])
- from street_front import build as build_street_front
- build_street_front()
-if __name__=='__main__':build()
+ return d['qa']
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('refine')

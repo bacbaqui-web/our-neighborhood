@@ -12,10 +12,7 @@ from neighborhood_sources import Terrain,scales,kakao
 from kakao_terrain import load_terrain
 WORK=Path(__file__).resolve().parent
 
-def parts(g,kind='Polygon'):return [q for q in S.get_parts(g) if q.geom_type==kind and not q.is_empty]
-def tris(g):
- return [list(t.exterior.coords)[:3] for p in parts(S.make_valid(g)) for t in S.get_parts(S.constrained_delaunay_triangles(p)) if t.area>1e-7]
-def rings(g):return [{'outer':list(p.exterior.coords),'holes':[list(h.coords) for h in p.interiors]} for p in parts(g) if p.area>.05]
+from arterial_crossings import parts,tris,rings,build_exit_landings,build_crosswalks
 def write(p,d):p.parent.mkdir(exist_ok=True,parents=True);tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));tmp.replace(p)
 def build(root):
  root=Path(root);read=lambda p:json.loads((root/p).read_text());loc=read('location.json');lat,lon=loc['origin'];sx,sy=scales(lat);radius=int(loc.get('sizeMetres',300)/2)
@@ -153,26 +150,8 @@ def build(root):
  sidewalks=sidewalks.difference(holes)
  # Short level thresholds, with triangulated aprons joining the unchanged sidewalk.
  # Only the approach is levelled; the long opening and street retain their slope.
- landings=[];landingTriangles=[]
- for e in exits:
-  t,d,L,W=e['t'],e['d'],e['length'],e['width'];front=t-L/2
-  pad=rect(front-.35,d,.7,W-.32).intersection(sidewalks)
-  apron=rect(front-.75,d,1.5,W+.9).intersection(sidewalks)
-  if pad.area<.3:continue
-  entry=max(height(x,z) for x,z in pad.exterior.coords)+.145
-  # Shared ring vertices make the level pad and its surrounding slope watertight.
-  pad=S.segmentize(pad,.35);apron=S.segmentize(apron,.35)
-  rows=[]
-  for poly in [pad,apron.difference(pad)]:
-   for tr in tris(poly):
-    for x,z in (tr[::-1] if (tr[1][0]-tr[0][0])*(tr[2][1]-tr[0][1])-(tr[1][1]-tr[0][1])*(tr[2][0]-tr[0][0])>0 else tr):
-     y=entry if pad.distance(Point(x,z))<1e-6 else height(x,z)+.145
-     rows.extend([float(x),float(y),float(z)])
-  e['position'][1]=entry;e['entryHeight']=entry
-  e['landingFootprint']=list(pad.exterior.coords)
-  landings.append({'id':e['id'],'triangles':rows,'rings':rings(apron),'entryHeight':entry})
-  landingTriangles.extend(rows)
- landingArea=unary_union([Polygon(r['outer'],r['holes']) for l in landings for r in l['rings']])
+ approach=build_exit_landings(exits=exits,sidewalks=sidewalks,rect=rect,height=height)
+ exits=approach['exits'];landings=approach['landings'];landingTriangles=approach['triangles']
 
  platforms=[]
  for s in transit['stops']:
@@ -182,41 +161,9 @@ def build(root):
   reservations.append(fp);road=road.difference(fp)
  # Reserve a continuous curb-to-curb crossing before furniture and vehicles.
  # The platform-access relationship is observed; exact stripe positions are inferred.
- crosswalks=[];skippedCrosswalks=[]
- crossingSources=[{'id':s['id'],'t':s['t']-s['length']/2-3,'platform':s['id']} for s in platforms]
- for j,t in enumerate(junctionTs):
-  for side in [-1,1]:
-   tt=t+side*(baseHalf+10)
-   if t0+4<tt<t1-4:crossingSources.append({'id':f'junction-{j}-{side}','t':tt,'platform':None})
- for stop in crossingSources:
-  t=stop['t']
-  width=4.2
-  corridor=rect(t,0,width,2*(baseHalf+8))
-  if any(corridor.intersects(Polygon(e['footprint'])) for e in exits):continue
-  if any(corridor.intersection(Polygon(s['footprint'])).area>.01 for s in platforms):continue
-  if any(abs(c['t']-t)<12 for c in crosswalks):continue
-  footprint=corridor.intersection(public)
-  # A single outline cannot represent disconnected pieces or holes. Do not fill
-  # those gaps or publish a partial crossing as a continuous pedestrian route.
-  if footprint.is_empty or footprint.geom_type!='Polygon' or footprint.interiors:
-   skippedCrosswalks.append({'id':'crossing-'+str(stop['id']),'reason':'disconnected-public-crossing','geometryType':footprint.geom_type,'empty':footprint.is_empty})
-   continue
-  p=xy(t)
-  crosswalks.append({'id':'crossing-'+str(stop['id']),'t':t,'width':width,'position':[p[0],height(*p)+.035,p[1]],'footprint':list(footprint.exterior.coords),'source':'mapped-junction-roadview-form' if stop['platform'] is None else 'roadview-form-platform-access-inferred','platform':stop['platform']})
-  reservations.append(corridor.intersection(sidewalks).buffer(.4))
-  # Recess only the curb approach; triangulation is shared by paint, feet and walking.
-  for side in [-1,1]:
-   h=half(t,side)
-   ramp=rect(t,side*(h+.7),width+1.2,1.4).intersection(sidewalks)
-   for poly in parts(ramp):
-    rows=[]
-    for tr in tris(S.segmentize(poly,.25)):
-     for x,z in (tr[::-1] if (tr[1][0]-tr[0][0])*(tr[2][1]-tr[0][1])-(tr[1][1]-tr[0][1])*(tr[2][0]-tr[0][0])>0 else tr):
-      tt,dd=local([x,z]);blend=min(1,max(0,(abs(dd)-half(tt,side))/1.4))
-      edge=min(1,max(0,(abs(tt-t)-width/2)/.6));lift=.035+.11*max(blend,edge)
-      rows.extend([float(x),float(height(x,z)+lift),float(z)])
-    landings.append({'id':crosswalks[-1]['id']+str(side),'kind':'crosswalk-ramp','triangles':rows,'rings':rings(poly)})
-    landingTriangles.extend(rows)
+ crossing=build_crosswalks(platforms=platforms,exits=exits,junctionTs=junctionTs,baseHalf=baseHalf,t0=t0,t1=t1,public=public,sidewalks=sidewalks,rect=rect,xy=xy,local=local,half=half,height=height)
+ crosswalks=crossing['crosswalks'];skippedCrosswalks=crossing['skipped'];reservations.extend(crossing['reservations'])
+ landings.extend(crossing['landings']);landingTriangles.extend(crossing['triangles'])
  landingArea=unary_union([Polygon(r['outer'],r['holes']) for l in landings for r in l['rings']])
  def at_crossing(t,pad=0):return any(abs(t-c['t'])<c['width']/2+pad for c in crosswalks)
  # All base surfaces tessellate against exactly the same terrain mesh.
@@ -498,6 +445,7 @@ def build(root):
    if ray.intersection(built).length>.1:continue
    frontages.append({'owner':owner,'edge':i,'length':float(L),'t':t,'side':1 if d>0 else -1})
  qa={'version':82,'roadPriority':reservation['qa'] if reservation else None,'junctionArms':len(branches),'lanes':lanes,'busLanes':2 if hasbus else 0,'platforms':len(platforms),'subwayExits':len(exits),'streetTrees':len(trees),'streetlights':len(lights),'transitLights':len(transitLights),'vehicles':len(vehicles),'sideStreetMouths':len(mouths),'roadBuildingOverlapM2':round(road.intersection(built).area,7),'sidewalkBuildingOverlapM2':round(sidewalks.intersection(built).area,7),'footprintBuildingOverlapM2':round(sum(Polygon(o['footprint']).intersection(built).area for o in furniture+exits+platforms+vehicles if not o.get('mappedBuilding')),7),'undergroundBuildingFootprintsExcluded':len(underground),'originalDataPreserved':True,'reviewedFurniture':reviewed,'commercialFacades':len(commercial),'crosswalks':len(crosswalks)+branchCrosswalks,'skippedCrosswalks':skippedCrosswalks,'crossingSignals':len(crossings),'shopFacingEdges':len(frontages)}
+ if approach['skipped']:qa['skippedLandings']=approach['skipped']
  if qa['footprintBuildingOverlapM2']>.01:raise ValueError('Arterial footprint/building intersection')
  storefrontOverrides=json.loads((WORK/'arterial-v77/frontage-references.json').read_text()) if root.parent.name=='f20b139277e4d2a5' else []
  extent=int(loc.get('sizeMetres',300)/2)+20

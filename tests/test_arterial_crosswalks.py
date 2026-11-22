@@ -10,6 +10,7 @@ from unittest.mock import patch
 from shapely.geometry import box, mapping, Polygon
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT/'work'))
 # These adapters replace only external map/terrain acquisition; arterial geometry is real.
 source = types.ModuleType('neighborhood_sources')
 source.Terrain = object

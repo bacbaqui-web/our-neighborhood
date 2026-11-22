@@ -1,0 +1,12 @@
+{
+  "name": "neighborhood-generation-build",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ../../scripts/build-browser-generation.mjs",
+    "check": "node ../../scripts/build-browser-generation.mjs --check"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

@@ -1,11 +1,16 @@
-import os
 """Three road-facing open-ground-floor layouts. Geometry is a design inference, not a survey."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,math
 from pathlib import Path
 from shapely.geometry import shape,Polygon,Point,LineString,mapping
 from shapely.ops import unary_union,nearest_points
-ROOT=Path(__file__).resolve().parents[2]; OUT=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(ROOT/'outputs/domestic-test/house-plots-test')))
-def build():
+def build(context):
+ OUT=context.output
  d=json.loads((OUT/'infill-plots.json').read_text());road=shape(d['road']);camera_road=road.buffer(-.35);buildings=d['buildings']; plans=[]; counts=[0,0,0]
  for b in sorted(buildings,key=lambda b:b['id']):
   profile=b.get('streetProfile')
@@ -96,6 +101,8 @@ def build():
  (OUT/'piloti-infill.json').write_text(json.dumps(infill,ensure_ascii=False,separators=(',',':')))
  (OUT/'piloti.json').write_text(json.dumps({'plans':plans,'qa':qa},ensure_ascii=False,separators=(',',':')))
  print(qa)
- from ground_floors import build as build_ground_floors
- build_ground_floors()
-if __name__=='__main__':build()
+ return qa
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('piloti')

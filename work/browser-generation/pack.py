@@ -6,7 +6,7 @@ files={}
 for p in (ROOT/'outputs/domestic-test/generation').glob('*.py'):
  text=p.read_text().replace('with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:terrain=dict(pool.map(load,tiles))','terrain=dict(map(load,tiles))')
  files['/'+str(p.relative_to(ROOT))]=text
-for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','gentle_terrain.py','view_generation.py','street_end_context.py','road_priority.py','site_layout.py','scene_edits.py','road_sections.py','road_sidewalks.py','alley_housing.py','grade1_poles.py','junction_generation.py','road_geometry.py']:
+for name in ['neighborhood_sources.py','arterial_plan.py','arterial_crossings.py','kakao_terrain.py','gentle_terrain.py','view_generation.py','street_end_context.py','road_priority.py','site_layout.py','scene_edits.py','road_sections.py','road_sidewalks.py','alley_housing.py','grade1_poles.py','junction_generation.py','road_geometry.py']:
  text=(ROOT/'work'/name).read_text()
  if name=='neighborhood_sources.py':
   start=text.index('LOCAL_SETTINGS=');end=text.index('def request(')
@@ -17,9 +17,10 @@ for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','ge
 '''+text[end:]
  text=text.replace("loc['roadAddress'].get(","(loc.get('roadAddress') or {}).get(")
  files['/work/'+name]=text
-for name in ['build','infill','parking','straight_plots','piloti','ground_floors','enrich_sites','gaps','refine','access_routes','street_front','street_rules','wall_connections']:
+for name in ['build','infill','parking','straight_plots','piloti','ground_floors','enrich_sites','gaps','refine','access_routes','street_front','street_rules','wall_connections','context','pipeline','legacy']:
  p=ROOT/'work/neighborhood-generation'/(name+'.py')
  files['/work/neighborhood-generation/'+p.name]=p.read_text()
+files['/work/neighborhood_generation/__init__.py']=(ROOT/'work/neighborhood_generation/__init__.py').read_text()
 for name in ['domestic-test/route-elevation.json','domestic-test/site-rules.json','domestic-test/people/catalog.json','domestic-test/vegetation/catalog.json','domestic-test/shops/library/catalog.json','alley-library/alley-catalog-210.json','alley-library/alley-catalog-212.json']:
  files['/outputs/'+name]=(ROOT/'outputs'/name).read_text()
 p=ROOT/'work/arterial-v76/seoul-stops-20260902.json'

@@ -1,9 +1,15 @@
 """Recursive straight cuts in road blocks, avoiding every building footprint."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import math
 import shapely as S
 from shapely.geometry import Polygon,MultiPoint
 from shapely.ops import unary_union
-from parking import axis
+from .parking import axis
 
 def partition(blocks,buildings):
  result={};empty=[];cuts=[];exceptions=[]

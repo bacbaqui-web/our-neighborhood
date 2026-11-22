@@ -1,0 +1,23 @@
+[
+  {
+    "command": "python3 verification/refactor-followup-20261122/apply-task-7.py",
+    "exitCode": 0,
+    "stdout": "State/layout selected and working exact reverse preservation passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "check": "Parent integration evidence",
+    "commands": 31,
+    "allPassed": true
+  },
+  {
+    "check": "Foreign project guidelines unchanged from baseline",
+    "passed": true
+  }
+]

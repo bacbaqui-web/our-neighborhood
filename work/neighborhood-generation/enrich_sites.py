@@ -1,11 +1,16 @@
-import os
 """Dense foliage, two construction states, restrained parking wear. Local inferred sites."""
+# Direct script execution is a compatibility boundary; normal imports are namespaced.
+if not __package__:
+ from pathlib import Path as _Path
+ import runpy as _runpy
+ _runpy.run_path(str(_Path(__file__).with_name('legacy.py')))['ensure_package']()
+ __package__='neighborhood_generation'
 import json,random,math
 from pathlib import Path
 from shapely.geometry import shape,Point,LineString,box,mapping
 from shapely.ops import unary_union,nearest_points
-ROOT=Path(__file__).resolve().parents[2];OUT=Path(os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT',str(ROOT/'outputs/domestic-test/house-plots-test')))
-def build():
+def build(context):
+ OUT=context.output
  d=json.loads((OUT/'ground-infill.json').read_text());base=json.loads((OUT/'infill-plots.json').read_text());road=shape(base['road']);houses=unary_union([shape(b['building']) for b in base['buildings']]);parking=unary_union([shape(v['footprint']) for v in d['bays']]);access=unary_union([shape(v['access']) for v in json.loads((OUT/'ground-floors.json').read_text())['plans']]+[shape(a) for v in json.loads((OUT/'piloti.json').read_text())['plans'] for a in v['access']]);blocked=road.union(houses).union(parking).union(access)
  rng=random.Random(637);props=[];fences=[];patches=[];sites=[];newplants=[];replaced=set();construction=0
  for zi,z in enumerate(d['zones']):
@@ -72,6 +77,8 @@ def build():
  assert max(qa[k] for k in ['plantBlockedOverlap','propBlockedOverlap','fenceBlockedOverlap'])<1e-6,qa
  d['qa']['plants']=len(d['plants']);d['siteDetails']['qa']=qa
  (OUT/'enriched-infill.json').write_text(json.dumps(d,ensure_ascii=False,separators=(',',':')));(OUT/'site-enrichment-qa.json').write_text(json.dumps(qa,indent=2));print(qa)
- import importlib.util
- spec=importlib.util.spec_from_file_location('gap_rules',Path(__file__).with_name('gaps.py'));module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);module.build()
-if __name__=='__main__':build()
+ return qa
+
+if __name__=='__main__':
+ from .legacy import run_cli
+ run_cli('enrich_sites')

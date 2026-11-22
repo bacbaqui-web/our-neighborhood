@@ -98,7 +98,7 @@ export async function createCommercialNeighborhood(buildings,registry,options){
   for(const c of choice.candidates){
    const d=designs.find(d=>d.id===c.key),model=await loadCommercialBuilding(c.key),fit=fitCommercialModel(model,d,b,choice.frame,{...options,buildings,requireRoad:true});
    if(!fit.ok){model.disposePreview();lastReason=fit.reason;continue;}
-   b.sungshinCommercial={assetId:fit.assetId,key:fit.key};group.add(model);placements.push(fit);placed=true;break;
+   b.sungshinCommercial={assetId:fit.assetId,key:fit.key,envelope:fit.envelope};group.add(model);placements.push(fit);placed=true;break;
   }
   if(!placed)skipped.push({owner:b.seed,reason:lastReason});
  }

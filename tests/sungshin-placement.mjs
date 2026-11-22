@@ -45,3 +45,14 @@ const polygon={type:'Polygon',coordinates:[[...source.points,source.points[0]]]}
 const parcel={plots:{buildings:[{id:702,plot:polygon,building:polygon,levels:2}],qa:{mergedBuildings:[{source:701,target:702}]}},piloti:{plans:[]},groundFloors:{plans:[]},frontages:{buildings:{},parapets:[]},infill:{zones:[],walls:[],gaps:[],bays:[],plants:[],drains:[],poles:[],siteDetails:{patches:[]}}};
 const merged=prepareSiteLayout(parcel,mergedSpecs,mergedMeshes,()=>0);
 assert.deepEqual(mergedSpecs.map(b=>b.seed),[701,702],'성신 모델 원본이 부지 병합에서 사라짐');assert.equal(merged.owners.size,0,'병합 대상이 성신 원본 영역에 다시 생성됨');assert.equal(mergedMeshes.length,2);
+
+const {filterCommercialParking}=await import('../outputs/domestic-test/site-layout.js');
+const automaticBay={point:[0,0],footprint:polygon,occupied:true};
+const parking=filterCommercialParking([automaticBay,{...automaticBay,source:'user'},{point:[1000,1000],direction:[1,0,0,1],occupied:true}], [source]);
+assert.equal(parking.removed.length,1);assert.equal(parking.bays.length,2);assert.equal(parking.bays[0].source,'user');
+console.log('성신 자동주차 충돌 제외 / 수동주차 보존 통과');
+
+// Actual 87956683bb5545f2 scene: retained commercial owner has no generated parcel record.
+const actualCommercial={sungshinCommercial:{assetId:'building:sungshin-34'},points:[[105.29,-38.85],[92.35,-34.76],[90.29,-41.35],[103.23,-45.44]]};
+const actualBay={point:[89.43755298781825,-37.96349985027231],occupied:true,footprint:{type:'Polygon',coordinates:[[[92.30540372027187,-37.488702865904045],[87.33700496085146,-35.95409745493037],[86.56970225536462,-38.43829683464058],[91.53810101478503,-39.97290224561425],[92.30540372027187,-37.488702865904045]]]}};
+assert.equal(filterCommercialParking([actualBay],[actualCommercial]).bays.length,0,'실제 동네 원본 상가 밖 중심점만으로 겹친 주차를 허용하지 않음');

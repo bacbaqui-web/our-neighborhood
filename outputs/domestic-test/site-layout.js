@@ -12,6 +12,10 @@ const contains=(g,p)=>parts(g).some(r=>inside(p,r[0])&&!r.slice(1).some(h=>insid
 const ringShape=r=>{const s=new T.Shape(r[0].map(([x,z])=>new T.Vector2(x,-z)));for(const h of r.slice(1))s.holes.push(new T.Path(h.map(([x,z])=>new T.Vector2(x,-z))));return s;};
 const crossed=(a,b,c,d)=>{const f=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);return f(a,b,c)*f(a,b,d)<-1e-8&&f(c,d,a)*f(c,d,b)<-1e-8;};
 const ringsHit=(a,b)=>a.some(p=>inside(p,b))||b.some(p=>inside(p,a))||a.some((p,i)=>b.some((q,j)=>crossed(p,a[(i+1)%a.length],q,b[(j+1)%b.length])));
+export function filterCommercialParking(bays,specs){
+ const regions=specs.filter(b=>b.sungshinCommercial).flatMap(b=>[b.points,...(b.sungshinCommercial.envelope||[]).map(([x,z,X,Z])=>[[x,z],[X,z],[X,Z],[x,Z]])]);
+ const removed=[];const kept=bays.filter(b=>{if(b.source==='user'||b.manual||b.manualPlacement||b.userPlaced)return true;const rings=parts(b.footprint).map(p=>p[0]);if(!rings.length&&b.point&&b.direction){const [x,z]=b.point,[ux,uz,nx,nz]=b.direction;rings.push([[-1.05,-2.65],[1.05,-2.65],[1.05,2.65],[-1.05,2.65]].map(([u,n])=>[x+ux*u+nx*n,z+uz*u+nz*n]));}if(rings.some(r=>regions.some(p=>ringsHit(r,p)))){removed.push({point:b.point,owner:b.owner??null,reason:'sungshin-commercial-overlap'});return false;}return true;});return {bays:kept,removed};
+}
 export function prepareSiteLayout(packageData,specs,meshes,elevation,radius=150){
  if(packageData?.version===27)return prepareRulesLayout(packageData,specs,meshes,elevation,radius);
  if(!packageData?.plots?.buildings?.length)return null;
@@ -46,6 +50,7 @@ export function prepareSiteLayout(packageData,specs,meshes,elevation,radius=150)
  d.zones=d.zones.filter(z=>(z.owner==null||owners.has(z.owner))&&safeGeometry(z.geometry));
  d.walls=d.walls.filter(safeLine);d.gaps=d.gaps.filter(g=>safeLine(g)&&(!g.geometry||safeGeometry(g.geometry)));
  d.bays=d.bays.filter(b=>(b.owner==null||owners.has(b.owner))&&!forbidden(b.point)&&safeGeometry(b.footprint));for(const b of d.bays)if(b.piloti){const owner=packageData.plots.buildings.find(p=>contains(p.building,b.point));b.owner=owner?.id;b.floorElevation=bases.get(b.owner);}d.bays=d.bays.filter(b=>!b.piloti||bases.has(b.owner));
+ const commercialParking=filterCommercialParking(d.bays,specs);d.bays=commercialParking.bays;
  d.roadBays=(d.roadBays||[]).filter(b=>d.bays.some(q=>q.point[0]===b.point[0]&&q.point[1]===b.point[1]));
  d.plants=d.plants.filter(p=>!forbidden(p.point));d.drains=d.drains.filter(p=>!forbidden(p.point));
  d.entries=(d.entries||[]).filter(safeLine);d.entranceDrains=(d.entranceDrains||[]).filter(safeLine);d.accessPaths=(d.accessPaths||[]).filter(p=>safeGeometry(p.geometry));d.vehicleApproaches=(d.vehicleApproaches||[]).filter(safeGeometry);
@@ -53,7 +58,7 @@ export function prepareSiteLayout(packageData,specs,meshes,elevation,radius=150)
  for(const key of ['fences','gates'])d.siteDetails[key]=(d.siteDetails[key]||[]).filter(safeLine);
  for(const key of ['props','booths'])d.siteDetails[key]=(d.siteDetails[key]||[]).filter(p=>!forbidden(p.point));d.siteDetails.patches=d.siteDetails.patches.filter(p=>safeGeometry(p.geometry));
  const filterPlan=plan=>{const p=structuredClone(plan);for(const [key,value] of Object.entries(p))if(Array.isArray(value))p[key]=value.filter(v=>{if(v&&typeof v==='object'){if(v.owner!=null&&(owners.has(Number(v.owner))||removed.has(Number(v.owner))))return false;if(v.owners?.some(id=>owners.has(Number(id))))return false;if(Array.isArray(v)&&Array.isArray(v[0])&&v.some(active))return false;const point=v.point||v.origin||(Number.isFinite(v.x)&&Number.isFinite(v.z)?[v.x,v.z]:null)||(v.a&&v.b?[(v.a[0]+v.b[0])/2,(v.a[1]+v.b[1])/2]:null);if(point&&active(point))return false;}return true;});return p;};
- return {owners,group,data:d,openOwners:new Set([...pm.keys(),...gm.keys()].filter(id=>owners.has(id))),active,replacesGround:p=>d.zones.some(z=>contains(z.geometry,p))||active(p),filterPlan,bases,plots:plans,groundPlans:gm,pilotiPlans:pm,qa:{version:1,buildings:owners.size,mergedBuildings:removed.size,piloti:[...owners].filter(id=>pm.has(id)).length,groundFloors:[...owners].filter(id=>gm.has(id)).length,walls:d.walls.length,parking:d.bays.length,plants:d.plants.length,poles:d.poles.length,retainedSpecialBuildings:specs.filter(b=>b.facility||b.storefronts?.length).length,terrain:'original terrain sampled at placement'}};
+ return {owners,group,data:d,openOwners:new Set([...pm.keys(),...gm.keys()].filter(id=>owners.has(id))),active,replacesGround:p=>d.zones.some(z=>contains(z.geometry,p))||active(p),filterPlan,bases,plots:plans,groundPlans:gm,pilotiPlans:pm,qa:{version:1,commercialParking:{excluded:commercialParking.removed.length,removed:commercialParking.removed},buildings:owners.size,mergedBuildings:removed.size,piloti:[...owners].filter(id=>pm.has(id)).length,groundFloors:[...owners].filter(id=>gm.has(id)).length,walls:d.walls.length,parking:d.bays.length,plants:d.plants.length,poles:d.poles.length,retainedSpecialBuildings:specs.filter(b=>b.facility||b.storefronts?.length).length,terrain:'original terrain sampled at placement'}};
 }
 export async function renderSiteLayout(layout,elevation){
  if(layout?.version===27)return renderRulesLayout(layout);

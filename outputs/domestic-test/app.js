@@ -1,4 +1,4 @@
-import {createCommercialNeighborhood} from './sungshin-commercial/placement.js?v=placement1';
+import {createCommercialNeighborhood} from './sungshin-commercial/placement.js?v=placement2';
 import {loadAssetRegistry} from './asset-encyclopedia/registry.js?v=sungshin-placement1';
 let commercialNeighborhood=null;
 import {shopFocusView} from './shops/focus-view.js?v=shop-focus1';
@@ -12,7 +12,7 @@ import {installBuildingEditor,restoreEditCamera} from './building-assets/editor.
 import {configureViewVisibility,viewVisibilityStats} from './view-generation-visibility.js?v=view3c';
 import {installRulesTerrain,finishRulesDetails} from './site-layout27.js?v=sungshin1';
 import {installWindowInspection} from './window-inspection.js?v=recess22';
-import {prepareSiteLayout,renderSiteLayout,installSiteLayoutTour,siteUtilityPlan,fitSiteLayoutTerrain} from './site-layout.js?v=sungshin1';
+import {prepareSiteLayout,renderSiteLayout,installSiteLayoutTour,siteUtilityPlan,fitSiteLayoutTerrain} from './site-layout.js?v=sungshin2';
 let siteLayoutData=null,siteLayout=null,siteLayoutView=null;
 import {createNeighborhoodApartmentGrounds,planApartmentAmenities,installApartmentGroundControls} from './apartments/neighborhood-grounds.js';
 let apartmentGrounds=null;

@@ -1,0 +1,45 @@
+{
+  "cacheDisabled": true,
+  "freshDocument": true,
+  "session": {
+    "counters": {
+      "failed": 0,
+      "success": 69
+    },
+    "droppedCount": 0,
+    "elapsedMs": 39243,
+    "events": [],
+    "id": "s-1795361261748-684504695",
+    "stage": "ready",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 85,
+        "stage": "scene-data"
+      },
+      {
+        "at": 300,
+        "stage": "image-assets"
+      },
+      {
+        "at": 3161,
+        "stage": "shared-models"
+      },
+      {
+        "at": 11730,
+        "stage": "scene-build"
+      },
+      {
+        "at": 39243,
+        "stage": "ready"
+      }
+    ],
+    "startedAt": 1795361261748,
+    "status": "ready",
+    "version": 1
+  },
+  "errors": []
+}

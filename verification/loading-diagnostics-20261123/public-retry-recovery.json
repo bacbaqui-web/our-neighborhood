@@ -1,0 +1,71 @@
+{
+  "injectedFirstResponse": 404,
+  "secondResponse": "actual-public-image",
+  "session": {
+    "counters": {
+      "failed": 1,
+      "success": 69
+    },
+    "droppedCount": 0,
+    "elapsedMs": 53005,
+    "events": [
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 285,
+        "attempt": 1,
+        "code": "image-event",
+        "duration": 13889,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "error",
+        "request": 32,
+        "stage": "image-assets",
+        "timing": null
+      },
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 14175,
+        "attempt": 2,
+        "code": null,
+        "duration": 4857,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "recovered",
+        "request": 62,
+        "stage": "image-assets",
+        "timing": null
+      }
+    ],
+    "id": "s-1795361970867-166419329",
+    "stage": "ready",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 99,
+        "stage": "scene-data"
+      },
+      {
+        "at": 267,
+        "stage": "image-assets"
+      },
+      {
+        "at": 19202,
+        "stage": "shared-models"
+      },
+      {
+        "at": 23172,
+        "stage": "scene-build"
+      },
+      {
+        "at": 53005,
+        "stage": "ready"
+      }
+    ],
+    "startedAt": 1795361970867,
+    "status": "ready",
+    "version": 1
+  }
+}

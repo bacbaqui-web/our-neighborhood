@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "e8672a08461b2d0e2d47cb9e87884149a06215e3",
+  "passed": 36,
+  "total": 36,
+  "build": {
+    "exit": 0,
+    "seconds": 135.19
+  },
+  "files": 1602,
+  "sizeMB": 956.7
+}

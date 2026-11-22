@@ -1,0 +1,48 @@
+{
+  "sourceCommit": "e8672a08461b2d0e2d47cb9e87884149a06215e3",
+  "cacheDisabledDuringLoad": true,
+  "freshDocument": true,
+  "cacheOverrideRestored": true,
+  "interceptionCleared": true,
+  "session": {
+    "counters": {
+      "failed": 0,
+      "success": 69
+    },
+    "droppedCount": 0,
+    "elapsedMs": 28315,
+    "events": [],
+    "id": "s-1795362588953-465546652",
+    "stage": "ready",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 73,
+        "stage": "scene-data"
+      },
+      {
+        "at": 285,
+        "stage": "image-assets"
+      },
+      {
+        "at": 3075,
+        "stage": "shared-models"
+      },
+      {
+        "at": 9332,
+        "stage": "scene-build"
+      },
+      {
+        "at": 28315,
+        "stage": "ready"
+      }
+    ],
+    "startedAt": 1795362588953,
+    "status": "ready",
+    "version": 1
+  },
+  "errors": []
+}

@@ -1,0 +1,65 @@
+{
+  "head": "c96d987eddb2ff231b5d750b908e2bffab5e70c6",
+  "files": {
+    "PROJECT_STATE.json": {
+      "sha256": "1459ef97fa1fdd498b9e7bdf17e398f3642b5cf1f616f0490d8a0f3d2c750367"
+    },
+    "docs/codex-control.txt": {
+      "sha256": "1fc6df2a3dda6dfbe9539813f9ee0bff9ba83a0f80b64202f629fcb005006348"
+    },
+    "docs/project-guidelines.txt": {
+      "sha256": "101f05736c7e4f8ce59dd97ce94a1adfde6baefd0fbd2e9f7a35036a9add2214"
+    },
+    "docs/project-layout.txt": {
+      "sha256": "333ab5080a3553f3d32310d4b619a1a3b7f266fa7bf0a2f3a7d4e5fcf68c016f"
+    },
+    "outputs/domestic-test/app.js": {
+      "sha256": "943da3b1f34755875288b0404fa51f23c0fde867d2baf52fd0c55ec366ec9243"
+    },
+    "outputs/domestic-test/codex-bridge/contract.js": {
+      "sha256": "7bff24b885916d4e42f115d92ae259362fa66c3c78ebc6e6724d352bf9a9f234"
+    },
+    "outputs/domestic-test/codex-bridge/roadview.html": {
+      "sha256": "0aace2b0e3e4f32d9fd1c77c419ee8010a0a0b78f9e959e2caa22a26436a62dd"
+    },
+    "outputs/domestic-test/codex-bridge/roadview.js": {
+      "sha256": "365f4408a5c1224d4e23c3994b7170601e993944b4af688ca7e96ae7003b9b46"
+    },
+    "outputs/domestic-test/codex-bridge/start.js": {
+      "sha256": "423176f71953c41199634abd6eaa21ebf5fc31a1953f4f9e7f7062979ba4e226"
+    },
+    "outputs/domestic-test/codex-bridge/viewer.js": {
+      "sha256": "0da598b714cd403b49f25c0922ccd2c49f686ceaceb41cfdcb26f96b74530b3b"
+    },
+    "outputs/domestic-test/index.html": {
+      "sha256": "ec239190ff76a8ad5caff130232496435f8b0e85c7f33d35c2ba648a04ea4cdf"
+    },
+    "outputs/domestic-test/start.html": {
+      "sha256": "19c128dd9027ed0346ffb9be1a99f8c6850f1edb4fa888aad906c764de800c38"
+    },
+    "tests/codex-bridge.mjs": {
+      "sha256": "77892125d58bfa1321f31295f864d2685c8af53d445411fa3218073ec772a452"
+    },
+    "tests/test_codex_bridge.py": {
+      "sha256": "1680e6f73edbdf3946ea712f70f5949c4ac1d8584956ff0da93668556231d5c5"
+    },
+    "work/codex-mcp/call.py": {
+      "sha256": "19fb3557b3d5df7dcca8e1e2f96dab2dccc57dc7f5a73c89616e59dc36afc3a5"
+    },
+    "work/codex-mcp/pyproject.toml": {
+      "sha256": "ddda8579f380c00b0d8e8c37f22c6661b19cb53132a72f7c3261f15074d01563"
+    },
+    "work/codex-mcp/server.py": {
+      "sha256": "a44f17cb949b27a577dbcce5016f725007778f41fdcd1e0172daa4b0172c1667"
+    },
+    "work/codex-mcp/uv.lock": {
+      "sha256": "76a7ebf06c79a882dc687ed28d6497a2a864209da64992f912087c3d615b8914"
+    },
+    "work/codex_bridge.py": {
+      "sha256": "54da8d45983d307c63057fab2242bcbafaaaa661368884b0a00631118a979073"
+    },
+    "work/serve-neighborhood.py": {
+      "sha256": "31a580648b71feccfe74c25108b7f6cf581e6e72ca9fcb746f203ac133150027"
+    }
+  }
+}

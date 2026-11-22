@@ -1,0 +1,14 @@
+{
+  "base": "2f3f33ca59000c70e5ed31c36cb7b71530ea20af",
+  "commit": "e8672a08461b2d0e2d47cb9e87884149a06215e3",
+  "files": [
+    {
+      "path": "outputs/domestic-test/loading-diagnostics.js",
+      "sha256": "faff1b50a4619f9d244bdae4228033480400078cb45c1c25a429c853f467095d"
+    },
+    {
+      "path": "tests/loading-diagnostics.mjs",
+      "sha256": "1178eafa2bf43bd98790440549909199fdbe223c91b0b2fff8220531e1037869"
+    }
+  ]
+}

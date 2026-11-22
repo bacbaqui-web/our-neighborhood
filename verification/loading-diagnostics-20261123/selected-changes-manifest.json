@@ -1,0 +1,76 @@
+{
+  "base": "c96d987eddb2ff231b5d750b908e2bffab5e70c6",
+  "tree": "eafe0dd8ab949521ef9a9388b2c8a456925fa0fb",
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "f3dcaaa272027a28e22c3834a631e7e2aeb272daabbb464a5b460f50913e7d6e",
+      "selectedPath": ".github/workflows/pages.yml"
+    },
+    {
+      "path": "config/publication-files.json",
+      "sha256": "6e6f77c4bd5823281b966b7d5387c03a79d947139bfac2563a309da7936eac84",
+      "selectedPath": "config/publication-files.json"
+    },
+    {
+      "path": "outputs/domestic-test/app.js",
+      "sha256": "e6c982dd67d4d602c48eded5f920f9fb18873c169b6636aacfa343794d4dd693",
+      "selectedPath": "verification/loading-diagnostics-20261123/selected/outputs/domestic-test/app.js"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+      "sha256": "749f60f9db0952177392c1267eaad6c72c3918adf6d25d2a55d3ab3ab41f1e51",
+      "selectedPath": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json",
+      "sha256": "1f182e5cc7af4bbe3879bd1cd52675eb5054d5bf4964f41e4801ca2c57d452ac",
+      "selectedPath": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json"
+    },
+    {
+      "path": "outputs/domestic-test/hybrid-tree.js",
+      "sha256": "4f5af28ad2f8da81a3107a881129900e8ec7008bd5d666e5283a15e8a4b91e1b",
+      "selectedPath": "outputs/domestic-test/hybrid-tree.js"
+    },
+    {
+      "path": "outputs/domestic-test/index.html",
+      "sha256": "4ec783db2348f5afde5ccc2bba185b3dce5dc99c7b0095ba170a2c3f3a8cf5a8",
+      "selectedPath": "verification/loading-diagnostics-20261123/selected/outputs/domestic-test/index.html"
+    },
+    {
+      "path": "outputs/domestic-test/load-data.js",
+      "sha256": "d200043727674a2470461cb55be6310df11a969f76a7eb1c827340b08470126b",
+      "selectedPath": "outputs/domestic-test/load-data.js"
+    },
+    {
+      "path": "outputs/domestic-test/loading-diagnostics.js",
+      "sha256": "c2adfbedef21318f06b5cf11c71ba01f80f81d0434b89c00837e3b4c9ac3555f",
+      "selectedPath": "outputs/domestic-test/loading-diagnostics.js"
+    },
+    {
+      "path": "outputs/domestic-test/pedestrians.js",
+      "sha256": "7d6c008cd96d4f3cc9358a2ed665aade66740912852ec0eb26daabf798c553c5",
+      "selectedPath": "outputs/domestic-test/pedestrians.js"
+    },
+    {
+      "path": "outputs/domestic-test/texture-loading.js",
+      "sha256": "0966bdd47286bb0aa2f89d7dea3c58a641c700ba2b8ef443a536d3a410d1fd68",
+      "selectedPath": "outputs/domestic-test/texture-loading.js"
+    },
+    {
+      "path": "outputs/domestic-test/vegetation.js",
+      "sha256": "c6c4a64e23304169999732b18f0d24d48314e90582287ac710c54cd98e2bfe88",
+      "selectedPath": "outputs/domestic-test/vegetation.js"
+    },
+    {
+      "path": "scripts/check-loading.mjs",
+      "sha256": "209d574a756e4d8c0920a16fea4114be672a4d478fd6c1241a874312938e45d1",
+      "selectedPath": "scripts/check-loading.mjs"
+    },
+    {
+      "path": "tests/loading-diagnostics.mjs",
+      "sha256": "1f09ba43440dfc285363828605a079abbaf38ad1dfa61eeea98b551c510551f7",
+      "selectedPath": "tests/loading-diagnostics.mjs"
+    }
+  ]
+}

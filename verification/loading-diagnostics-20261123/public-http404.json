@@ -1,0 +1,59 @@
+{
+  "injectedResponse": 404,
+  "attempts": 2,
+  "session": {
+    "counters": {
+      "failed": 2,
+      "success": 60
+    },
+    "droppedCount": 0,
+    "elapsedMs": 27967,
+    "events": [
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 321,
+        "attempt": 1,
+        "code": "image-event",
+        "duration": 18592,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "error",
+        "request": 32,
+        "stage": "image-assets",
+        "timing": null
+      },
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 18913,
+        "attempt": 2,
+        "code": "image-event",
+        "duration": 9053,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "final-error",
+        "request": 62,
+        "stage": "image-assets",
+        "timing": null
+      }
+    ],
+    "id": "s-1795361749344-83665442",
+    "stage": "image-assets",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 119,
+        "stage": "scene-data"
+      },
+      {
+        "at": 277,
+        "stage": "image-assets"
+      }
+    ],
+    "startedAt": 1795361749344,
+    "status": "failed",
+    "version": 1
+  }
+}

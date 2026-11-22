@@ -1,4 +1,19 @@
 {
+  "loadingDiagnostics20261123": {
+    "date": "2026-11-23",
+    "report": "docs/loading-diagnostics-20261123.md",
+    "sourceCommit": "e8672a08461b2d0e2d47cb9e87884149a06215e3",
+    "hostingCommit": "8a26caef800a6610bf73a709d6c764f0a356a8aa",
+    "implementation": "bounded local loading diagnostics; observer-before-event timing retained",
+    "checks": "36 passed; full public build passed",
+    "publication": "complete",
+    "publicScreen": "final ready; cold tests and injected image failures recorded",
+    "remaining": [
+      "Original image Event root cause remains unconfirmed.",
+      "One renderer crash during scene-build; internal crash page blocked by browser URL policy; exact cause unconfirmed."
+    ],
+    "previousLoadingFixReport": "docs/loading-followup-20261122.md"
+  },
   "refactorFollowup20261122": {
     "date": "2026-11-22",
     "report": "docs/refactor-followup-20261122.md",

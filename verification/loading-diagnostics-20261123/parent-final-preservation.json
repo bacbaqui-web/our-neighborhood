@@ -1,0 +1,85 @@
+{
+  "files": [
+    {
+      "path": "PROJECT_STATE.json",
+      "preserved": true
+    },
+    {
+      "path": "docs/codex-control.txt",
+      "preserved": true
+    },
+    {
+      "path": "docs/project-guidelines.txt",
+      "preserved": true
+    },
+    {
+      "path": "docs/project-layout.txt",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/app.js",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/codex-bridge/contract.js",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/codex-bridge/roadview.html",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/codex-bridge/roadview.js",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/codex-bridge/start.js",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/codex-bridge/viewer.js",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/index.html",
+      "preserved": true
+    },
+    {
+      "path": "outputs/domestic-test/start.html",
+      "preserved": true
+    },
+    {
+      "path": "tests/codex-bridge.mjs",
+      "preserved": true
+    },
+    {
+      "path": "tests/test_codex_bridge.py",
+      "preserved": true
+    },
+    {
+      "path": "work/codex-mcp/call.py",
+      "preserved": true
+    },
+    {
+      "path": "work/codex-mcp/pyproject.toml",
+      "preserved": true
+    },
+    {
+      "path": "work/codex-mcp/server.py",
+      "preserved": true
+    },
+    {
+      "path": "work/codex-mcp/uv.lock",
+      "preserved": true
+    },
+    {
+      "path": "work/codex_bridge.py",
+      "preserved": true
+    },
+    {
+      "path": "work/serve-neighborhood.py",
+      "preserved": true
+    }
+  ],
+  "stagedPatchUnchanged": true
+}

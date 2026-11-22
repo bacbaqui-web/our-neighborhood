@@ -1,0 +1,43 @@
+{
+  "cacheDisabled": true,
+  "freshDocument": true,
+  "browserCrashCode": 5,
+  "lastSession": {
+    "counters": {
+      "failed": 0,
+      "success": 62
+    },
+    "droppedCount": 0,
+    "elapsedMs": 0,
+    "events": [],
+    "id": "s-1795361361825-930380088",
+    "stage": "scene-build",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 132,
+        "stage": "scene-data"
+      },
+      {
+        "at": 244,
+        "stage": "image-assets"
+      },
+      {
+        "at": 969,
+        "stage": "shared-models"
+      },
+      {
+        "at": 2409,
+        "stage": "scene-build"
+      }
+    ],
+    "startedAt": 1795361361825,
+    "status": "running",
+    "version": 1
+  },
+  "originalImageFailure": false,
+  "internalCrashPage": "blocked by browser URL policy"
+}

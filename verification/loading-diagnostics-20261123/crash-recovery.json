@@ -1,0 +1,43 @@
+{
+  "session": {
+    "counters": {
+      "failed": 0,
+      "success": 69
+    },
+    "droppedCount": 0,
+    "elapsedMs": 13947,
+    "events": [],
+    "id": "s-1795361594617-22489026",
+    "stage": "ready",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 81,
+        "stage": "scene-data"
+      },
+      {
+        "at": 210,
+        "stage": "image-assets"
+      },
+      {
+        "at": 459,
+        "stage": "shared-models"
+      },
+      {
+        "at": 3852,
+        "stage": "scene-build"
+      },
+      {
+        "at": 13947,
+        "stage": "ready"
+      }
+    ],
+    "startedAt": 1795361594617,
+    "status": "ready",
+    "version": 1
+  },
+  "ready": "true"
+}

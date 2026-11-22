@@ -1,0 +1,93 @@
+{
+  "sourceCommit": "e8672a0",
+  "injectedResponse": 404,
+  "attempts": 2,
+  "observer": [
+    {
+      "duration": 14065.5,
+      "observedAt": 17289.5,
+      "responseStatus": 404,
+      "startTime": 3221.7999999523163
+    },
+    {
+      "duration": 9347.099999904633,
+      "observedAt": 26638.69999992847,
+      "responseStatus": 404,
+      "startTime": 17290.600000023842
+    }
+  ],
+  "resourceCount": 250,
+  "session": {
+    "counters": {
+      "failed": 2,
+      "success": 60
+    },
+    "droppedCount": 0,
+    "elapsedMs": 24147,
+    "events": [
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 728,
+        "attempt": 1,
+        "code": "image-event",
+        "duration": 14069,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "error",
+        "request": 32,
+        "stage": "image-assets",
+        "timing": {
+          "decodedBodySize": 9,
+          "duration": 14066,
+          "encodedBodySize": 9,
+          "initiatorType": "img",
+          "responseEnd": 14067,
+          "responseStart": 14067,
+          "responseStatus": 404,
+          "transferSize": 309
+        }
+      },
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 14798,
+        "attempt": 2,
+        "code": "image-event",
+        "duration": 9349,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "final-error",
+        "request": 62,
+        "stage": "image-assets",
+        "timing": {
+          "decodedBodySize": 9,
+          "duration": 9347,
+          "encodedBodySize": 9,
+          "initiatorType": "img",
+          "responseEnd": 9348,
+          "responseStart": 9348,
+          "responseStatus": 404,
+          "transferSize": 309
+        }
+      }
+    ],
+    "id": "s-1795362538016-542750785",
+    "stage": "image-assets",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 114,
+        "stage": "scene-data"
+      },
+      {
+        "at": 323,
+        "stage": "image-assets"
+      }
+    ],
+    "startedAt": 1795362538017,
+    "status": "failed",
+    "version": 1
+  }
+}

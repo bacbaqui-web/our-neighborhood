@@ -1,0 +1,79 @@
+{
+  "sourceCommit": "e8672a0",
+  "injectedResponse": 200,
+  "invalidImageBody": true,
+  "attempts": 2,
+  "session": {
+    "counters": {
+      "failed": 2,
+      "success": 60
+    },
+    "droppedCount": 0,
+    "elapsedMs": 17136,
+    "events": [
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 337,
+        "attempt": 1,
+        "code": "image-event",
+        "duration": 8223,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "error",
+        "request": 32,
+        "stage": "image-assets",
+        "timing": {
+          "decodedBodySize": 9,
+          "duration": 8221,
+          "encodedBodySize": 9,
+          "initiatorType": "img",
+          "responseEnd": 8222,
+          "responseStart": 8222,
+          "responseStatus": 200,
+          "transferSize": 309
+        }
+      },
+      {
+        "asset": "woman-cardigan-summer.webp",
+        "at": 8560,
+        "attempt": 2,
+        "code": "image-event",
+        "duration": 8575,
+        "httpStatus": null,
+        "online": true,
+        "outcome": "final-error",
+        "request": 62,
+        "stage": "image-assets",
+        "timing": {
+          "decodedBodySize": 9,
+          "duration": 8574,
+          "encodedBodySize": 9,
+          "initiatorType": "img",
+          "responseEnd": 8575,
+          "responseStart": 8575,
+          "responseStatus": 200,
+          "transferSize": 309
+        }
+      }
+    ],
+    "id": "s-1795362569763-254605290",
+    "stage": "image-assets",
+    "stages": [
+      {
+        "at": 0,
+        "stage": "location"
+      },
+      {
+        "at": 140,
+        "stage": "scene-data"
+      },
+      {
+        "at": 327,
+        "stage": "image-assets"
+      }
+    ],
+    "startedAt": 1795362569763,
+    "status": "failed",
+    "version": 1
+  }
+}

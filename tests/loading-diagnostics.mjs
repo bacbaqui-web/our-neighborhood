@@ -44,3 +44,8 @@ for(const [fetcher,code]of [[async()=>new Response('invalid'),'json-parse'],[asy
  loadingDiagnostics.start();await loadData('test.json','json',fetcher).catch(()=>{});loadingDiagnostics.finish('failed');assert(loadingDiagnostics.read().at(-1).events.every(e=>e.code===code));
 }
 console.log('JSON syntax failures and response-body transport errors remain distinct');
+// The global resource buffer may be full: preserve an observer entry delivered before image.onerror.
+saved='';let earlyWrites=0;const early=make({performance:()=>({getEntriesByName:()=>[]}),storage:()=>({getItem:()=>null,setItem:()=>{earlyWrites++;}})});
+time=700;early.start();a=early.begin(url,'texture',1);before=earlyWrites;observer.cb({getEntries:()=>[{name:url,startTime:700.1,duration:3,responseStatus:404,encodedBodySize:5}]});assert.equal(earlyWrites,before,'pending timing does not persist normal resource traffic');time=704;early.end(a,'image-event');assert.equal(early.read().at(-1).events[0].timing.responseStatus,404);
+time=705;b=early.begin(url,'texture',2);observer.cb({getEntries:()=>[{name:url,startTime:705.2,duration:2,responseStatus:200,encodedBodySize:123}]});time=708;early.end(b);early.finish('ready');const earlyEvents=early.read().at(-1).events;assert.deepEqual(earlyEvents.map(e=>e.timing.responseStatus),[404,200]);assert.equal(earlyEvents[1].outcome,'recovered');assert.equal(earlyEvents[1].timing.encodedBodySize,123);assert(!JSON.stringify(early.read()).includes('SECRET'));
+console.log('Observer-before-error/recovery timing retained without global buffer or normal writes');

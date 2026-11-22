@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {elevations} from './elevations.js';
-import {buildStreetElevation} from './street-elevation.js';
+import {buildStreetElevation} from './street-elevation.js?v=placement1';
 
 // Facade coordinates use a fraction of the photographed frontage horizontally and metres vertically.
 export function buildSurveyExterior(s,{root,mesh,box,mat,decal,maps}){
@@ -43,6 +43,7 @@ export function buildSurveyExterior(s,{root,mesh,box,mat,decal,maps}){
     windowFrame(p,l,r,b,t,z,frame,divisions);
   }
   function door(p,l,r,b,t,z,color){
+    root.userData.entranceHeights??=[];root.userData.entranceHeights.push(t-b);
     windowFrame(p,l,r,b,t,z,color);
     box(p,'DoorPull',r-.12,b+(t-b)*.43,z+.14,.038,.48,.06,0xb9b6a9);
     for(const y of [b+(t-b)*.43-.16,b+(t-b)*.43+.16])box(p,'HandleFixing',r-.12,y,z+.083,.035,.035,.12,steel);
@@ -394,6 +395,6 @@ export function buildSurveyExterior(s,{root,mesh,box,mat,decal,maps}){
   if(s.number===25)hanok();
   if(s.number===43)musicBuilding();
   if(s.number===48)timberShops();
-  root.name=s.id;root.userData={design:s,front:'+Z',unit:'m',photographicElevation:true};
+  root.name=s.id;root.userData={...root.userData,design:s,front:'+Z',unit:'m',photographicElevation:true};
   return root;
 }

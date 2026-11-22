@@ -1,0 +1,57 @@
+import {housingExamples} from '../outputs/domestic-test/grade1-housing-report/encyclopedia.js';
+import {treeProfile} from '../outputs/domestic-test/tree-profiles.js';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {parts,categories} from '../outputs/domestic-test/building-parts/parts.js';
+import {commercialEntries} from '../outputs/domestic-test/sungshin-commercial/designs.js';
+import {assets as buildings} from '../outputs/domestic-test/building-assets/catalog.js';
+import {TREE_SPECIES} from '../outputs/domestic-test/tree-species.js';
+import {koreanVehicleCatalog} from '../outputs/alley-library/korean-vehicles.js';
+import {facilities} from '../outputs/domestic-test/facilities/catalog.js';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../outputs'),base=path.join(root,'domestic-test'),out=path.join(base,'asset-encyclopedia');
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));const entries=[],paths=new Set();
+const url=p=>path.posix.relative('domestic-test/asset-encyclopedia',p);
+function add(e){if(e.file){e.file=path.posix.normalize(e.file);if(!fs.existsSync(path.join(root,e.file)))throw Error('Missing asset '+e.file);if(paths.has(e.file))return;paths.add(e.file);e.file=url(e.file);}entries.push(e);}
+const legacy=read('alley-library/alley-catalog-212.json');
+for(const a of legacy)add({id:'legacy:'+a.id,key:a.id,name:a.name,category:a.category,collection:'초기 골목 소품',kind:'legacy',triangles:a.triangles,note:a.source});
+for(const a of koreanVehicleCatalog)add({id:'korean:'+a.id,key:a.id,name:a.name,category:'차량',collection:'초기 차량 모델',kind:'korean',note:a.source});
+for(const [key,name] of [[0,'분리수거함'],[1,'자전거·거치대'],[2,'실외기'],[3,'꽃 화단'],[4,'배전함'],[6,'동네 게시판']])add({id:'street:'+key,key,name,category:'생활 소품',collection:'최초 생활 소품',kind:'street',link:'../assets.html'});
+const road=read('domestic-test/roadview50/model-meta.json'),lookup=Object.fromEntries(road.map(a=>[a.id,a]));
+for(const a of road)add({id:'road:'+a.id,name:a.name,category:a.category,collection:'로드뷰 참고 소품',kind:'glb',file:'domestic-test/roadview50/'+a.file,triangles:a.triangles,note:a.reason||a.description});
+const reps=read('domestic-test/representatives/manifest.json');
+for(const a of Object.values(reps.assets))if(a.file)add({id:'representative:'+a.id,name:a.name||lookup[a.id]?.name||a.id,category:lookup[a.id]?.category||'생활 소품',collection:'통합 수정본',kind:'glb',file:'domestic-test/representatives/'+a.file,note:a.memoBaked?'사용자 수정 의견 반영':'통합 대표 모델'});
+for(const a of read('domestic-test/memo-131/audit.json'))add({id:'memo:'+a.id,name:a.name,category:lookup[a.id]?.category||'생활 소품',collection:'메모 수정본',kind:'glb',file:'domestic-test/memo-131/'+a.id+'.glb',triangles:a.triangles,note:a.change});
+for(const a of read('domestic-test/vehicle-catalog.json').items)add({id:'vehicle:'+a.id,name:a.name+' · '+a.variant,category:'차량',collection:'차량 등록본',kind:'glb',file:'domestic-test/'+a.model,triangles:a.triangles,note:a.note});
+for(const p of parts)add({id:'part:'+p.id,key:p.id,name:p.name,category:categories.find(c=>c[0]===p.category)[1],collection:'건물 부품',kind:'part',note:p.note,link:'../building-parts/#'+p.id});
+for(const a of buildings)add({id:'building:'+a.id,key:a.id,name:a.name,category:'건물',collection:'건물 교체 모델',kind:'building',note:'지도 윤곽에 맞춰 만드는 외관 모델',link:'../building-assets/'});
+for(const a of facilities)add({id:'facility:'+a.id,key:a.id,name:a.name,category:'시설·매장',collection:'시설 외관',kind:'facility',link:'../first-batch-review/#'+a.id});
+for(const a of TREE_SPECIES)add({id:'tree:'+a.id,key:a.id,name:a.name,category:'나무·식물',collection:'입체 나무',kind:'tree',treeProfile:treeProfile(a.id),note:a.description,link:'../tree-growth.html?species='+a.id});
+const peopleSeasons=read('domestic-test/people/seasons.json').people;
+for(const a of read('domestic-test/people/catalog.json').people)add({seasons:Object.fromEntries(Object.entries(peopleSeasons[a.id].seasons).map(([season,v])=>[season,{file:'../people/'+v.image,elevations:v.elevations.map(t=>({pitch:t.pitch,file:'../people/'+t.image}))}])),id:'person:'+a.id,name:a.name,category:'사람',collection:'사람 빌보드',kind:'image',file:'domestic-test/people/'+a.image,rect:a.frames[0].rect,note:'방향별 원본 이미지 · 높이 '+a.height+'m',link:'../people.html'});
+for(const a of read('domestic-test/vegetation/catalog.json').assets)add({id:'plant:'+a.id,name:a.name,category:'나무·식물',collection:'초기 식물 빌보드',kind:'image',file:'domestic-test/vegetation/'+a.image,rect:a.frames[0].rect,note:'초기 식물 원본 · 전체 이미지에서 각 방향을 확인할 수 있습니다.',link:'../vegetation.html'});
+const shops=read('domestic-test/shops/library/catalog.json');
+for(const a of shops.assets)add({id:'shop:'+a.id,key:a.id,name:a.name,category:'상가 전면',collection:'업종별 상가',kind:'shop',note:(a.productionReferenceId?'제작 요청에 따라 만든 1차도로용 가게. ':'')+'참고 사진의 외형과 만화풍 간판·광고. 실제 깊이의 방과 업종별 박스 가구. 치수와 가려진 부분은 추정입니다.',link:'../storefronts.html',...(a.productionReferenceId?{productionReferenceId:a.productionReferenceId}:{}),...(a.source?.type==='user-provided-approved-image'?{approvedReferenceId:a.source.referenceId}:{})});
+// Register stable junction IDs before the generic archival GLB scan claims their files.
+for(const a of read('domestic-test/junction-assets/manifest.json'))add({id:a.id,name:a.name,category:'도로·안전',collection:'교차로 연결 부품',kind:'glb',file:'domestic-test/junction-assets/'+a.file,triangles:a.triangles,note:'로드뷰 관찰 기반 제작. 치수는 추정. '+a.placement,integration:a.integration});
+add({id:'prototype:barrier-v1',name:'접이식 바리케이드 · 교체안',category:'도로·안전',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/barrier-v1.glb',triangles:1392,note:'road:a72 교체 후보. 검토용이며 동네에는 미적용.',link:'../prop-remakes/'});
+add({id:'prototype:shoe-rack-v1',name:'2단 신발 정리대 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/shoe-rack-v1.glb',triangles:784,note:'road:a165 교체 후보. 단색 프레임과 금속 봉. 동네 미적용.',link:'../prop-remakes/?asset=shoe-rack'});
+for(const [key,name,old,triangles] of [['bus-stop','버스정류장 기둥','a68',492],['manhole','맨홀뚜껑','a75',1368],['security-gate','접이식 방범문','a133',1656],['antenna','옥외 TV 안테나','a156',700],['door-lock','디지털 도어록','a168',1068],['cart','철망 쇼핑카트','a181',1912]])add({id:'prototype:'+key+'-v1',name:name+' · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/'+key+'-v1.glb',triangles,note:'road:'+old+' 교체 후보. 동네 미적용.',link:'../prop-remakes/?asset='+key});
+add({id:'prototype:cone-v1',name:'안전 고깔 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/cone-v1.glb',triangles:636,note:'road:a46 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=cone'});
+add({id:'prototype:ladder-v1',name:'알루미늄 사다리 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/ladder-v1.glb',triangles:576,note:'road:a49 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=ladder'});
+add({id:'prototype:stall-v1',name:'접이식 판매대 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/stall-v1.glb',triangles:364,note:'road:a51 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=stall'});
+add({id:'prototype:basins-v1',name:'포갠 대야 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/basins-v1.glb',triangles:1728,note:'road:a54 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=basins'});
+add({id:'prototype:open-box-v1',name:'열린 골판지상자 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/open-box-v1.glb',triangles:120,note:'road:a58 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=open-box'});
+add({id:'prototype:sink-v1',name:'야외 싱크대 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/sink-v1.glb',triangles:992,note:'road:a81 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=sink'});
+add({id:'prototype:dolly-v1',name:'운반대차 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/dolly-v1.glb',triangles:688,note:'road:a88 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=dolly'});
+add({id:'prototype:drying-rack-v1',name:'빨래건조대 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/drying-rack-v1.glb',triangles:1024,note:'road:a93 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=drying-rack'});
+add({id:'prototype:pallet-v1',name:'목재 팔레트 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/pallet-v1.glb',triangles:240,note:'road:a146 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=pallet'});
+add({id:'prototype:tray-rack-v1',name:'제빵 트레이랙 · 교체안',category:'생활 소품',collection:'교체 검토안',kind:'glb',file:'domestic-test/prop-remakes/tray-rack-v1.glb',triangles:1332,note:'road:a176 개선 후보. 10종 첫 묶음. 동네 미적용.',link:'../prop-remakes/?asset=tray-rack'});
+function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(d=>d.isDirectory()?walk(path.join(dir,d.name)):(d.isFile()||d.isSymbolicLink())&&d.name.endsWith('.glb')?[path.join(dir,d.name)]:[]);}
+const excluded=[];for(const f of walk(base)){const rel=path.relative(root,f).split(path.sep).join('/');if(rel==='domestic-test/corrected-base.glb'){excluded.push(rel);continue;}if(paths.has(rel))continue;add({id:'file:'+rel,name:path.basename(f,'.glb'),category:rel.includes('/vehicles/')||rel.includes('/cars/')?'차량':rel.includes('/apartments/')?'아파트·단지':'기타 모델',collection:'보관 모델·이전 버전',kind:'glb',file:rel,note:'개별 목록에 없는 보관 모델입니다. 파일명을 표시합니다.'});}
+for(const row of [...commercialEntries,...housingExamples])add(row);
+if(new Set(entries.map(e=>e.id)).size!==entries.length)throw Error('Duplicate ID');
+const outputArgument=process.argv.indexOf('--output');
+const destination=outputArgument<0?path.join(out,'catalog.json'):process.argv[outputArgument+1];
+if(!destination)throw Error('--output에 파일 경로가 필요합니다.');
+fs.mkdirSync(path.dirname(destination),{recursive:true});fs.writeFileSync(destination,JSON.stringify({version:1,scope:'현재 프로젝트의 개별 3D 모델과 코드로 만드는 모델, 사람·식물 이미지를 모았습니다. 전체 지도, 연구용 사진, 외부 백업의 중복 파일은 제외합니다. 원본·수정본·색상 변형은 각각 셉니다.',excluded,entries},null,2));console.log(entries.length+' entries; '+paths.size+' asset files');

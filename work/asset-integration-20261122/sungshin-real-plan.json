@@ -1,0 +1,197 @@
+{
+  "scene": "87956683bb5545f2",
+  "input": 45,
+  "candidates": 1,
+  "placed": [
+    {
+      "owner": 1100784389,
+      "assetId": "building:sungshin-34",
+      "ground": 0.21399114733248714,
+      "front": [
+        98.82194630942121,
+        0.21399114733248714,
+        -36.80302604829613
+      ],
+      "height": 5.968087744212735
+    }
+  ],
+  "skipped": [
+    {
+      "owner": 1100763904,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100769571,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100771685,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100771690,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100771691,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100771900,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100772006,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100772007,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100777713,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100784372,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784376,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784377,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784378,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784379,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784380,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784381,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784382,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784383,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784385,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784387,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100784388,
+      "reason": "unsupported-footprint"
+    },
+    {
+      "owner": 1100784390,
+      "reason": "unsupported-footprint"
+    },
+    {
+      "owner": 1100785866,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785867,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785868,
+      "reason": "unsupported-footprint"
+    },
+    {
+      "owner": 1100785869,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785871,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785872,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785874,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785875,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785876,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785878,
+      "reason": "unsupported-footprint"
+    },
+    {
+      "owner": 1100785879,
+      "reason": "sloping-ground"
+    },
+    {
+      "owner": 1100785880,
+      "reason": "unsupported-footprint"
+    },
+    {
+      "owner": 1100785881,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785882,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785883,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785884,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785885,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785886,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785890,
+      "reason": "not-commercial"
+    },
+    {
+      "owner": 1100785892,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785893,
+      "reason": "confirmed-poi-retained"
+    },
+    {
+      "owner": 1100785895,
+      "reason": "confirmed-poi-retained"
+    }
+  ],
+  "rejected": []
+}

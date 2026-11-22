@@ -1,0 +1,18 @@
+성신여대 상가50종 실제 동네 연결 — 2026-11-22
+
+선택: registry.resolve(building:sungshin-XX)로 사용 가능한 등록 모델만 후보로 씁니다. 별도 미리보기 복제본이 아니라 같은 model.js를 불러옵니다.
+위치: 기존 visible360 결과 건물 중 상업/복합 용도, 층수와 크기가 맞는 사각 윤곽에 맞춥니다. 네 모서리는 정확히 원래 지도 윤곽을 유지하며 폭 차이22%·직각 편차 약13도 이내의 완만한 사각만 허용합니다. 비정형/오목/중정 윤곽은 기존 건물을 유지합니다.
+보존: 사용자 모델·연식·외관 팔레트, 주거/특수시설, 확인된 주소별 POI는 덮지 않습니다. 기존 층수는 바꾸지 않습니다. 실제 높이 자료가 아닌 층수×3m 추정 높이에서 문높이 1.9m를 지키기 위해 최대0.35m만 보정하며 차이는 QA에 남깁니다.
+안전: 전체 모델 각 부품의 변환한 정점과 0.35m 이하 간격의 변을 도로·보도·주변 건물과 비교합니다. 정면 높이 차이0.18m/전체0.45m 초과, 연결된 도로 접근 부족은 기존 모델로 유지합니다. 실제 모든 장애물/모든지역 통행 안전을 보장한 검사는 아닙니다.
+표시: 선택 소유자의 일반외벽/점포/부지건물 장식 중복을 제외합니다. 기존 shell은 invisible collider로 보존하여 Three raycasting 기반 걷기와 선택이 유지됩니다. 새모델 owner에서 Shift편집의 원본건물을 찾습니다. 기존 가게선택과 shop URL초점에 연결합니다.
+자원: 회색·선화 전환에서 유리·간판 유지, 재생성할 때 현재/원본재질 및 소유글자CanvasTexture 해제.
+
+검사:
+- tests/sungshin-placement.mjs: 모든50종 후보 및 모델의 실제3m층높이 적용, 문최소높이, 수동/주거/POI/팔레트/삭제 제외, 경사/도로 제외, 원본불변, 회전윤곽, invisible shell raycast, 원본재질해제.
+- tests/sungshin-commercial.mjs 기존50종 형상 및 지하/통과 개구 회귀 통과.
+- tests/sungshin-commercial-interiors.mjs 기존94공간/994가구/시야 검사 통과.
+- tests/shop-expansion.mjs 기존100실배치 선택회귀 통과.
+- tests/sungshin-real-scene.mjs <생성자료폴더>: 실제 저장동네87956683bb5545f2의45동·원래POI·지형·도로/보도에서34번 상가1동 배치. owner1100784389. 이는 실제자료 오프라인검사이며 공개화면 검증은 root가 별도 수행.
+
+연계 보완:
+기존 shop planner는 withFacilityShops 이후 registry로 거릅니다. 일반점포 shop:<id>, 시설참고전면 facility:<id> 공통백과ID를 사용하고 삭제된 exact-reference도 재삽입하지 않습니다. 선택QA에 encyclopediaId를 남깁니다.

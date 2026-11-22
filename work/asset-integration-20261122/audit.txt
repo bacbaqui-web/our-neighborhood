@@ -1,0 +1,66 @@
+다섯 대화의 에셋 연결 점검 — 2026-11-22
+
+검사 범위
+- 제작 목록 → 공통 에셋백과 registry → 실행 경로를 구분해 확인했습니다.
+- 파일 등록·코드 연결 점검입니다. 이 문서는 새 배포나 공개 화면 확인을 대신하지 않습니다.
+- 과거 실험 전체를 제품의 자동 배치 대상으로 승격하지 않았습니다.
+
+확인 결과
+
+1. 1차도로 소품 8종
+- grade1Assets 8종은 raw catalog에 일부가 없더라도 remakes.js가 등록부에 추가합니다. 따라서 실제 백과 누락이 아닙니다.
+- gas-meter-bank, wall-ac, drain-elbow, service-box, stacked-crates, cable-junction, storm-grate: grade1-street/placement.js → registry.resolve → GLB 로드 → 공간 검사 후 배치.
+- security-lamp: streetlights.js → grade1-street/models.js createSecurityLamp. 등기구는 같은 제작 모델과 grade1:security-lamp ID를 사용합니다. 공간별로 크기를 임의 확대하지 않고 팔 길이와 부착 높이를 조정합니다.
+- 발견/수정: 보안등 직접 생성 경로가 백과의 삭제 반영 상태를 무시했습니다. curation의 삭제 상태에서 등기구와 조명 소스를 함께 제외하도록 수정했습니다. 수정 전 회귀검사에서 1개가 남아 실패했고 수정 후 0개로 통과했습니다.
+- 주택·담장 조사 보고서는 원래 보고서 요청 범위입니다. 그 보고서의 규칙이 자동 생성기에 반영됐다는 뜻은 아닙니다.
+
+2. 교차로 부품 12종
+- junction: 12종 모두 현재 백과에 있습니다.
+- junction_generation.py → road-context.js → junction-assets/placement.js로 실제 도로·보도에 연결된 것은 5개 ID입니다: curb-straight, curb-ramp, crossing-stop, edge-corner, tactile-warning.
+- 연석·경사판·표시는 고정 GLB를 늘여 붙이는 것이 아니라 실제 도로 표면에 맞춘 매개변수 형상입니다. 점형 점자블록은 같은 factories 모델을 실제 치수 그대로 배치합니다.
+- curb-corner, tactile-guidance, median-end, turn-guide 및 조립 예시 3종은 참고 전용입니다. 실제 시설·방향·연결 정보 없이 무작위로 놓아서는 안 됩니다.
+- 발견/수정: manifest와 백과 설명이 모두 '자동 동네 배치 미적용'으로 남아 있었습니다. manifest를 5개 실행 연결/7개 참고 전용으로 나눴습니다. catalog 설명 동기화는 주 담당자가 처리합니다.
+- 재발 원인: build-asset-encyclopedia.mjs 원래 코드가 junction manifest를 읽지 않아 재생성 시 junction: 고정 ID가 file: 보관 ID로 바뀝니다. 주 담당자에게 builder 수정 필요를 전달했습니다.
+
+3. 가게 전면
+- shops/library/catalog.json 68개(기존 18개와 추가 alley-01~50)가 모두 shop: 고정 ID로 백과에 있습니다.
+- app.js → planNeighborhoodShops → createNeighborhoodShops → buildStorefront로 실제 적용됩니다. 업종/도로/출입/폭 조건에 따라 제외되므로 한 장면에서 68개 모두 나와야 하는 것은 아닙니다.
+- 별도 제작된 성신여대 완성 건물 50종과 이 50종은 서로 다릅니다.
+- 발견: 기존 선택 경로가 개별 library catalog를 직접 읽고 registry 삭제 상태를 확인하지 않습니다. 주 담당자에게 공통 등록부 연결 보강 필요를 전달했습니다.
+- 재발 원인: 백과 builder가 기존 가게 설명을 '글자 없는 상가 전면 모델'로 덮고 productionReferenceId를 빠뜨립니다. 주 담당자에게 전달했습니다.
+
+4. 성신여대 상가 50종
+- building:sungshin-01~50은 등록돼 있으며 백과 models.js가 실제 외관·간판·실내 모델을 불러옵니다.
+- 점검 시작 시 실제 app.js의 건물 선택 및 생성 경로에는 연결되지 않았습니다. 이것이 실제 누락입니다.
+- 주 담당자가 실제 동네 자동 배치와 모델·충돌·수동 편집 보존 검사를 구현 중입니다. 새 구현의 완료나 공개 확인을 이 문서만으로 주장하지 않습니다.
+
+5. 차량 및 버스 좌석
+- 등록된 차량 31개 모두 vehicle: 고정 ID로 백과에서 resolve됩니다.
+- 현재 main app은 memo-scene.js를 사용합니다. 해당 파일은 공통 registry를 통해 등록/삭제 상태를 검사하고 백과가 선택한 URL을 읽습니다.
+- 오래된 scene-vehicles.js의 직접 catalog 경로를 현재 main 경로로 오인하지 않았습니다.
+- app.js → vehicle-lighting.js가 조명 및 버스 실내 좌석 표현을 적용합니다. 좌석은 독립 새 차량 모델이 아니라 같은 버스 모델의 표현 변경입니다.
+
+최근 추가된 보고서 3D 예시
+- grade1-housing-report/models.js createCaseModel: courtyard, piloti, passage, corner, wall-mix, garage 6종.
+- 점검 시작 시 백과에 없었습니다. 코드와 조정 가능한 3D 형상이 있으므로 단순한 스크린샷이 아닙니다.
+- 사진 관찰을 설명하는 조립 예시이며 실측 건물이나 자동 배치 검증 모델이 아닙니다. '참고·조립 예시 / 자동배치 제외' 상태로 백과에 연결할 필요를 주 담당자에게 전달했습니다.
+
+검사
+- node --no-warnings tests/asset-integration-audit.mjs
+  grade1 8 / junction 12 / shop 68 / sungshin 50 / vehicle 31의 등록 ID·파일 존재 확인. 삭제 반영으로 제외된 대상 0. junction 실행/참고 상태와 경로 확인.
+- node --no-warnings --loader ./tests/three-loader.mjs tests/streetlights-registry.mjs
+  백과 삭제 상태가 보안등 등기구와 광원에 함께 적용되는지 확인. 실패 재현 후 통과.
+- node --no-warnings --loader ./tests/three-loader.mjs tests/streetlights-empty.mjs
+  빈 조명 계획 렌더·정리 통과.
+
+해석 주의
+- 등록과 자동 배치는 같은 뜻이 아닙니다. 자동 배치는 사용 조건과 실제 생성 결과가 있어야 확인됩니다.
+- 백과 builder를 다시 실행한 뒤 고정 ID 재고 검사를 해야 '만들었다가 재생성하면서 사라지는' 문제를 막을 수 있습니다.
+- 다른 진행 중 변경, 오래된 실험 파일, 이미 승인되지 않은 교체 후보를 이번 검사만 근거로 배포하거나 활성화하지 않습니다.
+
+통합 구현 확인
+- 성신50: 공통 registry 후보 → 기존 지도 윤곽에 변환 → 지형·출입·도로·인접 건물 검사 → 실제 app 장면 생성으로 연결했습니다. 실제45동 저장자료에서34번1동을 선택했고 로컬 브라우저 화면에서도 확인했습니다. 공개 배포 검증은 별도 completion.json에 남깁니다.
+- 가게68: 일반점포 shop ID와 시설 참고전면 facility ID를 공통 등록부로 확인하고 제외 상태를 따릅니다.
+- 주택 보고서6종: 같은 createCaseModel 생성기를 백과에 연결했습니다. 자동 배치 대상이 아닌 참고 예시입니다.
+- 백과 builder는 교차로12 고정ID와 가게 제작·승인 근거를 보존합니다. 재생성 전후 검사와 등록 검사를 빌드 차단 조건으로 추가했습니다.
+- 지침은 docs/project-guidelines.txt 4·8·11절로 유지합니다. AGENTS는 진입 안내만 두고, 과거 asset-authority-and-generation 문서는 과거 기록임을 표시했습니다. 새 제작물의 고정ID 등록·미리보기·실제 연결·검사·배포·공개 확인을 완료 기준으로 명시했습니다.

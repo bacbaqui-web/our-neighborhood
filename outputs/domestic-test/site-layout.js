@@ -1,4 +1,4 @@
-import {prepareRulesLayout,renderRulesLayout,installRulesTour} from './site-layout27.js?v=grounds1';
+import {prepareRulesLayout,renderRulesLayout,installRulesTour} from './site-layout27.js?v=sungshin1';
 import {roadVehicle} from './memo-scene.js?v=151';
 import * as T from 'three';
 import {createInfill} from './site-layout-models/infill-models.js?v=view3c';
@@ -17,9 +17,9 @@ export function prepareSiteLayout(packageData,specs,meshes,elevation,radius=150)
  if(!packageData?.plots?.buildings?.length)return null;
  const plans=new Map(packageData.plots.buildings.map(b=>[Number(b.id),b])),pm=new Map(packageData.piloti.plans.map(p=>[p.id,p])),gm=new Map(packageData.groundFloors.plans.map(p=>[p.id,p]));
  // Keep mapped facilities, apartments and existing shop designs authoritative.
- const owners=new Set(specs.filter(b=>plans.has(b.seed)&&!b.facility&&!b.apartment&&!b.arterialKiosk&&!b.arterialFacades?.length&&!b.storefronts?.length).map(b=>b.seed));
+ const owners=new Set(specs.filter(b=>plans.has(b.seed)&&!b.sungshinCommercial&&!b.facility&&!b.apartment&&!b.arterialKiosk&&!b.arterialFacades?.length&&!b.storefronts?.length).map(b=>b.seed));
  const merged=packageData.plots.qa.mergedBuildings||[];
- for(const m of merged){const source=specs.find(b=>b.seed===m.source);if(source&&(source.facility||source.storefronts?.length))owners.delete(m.target);}
+ for(const m of merged){const source=specs.find(b=>b.seed===m.source);if(source&&(source.sungshinCommercial||source.facility||source.storefronts?.length))owners.delete(m.target);}
  const removed=new Set(merged.filter(m=>owners.has(m.target)).map(m=>m.source));
  for(let i=specs.length-1;i>=0;i--)if(removed.has(specs[i].seed))specs.splice(i,1);
  for(let i=meshes.length-1;i>=0;i--)if(removed.has(Number(meshes[i].userData.objectid))){meshes[i].removeFromParent();meshes.splice(i,1);}

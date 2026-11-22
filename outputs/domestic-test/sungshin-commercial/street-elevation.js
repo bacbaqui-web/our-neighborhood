@@ -73,6 +73,7 @@ export function buildStreetElevation(s,e,k){
       const end=start+b.width,x0=start*width,x1=end*width,mid=(x0+x1)/2,bw=x1-x0;
       const margin=Math.min(.10,bw*.07),l=x0+margin,r=x1-margin;
       const top=b.head??2.49,sill=b.sill??.16,kind=b.kind;
+      if(kind!=='wall'&&kind!=='bars'&&kind!=='blind'){root.userData.entranceHeights??=[];root.userData.entranceHeights.push(top-(['door','greenDoor','gridDoor','recessDoor','fold','drive','passage','stair','stairDoor'].includes(kind)?0.09:sill));}
       horizontal(p,x0,x1,top,ground,-.075,.24,trim,'Fascia');
       if(kind==='wall'){horizontal(p,x0,x1,0,top,-.075,.24,trim,'SolidShopWall');start=end;continue;}
       horizontal(p,x0,l,0,top,-.07,.24,trim,'ShopPier');horizontal(p,r,x1,0,top,-.07,.24,trim,'ShopPier');

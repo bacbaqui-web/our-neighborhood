@@ -21,7 +21,7 @@ import {createHybridTrees,loadCanopyTexture} from './hybrid-tree.js';
 import {makeLivingAsset} from './apartments/garden/living-models.js';
 import {polygons,contains,shapeOf,distanceTo,snapshotHeight,subtractRectangle,drapeGeometry,createSurface} from './site-layout27-geometry.js?v=grounds1';
 const mat=c=>new T.MeshStandardMaterial({color:c,roughness:1,side:T.DoubleSide});
-const eligible=b=>!b.facility&&!b.apartment&&!b.arterialKiosk&&!b.arterialFacades?.length&&!b.storefronts?.length;
+const eligible=b=>!b.sungshinCommercial&&!b.facility&&!b.apartment&&!b.arterialKiosk&&!b.arterialFacades?.length&&!b.storefronts?.length;
 const pointOf=p=>p.point||p.origin||p.center||(p.a&&p.b?[(p.a[0]+p.b[0])/2,(p.a[1]+p.b[1])/2]:null);
 const cellsFor=(plans)=>{const cells=new Map();for(const p of plans){const pts=polygons(p.plot).flat(2),xs=pts.map(p=>p[0]),zs=pts.map(p=>p[1]);for(let x=Math.floor(Math.min(...xs)/10);x<=Math.floor(Math.max(...xs)/10);x++)for(let z=Math.floor(Math.min(...zs)/10);z<=Math.floor(Math.max(...zs)/10);z++){const k=x+','+z;if(!cells.has(k))cells.set(k,[]);cells.get(k).push(p);}}return (x,z)=>cells.get(Math.floor(x/10)+','+Math.floor(z/10))||[];};
 function ownersFor(pkg,specs){const ids=new Set(pkg.scene.plans.map(p=>p.id));return new Set(specs.filter(b=>ids.has(b.seed)&&eligible(b)).map(b=>b.seed));}

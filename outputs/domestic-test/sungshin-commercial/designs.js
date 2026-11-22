@@ -254,5 +254,6 @@ export const designs=[
 
 export const commercialEntries=designs.map(s=>({
  id:'building:'+s.id,key:s.id,name:s.name,category:'건물',collection:'성신여대 상권',kind:'building',pack:'sungshin-commercial',
+ modelSource:'../sungshin-commercial/model.js',placement:{"status": "automatic-conditional", "automatic": true, "generator": "outputs/domestic-test/sungshin-commercial/placement.js", "conditions": "상업·주상복합 용도, 같은 층수, 호환되는 사각 윤곽과 크기, 완만한 지형, 출입구와 도로 접근 확보. 실제 상호 및 수동 외관 지정 우선."},
  note:'참고 사진 '+s.photos.join('·')+' · '+(s.observation??s.name)+' · 외관 관찰을 바탕으로 재구성했습니다. 보이는 면을 모델로 옮겼으며 형상·인쇄물·치수와 가려진 면은 제작 추정입니다.'
 }));

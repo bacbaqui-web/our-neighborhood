@@ -41,7 +41,12 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "자동 생성 연결: parametric-curb; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+    "integration": {
+      "mode": "parametric-curb",
+      "generator": "work/junction_generation.py",
+      "renderer": "outputs/domestic-test/junction-assets/placement.js"
+    }
   },
   {
     "id": "junction:curb-corner",
@@ -86,7 +91,11 @@
     ],
     "radius": 1.5,
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:curb-ramp",
@@ -133,7 +142,12 @@
     "roadLip": 0.015,
     "clearWidth": 2.4,
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "자동 생성 연결: parametric-ramp; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+    "integration": {
+      "mode": "parametric-ramp",
+      "generator": "work/junction_generation.py",
+      "renderer": "outputs/domestic-test/junction-assets/placement.js"
+    }
   },
   {
     "id": "junction:tactile-warning",
@@ -177,7 +191,12 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "자동 생성 연결: fixed-dimension-warning-block; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+    "integration": {
+      "mode": "fixed-dimension-warning-block",
+      "generator": "work/junction_generation.py",
+      "renderer": "outputs/domestic-test/junction-assets/placement.js"
+    }
   },
   {
     "id": "junction:tactile-guidance",
@@ -221,7 +240,11 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:crossing-stop",
@@ -268,7 +291,12 @@
     "traffic": "+Z on x>0; mirror only with traffic mapping",
     "stopLineZ": -2.4,
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "자동 생성 연결: parametric-crossing; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+    "integration": {
+      "mode": "parametric-crossing",
+      "generator": "work/junction_generation.py",
+      "renderer": "outputs/domestic-test/junction-assets/placement.js"
+    }
   },
   {
     "id": "junction:median-end",
@@ -305,7 +333,11 @@
     ],
     "closedEndZ": -2.13,
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:edge-corner",
@@ -349,7 +381,12 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "자동 생성 연결: parametric-edge-mark; 실제 도로·보도 형상과 공간 조건을 검사하며 고정 GLB를 늘여 붙이지 않습니다.",
+    "integration": {
+      "mode": "parametric-edge-mark",
+      "generator": "work/junction_generation.py",
+      "renderer": "outputs/domestic-test/junction-assets/placement.js"
+    }
   },
   {
     "id": "junction:turn-guide",
@@ -394,7 +431,11 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:junction-alley-main",
@@ -465,7 +506,11 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:junction-small-t",
@@ -536,7 +581,11 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   },
   {
     "id": "junction:junction-crossroads",
@@ -651,6 +700,10 @@
       }
     ],
     "authorization": "2026-11-22 user explicitly requested assets based on collected 200 photos; no individual image approval event fabricated",
-    "placement": "asset library only; not auto-generated in neighborhoods"
+    "placement": "백과 참고·조립 예시 전용. 실제 통행·시설 정보와 연결 조건이 별도로 확인되기 전 자동 배치하지 않습니다.",
+    "integration": {
+      "mode": "reference-only",
+      "reason": "정형 조립 예시 또는 별도 실제 시설·연결 정보가 필요한 부품"
+    }
   }
 ]

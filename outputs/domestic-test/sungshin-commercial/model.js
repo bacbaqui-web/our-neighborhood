@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {designs} from './designs.js';
-import {buildSurveyExterior} from './survey-models.js';
+import {buildSurveyExterior} from './survey-models.js?v=placement1';
 import {prepareCommercialInteriors,addCommercialInteriors} from './interiors.js';
 import {createSignLettering} from './sign-lettering.js';
 
@@ -62,7 +62,8 @@ export function buildCommercial(s,maps={}){
     const geometries=new Set(),ownedMaterials=new Set(),letteringTextures=new Set();
     result.traverse(object=>{
       if(object.geometry)geometries.add(object.geometry);
-      for(const material of Array.isArray(object.material)?object.material:object.material?[object.material]:[]){
+      const current=Array.isArray(object.material)?object.material:object.material?[object.material]:[],original=Array.isArray(object._originalMaterial)?object._originalMaterial:object._originalMaterial?[object._originalMaterial]:[];
+      for(const material of [...current,...original]){
         ownedMaterials.add(material);
         if(material.map?.userData.sungshinLettering)letteringTextures.add(material.map);
       }

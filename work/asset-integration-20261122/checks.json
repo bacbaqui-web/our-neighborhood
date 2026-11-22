@@ -1,0 +1,97 @@
+[
+  {
+    "command": "node scripts/check-loading.mjs",
+    "code": 0,
+    "output": "Loading checks passed: CDN compression, complete GLB, retries, subpath URLs.\n"
+  },
+  {
+    "command": "node tests/browser-generation.mjs",
+    "code": 0,
+    "output": "Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.\n"
+  },
+  {
+    "command": "node tests/vworld-browser.mjs",
+    "code": 0,
+    "output": "VWorld browser: bounds, geometry, floors, pagination, deduplication, errors and cancellation passed.\n"
+  },
+  {
+    "command": "node tests/visible-horizon.mjs",
+    "code": 0,
+    "output": "Visibility: far/tall/thin buildings, occlusion, 300 buildings, frontier uniqueness and outward queries passed\n"
+  },
+  {
+    "command": "node tests/visible-horizon-worker.mjs",
+    "code": 0,
+    "output": "Worker transport, initial geometry, explicit source failure and cancellation passed\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/street-end-context.mjs",
+    "code": 0,
+    "output": "Street-end context: real footprints, courtyard holes, duplicate owners, terrain contacts, lighting material and budget passed.\nForeground overlap stays above the real surface; context is disposed with the scene.\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/scene-budget.mjs",
+    "code": 0,
+    "output": "{\"passed\":true,\"fullTriangles\":6760,\"distantTriangles\":302}\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/circular-background.mjs",
+    "code": 0,
+    "output": "{\"passed\":true,\"area\":7850.82785722363,\"expectedArea\":7853.981633974483,\"contextBuildings\":23975,\"day\":0,\"night\":1,\"windowGeometry\":0}\nCrossing buildings, background deduplication, continuous ground, and shadow receivers passed.\nOuter road ribbons and original paving materials preserved.\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/full-detail.mjs",
+    "code": 0,
+    "output": "Full detail and textured vehicle visibility passed\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/shop-interiors.mjs",
+    "code": 0,
+    "output": "68 shop interiors: recessed rooms, textured cuboid furniture, daytime lighting, exact 21–22h shutdown and 24h convenience stores verified.\nActual neighborhood shop placement keeps all 68 rooms, switches emissions and spill sources, and preserves other trade glazing.\nReal host wall aperture cut and all furniture positions behind the facade verified.\nCuboid chair supports reach the floor and grayscale mode retains furniture textures.\nThree modeled facades retain geometric walls/frames/doors, comic decal maps and open views into actual rooms.\n65 reference-matched facades: generated artwork paths/UV/materials, grayscale maps and real interiors verified.\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/shop-expansion.mjs",
+    "code": 0,
+    "output": "50 real-source facades; 6 pasted-reference identities; all furniture bounded at shallow/deep rooms; 100 actual placements; stable diverse random selection; manual/residential/known-POI protection verified.\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/sungshin-commercial.mjs",
+    "code": 0,
+    "output": "0,\n    \"prints\": 16\n  },\n  {\n    \"id\": \"sungshin-30\",\n    \"triangles\": 3896,\n    \"materials\": 29,\n    \"prints\": 2\n  },\n  {\n    \"id\": \"sungshin-31\",\n    \"triangles\": 3314,\n    \"materials\": 21,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-32\",\n    \"triangles\": 1036,\n    \"materials\": 22,\n    \"prints\": 3\n  },\n  {\n    \"id\": \"sungshin-33\",\n    \"triangles\": 3574,\n    \"materials\": 29,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-34\",\n    \"triangles\": 2486,\n    \"materials\": 22,\n    \"prints\": 2\n  },\n  {\n    \"id\": \"sungshin-35\",\n    \"triangles\": 1532,\n    \"materials\": 31,\n    \"prints\": 2\n  },\n  {\n    \"id\": \"sungshin-36\",\n    \"triangles\": 1648,\n    \"materials\": 15,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-37\",\n    \"triangles\": 1064,\n    \"materials\": 20,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-38\",\n    \"triangles\": 1468,\n    \"materials\": 26,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-39\",\n    \"triangles\": 1746,\n    \"materials\": 27,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-40\",\n    \"triangles\": 5188,\n    \"materials\": 20,\n    \"prints\": 2\n  },\n  {\n    \"id\": \"sungshin-41\",\n    \"triangles\": 2458,\n    \"materials\": 29,\n    \"prints\": 4\n  },\n  {\n    \"id\": \"sungshin-42\",\n    \"triangles\": 2470,\n    \"materials\": 21,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-43\",\n    \"triangles\": 1996,\n    \"materials\": 44,\n    \"prints\": 8\n  },\n  {\n    \"id\": \"sungshin-44\",\n    \"triangles\": 2990,\n    \"materials\": 33,\n    \"prints\": 2\n  },\n  {\n    \"id\": \"sungshin-45\",\n    \"triangles\": 1592,\n    \"materials\": 21,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-46\",\n    \"triangles\": 1466,\n    \"materials\": 20,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-47\",\n    \"triangles\": 5450,\n    \"materials\": 21,\n    \"prints\": 3\n  },\n  {\n    \"id\": \"sungshin-48\",\n    \"triangles\": 4630,\n    \"materials\": 53,\n    \"prints\": 5\n  },\n  {\n    \"id\": \"sungshin-49\",\n    \"triangles\": 1622,\n    \"materials\": 20,\n    \"prints\": 1\n  },\n  {\n    \"id\": \"sungshin-50\",\n    \"triangles\": 3661,\n    \"materials\": 30,\n    \"prints\": 4\n  }\n]\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/sungshin-commercial-interiors.mjs",
+    "code": 0,
+    "output": "상가 50종, 실내 94곳, 가구 구성 박스 994개, 외부 시야 검사 통과\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/sungshin-lettering.mjs",
+    "code": 0,
+    "output": "65개 간판 디자인, 가로·정사각·세로 판형과 비균등 글자 확대 방지 검사 통과\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/asset-integration-audit.mjs",
+    "code": 0,
+    "output": "{\n  \"registered\": {\n    \"grade1\": 8,\n    \"junction\": 12,\n    \"shops\": 68,\n    \"sungshin\": 50,\n    \"vehicles\": 31\n  },\n  \"curationExcluded\": [],\n  \"note\": \"등록·파일 연결 검사입니다. 자동배치 동작 및 공개 화면 증거를 대신하지 않습니다.\"\n}\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/asset-catalog-rebuild.mjs",
+    "code": 0,
+    "output": "백과 재생성 후 고정 ID·제작 근거·모델 연결·예시 상태 유지 검사 통과\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/housing-encyclopedia.mjs",
+    "code": 0,
+    "output": "주택·담장 예시 6종: 백과 ID, 설명용 상태, 실제 미리보기 생성 검사 통과\n"
+  },
+  {
+    "command": "node --no-warnings --loader ./tests/three-loader.mjs tests/streetlights-registry.mjs",
+    "code": 0,
+    "output": "Security lamp registry exclusion removes fixture and light sources together.\n"
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_generation_scope.py",
+    "code": 0,
+    "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+  }
+]

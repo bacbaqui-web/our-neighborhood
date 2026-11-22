@@ -6334,5 +6334,23 @@
       "Forced WebGL failure was not exercised",
       "Source repository secondary Pages deployment 44986552556 failed to discover freshly uploaded artifact; canonical hosting deployment 44986590187 succeeded"
     ]
+  },
+  "assetIntegration20261122": {
+    "status": "implemented-awaiting-public-verification",
+    "scope": [
+      "sungshin-commercial-50 automatic placement through encyclopedia IDs",
+      "shop registry deletion policy",
+      "security-lamp registry deletion policy",
+      "housing-report 6 reference examples",
+      "catalog rebuild stable IDs and production references"
+    ],
+    "guidelines": "docs/project-guidelines.txt sections 4, 8, 11",
+    "audit": "work/asset-integration-20261122/audit.txt",
+    "placement": "outputs/domestic-test/sungshin-commercial/placement.js",
+    "limits": [
+      "Actual POI and manual edits take priority",
+      "Only compatible footprint, floor count, frontage, ground and road access are eligible",
+      "Junction 7 reference examples and housing 6 examples are reference-only"
+    ]
   }
 }

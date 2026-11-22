@@ -18,6 +18,7 @@ export async function createModel(a,options={}){
   if(!source)throw Error('보관 묶음에서 모델을 찾지 못했습니다: '+a.name);
   const copy=source.clone(true);copy.position.set(0,0,0);copy.traverse(o=>{if(o.geometry)o.geometry=o.geometry.clone();if(o.material)o.material=Array.isArray(o.material)?o.material.map(m=>m.clone()):o.material.clone();});return copy;
  }
+ if(a.kind==='part'&&a.pack==='grade1-housing-report'){const {createCaseModel}=await import('../grade1-housing-report/models.js');return createCaseModel(a.key).root;}
  if(a.kind==='part'){const m=await import('../building-parts/parts.js?v=yard22');const p=m.parts.find(p=>p.id===a.key);if(p.category==='gardens')await(await import('../perimeter-garden.js?v=garden21')).preparePerimeterGardens();if(p.category==='courtyards')await(await import('../road-facing-courtyard.js?v=yard22')).prepareCourtyards();return p.make();}
  if(a.kind==='building'&&a.pack==='sungshin-commercial')return(await import('../sungshin-commercial/model.js?v=interior-signs1')).loadCommercialBuilding(a.key);
  if(a.kind==='building'){await prepareBuildingIdentity();const m=await import('../building-assets/model.js?v=replacements3');const c=await import('../building-assets/catalog.js');return m.previewModel(c.assetById[a.key]);}

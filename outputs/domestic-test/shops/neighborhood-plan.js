@@ -22,8 +22,10 @@ export function categoryFor(p){
 }
 export function shopLocal(p,x,z){const dx=x-p.position[0],dz=z-p.position[2];return [dx*p.n[1]-dz*p.n[0],dx*p.n[0]+dz*p.n[1]];}
 export function inShopApproach(plans,x,z,pad=0){return plans.some(p=>{const [u,v]=shopLocal(p,x,z);return Math.abs(u)<p.width/2+.25+pad&&v>-.1-pad&&v<p.accessDepth+pad;});}
-export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roadInfo,arterial}){
+export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roadInfo,arterial,registry}){
  catalog=withFacilityShops(catalog);
+ const encyclopediaId=a=>a.referenceOnly&&a.facilityId?'facility:'+a.facilityId:'shop:'+a.id;
+ if(registry)catalog={...catalog,assets:catalog.assets.filter(a=>registry.resolve(encyclopediaId(a)))};
  buildings=buildings.filter(b=>!b.facility);
  const placements=[],skipped=[],byOwner=new Map(),seen=new Set();
  const candidates=[...places,...inferredAlleyPlaces(buildings,places)].map(place=>({place,category:place.inferredShop?'alley':referenceShop(place)?.category||categoryFor(place),exact:catalog.assets.find(s=>s.source?.placeId&&String(s.source.placeId)===String(place.id))||referenceShop(place)})).sort((a,b)=>Number(!!b.exact)-Number(!!a.exact)||String(a.place.id).localeCompare(String(b.place.id)));
@@ -31,6 +33,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   let category=initialCategory;
   const skip=reason=>skipped.push({id:place.id,name:place.place_name,reason});
   if(!category){skip('unsupported-category');continue;}
+  if(exact&&registry&&!registry.resolve(encyclopediaId(exact))){skip('encyclopedia-unavailable');continue;}
   if(seen.has(place.id))continue;seen.add(place.id);
   const xy=place.localXY||xz([Number(place.x),Number(place.y)]),address=place.road_address_name;
   const matches=buildings.filter(b=>place.inferredShop?b.seed===place.alleyOwner:sameRoadAddress(address,b.address));
@@ -93,7 +96,7 @@ export function planNeighborhoodShops(buildings,places,catalog,{xz,elevation,roa
   let depth=0;
   for(let d=.1;d<=3.21;d+=.1){let fits=true;for(let k=0;k<=8;k++){const x=(-.5+k/8)*(spec.width-.16)*chosen.scale[0],pt=[chosen.position[0]+u[0]*x-chosen.n[0]*d,chosen.position[2]+u[1]*x-chosen.n[1]*d];if(!inside(pt,host.points)||(host.holePoints||[]).some(h=>inside(pt,h))){fits=false;break;}}if(!fits)break;depth=d;}
   spec.interiorDepth=Math.max(0,depth-.08);
-  chosen.spec=spec;
+  chosen.spec=spec;chosen.encyclopediaId=encyclopediaId(spec);
   const hours=scheduleFor({...spec,id:String(place.id)});hours.alwaysOpen=category==='convenience';chosen.hours=hours;
   b.storefronts??=[];b.storefronts.push(chosen);placements.push(chosen);byOwner.set(b.seed,count+1);
  }

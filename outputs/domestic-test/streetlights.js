@@ -1,6 +1,7 @@
 import {visibleObject} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
 import {createSecurityLamp} from './grade1-street/models.js';
+import {isDeleted} from './asset-encyclopedia/curation.js';
 import {fitSupportBase} from './support-geometry.js?v=151';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
 import {windowIsLit} from './environment-policy.js?v=151';
@@ -8,7 +9,7 @@ import {windowIsLit} from './environment-policy.js?v=151';
 export function createStreetlights(plan,elevation,roadInfo,renderer,windows=[],surface=elevation,utilityPlan=null){
  if(utilityPlan)plan={...plan,lights:[...plan.lights.filter(l=>l.type!=='pole'),...utilityPlan.poles.filter(p=>p.lamp).map(p=>({id:'utility-lamp-'+p.id,type:'pole',root:[p.x,elevation(p.x,p.z),p.z],direction:[-p.nx,-p.nz],height:5.4,reach:1.1,variant:0,intensity:95}))]};
  // Mounted fixtures keep their mounting height; freestanding lights use finished paving.
- plan={...plan,lights:plan.lights.map(l=>({...l,root:[l.root[0],l.type==='arterial'?surface(l.root[0],l.root[2]):l.type==='pole'?elevation(l.root[0],l.root[2]):l.root[1],l.root[2]]})).filter(l=>visibleObject(l.root[0],l.root[2],l.height,Math.max(.5,l.reach||0),l.root[1],false))};
+ plan={...plan,lights:plan.lights.map(l=>({...l,root:[l.root[0],l.type==='arterial'?surface(l.root[0],l.root[2]):l.type==='pole'?elevation(l.root[0],l.root[2]):l.root[1],l.root[2]]})).filter(l=>(l.type==='transit'||!isDeleted('grade1:security-lamp'))&&visibleObject(l.root[0],l.root[2],l.height,Math.max(.5,l.reach||0),l.root[1],false))};
  const group=new T.Group();group.name='AlleySecurityLights';const bucket=new Map(),lenses=[],heads=[],halos=[],pools=[];
  function add(geo,color){if(!bucket.has(color))bucket.set(color,[]);bucket.get(color).push(geo);}
  function box(x,y,z,w,h,d,angle,color,grounded=false){const g=new T.BoxGeometry(w,h,d);g.rotateY(angle);g.translate(x,y,z);if(grounded)fitSupportBase(g,surface);add(g,color);}

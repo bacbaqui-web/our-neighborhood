@@ -62,7 +62,7 @@ float busBox(vec3 origin,vec3 direction,vec3 center,vec3 halfSize){
  float busGlass=smoothstep(.025,.065,busLuma)*(1.0-smoothstep(.25,.4,busLuma));
  busGlass*=step(busTex.r*1.02,busTex.b)*step(busTex.b,busTex.r*2.1)*step(busTex.r*.98,busTex.g);
  float busWindow=busGlass*min(1.0,busSide+busRear+busFront*.08);
- if(busWindow>.01&&busCabinStrength>.001){
+ if(busWindow>.01){
   vec3 busEye=(busWorldToLocal*vec4(cameraPosition,1.0)).xyz;
   vec3 busRay=normalize(busCabinPosition-busEye),busOrigin=busCabinPosition+busRay*.035;
   // The far wall and ceiling stay dim; warm ceiling light does not fill
@@ -83,12 +83,16 @@ float busBox(vec3 origin,vec3 direction,vec3 center,vec3 halfSize){
    }
   }
   // Existing reflections remain faintly visible over the cabin silhouette.
+  // Daytime seats receive scene light through tinted glass; only the night
+  // cabin adds emission. Keep some original glass reflection in both states.
+  float busDay=1.0-clamp(busCabinStrength/.75,0.0,1.0);
+  diffuseColor.rgb=mix(diffuseColor.rgb,busInterior*.65,busWindow*.8*busDay);
   totalEmissiveRadiance+=busInterior*busWindow*busCabinStrength;
  }
 
 #endif`);
   };
-  material.customProgramCacheKey=()=>key()+'-bus-cabin-v2';
+  material.customProgramCacheKey=()=>key()+'-bus-cabin-v3';
   const displayed=mesh.material;mesh.material=material;if(mesh._originalMaterial===original)mesh._originalMaterial=material;
   entries.push({mesh,original,displayed,material});
  }

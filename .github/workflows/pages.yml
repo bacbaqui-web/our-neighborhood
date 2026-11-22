@@ -55,6 +55,23 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+          name: github-pages-${{ github.run_attempt }}
+      - name: Wait for uploaded Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOY_REPOSITORY: ${{ github.repository }}
+          DEPLOY_RUN_ID: ${{ github.run_id }}
+          DEPLOY_ARTIFACT: github-pages-${{ github.run_attempt }}
+        run: |
+          for attempt in $(seq 1 12); do
+            count=$(gh api "repos/$DEPLOY_REPOSITORY/actions/runs/$DEPLOY_RUN_ID/artifacts" --jq "[.artifacts[] | select(.name == \"$DEPLOY_ARTIFACT\" and .expired == false)] | length")
+            if [ "$count" -eq 1 ]; then exit 0; fi
+            sleep 5
+          done
+          echo "Pages artifact is not yet visible to the deployment API."
+          exit 1
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}

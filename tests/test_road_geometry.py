@@ -51,4 +51,15 @@ class Geometry(unittest.TestCase):
   self.assertAlmostEqual(width_at(rs[1],0),13.5);self.assertAlmostEqual(width_at(rs[1],30),19.9)
   a,b=map(pavement,rs);self.assertTrue(a.union(b).covers(LineString([[-40,0],[40,0]])))
   self.assertLess(b.intersection(box(0,-20,.01,20)).area,.14)
+ def test_measured_width_survives_grade_changes_and_regeneration(self):
+  rs=[road([[-50,-5],[50,-5]]),road([[50,5],[-50,5]])]
+  for r in rs:r['properties']['width']='9 m'
+  classify_roads(rs,{})
+  classify_roads(rs,{r['editId']:{'grade':4} for r in rs})
+  self.assertEqual([r['width'] for r in rs],[9,9])
+  self.assertTrue(all(r['widthSource']=='source-width' for r in rs))
+  from scene_edits import measured_width
+  self.assertAlmostEqual(measured_width({'width':'30 ft'}),9.144)
+  for bad in ['unknown',-1,'9;12']:
+   with self.assertRaises(ValueError):measured_width({'width':bad})
 if __name__=='__main__':unittest.main()

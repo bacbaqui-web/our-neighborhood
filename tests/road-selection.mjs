@@ -6,9 +6,19 @@ assert.deepEqual(m.groups,[['a','b']]);assert.deepEqual(m.grades,{},'Grouping mu
 m.select('c');m.select('a',true);assert.equal(m.selected.size,3);m.select('b',true);assert.deepEqual([...m.selected],['c']);
 m.select('a');m.setGrade(2);assert.deepEqual(m.grades,{a:{grade:2},b:{grade:2}});
 const saved=JSON.parse(JSON.stringify(m.snapshot()));const restored=createRoadSelection(roads,saved);restored.select('b');assert.equal(restored.selected.size,2);restored.ungroup();assert.deepEqual(restored.groups,[]);assert.equal(restored.grade,2);assert.deepEqual(saved.roadGroups,[['a','b']]);
-const mixed=createRoadSelection(roads,{roads:{a:{grade:2}}});mixed.selectMany(['a','b']);assert.throws(()=>mixed.group(),/등급/);mixed.setGrade(3);mixed.group();mixed.selectMany(['a','offscreen']);mixed.setGrade(4);mixed.group();assert.equal(mixed.groups[0].length,3);mixed.reset();assert.deepEqual(mixed.snapshot(),{roads:{},roadGroups:[]});
+const mixed=createRoadSelection(roads,{roads:{a:{grade:2}}});mixed.selectMany(['a','b']);mixed.group();assert.equal(mixed.grade,2);mixed.setGrade(3);mixed.group();mixed.selectMany(['a','offscreen']);mixed.setGrade(4);mixed.group();assert.equal(mixed.groups[0].length,3);mixed.reset();assert.deepEqual(mixed.snapshot(),{roads:{},roadGroups:[],roadGroupingVersion:2});
 assert.throws(()=>createRoadSelection(roads,{roadGroups:[['a','missing']]}));
 assert.throws(()=>createRoadSelection(roads,{roadGroups:[['a','b'],['b','c']]}));
 console.log('Road selection: additive toggle, persistent grouping, batch grades, offscreen member, unlink/reset, mixed grades and invalid input passed.');
 const pedestrian=createRoadSelection([{editId:'walk',grade:0}]);pedestrian.select('walk');pedestrian.setGrade(2);assert.equal(pedestrian.canRestorePedestrian,true);pedestrian.setGrade(0);assert.equal(pedestrian.grade,0);assert.deepEqual(pedestrian.grades,{});
 const reverted=createRoadSelection(roads);reverted.select('a');reverted.setGrade(2);reverted.setGrade(1);assert.deepEqual(reverted.grades,{},'Reverting a draft must not convert inferred grades into overrides');
+
+const {automaticRoadGroups}=await import('../outputs/domestic-test/building-assets/road-corridors.js');
+const road=(id,ps,props={})=>({editId:id,grade:4,geometry:{type:'LineString',coordinates:ps},properties:{class:'primary',oneway:1,name:'큰길',...props}});
+const corridor=[road('a',[[-60,-5],[0,-5]]),road('b',[[0,-5],[60,-5]]),road('c',[[60,5],[0,5]]),road('d',[[0,5],[-60,5]]),road('side',[[0,-5],[0,-50]],{class:'minor',name:'골목',oneway:0})];
+assert.deepEqual(automaticRoadGroups(corridor),[['a','b','c','d']]);
+const auto=createRoadSelection(corridor);auto.select('c');assert.equal(auto.selected.size,4);auto.setGrade(3);assert.equal(Object.keys(auto.grades).length,4);auto.ungroup();const reopen=createRoadSelection(corridor,auto.snapshot());reopen.select('a');assert.equal(reopen.selected.size,1,'Explicit ungroup must survive reopening');
+assert.deepEqual(automaticRoadGroups([corridor[0],road('e',[[-60,5],[0,5]])]),[],'Same flow parallel streets must stay apart');
+assert.deepEqual(automaticRoadGroups([corridor[0],road('e',[[0,5],[-60,5]],{layer:1})]),[],'Bridge must stay separate');
+assert.deepEqual(automaticRoadGroups([corridor[0],road('e',[[0,5],[-60,5]],{name:'다른길'})]),[]);
+console.log('Divided corridor, continuation, side street, one-way flow, bridge, names, ungroup persistence passed');

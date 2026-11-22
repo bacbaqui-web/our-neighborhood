@@ -1,6 +1,11 @@
 import {localPolygons} from './preview-data.js';
 export const roadGrade=r=>r.grade??({'tertiary':2,'primary':3,'secondary':3,'trunk':3}[r.properties?.class]||1);
 export const roadWidth=grade=>({1:5.2,2:7.1,3:13.5,4:19.9}[grade]||3);
+export function displayedRoadWidth(road,grade){
+ const raw=String(road.properties?.width??'').trim(),m=raw.match(/^(\d+(?:\.\d+)?)\s*(m|meters?|metres?|ft|feet)?$/i);
+ if(m){const width=Number(m[1])*(/^(ft|feet)$/i.test(m[2]||'')?.3048:1);if(width>=.5&&width<=100)return width;}
+ return roadWidth(grade)*(road.carriagewayPair ? .5 : 1);
+}
 export function roadMapData(source,context){
  const radius=Math.max(50,Number(context.detailRadius||source.input.radius||100))+30;
  const overlaps=ps=>Math.min(...ps.map(p=>p[0]))<=radius&&Math.max(...ps.map(p=>p[0]))>=-radius&&Math.min(...ps.map(p=>p[1]))<=radius&&Math.max(...ps.map(p=>p[1]))>=-radius;
@@ -11,7 +16,7 @@ export function roadMapData(source,context){
 }
 export function closestMapRoad(roads,point,tolerance,grades={}){
  let best=null;
- for(const road of roads){const ps=road.geometry.coordinates;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dz=b[1]-a[1],den=dx*dx+dz*dz;if(!den)continue;const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dz)/den)),distance=Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dz);if(distance<=Math.max(tolerance,roadWidth(grades[road.editId]?.grade??roadGrade(road))/2)&&(!best||distance<best.distance))best={road,distance};}}
+ for(const road of roads){const ps=road.geometry.coordinates;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dz=b[1]-a[1],den=dx*dx+dz*dz;if(!den)continue;const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dz)/den)),distance=Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dz);if(distance<=Math.max(tolerance,displayedRoadWidth(road,grades[road.editId]?.grade??roadGrade(road))/2)&&(!best||distance<best.distance))best={road,distance};}}
  return best?.road||null;
 }
 export function focusedRoads(roads,radius){return roads.filter(r=>closestMapRoad([r],[0,0],radius));}
@@ -21,7 +26,7 @@ export function drawRoadMap(svg,data,selectedId,grades,onSelect){
  svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
  const node=(name,attrs,text)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text)n.textContent=text;svg.append(n);return n;};
  node('rect',{width:W,height:H,fill:'#eef1e8'});
- for(const r of data.roads){const grade=grades[r.editId]?.grade??roadGrade(r),selected=selectedIds.has(r.editId),points=r.geometry.coordinates.map(p=>q(p).join(',')).join(' ');node('polyline',{points,fill:'none',stroke:selected?'#e69a25':'#68777d','stroke-width':Math.max(3,roadWidth(grade)*scale)+(selected?4:0),'stroke-linejoin':'round','stroke-linecap':'round','data-road-id':r.editId});}
+ for(const r of data.roads){const grade=grades[r.editId]?.grade??roadGrade(r),selected=selectedIds.has(r.editId),points=r.geometry.coordinates.map(p=>q(p).join(',')).join(' ');node('polyline',{points,fill:'none',stroke:selected?'#e69a25':'#68777d','stroke-width':Math.max(3,displayedRoadWidth(r,grade)*scale)+(selected?4:0),'stroke-linejoin':'round','stroke-linecap':'round','data-road-id':r.editId});}
  for(const rings of data.buildings)node('path',{d:rings.map(ps=>'M'+ps.map(p=>q(p).join(',')).join('L')+'Z').join(''),fill:'#c5ceca',stroke:'#84938c','stroke-width':.7,'fill-rule':'evenodd','pointer-events':'none'});
  for(const r of data.roads.filter(r=>selectedIds.has(r.editId)))node('polyline',{points:r.geometry.coordinates.map(p=>q(p).join(',')).join(' '),fill:'none',stroke:'#a65300','stroke-width':2,'stroke-dasharray':'5 3','pointer-events':'none'});
  const pin=(p,color,label)=>{const [x,y]=q(p);node('circle',{cx:x,cy:y,r:6,fill:color,stroke:'white','stroke-width':2,'pointer-events':'none'});node('text',{x:x+10,y:y-10,fill:color,'font-size':13,'font-weight':700,stroke:'white','stroke-width':3,'paint-order':'stroke','pointer-events':'none'},label);};

@@ -1,9 +1,18 @@
 """Shared street decisions and explicit per-scene corrections, before generation."""
-import hashlib,json,math
+import hashlib,json,math,re
 from shapely.geometry import shape,Point,LineString,Polygon
 from shapely.strtree import STRtree
 from shapely.ops import transform,nearest_points,unary_union
 WIDTHS={1:(5.2,0),2:(7.1,1.5),3:(13.5,3),4:(19.9,4)}
+def measured_width(properties):
+ raw=properties.get('width')
+ if raw in (None,''):return None
+ match=re.fullmatch(r'\s*(\d+(?:\.\d+)?)\s*(m|meters?|metres?|ft|feet)?\s*',str(raw),re.I)
+ if not match:raise ValueError('도로 폭 정보의 단위나 숫자를 확인해 주세요: '+str(raw))
+ width=float(match[1])*(.3048 if (match[2] or '').lower() in ('ft','feet') else 1)
+ if not .5<=width<=100:raise ValueError('도로 폭 정보는 0.5~100m 범위여야 합니다.')
+ return width
+
 def classify_roads(roads,edits,origin=None):
  stops=[]
  if origin:
@@ -35,11 +44,16 @@ def classify_roads(roads,edits,origin=None):
   r['grade']=grade;r['gradeSource']='user' if value else 'inferred'
   if grade:
    r['width'],r['sidewalkEachSide']=WIDTHS[grade]
+   actual=measured_width(p)
+   if actual is not None:r['width']=actual
    p['sceneGrade']=grade
   else:
    r['sidewalkEachSide']=0;p.pop('sceneGrade',None)
  from road_geometry import pair_and_taper
- return pair_and_taper(roads)
+ pair_and_taper(roads)
+ for r in roads:
+  if r.get('grade') and measured_width(r['properties']) is not None:r['widthSource']='source-width'
+ return roads
 
 def apply_building_rules(collection,roads,edits,origin=None,local=False):
  from road_priority import scales

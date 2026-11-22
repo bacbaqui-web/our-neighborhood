@@ -24,7 +24,8 @@ def group_road_sections(roads):
   if (a.get('grade')==0)!=(b.get('grade')==0):return False
   # Do not silently expand a user's old correction into previously automatic roads.
   if manual(a)!=manual(b):return False
-  for field in ('lanes','vehicle','motor_vehicle'):
+  if a['properties'].get('width')!=b['properties'].get('width'):return False
+  for field in ('width','lanes','vehicle','motor_vehicle','name'):
    x,y=a['properties'].get(field),b['properties'].get(field)
    if x not in (None,'') and y not in (None,'') and str(x)!=str(y):return False
   return bool(one(a))==bool(one(b))

@@ -1,0 +1,32 @@
+[
+  {
+    "case": "piloti",
+    "errorVisible": false,
+    "meshes": "384",
+    "photoLoaded": true
+  },
+  {
+    "case": "passage",
+    "errorVisible": false,
+    "meshes": "351",
+    "photoLoaded": true
+  },
+  {
+    "case": "corner",
+    "errorVisible": false,
+    "meshes": "279",
+    "photoLoaded": true
+  },
+  {
+    "case": "wall-mix",
+    "errorVisible": false,
+    "meshes": "583",
+    "photoLoaded": true
+  },
+  {
+    "case": "garage",
+    "errorVisible": false,
+    "meshes": "166",
+    "photoLoaded": true
+  }
+]

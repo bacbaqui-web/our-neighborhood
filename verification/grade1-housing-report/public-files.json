@@ -1,0 +1,96 @@
+{
+  "source": "83a130f97c0fb91f5140ad981f3ed869d5a3f16a",
+  "deploymentRun": 44986590187,
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 5898,
+      "sha256": "6e61bbf20445101376a6dc01715187499ad8175269ca0dddb45e8f96ab6b867f"
+    },
+    {
+      "path": "cases.js",
+      "bytes": 8827,
+      "sha256": "8764abad3c4b08378693189c441b28a5a3647ae9dcac4277a88c5ee8983a00ac"
+    },
+    {
+      "path": "survey.txt",
+      "bytes": 18860,
+      "sha256": "4adce702692c8a63a803018192077e582a503b36ecb113fbb5dd71539081d8f2"
+    },
+    {
+      "path": "models.js",
+      "bytes": 11068,
+      "sha256": "134165a935fa46b45bf0f24603578ec40db15f8861e688260d1ab79e54615690"
+    },
+    {
+      "path": "style.css",
+      "bytes": 8926,
+      "sha256": "93ae2ae413168af94ceaceb77db549339f8720d64480b644041fb731edc642f9"
+    },
+    {
+      "path": "app.js",
+      "bytes": 10226,
+      "sha256": "80800a3e6ecc445243e1fe819e9a0cf33c13388ea7884b959241146eba18d040"
+    },
+    {
+      "path": "photos/live-03-mia-open-piloti.png",
+      "bytes": 215604,
+      "sha256": "d56bea741a03713b41520f6fee2712aa3ba46f8183fc64ae7c3692d21847845d"
+    },
+    {
+      "path": "photos/live-12-yeonnam-wall-variants.png",
+      "bytes": 223294,
+      "sha256": "cb1e4783996b63812d1136d0909f3933f73de95499bbddc6202541bf65f23d3d"
+    },
+    {
+      "path": "photos/live-01-mia-entry.png",
+      "bytes": 223490,
+      "sha256": "c459911ed42b08166fb8c2df27adcaeecb46774f52c995ae3de2954c2af1adfc"
+    },
+    {
+      "path": "photos/live-04-mia-side-gap.png",
+      "bytes": 248049,
+      "sha256": "114ab7bf07752d00a49a13ec8f196c6bd913d9a50f97cd93156e727bdddec1c0"
+    },
+    {
+      "path": "photos/live-08-yeonnam-corner-gate.png",
+      "bytes": 170536,
+      "sha256": "bdd8c8437ee667306d088529abd958e482ddff9f979fbd08548558e86ccf5cd7"
+    },
+    {
+      "path": "photos/live-05-mia-open-narrow-passage.png",
+      "bytes": 160162,
+      "sha256": "efa774617d5dc5e64bc983380cd623adb6d7074c54b0f66daae9b7c94a5dff2e"
+    },
+    {
+      "path": "photos/live-07-yeonnam-origin.png",
+      "bytes": 211983,
+      "sha256": "5393f6e8bc8f32d8be7fbd1eda122a89cb8577fa47b1c1513a9238d1fd68923a"
+    },
+    {
+      "path": "photos/live-02-mia-wave-wall.png",
+      "bytes": 205412,
+      "sha256": "c66e809bfeccf1d778ddc825e0821c366df2c1ce71f17564d680cc88bbb1a164"
+    },
+    {
+      "path": "photos/live-11-yeonnam-shutter.png",
+      "bytes": 195805,
+      "sha256": "741de23cf3c1f3c9b029fd1db570293b6ac9643e4d58dbec74ee31eab1eeb3ad"
+    },
+    {
+      "path": "photos/live-09-yeonnam-solid-and-rail.png",
+      "bytes": 219920,
+      "sha256": "74fa16d838f3131b1221d9ceb1076009482771033f6548a9ec9516c461100cb8"
+    },
+    {
+      "path": "photos/live-10-yeonnam-garage-side.png",
+      "bytes": 206583,
+      "sha256": "f2d9b549d62bebb918cd436f1e69dac335a5199906c34539f4f7f79242134303"
+    },
+    {
+      "path": "photos/live-06-mia-recessed-entrance.png",
+      "bytes": 154372,
+      "sha256": "93bad4b5507882446765a41118d19bb95f8b95ddf627444bfe502e127e555cfd"
+    }
+  ]
+}

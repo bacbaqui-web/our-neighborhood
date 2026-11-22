@@ -313,3 +313,5 @@ docs/codex-control.txt: 사용 순서, 검사 범위, 미완료 사항.
 2026-11-22 성신여대 상가50 제작 진행: outputs/domestic-test/sungshin-commercial/ — 사진 근거 입면 모델과 생성 인쇄면. work/sungshin-commercial-50/fidelity-specs.txt는 중복 후보 교체와 원본 대조 명세. 최초 초안의 원본 불일치를 고쳐 50종 로컬 렌더·독립 사진 대조·관련 검사를 통과. 공개 배포 대기.
 
 2026-11-22 교차로 자동 생성 적용: work/junction_generation.py와 work/road_geometry.py가 확정 도로의 접합·폭 전환·경사판·점자블록을 생성합니다. 점자블록은 원본 부품, 연석/경사판/표시는 가변 형상을 사용합니다. 독립 검토 work/junction-generation-review/report.txt, 주 검토 root-review.txt, 공개 증거 verification/junction-generation/completion.json. 기존 저장 장면은 전체 재생성해야 새 규칙이 적용됩니다.
+
+2026-11-22 주택·담장 사진 비교 보고서: outputs/domestic-test/grade1-housing-report/ — 미아동·연남동 관찰 화면12장과 3D 배치6종. 관찰·지침·가정을 구분하고 담장 높이/경사/통로/셔터를 비교합니다. 자동 생성기 변경 없음. 소스83a130f, 공개44986590187 및 실화면 확인. 증거 verification/grade1-housing-report/.

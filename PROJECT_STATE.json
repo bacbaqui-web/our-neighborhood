@@ -6304,5 +6304,35 @@
       "Not every real grade combination, slope, complex elevated junction or night view verified"
     ],
     "canonicalSyncAtRuntimeCompletion": "7a0323ee8edf655c9a34fafd2a704ae93f2e0e2c = origin/main"
+  },
+  "grade1HousingReport20261122": {
+    "date": "2026-11-22",
+    "status": "public report verified",
+    "sourceCommit": "83a130f97c0fb91f5140ad981f3ed869d5a3f16a",
+    "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/grade1-housing-report/",
+    "hostingCommit": "ac95a8916ad8fc4c01285c11e0cae8f48fd9d92b",
+    "deploymentRun": 44986590187,
+    "cases": 6,
+    "photos": 12,
+    "verified": [
+      "Local six-case visual review and interactions",
+      "Narrow responsive layout and camera controls",
+      "Public six model cases and source photos",
+      "Public shutter and obstruction controls",
+      "18 public report files match source bytes",
+      "Model geometry / loading / source bundle checks passed",
+      "Source CI loading and scene checks and build passed"
+    ],
+    "evidence": [
+      "verification/grade1-housing-report/public-courtyard.png",
+      "verification/grade1-housing-report/public-files.json",
+      "verification/grade1-housing-report/browser-cases.json"
+    ],
+    "limitations": [
+      "Schematic examples, not measured reconstructions or legal dimensions",
+      "Automatic neighborhood generation unchanged",
+      "Forced WebGL failure was not exercised",
+      "Source repository secondary Pages deployment 44986552556 failed to discover freshly uploaded artifact; canonical hosting deployment 44986590187 succeeded"
+    ]
   }
 }

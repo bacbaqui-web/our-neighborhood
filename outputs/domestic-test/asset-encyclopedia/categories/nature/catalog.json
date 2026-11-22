@@ -32,16 +32,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A151",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -74,16 +77,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A152",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -116,16 +122,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A153",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -158,16 +167,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A154",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -200,16 +212,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A155",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -242,16 +257,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A196",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -284,16 +302,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A197",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -326,16 +347,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A198",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -368,16 +392,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A199",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -410,16 +437,19 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=legacy%3A200",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/nature/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -452,15 +482,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a01.glb"
+          "../roadview50/a01.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa01",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a01.glb": "public-required"
-        }
+          "../roadview50/a01.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -493,15 +526,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a02.glb"
+          "../roadview50/a02.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa02",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a02.glb": "public-required"
-        }
+          "../roadview50/a02.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -534,15 +570,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a03.glb"
+          "../roadview50/a03.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa03",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a03.glb": "public-required"
-        }
+          "../roadview50/a03.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -575,15 +614,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a04.glb"
+          "../roadview50/a04.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa04",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a04.glb": "public-required"
-        }
+          "../roadview50/a04.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -616,15 +658,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a05.glb"
+          "../roadview50/a05.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa05",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a05.glb": "public-required"
-        }
+          "../roadview50/a05.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -657,15 +702,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a06.glb"
+          "../roadview50/a06.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa06",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a06.glb": "public-required"
-        }
+          "../roadview50/a06.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -698,15 +746,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a07.glb"
+          "../roadview50/a07.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa07",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a07.glb": "public-required"
-        }
+          "../roadview50/a07.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -741,15 +792,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a08.glb"
+          "../roadview50/a08.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa08",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a08.glb": "public-required"
-        }
+          "../roadview50/a08.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -782,15 +836,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a09.glb"
+          "../roadview50/a09.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa09",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a09.glb": "public-required"
-        }
+          "../roadview50/a09.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -823,15 +880,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../roadview50/a10.glb"
+          "../roadview50/a10.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=road%3Aa10",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a10.glb": "public-required"
-        }
+          "../roadview50/a10.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -863,15 +923,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a09.glb"
+          "../representatives/a09.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa09",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a09.glb": "public-required"
-        }
+          "../representatives/a09.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -903,15 +966,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a05.glb"
+          "../representatives/a05.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa05",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a05.glb": "public-required"
-        }
+          "../representatives/a05.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -943,15 +1009,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a06.glb"
+          "../representatives/a06.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa06",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a06.glb": "public-required"
-        }
+          "../representatives/a06.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -985,15 +1054,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a08.glb"
+          "../representatives/a08.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa08",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a08.glb": "public-required"
-        }
+          "../representatives/a08.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1025,15 +1097,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a04.glb"
+          "../representatives/a04.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa04",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a04.glb": "public-required"
-        }
+          "../representatives/a04.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1065,15 +1140,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a03.glb"
+          "../representatives/a03.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa03",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a03.glb": "public-required"
-        }
+          "../representatives/a03.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1105,15 +1183,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a10.glb"
+          "../representatives/a10.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa10",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a10.glb": "public-required"
-        }
+          "../representatives/a10.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1145,15 +1226,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a01.glb"
+          "../representatives/a01.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa01",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a01.glb": "public-required"
-        }
+          "../representatives/a01.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1185,15 +1269,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a07.glb"
+          "../representatives/a07.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa07",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a07.glb": "public-required"
-        }
+          "../representatives/a07.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1225,15 +1312,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../representatives/a02.glb"
+          "../representatives/a02.glb",
+          "categories/nature/models.js"
         ],
         "preview": "./?asset=representative%3Aa02",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a02.glb": "public-required"
-        }
+          "../representatives/a02.glb": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1279,7 +1369,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=pine",
         "physicalPaths": "compatibility-preserved",
@@ -1288,8 +1381,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1334,7 +1431,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=ginkgo",
         "physicalPaths": "compatibility-preserved",
@@ -1343,8 +1443,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1390,7 +1494,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=maple",
         "physicalPaths": "compatibility-preserved",
@@ -1399,8 +1506,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1446,7 +1557,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=cherry",
         "physicalPaths": "compatibility-preserved",
@@ -1455,8 +1569,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1501,7 +1619,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=zelkova",
         "physicalPaths": "compatibility-preserved",
@@ -1510,8 +1631,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1557,7 +1682,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=fringe",
         "physicalPaths": "compatibility-preserved",
@@ -1566,8 +1694,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1612,7 +1744,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=magnolia",
         "physicalPaths": "compatibility-preserved",
@@ -1621,8 +1756,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1667,7 +1806,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=persimmon",
         "physicalPaths": "compatibility-preserved",
@@ -1676,8 +1818,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1722,7 +1868,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=metasequoia",
         "physicalPaths": "compatibility-preserved",
@@ -1731,8 +1880,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1777,7 +1930,10 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../tree-species.js"
+          "../tree-species.js",
+          "categories/nature/models.js",
+          "categories/nature/tree-shape.js",
+          "categories/nature/hybrid-tree.js"
         ],
         "preview": "../tree-growth.html?species=plane",
         "physicalPaths": "compatibility-preserved",
@@ -1786,8 +1942,12 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../tree-species.js": "public-required"
-        }
+          "../tree-species.js": "public-required",
+          "categories/nature/models.js": "public-required",
+          "categories/nature/tree-shape.js": "public-required",
+          "categories/nature/hybrid-tree.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1826,15 +1986,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/persimmon.png"
+          "../vegetation/sources/persimmon.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/persimmon.png": "public-required"
-        }
+          "../vegetation/sources/persimmon.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1873,15 +2036,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/jujube.png"
+          "../vegetation/sources/jujube.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/jujube.png": "public-required"
-        }
+          "../vegetation/sources/jujube.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1920,15 +2086,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/magnolia.png"
+          "../vegetation/sources/magnolia.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/magnolia.png": "public-required"
-        }
+          "../vegetation/sources/magnolia.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -1967,15 +2136,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/maple.png"
+          "../vegetation/sources/maple.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/maple.png": "public-required"
-        }
+          "../vegetation/sources/maple.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2014,15 +2186,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/pine.png"
+          "../vegetation/sources/pine.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/pine.png": "public-required"
-        }
+          "../vegetation/sources/pine.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2061,15 +2236,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/juniper.png"
+          "../vegetation/sources/juniper.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/juniper.png": "public-required"
-        }
+          "../vegetation/sources/juniper.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2108,15 +2286,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/lilac.png"
+          "../vegetation/sources/lilac.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/lilac.png": "public-required"
-        }
+          "../vegetation/sources/lilac.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2155,15 +2336,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/cornelian.png"
+          "../vegetation/sources/cornelian.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/cornelian.png": "public-required"
-        }
+          "../vegetation/sources/cornelian.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2202,15 +2386,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/crape-myrtle.png"
+          "../vegetation/sources/crape-myrtle.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/crape-myrtle.png": "public-required"
-        }
+          "../vegetation/sources/crape-myrtle.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2249,15 +2436,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/ginkgo.png"
+          "../vegetation/sources/ginkgo.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/ginkgo.png": "public-required"
-        }
+          "../vegetation/sources/ginkgo.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2296,15 +2486,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/leafy-herb.png"
+          "../vegetation/sources/leafy-herb.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/leafy-herb.png": "public-required"
-        }
+          "../vegetation/sources/leafy-herb.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2343,15 +2536,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/hydrangea.png"
+          "../vegetation/sources/hydrangea.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/hydrangea.png": "public-required"
-        }
+          "../vegetation/sources/hydrangea.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     },
     {
@@ -2390,15 +2586,18 @@
         "domain": "nature",
         "manifest": "categories/nature/catalog.json",
         "sources": [
-          "../vegetation/sources/pepper.png"
+          "../vegetation/sources/pepper.png",
+          "categories/nature/models.js"
         ],
         "preview": "../vegetation.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vegetation/sources/pepper.png": "public-required"
-        }
+          "../vegetation/sources/pepper.png": "public-required",
+          "categories/nature/models.js": "public-required"
+        },
+        "modelProvider": "categories/nature/models.js"
       }
     }
   ]

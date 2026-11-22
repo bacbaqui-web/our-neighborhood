@@ -1,17 +1,18 @@
-"""Build the published viewer from tracked, reviewed application files only."""
+"""Build the published viewer from explicitly reviewed application files only."""
 import json, shutil, struct, subprocess, os
+from publication_manifest import publication_files
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist'
+files = publication_files()
+subprocess.run(['python3', 'tests/test_publication_manifest.py'], cwd=ROOT, check=True)
+subprocess.run(['node', 'tests/publication-references.mjs'], cwd=ROOT, check=True)
 subprocess.run(['python3', str(ROOT / 'work/browser-generation/pack.py'), '--check'], cwd=ROOT, check=True)
 # Publication must not silently lose stable encyclopedia IDs or their model links.
-for test in ['asset-integration-audit.mjs', 'asset-catalog-rebuild.mjs', 'housing-encyclopedia.mjs', 'streetlights-registry.mjs', 'asset-category-ownership.mjs', 'asset-category-generator.mjs', 'house-assembly-rules.mjs', 'house-assembly-rendering.mjs', 'asset-filter-state.mjs', 'assembly-diagnostics.mjs', 'assembly-exclusions.mjs']:
+for test in ['asset-model-boundaries.mjs', 'asset-references.mjs', 'asset-integration-audit.mjs', 'asset-catalog-rebuild.mjs', 'housing-encyclopedia.mjs', 'streetlights-registry.mjs', 'asset-category-ownership.mjs', 'asset-category-generator.mjs', 'house-assembly-rules.mjs', 'house-assembly-rendering.mjs', 'asset-filter-state.mjs', 'assembly-diagnostics.mjs', 'assembly-exclusions.mjs']:
     subprocess.run(['node', '--no-warnings', '--loader', './tests/three-loader.mjs', 'tests/' + test], cwd=ROOT, check=True)
 
-files = subprocess.check_output(['git', 'ls-files', '-z', 'outputs'], cwd=ROOT).decode().split('\0')
-if not any(name.endswith('/app.js') for name in files):
-    raise SystemExit('Stage the application files before building.')
 if OUT.exists():
     shutil.rmtree(OUT)
 OUT.mkdir()
@@ -19,16 +20,6 @@ count = total = 0
 for name in filter(None, files):
     source = ROOT / name
     relative = Path(name).relative_to('outputs')
-    # Old generated districts remain in the source archive. Publish their small
-    # manifests so old links can offer regeneration through the single entry.
-    if relative.parts[0]=='generated-neighborhoods' and relative.name!='manifest.json':
-        continue
-    # Reference photos and superseded comparison exports are not app assets.
-    if len(relative.parts)>1 and relative.parts[1] in {'apartment-research','first-batch-review'} and source.suffix!='.html':
-        continue
-    # The allowlisted browser source bundle is packaged separately. Raw development scripts stay local.
-    if 'generation' in relative.parts or source.suffix == '.py':
-        continue
     if source.is_symlink():
         raise ValueError(f'Unexpected symlink: {name}')
     data = source.read_bytes()
@@ -66,6 +57,9 @@ default = locations[-1]['id'] if locations else 'original'
 target.hash=location.hash;location.replace(target.href);</script>
 <a href="./domestic-test/">우리 동네 열기</a></html>'''.replace('DEFAULT', json.dumps(default)))
 (OUT / '.nojekyll').touch()
+for generated in json.loads((ROOT / 'config/publication-files.json').read_text())['generatedFiles']:
+    if not (OUT / Path(generated).relative_to('outputs')).is_file():
+        raise ValueError(f'Missing generated publication file: {generated}')
 subprocess.run(['python3', str(ROOT / 'scripts/optimize-people-site.py')], check=True)
 subprocess.run(['python3', str(ROOT / 'scripts/optimize-shop-site.py')], check=True)
 subprocess.run(['node', '--experimental-loader', './tests/three-loader.mjs', 'tests/shop-publication.mjs', str(OUT)], cwd=ROOT, check=True)

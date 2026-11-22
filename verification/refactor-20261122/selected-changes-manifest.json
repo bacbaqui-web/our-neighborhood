@@ -1,0 +1,537 @@
+{
+  "baseCommit": "a2391da92ffa35494c442e499e0e64f50797b7b6",
+  "note": "Selected task implementation and reports only; compare hashes before resume. Shared PROJECT_STATE/project-layout/guidelines, foreign changes, patch and large inventories excluded. Not a deployed commit.",
+  "excluded": [
+    "tests/test_site_layout_integration.py: preexisting untracked test depends on generated neighborhood fixture absent from HEAD"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "bytes": 3739,
+      "sha256": "cd05d30b6be01fa59665a113bcecec69f58a22788bf3ed78997cd33c4945f0dd",
+      "action": "upsert"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 3006,
+      "sha256": "fed5a1da7803d460f2b3e1debc048bb1d00d6f00123f8865f87c958b3bac8971",
+      "action": "upsert"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4244,
+      "sha256": "1bdaec009e5195b06801aaa1257f1581a375db19665ee8675f61e50a13b855d0",
+      "action": "upsert"
+    },
+    {
+      "path": "config/publication-files.json",
+      "bytes": 96715,
+      "sha256": "3a2fe23ccd9bf6576f16a8a4e10d86739a3b5dc9510d73a262ecb858cfb50ef5",
+      "action": "upsert"
+    },
+    {
+      "path": "docs/file-audit-20261122.md",
+      "bytes": 9350,
+      "sha256": "0733fe93501171c2023fd58941e961df84649ad1cda484851fff5cdb54d70275",
+      "action": "upsert"
+    },
+    {
+      "path": "docs/refactor-20261122.md",
+      "bytes": 7014,
+      "sha256": "5605bb41e09dae124a26a9b546c17dea2fbcd0101da173b571f32adb1108a4da",
+      "action": "upsert"
+    },
+    {
+      "path": "docs/runtime-architecture.md",
+      "bytes": 4337,
+      "sha256": "3669eefcd37d0d99160656ebe0557965fb777350aaadfae921562bdfc9929c98",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/apartments/models.js",
+      "bytes": 13502,
+      "sha256": "c6b66001c8cb9f256e76fd08ae515739555f497a7f194340d85d36174a512bf8",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/app.js",
+      "bytes": 28612,
+      "sha256": "5248ec24e304c52b3be2679179f4593d4a8d4d2bd316c2a5b1026b5e0a4c410c",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/catalog.json",
+      "bytes": 1837824,
+      "sha256": "b4b32d4c5e7af5ce4178c7c87f3516270254eb9db5517f0b0d86708c2aac67f8",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/commerce/catalog.json",
+      "bytes": 440925,
+      "sha256": "ba1dc09e507b748663c75a5ca720362b84f765ffa5a010057a5ab0d633e56fc0",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/commerce/facility-preview.js",
+      "bytes": 2226,
+      "sha256": "6bb9f25722dbba7fd4f7f40e05b5c137e4d8a0f67a41e79870f69c6dba5c6382",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/commerce/generators.js",
+      "bytes": 415,
+      "sha256": "91bf8124ca305663b6b84150df8c1f45ef0b8131439af8df113ff277387d5d67",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/commerce/models.js",
+      "bytes": 1523,
+      "sha256": "8b0a926efbd83ebee1d4679a26ba56574968873d5f067f3144a9f57a82d408f7",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/building-preview.js",
+      "bytes": 3044,
+      "sha256": "93b57094d4e604edaf21d9542d76ebccc3b2ef9ee2bb49668e9a47e75cf6b957",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/catalog.json",
+      "bytes": 645671,
+      "sha256": "11628e1ff7ae81c02e8da34967332ea29d947836d2aaab20f975ca39a27e436d",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/facade-textures.js",
+      "bytes": 8241,
+      "sha256": "db0f6e85d1b09f5699cad77bc9913eb6e92ba36ed66d61d131f745e10f0b4e1d",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/generators.js",
+      "bytes": 201,
+      "sha256": "b64e7bc3ef39702acfd9dfd741b8bd118cc0ff8f26ff8f2bd6190b24cd6c700d",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/korean-facades.js",
+      "bytes": 11488,
+      "sha256": "8767bd88161eb88a0ff007ea1798a886edd5ddeac34474c3245990cd1c86968a",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/house/models.js",
+      "bytes": 650,
+      "sha256": "e8b12d548a9ed152250b8670a0ac270433739f7bb8aaf50085b2ae1f90f8954d",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/catalog.json",
+      "bytes": 93032,
+      "sha256": "dc7b40bfa73c8db4491c251a4809446987341c8180cd77fdb32eca43e9026b40",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+      "bytes": 14835,
+      "sha256": "d8bdf2edd57b832dae89be08219965ccd580312df7970216028357caf0d5bd3a",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/models.js",
+      "bytes": 1303,
+      "sha256": "461a06c89d8174c196ac0b185ab50282484e6603693ed4de8ba81e9659fc1514",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/tree-shape.js",
+      "bytes": 1374,
+      "sha256": "9b23833af8725231910a13f8e789606622a79e5f4c7c3b16d4f0856c5b01a819",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/person/catalog.json",
+      "bytes": 51057,
+      "sha256": "06423be2cf549ddfe88be9115205d5969f594812d23e512cb3cafbca212aa8ef",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/person/models.js",
+      "bytes": 106,
+      "sha256": "617afae8289300059017751c9e0a25334d07d6950fad0d309058bad015106244",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/prop/catalog.json",
+      "bytes": 413255,
+      "sha256": "d875cf178a1004e60babcb666f16e1bc3e77db556fffaaaea5ea19fbc4d93195",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/prop/models.js",
+      "bytes": 335,
+      "sha256": "e9fcfee7a4879888d528ae8a9ea53fba7fffdcc153eb9c986343487987376f40",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/road/catalog.json",
+      "bytes": 103078,
+      "sha256": "e0a7771e0034d4723048a9b992b62b6b1106b23caf71da5368fea79568462581",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/road/models.js",
+      "bytes": 106,
+      "sha256": "617afae8289300059017751c9e0a25334d07d6950fad0d309058bad015106244",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/vehicle/catalog.json",
+      "bytes": 90852,
+      "sha256": "ef7bdd450fdb7f196e94334db51c80be88faa86206a54880dd020aa64588210f",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/vehicle/models.js",
+      "bytes": 245,
+      "sha256": "3eb1c3de87385e2e99cc021ddc224147f632075987a7412360ecc0ef82e1b8c4",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/category-metadata.js",
+      "bytes": 1101777,
+      "sha256": "c996a2c5ba2a1b7cf887c98700d28f487090cbe9013b21509cc8a19362b35fec",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/model-resources.js",
+      "bytes": 1856,
+      "sha256": "57c0efecd9d8c47571718b3a15a89a40a46d4cf05df5fb34d3f8de2b38d2fc8f",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json",
+      "bytes": 10463,
+      "sha256": "1044d6f9602efa1d0a67a1e6ce298b917de56de57a43bdf754e52c745654bc44",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/models.js",
+      "bytes": 775,
+      "sha256": "42c50a23968706900f2174c07443e2523acaac7b9295c65f028e78fc28050e73",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/preview-assembly.js",
+      "bytes": 1017,
+      "sha256": "b5e01ed5422ae0e9105654e49c9371edf15971f9ab43b4eef107590098cea33d",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/browser-generation/sources.json",
+      "bytes": 2519490,
+      "sha256": "8946d0ef7f3521b6d6c75be72231943a9252d3248fc29d143e255941a127ddc4",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/building-assets/model.js",
+      "bytes": 430,
+      "sha256": "2342f79a20b4a3c2622e0342f8ccb716ad204f711c8a050c35ad511091da81c0",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/building-remakes/models.js",
+      "bytes": 7411,
+      "sha256": "2605433ee4ec8acb5834dfcdd136ba49235d06a1856f367f1ea3bc9b45315adf",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/details.js",
+      "bytes": 23205,
+      "sha256": "19958d0f6e1973337a6473fb24033c1531cc6e5efe37a1c7ccba15b39593696f",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/facade-textures.js",
+      "bytes": 148,
+      "sha256": "3197a470757a6017a30f11d66e2747a1953880ba980aa0a680c5371137f7a8a7",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/facilities/models.js",
+      "bytes": 8680,
+      "sha256": "9bc9430c7c31aa2d7875f5870103bc3536e08533379037fca69049bf1a96087b",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/facilities/placement.js",
+      "bytes": 2183,
+      "sha256": "71bdf3f49ac5208a6c2718653317e2f83102f5f03b16eb92a575ef5cbf022fe2",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/facilities/preview.js",
+      "bytes": 342,
+      "sha256": "c6de91bd19808d6fa4d5bb0dbe474105cfa54231dbfd2cc4a1feab4903cf5740",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/geometry/polygon.js",
+      "bytes": 214,
+      "sha256": "4bb3fe664dff2bad7834a6aa557a02d0873b1f2c75255825162a34acd6c6342e",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/hybrid-tree.js",
+      "bytes": 531,
+      "sha256": "513e45506d5542f9048c7c9e811bc4e5bf1734e1662e78de801dc5b0a7f0db54",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/korean-facades.js",
+      "bytes": 147,
+      "sha256": "de4e8f9208e17cd4ed89949b6e2ff394b64a04d43d8f10077cb4fce7a22c412b",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/shops/neighborhood-shops.js",
+      "bytes": 9796,
+      "sha256": "b5f1c0557304978fd91c1093fd389bde3f355552e7740c08e6f760dcff8079a1",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/sungshin-commercial/placement.js",
+      "bytes": 10488,
+      "sha256": "6d63cf050c088c483f6f38703811fd76422ba634e2eb493da6bb914fda25afa0",
+      "action": "upsert"
+    },
+    {
+      "path": "outputs/domestic-test/tree-planting.js",
+      "bytes": 1292,
+      "sha256": "415b461ca8c252f1b0cad4133640bdd8e8b31436ffd99a718fb51651245d2ecb",
+      "action": "upsert"
+    },
+    {
+      "path": "scripts/build-site.py",
+      "bytes": 4482,
+      "sha256": "779672052cd09cbf207e6ae89296ce360845b5d2909f92698aca62a179aa70bc",
+      "action": "upsert"
+    },
+    {
+      "path": "scripts/publication_manifest.py",
+      "bytes": 1583,
+      "sha256": "3b4cf634733e2c3e0535f43c8e380e3ce3a7a1b78bd1b1970845f5d26e1e6bea",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/asset-model-boundaries.mjs",
+      "bytes": 4637,
+      "sha256": "f706809526bd6f2445c1331781e7ad6ffba94aab629604ecf893866a89f27e0f",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/asset-references.mjs",
+      "bytes": 7924,
+      "sha256": "9d312b17297ae9ef5a85370c1fa722ca54ec23731442e82367282252fe0f0d41",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/build_alley_fixture.py",
+      "bytes": 1943,
+      "sha256": "a77768973c737787e9e090b09670632d5ce608cafd17145393c51ada392466e9",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/housing-encyclopedia.mjs",
+      "bytes": 1356,
+      "sha256": "c537252cf31a444488897d3be671f326ea9c6472a4a7dbf99691b01e7fafdd4b",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/publication-references.mjs",
+      "bytes": 3677,
+      "sha256": "a6d19d910f79ffbf81e679c3b48105e31faa11befe900adb314cb2b4b072ad0c",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/test_generation_module_boundary.py",
+      "bytes": 5388,
+      "sha256": "3492b9f29d296c3d6d88419a466844c43b4b585b386ed5104f5d2b611d5402b0",
+      "action": "upsert"
+    },
+    {
+      "path": "tests/test_publication_manifest.py",
+      "bytes": 2037,
+      "sha256": "9d7d74fe14d5190411f4cc04843933497d908539b628db3dc58d6a47dd8e6621",
+      "action": "upsert"
+    },
+    {
+      "path": "work/browser-generation/pack.py",
+      "bytes": 2843,
+      "sha256": "fedddad39d6eed6eff56ddd1c8bb93db1228b0757733e4fae44a03b06231cc59",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/access_routes.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/build.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/enrich_sites.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/gaps.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/ground_floors.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/infill.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/parking.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/piloti.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/refine.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/straight_plots.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/street_front.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/street_rules.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/house-plots-test/wall_connections.py",
+      "bytes": 414,
+      "sha256": "4cefc9c332e0b4d64302d54f95c1b7dd54ca3e110d76fd860cd19063cb10fc82",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/access_routes.py",
+      "bytes": 3234,
+      "sha256": "9f2df2297d4a86455100b5441f937db228751dae57a475b47bd38fd69e4adf05",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/build.py",
+      "bytes": 6518,
+      "sha256": "152b05dd2c4aff0221949e72d3e5d3405c8420aa5db56bc5e02617e655156110",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/enrich_sites.py",
+      "bytes": 6487,
+      "sha256": "591552823d706420f6295c8b7896d203ae395c1c403d0ef7d855381e6ba950e5",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/gaps.py",
+      "bytes": 3867,
+      "sha256": "01586c3ef07b940e069037934c50aefb16aae53ffe7452494fdfbe0f84f54f9e",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/ground_floors.py",
+      "bytes": 6391,
+      "sha256": "d4e627eea9d4136b63c253f82e184f1717a8564f941e9900e0fce29999b8d2be",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/infill.py",
+      "bytes": 9183,
+      "sha256": "8c25021a8f88b16e687f5f0f58b3e4e8ee5965bbab5230aebd6ef99e0c76c7d2",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/parking.py",
+      "bytes": 1959,
+      "sha256": "7b3f2d539b800d7ce0acdb307101787460909d135de6f7aea1939238f5f9523e",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/piloti.py",
+      "bytes": 6980,
+      "sha256": "b8298ce346e76389ae2706600a63092b4dceaa61fbab0ed7d0183a6459dea1cd",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/refine.py",
+      "bytes": 9410,
+      "sha256": "d5af5ea6d3ee0c418a6e6c7073aebf1f40c9a49a50eb49f1006bb29ff42c70a6",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/straight_plots.py",
+      "bytes": 2921,
+      "sha256": "287f13a8355efe42d5f7422c5e0d6d0d8601684bf602455f11f903a36a2744e5",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/street_front.py",
+      "bytes": 383,
+      "sha256": "d06678ace5f4b7465637ac31f8feb5637aa65e0afb53f900f1f313ab29daa536",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/street_rules.py",
+      "bytes": 11679,
+      "sha256": "6ee71ffd0d69980b11e756d2ef2b7f4778c4602dcc071f33891d6deac3d80fb6",
+      "action": "upsert"
+    },
+    {
+      "path": "work/neighborhood-generation/wall_connections.py",
+      "bytes": 2968,
+      "sha256": "bdb3ddde3b23f59412cd68bea2b89ec2024b47c2ffac86b9d5d377d19da2549d",
+      "action": "upsert"
+    },
+    {
+      "path": "work/site_layout.py",
+      "bytes": 6337,
+      "sha256": "4be1099cad46a5cf9a2b2cbed5a7e8accf24d3cad4a9dac34e367cc892a9b7db",
+      "action": "upsert"
+    }
+  ]
+}

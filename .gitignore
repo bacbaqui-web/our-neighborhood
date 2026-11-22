@@ -107,3 +107,6 @@ dist/
 
 # Generated domain-bound browser key; injected during deployment.
 /outputs/domestic-test/browser-generation/vworld-config.json
+
+# Maintained parcel-generation sources, separated from historical experiments.
+!/work/neighborhood-generation/

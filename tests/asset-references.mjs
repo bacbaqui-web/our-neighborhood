@@ -37,18 +37,55 @@ for(const [id,seed] of Object.entries(buildings.items)){
 console.log('All 23 requested buildings have sources, start unapproved, preserve matching approvals and reset replaced candidates.');
 const shops=JSON.parse(fs.readFileSync(new URL('shop-references.json',base)));
 const shopIds=registry.entries.filter(a=>a.kind==='shop'&&registry.resolve(a.id)).map(a=>a.id);
-assert.deepEqual(Object.keys(shops.items).sort(),shopIds.sort());
-assert.equal(shopIds.length,18);
-assert.equal(new Set(Object.values(shops.items).map(s=>s.imageUrl)).size,18);
-for(const [id,seed] of Object.entries(shops.items)){
- assert.equal(assetGroup(registry.resolve(id)),'part');
- const pending=referenceRecord(id,seed);assert(!canModel(pending));
- assert(seed.koreaEvidence.length>20&&seed.sourceName&&seed.sourceUrl&&seed.usageNote);
- const approved=changeReference(pending,'approve');
- assert.equal(referenceRecord(id,seed,approved).status,'approved');
- const pasted=changeReference(approved,'image',{...seed,id:'paste-shop-fixture',imageUrl:'data:image/png;base64,YQ==',userProvided:true});
- assert.equal(pasted.status,'pending');assert(!canModel(pasted));
- assert.equal(referenceRecord(id,{...seed,id:'updated-candidate'},pasted).reference.id,'paste-shop-fixture');
- assert.throws(()=>referenceRecord('shop:other',seed,pasted));
+const baseIds=['convenience','salon','laundry','estate','food','cafe'].flatMap(trade=>[1,2,3].map(n=>`shop:${trade}-0${n}`));
+const expansionIds=Array.from({length:50},(_,i)=>`shop:alley-${String(i+1).padStart(2,'0')}`);
+const expectedShopIds=[...baseIds,...expansionIds];
+assert.deepEqual([...shopIds].sort(),[...expectedShopIds].sort(),'Active shop IDs must preserve the six original trades and alley-01..50');
+assert.deepEqual(Object.keys(shops.items).sort(),[...expectedShopIds].sort(),'Every active shop needs its own reference');
+assert.equal(new Set(expectedShopIds).size,expectedShopIds.length);
+for(const [label,ids] of [['original',baseIds],['expansion',expansionIds]]){
+ assert.equal(new Set(ids.map(id=>shops.items[id].imageUrl)).size,ids.length,`${label}: each shop needs a distinct image`);
+ assert.equal(new Set(ids.map(id=>shops.items[id].id)).size,ids.length,`${label}: reference IDs must be distinct`);
+ for(const id of ids){
+  const seed=shops.items[id];
+  assert.equal(assetGroup(registry.resolve(id)),'part');
+  for(const key of ['id','imageUrl','sourceName','koreaEvidence','usageNote'])assert(typeof seed[key]==='string'&&seed[key].trim(),`${id}: missing ${key}`);
+  if(seed.userProvided){
+   assert(baseIds.includes(id),`${id}: unexpected pasted reference in researched expansion`);
+   assert.match(seed.imageUrl,/^data:image\/(png|jpeg|webp);base64,/);
+   assert.equal(seed.sourceName,'직접 제공한 이미지');
+   assert.equal(seed.sourceUrl,''); // A pasted image has provenance, not an invented web source.
+  }else{
+   assert.equal(new URL(seed.sourceUrl).protocol,'https:',`${id}: source URL`);
+   assert.equal(new URL(seed.imageUrl).protocol,'https:',`${id}: image URL`);
+  }
+  if(label==='expansion'){
+   assert.equal(seed.id,id.slice('shop:'.length));
+   // Expansion research batches encode observations either separately or in koreaEvidence.
+   // Local archive paths and inspection flags are optional provenance, not browser approval.
+   if(seed.observedFeatures!==undefined)assert(seed.observedFeatures.trim(),`${id}: empty observed features`);
+   if(seed.localPhoto!==undefined)assert(seed.photoInspected===true,`${id}: local photo inspection missing`);
+   if(seed.localImage!==undefined)assert(seed.inspection?.trim()&&seed.checkedOn,`${id}: local image inspection missing`);
+  }
+  const pending=referenceRecord(id,seed);assert.equal(pending.status,'pending');assert(!canModel(pending));
+  const approved=changeReference(pending,'approve');assert(canModel(approved));assert.equal(approved.approvedReferenceId,seed.id);
+  assert.deepEqual(referenceRecord(id,seed,approved),approved,`${id}: matching approval must survive reload`);
+  const replacement={...seed,id:seed.id+'-replacement',imageUrl:'https://example.com/replacement.jpg',userProvided:false};
+  const explicitlyReplaced=changeReference(approved,'image',replacement);
+  assert.equal(explicitlyReplaced.status,'pending');assert.equal(explicitlyReplaced.approvedReferenceId,null);assert(!canModel(explicitlyReplaced));
+  const updatedSeed=referenceRecord(id,replacement,approved);
+  assert.equal(updatedSeed.status,seed.userProvided?'approved':'pending',`${id}: only saved pasted references override a changed default candidate`);
+  if(!seed.userProvided){
+   assert(!canModel(updatedSeed));
+   assert.equal(referenceRecord(id,{...seed,imageUrl:'https://example.com/changed-image.jpg'},approved).status,'pending',`${id}: changed bytes URL cannot inherit approval even with the same reference ID`);
+  }
+  const requested=changeReference(approved,'replace');assert.equal(requested.status,'replace-requested');assert(!canModel(requested));
+  const pasted=changeReference(approved,'image',{...seed,id:'paste-shop-fixture',imageUrl:'data:image/png;base64,YQ==',sourceUrl:'',userProvided:true});
+  assert.equal(pasted.status,'pending');assert(!canModel(pasted));
+  assert.equal(referenceRecord(id,replacement,pasted).reference.id,'paste-shop-fixture');
+  const differentId=expectedShopIds.find(other=>other!==id);
+  assert.throws(()=>referenceRecord(differentId,shops.items[differentId],approved),/다른 에셋/);
+  assert.throws(()=>validateRecord({...approved,approvedReferenceId:'wrong-image'}),/승인한 이미지/);
+ }
+ console.log(`${label}: ${ids.length} exact shop IDs, source provenance, per-image approval preservation and replacement reset passed.`);
 }
-console.log('All 18 shop assets have distinct candidates; per-asset paste records survive seed updates without inheriting approval.');

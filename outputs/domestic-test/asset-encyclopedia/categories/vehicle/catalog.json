@@ -31,7 +31,8 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../../alley-library/korean-vehicles.js"
+          "../../alley-library/korean-vehicles.js",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=korean%3A213",
         "physicalPaths": "compatibility-preserved",
@@ -40,8 +41,10 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/korean-vehicles.js": "public-required"
-        }
+          "../../alley-library/korean-vehicles.js": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -73,7 +76,8 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../../alley-library/korean-vehicles.js"
+          "../../alley-library/korean-vehicles.js",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=korean%3A214",
         "physicalPaths": "compatibility-preserved",
@@ -82,8 +86,10 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/korean-vehicles.js": "public-required"
-        }
+          "../../alley-library/korean-vehicles.js": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -115,7 +121,8 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../../alley-library/korean-vehicles.js"
+          "../../alley-library/korean-vehicles.js",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=korean%3A215",
         "physicalPaths": "compatibility-preserved",
@@ -124,8 +131,10 @@
         ],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/korean-vehicles.js": "public-required"
-        }
+          "../../alley-library/korean-vehicles.js": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -161,15 +170,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-blue/model-front-repaired.glb"
+          "../vehicles/bus-blue/model-front-repaired.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Abus-blue",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-blue/model-front-repaired.glb": "public-required"
-        }
+          "../vehicles/bus-blue/model-front-repaired.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -205,15 +217,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-green/model-front-repaired.glb"
+          "../vehicles/bus-green/model-front-repaired.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Abus-green",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-green/model-front-repaired.glb": "public-required"
-        }
+          "../vehicles/bus-green/model-front-repaired.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -249,15 +264,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-red/model-front-repaired.glb"
+          "../vehicles/bus-red/model-front-repaired.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Abus-red",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-red/model-front-repaired.glb": "public-required"
-        }
+          "../vehicles/bus-red/model-front-repaired.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -293,15 +311,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2/model-glass.glb"
+          "../vehicles/porter2/model-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2/model-glass.glb": "public-required"
-        }
+          "../vehicles/porter2/model-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -337,15 +358,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8/model-glass.glb"
+          "../vehicles/sonata-dn8/model-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-dn8",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8/model-glass.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8/model-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -381,15 +405,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/ray/model-painted-glass.glb"
+          "../vehicles/ray/model-painted-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aray",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/ray/model-painted-glass.glb": "public-required"
-        }
+          "../vehicles/ray/model-painted-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -425,15 +452,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/carnival-ka4/model.glb"
+          "../vehicles/carnival-ka4/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Acarnival-ka4",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/carnival-ka4/model.glb": "public-required"
-        }
+          "../vehicles/carnival-ka4/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -469,15 +499,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/grandeur-ig/model.glb"
+          "../vehicles/grandeur-ig/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Agrandeur-ig",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/grandeur-ig/model.glb": "public-required"
-        }
+          "../vehicles/grandeur-ig/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -513,15 +546,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2-delivery/model.glb"
+          "../vehicles/porter2-delivery/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2-delivery",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2-delivery/model.glb": "public-required"
-        }
+          "../vehicles/porter2-delivery/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -557,15 +593,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/spark-m400/model.glb"
+          "../vehicles/spark-m400/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aspark-m400",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/spark-m400/model.glb": "public-required"
-        }
+          "../vehicles/spark-m400/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -601,15 +640,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/grand-starex-school/model.glb"
+          "../vehicles/grand-starex-school/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Agrand-starex-school",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/grand-starex-school/model.glb": "public-required"
-        }
+          "../vehicles/grand-starex-school/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -645,15 +687,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-taxi/model.glb"
+          "../vehicles/sonata-taxi/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-taxi",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-taxi/model.glb": "public-required"
-        }
+          "../vehicles/sonata-taxi/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -689,15 +734,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/carnival-ka4-black/model.glb"
+          "../vehicles/carnival-ka4-black/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Acarnival-ka4-black",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/carnival-ka4-black/model.glb": "public-required"
-        }
+          "../vehicles/carnival-ka4-black/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -733,15 +781,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/carnival-ka4-silver/model.glb"
+          "../vehicles/carnival-ka4-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Acarnival-ka4-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/carnival-ka4-silver/model.glb": "public-required"
-        }
+          "../vehicles/carnival-ka4-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -777,15 +828,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/grandeur-ig-black/model.glb"
+          "../vehicles/grandeur-ig-black/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Agrandeur-ig-black",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/grandeur-ig-black/model.glb": "public-required"
-        }
+          "../vehicles/grandeur-ig-black/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -821,15 +875,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/grandeur-ig-silver/model.glb"
+          "../vehicles/grandeur-ig-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Agrandeur-ig-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/grandeur-ig-silver/model.glb": "public-required"
-        }
+          "../vehicles/grandeur-ig-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -865,15 +922,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2-blue/model.glb"
+          "../vehicles/porter2-blue/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2-blue",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2-blue/model.glb": "public-required"
-        }
+          "../vehicles/porter2-blue/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -909,15 +969,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2-delivery-blue/model.glb"
+          "../vehicles/porter2-delivery-blue/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2-delivery-blue",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2-delivery-blue/model.glb": "public-required"
-        }
+          "../vehicles/porter2-delivery-blue/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -953,15 +1016,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2-delivery-silver/model.glb"
+          "../vehicles/porter2-delivery-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2-delivery-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2-delivery-silver/model.glb": "public-required"
-        }
+          "../vehicles/porter2-delivery-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -997,15 +1063,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2-silver/model.glb"
+          "../vehicles/porter2-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aporter2-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2-silver/model.glb": "public-required"
-        }
+          "../vehicles/porter2-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1041,15 +1110,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/ray-beige/model.glb"
+          "../vehicles/ray-beige/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aray-beige",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/ray-beige/model.glb": "public-required"
-        }
+          "../vehicles/ray-beige/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1085,15 +1157,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/ray-blue/model.glb"
+          "../vehicles/ray-blue/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aray-blue",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/ray-blue/model.glb": "public-required"
-        }
+          "../vehicles/ray-blue/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1130,15 +1205,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/ray-gray/model.glb"
+          "../vehicles/ray-gray/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aray-gray",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/ray-gray/model.glb": "public-required"
-        }
+          "../vehicles/ray-gray/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1174,15 +1252,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8-black/model.glb"
+          "../vehicles/sonata-dn8-black/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-dn8-black",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8-black/model.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8-black/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1218,15 +1299,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8-navy/model.glb"
+          "../vehicles/sonata-dn8-navy/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-dn8-navy",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8-navy/model.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8-navy/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1262,15 +1346,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8-silver/model.glb"
+          "../vehicles/sonata-dn8-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-dn8-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8-silver/model.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1306,15 +1393,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-personal-silver/model.glb"
+          "../vehicles/sonata-personal-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-personal-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-personal-silver/model.glb": "public-required"
-        }
+          "../vehicles/sonata-personal-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1350,15 +1440,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-personal-white/model.glb"
+          "../vehicles/sonata-personal-white/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Asonata-personal-white",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-personal-white/model.glb": "public-required"
-        }
+          "../vehicles/sonata-personal-white/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1394,15 +1487,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/spark-m400-blue/model.glb"
+          "../vehicles/spark-m400-blue/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aspark-m400-blue",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/spark-m400-blue/model.glb": "public-required"
-        }
+          "../vehicles/spark-m400-blue/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1438,15 +1534,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/spark-m400-red/model.glb"
+          "../vehicles/spark-m400-red/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aspark-m400-red",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/spark-m400-red/model.glb": "public-required"
-        }
+          "../vehicles/spark-m400-red/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1482,15 +1581,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/spark-m400-silver/model.glb"
+          "../vehicles/spark-m400-silver/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=vehicle%3Aspark-m400-silver",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/spark-m400-silver/model.glb": "public-required"
-        }
+          "../vehicles/spark-m400-silver/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1522,16 +1624,19 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../cars/avante-cn7-mesh-v89/avante-cn7.glb"
+          "../cars/avante-cn7-mesh-v89/avante-cn7.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v89%2Favante-cn7.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../cars/avante-cn7-mesh-v89/avante-cn7.glb": "local-archive"
+          "../cars/avante-cn7-mesh-v89/avante-cn7.glb": "local-archive",
+          "categories/vehicle/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1563,16 +1668,19 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../cars/avante-cn7-mesh-v90/avante-cn7.glb"
+          "../cars/avante-cn7-mesh-v90/avante-cn7.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v90%2Favante-cn7.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../cars/avante-cn7-mesh-v90/avante-cn7.glb": "local-archive"
+          "../cars/avante-cn7-mesh-v90/avante-cn7.glb": "local-archive",
+          "categories/vehicle/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1604,15 +1712,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../cars/avante-cn7-mesh-v91/avante-cn7.glb"
+          "../cars/avante-cn7-mesh-v91/avante-cn7.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v91%2Favante-cn7.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../cars/avante-cn7-mesh-v91/avante-cn7.glb": "public-required"
-        }
+          "../cars/avante-cn7-mesh-v91/avante-cn7.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1644,16 +1755,19 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../cars/avante-cn7-mesh-v92/avante-cn7.glb"
+          "../cars/avante-cn7-mesh-v92/avante-cn7.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fcars%2Favante-cn7-mesh-v92%2Favante-cn7.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../cars/avante-cn7-mesh-v92/avante-cn7.glb": "local-archive"
+          "../cars/avante-cn7-mesh-v92/avante-cn7.glb": "local-archive",
+          "categories/vehicle/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1685,15 +1799,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/avante-cn7/model.glb"
+          "../vehicles/avante-cn7/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Favante-cn7%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/avante-cn7/model.glb": "public-required"
-        }
+          "../vehicles/avante-cn7/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1725,15 +1842,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-blue/model-front-fixed.glb"
+          "../vehicles/bus-blue/model-front-fixed.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel-front-fixed.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-blue/model-front-fixed.glb": "public-required"
-        }
+          "../vehicles/bus-blue/model-front-fixed.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1765,15 +1885,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-blue/model-glass.glb"
+          "../vehicles/bus-blue/model-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel-glass.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-blue/model-glass.glb": "public-required"
-        }
+          "../vehicles/bus-blue/model-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1805,15 +1928,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-blue/model.glb"
+          "../vehicles/bus-blue/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-blue%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-blue/model.glb": "public-required"
-        }
+          "../vehicles/bus-blue/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1845,15 +1971,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-green/model-front-fixed.glb"
+          "../vehicles/bus-green/model-front-fixed.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel-front-fixed.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-green/model-front-fixed.glb": "public-required"
-        }
+          "../vehicles/bus-green/model-front-fixed.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1885,15 +2014,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-green/model-glass.glb"
+          "../vehicles/bus-green/model-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel-glass.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-green/model-glass.glb": "public-required"
-        }
+          "../vehicles/bus-green/model-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1925,15 +2057,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-green/model.glb"
+          "../vehicles/bus-green/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-green%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-green/model.glb": "public-required"
-        }
+          "../vehicles/bus-green/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -1965,15 +2100,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-red/model-front-fixed.glb"
+          "../vehicles/bus-red/model-front-fixed.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel-front-fixed.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-red/model-front-fixed.glb": "public-required"
-        }
+          "../vehicles/bus-red/model-front-fixed.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2005,15 +2143,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-red/model-glass.glb"
+          "../vehicles/bus-red/model-glass.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel-glass.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-red/model-glass.glb": "public-required"
-        }
+          "../vehicles/bus-red/model-glass.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2045,15 +2186,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/bus-red/model.glb"
+          "../vehicles/bus-red/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fbus-red%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/bus-red/model.glb": "public-required"
-        }
+          "../vehicles/bus-red/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2085,15 +2229,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/porter2/model.glb"
+          "../vehicles/porter2/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fporter2%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/porter2/model.glb": "public-required"
-        }
+          "../vehicles/porter2/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2125,15 +2272,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/ray/model.glb"
+          "../vehicles/ray/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fray%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/ray/model.glb": "public-required"
-        }
+          "../vehicles/ray/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2165,15 +2315,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8/model-detail.glb"
+          "../vehicles/sonata-dn8/model-detail.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel-detail.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8/model-detail.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8/model-detail.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2205,15 +2358,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8/model-original.glb"
+          "../vehicles/sonata-dn8/model-original.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel-original.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8/model-original.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8/model-original.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     },
     {
@@ -2245,15 +2401,18 @@
         "domain": "vehicle",
         "manifest": "categories/vehicle/catalog.json",
         "sources": [
-          "../vehicles/sonata-dn8/model.glb"
+          "../vehicles/sonata-dn8/model.glb",
+          "categories/vehicle/models.js"
         ],
         "preview": "./?asset=file%3Adomestic-test%2Fvehicles%2Fsonata-dn8%2Fmodel.glb",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../vehicles/sonata-dn8/model.glb": "public-required"
-        }
+          "../vehicles/sonata-dn8/model.glb": "public-required",
+          "categories/vehicle/models.js": "public-required"
+        },
+        "modelProvider": "categories/vehicle/models.js"
       }
     }
   ]

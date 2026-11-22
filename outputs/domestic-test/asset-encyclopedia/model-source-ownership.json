@@ -1,0 +1,463 @@
+{
+  "version": 1,
+  "note": "Reachable model sources owned by encyclopedia providers. Existing file URLs stay stable. Preview composition is injected by preview-assembly and is outside this model graph.",
+  "sources": {
+    "alley-library/imported-vehicles-data.js": {
+      "domains": [
+        "commerce",
+        "house",
+        "nature",
+        "person",
+        "prop",
+        "road",
+        "vehicle"
+      ],
+      "role": "model-source"
+    },
+    "alley-library/korean-vehicles.js": {
+      "domains": [
+        "vehicle"
+      ],
+      "role": "model-source"
+    },
+    "alley-library/resident-vehicles.js": {
+      "domains": [
+        "commerce",
+        "house",
+        "nature",
+        "person",
+        "prop",
+        "road",
+        "vehicle"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/apartments/models.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/facility-preview.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/generators.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/models.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/house/building-preview.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/house/facade-textures.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/house/korean-facades.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/house/models.js": {
+      "domains": [
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/nature/models.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/nature/tree-shape.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/person/models.js": {
+      "domains": [
+        "person"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/prop/models.js": {
+      "domains": [
+        "prop"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/road/models.js": {
+      "domains": [
+        "road"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/vehicle/models.js": {
+      "domains": [
+        "vehicle"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/model-resources.js": {
+      "domains": [
+        "commerce",
+        "house",
+        "nature",
+        "person",
+        "prop",
+        "road",
+        "vehicle"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/billboard-lighting.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/building-assets/catalog.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/civic-residential.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/identity.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/models.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/profiles.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/replacement-civic.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/replacement-retail.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/replacement-shops.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/retail.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/storefront-preview.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-remakes/storefronts.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/building-shell.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/canopy-atlas.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/canopy-growth.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/canopy-layers.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/environment-policy.js": {
+      "domains": [
+        "commerce",
+        "house",
+        "nature"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/facade-textures.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/facilities/catalog.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/facilities/models.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/facilities/storefronts.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/geometry/polygon.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/korean-facades.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/leaf-cluster-layout.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/comic-artwork.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/interior-furniture.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/interiors.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/reference-exteriors.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/sign-lighting.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/storefront-hours.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/storefront-lighting.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/shops/storefront-models.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/solar-position.js": {
+      "domains": [
+        "commerce",
+        "house",
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/designs.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/elevations-north.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/elevations.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/interiors.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/model.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/sign-designs.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/sign-lettering.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/street-elevation.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/sungshin-commercial/survey-models.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/surface-policy.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/tree-profiles.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/tree-skeleton.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/tree-species.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/tree-wood.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/trunk-crookedness.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/window-recess.js": {
+      "domains": [
+        "commerce",
+        "house"
+      ],
+      "role": "shared-rendering-or-geometry"
+    },
+    "domestic-test/winter-leaves.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    }
+  }
+}

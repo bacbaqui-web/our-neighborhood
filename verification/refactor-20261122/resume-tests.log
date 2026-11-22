@@ -1,0 +1,454 @@
+
+$ node scripts/check-loading.mjs
+Loading checks passed: CDN compression, complete GLB, retries, subpath URLs.
+
+$ node tests/browser-generation.mjs
+Browser generator contracts passed: worker imports, private source exclusion, dependencies, 31 vehicle bounds.
+
+$ node tests/vworld-browser.mjs
+VWorld browser: bounds, geometry, floors, pagination, deduplication, errors and cancellation passed.
+
+$ node tests/visible-horizon.mjs
+Visibility: far/tall/thin buildings, occlusion, 300 buildings, frontier uniqueness and outward queries passed
+
+$ node tests/visible-horizon-worker.mjs
+Worker transport, initial geometry, explicit source failure and cancellation passed
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/asset-references.mjs
+(node:97104) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Reference approval is bound to the exact image; replacements, invalid input and failed-image approval checked.
+All 10 candidates belong to active road assets and start unapproved.
+All 23 requested buildings have sources, start unapproved, preserve matching approvals and reset replaced candidates.
+original: 18 exact shop IDs, source provenance, per-image approval preservation and replacement reset passed.
+expansion: 50 exact shop IDs, source provenance, per-image approval preservation and replacement reset passed.
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/street-end-context.mjs
+(node:97105) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Street-end context: real footprints, courtyard holes, duplicate owners, terrain contacts, lighting material and budget passed.
+Foreground overlap stays above the real surface; context is disposed with the scene.
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs
+(node:97106) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"passed":true,"fullTriangles":6760,"distantTriangles":302}
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/circular-background.mjs
+(node:97107) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"passed":true,"area":7850.82785722363,"expectedArea":7853.981633974483,"contextBuildings":23975,"day":0,"night":1,"windowGeometry":0}
+Crossing buildings, background deduplication, continuous ground, and shadow receivers passed.
+Outer road ribbons and original paving materials preserved.
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/full-detail.mjs
+(node:97109) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Full detail and textured vehicle visibility passed
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/shop-interiors.mjs
+(node:97110) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+68 shop interiors: recessed rooms, textured cuboid furniture, daytime lighting, exact 21–22h shutdown and 24h convenience stores verified.
+Actual neighborhood shop placement keeps all 68 rooms, switches emissions and spill sources, and preserves other trade glazing.
+Real host wall aperture cut and all furniture positions behind the facade verified.
+Cuboid chair supports reach the floor and grayscale mode retains furniture textures.
+Three modeled facades retain geometric walls/frames/doors, comic decal maps and open views into actual rooms.
+65 reference-matched facades: generated artwork paths/UV/materials, grayscale maps and real interiors verified.
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/shop-expansion.mjs
+(node:97120) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+50 real-source facades; 6 pasted-reference identities; all furniture bounded at shallow/deep rooms; 100 actual placements; stable diverse random selection; manual/residential/known-POI protection verified.
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial.mjs
+(node:97124) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "id": "sungshin-01",
+    "triangles": 8750,
+    "materials": 43,
+    "prints": 5
+  },
+  {
+    "id": "sungshin-02",
+    "triangles": 4240,
+    "materials": 25,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-03",
+    "triangles": 1240,
+    "materials": 21,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-04",
+    "triangles": 2088,
+    "materials": 29,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-05",
+    "triangles": 1098,
+    "materials": 23,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-06",
+    "triangles": 1388,
+    "materials": 15,
+    "prints": 0
+  },
+  {
+    "id": "sungshin-07",
+    "triangles": 1432,
+    "materials": 21,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-08",
+    "triangles": 2142,
+    "materials": 27,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-09",
+    "triangles": 2068,
+    "materials": 29,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-10",
+    "triangles": 1360,
+    "materials": 21,
+    "prints": 5
+  },
+  {
+    "id": "sungshin-11",
+    "triangles": 952,
+    "materials": 17,
+    "prints": 0
+  },
+  {
+    "id": "sungshin-12",
+    "triangles": 2704,
+    "materials": 21,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-13",
+    "triangles": 1410,
+    "materials": 20,
+    "prints": 0
+  },
+  {
+    "id": "sungshin-14",
+    "triangles": 1290,
+    "materials": 32,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-15",
+    "triangles": 4876,
+    "materials": 24,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-16",
+    "triangles": 1976,
+    "materials": 23,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-17",
+    "triangles": 778,
+    "materials": 10,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-18",
+    "triangles": 1638,
+    "materials": 19,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-19",
+    "triangles": 3292,
+    "materials": 17,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-20",
+    "triangles": 1004,
+    "materials": 21,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-21",
+    "triangles": 2624,
+    "materials": 25,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-22",
+    "triangles": 1040,
+    "materials": 17,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-23",
+    "triangles": 1856,
+    "materials": 15,
+    "prints": 0
+  },
+  {
+    "id": "sungshin-24",
+    "triangles": 1160,
+    "materials": 19,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-25",
+    "triangles": 8132,
+    "materials": 50,
+    "prints": 5
+  },
+  {
+    "id": "sungshin-26",
+    "triangles": 1712,
+    "materials": 22,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-27",
+    "triangles": 1318,
+    "materials": 18,
+    "prints": 3
+  },
+  {
+    "id": "sungshin-28",
+    "triangles": 2742,
+    "materials": 30,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-29",
+    "triangles": 854,
+    "materials": 30,
+    "prints": 16
+  },
+  {
+    "id": "sungshin-30",
+    "triangles": 3896,
+    "materials": 29,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-31",
+    "triangles": 3314,
+    "materials": 21,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-32",
+    "triangles": 1036,
+    "materials": 22,
+    "prints": 3
+  },
+  {
+    "id": "sungshin-33",
+    "triangles": 3574,
+    "materials": 29,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-34",
+    "triangles": 2486,
+    "materials": 22,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-35",
+    "triangles": 1532,
+    "materials": 31,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-36",
+    "triangles": 1648,
+    "materials": 15,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-37",
+    "triangles": 1064,
+    "materials": 20,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-38",
+    "triangles": 1468,
+    "materials": 26,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-39",
+    "triangles": 1746,
+    "materials": 27,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-40",
+    "triangles": 5188,
+    "materials": 20,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-41",
+    "triangles": 2458,
+    "materials": 29,
+    "prints": 4
+  },
+  {
+    "id": "sungshin-42",
+    "triangles": 2470,
+    "materials": 21,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-43",
+    "triangles": 1996,
+    "materials": 44,
+    "prints": 8
+  },
+  {
+    "id": "sungshin-44",
+    "triangles": 2990,
+    "materials": 33,
+    "prints": 2
+  },
+  {
+    "id": "sungshin-45",
+    "triangles": 1592,
+    "materials": 21,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-46",
+    "triangles": 1466,
+    "materials": 20,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-47",
+    "triangles": 5450,
+    "materials": 21,
+    "prints": 3
+  },
+  {
+    "id": "sungshin-48",
+    "triangles": 4630,
+    "materials": 53,
+    "prints": 5
+  },
+  {
+    "id": "sungshin-49",
+    "triangles": 1622,
+    "materials": 20,
+    "prints": 1
+  },
+  {
+    "id": "sungshin-50",
+    "triangles": 3661,
+    "materials": 30,
+    "prints": 4
+  }
+]
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial-interiors.mjs
+(node:97125) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+상가 50종, 실내 94곳, 가구 구성 박스 994개, 외부 시야 검사 통과
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/sungshin-lettering.mjs
+(node:97126) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+65개 간판 디자인, 가로·정사각·세로 판형과 비균등 글자 확대 방지 검사 통과
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/sungshin-placement.mjs
+(node:97127) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+50종 등록부 후보·실제 모델 변환 / 수동·주거·POI·팔레트 보존 / 경사·도로 제외 통과
+성신 자동주차 충돌 제외 / 수동주차 보존 통과
+
+$ node --experimental-loader ./tests/three-loader.mjs tests/shop-publication.mjs
+(node:97136) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Published WebP atlas manifest loads; unsafe texture paths remain rejected.
+
+$ python3 -m unittest discover -s tests -p test_generation_scope.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+$ python3 -m unittest discover -s tests -p test_generation_module_boundary.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.030s
+
+OK
+
+$ python3 -m unittest discover -s tests -p test_scene_edits.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.011s
+
+OK
+
+$ python3 tests/build_alley_fixture.py /tmp/neighborhood-refactor-resume/alley-first
+{'parkingBays': 6, 'occupiedBays': 4, 'plants': 0, 'walls': 10, 'independentSites': 0, 'types': {'green': 0, 'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'parkingRoadOverlap': 0.0, 'parkingBuildingOverlap': 0.0, 'plantRoadOverlap': 0, 'plantBuildingOverlap': 0, 'plotSiteOverlap': -2.2737367544323206e-13, 'bayOverlap': -1.4210854715202004e-14, 'poleRoadOverlap': 0.0, 'poleBuildingOverlap': 0.0, 'poles': 3, 'drains': 14, 'layoutsCompared': 34, 'wallRoadOverlap': 0.0, 'independentTypes': {'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}}
+{'buildings': 1, 'patterns': [1, 0, 0], 'parkingBays': 1, 'columnOutside': 0.0, 'coreOutside': 0.0, 'parkingOutside': 0.0, 'parkingCoreOverlap': 0.0, 'allParkingOverlap': -1.4210854715202004e-14, 'columnParkingOverlap': 0.0, 'portalWallOverlap': 0.0}
+{'buildings': 3, 'patterns': {'gate-solid': 0, 'gate-rail': 0, 'lobby-center': 0, 'lobby-side': 2, 'lobby-steps': 1, 'shop-single': 0, 'shop-pair': 0, 'shop-shutter': 0, 'basement-ramp': 0}, 'piloti': 1, 'seed': 'building id', 'inferredUse': True, 'lowerRoadOverlap': 0.0, 'duplicateOwners': 0, 'wallAcrossEntry': 0.0}
+{'trees': 0, 'tallPlantClumps': 0, 'activeSites': 0, 'abandonedSites': 0, 'props': 0, 'fenceSegments': 0, 'parkingPatches': 0, 'plantBlockedOverlap': 0, 'propBlockedOverlap': 0, 'fenceBlockedOverlap': 0}
+{'passage': 0, 'wall': 0, 'shutter': 0, 'protectedOverlap': 0}
+{'parkingBays': 5, 'occupiedBays': 4, 'plants': 0, 'walls': 10, 'independentSites': 0, 'types': {'green': 0, 'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'parkingRoadOverlap': 0.0, 'parkingBuildingOverlap': 0.0, 'plantRoadOverlap': 'canopy overhang allowed; trunks checked', 'plantBuildingOverlap': 0, 'plotSiteOverlap': -2.2737367544323206e-13, 'bayOverlap': -1.4210854715202004e-14, 'poleRoadOverlap': 0.0, 'poleBuildingOverlap': 0.0, 'poles': 3, 'drains': 14, 'layoutsCompared': 34, 'wallRoadOverlap': 0.0, 'independentTypes': {'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'simplifiedFootprints': 0, 'newAccessPaths': 0, 'modernPiloti': 1, 'barredGates': 0, 'entries': 0, 'booths': 0, 'canopyOverhangTrees': 0, 'wireSpans': 2, 'frontageUnresolved': [], 'trunkRoadOverlap': 0}
+{'shopFrontages': 0, 'shopParkingRemoved': 0, 'shopParkingOverlap': 0.0, 'entranceDrainSegments': 4, 'lowPilotiSideSegments': 0, 'yellowAccessOverlap': 0.0, 'frontageWallSegments': 8, 'wallSegments': 8, 'residentParkingBays': 0, 'residentCars': 0, 'unmarkedCars': 4, 'roadBayOutside': 0.0, 'roadBayAccessOverlap': 0.0, 'frontageAccessOverlap': 1.7763568394002505e-15, 'officialResidentBays': 0, 'terrainMode': 'flat; slope rules verified in labelled fixture only'}
+ALLEY_QA {'types': {'detached': 1, 'piloti': 1, 'old-villa': 2}, 'walls': 8, 'gates': 3, 'shutters': 1, 'issues': []}
+
+$ python3 tests/build_alley_fixture.py /tmp/neighborhood-refactor-resume/alley-second
+{'parkingBays': 6, 'occupiedBays': 4, 'plants': 0, 'walls': 10, 'independentSites': 0, 'types': {'green': 0, 'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'parkingRoadOverlap': 0.0, 'parkingBuildingOverlap': 0.0, 'plantRoadOverlap': 0, 'plantBuildingOverlap': 0, 'plotSiteOverlap': -2.2737367544323206e-13, 'bayOverlap': -1.4210854715202004e-14, 'poleRoadOverlap': 0.0, 'poleBuildingOverlap': 0.0, 'poles': 3, 'drains': 14, 'layoutsCompared': 34, 'wallRoadOverlap': 0.0, 'independentTypes': {'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}}
+{'buildings': 1, 'patterns': [1, 0, 0], 'parkingBays': 1, 'columnOutside': 0.0, 'coreOutside': 0.0, 'parkingOutside': 0.0, 'parkingCoreOverlap': 0.0, 'allParkingOverlap': -1.4210854715202004e-14, 'columnParkingOverlap': 0.0, 'portalWallOverlap': 0.0}
+{'buildings': 3, 'patterns': {'gate-solid': 0, 'gate-rail': 0, 'lobby-center': 0, 'lobby-side': 2, 'lobby-steps': 1, 'shop-single': 0, 'shop-pair': 0, 'shop-shutter': 0, 'basement-ramp': 0}, 'piloti': 1, 'seed': 'building id', 'inferredUse': True, 'lowerRoadOverlap': 0.0, 'duplicateOwners': 0, 'wallAcrossEntry': 0.0}
+{'trees': 0, 'tallPlantClumps': 0, 'activeSites': 0, 'abandonedSites': 0, 'props': 0, 'fenceSegments': 0, 'parkingPatches': 0, 'plantBlockedOverlap': 0, 'propBlockedOverlap': 0, 'fenceBlockedOverlap': 0}
+{'passage': 0, 'wall': 0, 'shutter': 0, 'protectedOverlap': 0}
+{'parkingBays': 5, 'occupiedBays': 4, 'plants': 0, 'walls': 10, 'independentSites': 0, 'types': {'green': 0, 'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'parkingRoadOverlap': 0.0, 'parkingBuildingOverlap': 0.0, 'plantRoadOverlap': 'canopy overhang allowed; trunks checked', 'plantBuildingOverlap': 0, 'plotSiteOverlap': -2.2737367544323206e-13, 'bayOverlap': -1.4210854715202004e-14, 'poleRoadOverlap': 0.0, 'poleBuildingOverlap': 0.0, 'poles': 3, 'drains': 14, 'layoutsCompared': 34, 'wallRoadOverlap': 0.0, 'independentTypes': {'parking': 0, 'construction': 0, 'wild': 0, 'garden': 0}, 'simplifiedFootprints': 0, 'newAccessPaths': 0, 'modernPiloti': 1, 'barredGates': 0, 'entries': 0, 'booths': 0, 'canopyOverhangTrees': 0, 'wireSpans': 2, 'frontageUnresolved': [], 'trunkRoadOverlap': 0}
+{'shopFrontages': 0, 'shopParkingRemoved': 0, 'shopParkingOverlap': 0.0, 'entranceDrainSegments': 4, 'lowPilotiSideSegments': 0, 'yellowAccessOverlap': 0.0, 'frontageWallSegments': 8, 'wallSegments': 8, 'residentParkingBays': 0, 'residentCars': 0, 'unmarkedCars': 4, 'roadBayOutside': 0.0, 'roadBayAccessOverlap': 0.0, 'frontageAccessOverlap': 1.7763568394002505e-15, 'officialResidentBays': 0, 'terrainMode': 'flat; slope rules verified in labelled fixture only'}
+ALLEY_QA {'types': {'detached': 1, 'piloti': 1, 'old-villa': 2}, 'walls': 8, 'gates': 3, 'shutters': 1, 'issues': []}
+
+$ cmp /tmp/neighborhood-refactor-resume/alley-first/package.json /tmp/neighborhood-refactor-resume/alley-second/package.json
+
+$ python3 work/browser-generation/pack.py --check
+Public source bundle is current: 52 files
+
+$ python3 tests/test_publication_manifest.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.048s
+
+OK

@@ -1,10 +1,8 @@
-"""Stable final generation entry."""
-from street_rules import build as generate
-
-def build():
- generate()
- import os
- if not os.environ.get('NEIGHBORHOOD_LAYOUT_OUTPUT'):
-  from rule_evidence import build as evidence
-  evidence()
-if __name__=='__main__':build()
+"""Compatibility entry; the maintained implementation is in neighborhood-generation."""
+from pathlib import Path as _Path
+import sys as _sys
+_source = _Path(__file__).resolve().parents[1] / 'neighborhood-generation' / _Path(__file__).name
+if str(_source.parent) not in _sys.path:
+    _sys.path.insert(0, str(_source.parent))
+__file__ = str(_source)
+exec(compile(_source.read_bytes(), __file__, 'exec'), globals())

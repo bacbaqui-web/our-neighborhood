@@ -5,7 +5,7 @@ import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitApartment} from '../apartments/models.js';
 import * as T from 'three';
 import {facilityById} from './catalog.js';
-import {inPolygon} from './placement.js';
+import {inPolygon} from '../geometry/polygon.js';
 // Thin wall-bound geometry keeps every footprint and pedestrian route intact.
 export function emitFacility(batch,b,buildings,elevation,options={}){
  const approved=emitApprovedBuilding(batch,b,buildings,elevation,options);if(approved)return approved;

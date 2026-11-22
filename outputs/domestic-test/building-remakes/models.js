@@ -5,7 +5,7 @@ import {identityWindowWriter} from './identity.js?v=replacements3';
 import {emitWindow} from '../korean-facades.js?v=recess22';
 import {emitFacadeTexture} from '../facade-textures.js?v=masonry19';
 import {windowOpening,WINDOW_RECESS} from '../window-recess.js?v=recess22';
-import {inPolygon} from '../facilities/placement.js';
+import {inPolygon} from '../geometry/polygon.js';
 import {emitApprovedCivicFace} from './civic-residential.js?v=replacements3';
 import {emitApprovedRetailFace} from './retail.js?v=replacements3';
 import {emitApprovedStorefrontFace} from './storefronts.js?v=replacements3';

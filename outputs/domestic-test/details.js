@@ -10,7 +10,7 @@ import {footprintHeights} from './support-geometry.js?v=151';
 import {planRooftops,rooftopCatalog} from './rooftop-plan.js?v=151';
 import {emitRooftop} from './rooftops.js?v=masonry19';
 import {windowLightBand} from './environment-policy.js?v=151';
-import {FacadeBatch,emitAircon} from './korean-facades.js?v=recess22';
+import {FacadeBatch,emitAircon} from './asset-encyclopedia/categories/house/generators.js';
 export function createDetails(buildings,elevation,architecture={structures:[]},options={}){
  const assemblyReport=createAssemblyReport();
  const recessed=!!options.shells&&options.recessedWindows!==false,windowOpenings=[];

@@ -1,0 +1,18 @@
+{
+  "baselineCommit": "a2391da92ffa35494c442e499e0e64f50797b7b6",
+  "packages": [
+    {
+      "path": "/tmp/neighborhood-refactor-resume/alley-baseline/package.json",
+      "sha256": "5de65f31d6205460e6010f807edfbac9ab401e323836ade0e4cf52e348bac468"
+    },
+    {
+      "path": "/tmp/neighborhood-refactor-resume/alley-first/package.json",
+      "sha256": "5de65f31d6205460e6010f807edfbac9ab401e323836ade0e4cf52e348bac468"
+    },
+    {
+      "path": "/tmp/neighborhood-refactor-resume/alley-second/package.json",
+      "sha256": "5de65f31d6205460e6010f807edfbac9ab401e323836ade0e4cf52e348bac468"
+    }
+  ],
+  "equal": true
+}

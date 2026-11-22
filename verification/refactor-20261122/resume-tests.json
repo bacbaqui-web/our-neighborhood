@@ -1,0 +1,102 @@
+[
+  {
+    "command": "node scripts/check-loading.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node tests/browser-generation.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node tests/vworld-browser.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node tests/visible-horizon.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node tests/visible-horizon-worker.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/asset-references.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/street-end-context.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/scene-budget.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/circular-background.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/full-detail.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-interiors.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-expansion.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-commercial-interiors.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-lettering.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/sungshin-placement.mjs",
+    "exit": 0
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/shop-publication.mjs",
+    "exit": 0
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_generation_scope.py",
+    "exit": 0
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_generation_module_boundary.py",
+    "exit": 0
+  },
+  {
+    "command": "python3 -m unittest discover -s tests -p test_scene_edits.py",
+    "exit": 0
+  },
+  {
+    "command": "python3 tests/build_alley_fixture.py /tmp/neighborhood-refactor-resume/alley-first",
+    "exit": 0
+  },
+  {
+    "command": "python3 tests/build_alley_fixture.py /tmp/neighborhood-refactor-resume/alley-second",
+    "exit": 0
+  },
+  {
+    "command": "cmp /tmp/neighborhood-refactor-resume/alley-first/package.json /tmp/neighborhood-refactor-resume/alley-second/package.json",
+    "exit": 0
+  },
+  {
+    "command": "python3 work/browser-generation/pack.py --check",
+    "exit": 0
+  },
+  {
+    "command": "python3 tests/test_publication_manifest.py",
+    "exit": 0
+  }
+]

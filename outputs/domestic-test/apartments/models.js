@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {FacadeBatch} from '../korean-facades.js';
-import {inPolygon} from '../facilities/placement.js';
+import {inPolygon} from '../geometry/polygon.js';
 const eras=[{id:'old',name:'구축',wall:0xcac6b4,accent:0x8c9b8b,glass:0x718b87,roof:0x7e9680},{id:'middle',name:'중간 시대',wall:0xd5c9af,accent:0x9b7860,glass:0x728d91,roof:0x716e64},{id:'new',name:'신식',wall:0xd9dcd3,accent:0x505f63,glass:0x69858d,roof:0x879394}];
 export const apartmentCatalog=eras.flatMap(e=>['긴 동','꺾인 동','타워와 혼합'].map((shape,i)=>({...e,id:`${e.id}-${i+1}`,era:e.id,variant:i,name:`${e.name} · ${shape}`,source:'../apartment-research/',nominalLevels:([5,12,15,15,18,22,20,25,30])[eras.indexOf(e)*3+i]})));
 const hash=s=>Array.from(String(s)).reduce((h,c)=>(Math.imul(h,31)+c.charCodeAt(0))>>>0,7);

@@ -71,7 +71,7 @@ def align_road_paint(package,root):
 
 def build(root,origin,radius,roads=None):
  root=Path(root).resolve(); out=root/'site-layout';out.mkdir(parents=True,exist_ok=True)
- source=Path(__file__).resolve().parent/'house-plots-test'
+ source=Path(__file__).resolve().parent/'neighborhood-generation'
  if not json.loads((root/'buildings.geojson').read_text()).get('features'):
   (root/'site-layout.json').write_text(json.dumps({'version':1,'origin':origin,'radius':radius,'plots':{'buildings':[]},'reason':'no mapped buildings'}))
   return {'buildings':0}
@@ -80,7 +80,7 @@ def build(root,origin,radius,roads=None):
  try:
   os.environ.update(keys);sys.path.insert(0,str(source))
   # Each call must use this scene's output directory, including repeated local builds.
-  for name in ['infill','piloti','ground_floors','enrich_sites','gaps','refine','street_rules','street_front','wall_connections']:
+  for name in ['build', 'infill', 'parking', 'straight_plots', 'piloti', 'ground_floors', 'enrich_sites', 'gaps', 'refine', 'access_routes', 'street_front', 'street_rules', 'wall_connections']:
    sys.modules.pop(name,None)
   runpy.run_path(str(source/'build.py'),run_name='__main__')
   package={'version':1,'source':'roadview-derived; inferred parcels and uses','origin':origin,'radius':radius}

@@ -25,8 +25,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install image build dependency
-        run: python -m pip install Pillow
+      - name: Install image and geometry test dependencies
+        run: python -m pip install Pillow numpy shapely
       - name: Check loading behavior
         run: |
           node scripts/check-loading.mjs
@@ -34,6 +34,7 @@ jobs:
           node tests/vworld-browser.mjs
           node tests/visible-horizon.mjs
           node tests/visible-horizon-worker.mjs
+          node --experimental-loader ./tests/three-loader.mjs tests/asset-references.mjs
           node --experimental-loader ./tests/three-loader.mjs tests/street-end-context.mjs
       - name: Check scene budget
         run: |
@@ -48,6 +49,11 @@ jobs:
           node --experimental-loader ./tests/three-loader.mjs tests/sungshin-placement.mjs
           node --experimental-loader ./tests/three-loader.mjs tests/shop-publication.mjs
           python3 -m unittest discover -s tests -p test_generation_scope.py
+          python3 -m unittest discover -s tests -p test_generation_module_boundary.py
+          python3 -m unittest discover -s tests -p test_scene_edits.py
+          python3 tests/build_alley_fixture.py /tmp/neighborhood-alley-first
+          python3 tests/build_alley_fixture.py /tmp/neighborhood-alley-second
+          cmp /tmp/neighborhood-alley-first/package.json /tmp/neighborhood-alley-second/package.json
       - uses: actions/configure-pages@v5
       - name: Build reviewed public assets
         env:

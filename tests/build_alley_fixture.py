@@ -3,7 +3,7 @@ import sys,os,json,runpy
 from pathlib import Path
 from shapely.geometry import box,Polygon,LineString,mapping
 from shapely.affinity import rotate
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'work'));sys.path.insert(0,str(ROOT/'work/house-plots-test'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'work'));sys.path.insert(0,str(ROOT/'work/neighborhood-generation'))
 from scene_edits import classify_roads,apply_building_rules
 from alley_housing import decorate
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True);os.environ['NEIGHBORHOOD_LAYOUT_OUTPUT']=str(out.resolve())
@@ -16,7 +16,7 @@ apply_building_rules({'features':f},r,{},local=True)
 bs=[dict(id=i+1,building=mapping(p),plot=mapping(plots[i]),levels=f[i]['properties']['gro_flo_co'],streetProfile=f[i]['properties']['streetProfile'],base=0,area=plots[i].area,yardArea=plots[i].area-p.area,roadContact=True) for i,p in enumerate(polys)]
 body={'road':mapping(road),'common':mapping(Polygon()),'buildings':bs,'qa':{'mergedBuildings':[]}}
 (out/'plots.json').write_text(json.dumps(body))
-runpy.run_path(str(ROOT/'work/house-plots-test/infill.py'),run_name='__main__')
+runpy.run_path(str(ROOT/'work/neighborhood-generation/infill.py'),run_name='__main__')
 p={'version':1}
 for key,name in [('plots','infill-plots'),('frontages','frontages'),('piloti','piloti'),('groundFloors','ground-floors'),('infill','street-infill')]:p[key]=json.loads((out/(name+'.json')).read_text())
 decorate(p);(out/'package.json').write_text(json.dumps(p));print('ALLEY_QA',p['infill']['alleyHousingQA'])

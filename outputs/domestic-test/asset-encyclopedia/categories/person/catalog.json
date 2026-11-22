@@ -32,16 +32,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A57",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -74,16 +77,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A201",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -116,16 +122,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A202",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -158,16 +167,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A203",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -200,16 +212,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A204",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -242,16 +257,19 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=legacy%3A205",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/person/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -284,15 +302,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../roadview50/a70.glb"
+          "../roadview50/a70.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=road%3Aa70",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a70.glb": "public-required"
-        }
+          "../roadview50/a70.glb": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -324,15 +345,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../memo-131/legacy-57.glb"
+          "../memo-131/legacy-57.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=representative%3Alegacy-57",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../memo-131/legacy-57.glb": "public-required"
-        }
+          "../memo-131/legacy-57.glb": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -364,15 +388,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../memo-131/a70.glb"
+          "../memo-131/a70.glb",
+          "categories/person/models.js"
         ],
         "preview": "./?asset=representative%3Aa70",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../memo-131/a70.glb": "public-required"
-        }
+          "../memo-131/a70.glb": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -483,15 +510,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/woman-cardigan.png"
+          "../people/woman-cardigan.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/woman-cardigan.png": "public-required"
-        }
+          "../people/woman-cardigan.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -600,15 +630,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/man-jacket.png"
+          "../people/man-jacket.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/man-jacket.png": "public-required"
-        }
+          "../people/man-jacket.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -717,15 +750,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/woman-vest.png"
+          "../people/woman-vest.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/woman-vest.png": "public-required"
-        }
+          "../people/woman-vest.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -836,15 +872,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/man-senior.png"
+          "../people/man-senior.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/man-senior.png": "public-required"
-        }
+          "../people/man-senior.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -953,15 +992,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/man-backpack.png"
+          "../people/man-backpack.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/man-backpack.png": "public-required"
-        }
+          "../people/man-backpack.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -1070,15 +1112,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/woman-coat.png"
+          "../people/woman-coat.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/woman-coat.png": "public-required"
-        }
+          "../people/woman-coat.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -1189,15 +1234,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/man-sweatshirt.png"
+          "../people/man-sweatshirt.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/man-sweatshirt.png": "public-required"
-        }
+          "../people/man-sweatshirt.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -1306,15 +1354,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/woman-skirt.png"
+          "../people/woman-skirt.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/woman-skirt.png": "public-required"
-        }
+          "../people/woman-skirt.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -1423,15 +1474,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/woman-sweater.png"
+          "../people/woman-sweater.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/woman-sweater.png": "public-required"
-        }
+          "../people/woman-sweater.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     },
     {
@@ -1540,15 +1594,18 @@
         "domain": "person",
         "manifest": "categories/person/catalog.json",
         "sources": [
-          "../people/man-shirt.png"
+          "../people/man-shirt.png",
+          "categories/person/models.js"
         ],
         "preview": "../people.html",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../people/man-shirt.png": "public-required"
-        }
+          "../people/man-shirt.png": "public-required",
+          "categories/person/models.js": "public-required"
+        },
+        "modelProvider": "categories/person/models.js"
       }
     }
   ]

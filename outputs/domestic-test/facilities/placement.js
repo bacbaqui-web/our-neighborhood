@@ -1,5 +1,6 @@
 import {facilityById,identifyBuilding,identifyPlace} from './catalog.js';
-export function inPolygon(p,ring){let c=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])c=!c;}return c;}
+import {inPolygon} from '../geometry/polygon.js';
+export {inPolygon} from '../geometry/polygon.js';
 export const normalizeAddress=s=>(s||'').replace(/(?:지하)?\d+(?:[-~]\d+)?층.*$/,'').replace(/\s+/g,'');
 const area=b=>Math.abs(b.points.reduce((v,a,i)=>{const c=b.points[(i+1)%b.points.length];return v+a[0]*c[1]-c[0]*a[1]},0))/2;
 export function planFacilities(buildings,places,{xz}){

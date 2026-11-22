@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {designs} from './designs.js';
-import {loadCommercialBuilding} from './model.js?v=placement1';
+import {loadCommercialBuilding} from '../asset-encyclopedia/categories/commerce/generators.js';
 import {sameRoadAddress} from '../shops/alley-selection.js?v=shop-address3';
 import {stableHash} from '../shops/storefront-hours.js';
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);

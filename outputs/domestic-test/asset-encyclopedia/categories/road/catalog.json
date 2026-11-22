@@ -32,16 +32,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A31",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -74,16 +77,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A32",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -116,16 +122,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A33",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -158,16 +167,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A34",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -200,16 +212,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A35",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -242,16 +257,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A36",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -284,16 +302,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A37",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -326,16 +347,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A38",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -368,16 +392,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A39",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -410,16 +437,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-library-50.glb"
+          "../../alley-library/alley-library-50.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A40",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-library-50.glb": "local-archive"
+          "../../alley-library/alley-library-50.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -452,16 +482,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A101",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -494,16 +527,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A102",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -536,16 +572,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A103",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -578,16 +617,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A104",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -620,16 +662,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A105",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -662,16 +707,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A106",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -704,16 +752,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A107",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -746,16 +797,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A108",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -788,16 +842,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A109",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -830,16 +887,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-100.glb"
+          "../../alley-library/alley-additional-100.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A110",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-100.glb": "local-archive"
+          "../../alley-library/alley-additional-100.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -872,16 +932,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A191",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -914,16 +977,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A192",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -956,16 +1022,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A193",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -998,16 +1067,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A194",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1040,16 +1112,19 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../../alley-library/alley-additional-60-v17.glb"
+          "../../alley-library/alley-additional-60-v17.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=legacy%3A195",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../../alley-library/alley-additional-60-v17.glb": "local-archive"
+          "../../alley-library/alley-additional-60-v17.glb": "local-archive",
+          "categories/road/models.js": "public-required"
         },
-        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다."
+        "availabilityEvidence": "Git 추적 목록 대조: local-archive 원본은 로컬 보존 자료이며 공개 배포에 포함되지 않습니다. public-required는 배포 파일이 필요합니다.",
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1082,15 +1157,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a67.glb"
+          "../roadview50/a67.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa67",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a67.glb": "public-required"
-        }
+          "../roadview50/a67.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1124,7 +1202,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../roadview50/a68.glb",
-          "../approved-road/bus-approved-v4.glb"
+          "../approved-road/bus-approved-v4.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa68",
         "physicalPaths": "compatibility-preserved",
@@ -1132,8 +1211,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../roadview50/a68.glb": "public-required",
-          "../approved-road/bus-approved-v4.glb": "public-required"
-        }
+          "../approved-road/bus-approved-v4.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/bus-approved-v4.glb",
@@ -1175,15 +1256,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a69.glb"
+          "../roadview50/a69.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa69",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a69.glb": "public-required"
-        }
+          "../roadview50/a69.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1216,15 +1300,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a71.glb"
+          "../roadview50/a71.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa71",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a71.glb": "public-required"
-        }
+          "../roadview50/a71.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1258,7 +1345,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../roadview50/a72.glb",
-          "../approved-road/barrier-approved-v1.glb"
+          "../approved-road/barrier-approved-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa72",
         "physicalPaths": "compatibility-preserved",
@@ -1266,8 +1354,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../roadview50/a72.glb": "public-required",
-          "../approved-road/barrier-approved-v1.glb": "public-required"
-        }
+          "../approved-road/barrier-approved-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/barrier-approved-v1.glb",
@@ -1309,15 +1399,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a73.glb"
+          "../roadview50/a73.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa73",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a73.glb": "public-required"
-        }
+          "../roadview50/a73.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1350,15 +1443,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a74.glb"
+          "../roadview50/a74.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa74",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a74.glb": "public-required"
-        }
+          "../roadview50/a74.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1392,7 +1488,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../roadview50/a75.glb",
-          "../approved-road/manhole-approved-v1.glb"
+          "../approved-road/manhole-approved-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa75",
         "physicalPaths": "compatibility-preserved",
@@ -1400,8 +1497,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../roadview50/a75.glb": "public-required",
-          "../approved-road/manhole-approved-v1.glb": "public-required"
-        }
+          "../approved-road/manhole-approved-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/manhole-approved-v1.glb",
@@ -1443,15 +1542,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a76.glb"
+          "../roadview50/a76.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa76",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a76.glb": "public-required"
-        }
+          "../roadview50/a76.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1484,15 +1586,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a77.glb"
+          "../roadview50/a77.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa77",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a77.glb": "public-required"
-        }
+          "../roadview50/a77.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1525,15 +1630,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../roadview50/a78.glb"
+          "../roadview50/a78.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=road%3Aa78",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../roadview50/a78.glb": "public-required"
-        }
+          "../roadview50/a78.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1565,15 +1673,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../representatives/a69.glb"
+          "../representatives/a69.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa69",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a69.glb": "public-required"
-        }
+          "../representatives/a69.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1605,15 +1716,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../memo-131/a75.glb"
+          "../memo-131/a75.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa75",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../memo-131/a75.glb": "public-required"
-        }
+          "../memo-131/a75.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1646,7 +1760,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../representatives/a74.glb",
-          "../approved-road/grating-approved-v1.glb"
+          "../approved-road/grating-approved-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa74",
         "physicalPaths": "compatibility-preserved",
@@ -1654,8 +1769,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../representatives/a74.glb": "public-required",
-          "../approved-road/grating-approved-v1.glb": "public-required"
-        }
+          "../approved-road/grating-approved-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/grating-approved-v1.glb",
@@ -1696,15 +1813,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../representatives/a68.glb"
+          "../representatives/a68.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa68",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a68.glb": "public-required"
-        }
+          "../representatives/a68.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1736,15 +1856,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../representatives/a76.glb"
+          "../representatives/a76.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa76",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a76.glb": "public-required"
-        }
+          "../representatives/a76.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1776,15 +1899,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../representatives/a71.glb"
+          "../representatives/a71.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa71",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a71.glb": "public-required"
-        }
+          "../representatives/a71.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1816,15 +1942,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../representatives/a73.glb"
+          "../representatives/a73.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa73",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../representatives/a73.glb": "public-required"
-        }
+          "../representatives/a73.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1856,15 +1985,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../memo-131/a72.glb"
+          "../memo-131/a72.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa72",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../memo-131/a72.glb": "public-required"
-        }
+          "../memo-131/a72.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -1897,7 +2029,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../representatives/a67.glb",
-          "../approved-road/speed-approved-v3.glb"
+          "../approved-road/speed-approved-v3.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa67",
         "physicalPaths": "compatibility-preserved",
@@ -1905,8 +2038,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../representatives/a67.glb": "public-required",
-          "../approved-road/speed-approved-v3.glb": "public-required"
-        }
+          "../approved-road/speed-approved-v3.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/speed-approved-v3.glb",
@@ -1948,7 +2083,8 @@
         "manifest": "categories/road/catalog.json",
         "sources": [
           "../representatives/a77.glb",
-          "../approved-road/pole-approved-v1.glb"
+          "../approved-road/pole-approved-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa77",
         "physicalPaths": "compatibility-preserved",
@@ -1956,8 +2092,10 @@
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
           "../representatives/a77.glb": "public-required",
-          "../approved-road/pole-approved-v1.glb": "public-required"
-        }
+          "../approved-road/pole-approved-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "revision": {
         "file": "../approved-road/pole-approved-v1.glb",
@@ -1998,15 +2136,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../memo-131/a78.glb"
+          "../memo-131/a78.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=representative%3Aa78",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../memo-131/a78.glb": "public-required"
-        }
+          "../memo-131/a78.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2040,15 +2181,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../prop-remakes/barrier-v1.glb"
+          "../prop-remakes/barrier-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "../prop-remakes/",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../prop-remakes/barrier-v1.glb": "public-required"
-        }
+          "../prop-remakes/barrier-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       },
       "registryHidden": true
     },
@@ -2082,15 +2226,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/curb-straight-v1.glb"
+          "../junction-assets/curb-straight-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Acurb-straight",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/curb-straight-v1.glb": "public-required"
-        }
+          "../junction-assets/curb-straight-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2123,15 +2270,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/curb-corner-v1.glb"
+          "../junction-assets/curb-corner-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Acurb-corner",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/curb-corner-v1.glb": "public-required"
-        }
+          "../junction-assets/curb-corner-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2164,15 +2314,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/curb-ramp-v1.glb"
+          "../junction-assets/curb-ramp-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Acurb-ramp",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/curb-ramp-v1.glb": "public-required"
-        }
+          "../junction-assets/curb-ramp-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2205,15 +2358,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/tactile-warning-v1.glb"
+          "../junction-assets/tactile-warning-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Atactile-warning",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/tactile-warning-v1.glb": "public-required"
-        }
+          "../junction-assets/tactile-warning-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2246,15 +2402,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/tactile-guidance-v1.glb"
+          "../junction-assets/tactile-guidance-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Atactile-guidance",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/tactile-guidance-v1.glb": "public-required"
-        }
+          "../junction-assets/tactile-guidance-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2287,15 +2446,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/crossing-stop-v1.glb"
+          "../junction-assets/crossing-stop-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Acrossing-stop",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/crossing-stop-v1.glb": "public-required"
-        }
+          "../junction-assets/crossing-stop-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2328,15 +2490,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/median-end-v1.glb"
+          "../junction-assets/median-end-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Amedian-end",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/median-end-v1.glb": "public-required"
-        }
+          "../junction-assets/median-end-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2371,15 +2536,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/edge-corner-v1.glb"
+          "../junction-assets/edge-corner-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Aedge-corner",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/edge-corner-v1.glb": "public-required"
-        }
+          "../junction-assets/edge-corner-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2412,15 +2580,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/turn-guide-v1.glb"
+          "../junction-assets/turn-guide-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Aturn-guide",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/turn-guide-v1.glb": "public-required"
-        }
+          "../junction-assets/turn-guide-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2453,15 +2624,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/junction-alley-main-v1.glb"
+          "../junction-assets/junction-alley-main-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Ajunction-alley-main",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/junction-alley-main-v1.glb": "public-required"
-        }
+          "../junction-assets/junction-alley-main-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2494,15 +2668,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/junction-small-t-v1.glb"
+          "../junction-assets/junction-small-t-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Ajunction-small-t",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/junction-small-t-v1.glb": "public-required"
-        }
+          "../junction-assets/junction-small-t-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     },
     {
@@ -2535,15 +2712,18 @@
         "domain": "road",
         "manifest": "categories/road/catalog.json",
         "sources": [
-          "../junction-assets/junction-crossroads-v1.glb"
+          "../junction-assets/junction-crossroads-v1.glb",
+          "categories/road/models.js"
         ],
         "preview": "./?asset=junction%3Ajunction-crossroads",
         "physicalPaths": "compatibility-preserved",
         "sharedDependencies": [],
         "editBoundary": "이 분류의 catalog.json만 등록 원본입니다. 공유 생성기는 관련 분류와 조율한 뒤 수정합니다. 새 전용 모델은 이 분류 폴더에 둡니다.",
         "sourceAvailability": {
-          "../junction-assets/junction-crossroads-v1.glb": "public-required"
-        }
+          "../junction-assets/junction-crossroads-v1.glb": "public-required",
+          "categories/road/models.js": "public-required"
+        },
+        "modelProvider": "categories/road/models.js"
       }
     }
   ]

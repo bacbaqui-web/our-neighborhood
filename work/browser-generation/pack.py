@@ -18,8 +18,8 @@ for name in ['neighborhood_sources.py','arterial_plan.py','kakao_terrain.py','ge
  text=text.replace("loc['roadAddress'].get(","(loc.get('roadAddress') or {}).get(")
  files['/work/'+name]=text
 for name in ['build','infill','parking','straight_plots','piloti','ground_floors','enrich_sites','gaps','refine','access_routes','street_front','street_rules','wall_connections']:
- p=ROOT/'work/house-plots-test'/(name+'.py')
- files['/work/house-plots-test/'+p.name]=p.read_text()
+ p=ROOT/'work/neighborhood-generation'/(name+'.py')
+ files['/work/neighborhood-generation/'+p.name]=p.read_text()
 for name in ['domestic-test/route-elevation.json','domestic-test/site-rules.json','domestic-test/people/catalog.json','domestic-test/vegetation/catalog.json','domestic-test/shops/library/catalog.json','alley-library/alley-catalog-210.json','alley-library/alley-catalog-212.json']:
  files['/outputs/'+name]=(ROOT/'outputs'/name).read_text()
 p=ROOT/'work/arterial-v76/seoul-stops-20260902.json'

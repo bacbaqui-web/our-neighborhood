@@ -15,7 +15,7 @@
 
 ## 수정과 배포
 
-`outputs/domestic-test/`와 `outputs/alley-library/`가 실행 코드입니다. 브라우저 생성 시작 파일은 `work/browser-generation/entry.py` 하나입니다. 원본을 수정한 뒤 묶음 파일을 다시 만듭니다.
+우리동네는 지도 분석과 배치를 담당하고, 에셋백과는 분류별 모델을 제공합니다. 정식 경계와 호환 경로는 [실행 구조](docs/runtime-architecture.md)에 정리되어 있습니다. `outputs/domestic-test/`와 `outputs/alley-library/`가 실행 코드입니다. 브라우저 생성 시작 파일은 `work/browser-generation/entry.py` 하나입니다. 원본을 수정한 뒤 묶음 파일을 다시 만듭니다.
 
 ```sh
 python3 work/browser-generation/pack.py
@@ -24,7 +24,7 @@ node scripts/check-loading.mjs
 python3 scripts/build-site.py
 ```
 
-빌드에는 Git에 등록된 파일만 포함됩니다. 관련 검사를 통과한 변경을 `main`에 커밋하고 푸시합니다. 공개 사이트는 `bacbaqui-web/magamiscoming`의 배포 설정에서 검증한 소스 커밋을 지정해 반영합니다. 소스 저장소에 푸시한 것과 공개 사이트 반영은 구분합니다.
+`config/publication-files.json`에서 검토한 파일만 빌드에 포함됩니다. 새 정식 실행 파일을 추가할 때는 목록과 참조 검사를 함께 갱신합니다. Git에 추가한 실험·캐시·다른 작업 파일은 자동 배포되지 않습니다. 관련 검사를 통과한 변경을 `main`에 커밋하고 푸시합니다. 공개 사이트는 `bacbaqui-web/magamiscoming`의 배포 설정에서 검증한 소스 커밋을 지정해 반영합니다. 소스 저장소에 푸시한 것과 공개 사이트 반영은 구분합니다.
 
 이전 백업과 배포 사본은 `/Users/bacbaqui/.project-archives/our-neighborhood/`에 보관합니다. 이 사본은 수정하거나 배포하지 않습니다. `archive` 링크는 이전 자료의 참조를 보존하기 위한 것입니다.
 

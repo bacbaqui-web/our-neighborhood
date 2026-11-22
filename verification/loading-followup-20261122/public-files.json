@@ -1,0 +1,46 @@
+[
+  {
+    "path": "domestic-test/app.js",
+    "matches": true,
+    "bytes": 73667
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+    "matches": true,
+    "bytes": 14995
+  },
+  {
+    "path": "domestic-test/asset-encyclopedia/model-source-ownership.json",
+    "matches": true,
+    "bytes": 10586
+  },
+  {
+    "path": "domestic-test/hybrid-tree.js",
+    "matches": true,
+    "bytes": 563
+  },
+  {
+    "path": "domestic-test/index.html",
+    "matches": true,
+    "bytes": 13929
+  },
+  {
+    "path": "domestic-test/pedestrians.js",
+    "matches": true,
+    "bytes": 9609
+  },
+  {
+    "path": "domestic-test/texture-loading.js",
+    "matches": true,
+    "bytes": 1042
+  },
+  {
+    "path": "domestic-test/vegetation.js",
+    "matches": true,
+    "bytes": 8640
+  },
+  {
+    "path": "hosting root",
+    "matches": true
+  }
+]

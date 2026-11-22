@@ -1,0 +1,50 @@
+Browser JavaScript bundle is current: 79 modules, esbuild 0.25.12.
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.056s
+
+OK
+EXPLICIT NON-STATIC REFERENCE: outputs/domestic-test/location-loader.js -> outputs/api/neighborhoods: Local-mode server API endpoint, not a static file.
+EXPLICIT NON-STATIC REFERENCE: outputs/domestic-test/site-layout-models/infill-models.js -> outputs/domestic-test/vegetation/leaf-trial/zelkova-crisp-v1.png: Existing HEAD optional leafCompare=new experiment; untracked PNG is not approved for publication. Normal trees use registered species atlases.
+PASS: 1601 publication inputs, 2197 static/dynamic module, HTML, CSS and module-relative runtime references.
+Public source bundle is current: 57 files
+PASS: 70 owned model modules, seven providers, no placement dependency, compatibility identity, explicit preview errors, tree/GLB URL parity.
+Reference approval is bound to the exact image; replacements, invalid input and failed-image approval checked.
+All 10 candidates belong to active road assets and start unapproved.
+All 23 requested buildings have sources, start unapproved, preserve matching approvals and reset replaced candidates.
+original: 18 exact shop IDs, source provenance, per-image approval preservation and replacement reset passed.
+expansion: 50 exact shop IDs, source provenance, per-image approval preservation and replacement reset passed.
+{
+  "registered": {
+    "grade1": 8,
+    "junction": 12,
+    "shops": 68,
+    "sungshin": 50,
+    "vehicles": 31
+  },
+  "curationExcluded": [],
+  "note": "등록·파일 연결 검사입니다. 자동배치 동작 및 공개 화면 증거를 대신하지 않습니다."
+}
+백과 재생성 후 고정 ID·제작 근거·모델 연결·예시 상태 유지 검사 통과
+주택·담장 예시 6종: 백과 ID, 설명용 상태, 실제 미리보기 생성 검사 통과
+Security lamp registry exclusion removes fixture and light sources together.
+Category inventory metadata and deep read-only isolation passed: 1023
+All canonical IDs, source paths, category owners, invalid input and mutation boundaries passed
+All pre-migration effective entry fields preserved except intentionally extracted policies
+Generator rejects missing/duplicate IDs and erased metadata while preserving source catalogs
+house assembly rules passed
+house assembly rendering passed { exact: 23, fallback: 0, error: 0, excluded: 0 }
+asset filter state: cumulative facets, unknown, reset, category changes and URL roundtrip passed
+393 current visible assets: domain, role and individual facet reachability passed
+color facets: named colors supersede hex, synonyms merge and hex families match all members
+조립 진단: 정상/대체/오류 분리, 건물 필터, 원인·조건 표시, 원본 보존 통과
+assembly exclusions passed
+Public people: 240 lossless WebP images; alpha and every visible RGB pixel verified.
+Public shop/vehicle textures: 43 lossless WebP textures; visible pixels verified; saved 69,914,109 bytes.
+(node:45844) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/three-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Published WebP atlas manifest loads; unsafe texture paths remain rejected.
+All 22 published interior/sign textures resolve through the actual loaders.
+Optimized public registry loads, all required model paths and image ownership keys resolve.
+Built 1601 files, 956.7 MB, 2 neighborhoods.

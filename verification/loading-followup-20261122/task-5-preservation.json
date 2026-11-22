@@ -1,0 +1,83 @@
+{
+  "sourceCommit": "ab7f29f351c4a36c738ce8565ef4333fa8c6ae66",
+  "manifestFiles": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "match": true
+    },
+    {
+      "path": "config/publication-files.json",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/app.js",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/hybrid-tree.js",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/index.html",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/pedestrians.js",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/texture-loading.js",
+      "match": true
+    },
+    {
+      "path": "outputs/domestic-test/vegetation.js",
+      "match": true
+    },
+    {
+      "path": "tests/asset-encyclopedia-lines.mjs",
+      "match": true
+    },
+    {
+      "path": "tests/asset-encyclopedia.mjs",
+      "match": true
+    },
+    {
+      "path": "tests/texture-loading.mjs",
+      "match": true
+    }
+  ],
+  "foreignBaselinePreserved": [
+    "PROJECT_STATE.json",
+    "docs/codex-control.txt",
+    "docs/project-guidelines.txt",
+    "docs/project-layout.txt",
+    "outputs/domestic-test/app.js",
+    "outputs/domestic-test/codex-bridge/contract.js",
+    "outputs/domestic-test/codex-bridge/roadview.html",
+    "outputs/domestic-test/codex-bridge/roadview.js",
+    "outputs/domestic-test/codex-bridge/start.js",
+    "outputs/domestic-test/codex-bridge/viewer.js",
+    "outputs/domestic-test/index.html",
+    "outputs/domestic-test/start.html",
+    "tests/codex-bridge.mjs",
+    "tests/test_codex_bridge.py",
+    "work/codex-mcp/call.py",
+    "work/codex-mcp/pyproject.toml",
+    "work/codex-mcp/server.py",
+    "work/codex-mcp/uv.lock",
+    "work/codex_bridge.py",
+    "work/serve-neighborhood.py"
+  ],
+  "stagedPatchExact": true,
+  "hostingCommit": "5295aac1ab27833b4e87825358182ecd9137f55e",
+  "recordedHostingWorkflowOnlySourceRefChanged": true,
+  "deploymentAndPublicUI": "not assessed by this preservation audit"
+}

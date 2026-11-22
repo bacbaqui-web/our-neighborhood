@@ -1,0 +1,27 @@
+{
+  "foreignFiles": 20,
+  "stagedPatchUnchanged": true,
+  "passed": true,
+  "files": [
+    "PROJECT_STATE.json",
+    "docs/codex-control.txt",
+    "docs/project-guidelines.txt",
+    "docs/project-layout.txt",
+    "outputs/domestic-test/app.js",
+    "outputs/domestic-test/codex-bridge/contract.js",
+    "outputs/domestic-test/codex-bridge/roadview.html",
+    "outputs/domestic-test/codex-bridge/roadview.js",
+    "outputs/domestic-test/codex-bridge/start.js",
+    "outputs/domestic-test/codex-bridge/viewer.js",
+    "outputs/domestic-test/index.html",
+    "outputs/domestic-test/start.html",
+    "tests/codex-bridge.mjs",
+    "tests/test_codex_bridge.py",
+    "work/codex-mcp/call.py",
+    "work/codex-mcp/pyproject.toml",
+    "work/codex-mcp/server.py",
+    "work/codex-mcp/uv.lock",
+    "work/codex_bridge.py",
+    "work/serve-neighborhood.py"
+  ]
+}

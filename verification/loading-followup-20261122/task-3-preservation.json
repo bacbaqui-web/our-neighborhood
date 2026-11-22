@@ -1,0 +1,12 @@
+[
+  {
+    "path": "outputs/domestic-test/app.js",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  },
+  {
+    "path": "outputs/domestic-test/index.html",
+    "workingReverseEqualsBaseline": true,
+    "selectedReverseEqualsHEAD": true
+  }
+]

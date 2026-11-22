@@ -1,0 +1,14 @@
+[
+  {
+    "path": "tests/asset-encyclopedia.mjs",
+    "sha256": "e0d24227138fef5ff8ff93be694c5ac76a77c26f49e673ea5f086abc6ff4ed25"
+  },
+  {
+    "path": "tests/asset-encyclopedia-lines.mjs",
+    "sha256": "018f21343d7ac051ff32fbd3a6036c1cf84f5d899370cd70ac916e600009561a"
+  },
+  {
+    "path": ".github/workflows/pages.yml",
+    "sha256": "a4f42bb4399f13e896e87af5d91881db500636fcb0e5879f17e6040a38bc4c4b"
+  }
+]

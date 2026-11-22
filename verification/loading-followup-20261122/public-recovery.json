@@ -1,0 +1,19 @@
+{
+  "scene": "fe5870f9c8552979",
+  "persistent": {
+    "ready": "error",
+    "message": "불러오기 실패: woman-cardigan-summer.webp 이미지를 불러오지 못했습니다. 연결을 확인한 뒤 다시 불러오세요."
+  },
+  "transient": {
+    "firstFailure": {
+      "attempt": 0,
+      "type": "Event",
+      "event": "error",
+      "url": "https://magamiscom.ing/neighborhood/domestic-test/people/seasons/woman-cardigan-summer.webp?v=fe808ad113a7"
+    },
+    "afterUnblock": {
+      "ready": "true",
+      "status": ""
+    }
+  }
+}

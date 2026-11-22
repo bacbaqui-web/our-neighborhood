@@ -1,0 +1,71 @@
+{
+  "base": "c4fa65e3550acc3fbeed4d1cd50990a6a033bc84",
+  "tree": "4b5bd5046e15fd2a2f5ff83b7606fe82e0092163",
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "dc787183f41ae92c30ce6d5543fc49cfd59e03c6ff9e47b21df8b5746acfe34b",
+      "selectedPath": ".github/workflows/pages.yml"
+    },
+    {
+      "path": "config/publication-files.json",
+      "sha256": "2300f279fa3a5e2a8f9726724fd38edf2f1d976b8efbcf3f7ef883af8dfca156",
+      "selectedPath": "config/publication-files.json"
+    },
+    {
+      "path": "outputs/domestic-test/app.js",
+      "sha256": "486288429a27ba52b57bb85b422024f27212e1ae0fa5ab879b9319c32fe343db",
+      "selectedPath": "verification/loading-followup-20261122/selected/outputs/domestic-test/app.js"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+      "sha256": "439a2b0260374bfb5f749f766311be667239df0066d41966a6d779e37930e623",
+      "selectedPath": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js"
+    },
+    {
+      "path": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json",
+      "sha256": "4ce65549e48dea2ea6d85c465f00b2eb8971de17e7fb68f04d20a2f1be61c0f4",
+      "selectedPath": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json"
+    },
+    {
+      "path": "outputs/domestic-test/hybrid-tree.js",
+      "sha256": "c164818862ee62e00debb7fbff661aded7be2a29cd78653666a454f4316d1082",
+      "selectedPath": "outputs/domestic-test/hybrid-tree.js"
+    },
+    {
+      "path": "outputs/domestic-test/index.html",
+      "sha256": "bdcf910ab7f79afd2f7f2c674310a0157ab62624e4bd3456dd5aa3de7f127007",
+      "selectedPath": "verification/loading-followup-20261122/selected/outputs/domestic-test/index.html"
+    },
+    {
+      "path": "outputs/domestic-test/pedestrians.js",
+      "sha256": "13bbcf2838f32484d2a533f98fd08f7f221fe046dc6cae496224b1be4926fc82",
+      "selectedPath": "outputs/domestic-test/pedestrians.js"
+    },
+    {
+      "path": "outputs/domestic-test/texture-loading.js",
+      "sha256": "01bdc5b432ca87d09cf81a528e558d9cd4b553554d0997230e737b1e2d3b9e4d",
+      "selectedPath": "outputs/domestic-test/texture-loading.js"
+    },
+    {
+      "path": "outputs/domestic-test/vegetation.js",
+      "sha256": "16815f628da90be39673c9f4f3734114ede157b57088126fdfe1f67161ee7244",
+      "selectedPath": "outputs/domestic-test/vegetation.js"
+    },
+    {
+      "path": "tests/asset-encyclopedia-lines.mjs",
+      "sha256": "018f21343d7ac051ff32fbd3a6036c1cf84f5d899370cd70ac916e600009561a",
+      "selectedPath": "tests/asset-encyclopedia-lines.mjs"
+    },
+    {
+      "path": "tests/asset-encyclopedia.mjs",
+      "sha256": "c8ffaecb7b601fda8dab9596a707381ad993c8ccbacf767d6d05ed6e84941701",
+      "selectedPath": "tests/asset-encyclopedia.mjs"
+    },
+    {
+      "path": "tests/texture-loading.mjs",
+      "sha256": "82e24022c8b4fca3a7465492892f70bce693a8f516d603cc6be38211ffd291d1",
+      "selectedPath": "tests/texture-loading.mjs"
+    }
+  ]
+}

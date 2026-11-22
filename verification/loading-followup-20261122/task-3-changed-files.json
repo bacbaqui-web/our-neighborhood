@@ -1,0 +1,46 @@
+[
+  {
+    "path": ".github/workflows/pages.yml",
+    "sha256": "dc787183f41ae92c30ce6d5543fc49cfd59e03c6ff9e47b21df8b5746acfe34b"
+  },
+  {
+    "path": "config/publication-files.json",
+    "sha256": "2300f279fa3a5e2a8f9726724fd38edf2f1d976b8efbcf3f7ef883af8dfca156"
+  },
+  {
+    "path": "outputs/domestic-test/texture-loading.js",
+    "sha256": "01bdc5b432ca87d09cf81a528e558d9cd4b553554d0997230e737b1e2d3b9e4d"
+  },
+  {
+    "path": "outputs/domestic-test/pedestrians.js",
+    "sha256": "13bbcf2838f32484d2a533f98fd08f7f221fe046dc6cae496224b1be4926fc82"
+  },
+  {
+    "path": "outputs/domestic-test/vegetation.js",
+    "sha256": "16815f628da90be39673c9f4f3734114ede157b57088126fdfe1f67161ee7244"
+  },
+  {
+    "path": "outputs/domestic-test/hybrid-tree.js",
+    "sha256": "c164818862ee62e00debb7fbff661aded7be2a29cd78653666a454f4316d1082"
+  },
+  {
+    "path": "outputs/domestic-test/asset-encyclopedia/categories/nature/hybrid-tree.js",
+    "sha256": "439a2b0260374bfb5f749f766311be667239df0066d41966a6d779e37930e623"
+  },
+  {
+    "path": "outputs/domestic-test/app.js",
+    "sha256": "943da3b1f34755875288b0404fa51f23c0fde867d2baf52fd0c55ec366ec9243",
+    "selectedPath": "verification/loading-followup-20261122/selected/outputs/domestic-test/app.js",
+    "selectedSha256": "486288429a27ba52b57bb85b422024f27212e1ae0fa5ab879b9319c32fe343db"
+  },
+  {
+    "path": "outputs/domestic-test/index.html",
+    "sha256": "ec239190ff76a8ad5caff130232496435f8b0e85c7f33d35c2ba648a04ea4cdf",
+    "selectedPath": "verification/loading-followup-20261122/selected/outputs/domestic-test/index.html",
+    "selectedSha256": "bdcf910ab7f79afd2f7f2c674310a0157ab62624e4bd3456dd5aa3de7f127007"
+  },
+  {
+    "path": "tests/texture-loading.mjs",
+    "sha256": "82e24022c8b4fca3a7465492892f70bce693a8f516d603cc6be38211ffd291d1"
+  }
+]

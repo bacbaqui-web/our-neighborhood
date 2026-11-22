@@ -1,0 +1,6 @@
+{
+  "command": "node tests/asset-encyclopedia.mjs",
+  "exit": 0,
+  "stdout": "1045 stable entries: canonical aggregate, current/preserved/public models, explicit history and six failure injections passed\n",
+  "reason": "Required historical local files corrected; final selected tree 4b5bd5046e15fd2a2f5ff83b7606fe82e0092163"
+}

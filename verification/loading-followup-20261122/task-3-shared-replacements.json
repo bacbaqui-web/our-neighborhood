@@ -1,0 +1,30 @@
+{
+  "outputs/domestic-test/app.js": [
+    [
+      "import {GLTFLoader} from './vendor/GLTFLoader.js';",
+      "import {GLTFLoader} from './vendor/GLTFLoader.js';\nimport {loadingErrorMessage} from './texture-loading.js';"
+    ],
+    [
+      "'\ubd88\ub7ec\uc624\uae30 \uc2e4\ud328: '+e.message+' '",
+      "'\ubd88\ub7ec\uc624\uae30 \uc2e4\ud328: '+loadingErrorMessage(e)+' '"
+    ],
+    [
+      "./pedestrians.js?v=umbrella1",
+      "./pedestrians.js?v=texture-load1"
+    ],
+    [
+      "./vegetation.js?v=view3c",
+      "./vegetation.js?v=texture-load1"
+    ],
+    [
+      "./hybrid-tree.js?v=view3c",
+      "./hybrid-tree.js?v=texture-load1"
+    ]
+  ],
+  "outputs/domestic-test/index.html": [
+    [
+      "./app.js?v=refactor-followup1",
+      "./app.js?v=texture-load1"
+    ]
+  ]
+}

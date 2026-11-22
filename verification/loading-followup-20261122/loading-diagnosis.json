@@ -1,0 +1,20 @@
+{
+  "naturalColdLoad": {
+    "scene": "fe5870f9c8552979",
+    "cacheDisabled": true,
+    "ready": "true",
+    "consoleErrors": [],
+    "originalFailureReproduced": false
+  },
+  "controlledFailure": {
+    "blocked": "public people/*.webp",
+    "caughtType": "Event",
+    "event": "error",
+    "target": "IMG",
+    "src": "https://magamiscom.ing/neighborhood/domestic-test/people/seasons/woman-cardigan-summer.webp?v=fe808ad113a7",
+    "messagePropertyAbsent": true,
+    "status": "불러오기 실패: undefined 다시 불러오기"
+  },
+  "conclusion": "TextureLoader rejects an image error Event without message; initial catch interpolates e.message. Image failures have no bounded retry or asset context. Original single failure network/decode cause was not captured and cannot be attributed retrospectively.",
+  "cleanup": "blocked URLs cleared, breakpoint removed, debugger disabled, cache reset"
+}

@@ -1,0 +1,10 @@
+{
+  "requiredCommands": 35,
+  "initialPassed": 34,
+  "correctedAndRechecked": [
+    "node tests/asset-encyclopedia.mjs"
+  ],
+  "finalPassed": 35,
+  "publicBuildExit": 0,
+  "imageAndGeometryChecks": "included"
+}

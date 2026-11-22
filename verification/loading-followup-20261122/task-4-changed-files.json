@@ -1,0 +1,10 @@
+[
+  {
+    "path": "tests/asset-encyclopedia.mjs",
+    "sha256": "c8ffaecb7b601fda8dab9596a707381ad993c8ccbacf767d6d05ed6e84941701"
+  },
+  {
+    "path": "outputs/domestic-test/asset-encyclopedia/model-source-ownership.json",
+    "sha256": "4ce65549e48dea2ea6d85c465f00b2eb8971de17e7fb68f04d20a2f1be61c0f4"
+  }
+]

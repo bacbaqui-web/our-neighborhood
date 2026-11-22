@@ -1,0 +1,50 @@
+[
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/texture-loading.mjs",
+    "exitCode": 0,
+    "stdout": "Texture loading: 1/2 attempt contract, safe filename/cause, non-Error fallback and three consumer cleanup paths passed\n",
+    "stderr": "(node:43311) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:\n--import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"./tests/three-loader.mjs\", pathToFileURL(\"./\"));'\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "command": "node tests/asset-encyclopedia.mjs",
+    "exitCode": 0,
+    "stdout": "1045 stable entries: canonical aggregate, current/preserved/public models, explicit history and six failure injections passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/asset-encyclopedia-lines.mjs",
+    "exitCode": 0,
+    "stdout": "55 remade IDs: approval precedence, original preservation, registry compatibility, seven failure injections and unchanged line settings passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser-generation-build.mjs",
+    "exitCode": 0,
+    "stdout": "Browser bundle: reproducible bytes, source/output drift, shared module state and source-relative URLs passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node --experimental-loader ./tests/three-loader.mjs tests/full-detail.mjs",
+    "exitCode": 0,
+    "stdout": "Full detail and textured vehicle visibility passed\n",
+    "stderr": "(node:43329) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:\n--import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"./tests/three-loader.mjs\", pathToFileURL(\"./\"));'\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "command": "node --check outputs/domestic-test/app.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "node --check verification/loading-followup-20261122/selected/outputs/domestic-test/app.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

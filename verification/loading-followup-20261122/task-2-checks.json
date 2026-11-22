@@ -1,0 +1,38 @@
+[
+  {
+    "command": "node tests/asset-encyclopedia.mjs",
+    "exitCode": 0,
+    "stdout": "1045 stable entries: canonical aggregate, current/preserved/public models, explicit history and six failure injections passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/asset-encyclopedia-lines.mjs",
+    "exitCode": 0,
+    "stdout": "55 remade IDs: approval precedence, original preservation, registry compatibility, seven failure injections and unchanged line settings passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "node scripts/build-asset-encyclopedia.mjs --check",
+    "exitCode": 0,
+    "stdout": "1045 canonical entries across 7 category owners\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/asset-category-ownership.mjs",
+    "exitCode": 0,
+    "stdout": "Category inventory metadata and deep read-only isolation passed: 1023\nAll canonical IDs, source paths, category owners, invalid input and mutation boundaries passed\nAll pre-migration effective entry fields preserved except intentionally extracted policies\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/asset-filter-state.mjs",
+    "exitCode": 0,
+    "stdout": "asset filter state: cumulative facets, unknown, reset, category changes and URL roundtrip passed\n393 current visible assets: domain, role and individual facet reachability passed\ncolor facets: named colors supersede hex, synonyms merge and hex families match all members\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

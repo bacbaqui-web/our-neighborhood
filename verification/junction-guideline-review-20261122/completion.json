@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-22",
+  "scope": "intersection guidelines and directly related common production rules",
+  "independentAgents": 3,
+  "reviewRounds": 2,
+  "consolidatedDecisions": 12,
+  "sections": 11,
+  "rules": 52,
+  "canonical": "docs/project-guidelines.txt J01-J11",
+  "reviewEvidence": "docs/junction-guideline-review-20261122.txt",
+  "report": "https://magamiscom.ing/neighborhood/domestic-test/junction-asset-report/?view=guidelines",
+  "sourceCommit": "b3dfaa1a2d2113a652a8263ad1fc9d1d3f0e4ec8",
+  "hostingCommit": "3f6b8458309d79be20b8559859d0830da10ba2b4",
+  "sourceRun": 45018556479,
+  "hostingRun": 45018579345,
+  "excerptSha256": "9aff85951bcbd8c74fc2da8a1b8f9049c6e23fe08131d8f3371e00cdbb28f7a5",
+  "generatorChanged": false,
+  "modelChanged": false,
+  "localChecks": [
+    "canonical excerpt matches",
+    "Vite production build",
+    "Astryx 20 passes / 0 failures",
+    "browser console no errors",
+    "11 native disclosures present and J05 expansion checked",
+    "360 CSS-pixel viewport without horizontal overflow"
+  ],
+  "limits": [
+    "New generator conditions were not implemented or executed in this review.",
+    "Latest legal dimensions and actual signal operations remain unconfirmed.",
+    "No exhaustive field validation or zero-error guarantee."
+  ],
+  "status": "guidelines-reviewed-published-public-verified",
+  "sourceCI": "success",
+  "hostingCI": "success",
+  "publicChecks": [
+    "Public review page visibly contains 3 reviews, 12 decisions, 11 sections and 52 rules",
+    "Public downloadable TXT bytes equal canonical generated excerpt"
+  ],
+  "publicTxtSha256": "9aff85951bcbd8c74fc2da8a1b8f9049c6e23fe08131d8f3371e00cdbb28f7a5"
+}

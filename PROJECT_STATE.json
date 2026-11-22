@@ -6413,5 +6413,19 @@
     "publicURL": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/",
     "publicFileMatches": 14,
     "evidence": "verification/asset-architecture-20261122/completion.json"
+  },
+  "junctionGuidelineReview20261122": {
+    "status": "guidelines-reviewed-published-public-verified",
+    "report": "https://magamiscom.ing/neighborhood/domestic-test/junction-asset-report/?view=guidelines",
+    "canonical": "docs/project-guidelines.txt J01-J11",
+    "reviewEvidence": "docs/junction-guideline-review-20261122.txt",
+    "verification": "verification/junction-guideline-review-20261122/completion.json",
+    "independentAgents": 3,
+    "reviewRounds": 2,
+    "sections": 11,
+    "rules": 52,
+    "generatorChanged": false,
+    "sourceCommit": "b3dfaa1a2d2113a652a8263ad1fc9d1d3f0e4ec8",
+    "hostingCommit": "3f6b8458309d79be20b8559859d0830da10ba2b4"
   }
 }

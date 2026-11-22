@@ -32,6 +32,7 @@ jobs:
       - name: Check loading behavior
         run: |
           node --experimental-loader ./tests/three-loader.mjs tests/texture-loading.mjs
+          node tests/loading-diagnostics.mjs
           node tests/asset-encyclopedia.mjs
           node tests/asset-encyclopedia-lines.mjs
           node tests/browser-generation-build.mjs

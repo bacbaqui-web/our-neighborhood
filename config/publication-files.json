@@ -512,6 +512,7 @@
     "outputs/domestic-test/legacy-placement-policy.js",
     "outputs/domestic-test/living-context.js",
     "outputs/domestic-test/load-data.js",
+    "outputs/domestic-test/loading-diagnostics.js",
     "outputs/domestic-test/location-loader.js",
     "outputs/domestic-test/lod-policy.js",
     "outputs/domestic-test/map-config.json",

@@ -1,6 +1,6 @@
 import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import * as T from 'three';
-import {loadTexture} from './texture-loading.js';
+import {loadTexture} from './texture-loading.js?v=loading-diagnostics1';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
 import {createContactShadows} from './contact-shadows.js?v=151';
 import {directionalFrame,elevationTier,projectedHeight,pedestrianView,FRAME_LABELS} from './pedestrian-math.js?v=151';

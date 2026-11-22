@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {loadTexture,settleTextureBatch} from '../../../texture-loading.js';
+import {loadTexture,settleTextureBatch} from '../../../texture-loading.js?v=loading-diagnostics1';
 import {TREE_SPECIES,speciesById,speciesVariant,speciesDensity} from '../../../tree-species.js?v=151';
 import {createCanopyLayers} from '../../../canopy-layers.js?v=151';
 import {createWinterLeaves} from '../../../winter-leaves.js?v=151';

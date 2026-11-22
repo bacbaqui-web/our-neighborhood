@@ -1,7 +1,7 @@
 import {visibleRecord} from './view-generation-visibility.js?v=view3c';
 import {createVegetationSunShadows} from './vegetation-sun-shadows.js?v=151';
 import * as T from 'three';
-import {loadTexture,settleTextureBatch} from './texture-loading.js';
+import {loadTexture,settleTextureBatch} from './texture-loading.js?v=loading-diagnostics1';
 import {addBillboardLightAttributes,writeBillboardLight,writeBillboardCrop,injectBillboardLight,createBillboardSunUniforms,writeBillboardSun} from './billboard-lighting.js?v=151';
 import {createContactShadows} from './contact-shadows.js?v=151';
 import {vegetationView,vegetationExtent} from './vegetation-math.js?v=151';

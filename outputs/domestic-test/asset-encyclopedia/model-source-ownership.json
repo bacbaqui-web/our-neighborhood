@@ -299,6 +299,12 @@
       ],
       "role": "model-source"
     },
+    "domestic-test/loading-diagnostics.js": {
+      "domains": [
+        "nature"
+      ],
+      "role": "model-source"
+    },
     "domestic-test/shops/comic-artwork.js": {
       "domains": [
         "commerce"

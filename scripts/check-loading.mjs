@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-const source=await readFile(new URL('../outputs/domestic-test/load-data.js',import.meta.url),'utf8');
-const {loadData}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+import {loadData} from '../outputs/domestic-test/load-data.js';
 const data=new Uint8Array(24),header=new DataView(data.buffer);
 header.setUint32(0,0x46546c67,true);header.setUint32(4,2,true);header.setUint32(8,data.length,true);
 const response=headers=>new Response(data,{headers});

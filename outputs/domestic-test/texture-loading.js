@@ -1,8 +1,10 @@
+import {loadingDiagnostics,diagnosticErrorCode} from './loading-diagnostics.js';
 // Keep the original cause for diagnostics, but never display URL credentials/query data.
 export async function loadTexture(loader,url){
  let cause;
  for(let attempt=0;attempt<2;attempt++){
-  try{return await loader.loadAsync(url);}catch(error){cause=error;}
+  const diagnostic=loadingDiagnostics.begin(url,'texture',attempt+1);
+  try{const texture=await loader.loadAsync(url);loadingDiagnostics.end(diagnostic);return texture;}catch(error){loadingDiagnostics.end(diagnostic,diagnosticErrorCode(error));cause=error;}
  }
  let filename='이미지';
  try{filename=new URL(url,'https://local.invalid/').pathname.split('/').pop()||filename;}catch{}

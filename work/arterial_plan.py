@@ -118,7 +118,7 @@ def build(root):
  reservation=read('road-reservation.json') if (root/'road-reservation.json').exists() else None
  if reservation:
   public=shape(reservation['majorPublic'])
-  if not hasbus:road=shape(reservation['road']).intersection(public)
+  if not hasbus or any(r.get('widthSource')=='source-width' for r in major):road=shape(reservation['road']).intersection(public)
  sidewalks=public.difference(road)
  # Side streets must remain joined to the arterial; remove the sidewalk at mouths.
  mouths=[]

@@ -344,3 +344,11 @@ asset-encyclopedia/filter-state.js: 종류/부품/시대/색상/재료 탐색 �
 2026-11-23 독립 상가 제작본 통합: categories/commerce의 local-detail·pharmacy-local·bakery-local·bakery-blue·salon-local. 부품85+조립예시5, preview-assembly.js가 분류 모델과 assembly-rules를 연결. 지침은 docs/project-guidelines.txt 7절로 통합. 실제 동네 자동 배치 미연결. 검증 verification/shop-workshop-integration/.
 
 2026-11-23 상가 제작실: asset-encyclopedia/shop-gallery.js·shop-workspace.js, assembly-rules/shop-profiles.js. 조립 갤러리와 상세 크기 시험·브라우저 조건/수정 요청. scripts/build-shop-guide.py가 통합 지침7절과 기존 참고 페이지에서 공개자료 생성. 동네 자동 배치 미적용. verification/shop-gallery/.
+
+2026-11-23 생성 전 지도 정돈 — 별도 로컬 개편
+outputs/domestic-test/browser-generation/road-setup.js: 도로/건물 두 단계, 입력·취소·묶음·수정값 전달.
+outputs/domestic-test/browser-generation/preparation-map.js, map-preparation.css: SVG 지도·휠 확대·이동·입구 표시·설정창.
+work/map_preparation.py: 미리보기/최종 생성 공통 배치, 수동 이동 충돌 검사, 평면 직선 시야 예상.
+work/serve-map-preparation.py: 로컬 시험 서버. python3 work/serve-map-preparation.py --port 8799
+outputs/domestic-test/browser-generation/preparation-check.html: 정릉동 고정 위치의 로컬 검사 화면. 공개 파일 목록에 포함하지 않습니다.
+로컬 시험 브랜치 codex/map-preparation-local에서 시작했으며, 2026-11-23 사용자 요청으로 메인 통합·공개 배포로 전환합니다.

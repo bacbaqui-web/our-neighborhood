@@ -39,7 +39,7 @@ def classify_roads(roads,edits,origin=None):
   if grade>=2 and any(shape(r['geometry']).distance(p)<12 for p in stops):grade=4
   value=edits.get(r['editId'])
   if value is not None:
-   if not isinstance(value,dict) or type(value.get('grade')) is not int or value['grade'] not in WIDTHS:raise ValueError('도로 등급은 1~4차도로 중에서 선택해 주세요.')
+   if not isinstance(value,dict) or type(value.get('grade')) is not int or value['grade'] not in (0,1,2,3,4):raise ValueError('도로 등급은 보행·1~4차도로 중에서 선택해 주세요.')
    grade=value['grade']
   r['grade']=grade;r['gradeSource']='user' if value else 'inferred'
   if grade:
@@ -49,7 +49,9 @@ def classify_roads(roads,edits,origin=None):
    p['sceneGrade']=grade
   else:
    r['width']=measured_width(p) or 2.2
-   r['sidewalkEachSide']=0;p.pop('sceneGrade',None)
+   r['sidewalkEachSide']=0
+   if value is not None:p['sceneGrade']=0
+   else:p.pop('sceneGrade',None)
  from road_geometry import pair_and_taper
  pair_and_taper(roads)
  for r in roads:
@@ -57,28 +59,34 @@ def classify_roads(roads,edits,origin=None):
  from road_sidewalks import attach_sidewalks
  return attach_sidewalks(roads)
 
-def apply_building_rules(collection,roads,edits,origin=None,local=False):
+def apply_building_rules(collection,roads,edits,origin=None,local=False,only_ids=None):
  from road_priority import scales
  sx,sy=scales(origin[0]) if origin else (1,1)
  def geometry(f):return shape(f['geometry']) if local else transform(lambda x,y:((x-origin[1])*sx,(origin[0]-y)*sy),shape(f['geometry']))
  polygons=[geometry(f) for f in collection['features']]
  tree=STRtree(polygons)
+ road_candidates=[r for r in roads if r.get('grade')]
+ road_lines=[shape(r['geometry']) for r in road_candidates]
+ road_tree=STRtree(road_lines)
+ road_reach=max((r['width']/2+r.get('sidewalkEachSide',0)+12 for r in road_candidates),default=0)
  for index,(f,poly) in enumerate(zip(collection['features'],polygons)):
-  p=f['properties'];owner=str(p['objectid']);manual=edits.get(owner,{})
+  p=f['properties'];owner=str(p['objectid'])
+  if only_ids is not None and owner not in only_ids:continue
+  manual=edits.get(owner,{})
   if not isinstance(manual,dict):raise ValueError('건물 수정 정보 형식이 올바르지 않습니다.')
   if poly.geom_type!='Polygon':poly=max(poly.geoms,key=lambda g:g.area)
   ring=list(poly.exterior.coords);candidates=[]
   others=unary_union([polygons[j] for j in tree.query(poly.buffer(40)) if j!=index])
-  for r in roads:
-   if not r.get('grade'):continue
-   line=shape(r['geometry']);gap=poly.distance(line)-r['width']/2-r.get('sidewalkEachSide',0)
+  inner=poly.buffer(-.1);blocked=others.buffer(.1)
+  for road_index in sorted(road_tree.query(poly.buffer(road_reach))):
+   r=road_candidates[road_index];line=road_lines[road_index];gap=poly.distance(line)-r['width']/2-r.get('sidewalkEachSide',0)
    if gap>12:continue
    for i,(a,b) in enumerate(zip(ring,ring[1:])):
     edge=LineString([a,b])
     if edge.length<=2.4:continue
     mid=edge.interpolate(.5,normalized=True);q=nearest_points(mid,line)[1]
     access=LineString([mid,q])
-    if access.intersection(poly.buffer(-.1)).length>.1 or access.intersection(others.buffer(.1)).length>.1:continue
+    if access.intersection(inner).length>.1 or access.intersection(blocked).length>.1:continue
     candidates.append((-r['grade'],max(0,mid.distance(line)-r['width']/2),-edge.length,i,r))
   best=min(candidates,key=lambda c:c[:4]) if candidates else None
   grade=best[4]['grade'] if best else 1;front=best[3] if best else 0
@@ -159,7 +167,7 @@ def remap_building_edits(edits,before,after,origin):
    return p if p.geom_type=='Polygon' else max(p.geoms,key=lambda g:g.area)
   a,b=polygon(old[owner]),polygon(new[owner]);ring=list(a.exterior.coords);i=edit['frontEdge']
   if type(i) is not int or i<0 or i>=len(ring)-1:continue # normal validation reports malformed input
-  old_offset=old[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);new_offset=new[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);dx,dz=new_offset[0]-old_offset[0],new_offset[1]-old_offset[1]
+  old_offset=old[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);new_offset=new[owner]['properties'].get('roadFit',{}).get('offset',[0,0]);old_manual=old[owner]['properties'].get('positionOffset',[0,0]);new_manual=new[owner]['properties'].get('positionOffset',[0,0]);dx,dz=new_offset[0]-old_offset[0]+new_manual[0]-old_manual[0],new_offset[1]-old_offset[1]+new_manual[1]-old_manual[1]
   start=Point(ring[i][0]+dx,ring[i][1]+dz);end=Point(ring[i+1][0]+dx,ring[i+1][1]+dz);target=list(b.exterior.coords)
   choices=[j for j in range(len(target)-1) if LineString(target[j:j+2]).length>2.4]
   if choices:edit['frontEdge']=min(choices,key=lambda j:min(start.distance(Point(target[j]))+end.distance(Point(target[j+1])),end.distance(Point(target[j]))+start.distance(Point(target[j+1]))))

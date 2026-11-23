@@ -1,5 +1,5 @@
 import {generateInBrowser} from './client.js?v=refactor-followup1';
-import {configureRoads} from './road-setup.js?v=road-fit1';
+import {configureRoads} from './road-setup.js?v=map-preparation1';
 export async function createNeighborhood(point){
  point=await configureRoads(point);
  const dialog=document.createElement('dialog');dialog.className='generation-progress';

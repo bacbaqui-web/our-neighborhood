@@ -80,6 +80,11 @@ def build_side(candidates, alley, buildings):
 def plan_poles(centerlines, road, buildings, blocked, allowed):
     """Return local-metre poles and index pairs for unobstructed alley runs."""
     poles, links, previous = [], [], []
+    # Clipping can leave zero-area line remnants beside the pavement.
+    # GeometryCollection has no boundary; pole edges belong to its area only.
+    road = road.buffer(0)
+    if road.is_empty:
+        return poles, links
     boundary = road.boundary
     for line in centerlines:
         alley = line.buffer(4.8)

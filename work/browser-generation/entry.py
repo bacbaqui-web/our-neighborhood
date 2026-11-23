@@ -28,7 +28,7 @@ final=Path('/outputs/generated-neighborhoods')/key;root=final/'data';root.mkdir(
 for name in ['generation','people','vegetation','environment','shops']:(root/name).mkdir(exist_ok=True)
 for name in ['alley-v62','environment-v32','vegetation-v31']:(final/name).mkdir(exist_ok=True)
 os.environ['NEIGHBORHOOD_DATA']=str(root)
-loc={'id':key,'address':params['address'],'query':params['address'],'origin':[lat,lon],'sizeMetres':radius*2,'detailRadius':radius,'contextPadding':30,'terrainMode':VERSION,'contextBuildings':False,'roadAddress':None}
+loc={'id':key,'address':params['address'],'query':params['address'],'origin':[lat,lon],'sizeMetres':radius*2,'detailRadius':radius,'contextPadding':30,'terrainMode':VERSION,'contextBuildings':False,'roadAddress':None,'mapPreparation':True}
 if view:loc['view']=view
 def write(name,value): (root/name).write_text(json.dumps(value,ensure_ascii=False,separators=(',',':')))
 write('location.json',loc)
@@ -40,29 +40,47 @@ def prepare_roads():
  roads=prepare_editable_roads(roads,edits,loc['origin'],bool(params.get('sourceRoads')) and 'roadGroups' in edits)
  return json.dumps(roads)
 
+def prepare_map():
+ global _map_setup_cache
+ import copy
+ from map_preparation import prepare_layout, flat_visibility, reposition_layout
+ from scene_edits import apply_building_rules, validate_road_groups
+ from js import setupProgress
+ edits=params.get('sceneEdits') or {'roads':{},'buildings':{}}
+ offsets={k:v.get('positionOffset',[0,0]) for k,v in edits.get('buildings',{}).items() if v.get('positionOffset')}
+ signature=hashlib.sha256(json.dumps([loc['origin'],radius,params.get('sourceBuildingCollection'),params.get('sourceRoads'),{k:edits.get(k) for k in ('roads','excludedRoads')},sorted(k for k,v in edits.get('buildings',{}).items() if v.get('deleted'))],sort_keys=True).encode()).hexdigest()
+ cached=globals().get('_map_setup_cache')
+ if cached and cached[0]==signature:
+  result=copy.deepcopy(cached[1])
+  validate_road_groups(result['sourceRoads'],edits.get('roadGroups',[]))
+  old_offsets={k:v.get('positionOffset',[0,0]) for k,v in result['sceneEdits'].get('buildings',{}).items() if v.get('positionOffset')}
+  if offsets!=old_offsets:
+   result=reposition_layout(result,edits,loc['origin'],radius+30)
+   _map_setup_cache=(signature,copy.deepcopy(result))
+   return json.dumps(result)
+  changed={k for k in set(edits.get('buildings',{}))|set(result['sceneEdits'].get('buildings',{})) if edits.get('buildings',{}).get(k)!=result['sceneEdits'].get('buildings',{}).get(k)}
+  apply_building_rules(result['buildings'],result['roads'],edits.get('buildings',{}),loc['origin'],only_ids=changed)
+  result['sceneEdits']=copy.deepcopy(edits)
+ else:
+  source_loc={**loc,'sizeMetres':(radius+30)*2}
+  collection=source.acquire_buildings(root,source_loc)
+  roads=json.loads(prepare_roads())
+  result=prepare_layout(root,source_loc,collection,roads,edits,params.get('editBuildingCollection'),setupProgress,preview=True)
+  setupProgress('높이를 제외한 직선 시야를 확인합니다…')
+  result['visibility']=flat_visibility(result['buildings'],loc['origin'],radius)
+ _map_setup_cache=(signature,copy.deepcopy(result))
+ return json.dumps(result)
+
 def stage_base():
  global buildings,terrain,roads
  source_loc={**loc,'sizeMetres':(radius+30)*2}
  all_buildings=source.acquire_buildings(root,source_loc if view else loc)
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  all_roads=params.get('sourceRoads') or source.acquire_roads(root,{**source_loc,'sizeMetres':max(200,radius+150)*2})
- from scene_edits import classify_roads,apply_building_rules,validate_road_groups,active_roads
- edits=json.loads(json.dumps(params.get('sceneEdits') or {'roads':{},'buildings':{}}))
- from scene_edits import remap_building_edits
- building_edits=remap_building_edits(edits.get('buildings',{}),params.get('editBuildingCollection') or params.get('buildingCollection',{}),all_buildings,loc['origin'])
- classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
- validate_road_groups(all_roads,edits.get('roadGroups',[]))
- original_roads=json.loads(json.dumps(all_roads))
- all_roads=active_roads(all_roads,edits)
- if not all_roads:raise ValueError('동네를 만들 도로를 하나 이상 남겨 주세요.')
- classify_roads(all_roads,edits.get('roads',{}),loc['origin'])
- apply_building_rules(all_buildings,all_roads,building_edits,loc['origin'])
- from road_priority import reserve
- original_buildings=json.loads(json.dumps(all_buildings))
- initial_reservation=reserve(root,source_loc,all_roads,all_buildings)
- building_edits=remap_building_edits(building_edits,original_buildings,all_buildings,loc['origin'])
- apply_building_rules(all_buildings,all_roads,building_edits,loc['origin'])
- edits['buildings']=building_edits
+ from map_preparation import prepare_layout
+ prepared=prepare_layout(root,source_loc,all_buildings,all_roads,params.get('sceneEdits') or {'roads':{},'buildings':{}},params.get('editBuildingCollection') or params.get('buildingCollection'))
+ all_buildings=prepared['buildings'];all_roads=prepared['roads'];original_roads=prepared['sourceRoads'];edits=prepared['sceneEdits']
+ initial_reservation=prepared['reservation']
  loc['buildingRoadFit']=initial_reservation['qa']
  buildings=select_buildings(all_buildings,source_loc if view else loc)
  write('scene-edits.json',edits)

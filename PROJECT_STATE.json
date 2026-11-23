@@ -6532,5 +6532,94 @@
     "hostingCommit": "f7b6e8f5604a00a03e41b2b45ec3db3a15a44bee",
     "sourceRun": 45104354955,
     "hostingRun": 45104390965
+  },
+  "mapPreparationLocal20261123": {
+    "status": "public deployment requested; integration in progress",
+    "branch": "codex/map-preparation-local",
+    "baseCommit": "3ec004bc62ad",
+    "publicDeployment": false,
+    "mainMerged": false,
+    "preview": "http://127.0.0.1:8799/domestic-test/start.html",
+    "fixedPointPreview": "http://127.0.0.1:8799/domestic-test/browser-generation/preparation-check.html",
+    "features": [
+      "road and building setup before generation",
+      "grade colors and compact legend",
+      "wheel zoom; Shift selection and Cmd/Ctrl+G groups",
+      "non-overlapping contextual panel",
+      "planar visibility estimate without height",
+      "residential/mixed-use and entrance wall edits",
+      "validated building offsets up to 30m"
+    ],
+    "checks": [
+      "58 targeted Python tests passed",
+      "5 pole layout regression tests passed",
+      "road selection/map/scene-editor/generation task/VWorld/browser bundle JS checks passed",
+      "real Edge road grade change, group reselection, wheel zoom, use/front edits, move and rejected road collision",
+      "full static build passed: 1692 files, 972.4 MB; generated scene saved and rendered",
+      "reopened saved scene: residential use, entrance wall 8 and moved position restored in Edge"
+    ],
+    "limitations": [
+      "Planar candidates are estimates; final eye-level 360-degree selection remains.",
+      "Uses are residential or ground-floor shops with mixed upper floors. Entrance editing selects a wall, not an exact door location."
+    ],
+    "generationIssue": {
+      "stage": "final pole placement",
+      "cause": "GeometryCollection road boundary was None",
+      "fix": "use polygonal road area; reproduced before fix and five tests pass",
+      "realSceneRecheck": "passed"
+    },
+    "generatedScene": {
+      "id": "9a65b85260561d94",
+      "buildings": 21,
+      "elapsedMs": 157037,
+      "roadSidewalkOverlaps": 0,
+      "visualCheck": "Edge 3D viewer rendered successfully",
+      "preservedEdits": {
+        "building": "1100785867",
+        "use": "residential",
+        "frontEdge": 7,
+        "positionOffset": [
+          4.965409278869629,
+          0
+        ]
+      },
+      "warning": "Nearby shop lookup failed; generation used buildings and roads."
+    },
+    "followup": {
+      "status": "local implementation, tests, build, real generation and 3D viewer verified; not deployed",
+      "changes": [
+        "keep dragged position with red overlap geometry; block final generation on conflicts",
+        "show actual sidewalk reservation; no extra facade clearance on low-grade roads",
+        "Delete/Backspace road and building exclusions",
+        "click numbered facade edge for entrance",
+        "reuse fitted map during building movement"
+      ],
+      "checks": [
+        "15 map preparation tests",
+        "48 road tests",
+        "6 scene edit tests",
+        "JS road selection/scene editor/map preparation/browser generator/bundle checks",
+        "full build: 1692 files, 972.4 MB",
+        "Edge drag, numbered entrance, overlap blocking, Backspace building exclusion and Delete road exclusion; saved exclusions preserved"
+      ],
+      "vertexReview": {
+        "sourceBuildings": 825,
+        "median": 7,
+        "max": 76,
+        "above16": 32,
+        "above32": 7,
+        "decision": "no hard cap or simplification applied"
+      },
+      "generatedScene": {
+        "id": "9a65b85260561d94",
+        "buildings": 41,
+        "deletedBuildingAbsent": true,
+        "deletedRoadAbsent": true,
+        "unresolvedRoadConflicts": 0,
+        "roadOverlapM2": 3.6e-06,
+        "sidewalkOverlapM2": 1e-07
+      }
+    },
+    "deploymentPolicy": "Deploy each subsequent change after checks; local-only exception revoked by user on 2026-11-23"
   }
 }

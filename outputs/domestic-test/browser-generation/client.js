@@ -35,7 +35,8 @@ export async function generateInBrowser(point,onProgress=()=>{},{signal}={}){
  let extra;try{extra=await placesNear(point);}catch(error){extra={places:[],stations:[],exits:[],warnings:['주변 가게 정보를 받지 못해 건물과 도로만으로 배치했습니다.']};await onProgress('가게 조회를 건너뛰고 건물과 도로를 만듭니다…',1);}
  if(signal?.aborted)throw new DOMException('취소했습니다.','AbortError');
  await onProgress('건물 모양과 층수를 조회하고 있습니다…',1);
- const buildingCollection=await loadBuildings(point,{signal});
+ const buildingCollection=point.sourceBuildingCollection||await loadBuildings(point,{signal});
+ editBuildingCollection=point.editBuildingCollection||editBuildingCollection;
  const result=await runGenerationTask({...point,...extra,buildingCollection,editBuildingCollection,sceneEdits,sourceRoads},onProgress,{signal});
  return saveGenerationResult(result,{signal,onProgress,save:saveScene,
   message:'이 브라우저에 동네를 저장하고 있습니다…',failureMessage:'동네를 저장하지 못했습니다. 이전 동네는 유지됩니다.',

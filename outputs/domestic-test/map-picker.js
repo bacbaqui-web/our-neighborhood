@@ -23,7 +23,7 @@ export function chooseMapPoint({query,origin,radius=AUTO_VIEW_RADIUS}){
  if(location.hostname.endsWith('github.io')){location.assign('https://magamiscom.ing/neighborhood/');return Promise.resolve(null);}
  return new Promise(resolve=>{
   const dialog=document.createElement('dialog');dialog.className='map-picker';
-  dialog.innerHTML=`<header><h2>지도에서 생성할 위치 선택</h2><button type="button" data-close aria-label="닫기">닫기</button></header><form class="map-search"><input aria-label="주소 또는 장소 검색" placeholder="주소나 장소 이름을 검색하세요"><button>검색</button></form><p class="map-message" role="status">카카오지도를 불러오는 중…</p><div class="map-picker-body"><div class="map-results"></div><div class="map-canvas"></div></div><footer><span class="map-selection">지도에서 기준점을 찍어 주세요.</span><button data-confirm disabled>도로 종류 정하기</button></footer>`;
+  dialog.innerHTML=`<header><h2>지도에서 생성할 위치 선택</h2><button type="button" data-close aria-label="닫기">닫기</button></header><form class="map-search"><input aria-label="주소 또는 장소 검색" placeholder="주소나 장소 이름을 검색하세요"><button>검색</button></form><p class="map-message" role="status">카카오지도를 불러오는 중…</p><div class="map-picker-body"><div class="map-results"></div><div class="map-canvas"></div></div><footer><span class="map-selection">지도에서 기준점을 찍어 주세요.</span><button data-confirm disabled>지도 정돈하기</button></footer>`;
   document.body.append(dialog);dialog.showModal();
   const $=s=>dialog.querySelector(s),message=$('.map-message'),confirm=$('[data-confirm]'),range={value:radius};
   $('.map-search').onsubmit=event=>event.preventDefault();

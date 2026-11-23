@@ -10,6 +10,7 @@ MAJOR={'primary','secondary','trunk','tertiary'}
 def street_type(props):
  # Access restrictions override road class; width alone never means no vehicles.
  kind=props.get('class','minor');sub=props.get('subclass','')
+ if props.get('sceneGrade')==0:return 'pedestrian'
  if props.get('sceneGrade'):return 'shared' if props['sceneGrade']==1 else 'carriageway'
  if sub=='sidewalk' or props.get('footway')=='sidewalk':return 'sidewalk'
  if sub in {'footway','pedestrian','steps','cycleway'} or kind in {'path','pedestrian'} or props.get('motor_vehicle')=='no' or props.get('vehicle')=='no':return 'pedestrian'
@@ -129,8 +130,11 @@ def reserve(root,location,roads,buildings):
  service=unary_union(servicePaths).difference(carriageway.union(shared).union(pedestrian).union(sidewalk))
  surfaces={'service':service,'carriageway':carriageway,'shared':shared,'pedestrian':pedestrian,'sidewalk':sidewalk}
  # Keep a small facade/plinth clearance outside road and sidewalk, not inside them.
- allRoad=allRoad.union(service)
- protected=allRoad.union(majorPublic).buffer(.4,join_style=2)
+ if location.get('mapPreparation'):
+  protected=allRoad.union(majorPublic)
+ else:
+  allRoad=allRoad.union(service)
+  protected=allRoad.union(majorPublic).buffer(.4,join_style=2)
  original=copy.deepcopy(buildings);out=[];changed=[];omitted=[]
  if any(r.get('grade') for r in roads):
   changed,omitted=fit_buildings(buildings,protected,roads,[lat,lon])

@@ -11,21 +11,28 @@ self.browserRequest=url=>{
  if(xhr.status<200||xhr.status>=300)throw Error('지도 자료를 받지 못했습니다. 잠시 후 다시 시도해 주세요. ('+xhr.status+')');
  const bytes=new Uint8Array(xhr.response);mapCache.remember(url,bytes);return bytes;
 };
+let runtime;
 let started=0;const timings=[];
 const progress=(message,percent)=>{timings.push({message,percent,elapsedMs:Math.round(performance.now()-started)});postMessage({type:'progress',message,percent});};
+self.setupProgress=message=>progress(message,75);
 self.onmessage=async({data})=>{
  started=performance.now();timings.length=0;
  try{
-  progress('처음 실행에 필요한 파일을 받는 중입니다…',2);
+  progress(runtime?'지도 설정을 적용하고 있습니다…':'처음 실행에 필요한 파일을 받는 중입니다…',2);
+  if(!runtime)runtime=(async()=>{
   const {loadPyodide}=await import('https://cdn.jsdelivr.net/pyodide/v314.0.0/full/pyodide.mjs');
   const py=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v314.0.0/full/'});
   await py.loadPackage(['numpy','scipy','scikit-image','shapely','pillow','pyclipper','protobuf','micropip']);
   await py.runPythonAsync("import micropip\nawait micropip.install('mapbox-vector-tile==2.2.0',deps=False)");
   const [sources,terrainText,bounds]=await Promise.all([fetch(new URL('sources.json?v=unified11',base),{cache:'no-cache'}).then(r=>r.json()),fetch(new URL('terrain-source.txt',base)).then(r=>r.text()),fetch(new URL('vehicle-bounds.json',base)).then(r=>r.json())]);
   for(const [path,text] of Object.entries(sources)){py.FS.mkdirTree(path.slice(0,path.lastIndexOf('/')));py.FS.writeFile(path,text);}
+  return {py,terrainText,bounds};
+  })();
+  const {py,terrainText,bounds}=await runtime;
   py.globals.set('PARAMETERS',JSON.stringify(data));
   await py.runPythonAsync("exec(open('/work/browser-entry.py').read())");
   if(data.roadSetupOnly){progress('주변 도로의 연결 구간을 정리합니다…',65);const roads=JSON.parse(await py.runPythonAsync('prepare_roads()'));await mapCache.flush();postMessage({type:'roads',roads});return;}
+  if(data.mapSetupOnly){progress('도로와 건물 배치를 정리합니다…',70);const layout=JSON.parse(await py.runPythonAsync('prepare_map()'));await mapCache.flush();postMessage({type:'map',layout,elapsedMs:Math.round(performance.now()-started)});return;}
   progress('길 위에 위치를 맞추고 360도로 보이는 건물을 확인합니다…',12);
   await py.runPythonAsync('stage_base()');
   const root=py.runPython('str(root)');
@@ -49,5 +56,5 @@ self.onmessage=async({data})=>{
   manifest.mapCacheStats=mapCache.stats;
   manifest.generationTimings=timings;manifest.generationMilliseconds=Math.round(performance.now()-started);
   postMessage({type:'complete',manifest,files},Object.values(files).map(bytes=>bytes.buffer));
- }catch(error){console.error(error);postMessage({type:'error',message:String(error.message||error).trim().split('\n').at(-1),detail:String(error.message||error),stage:timings.at(-1)?.message});}
+ }catch(error){console.error(error);postMessage({type:'error',message:String(error.message||error).trim().split('\n').at(-1).replace(/^(?:ValueError|RuntimeError):\s*/,''),detail:String(error.message||error),stage:timings.at(-1)?.message});}
 };

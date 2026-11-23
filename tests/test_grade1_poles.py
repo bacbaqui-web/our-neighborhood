@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from shapely.geometry import LineString, Point, Polygon, box, mapping
+from shapely.geometry import LineString, Point, Polygon, GeometryCollection, box, mapping
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'work'))
 from grade1_poles import apply_alley_poles, plan_poles
@@ -22,6 +22,15 @@ class GradeOnePolesTest(unittest.TestCase):
             self.assertFalse(Point(pole['point']).buffer(.22).intersects(road.union(access)))
         for a, b in links:
             self.assertLess(abs(math.dist(poles[a]['point'], poles[b]['point']) - 32), 6)
+
+    def test_mixed_surface_and_line_remnants_use_surface_boundary(self):
+        surface = box(0, -2, 125, 2)
+        center = LineString([(0, 0), (125, 0)])
+        mixed = GeometryCollection([surface, LineString([(130, 0), (140, 0)])])
+        expected = plan_poles([center], surface, Polygon(), Polygon(), surface.buffer(2))
+        actual = plan_poles([center], mixed, Polygon(), Polygon(), surface.buffer(2))
+        self.assertEqual(actual, expected)
+        self.assertEqual(plan_poles([center], GeometryCollection(), Polygon(), Polygon(), surface), ([], []))
 
     def test_building_prevents_shortcut_and_isolated_poles_are_removed(self):
         road = box(0, -2, 94, 2)

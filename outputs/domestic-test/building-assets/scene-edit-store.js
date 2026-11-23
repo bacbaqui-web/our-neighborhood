@@ -6,14 +6,16 @@ import {getScene,saveScene} from '../browser-generation/storage.js';
 export function validateSceneEdits(edits){
  if(!edits||typeof edits!=='object'||Array.isArray(edits)||!edits.roads||typeof edits.roads!=='object'||Array.isArray(edits.roads)||!edits.buildings||typeof edits.buildings!=='object'||Array.isArray(edits.buildings))throw Error('도로·건물 수정 정보를 읽지 못했습니다.');
  validateRoadGroups(edits.roadGroups);validateExcludedRoads(edits.excludedRoads);
- for(const r of Object.values(edits.roads))if(!Number.isInteger(r?.grade)||r.grade<1||r.grade>4)throw Error('도로 등급은 1~4차도로 중에서 선택해 주세요.');
+ for(const r of Object.values(edits.roads))if(!Number.isInteger(r?.grade)||r.grade<0||r.grade>4)throw Error('도로 등급은 보행·1~4차도로 중에서 선택해 주세요.');
  for(const b of Object.values(edits.buildings)){
   if(!b||typeof b!=='object'||Array.isArray(b))throw Error('건물 정보를 다시 입력해 주세요.');
+  if(b.deleted!==undefined&&typeof b.deleted!=='boolean')throw Error('건물 삭제 정보를 확인해 주세요.');
   if(b.assetId!==undefined&&!assetById[b.assetId])throw Error('건물 디자인을 목록에서 다시 선택해 주세요.');
   if(b.floors!==undefined&&(!Number.isInteger(b.floors)||b.floors<1||b.floors>200))throw Error('층수는 1~200 사이의 정수로 입력해 주세요.');
   if(b.frontEdge!==undefined&&(!Number.isInteger(b.frontEdge)||b.frontEdge<0||b.frontEdge>1000))throw Error('입구를 놓을 면을 다시 선택해 주세요.');
   if(b.styleIndex!==undefined&&(!Number.isInteger(b.styleIndex)||b.styleIndex<0||b.styleIndex>5))throw Error('건물 디자인을 다시 선택해 주세요.');
   if(b.era!==undefined&&!['old','middle','new'].includes(b.era))throw Error('건물 연식을 다시 선택해 주세요.');
+  if(b.positionOffset!==undefined&&(!Array.isArray(b.positionOffset)||b.positionOffset.length!==2||!b.positionOffset.every(Number.isFinite)||Math.hypot(...b.positionOffset)>30))throw Error('건물 이동은 원래 배치에서 30m 안으로 지정해 주세요.');
   if(b.use!==undefined&&!['residential','mixed'].includes(b.use))throw Error('건물 용도를 다시 선택해 주세요.');
  }
  return edits;

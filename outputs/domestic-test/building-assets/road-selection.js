@@ -22,7 +22,7 @@ export function createRoadSelection(roads,edits={}){
   gradeOf(id){return this.grades[id]?.grade??byId.get(id)?.grade??1;},
   get grade(){const values=new Set([...this.selected].map(id=>this.gradeOf(id)));return values.size===1?[...values][0]:null;},
   get canRestorePedestrian(){return this.selected.size>0&&[...this.selected].every(id=>byId.get(id)?.grade===0);},
-  setGrade(grade){if(grade===0&&this.canRestorePedestrian){for(const id of this.selected)delete this.grades[id];return;}if(!Number.isInteger(grade)||grade<1||grade>4)throw Error('도로 등급은 1~4차도로 중에서 선택해 주세요.');for(const id of this.selected){if(grade===(initialGrades[id]?.grade??byId.get(id)?.grade??1)){if(initialGrades[id])this.grades[id]=structuredClone(initialGrades[id]);else delete this.grades[id];}else if(this.gradeOf(id)!==grade)this.grades[id]={grade};}},
+  setGrade(grade){if(grade===0&&this.canRestorePedestrian){for(const id of this.selected)delete this.grades[id];return;}if(!Number.isInteger(grade)||grade<0||grade>4)throw Error('도로 등급은 보행·1~4차도로 중에서 선택해 주세요.');for(const id of this.selected){if(grade===(initialGrades[id]?.grade??byId.get(id)?.grade??1)){if(initialGrades[id])this.grades[id]=structuredClone(initialGrades[id]);else delete this.grades[id];}else if(this.gradeOf(id)!==grade)this.grades[id]={grade};}},
   group(){if(this.selected.size<2)throw Error('묶을 도로 구간을 두 개 이상 선택해 주세요.');if(this.grade===null)this.setGrade(this.gradeOf([...this.selected][0]));this.ungroup();this.groups.push([...this.selected].sort());},
   ungroup(){this.groups=this.groups.filter(g=>!g.some(id=>this.selected.has(id)));},
   reset(){for(const id of this.selected)delete this.grades[id];this.ungroup();},

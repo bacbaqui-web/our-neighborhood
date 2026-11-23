@@ -7,6 +7,12 @@ import {assetById} from '../../../building-assets/catalog.js';
 let shopData;
 export {buildStorefront,prepareShopInteriors,createStorefrontLighting};
 export async function createModel(a,context={}){
+ if(a.kind==='shop-assembly'){if(!context.createShopAssembly)throw Error('상가 조립 미리보기 연결이 필요합니다.');return context.createShopAssembly(a);}
+ if(a.pack==='bakery-local')return (await import('./bakery-local/model.js')).createPart(a.key);
+ if(a.pack==='bakery-blue')return (await import('./bakery-blue/model.js')).createPart(a.key);
+ if(a.pack==='salon-local')return (await import('./salon-local/model.js')).createPart(a.key);
+ if(a.pack==='pharmacy-local')return (await import('./pharmacy-local/model.js')).createPart(a.key);
+ if(a.pack==='convenience-local')return (await import('./local-detail/modular-assets.js')).createPart(a.key);
  if(a.kind==='building'&&a.pack==='sungshin-commercial')return loadCommercialBuilding(a.key);
  if(a.kind==='building'){await prepareBuildingIdentity();return previewModel(assetById[a.key],null,context);}
  if(a.kind==='facility'){await prepareBuildingIdentity();return previewBuilding(a.key,{neighbors:false,...context});}

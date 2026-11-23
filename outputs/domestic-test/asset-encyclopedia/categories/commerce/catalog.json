@@ -5440,7 +5440,7 @@
       "collection": "업종별 상가",
       "kind": "shop",
       "note": "참고 사진의 외형과 만화풍 간판·광고. 실제 깊이의 방과 업종별 박스 가구. 치수와 가려진 부분은 추정입니다.",
-      "link": "../storefronts.html",
+      "link": "./categories/commerce/local-detail/",
       "approvedReferenceId": "paste-556800dc-c4ed-4ce7-a1ea-64f6c11e75d3",
       "taxonomy": {
         "domain": "commerce",
@@ -5477,6 +5477,17 @@
           "categories/commerce/models.js": "public-required"
         },
         "modelProvider": "categories/commerce/models.js"
+      },
+      "localReview": {
+        "status": "representative-awaiting-user-review",
+        "model": "categories/commerce/local-detail/model-v4.js",
+        "preview": "categories/commerce/local-detail/index.html",
+        "referenceId": "user-storefront-reference-v3-20261123",
+        "published": false,
+        "placement": "original unchanged",
+        "revision": 4,
+        "interior": "textured cuboids, walls and ceiling",
+        "scope": "shop frontage only; upper building windows excluded"
       }
     },
     {
@@ -11361,6 +11372,5366 @@
         "note": "교체 요청에 따라 현재 참고 이미지의 외관·색·간판을 새로 제작했습니다. 사진에 없는 면은 추정이며 지도에서는 원래 윤곽과 층수를 따릅니다.",
         "remade": true,
         "approvedReferenceId": "building-reference-fire-sandong-20261121-v2"
+      }
+    },
+    {
+      "id": "commerce:seven-local-body",
+      "name": "SEVENA · 소품 없는 점포 본체",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "body",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=body",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [
+          {
+            "id": "sign",
+            "surface": "front",
+            "evidence": "정면 간판 위치"
+          },
+          {
+            "id": "awning",
+            "surface": "front",
+            "evidence": "간판 아래 차양 위치"
+          }
+        ],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 9.65,
+          "height": 5.92,
+          "depth": 3.65
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=body",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-sign",
+      "name": "SEVENA · 9칸 간판",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "sign",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=sign",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 9.49,
+          "height": 1.72,
+          "depth": 0.38
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=sign",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-awning",
+      "name": "짙은 녹색 점포 차양",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "awning",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=awning",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 9.6,
+          "height": 0.4,
+          "depth": 1.5
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=awning",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-rack",
+      "name": "만화풍 상품 진열대",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "rack",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=rack",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.25,
+          "height": 2.1,
+          "depth": 0.5
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=rack",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-narrow-rack",
+      "name": "슬림 상품 진열대",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "narrow-rack",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=narrow-rack",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.78,
+          "height": 2.1,
+          "depth": 0.5
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=narrow-rack",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-freezer",
+      "name": "유리 뚜껑 냉동고",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "freezer",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=freezer",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.35,
+          "height": 1.14,
+          "depth": 0.85
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=freezer",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-packs",
+      "name": "포장상품 묶음",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "packs",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=packs",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.2,
+          "height": 1.5,
+          "depth": 0.5
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=packs",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-picnic",
+      "name": "목재 테이블·벤치",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "picnic",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=picnic",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.95,
+          "height": 0.85,
+          "depth": 1.95
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=picnic",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-umbrella",
+      "name": "녹색·흰색 파라솔",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "umbrella",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=umbrella",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 4.04,
+          "height": 3.38,
+          "depth": 4.04,
+          "footprint": [
+            0.18,
+            0.18
+          ]
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=umbrella",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-table",
+      "name": "녹색 원형 테이블",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "table",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=table",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.2,
+          "height": 0.78,
+          "depth": 1.2
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=table",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-chair",
+      "name": "녹색 플라스틱 의자",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "chair",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=chair",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.58,
+          "height": 1.03,
+          "depth": 0.55
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=chair",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-fridge",
+      "name": "실내 음료 냉장고",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "fridge",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=fridge",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "service",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.45,
+          "height": 2.35,
+          "depth": 0.65
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=fridge",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-checkout",
+      "name": "편의점 계산대",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "checkout",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=checkout",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "service",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.6,
+          "height": 1.05,
+          "depth": 0.75
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=checkout",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:seven-local-light",
+      "name": "편의점 천장등",
+      "kind": "shop-component",
+      "pack": "convenience-local",
+      "key": "light",
+      "category": "편의점 조립 부품",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/?part=light",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "service",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "편의점",
+          "조립 부품",
+          "로컬 시험",
+          "상가 제작",
+          "편의점 SEVENA"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.8,
+          "height": 0.08,
+          "depth": 0.2
+        },
+        "evidence": "사용자 제공 reference-v3.png. 실내는 업종 예시; 상층 창문 제외.",
+        "parentAssetIds": [
+          "commerce:convenience-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assets.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/local-detail/modular-shapes.js",
+          "categories/commerce/local-detail/modular-textures.js"
+        ],
+        "preview": "./categories/commerce/local-detail/?part=light",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assets.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/local-detail/modular-shapes.js": "public-required",
+          "categories/commerce/local-detail/modular-textures.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-body",
+      "name": "약국 · 가변 본체",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "body",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=body",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "complete",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 6.52,
+          "height": 4.56,
+          "depth": 4.3
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "resize": {
+          "width": [
+            4.8,
+            9
+          ],
+          "height": [
+            4.2,
+            5.2
+          ],
+          "depth": [
+            3.5,
+            5
+          ],
+          "mode": "rebuild-from-anchors",
+          "heightMeaning": "legacy facade height range; use ceilingHeight for current generator",
+          "ceilingHeight": [
+            2.7,
+            3.3
+          ]
+        },
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=body",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-sign",
+      "name": "강약중강약국 간판",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "sign",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=sign",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 6,
+          "height": 1.22,
+          "depth": 0.42
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=sign",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-awning",
+      "name": "남보라 접이식 차양",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "awning",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=awning",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 6.1,
+          "height": 0.4,
+          "depth": 1.3
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=awning",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-glassprint",
+      "name": "약국 가변 유리 안내",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "glassprint",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=glassprint",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.9,
+          "height": 2.5,
+          "depth": 0.02
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=glassprint",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-board",
+      "name": "약국 접이식 입간판",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "board",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=board",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.65,
+          "height": 1.1,
+          "depth": 0.65
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=board",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-rack",
+      "name": "약국 전면 소형 진열대",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "rack",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=rack",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.65,
+          "height": 1.4,
+          "depth": 0.4
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=rack",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-cabinet",
+      "name": "약품 진열 수납장",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "cabinet",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=cabinet",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.5,
+          "height": 2.3,
+          "depth": 0.45
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=cabinet",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-counter",
+      "name": "약국 접수대",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "counter",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=counter",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.8,
+          "height": 1.24,
+          "depth": 0.7
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=counter",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-drawers",
+      "name": "조제용 서랍장",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "drawers",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=drawers",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.8,
+          "height": 2.3,
+          "depth": 0.5
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=drawers",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-light",
+      "name": "약국 천장 평판등",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "light",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=light",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.2,
+          "height": 0.06,
+          "depth": 0.6
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=light",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-roundsign",
+      "name": "약국 원형 돌출 간판",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "roundsign",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=roundsign",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.7,
+          "height": 0.95,
+          "depth": 0.8
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=roundsign",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-bench",
+      "name": "약국 대기 의자",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "bench",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=bench",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 1.25,
+          "height": 0.95,
+          "depth": 0.42
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=bench",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-lowdisplay",
+      "name": "약국 낮은 진열대",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "lowdisplay",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=lowdisplay",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.9,
+          "height": 0.9,
+          "depth": 0.45
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=lowdisplay",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-poster-vitamin",
+      "name": "유리 부착 · 비타민 광고",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "poster-vitamin",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=poster-vitamin",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.48,
+          "height": 0.64,
+          "depth": 0.002
+        },
+        "evidence": "직접 그린 만화풍 가상 광고. 유리면 앞 0.085m 위치에 분리 배치.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=poster-vitamin",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-poster-firstaid",
+      "name": "유리 부착 · 구급용품 안내",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "poster-firstaid",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=poster-firstaid",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.48,
+          "height": 0.64,
+          "depth": 0.002
+        },
+        "evidence": "직접 그린 만화풍 가상 광고. 유리면 앞 0.085m 위치에 분리 배치.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=poster-firstaid",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-counter-display",
+      "name": "접수대 소형 상품 진열",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "counter-display",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=counter-display",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.48,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=counter-display",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-counter-notice",
+      "name": "접수대 이용 안내문",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "counter-notice",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=counter-notice",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.22,
+          "height": 0.32,
+          "depth": 0.025
+        },
+        "evidence": "정면은 사용자 사진 참고. 실내 천장고 3.0m는 국내 시공 사례 참고 제작값. 내부 배치는 업종 예시.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=counter-notice",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-doorprint",
+      "name": "출입문 로고·안내 종이",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "doorprint",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=doorprint",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.75,
+          "height": 2.4,
+          "depth": 0.002
+        },
+        "evidence": "직접 그린 만화풍 가상 광고. 유리면 앞 0.085m 위치에 분리 배치.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=doorprint",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-window-papers",
+      "name": "유리 안내 종이·테이프 흔적",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "window-papers",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=window-papers",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 2.2,
+          "height": 2.9,
+          "depth": 0.002
+        },
+        "evidence": "직접 그린 만화풍 가상 광고. 유리면 앞 0.085m 위치에 분리 배치.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=window-papers",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-a4-notice",
+      "name": "안쪽을 향한 흰 A3 안내지",
+      "kind": "shop-component",
+      "pack": "pharmacy-local",
+      "key": "a4-notice",
+      "category": "약국 조립 부품",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/?part=a4-notice",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "약국",
+          "로컬 시험",
+          "조립 부품",
+          "상가 제작",
+          "강약중강약국"
+        ]
+      },
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "unit": "m",
+          "basis": "사진 비례 추정",
+          "width": 0.297,
+          "height": 0.42,
+          "depth": 0.0008
+        },
+        "evidence": "직접 그린 만화풍 가상 광고. 유리면 앞 0.085m 위치에 분리 배치.",
+        "parentAssetIds": [
+          "commerce:pharmacy-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/model.js",
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/model-v1.js",
+          "categories/commerce/pharmacy-local/frontage.js",
+          "categories/commerce/pharmacy-local/posters.js",
+          "categories/commerce/pharmacy-local/interior-furniture.js"
+        ],
+        "preview": "./categories/commerce/pharmacy-local/?part=a4-notice",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/model.js": "public-required",
+          "categories/commerce/local-detail/modular-primitives.js": "public-required",
+          "categories/commerce/pharmacy-local/model-v1.js": "public-required",
+          "categories/commerce/pharmacy-local/frontage.js": "public-required",
+          "categories/commerce/pharmacy-local/posters.js": "public-required",
+          "categories/commerce/pharmacy-local/interior-furniture.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:bakery-local-body",
+      "name": "빵집 · 가변 본체",
+      "key": "body",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 3.36,
+          "height": 4.52,
+          "depth": 5.4,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=body",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=body"
+    },
+    {
+      "id": "commerce:bakery-local-sign",
+      "name": "소담빵집 · 크림색 차양 간판",
+      "key": "sign",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 3.04,
+          "height": 1.38,
+          "depth": 0.96,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=sign",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=sign"
+    },
+    {
+      "id": "commerce:bakery-local-shelf",
+      "name": "빵집 목재 벽 진열장",
+      "key": "shelf",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.2,
+          "height": 1.85,
+          "depth": 0.46,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=shelf",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=shelf"
+    },
+    {
+      "id": "commerce:bakery-local-showcase",
+      "name": "빵집 유리 쇼케이스",
+      "key": "showcase",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.4,
+          "height": 1.64,
+          "depth": 0.7,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=showcase",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=showcase"
+    },
+    {
+      "id": "commerce:bakery-local-counter",
+      "name": "빵집 계산대",
+      "key": "counter",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.15,
+          "height": 1,
+          "depth": 0.7,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=counter",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=counter"
+    },
+    {
+      "id": "commerce:bakery-local-oven",
+      "name": "제빵 오븐과 작업 수납",
+      "key": "oven",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.2,
+          "height": 1.85,
+          "depth": 0.65,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=oven",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=oven"
+    },
+    {
+      "id": "commerce:bakery-local-trays",
+      "name": "빵 쟁반·집게 수납",
+      "key": "trays",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.5,
+          "height": 0.92,
+          "depth": 0.44,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=trays",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=trays"
+    },
+    {
+      "id": "commerce:bakery-local-pos",
+      "name": "빵집 결제 단말기",
+      "key": "pos",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.28,
+          "height": 0.29,
+          "depth": 0.24,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=pos",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=pos"
+    },
+    {
+      "id": "commerce:bakery-local-bags",
+      "name": "포장 봉투·상자 묶음",
+      "key": "bags",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.38,
+          "height": 0.34,
+          "depth": 0.28,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=bags",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=bags"
+    },
+    {
+      "id": "commerce:bakery-local-board",
+      "name": "빵집 목재 입간판",
+      "key": "board",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.55,
+          "height": 0.95,
+          "depth": 0.48,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=board",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=board"
+    },
+    {
+      "id": "commerce:bakery-local-planter",
+      "name": "빵집 화분",
+      "key": "planter",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.4,
+          "height": 1,
+          "depth": 0.4,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=planter",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=planter"
+    },
+    {
+      "id": "commerce:bakery-local-decal",
+      "name": "빵집 유리 영업 안내",
+      "key": "decal",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.58,
+          "height": 0.55,
+          "depth": 0.002,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=decal",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=decal"
+    },
+    {
+      "id": "commerce:bakery-local-light",
+      "name": "빵집 천장 평판등",
+      "key": "light",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.15,
+          "height": 0.07,
+          "depth": 0.36,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=light",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=light"
+    },
+    {
+      "id": "commerce:bakery-local-partition",
+      "name": "제빵실 출입문·칸막이",
+      "key": "partition",
+      "pack": "bakery-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "collection": "상가 제작 · 소담빵집",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 6.4,
+          "height": 3,
+          "depth": 0.08,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/model.js",
+          "categories/commerce/bakery-local/textures.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./categories/commerce/bakery-local/?part=partition",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js",
+          "categories/commerce/pharmacy-local/interior-volume.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/model.js": "public-required",
+          "categories/commerce/bakery-local/textures.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "조립 부품"
+        ]
+      },
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/?part=partition"
+    },
+    {
+      "id": "commerce:bakery-blue-body",
+      "key": "body",
+      "name": "PAKO PAKO · 청색 점포 본체",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 7.76,
+          "height": 3.95,
+          "depth": 5.4,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=body",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=body"
+    },
+    {
+      "id": "commerce:bakery-blue-sign",
+      "key": "sign",
+      "name": "청색 금테 간판",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 7.6,
+          "height": 0.9,
+          "depth": 0.24,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=sign",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=sign"
+    },
+    {
+      "id": "commerce:bakery-blue-awning",
+      "key": "awning",
+      "name": "검정·흰색 줄무늬 차양",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 7.9,
+          "height": 0.48,
+          "depth": 1.05,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=awning",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=awning"
+    },
+    {
+      "id": "commerce:bakery-blue-showcase",
+      "key": "showcase",
+      "name": "창가 유리 빵 쇼케이스",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.4,
+          "height": 1.64,
+          "depth": 0.7,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=showcase",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=showcase"
+    },
+    {
+      "id": "commerce:bakery-blue-wallrack",
+      "key": "wallrack",
+      "name": "열린 목재 3단 빵 진열장",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.4,
+          "height": 1.95,
+          "depth": 0.7,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=wallrack",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=wallrack"
+    },
+    {
+      "id": "commerce:bakery-blue-island",
+      "key": "island",
+      "name": "목재 중앙 빵 매대",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.6,
+          "height": 1.13,
+          "depth": 0.95,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=island",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=island"
+    },
+    {
+      "id": "commerce:bakery-blue-counter",
+      "key": "counter",
+      "name": "빵집 계산대",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.15,
+          "height": 1,
+          "depth": 0.7,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=counter",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=counter"
+    },
+    {
+      "id": "commerce:bakery-blue-oven",
+      "key": "oven",
+      "name": "제빵 오븐",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.2,
+          "height": 1.85,
+          "depth": 0.65,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=oven",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=oven"
+    },
+    {
+      "id": "commerce:bakery-blue-pos",
+      "key": "pos",
+      "name": "결제 단말기",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.28,
+          "height": 0.29,
+          "depth": 0.24,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=pos",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=pos"
+    },
+    {
+      "id": "commerce:bakery-blue-bags",
+      "key": "bags",
+      "name": "포장 봉투",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.38,
+          "height": 0.34,
+          "depth": 0.28,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=bags",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=bags"
+    },
+    {
+      "id": "commerce:bakery-blue-bench",
+      "key": "bench",
+      "name": "전면 목재 벤치",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.55,
+          "height": 0.48,
+          "depth": 0.43,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=bench",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=bench"
+    },
+    {
+      "id": "commerce:bakery-blue-board",
+      "key": "board",
+      "name": "핑크 빵 안내 입간판",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.55,
+          "height": 0.95,
+          "depth": 0.48,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=board",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=board"
+    },
+    {
+      "id": "commerce:bakery-blue-poster",
+      "key": "poster",
+      "name": "버터빵 광고 포스터",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.36,
+          "height": 0.62,
+          "depth": 0.004,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=poster",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=poster"
+    },
+    {
+      "id": "commerce:bakery-blue-decal",
+      "key": "decal",
+      "name": "출입문 OPEN 안내",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.36,
+          "height": 0.2,
+          "depth": 0.003,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=decal",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=decal"
+    },
+    {
+      "id": "commerce:bakery-blue-light",
+      "key": "light",
+      "name": "균일한 실내 평판등",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.15,
+          "height": 0.07,
+          "depth": 0.36,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=light",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=light"
+    },
+    {
+      "id": "commerce:bakery-blue-coffee",
+      "key": "coffee",
+      "name": "커피 작업대와 기계",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.3,
+          "height": 1.5,
+          "depth": 0.65,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=coffee",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=coffee"
+    },
+    {
+      "id": "commerce:bakery-blue-fridge",
+      "key": "fridge",
+      "name": "유리 음료 냉장고",
+      "pack": "bakery-blue",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.7,
+          "height": 1.9,
+          "depth": 0.65,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:bakery-blue-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/model.js",
+          "categories/commerce/bakery-blue/shared-parts.js",
+          "categories/commerce/bakery-blue/textures.js",
+          "categories/commerce/bakery-blue/blue-textures.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./categories/commerce/bakery-blue/?part=fridge",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/model.js": "public-required",
+          "categories/commerce/bakery-blue/shared-parts.js": "public-required",
+          "categories/commerce/bakery-blue/textures.js": "public-required",
+          "categories/commerce/bakery-blue/blue-textures.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      },
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/?part=fridge"
+    },
+    {
+      "id": "commerce:salon-local-body",
+      "key": "body",
+      "name": "haro · 아이보리 미용실 본체",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 3.56,
+          "height": 4.38,
+          "depth": 6.5,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=body",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=body",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-sign",
+      "key": "sign",
+      "name": "haro · 흰색 문자 간판",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 3.4,
+          "height": 1.04,
+          "depth": 0.24,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=sign",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=sign",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-station",
+      "key": "station",
+      "name": "목재 사각 거울과 경대",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.86,
+          "height": 2.12,
+          "depth": 0.27,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=station",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=station",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-chair",
+      "key": "chair",
+      "name": "베이지 유압 시술 의자",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.68,
+          "height": 1.08,
+          "depth": 0.9,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=chair",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=chair",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-trolley",
+      "key": "trolley",
+      "name": "미용 도구 이동 카트",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.38,
+          "height": 0.8,
+          "depth": 0.42,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=trolley",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=trolley",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-wash",
+      "key": "wash",
+      "name": "샴푸 의자와 세면 볼",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.76,
+          "height": 1.12,
+          "depth": 1.55,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=wash",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=wash",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-partition",
+      "key": "partition",
+      "name": "아치 커튼·원형창 가벽",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 3.4,
+          "height": 2.6,
+          "depth": 0.1,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=partition",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=partition",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-towels",
+      "key": "towels",
+      "name": "수건·염색약 수납장",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.72,
+          "height": 1.85,
+          "depth": 0.42,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=towels",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=towels",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-reception",
+      "key": "reception",
+      "name": "아이보리 접수대",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.7,
+          "height": 1.1,
+          "depth": 0.6,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=reception",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=reception",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-terminal",
+      "key": "terminal",
+      "name": "접수대 결제 단말기",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.2,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=terminal",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=terminal",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-waiting",
+      "key": "waiting",
+      "name": "창가 목재 대기 벤치",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1,
+          "height": 0.46,
+          "depth": 0.42,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=waiting",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=waiting",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-products",
+      "key": "products",
+      "name": "벽면 헤어 제품 선반",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.4,
+          "height": 0.7,
+          "depth": 0.16,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=products",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=products",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-planter",
+      "key": "planter",
+      "name": "전면 목재 화단과 나무",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 1.55,
+          "height": 1.65,
+          "depth": 0.8,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=planter",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=planter",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-decal",
+      "key": "decal",
+      "name": "유리문 영업 안내",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.44,
+          "height": 0.52,
+          "depth": 0.003,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=decal",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=decal",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-sidebrand",
+      "key": "sidebrand",
+      "name": "기둥 작은 상호",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.27,
+          "height": 0.2,
+          "depth": 0.003,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=sidebrand",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=sidebrand",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "storefront",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-light",
+      "key": "light",
+      "name": "천장 사각 라인 조명",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 2.65,
+          "height": 0.05,
+          "depth": 3.2,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=light",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=light",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-aircon",
+      "key": "aircon",
+      "name": "천장 카세트 에어컨",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.65,
+          "height": 0.08,
+          "depth": 0.65,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=aircon",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=aircon",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-toolkit",
+      "key": "toolkit",
+      "name": "경대 드라이기·빗·가위·제품 묶음",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.76,
+          "height": 0.26,
+          "depth": 0.23,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=toolkit",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=toolkit",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-stock",
+      "key": "stock",
+      "name": "수건과 펌프 샴푸 진열장",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.88,
+          "height": 1.84,
+          "depth": 0.28,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=stock",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=stock",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:salon-local-centerstation",
+      "key": "centerstation",
+      "name": "중앙 독립 경대와 수납장",
+      "pack": "salon-local",
+      "kind": "shop-component",
+      "category": "가게·생활",
+      "assembly": {
+        "kind": "component",
+        "slots": [],
+        "dimensions": {
+          "width": 0.88,
+          "height": 2.12,
+          "depth": 0.32,
+          "unit": "m",
+          "basis": "사진 비례 추정 제작값"
+        },
+        "evidence": "사진에서 관찰한 구조와 추정 내부를 구분한 만화풍 박스·텍스처 제작본.",
+        "parentAssetIds": [
+          "commerce:salon-local-assembly"
+        ]
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/model.js",
+          "categories/commerce/salon-local/config.js",
+          "categories/commerce/salon-local/textures.js",
+          "categories/commerce/salon-local/assembly.js",
+          "categories/commerce/salon-local/interior-volume.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./categories/commerce/salon-local/?part=centerstation",
+        "sharedDependencies": [
+          "categories/commerce/local-detail/modular-primitives.js"
+        ],
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/model.js": "public-required",
+          "categories/commerce/salon-local/config.js": "public-required",
+          "categories/commerce/salon-local/textures.js": "public-required",
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "categories/commerce/salon-local/interior-volume.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
+      },
+      "link": "./categories/commerce/salon-local/?part=centerstation",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "display",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "조립 부품"
+        ]
+      },
+      "collection": "상가 제작 · haro 미용실",
+      "note": "본체·간판·소품을 분리한 제작본. 치수는 사진 비례 추정이며 동네 자동 배치는 미연결입니다."
+    },
+    {
+      "id": "commerce:convenience-local-assembly",
+      "key": "assembly",
+      "pack": "convenience-local",
+      "name": "편의점 SEVENA · 전체 조립",
+      "kind": "shop-assembly",
+      "category": "상가 조립 예시",
+      "collection": "상가 제작 · 편의점 SEVENA",
+      "note": "소품 포함 조립 미리보기입니다. 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/local-detail/",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "편의점 SEVENA",
+          "전체 조립"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "등록된 본체와 소품을 assembly-rules의 공간 조건으로 조립한 예시."
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/local-detail/modular-assembly.js",
+          "../assembly-rules/convenience-local.js"
+        ],
+        "preview": "./?domain=commerce#commerce%3Aconvenience-local-assembly",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/local-detail/modular-assembly.js": "public-required",
+          "../assembly-rules/convenience-local.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:pharmacy-local-assembly",
+      "key": "assembly",
+      "pack": "pharmacy-local",
+      "name": "강약중강약국 · 전체 조립",
+      "kind": "shop-assembly",
+      "category": "상가 조립 예시",
+      "collection": "상가 제작 · 강약중강약국",
+      "note": "소품 포함 조립 미리보기입니다. 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/pharmacy-local/",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "강약중강약국",
+          "전체 조립"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "등록된 본체와 소품을 assembly-rules의 공간 조건으로 조립한 예시."
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/pharmacy-local/assembly.js",
+          "../assembly-rules/pharmacy-local.js"
+        ],
+        "preview": "./?domain=commerce#commerce%3Apharmacy-local-assembly",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/pharmacy-local/assembly.js": "public-required",
+          "../assembly-rules/pharmacy-local.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:bakery-local-assembly",
+      "key": "assembly",
+      "pack": "bakery-local",
+      "name": "소담빵집 · 전체 조립",
+      "kind": "shop-assembly",
+      "category": "상가 조립 예시",
+      "collection": "상가 제작 · 소담빵집",
+      "note": "소품 포함 조립 미리보기입니다. 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-local/",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "소담빵집",
+          "전체 조립"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "등록된 본체와 소품을 assembly-rules의 공간 조건으로 조립한 예시."
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-local/assembly.js",
+          "../assembly-rules/bakery-local.js"
+        ],
+        "preview": "./?domain=commerce#commerce%3Abakery-local-assembly",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-local/assembly.js": "public-required",
+          "../assembly-rules/bakery-local.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:bakery-blue-assembly",
+      "key": "assembly",
+      "pack": "bakery-blue",
+      "name": "PAKO PAKO 빵집 · 전체 조립",
+      "kind": "shop-assembly",
+      "category": "상가 조립 예시",
+      "collection": "상가 제작 · PAKO PAKO 빵집",
+      "note": "소품 포함 조립 미리보기입니다. 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/bakery-blue/",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "PAKO PAKO 빵집",
+          "전체 조립"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "등록된 본체와 소품을 assembly-rules의 공간 조건으로 조립한 예시."
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/bakery-blue/assembly.js",
+          "../assembly-rules/bakery-blue.js"
+        ],
+        "preview": "./?domain=commerce#commerce%3Abakery-blue-assembly",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/bakery-blue/assembly.js": "public-required",
+          "../assembly-rules/bakery-blue.js": "public-required"
+        }
+      }
+    },
+    {
+      "id": "commerce:salon-local-assembly",
+      "key": "assembly",
+      "pack": "salon-local",
+      "name": "haro 미용실 · 전체 조립",
+      "kind": "shop-assembly",
+      "category": "상가 조립 예시",
+      "collection": "상가 제작 · haro 미용실",
+      "note": "소품 포함 조립 미리보기입니다. 동네 자동 배치는 미연결입니다.",
+      "link": "./categories/commerce/salon-local/",
+      "taxonomy": {
+        "domain": "commerce",
+        "role": "reference",
+        "era": [],
+        "colors": [],
+        "materials": [],
+        "tags": [
+          "상가 제작",
+          "haro 미용실",
+          "전체 조립"
+        ]
+      },
+      "assembly": {
+        "kind": "reference",
+        "slots": [],
+        "dimensions": null,
+        "evidence": "등록된 본체와 소품을 assembly-rules의 공간 조건으로 조립한 예시."
+      },
+      "ownership": {
+        "domain": "commerce",
+        "manifest": "categories/commerce/catalog.json",
+        "sources": [
+          "categories/commerce/salon-local/assembly.js",
+          "../assembly-rules/salon-local.js"
+        ],
+        "preview": "./?domain=commerce#commerce%3Asalon-local-assembly",
+        "modelProvider": "categories/commerce/models.js",
+        "sourceAvailability": {
+          "categories/commerce/salon-local/assembly.js": "public-required",
+          "../assembly-rules/salon-local.js": "public-required"
+        }
       }
     }
   ]

@@ -1,0 +1,12 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>편의점 조립 · 조립 미리보기</title><link rel="stylesheet" href="../../../style.css"><script type="importmap">{"imports":{"three":"../../../../vendor/three.module.js"}}</script><style>.control-row{display:flex;align-items:center;flex-wrap:wrap;gap:1rem}.control-row label{display:inline-flex;align-items:center;gap:.4rem;margin:0}.control-row input[type=checkbox]{width:1.15rem;height:1.15rem;min-height:0;padding:0;margin:0}.control-row select{width:auto;max-width:100%}</style></head><body>
+<header><h1>편의점 조립 · 조립 미리보기</h1></header><main><p><a href="../../../?domain=commerce&search=상가%20제작">에셋 백과에서 상가·소품 보기</a></p>
+<h2>7 SEVENA</h2><p>간판의 구조와 배색을 참고하고 로고·상호는 변형했습니다. 본체에는 앞쪽 소품이 없으며, 별도 백과 에셋을 배치 규칙으로 조립합니다. 상층 창문은 포함하지 않습니다.</p>
+<p><button id="base">간판과 본체만 보기</button> <button id="assembled">소품과 실내 조립하기</button> <button id="front">정면 보기</button> <button id="angle">사선 보기</button></p>
+<p class="control-row"><label><input id="exterior" type="checkbox"> 외부 소품 표시</label> <label><input id="interior" type="checkbox"> 실내 가구와 조명 표시</label> <label><input id="night" type="checkbox"> 밤으로 보기</label></p>
+<p class="control-row"><label for="space">앞쪽 가용 공간</label> <select id="space"><option value="5.5">넓은 공간 · 5.5m</option><option value="1.2">좁은 공간 · 1.2m</option><option value="0">앞 공간 없음</option></select> <label for="part">개별 에셋 확인</label> <select id="part"><option value="">조립 장면</option></select></p>
+<p id="status" role="status">모델을 불러오는 중입니다.</p>
+<div style="display:flex;flex-wrap:wrap;gap:1rem"><section style="flex:1 1 32rem;min-width:0"><h3>백과 제작본</h3><div id="stage" style="position:relative;width:100%;height:520px;min-height:0" aria-label="드래그로 회전하고 휠로 확대하는 편의점 모델"></div></section><section style="flex:1 1 32rem;min-width:0"><h3>외관 레퍼런스</h3><img src="reference-v3.png" alt="9칸 간판과 녹색 차양, 전면 진열대와 냉동고, 파라솔과 좌석이 있는 편의점" style="width:100%;height:auto"></section></div>
+<details open><summary id="diagnosticSummary">배치 결과</summary><ul id="diagnostics"></ul></details>
+<p>출입 통로를 비우기 위해 녹색 좌석군은 사진보다 오른쪽에 배치했습니다. 실내는 업종에 따른 예시이며 치수는 사진 비례로 추정했습니다. 그림체는 단색 면과 단순한 패턴으로 유지합니다.</p>
+<p>조립 미리보기용 1종입니다. 에셋 백과 통합본이며 실제 동네 자동 배치는 미연결입니다.</p><p id="error" role="alert"></p>
+</main><script type="module" src="modular-viewer.js"></script></body></html>

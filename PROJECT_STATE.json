@@ -6498,5 +6498,22 @@
       "distantLookup": "asynchronous; not claimed complete"
     },
     "followupFix": "Existing arterial MultiPolygon crash reproduced and fixed in bce9d8c; skipped crossing reasons recorded"
+  },
+  "shopWorkshopIntegration20261123": {
+    "status": "implemented-local-tests-passed-publication-pending",
+    "packs": [
+      "convenience-local",
+      "pharmacy-local",
+      "bakery-local",
+      "bakery-blue",
+      "salon-local"
+    ],
+    "parts": 85,
+    "assemblies": 5,
+    "source": "outputs/domestic-test/asset-encyclopedia/categories/commerce/catalog.json",
+    "guidelines": "docs/project-guidelines.txt section 7",
+    "automaticPlacement": false,
+    "verification": "verification/shop-workshop-integration",
+    "scope": "백과 등록·부품 및 전체 조립 미리보기. 실제 동네 자동 배치 미연결."
   }
 }

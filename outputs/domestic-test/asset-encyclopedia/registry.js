@@ -14,5 +14,5 @@ export function createRegistry(raw){
  return Object.freeze(registry);
 }
 export function loadAssetRegistry(){
- return pending??=fetch(new URL('catalog.json?v=category-ownership2',base)).then(r=>{if(!r.ok)throw Error('에셋 백과 목록을 불러오지 못했습니다.');return r.json();}).then(createRegistry).catch(error=>{pending=null;throw new Error('에셋 기준 목록을 확인해 주세요.',{cause:error});});
+ return pending??=fetch(new URL('catalog.json?v=shop-workshop-integrated-1',base)).then(r=>{if(!r.ok)throw Error('에셋 백과 목록을 불러오지 못했습니다.');return r.json();}).then(createRegistry).catch(error=>{pending=null;throw new Error('에셋 기준 목록을 확인해 주세요.',{cause:error});});
 }

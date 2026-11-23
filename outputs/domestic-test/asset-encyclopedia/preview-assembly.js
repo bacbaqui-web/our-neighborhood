@@ -3,6 +3,16 @@
 import {createDetails} from '../details.js?v=replacements3';
 export const previewAssembly={
  createDetails,
+ async createShopAssembly(a){
+  let result;
+  if(a.pack==='convenience-local')result=await(await import('./categories/commerce/local-detail/modular-assembly.js')).assembleConvenience();
+  else if(a.pack==='pharmacy-local')result=await(await import('./categories/commerce/pharmacy-local/assembly.js')).assemblePharmacy();
+  else if(a.pack==='bakery-local')result=await(await import('./categories/commerce/bakery-local/assembly.js')).assembleBakery();
+  else if(a.pack==='bakery-blue')result=await(await import('./categories/commerce/bakery-blue/assembly.js')).assembleBakery();
+  else if(a.pack==='salon-local')result=await(await import('./categories/commerce/salon-local/assembly.js')).assembleSalon();
+  else throw Error('지원하지 않는 상가 조립본: '+a.id);
+  result.volume?.update(true);return result.root;
+ },
  async createStreetPreview(a){return(await import('../street.js?v=ribbon2')).createStreet([],()=>0,()=>null,a.key);},
  async createPartPreview(a){
   if(a.pack==='grade1-housing-report'){const {createCaseModel}=await import('../grade1-housing-report/models.js');return createCaseModel(a.key).root;}

@@ -11,7 +11,7 @@ subprocess.run(['python3', 'tests/test_publication_manifest.py'], cwd=ROOT, chec
 subprocess.run(['node', 'tests/publication-references.mjs'], cwd=ROOT, check=True)
 subprocess.run(['python3', str(ROOT / 'work/browser-generation/pack.py'), '--check'], cwd=ROOT, check=True)
 # Publication must not silently lose stable encyclopedia IDs or their model links.
-for test in ['asset-model-boundaries.mjs', 'asset-references.mjs', 'asset-integration-audit.mjs', 'asset-catalog-rebuild.mjs', 'housing-encyclopedia.mjs', 'streetlights-registry.mjs', 'asset-category-ownership.mjs', 'asset-category-generator.mjs', 'house-assembly-rules.mjs', 'house-assembly-rendering.mjs', 'asset-filter-state.mjs', 'assembly-diagnostics.mjs', 'assembly-exclusions.mjs']:
+for test in ['asset-model-boundaries.mjs', 'asset-references.mjs', 'asset-integration-audit.mjs', 'asset-catalog-rebuild.mjs', 'housing-encyclopedia.mjs', 'streetlights-registry.mjs', 'asset-category-ownership.mjs', 'asset-category-generator.mjs', 'house-assembly-rules.mjs', 'house-assembly-rendering.mjs', 'asset-filter-state.mjs', 'assembly-diagnostics.mjs', 'assembly-exclusions.mjs', 'shop-workshop-integration.mjs', 'convenience-local.mjs', 'pharmacy-local.mjs', 'bakery-local.mjs', 'bakery-blue.mjs', 'bakery-model.mjs', 'bakery-blue-model.mjs', 'salon-model.mjs']:
     subprocess.run(['node', '--no-warnings', '--loader', './tests/three-loader.mjs', 'tests/' + test], cwd=ROOT, check=True)
 
 if OUT.exists():

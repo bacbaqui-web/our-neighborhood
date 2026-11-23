@@ -470,6 +470,137 @@
         "nature"
       ],
       "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/local-detail/modular-assets.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/local-detail/modular-primitives.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/local-detail/modular-shapes.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/local-detail/modular-textures.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/pharmacy-local/model.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/pharmacy-local/model-v1.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/pharmacy-local/frontage.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/pharmacy-local/posters.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/pharmacy-local/interior-furniture.js": {
+      "domains": [
+        "commerce"
+      ],
+      "role": "model-source"
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/salon-local/model.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/salon-local/textures.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/salon-local/config.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-blue/model.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-blue/config.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-blue/blue-textures.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-blue/textures.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-blue/shared-parts.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-local/model.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-local/config.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
+    },
+    "domestic-test/asset-encyclopedia/categories/commerce/bakery-local/textures.js": {
+      "domains": [
+        "commerce"
+      ],
+      "ownership": "category-owned",
+      "note": "상가 제작본 모델·텍스처. 조립은 UI adapter와 assembly-rules에서 수행."
     }
   }
 }

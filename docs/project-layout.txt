@@ -342,3 +342,5 @@ asset-encyclopedia/filter-state.js: 종류/부품/시대/색상/재료 탐색 �
 2026-11-22 리팩토링 공개 완료: e1a3b15 선택 변경 및 bce9d8c 기존 횡단부 다중 도형 오류 수정. 호스팅85218cd, CI45024603732/45024612963 성공. 실제Python기하·공개 신규생성/재열기·기존저장동네·백과미리보기 확인. docs/refactor-20261122.md, verification/refactor-20261122/completion.json 참조.
 
 2026-11-23 독립 상가 제작본 통합: categories/commerce의 local-detail·pharmacy-local·bakery-local·bakery-blue·salon-local. 부품85+조립예시5, preview-assembly.js가 분류 모델과 assembly-rules를 연결. 지침은 docs/project-guidelines.txt 7절로 통합. 실제 동네 자동 배치 미연결. 검증 verification/shop-workshop-integration/.
+
+2026-11-23 상가 제작실: asset-encyclopedia/shop-gallery.js·shop-workspace.js, assembly-rules/shop-profiles.js. 조립 갤러리와 상세 크기 시험·브라우저 조건/수정 요청. scripts/build-shop-guide.py가 통합 지침7절과 기존 참고 페이지에서 공개자료 생성. 동네 자동 배치 미적용. verification/shop-gallery/.

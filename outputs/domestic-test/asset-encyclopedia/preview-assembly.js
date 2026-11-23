@@ -3,15 +3,15 @@
 import {createDetails} from '../details.js?v=replacements3';
 export const previewAssembly={
  createDetails,
- async createShopAssembly(a){
+ async createShopAssembly(a,options={}){
   let result;
-  if(a.pack==='convenience-local')result=await(await import('./categories/commerce/local-detail/modular-assembly.js')).assembleConvenience();
-  else if(a.pack==='pharmacy-local')result=await(await import('./categories/commerce/pharmacy-local/assembly.js')).assemblePharmacy();
-  else if(a.pack==='bakery-local')result=await(await import('./categories/commerce/bakery-local/assembly.js')).assembleBakery();
-  else if(a.pack==='bakery-blue')result=await(await import('./categories/commerce/bakery-blue/assembly.js')).assembleBakery();
-  else if(a.pack==='salon-local')result=await(await import('./categories/commerce/salon-local/assembly.js')).assembleSalon();
+  if(a.pack==='convenience-local')result=await(await import('./categories/commerce/local-detail/modular-assembly.js')).assembleConvenience(options);
+  else if(a.pack==='pharmacy-local')result=await(await import('./categories/commerce/pharmacy-local/assembly.js')).assemblePharmacy(options);
+  else if(a.pack==='bakery-local')result=await(await import('./categories/commerce/bakery-local/assembly.js')).assembleBakery(options);
+  else if(a.pack==='bakery-blue')result=await(await import('./categories/commerce/bakery-blue/assembly.js')).assembleBakery(options);
+  else if(a.pack==='salon-local')result=await(await import('./categories/commerce/salon-local/assembly.js')).assembleSalon(options);
   else throw Error('지원하지 않는 상가 조립본: '+a.id);
-  result.volume?.update(true);return result.root;
+  result.volume?.update(true);result.root.userData.shopPlan=result.plan;return result.root;
  },
  async createStreetPreview(a){return(await import('../street.js?v=ribbon2')).createStreet([],()=>0,()=>null,a.key);},
  async createPartPreview(a){

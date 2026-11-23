@@ -26,3 +26,6 @@ const model=new T.Mesh(new T.BoxGeometry(2,4,6),new T.MeshBasicMaterial());const
 resize();control.dispatchEvent(new Event('change'));const before=draws;engine.dispose();engine.dispose();resize();control.dispatchEvent(new Event('change'));engine.frame();assert.equal(draws,before);assert.equal(rendererDisposes,1);assert.equal(inkDisposes,1);assert.deepEqual(engineReleased,[model]);assert(control.disposed);
 const loading=deferred();const lateShow=loading.promise.then(m=>engine.show(m));loading.resolve(new T.Group());await lateShow;assert.equal(engineReleased.length,2,'Closed engine releases late models');
 console.log('Encyclopedia lifecycle: stale loads, cache, one queue/renderer, recovery and disposal passed');
+const hiddenHost={clientWidth:0,clientHeight:0,append(){}};
+const hiddenEngine=createPreviewEngine(hiddenHost,{createRenderer:()=>({...renderer,render(s,c){assert(Number.isFinite(c.aspect)&&c.aspect>0);assert(c.position.toArray().every(Number.isFinite));}}),Controls,ResizeObserverClass:Resize,createInk:()=>({render:(s,c,draw)=>draw(),dispose(){}}),releaseModel(){}});
+hiddenEngine.show(new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshBasicMaterial()));hiddenHost.clientWidth=600;hiddenHost.clientHeight=400;resize();hiddenEngine.frame();hiddenEngine.dispose();console.log('PASS hidden tab initial framing and return to visible viewport');

@@ -1,4 +1,6 @@
-import {createPreviewEngine} from './preview-engine.js';
+import {galleryFilters} from './shop-workspace.js';
+import {mountShopGallery} from './shop-gallery.js?v=gallery1';
+import {createPreviewEngine} from './preview-engine.js?v=gallery1';
 import {createThumbnailQueue} from './thumbnail-queue.js';
 import {clockText} from '../shops/storefront-hours.js?v=shop50v3';
 import {createReferenceReview} from './reference-review.js?v=shoprefs1';
@@ -13,11 +15,12 @@ import {getAssemblyRuleDescriptions} from '../assembly-rules/asset-policies.js';
 import {curation,canonicalId,appliedLabel} from './curation.js?v=review527';
 import {createReviewStore,LABELS} from './reviews.js?v=review1';
 import {createModel as provideModel,release} from './models.js?v=providers1';
-import {previewAssembly} from './preview-assembly.js';
+import {previewAssembly} from './preview-assembly.js?v=gallery1';
 const createModel=(asset,options={})=>provideModel(asset,{...previewAssembly,...options});
 const $=id=>document.getElementById(id);let entries=[],detailVersion=0,active=null,viewer=null,currentGroup='house',personViewState={angle:0,pitch:0,zoom:1};
 
 let filters={...defaultFilters},restoringHistory=false,detailPushed=false,detailOpener=null,detailAssetId=null,pendingDetailFocus=false;
+const shopGallery=mountShopGallery({openPart:a=>open(a),createModel,rerender:()=>{filters=galleryFilters(filters,shopGallery.gallery);renderScope();render();saveURL('replace');}});
 const getLineSettings=mountLineOptions($('lineOptions'),settings=>viewer?.setLines?.(settings));
 const reviews=createReviewStore();let reviewReady=false,reviewBusy=false;
 function reviewStatus(a){return reviews.state.items[a.id]?.status||'none';}
@@ -33,7 +36,7 @@ async function mark(a,status){
 async function imageThumb(a){const img=new Image();img.src=a.file;await img.decode();if(!a.rect)return a.file;const c=document.createElement('canvas');c.width=400;c.height=300;const ctx=c.getContext('2d'),[x,y,w,h]=a.rect,scale=Math.min(380/w,280/h);ctx.drawImage(img,x,y,w,h,(400-w*scale)/2,(300-h*scale)/2,w*scale,h*scale);return c.toDataURL('image/webp',.85);}
 function paintImage(host,src,a){const img=new Image();img.src=src;img.alt=a.name;img.width=400;img.height=300;if(host===document.querySelector('.thumb')){img.fetchPriority='high';}else{img.loading='lazy';}host.replaceChildren(img);}
 function visibleEntries(){return entries.filter(a=>canonicalId(a.id)===a.id&&curation.items[a.id]?.state!=='deleted');}
-function selected(){return filterAssets(visibleEntries(),filters,a=>treeProfileText(a.key)).filter(a=>!filters.treeUse||filters.domain!=='nature'||treeProfile(a.key)?.uses.includes(filters.treeUse));}
+function selected(){return filterAssets(visibleEntries(),galleryFilters(filters,shopGallery.gallery),a=>treeProfileText(a.key)).filter(a=>!filters.treeUse||filters.domain!=='nature'||treeProfile(a.key)?.uses.includes(filters.treeUse));}
 function saveURL(mode='push',hash=location.hash){if(restoringHistory)return;const url=location.pathname+'?'+serializeFilters(filters)+hash;if(url!==location.pathname+location.search+location.hash)history[mode==='replace'?'replaceState':'pushState'](null,'',url);}
 function referenceFor(a){return referenceReviews.get(assetGroup(a));}
 function isArchivedFile(a,file){return !!file&&a.ownership?.sourceAvailability?.[file.split(/[?#]/)[0]]==='local-archive';}
@@ -57,9 +60,10 @@ function showFacts(a){
 }
 const thumbnails=createThumbnailQueue({createModel,release,createEngine:()=>createPreviewEngine(),imageThumb,paintImage,unavailableArchive});
 let referenceReview;const referenceReviews=new Map();
-function render(){const list=selected();thumbnails.cancel();$('grid').replaceChildren();const rows=[];for(const a of list){const card=document.createElement('article');card.className='card';card.dataset.asset=a.id;card.dataset.reviewStatus=reviewStatus(a);const openButton=document.createElement('button');openButton.className='card-open';openButton.setAttribute('aria-label',a.name+' · '+a.collection+' 보기');const thumb=document.createElement('div');thumb.className='thumb';thumb.textContent='미리보기 준비 중';const info=document.createElement('div');info.className='card-info';const badge=document.createElement('span');badge.className='badge';badge.textContent=a.collection;const name=document.createElement('strong');name.textContent=a.name;const cat=document.createElement('small');cat.textContent=a.kind==='tree'?treeProfileText(a.key):a.category;info.append(badge,name,cat);openButton.append(thumb,info);openButton.onclick=()=>open(a);card.append(openButton,reviewButtons(a));const ref=referenceFor(a)?.card(a);if(ref)card.append(ref);$('grid').append(card);rows.push([a,thumb]);}thumbnails.observe(rows);$('status').textContent=`${DOMAINS[filters.domain]}${filters.role?' / '+(ROLE_LABELS[filters.role]||filters.role):''} · ${list.length.toLocaleString()}개`;$('empty').hidden=list.length>0;renderActiveFilters();}
+function render(){shopGallery.sync(filters.domain,entries);const list=shopGallery.filter(selected(),filters.domain);thumbnails.cancel();$('grid').replaceChildren();const rows=[];for(const a of list){const card=document.createElement('article');card.className='card';card.dataset.asset=a.id;card.dataset.reviewStatus=reviewStatus(a);const openButton=document.createElement('button');openButton.className='card-open';openButton.setAttribute('aria-label',a.name+' · '+a.collection+' 보기');const thumb=document.createElement('div');thumb.className='thumb';thumb.textContent='미리보기 준비 중';const info=document.createElement('div');info.className='card-info';const badge=document.createElement('span');badge.className='badge';badge.textContent=a.collection;const name=document.createElement('strong');name.textContent=a.name;const cat=document.createElement('small');cat.textContent=a.kind==='tree'?treeProfileText(a.key):a.category;info.append(badge,name,cat);openButton.append(thumb,info);openButton.onclick=()=>open(a);card.append(openButton,reviewButtons(a));const ref=referenceFor(a)?.card(a);if(ref)card.append(ref);$('grid').append(card);rows.push([a,thumb]);}thumbnails.observe(rows);$('status').textContent=`${DOMAINS[filters.domain]}${filters.role&&!(filters.domain==='commerce'&&shopGallery.gallery)?' / '+(ROLE_LABELS[filters.role]||filters.role):''} · ${list.length.toLocaleString()}개`;$('empty').hidden=list.length>0;renderActiveFilters();}
 
 async function open(a,keepOptions=false){
+ if(shopGallery.handles(a))return shopGallery.open(a);
  $('shopOptions').hidden=a.kind!=='shop';if(!keepOptions)$('shopHour').value='12:00';
  $('personOptions').hidden=!a.seasons;$('personActionOptions').hidden=!a.seasons;
  if(!keepOptions){personViewState={angle:0,pitch:0,zoom:1};document.querySelector('[name=personSeason][value=spring]').checked=true;$('personPitch').value='0';document.querySelector('[name=personAction][value=walk]').checked=true;}
@@ -140,4 +144,4 @@ function updateShopTime(){
 }
 $('shopHour').onchange=updateShopTime;
 
-window.addEventListener('pagehide',event=>{if(!event.persisted){++detailVersion;viewer?.dispose();viewer=null;thumbnails.dispose();}});
+window.addEventListener('pagehide',event=>{if(!event.persisted){++detailVersion;viewer?.dispose();viewer=null;thumbnails.dispose();shopGallery.dispose();}});

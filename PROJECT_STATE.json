@@ -6520,5 +6520,13 @@
     "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?domain=commerce&search=전체%20조립",
     "sourceRun": 45101352697,
     "hostingRun": 45101365910
+  },
+  "shopGallery20261123": {
+    "status": "implemented-local-verified-publication-pending",
+    "url": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?domain=commerce",
+    "scope": "5 assembly gallery, guide, actual used parts, size reconstruction, browser-saved conditions and requests, references, JSON export",
+    "automaticPlacement": false,
+    "fixedBody": "convenience-local",
+    "verification": "verification/shop-gallery"
   }
 }

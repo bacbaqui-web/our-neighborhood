@@ -1,0 +1,27 @@
+{
+  "status": "published-and-verified",
+  "date": "2026-11-23",
+  "sourceCommit": "c4c53318555ce61719ce7353e6b8920e7dde36d8",
+  "initialIntegrationCommit": "735855ed88c93e4b9dbdeabe21d525e1e0e23ff9",
+  "hostingCommit": "39b8794c847cd31feee32cde989f175baec4f4e1",
+  "sourceRun": 45101352697,
+  "hostingRun": 45101365910,
+  "url": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?domain=commerce&search=전체%20조립",
+  "parts": 85,
+  "assemblies": 5,
+  "publicBrowser": {
+    "listCount": 90,
+    "assembliesRendered": 5,
+    "samplePart": "경대 드라이기·빗·가위·제품 묶음",
+    "detailErrors": [],
+    "screenshot": "public-five-shops.jpg"
+  },
+  "publicFiles": {
+    "checked": 57,
+    "byteIdentical": 55,
+    "commerceCatalog": "semantic equality",
+    "aggregateCatalog": "all 90 workshop entries semantically equal; 10 existing people entries transformed by publication optimizer"
+  },
+  "automaticNeighborhoodPlacement": false,
+  "unrelatedStagingPreserved": true
+}

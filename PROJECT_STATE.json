@@ -6500,7 +6500,7 @@
     "followupFix": "Existing arterial MultiPolygon crash reproduced and fixed in bce9d8c; skipped crossing reasons recorded"
   },
   "shopWorkshopIntegration20261123": {
-    "status": "implemented-local-tests-passed-publication-pending",
+    "status": "published-and-verified",
     "packs": [
       "convenience-local",
       "pharmacy-local",
@@ -6514,6 +6514,11 @@
     "guidelines": "docs/project-guidelines.txt section 7",
     "automaticPlacement": false,
     "verification": "verification/shop-workshop-integration",
-    "scope": "백과 등록·부품 및 전체 조립 미리보기. 실제 동네 자동 배치 미연결."
+    "scope": "백과 등록·부품 및 전체 조립 미리보기. 실제 동네 자동 배치 미연결.",
+    "sourceCommit": "c4c53318555ce61719ce7353e6b8920e7dde36d8",
+    "hostingCommit": "39b8794c847cd31feee32cde989f175baec4f4e1",
+    "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?domain=commerce&search=전체%20조립",
+    "sourceRun": 45101352697,
+    "hostingRun": 45101365910
   }
 }

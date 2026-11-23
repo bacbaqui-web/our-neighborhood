@@ -1,0 +1,40 @@
+{
+  "registry": {
+    "canonical": 1135,
+    "effective": 1113,
+    "workshopParts": 85,
+    "assemblyExamples": 5
+  },
+  "passed": [
+    "shop-workshop-integration.mjs",
+    "convenience-local.mjs",
+    "pharmacy-local.mjs",
+    "bakery-local.mjs",
+    "bakery-blue.mjs",
+    "bakery-model.mjs",
+    "bakery-blue-model.mjs",
+    "salon-model.mjs",
+    "asset-model-boundaries.mjs",
+    "asset-category-ownership.mjs",
+    "asset-integration-audit.mjs",
+    "asset-encyclopedia.mjs",
+    "build-asset-encyclopedia.mjs --check",
+    "selected commit whitespace check",
+    "unrelated staged patch byte equality",
+    "all 90 entries reference-only policy assertion"
+  ],
+  "localWholeBuild": "blocked by unrelated uncommitted Codex bridge imports; excluded from selected source commit",
+  "publicBuild": "passed source CI 45101352697 and hosting CI 45101365910",
+  "localBrowser": {
+    "fiveAssembliesRendered": true,
+    "detailError": ""
+  },
+  "automaticNeighborhoodPlacement": false,
+  "publicBrowser": {
+    "listCount": 90,
+    "assembliesRendered": 5,
+    "samplePart": "경대 드라이기·빗·가위·제품 묶음",
+    "detailErrors": [],
+    "screenshot": "public-five-shops.jpg"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "published-and-verified",
+  "date": "2026-11-23",
+  "sourceCommit": "8b1f90fb91ad2c3b0c2c15f8d859d36ef4d082a3",
+  "hostingCommit": "f7b6e8f5604a00a03e41b2b45ec3db3a15a44bee",
+  "sourceRun": 45104354955,
+  "hostingRun": 45104390965,
+  "publicUrl": "https://magamiscom.ing/neighborhood/domestic-test/asset-encyclopedia/?domain=commerce",
+  "publicChecks": [
+    "5 assembly detail windows rendered without reported errors",
+    "pharmacy width8/front0: 43 placed, 2 omitted",
+    "saved dimensions, upper floor checkbox and request survived reload",
+    "test inputs restored to defaults",
+    "canonical guide shown",
+    "four pharmacy reference images loaded",
+    "9 runtime files byte-identical"
+  ],
+  "localExport": "Downloads/salon-local-편집.json parsed and checked",
+  "limitations": [
+    "browser-only drafts, no automatic town placement",
+    "convenience body fixed; front space adjustable",
+    "small layout checked at actual CSS viewport width487px"
+  ],
+  "screenshots": [
+    "public-gallery.jpg",
+    "public-detail.jpg"
+  ]
+}

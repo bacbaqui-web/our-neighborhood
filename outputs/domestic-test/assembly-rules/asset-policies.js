@@ -526,7 +526,7 @@ export const assetPolicies=freeze({
 export function getAssetPolicy(id){return assetPolicies[id]||null;}
 export function getAssemblyRuleDescriptions(asset){
  const id=typeof asset==='string'?asset:asset?.id,house=houseDescriptions(id);
- if(/^commerce:(convenience-local|pharmacy-local|bakery-local|bakery-blue|salon-local)-/.test(id||''))return [{id,status:'reference-only',automatic:false,description:'상가 제작본의 공간별 조립 규칙에 연결되어 있습니다. 전체 조립 및 개별 소품 미리보기를 제공하며, 실제 동네 자동 선택·배치는 아직 연결하지 않았습니다.'}];
+ if(/^commerce:(seven-local|convenience-local|pharmacy-local|bakery-local|bakery-blue|salon-local)-/.test(id||''))return [{id,status:'reference-only',automatic:false,description:'상가 제작본의 공간별 조립 규칙에 연결되어 있습니다. 전체 조립 및 개별 소품 미리보기를 제공하며, 실제 동네 자동 선택·배치는 아직 연결하지 않았습니다.'}];
  if(house.some(r=>r.status==='automatic'))return house;
  const policy=assetPolicies[id],p=policy?.placement||policy?.integration;
  if(p)return [{id,status:p.status||p.mode,automatic:p.automatic??!!p.renderer,description:p.conditions||p.reason||'연결된 생성기가 부착 위치와 크기를 계산합니다. 개별 실제 시설의 실측 검증과는 구분합니다.',generator:p.generator,renderer:p.renderer}];

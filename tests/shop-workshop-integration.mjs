@@ -9,7 +9,7 @@ for(const [pack,count] of Object.entries(sizes)){
  const assembly=r.resolve(`commerce:${pack}-assembly`);assert(assembly);assert.equal(assembly.assembly.kind,'reference');
  await assert.rejects(()=>createModel(assembly),/미리보기 연결/);
  assert.equal(await createModel(assembly,{createShopAssembly:a=>a.id}),assembly.id);
- for(const a of [...parts,assembly]){assert(r.resolve(a.id));assert(a.link);assert.equal(a.taxonomy.domain,'commerce');assert(a.ownership.sources.every(s=>a.ownership.sourceAvailability[s]==='public-required'));assert.equal(getAssemblyRuleDescriptions(a)[0].automatic,false);}
+ for(const a of [...parts,assembly]){assert(r.resolve(a.id));assert(a.link);assert.equal(a.taxonomy.domain,'commerce');assert(a.ownership.sources.every(s=>a.ownership.sourceAvailability[s]==='public-required'));assert.equal(getAssemblyRuleDescriptions(a)[0].automatic,false);assert.equal(getAssemblyRuleDescriptions(a)[0].status,'reference-only');}
  for(const a of parts)assert(a.assembly.parentAssetIds.includes(assembly.id));
 }
 console.log('PASS 85 parts, 5 assembly examples, canonical taxonomy and public source ownership, parent links, composition adapter and explicit non-automatic status');
